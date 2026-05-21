@@ -9,7 +9,30 @@
 </head>
 
 <body>
-<header>…</header>
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"><span>AE</span></div>
+      <div class="nav-title">
+        <strong>AMY Electric</strong>
+        <span>Los Angeles • C‑10 #1125186 • EVITP #4051604</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="ev-charger-installation.html">EV Chargers</a>
+      <a href="panel-upgrade.html">Panel Upgrades</a>
+      <a href="electrical-repair.html">Repairs</a>
+      <a href="commercial-electrical.html">Commercial</a>
+      <a href="lighting-installation.html">Lighting</a>
+      <a href="city-los-angeles.html">Service Areas</a>
+    </div>
+    <div class="nav-cta">
+      <span class="badge"><strong>EVITP</strong> #4051604</span>
+      <a class="phone-pill" href="tel:18183025614"><strong>(818) 302‑5614</strong></a>
+    </div>
+  </nav>
+</header>
 
 <main class="main">
 
@@ -55,9 +78,31 @@
   </div>
 </section>
 
-<footer class="footer">…</footer>
+<footer class="footer">
+  <div>
+    <strong>AMY Electric</strong><br />
+    Los Angeles, CA<br />
+    C‑10 #1125186 • EVITP #4051604<br />
+    Phone: <a href="tel:18183025614">(818) 302‑5614</a>
+  </div>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="ev-charger-installation.html">EV Chargers</a>
+    <a href="panel-upgrade.html">Panel Upgrades</a>
+    <a href="electrical-repair.html">Repairs</a>
+    <a href="commercial-electrical.html">Commercial</a>
+    <a href="lighting-installation.html">Lighting</a>
+  </div>
+
+  <div>© <span id="year"></span> AMY Electric.</div>
+</footer>
 
 </main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
 
