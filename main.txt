@@ -1,0 +1,51 @@
+amyelectric/
+├─ index.html
+├─ ev-charger-installation.html
+├─ panel-upgrade.html
+├─ electrical-repair.html
+├─ commercial-electrical.html
+├─ lighting-installation.html
+├─ city-los-angeles.html
+├─ city-sherman-oaks.html
+├─ city-studio-city.html
+├─ city-burbank.html
+├─ city-glendale.html
+├─ city-pasadena.html
+├─ city-encino.html
+├─ city-van-nuys.html
+├─ city-north-hollywood.html
+├─ css/
+│  └─ styles.css
+└─ img/
+   ├─ logo.svg
+   ├─ hero-electrician.jpg
+   ├─ ev-charger.jpg
+   ├─ panel-upgrade.jpg
+   ├─ lighting.jpg
+   └─ commercial.jpg
+amyelectric/
+├── index.html
+├── ev-charger-installation.html
+├── panel-upgrade.html
+├── electrical-repair.html
+├── commercial-electrical.html
+├── lighting-installation.html
+├── city-los-angeles.html
+├── city-sherman-oaks.html
+├── city-studio-city.html
+├── city-burbank.html
+├── city-glendale.html
+├── city-pasadena.html
+├── city-encino.html
+├── city-van-nuys.html
+├── city-north-hollywood.html
+├── css/
+│   └── styles.css
+└── img/
+    ├── logo.svg
+    ├── hero-electrician.jpg
+    ├── ev-charger.jpg
+    ├── panel-upgrade.jpg
+    ├── lighting.jpg
+    └── commercial.jpg
+
