@@ -1,0 +1,70 @@
+IMAGE REQUIREMENTS FOR AMY ELECTRIC WEBSITE
+===========================================
+
+The site is currently using placeholder image paths. Add these images to get the site 100% complete:
+
+REQUIRED IMAGES:
+---------------
+
+1. hero-electrician.jpg
+   - Size: 1200×800px (or 1200×900px)
+   - Content: Professional photo of electrician working on panel, installing EV charger, or similar
+   - Alt text: "Licensed electrician working on electrical panel in Los Angeles"
+   - Used on: Homepage hero section
+
+2. og-home.jpg  
+   - Size: 1200×630px (Facebook/social media standard)
+   - Content: AMY Electric logo + "Licensed Electricians - Los Angeles" text
+   - Purpose: Shows up when homepage is shared on social media
+   - Can be same as hero-electrician.jpg cropped to 1200×630
+
+OPTIONAL (Nice to Have):
+-----------------------
+
+3. panel-upgrade-before-after.jpg
+   - Before/after of a panel upgrade
+   - Used on: Panel upgrade page
+
+4. ev-charger-install.jpg
+   - Tesla Wall Connector or NEMA 14-50 installation
+   - Used on: EV charger page
+
+5. team-photo.jpg
+   - Photo of you or your team
+   - Used on: About section (future)
+
+WHERE TO GET IMAGES:
+-------------------
+
+Option 1: Your Own Photos
+- Take photos of recent jobs (with customer permission)
+- Use your phone — just ensure good lighting
+- Crop to the sizes above
+
+Option 2: Stock Photos (Free)
+- Unsplash.com — search "electrician", "electrical panel", "EV charger"
+- Pexels.com — search same terms
+- Download largest size available, crop to fit
+
+Option 3: Stock Photos (Paid)
+- iStock.com
+- Shutterstock.com
+- Search for authentic work photos, not generic stock
+
+IMPORTANT:
+- Do NOT use photos with competitor logos visible
+- Do NOT use photos with faces unless you have model release
+- Optimize images before upload (compress to ~200-400KB using TinyPNG.com)
+
+PLACEHOLDER STATUS:
+------------------
+Currently the hero section has a placeholder div. The site works fine without images, but adding real photos will:
+✓ Increase trust
+✓ Improve conversion rate
+✓ Make the site feel more professional
+✓ Help with social media shares
+
+Add images by:
+1. Saving them to this /img/ folder
+2. No HTML changes needed — paths are already set
+3. Just name them exactly as listed above

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://amyelectric.com/sitemap.xml
+
+# Disallow admin or temp directories if they exist
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /_test/
