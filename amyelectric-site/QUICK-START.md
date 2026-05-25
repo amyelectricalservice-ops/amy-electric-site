@@ -16,7 +16,7 @@ Choose one:
 ### Step 3: Fix Critical Citations (15 minutes)
 See `CITATION-FIXES.md` for details. Update these 3 places:
 1. Google Business Profile → change URL to `amyelectric.com`
-2. CALeVIP → fix license (#1125186) + URL
+2. CALeVIP → fix license (#981578) + URL
 3. Yelp → change URL to `amyelectric.com`
 
 ---

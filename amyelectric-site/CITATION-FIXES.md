@@ -9,7 +9,7 @@ Your business listings across the web have **inconsistent information** that is 
 ## ❌ CURRENT PROBLEMS
 
 ### 1. **CALeVIP Directory**
-- **Wrong License**: Shows `#981578` (should be `#1125186`)
+- **Wrong License**: Shows `#981578` (should be `#981578`)
 - **Wrong Website**: Points to `amyelectric.wordpress.com`
 - **Fix**: Log into CALeVIP contractor portal → Update both
 
@@ -31,7 +31,7 @@ Address:        20628 Londelius St, Winnetka, CA 91306
 Phone:          (818) 302-5614
 Website:        https://amyelectric.com
 Email:          info@amyelectric.com
-License:        C-10 #1125186
+License:        C-10 #981578
 Certification:  EVITP #4051604
 ```
 
@@ -46,7 +46,7 @@ Certification:  EVITP #4051604
    - Add EVITP certification to description
 
 2. **CALeVIP** — https://calevip.org/contractor-portal
-   - Update license to `C-10 #1125186`
+   - Update license to `C-10 #981578`
    - Update website to `https://amyelectric.com`
 
 3. **Yelp** — https://biz.yelp.com

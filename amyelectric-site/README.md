@@ -16,7 +16,7 @@
 - **LocalBusiness** schema on homepage with:
   - NAP (Name, Address, Phone)
   - Geo coordinates
-  - License numbers (C-10 #1125186, EVITP #4051604)
+  - License numbers (C-10 #981578, EVITP #4051604)
   - Service area
   - Hours, rating, credentials
 - **Service** schema on all service pages
@@ -84,7 +84,7 @@
 3. **Fix CALeVIP Citation**
    - Log into CALeVIP contractor directory
    - Update website to `https://amyelectric.com`
-   - Update license number to **C-10 #1125186** (currently shows #981578 ❌)
+   - Update license number to **C-10 #981578** (currently shows #981578 ❌)
 
 4. **Fix Yelp Citation**
    - Log into Yelp Business
@@ -104,7 +104,7 @@
    - Recommended size: 1200×800px for hero, 1200×630px for OG image
 
 7. **Verify License Number**
-   - Confirm C-10 #1125186 is accurate (appears throughout site)
+   - Confirm C-10 #981578 is accurate (appears throughout site)
    - Confirm EVITP #4051604 is accurate
 
 8. **Set Up Google Analytics** (optional but recommended)
@@ -224,7 +224,7 @@ Based on the audit fixes:
 If you need help with:
 - Adding images → Upload to `img/` folder, update paths in HTML
 - Changing phone number → Find/replace `(818) 302-5614` across all files
-- Changing license numbers → Find/replace `#1125186` and `#4051604`
+- Changing license numbers → Find/replace `#981578` and `#4051604`
 - Customizing colors → Edit CSS variables in `style.css` lines 16–28
 
 ---

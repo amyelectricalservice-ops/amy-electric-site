@@ -5,7 +5,7 @@
 Static HTML marketing site for an LA electrical contractor. No build system, no package manager, no CI, no tests.
 
 - **Business name**: AMY Electric
-- **License**: C-10 #1125186, EVITP #4051604
+- **License**: C-10 #981578 (verify at [CSLB](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578)), EVITP #4051604
 - **Phone**: (818) 302-5614
 - **Service area**: Greater Los Angeles
 
