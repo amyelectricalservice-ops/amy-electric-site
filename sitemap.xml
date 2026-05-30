@@ -25,7 +25,35 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://amyelectric.com/tesla-charger-installation.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/whole-home-rewiring.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/surge-protection.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://amyelectric.com/city-los-angeles.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/city-sherman-oaks.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/city-burbank.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/city-glendale.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/city-pasadena.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
