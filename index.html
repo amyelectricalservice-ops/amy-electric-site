@@ -439,40 +439,19 @@
     <h2>Request a Service or Free Estimate</h2>
     <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
 
-    <form id="estimate-form" class="estimate-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Request Service or Free Estimate">
+    <form id="quick-form" class="estimate-form quick-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Quick quote form">
       <div class="form-grid">
-        <div class="form-group full">
-          <label>What can we help you with?</label>
-          <div class="radio-group">
-            <label class="radio-label">
-              <input type="radio" name="request_type" value="service" required>
-              <span class="radio-text">I need a service (repair, install, or emergency work)</span>
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="request_type" value="estimate" required>
-              <span class="radio-text">I'd like a free estimate for a project</span>
-            </label>
-          </div>
+        <div class="form-group">
+          <label for="q-name">Name</label>
+          <input type="text" id="q-name" name="name" required aria-label="Your name">
         </div>
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required aria-label="Your name">
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" required aria-label="Your phone number">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required aria-label="Your email address">
-        </div>
-        <div class="form-group">
-          <label for="city">Service Area / City</label>
-          <input type="text" id="city" name="city" placeholder="e.g. Sherman Oaks" required aria-label="Your city or service area">
+          <label for="q-phone">Phone</label>
+          <input type="tel" id="q-phone" name="phone" required aria-label="Your phone number">
         </div>
         <div class="form-group full">
-          <label for="service">Service Type</label>
-          <select id="service" name="service" required aria-label="Type of service needed">
+          <label for="q-service">What do you need?</label>
+          <select id="q-service" name="service" required aria-label="Type of service needed">
             <option value="">Select a service...</option>
             <option value="ev-charger">EV Charger Installation</option>
             <option value="panel-upgrade">200A Panel Upgrade</option>
@@ -492,17 +471,79 @@
             <option value="other">Other / Not Sure</option>
           </select>
         </div>
-        <div class="form-group full">
-          <label for="message">Project Details</label>
-          <textarea id="message" name="message" rows="4" placeholder="Describe what you need or any issues you're experiencing..." required aria-label="Project details or message"></textarea>
-        </div>
       </div>
-      <button type="submit" class="btn btn-gold form-submit">Submit Request</button>
+      <button type="submit" class="btn btn-gold form-submit">Get Free Quote</button>
+      <p class="form-divider">— or —</p>
+      <a href="#detailed-form" class="form-toggle" onclick="document.getElementById('detailed-form').open=true;">Need a detailed estimate? Click here →</a>
       <p class="form-note">We typically respond within a few hours during business hours. For urgent issues, call <a href="tel:18183025614">(818) 302-5614</a>.</p>
       <div class="form-success" id="form-success">
         <strong>Thank you!</strong> Your request has been sent. We'll get back to you shortly.
       </div>
     </form>
+
+    <details id="detailed-form" class="detailed-form-block" style="margin-top:32px;">
+      <summary style="cursor:pointer; color:var(--gold); font-weight:600; padding:14px 0;">📋 Detailed Estimate Form (4 additional fields)</summary>
+      <form id="estimate-form" class="estimate-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Detailed estimate form" style="margin-top:16px;">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>What can we help you with?</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="request_type" value="service" required>
+                <span class="radio-text">I need a service (repair, install, or emergency work)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="request_type" value="estimate" required>
+                <span class="radio-text">I'd like a free estimate for a project</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required aria-label="Your name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required aria-label="Your phone number">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required aria-label="Your email address">
+          </div>
+          <div class="form-group">
+            <label for="city">Service Area / City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Sherman Oaks" required aria-label="Your city or service area">
+          </div>
+          <div class="form-group full">
+            <label for="service">Service Type</label>
+            <select id="service" name="service" required aria-label="Type of service needed">
+              <option value="">Select a service...</option>
+              <option value="ev-charger">EV Charger Installation</option>
+              <option value="panel-upgrade">200A Panel Upgrade</option>
+              <option value="electrical-repair">Electrical Repair</option>
+              <option value="commercial">Commercial Electrical</option>
+              <option value="lighting">Lighting Installation</option>
+              <option value="tesla-charger">Tesla Charger</option>
+              <option value="rewiring">Whole-Home Rewiring</option>
+              <option value="surge-protection">Surge Protection</option>
+              <option value="outlet-switch">Outlet &amp; Switch Installation</option>
+              <option value="ceiling-fan">Ceiling Fan Installation</option>
+              <option value="smoke-co">Smoke &amp; CO Detector Installation</option>
+              <option value="generator">Generator Transfer Switch</option>
+              <option value="dedicated-circuit">Dedicated Circuit</option>
+              <option value="smart-home">Smart Home Electrical</option>
+              <option value="safety-inspection">Electrical Safety Inspection</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" rows="4" placeholder="Describe what you need or any issues you're experiencing..." required aria-label="Project details or message"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold form-submit">Submit Detailed Request</button>
+      </form>
+    </details>
   </div>
 </section>
 
@@ -596,5 +637,6 @@
 </footer>
 
 <script src="js/site.min.js"></script>
+<a href="tel:18183025614" class="sticky-call" aria-label="Call AMY Electric at (818) 302-5614"><span class="sticky-call-icon" aria-hidden="true">📞</span><span class="sticky-call-text">Call Now · (818) 302-5614</span></a>
 </body>
 </html>
