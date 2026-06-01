@@ -110,6 +110,10 @@
     <loc>https://amyelectric.com/city-encino.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://amyelectric.com/city-santa-monica.html</loc>
+    <priority>0.7</priority>
+  </url>
   <!-- Special pages -->
   <url>
     <loc>https://amyelectric.com/testimonials.html</loc>
