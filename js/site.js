@@ -6,9 +6,11 @@
   const ham = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
   if (ham && nav) {
+    ham.setAttribute('aria-expanded', 'false');
     ham.addEventListener('click', () => {
-      ham.classList.toggle('open');
+      const isOpen = ham.classList.toggle('open');
       nav.classList.toggle('open');
+      ham.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
 
@@ -56,8 +58,9 @@
 
     function showFallback(data) {
       /* Open mailto as fallback */
-      const body = `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nCity: ${data.city}\nMessage: ${data.message}`;
-      window.location.href = `mailto:info@amyelectric.com?subject=Free Estimate Request&body=${encodeURIComponent(body)}`;
+      const requestType = data.request_type === 'service' ? 'Service Request' : 'Free Estimate Request';
+      const body = `Request Type: ${requestType}\nName: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nCity: ${data.city}\nMessage: ${data.message}`;
+      window.location.href = `mailto:info@amyelectric.com?subject=${encodeURIComponent(requestType + ' - ' + data.name)}&body=${encodeURIComponent(body)}`;
       showSuccess();
     }
   }

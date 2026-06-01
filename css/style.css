@@ -374,6 +374,15 @@ select option { background: var(--navy); }
 textarea { resize: vertical; min-height: 110px; }
 .form-submit { margin-top: 8px; }
 .form-note { font-size: 13px; color: var(--gray); margin-top: 10px; }
+
+/* ── RADIO BUTTON GROUP ── */
+.radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.radio-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; padding: 14px 18px; background: var(--navy); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); transition: border-color .18s, background .18s; text-transform: none; letter-spacing: normal; font-family: var(--serif); font-size: 15px; color: var(--white); }
+.radio-label:hover { border-color: var(--gold); background: rgba(245,166,35,.05); }
+.radio-label input[type="radio"] { width: auto; flex-shrink: 0; margin-top: 3px; accent-color: var(--gold); }
+.radio-label input[type="radio"]:checked + .radio-text { color: var(--gold); font-weight: 600; }
+.radio-label:has(input:checked) { border-color: var(--gold); background: rgba(245,166,35,.08); }
+.radio-text { flex: 1; }
 .form-success {
   display: none;
   background: rgba(77,219,122,.12);

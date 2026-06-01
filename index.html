@@ -7,6 +7,7 @@
 <meta name="description" content="AMY Electric — trusted licensed electricians in Los Angeles. Panel upgrades, EV charger installation, repairs & commercial electrical. C-10 #981578 · EVITP #4051604. Free estimates. Call (818) 302-5614.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://amyelectric.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <!-- Open Graph -->
 <meta property="og:title" content="AMY Electric | Electrician Los Angeles">
 <meta property="og:description" content="Licensed LA electricians. Panel upgrades, EV chargers, repairs. C-10 #981578 · EVITP #4051604.">
@@ -14,6 +15,10 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://amyelectric.com/img/og-home.jpg">
 <link rel="stylesheet" href="css/style.css">
+<!-- Preload hints for performance -->
+<link rel="preload" as="image" href="img/hero-electrician.jpg" >
+<link rel="preload" as="style" href="css/style.css">
+<link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" crossorigin>
 
 <!-- LocalBusiness JSON-LD Schema -->
 <script type="application/ld+json">
@@ -145,10 +150,26 @@
       <div class="hero-ctas">
         <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
         <a href="#estimate" class="btn btn-outline">Free Estimate</a>
-      </div>
     </div>
-    <div class="hero-img">
-      <img src="img/hero-electrician.jpg" alt="Licensed electrician working on electrical panel in Los Angeles" width="560" height="420" loading="eager">
+  </div>
+</section>
+
+<!-- Blog / Resources -->
+<section style="background:var(--navy2); padding:72px 24px;">
+  <div class="wrap text-center">
+    <div class="section-label">Electrical Resources</div>
+    <h2>Helpful Guides for LA Homeowners</h2>
+    <p style="max-width:640px; margin:0 auto 32px;">Practical advice on common electrical projects, code requirements, and choosing the right electrician in Los Angeles.</p>
+    <div class="related-grid" style="text-align:left; max-width:1000px; margin:0 auto;">
+      <a href="blog/ev-charging-benefits.html" class="related-card"><div class="rc-icon">⚡</div><strong>EV Charging Benefits</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">5 min read</div></a>
+      <a href="blog/panel-upgrade-signs.html" class="related-card"><div class="rc-icon">🔧</div><strong>Panel Upgrade Signs</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">6 min read</div></a>
+      <a href="blog/choosing-electrician-la.html" class="related-card"><div class="rc-icon">👷</div><strong>How to Choose an LA Electrician</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">7 min read</div></a>
+      <a href="blog/whole-home-rewiring-guide.html" class="related-card"><div class="rc-icon">🔌</div><strong>Whole-Home Rewiring Guide</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">8 min read</div></a>
+      <a href="blog/gfci-afci-protection-la.html" class="related-card"><div class="rc-icon">⚡</div><strong>GFCI vs AFCI Protection</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">6 min read</div></a>
+      <a href="blog/la-electrical-code-requirements.html" class="related-card"><div class="rc-icon">📘</div><strong>LA Electrical Code Requirements</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">7 min read</div></a>
+    </div>
+    <div style="margin-top:32px;">
+      <a href="blog/" style="color:var(--gold); font-weight:600; text-decoration:none;">View All Articles →</a>
     </div>
   </div>
 </section>
@@ -314,13 +335,74 @@
 <!-- Estimate Form -->
 <section class="estimate-section" id="estimate" style="padding: 72px 24px;">
   <div class="wrap" style="max-width: 760px;">
-    <div class="section-label">Free Estimate</div>
-    <h2>Request a Free Electrical Estimate</h2>
-    <p>Tell us about your project and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
+    <div class="section-label">Get Started</div>
+    <h2>Request a Service or Free Estimate</h2>
+    <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
 
-    <div class="card" style="padding:0; overflow:hidden;">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeAL6lbbbiAYjaVX47JgUQFFRAh_K_Aj66Dv5PZQ0Xr1t992Q/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" style="border:none; display:block;">Loading…</iframe>
-    </div>
+    <form id="estimate-form" class="estimate-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Request Service or Free Estimate">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>What can we help you with?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="request_type" value="service" required>
+              <span class="radio-text">I need a service (repair, install, or emergency work)</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="request_type" value="estimate" required>
+              <span class="radio-text">I'd like a free estimate for a project</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required aria-label="Your name">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required aria-label="Your phone number">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required aria-label="Your email address">
+        </div>
+        <div class="form-group">
+          <label for="city">Service Area / City</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Sherman Oaks" required aria-label="Your city or service area">
+        </div>
+        <div class="form-group full">
+          <label for="service">Service Type</label>
+          <select id="service" name="service" required aria-label="Type of service needed">
+            <option value="">Select a service...</option>
+            <option value="ev-charger">EV Charger Installation</option>
+            <option value="panel-upgrade">200A Panel Upgrade</option>
+            <option value="electrical-repair">Electrical Repair</option>
+            <option value="commercial">Commercial Electrical</option>
+            <option value="lighting">Lighting Installation</option>
+            <option value="tesla-charger">Tesla Charger</option>
+            <option value="rewiring">Whole-Home Rewiring</option>
+            <option value="surge-protection">Surge Protection</option>
+            <option value="outlet-switch">Outlet &amp; Switch Installation</option>
+            <option value="ceiling-fan">Ceiling Fan Installation</option>
+            <option value="smoke-co">Smoke &amp; CO Detector Installation</option>
+            <option value="generator">Generator Transfer Switch</option>
+            <option value="dedicated-circuit">Dedicated Circuit</option>
+            <option value="smart-home">Smart Home Electrical</option>
+            <option value="safety-inspection">Electrical Safety Inspection</option>
+            <option value="other">Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="message">Project Details</label>
+          <textarea id="message" name="message" rows="4" placeholder="Describe what you need or any issues you're experiencing..." required aria-label="Project details or message"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold form-submit">Submit Request</button>
+      <p class="form-note">We typically respond within a few hours during business hours. For urgent issues, call <a href="tel:18183025614">(818) 302-5614</a>.</p>
+      <div class="form-success" id="form-success">
+        <strong>Thank you!</strong> Your request has been sent. We'll get back to you shortly.
+      </div>
+    </form>
   </div>
 </section>
 
