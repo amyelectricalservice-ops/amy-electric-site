@@ -17,7 +17,8 @@
 <meta name="twitter:description" content="View our project gallery showcasing EV charger installations, panel upgrades, lighting projects, and more across Greater Los Angeles. Licensed C-10 electricians.">
 <meta name="twitter:image" content="https://amyelectric.com/img/hero-electrician.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Electrical Contractor Portfolio","provider":{"@type":"Electrician","name":"AMY Electric","telephone":"+18183025614"},"areaServed":"Los Angeles,CA"}</script>
 </head>
 <body>
@@ -45,7 +46,7 @@
   <div class="gallery-grid" style="margin-top:40px; display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:24px;">
     <!-- EV Charger Installation -->
     <div class="gallery-item">
-      <img src="img/ev-charger.jpg" alt="EV charger installation in Los Angeles home" loading="lazy">
+      <img src="img/ev-charger.jpg" alt="EV charger installation in Los Angeles home" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>EV Charger Installation</h3>
         <p>Tesla Wall Connector installation in Studio City home</p>
@@ -54,7 +55,7 @@
     </div>
     <!-- Panel Upgrade -->
     <div class="gallery-item">
-      <img src="img/panel-upgrade.jpg" alt="Electrical panel upgrade in Los Angeles" loading="lazy">
+      <img src="img/panel-upgrade.jpg" alt="Electrical panel upgrade in Los Angeles" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>200A Panel Upgrade</h3>
         <p>Service upgrade in Sherman Oaks residence</p>
@@ -63,7 +64,7 @@
     </div>
     <!-- Lighting Installation -->
     <div class="gallery-item">
-      <img src="img/lighting.jpg" alt="Lighting installation project in Los Angeles" loading="lazy">
+      <img src="img/lighting.jpg" alt="Lighting installation project in Los Angeles" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Recessed Lighting Installation</h3>
         <p>Kitchen and bathroom lighting in Burbank home</p>
@@ -72,7 +73,7 @@
     </div>
     <!-- Commercial Electrical -->
     <div class="gallery-item">
-      <img src="img/commercial.jpg" alt="Commercial electrical work in Los Angeles" loading="lazy">
+      <img src="img/commercial.jpg" alt="Commercial electrical work in Los Angeles" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Commercial Electrical Work</h3>
         <p>Tenant improvement project in Glendale office space</p>
@@ -81,7 +82,7 @@
     </div>
     <!-- Hero Image -->
     <div class="gallery-item">
-      <img src="img/hero-electrician.jpg" alt="Licensed electrician working on electrical panel" loading="lazy">
+      <img src="img/hero-electrician.jpg" alt="Licensed electrician working on electrical panel" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>On-the-Job Service</h3>
         <p>Licensed electrician performing panel inspection</p>
@@ -90,7 +91,7 @@
     </div>
     <!-- Additional placeholder items for variety -->
     <div class="gallery-item">
-      <img src="img/ev-charger.jpg" alt="NEMA 14-50 outlet installation" loading="lazy">
+      <img src="img/ev-charger.jpg" alt="NEMA 14-50 outlet installation" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Universal EV Outlet</h3>
         <p>NEMA 14-50 installation for flexible charging</p>
@@ -98,7 +99,7 @@
       </div>
     </div>
     <div class="gallery-item">
-      <img src="img/panel-upgrade.jpg" alt="Subpanel installation" loading="lazy">
+      <img src="img/panel-upgrade.jpg" alt="Subpanel installation" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Subpanel Addition</h3>
         <p>Added circuit capacity for home workshop</p>
@@ -106,7 +107,7 @@
       </div>
     </div>
     <div class="gallery-item">
-      <img src="img/lighting.jpg" alt="Outdoor lighting installation" loading="lazy">
+      <img src="img/lighting.jpg" alt="Outdoor lighting installation" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Security Lighting</h3>
         <p>Motion-sensor floodlights for home security</p>
@@ -114,7 +115,7 @@
       </div>
     </div>
     <div class="gallery-item">
-      <img src="img/commercial.jpg" alt="LED retrofit project" loading="lazy">
+      <img src="img/commercial.jpg" alt="LED retrofit project" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>Commercial LED Retrofit</h3>
         <p>Energy-efficient lighting upgrade for retail space</p>
@@ -152,7 +153,7 @@
 <div class="footer-col"><h4>Service Areas</h4><ul><li><a href="city-los-angeles.html">Los Angeles</a></li><li><a href="city-sherman-oaks.html">Sherman Oaks</a></li><li><a href="city-burbank.html">Burbank</a></li><li><a href="city-glendale.html">Glendale</a></li><li><a href="city-pasadena.html">Pasadena</a></li></ul></div>
 <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html#estimate">Free Estimate</a></li><li><a href="city-los-angeles.html">All Service Areas</a></li><li><a href="tel:18183025614">Call Us</a></li></ul></div>
 </div><div class="footer-bottom"><span>© 2025 AMY Electric. All rights reserved.</span><div class="license-chips"><span class="chip">C-10 #981578</span><span class="chip">EVITP #4051604</span><span class="chip">Los Angeles,CA</span></div></div></footer>
-<script src="js/site.js"></script>
+<script src="js/site.min.js"></script>
 <style>
 .gallery-item {
   position: relative;
