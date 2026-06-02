@@ -1,0 +1,25 @@
+AMY Electric — Post-Deployment Setup Steps
+
+PHASE 1: GOOGLE REVIEWS (EmbedSocial / Taggbox)
+1. Go to https://embedsocial.com or https://taggbox.com and create an account
+2. Connect your Google Business Profile
+3. Generate the embed widget script
+4. Add the script to index.html (after the hero section, before the trust bar)
+5. Optionally add to testimonials.html for a live reviews feed instead of static text
+
+PHASE 4: GoHighLevel CRM Integration
+1. In GoHighLevel, go to Settings → Forms → Integrations
+2. Create a new form integration for AMY Electric
+3. Copy the form action endpoint URL
+4. Replace `https://formspree.io/f/your-form-id` in both forms in index.html:
+   - quick-form (3-field form)
+   - estimate-form (7-field form inside <details>)
+5. Also add the GHL tracking script to the <head> of all pages
+
+PHASE 1: IMAGE ASSETS
+- When you have real project photos, place them in /img/
+- Use JPEG format, 800×800px, quality 75
+- Run `python3 -c "from PIL import Image; [...jpegoptim...]"` to batch resize
+
+PHASE 3: VIDEO CONTENT
+- Upload to YouTube, add as <iframe> embed on service pages
