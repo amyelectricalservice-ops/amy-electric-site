@@ -43,7 +43,37 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" as="style" href="css/style.min.css">
 <link rel="stylesheet" href="css/style.min.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Commercial Electrical","provider":{"@type":"Electrician","name":"AMY Electric","telephone":"+18183025614","geo":{"@type":"GeoCoordinates","latitude":34.2001,"longitude":-118.5723}},"areaServed":"Los Angeles, CA"}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Commercial Electrical",
+  "name": "Commercial Electrical Los Angeles",
+  "description": "Tenant improvements, LED retrofits, EV fleet charging, and service upgrades for commercial properties.",
+  "provider": {
+    "@type": "Electrician",
+    "name": "AMY Electric",
+    "telephone": "+18183025614",
+    "url": "https://amyelectric.com",
+    "image": "https://amyelectric.com/img/hero-electrician.jpg"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Los Angeles"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "price": "Varies",
+      "description": "Free estimate after on-site evaluation"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amyelectric.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://amyelectric.com/#services"}, {"@type": "ListItem", "position": 3, "name": "Commercial Electrical Los Angeles", "item": "https://amyelectric.com/commercial-electrical.html"}]}</script>
 </head>
 <body>
 <div class="topbar">
@@ -134,6 +164,19 @@
   <a href="tel:18183025614" class="btn btn-navy" style="margin-right:14px;">☎ (818) 302-5614</a>
   <a href="index.html#estimate" class="btn btn-navy">Free Estimate</a>
 </div></div>
+
+<!-- Related Services -->
+<section style="padding: 72px 24px; background:var(--navy2);">
+  <div class="wrap text-center">
+    <div class="section-label">Related</div>
+    <h2>Related Services &amp; Resources</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; max-width:700px; margin:0 auto;">
+      <a href="ev-charger-installation.html" class="related-card" style="flex:1 1 200px; min-width:180px; padding:20px; text-align:left;"><strong>EV Charger Installation</strong><span style="display:block; font-size:13px; color:var(--gray); margin-top:6px;">Workplace and fleet charging</span></a>
+      <a href="lighting-installation.html" class="related-card" style="flex:1 1 200px; min-width:180px; padding:20px; text-align:left;"><strong>Lighting Installation</strong><span style="display:block; font-size:13px; color:var(--gray); margin-top:6px;">LED retrofits and upgrades</span></a>
+      <a href="panel-upgrade.html" class="related-card" style="flex:1 1 200px; min-width:180px; padding:20px; text-align:left;"><strong>Panel Upgrades</strong><span style="display:block; font-size:13px; color:var(--gray); margin-top:6px;">Service upgrades for commercial</span></a>
+    </div>
+  </div>
+</section>
 <footer>
   <div class="footer-grid">
     <div class="footer-brand"><div class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></div><p>Licensed, insured, and EVITP-certified electrical contractors serving Greater Los Angeles since 2012.</p><div class="footer-contact"><a href="tel:18183025614">(818) 302-5614</a><span style="color:var(--gray); font-size:13px;">Mon–Fri 7 AM–5 PM</span></div></div>
