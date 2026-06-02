@@ -15,7 +15,7 @@
   --gold:    #f5a623;
   --gold2:   #e8951a;
   --white:   #f4f1eb;
-  --gray:    #8a96a8;
+  --gray: #98a6b8;
   --mid:     #1e3055;
   --accent:  #3dd6f5;
   --danger:  #e05050;
@@ -373,6 +373,7 @@ select option { background: var(--navy); }
 textarea { resize: vertical; min-height: 110px; }
 .form-submit { margin-top: 8px; }
 .form-note { font-size: 13px; color: var(--gray); margin-top: 10px; }
+.form-note a { text-decoration: underline; text-underline-offset: 2px; }
 
 /* ── RADIO BUTTON GROUP ── */
 .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
