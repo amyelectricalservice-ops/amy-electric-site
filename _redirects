@@ -1,5 +1,4 @@
-# Cloudflare Pages redirects for amyelectric.com
-# Force HTTPS for all traffic
-http://amyelectric.com/*  https://amyelectric.com/:splat  301!
-http://www.amyelectric.com/*  https://amyelectric.com/:splat  301!
-https://www.amyelectric.com/*  https://amyelectric.com/:splat  301!
+# Cloudflare Pages _redirects
+# HTTPS enforcement and www canonicalization handled in Cloudflare dashboard:
+#   SSL/TLS → Always Use HTTPS
+#   Rules → Bulk Redirect: www.amyelectric.com/* → https://amyelectric.com/:splat (301)
