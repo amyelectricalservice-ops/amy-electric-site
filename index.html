@@ -618,7 +618,7 @@
     <h2>Request a Service or Free Estimate</h2>
     <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
 
-    <form id="quick-form" class="estimate-form quick-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Quick quote form">
+    <form id="quick-form" class="estimate-form quick-form" action="/api/contact" method="POST" aria-label="Quick quote form">
       <div class="form-grid">
         <div class="form-group">
           <label for="q-name">Name</label>
@@ -655,14 +655,14 @@
       <p class="form-divider">— or —</p>
       <a href="#detailed-form" class="form-toggle" onclick="document.getElementById('detailed-form').open=true;">Need a detailed estimate? Click here →</a>
       <p class="form-note">We typically respond within a few hours during business hours. For urgent issues, call <a href="tel:18183025614">(818) 302-5614</a>.</p>
-      <div class="form-success" id="form-success">
+      <div class="form-success" id="quick-form-success">
         <strong>Thank you!</strong> Your request has been sent. We'll get back to you shortly.
       </div>
     </form>
 
     <details id="detailed-form" class="detailed-form-block" style="margin-top:32px;">
       <summary style="cursor:pointer; color:var(--gold); font-weight:600; padding:14px 0;">📋 Detailed Estimate Form (4 additional fields)</summary>
-      <form id="estimate-form" class="estimate-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Detailed estimate form" style="margin-top:16px;">
+      <form id="estimate-form" class="estimate-form" action="/api/contact" method="POST" aria-label="Detailed estimate form" style="margin-top:16px;">
         <div class="form-grid">
           <div class="form-group full">
             <label>What can we help you with?</label>
@@ -721,6 +721,9 @@
           </div>
         </div>
         <button type="submit" class="btn btn-gold form-submit">Submit Detailed Request</button>
+        <div class="form-success" id="estimate-form-success" style="display:none;">
+          <strong>Thank you!</strong> Your detailed request has been sent. We'll get back to you shortly.
+        </div>
       </form>
     </details>
   </div>

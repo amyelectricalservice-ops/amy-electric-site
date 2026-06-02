@@ -1,68 +1,63 @@
-/* AMY Electric — site.js */
 (function () {
   'use strict';
 
-  /* ── Mobile nav ── */
-  const ham = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
+  var ham = document.querySelector('.hamburger');
+  var nav = document.querySelector('nav');
   if (ham && nav) {
     ham.setAttribute('aria-expanded', 'false');
-    ham.addEventListener('click', () => {
-      const isOpen = ham.classList.toggle('open');
+    ham.addEventListener('click', function () {
+      var isOpen = ham.classList.toggle('open');
       nav.classList.toggle('open');
       ham.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
 
-  /* ── Active nav link ── */
-  const links = document.querySelectorAll('nav a');
-  const cur = window.location.pathname.split('/').pop() || 'index.html';
-  links.forEach(l => {
+  var links = document.querySelectorAll('nav a');
+  var cur = window.location.pathname.split('/').pop() || 'index.html';
+  links.forEach(function (l) {
     if (l.getAttribute('href') === cur || l.getAttribute('href') === './' + cur) {
       l.classList.add('active');
     }
   });
 
-  /* ── Estimate form ── */
-  const form = document.getElementById('estimate-form');
-  if (form) {
+  function handleForm(formId, successId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const btn = form.querySelector('.form-submit');
-      btn.textContent = 'Sending…';
+      var btn = form.querySelector('.form-submit');
+      btn.textContent = 'Sending\u2026';
       btn.disabled = true;
 
-      /* Collect data */
-      const data = Object.fromEntries(new FormData(form));
-
-      /* Send via Formspree (replace ACTION in HTML) or mailto fallback */
-      const action = form.getAttribute('action');
-      if (action && action.startsWith('https://formspree.io')) {
-        fetch(action, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.success) {
+            form.style.display = 'none';
+            document.getElementById(successId).style.display = 'block';
+          } else {
+            throw new Error(res.message);
+          }
         })
-        .then(r => r.ok ? showSuccess() : showFallback(data))
-        .catch(() => showFallback(data));
-      } else {
-        /* mailto fallback */
-        showFallback(data);
-      }
+        .catch(function () {
+          var data = Object.fromEntries(new FormData(form));
+          var body = '';
+          for (var k in data) {
+            if (data.hasOwnProperty(k)) body += k + ': ' + data[k] + '\n';
+          }
+          window.location.href = 'mailto:info@amyelectric.com?subject=AMY%20Electric%20-%20' + encodeURIComponent(data.name || 'New Lead') + '&body=' + encodeURIComponent(body);
+          form.style.display = 'none';
+          document.getElementById(successId).style.display = 'block';
+        });
     });
-
-    function showSuccess() {
-      document.getElementById('form-success').style.display = 'block';
-      document.getElementById('estimate-form').style.display = 'none';
-    }
-
-    function showFallback(data) {
-      /* Open mailto as fallback */
-      const requestType = data.request_type === 'service' ? 'Service Request' : 'Free Estimate Request';
-      const body = `Request Type: ${requestType}\nName: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nCity: ${data.city}\nMessage: ${data.message}`;
-      window.location.href = `mailto:info@amyelectric.com?subject=${encodeURIComponent(requestType + ' - ' + data.name)}&body=${encodeURIComponent(body)}`;
-      showSuccess();
-    }
   }
+
+  handleForm('quick-form', 'quick-form-success');
+  handleForm('estimate-form', 'estimate-form-success');
 
 })();
