@@ -2,3 +2,6 @@
 # HTTPS enforcement and www canonicalization handled in Cloudflare dashboard:
 #   SSL/TLS → Always Use HTTPS
 #   Rules → Bulk Redirect: www.amyelectric.com/* → https://amyelectric.com/:splat (301)
+
+# Strip .html extension (permanent redirect)
+/*.html  /:splat  301
