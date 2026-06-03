@@ -1,5 +1,2 @@
-# Force HTTPS (301)
-http://amyelectric.com/*  https://amyelectric.com/:splat  301
-
 # Strip .html extension (301)
 /*.html  /:splat  301
