@@ -1,0 +1,319 @@
+================================================================================
+ COMPETITOR LANDSCAPE REPORT — Los Angeles Electrical Contractors
+ Generated: 2026-06-03
+ Prepared for: AMY Electric (amyelectric.com)
+================================================================================
+
+TABLE OF CONTENTS
+  1. Competitor Overview
+  2. Dynamic Power Group — dpgcontractors.com
+  3. Branover Contractors Inc — branovercontractors.com
+  4. Bryden Electrical — brydenelectrical.com
+  5. 911 Construction & Electric Inc — 911electrics.com
+  6. Ready Electric — readyelectricincusa.com
+  7. Dr. Electric — drelectricca.com
+  8. Summary Comparison Table
+  9. AMY Electric Gap Analysis
+ 10. Actionable Takeaways
+
+================================================================================
+1. COMPETITOR OVERVIEW
+================================================================================
+
+The LA electrical contractor space is crowded. Major residential service
+competitors found via "electrician Los Angeles" and "EV charger installation
+Los Angeles" searches:
+
+  Tier 1 (most visible in search):
+    - Dynamic Power Group (dpgcontractors.com)
+    - Branover Contractors Inc (branovercontractors.com)
+    - 911 Construction & Electric Inc (911electrics.com)
+    - Bryden Electrical (brydenelectrical.com)
+
+  Tier 2 (niche/smaller):
+    - Ready Electric (readyelectricincusa.com)
+    - Dr. Electric (drelectricca.com)
+    - Tik Electric (tikelectric.com)
+    - Farashi Electric (farashielectric.com)
+
+  Tier 3 (commercial-heavy):
+    - O'Bryant Electric (obryantelectric.com)
+    - Express Electric & Construction (expresselectricconstruction.com)
+    - LA Pro Electrical (laproelectrical.com)
+
+================================================================================
+2. DYNAMIC POWER GROUP — dpgcontractors.com
+================================================================================
+
+  Domain:           dpgcontractors.com
+  Title Tag:        "Expert Electrical Contractor Los Angeles | Dynamic Power Group"
+  Description:      "Your top electrical contractor in Los Angeles for residential,
+                    commercial, and industrial projects. Reliable services tailored
+                    to your needs."
+  Schema:           Yoast SEO Premium schema:
+                      - WebPage (with breadcrumb)
+                      - Organization (with sameAs links to Facebook, Instagram,
+                        LinkedIn, Pinterest)
+                      - WebSite (with SearchAction)
+                      - ImageObject
+                    No LocalBusiness type detected on homepage.
+  Page Count:       ~80 pages (62 pages + 18 blog posts)
+  Keywords:         electrical contractor Los Angeles, commercial electrical,
+                    residential electrical, EV charging, panel upgrades, lighting
+                    installation, wiring, surge protection
+  CMS:              WordPress + Elementor + Yoast SEO Premium
+  License:          CA #1076003
+  Notable:          7000+ happy customers claimed; 5-year limited labor warranty;
+                    same-day service; dual-licensed (residential + commercial);
+                    service areas include Sherman Oaks, West LA, Beverly Crest,
+                    Redondo Beach; heavy social media presence.
+  Notable diff     Stronger social proof numbers (7000+ customers), broader
+  from AMY:         industrial service offering, uses WordPress CMS with premium
+                    plugins, higher page count with blog.
+
+================================================================================
+3. BRANOVER CONTRACTORS INC — branovercontractors.com
+================================================================================
+
+  Domain:           branovercontractors.com
+  Title Tag:        "Los Angeles Electrician - Licensed Local Electrical Contractor
+                    in LA"
+  Description:      "Los Angeles electrician servicing Los Angeles since 1985.
+                    Licensed. Family owned & operated. Free Estimates."
+  Schema:           Rank Math schema:
+                      - Place (with full address: 2661 Bronholly Dr, LA 90068)
+                      - Organization (with sameAs, email info@, logo)
+                      - WebSite (with SearchAction)
+                      - WebPage
+                      - Article (with author, keywords "los angeles electrician")
+                    Very comprehensive schema setup.
+  Page Count:       ~255 pages (85 pages + 170 blog posts)
+  Keywords:         Los Angeles electrician, electric panel upgrade, EV charger
+                    installation, electrical code compliance, property management
+                    electrical, Zinsco/Federal Pacific panel replacement, surge
+                    protection
+  CMS:              WordPress + Astra + Rank Math SEO
+  License:          C10 484143
+  Since:            1985
+  Notable:          Most pages of any competitor by far (255). Has 20+ dedicated
+                    location pages (encino-electrician, sherman-oaks-electrician,
+                    beverly-hills-electrician, etc.). Has a dedicated "case studies"
+                    section with 10+ detailed project entries. Insurance panel
+                    replacement FAQ. Covers Los Angeles + SFV + Orange County +
+                    Ventura County. Uses Twitter (X) in social profiles.
+  Notable diff     Much larger site (255 vs 42 pages). Extensive blog. Case
+  from AMY:         studies. Insurance-specific content. City-specific service
+                    pages with "electrician" keyword in URL. Uses Rank Math
+                    instead of manual JSON-LD.
+
+================================================================================
+4. BRYDEN ELECTRICAL — brydenelectrical.com
+================================================================================
+
+  Domain:           brydenelectrical.com
+  Title Tag:        "Electrical Contracting in Los Angeles, CA | Bryden"
+  Description:      (Not extracted — site uses WP Bakery/Total theme)
+  Schema:           Not detected in <head>; likely embedded in page body via
+                    WP Bakery. No Yoast/Rank Math visible.
+  Page Count:       ~84 pages (based on sitemap and nav structure)
+  Keywords:         electrical contracting Los Angeles, EV charger installation,
+                    Tesla Wall Connector, Qmerit, battery installation, electrical
+                    panel upgrades, residential electrical, commercial electrical
+  CMS:              WordPress + Total Theme (WP Bakery) + Gravity Forms
+  Since:            1984
+  Notable:          Qmerit Certified Partner (Tesla Wall Connectors). Offers
+                    battery installation (FranklinWH). EV charger install quote
+                    page. Commercial and residential service pages. Dedicated
+                    "Electrification" page in top bar. Reviews page. Blog.
+                    Phone: (310) 470-2900.
+  Notable diff     Qmerit certification is a differentiator. Dedicated
+  from AMY:         electrification page. Gravity Forms for quoting. "Battery
+                    installation" service not offered by AMY.
+
+================================================================================
+5. 911 CONSTRUCTION & ELECTRIC INC — 911electrics.com
+================================================================================
+
+  Domain:           911electrics.com
+  Title Tag:        "911 Construction & Electric Inc. | Electrician Los Angeles CA"
+  Description:      "Need electrician in Los Angeles CA? 911 Construction &
+                    Electric offers 24/7 emergency service, repairs, panel
+                    upgrades & installations."
+  Schema:           Yoast SEO schema:
+                      - WebPage (with breadcrumb)
+                      - Organization/Place (with openingHoursSpecification - open
+                        7 days a week 9am-5pm)
+                      - WebSite (with SearchAction)
+                      - ImageObject (logo)
+                    No LocalBusiness type detected.
+  Page Count:       ~73 pages (53 pages + 18 posts + 1 news + 1 geo sitemap)
+  Keywords:         electrician Los Angeles, EV charger installation, panel
+                    upgrades, emergency electrician, lighting installation,
+                    construction electrical
+  CMS:              WordPress + Elementor + Yoast SEO Premium + Google Analytics
+  Notable:          Very extensive service area (40+ cities listed). Geo sitemap
+                    for location targeting. 24/7 emergency service. Newer site
+                    (launched late 2025). EVITP certification mentioned on EV
+                    charger page. Hero section has contact form built into header.
+  Notable diff     Geo sitemap is unique. Emergency 24/7 messaging is prominent.
+  from AMY:         Uses Elementor + form in header. Lists 40+ service cities.
+                    Google Analytics 4 (gtag) active.
+
+================================================================================
+6. READY ELECTRIC — readyelectricincusa.com
+================================================================================
+
+  Domain:           readyelectricincusa.com
+  Title Tag:        "Electric Repair | Los Angeles, California | Ready Electric"
+                    (Also: "Ready Electric: Electric Repair | Los Angeles,
+                    California" from search snippets)
+  Schema:           Not detected (site built on Duda/Thryv proprietary platform)
+  Page Count:       ~7 pages (very small site)
+  Keywords:         electric repair Los Angeles, emergency electrician, panel
+                    repair, panel upgrades
+  Notable:          Voted "Best Electrician Los Angeles" by Yelp community (2026).
+                    Added 10 new trucks for expansion. 5-star Yelp rating.
+                    24/7 emergency service. Uses Duda/Thryv website builder.
+                    Small site but strong local reputation.
+  Notable diff     Strong Yelp reputation is a key differentiator. Small site
+  from AMY:         (7 pages vs 42) but high authority through reviews. Uses
+                    flat-rate/lead-gen style site. No blog or service deep-dives.
+
+================================================================================
+7. DR. ELECTRIC — drelectricca.com
+================================================================================
+
+  Domain:           drelectricca.com
+  Title Tag:        "Electrical Contractor Los Angeles CA | Dr. Electric"
+                    (from search snippet — site uses non-standard rendering)
+  Schema:           Not extracted (site blocks curl/headless extraction)
+  Since:            20+ years, founded by Igal S.
+  Phone:            (310) 920-0246
+  License:          CSLB since 2003
+  Page Count:       Unknown (sitemap inaccessible)
+  Keywords:         electrical contractor Los Angeles, residential electrician,
+                    commercial electrician, LED lighting, emergency electrician,
+                    electrical remodel
+  Notable:          24/7 service. Family-owned. Gallery page. Covers LA + Orange
+                    County + San Fernando Valley. Unique branding with "Dr."
+                    moniker.
+
+================================================================================
+8. SUMMARY COMPARISON TABLE
+================================================================================
+
+  COMPETITOR          TITLE TAG PATTERN                      PAGES   LICENSE  SINCE
+  ─────────────────────────────────────────────────────────────────────────────────
+  Dynamic Power Grp   "Expert Electrical Contractor LA..."    ~80     #1076003  ~2023
+  Branover            "LA Electrician - Licensed..."          ~255    #484143   1985
+  Bryden              "Electrical Contracting in LA | Bryden" ~84     ?         1984
+  911 Construction    "911 Construction & Electric... LA CA"  ~73     ?         2025
+  Ready Electric      "Electric Repair | LA | Ready Electric" ~7      ?         ?
+  Dr. Electric        "Electrical Contractor LA CA | Dr. E"   ?       2003      ~2003
+  ─────────────────────────────────────────────────────────────────────────────────
+  AMY Electric        "Electrician Los Angeles | AMY Electric" 42     #981578   ?
+
+  COMPETITOR          CMS/PLATFORM        SCHEMA TYPE         BLOG?  LOC PAGES
+  ─────────────────────────────────────────────────────────────────────────────────
+  Dynamic Power Grp   WP + Elementor      Yoast (WebPage/Org) Yes     ~5
+  Branover            WP + Astra          Rank Math (full)     Yes    25+
+  Bryden              WP + Total/WPBakery  WP Bakery (body)    Yes    ~5
+  911 Construction    WP + Elementor      Yoast (WebPage/Org)  Yes    40+
+  Ready Electric      Duda/Thryv          None detected        No     0
+  Dr. Electric        Unknown             Unknown              ?      ?
+  ─────────────────────────────────────────────────────────────────────────────────
+  AMY Electric        Static HTML         Manual JSON-LD       Yes    12
+
+================================================================================
+9. AMY ELECTRIC GAP ANALYSIS
+================================================================================
+
+  Area                       AMY Electric           Competitors (average)
+  ─────────────────────────────────────────────────────────────────────
+  Title Tag                  "Electrician Los        More descriptive, include
+                              Angeles | AMY Electric"    business name + keywords
+  Page Count                 42                     ~100 (avg across top 5)
+  Blog Posts                 ~10 final + 1 index    50+ posts (Branover: 170)
+  City Landing Pages         12                     Many have 20+ (Branover 25+)
+  Service Location Pages     0 (all on one page)    Dedicated URLs per city+
+                                                       service combo
+  Case Studies               None                   Branover has 10+, strengthens
+                                                       topical authority
+  CMS                        Static HTML            WordPress (5/5 top sites)
+  Schema Type                Manual JSON-LD         Yoast/Rank Math auto-gen
+  Schema Completeness        Good (Elec./Service/   More structured with Place,
+                              FAQ/BlogPosting)          Organization, sameAs
+  Social Profile Links       None visible           Facebook, Instagram, LinkedIn,
+                                                       Pinterest, Twitter
+  Customer Count / Social    Not prominently        7000+ happy customers (DPG),
+    Proof                    displayed              Yelp Best Of (Ready)
+  Warranty Mention           Not on homepage        5-year limited (DPG),
+                                                       18-month (Sammy Electrical)
+  Same-Day/Emergency         Not prominently        24/7 emergency (911 Electric,
+    Service                  displayed              Ready Electric)
+  Geo Sitemap                None                   911 Electric has one
+  Phone # in Title Tag       No                     Some competitors include
+  Service Area Coverage      12 cities / 62 ZIPs    Comparable, but fewer
+                                                       city-specific pages
+
+================================================================================
+10. ACTIONABLE TAKEAWAYS
+================================================================================
+
+  HIGH PRIORITY:
+
+  1. Title Tag Optimization
+     - Current: "Electrician Los Angeles | AMY Electric"
+     - Recommended pattern: "Los Angeles Electrician | [Service] | AMY Electric"
+       or "Expert Electrical Contractor in Los Angeles | AMY Electric"
+     - Add phone number or "Licensed C-10" for click-through rate boost.
+
+  2. Increase Page Count
+     - Branover (255 pages) and DPG (80 pages) dominate with scale.
+     - Create city-specific service pages (e.g., "ev-charger-installation-
+       sherman-oaks.html") to match Branover's 25+ location pages.
+     - Add dedicated case studies section with 5-10 detailed project pages.
+
+  3. Blog Growth
+     - Branover has 170 blog posts; AMY has 10.
+     - Target 30+ posts minimum. Focus on long-tail keywords like "how much
+       does EV charger installation cost in Los Angeles" and "panel upgrade
+       cost in Sherman Oaks."
+
+  MEDIUM PRIORITY:
+
+  4. Schema Enhancement
+     - Add Place/PostalAddress with full business address to all pages.
+     - Add Organization markup with sameAs (social profiles).
+     - Add OpeningHoursSpecification (competitors are doing this).
+     - Consider moving to automated schema generation tool.
+
+  5. Social Proof
+     - Add customer count, years in business, warranty info to homepage hero.
+     - Request and display Google/Yelp reviews prominently.
+     - Competitors prominently display "Since 1985", "7000+ customers", etc.
+
+  6. Emergency/24-7 Messaging
+     - Multiple competitors lead with "24/7 emergency service" in their hero.
+     - AMY should prominently display emergency availability if applicable.
+
+  7. Geo Sitemap
+     - Create a geo-specific sitemap for location-based SEO.
+     - Only 911 Electric has one, which is a competitive advantage.
+
+  LOW PRIORITY:
+
+  8. Social Media Profiles
+     - Create and link Facebook, Instagram, LinkedIn profiles in schema.
+
+  9. Case Studies
+     - Add 3-5 detailed project case studies with before/after photos.
+
+  10. Qmerit or EVITP Certification Badges
+     - Bryden uses Qmerit certification as a trust signal.
+     - AMY already has EVITP #4051604 — display this more prominently on
+       EV charger pages.
+
+================================================================================
+END OF REPORT
+================================================================================

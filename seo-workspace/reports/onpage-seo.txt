@@ -1,0 +1,590 @@
+================================================================================
+  ON-PAGE SEO AUDIT REPORT — AMY Electric (amyelectric.com)
+  Generated: 2026-06-03
+  Pages Audited: 8
+================================================================================
+
+TABLE OF CONTENTS
+  1. Executive Summary
+  2. Page-by-Page Audits
+     A. Homepage — /
+     B. EV Charger Installation — /ev-charger-installation.html
+     C. Panel Upgrade — /panel-upgrade.html
+     D. City: Los Angeles — /city-los-angeles.html
+     E. City: Burbank — /city-burbank.html
+     F. Blog: EV Charging Benefits — /blog/ev-charging-benefits.html
+     G. Testimonials — /testimonials.html
+     H. Lighting Installation — /lighting-installation.html
+  3. Cross-Page Findings & Patterns
+  4. Priority Action Items (ranked)
+  5. Score Summary Matrix
+
+================================================================================
+1. EXECUTIVE SUMMARY
+================================================================================
+
+Overall impression: The site has solid SEO fundamentals — good canonical tags,
+proper meta robots, strong JSON-LD structured data, and clear internal linking.
+However, there are several areas where on-page SEO can be improved for better
+organic search performance.
+
+Key strengths:
+  - Every page has a canonical URL, robots meta, and Open Graph / Twitter Cards.
+  - JSON-LD structured data is thorough (Electrician, Service, FAQPage, BlogPosting).
+  - Internal linking is robust with nav, footer, related services, and breadcrumbs.
+  - All pages use descriptive, keyword-rich URLs.
+  - All images have preload hints with srcset for responsive.
+
+Key issues found:
+  - 4 of 8 pages have title tags under 50 characters (ideal: 50-60).
+  - 2 of 8 pages have meta descriptions under 100 characters (too short).
+  - 0 of 8 pages have <img> tags with alt text in the visible HTML body (images
+    are either CSS backgrounds, preloaded, or referenced only in JSON-LD/OG).
+  - Blog and Testimonials pages have especially thin meta descriptions.
+  - City pages have slightly generic content with repetitive sentence structures.
+  - Several pages lack true h3-h4 depth in heading hierarchy.
+
+================================================================================
+2. PAGE-BY-PAGE AUDITS
+================================================================================
+
+--------------------------------------------------------------------------------
+A. HOMEPAGE
+   URL: https://amyelectric.com/
+   Type: Homepage
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Electrician Los Angeles | AMY Electric"
+   Length: 40 characters
+   VERDICT: TOO SHORT (ideal 50-60 chars). Missing a secondary keyword.
+   Suggestion: "Electrician Los Angeles | Panel Upgrades, EV Chargers & Repairs"
+
+2. META DESCRIPTION:
+   "AMY Electric — trusted licensed electricians in Los Angeles. Panel upgrades,
+   EV charger installation, repairs & commercial electrical."
+   Length: 143 characters
+   VERDICT: MODERATE (within 150-160 is ideal, but 143 is acceptable).
+   Has a clear value proposition but lacks a strong call to action (e.g., "Call
+   now" or "Get a free estimate"). Add an explicit CTA.
+
+3. H1 HEADING: "Powering LA With Safe, Code-Perfect Electrical Work"
+   Primary keyword check: H1 contains "LA" and "Electrical Work" but does NOT
+   contain the primary keyword phrase "electrician Los Angeles" or "Los Angeles
+   electrician".
+   VERDICT: MISSING PRIMARY KEYWORD. The H1 is creative but not optimized for
+   the page's core target term. Consider adding "Los Angeles" explicitly.
+
+4. HEADING HIERARCHY:
+   h1: "Powering LA With Safe, Code-Perfect Electrical Work"
+   h2: "Full-Service Electrical for Los Angeles"
+   h2: "Why Los Angeles Homeowners Choose AMY Electric"
+   h2: "What Our Customers Say"
+   h2: "Request a Service or Free Estimate"
+   h2: "Frequently Asked Questions"
+   h2: "Meet Amy"
+   h2: "Helpful Guides for LA Homeowners"
+   h3: Used inside service tiles (e.g., "EV Charger Installation",
+        "200A Panel Upgrades", "Electrical Repairs", etc.)
+   h3: Used inside "Why Choose Us" list items
+   VERDICT: GOOD. Structure is logical. One h1, multiple h2 sections, h3 inside
+   sections. Could be improved by adding h3 subsections within long h2 sections.
+
+5. CONTENT:
+   Total visible text: ~1,000+ words (services, testimonials, FAQ, about).
+   Uniqueness: Good — original content written for the business.
+   VERDICT: PASS. Adequate unique content.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found in the HTML body. The hero image and decorative elements
+   are CSS backgrounds or icon fonts. The JSON-LD references
+   "img/hero-electrician.jpg" but it is loaded as a background image.
+   VERDICT: NO IMG ALT TEXT (n/a for CSS backgrounds). However, consider adding
+   a real <img> for the hero section with descriptive alt text.
+
+7. INTERNAL LINKS:
+   Nav: 13 links
+   Service grid: 6 service tile links
+   Blog section: 6 blog post links + "View All Articles"
+   Footer: ~30+ links (services, service areas, company)
+   CTA buttons: 2-3 per section
+   Breadcrumbs: None (homepage is root).
+   VERDICT: EXCELLENT. Very strong internal linking structure.
+
+8. TARGET KEYWORD: "electrician Los Angeles"
+   Clear targeting. The word "electrician" appears in title, meta description,
+   and body. However, "electrician Los Angeles" does NOT appear in H1.
+
+--------------------------------------------------------------------------------
+B. EV CHARGER INSTALLATION
+   URL: https://amyelectric.com/ev-charger-installation.html
+   Type: Service Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "EV Charger Installation Los Angeles | AMY Electric"
+   Length: 53 characters
+   VERDICT: GOOD. Within ideal range (50-60). Contains primary keyword at the
+   start.
+
+2. META DESCRIPTION:
+   "EVITP-certified EV charger installation in Los Angeles. Tesla Wall
+   Connector, NEMA 14-50, ChargePoint, JuiceBox — Level 2 for homes & businesses."
+   Length: 156 characters
+   VERDICT: GOOD. Within ideal range, specific features listed, has keyword.
+   Weak on CTA — consider adding "Call (818) 302-5614 for a free estimate."
+
+3. H1 HEADING: "EV Charger Installation in Los Angeles"
+   Primary keyword check: Contains "EV Charger Installation" + "Los Angeles".
+   VERDICT: PASS. Strong match for target keyword.
+
+4. HEADING HIERARCHY:
+   h1: "EV Charger Installation in Los Angeles"
+   h2: "Why Level 2 Is Right for Your Home"
+   h2: "How the Installation Process Works"
+   h2: "Rebates & Incentives in Los Angeles"
+   h2: "Our EV Charger Installation Process"
+   h2: "EV Charger Installation FAQ"
+   h2: "EV Charger Installation by City"
+   h3: "Tesla Wall Connector", "NEMA 14-50 Outlet", "Hardwired Chargers",
+        "Panel Upgrade + EV", "Commercial EV Charging", "Load Calculation"
+   h3: Step titles inside the process sections
+   VERDICT: EXCELLENT. Rich heading hierarchy with good keyword spread.
+
+5. CONTENT:
+   Very rich content covering types of chargers, installation process, pricing,
+   rebates, FAQs, city-specific links. ~1,500+ words.
+   VERDICT: EXCELLENT. One of the best-content pages on the site.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found. Has <link rel="preload" as="image" href="img/ev-charger.jpg">
+   but the image is not rendered via <img> in the body.
+   VERDICT: MISSING. Should have at least one <img> with alt text, e.g.,
+   "Tesla Wall Connector installed in a Los Angeles garage by AMY Electric."
+
+7. INTERNAL LINKS:
+   Nav: 13 links
+   Breadcrumb: 3 links
+   Sidebar: Related services, estimate links
+   City service grid: 16 city-specific EV charger pages
+   Related services section: 3 links
+   Footer: ~30+ links
+   VERDICT: EXCELLENT.
+
+8. TARGET KEYWORD: "EV charger installation Los Angeles"
+   Clear targeting. Appears in title, meta description, H1, and throughout body.
+
+--------------------------------------------------------------------------------
+C. PANEL UPGRADE
+   URL: https://amyelectric.com/panel-upgrade.html
+   Type: Service Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "200A Panel Upgrade Los Angeles | AMY Electric"
+   Length: 50 characters
+   VERDICT: GOOD. Exactly at minimum ideal length. Contains primary keyword.
+
+2. META DESCRIPTION:
+   "Los Angeles 200A electrical panel upgrades. Fix overloaded panels, support
+   EV chargers, meet code. LADWP-coordinated. Licensed C-10 #981578."
+   Length: 141 characters
+   VERDICT: SLIGHTLY SHORT (ideal 150-160). Missing a CTA. Consider:
+   "Call (818) 302-5614 for a free estimate."
+
+3. H1 HEADING: "200A Electrical Panel Upgrade in Los Angeles"
+   Primary keyword check: Contains "Panel Upgrade" + "Los Angeles".
+   VERDICT: PASS. Good keyword inclusion.
+
+4. HEADING HIERARCHY:
+   h1: "200A Electrical Panel Upgrade in Los Angeles"
+   h2: "Does Your Home Need a Panel Upgrade?"
+   h2: "Our Panel Upgrade Services"
+   h2: "The Panel Upgrade Process in LA"
+   h2: "Panel Upgrade FAQ"
+   h2: "Related Services & Resources"
+   h3: "200A Panel Replacement", "Main Service Upgrade", "EV-Ready Upgrade",
+        "Commercial Panel Upgrade"
+   h3: Step titles in process section
+   VERDICT: GOOD. Clear structure with keyword-rich headings.
+
+5. CONTENT:
+   Strong content covering signs you need an upgrade, service types, cost table,
+   step-by-step process, FAQ. ~1,000+ words.
+   VERDICT: GOOD.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found. Has preload for img/panel-upgrade.jpg.
+   VERDICT: MISSING. Add an <img> with descriptive alt text.
+
+7. INTERNAL LINKS:
+   Nav, breadcrumbs, sidebar (related services), footer (30+), related services
+   section at bottom.
+   VERDICT: EXCELLENT.
+
+8. TARGET KEYWORD: "200A panel upgrade Los Angeles"
+   Clear targeting.
+
+--------------------------------------------------------------------------------
+D. CITY: LOS ANGELES
+   URL: https://amyelectric.com/city-los-angeles.html
+   Type: City/Location Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Electrician Los Angeles CA | AMY Electric"
+   Length: 43 characters
+   VERDICT: TOO SHORT (ideal 50-60). Consider expanding to include a service:
+   "Electrician Los Angeles CA | Panel Upgrades, EV Chargers & More"
+
+2. META DESCRIPTION:
+   "Licensed electrician in Los Angeles, CA. Panel upgrades, EV charger
+   installation, electrical repairs. EVITP-certified, C-10 #981578.
+   Free estimates."
+   Length: 153 characters
+   VERDICT: GOOD. Within range, includes keywords, mentions free estimates (CTA).
+
+3. H1 HEADING: "Electrician in Los Angeles, CA"
+   Primary keyword check: Exact match for primary keyword.
+   VERDICT: EXCELLENT.
+
+4. HEADING HIERARCHY:
+   h1: "Electrician in Los Angeles, CA"
+   h2: "Electrical Services in Los Angeles"
+   h2: "Los Angeles Neighborhoods & Landmarks We Serve"
+   h2: "Electrician in Los Angeles — FAQ"
+   h3: Used inside service cards (EV Charger Installation, 200A Panel Upgrades,
+        Electrical Repairs, Lighting Installation, Commercial Electrical,
+        Nearby Neighborhoods)
+   VERDICT: GOOD. Could add more h2 sections (e.g., "Why Choose AMY Electric
+   for Los Angeles Electrical Work", "Los Angeles Electrical Permits We Handle").
+
+5. CONTENT:
+   Good neighborhood-specific content (Los Feliz, Silver Lake, Echo Park, etc.).
+   ~600+ words. Note: The FAQ answers are copy-paste identical to the Burbank
+   page FAQ (same verbatim text about permits, sameans, EV chargers).
+   VERDICT: MODERATE. The FAQ content is duplicated across city pages. Should
+   be more city-specific (e.g., mention LADBS specifically for LA, BWP for Burbank).
+
+6. IMAGE ALT TEXT:
+   No <img> tags found.
+   VERDICT: MISSING. No real images on the page.
+
+7. INTERNAL LINKS:
+   Service cards (6), nav, footer (30+), CTA buttons, FAQ phone numbers.
+   VERDICT: GOOD.
+
+8. TARGET KEYWORD: "electrician Los Angeles CA"
+   Clear targeting.
+
+--------------------------------------------------------------------------------
+E. CITY: BURBANK
+   URL: https://amyelectric.com/city-burbank.html
+   Type: City/Location Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Electrician Burbank CA | AMY Electric"
+   Length: 41 characters
+   VERDICT: TOO SHORT. Consider: "Electrician Burbank CA | Panel Upgrades,
+   EV Chargers & Electrical Repairs"
+
+2. META DESCRIPTION:
+   "Licensed electrician in Burbank, CA. Panel upgrades, EV charger
+   installation, electrical repairs. EVITP-certified, C-10 #981578.
+   Free estimates."
+   Length: 152 characters
+   VERDICT: GOOD. Within range. Same pattern as LA city page.
+
+3. H1 HEADING: "Electrician in Burbank, CA"
+   Primary keyword check: Exact match for primary keyword.
+   VERDICT: EXCELLENT.
+
+4. HEADING HIERARCHY:
+   h1: "Electrician in Burbank, CA"
+   h2: "Electrical Services in Burbank"
+   h2: "Burbank Neighborhoods & Landmarks"
+   h2: "Electrician in Burbank — FAQ"
+   h3: Same service card structure as LA page.
+   VERDICT: GOOD. Similar structure to LA page.
+
+5. CONTENT:
+   Burbank-specific content mentioning Warner Bros. Studios, Magnolia Park,
+   Burbank Hills, BWP (Burbank Water and Power). ~600+ words.
+   VERDICT: GOOD for local SEO. However, FAQ content is nearly identical to
+   the LA city page FAQ (just with "Burbank" swapped in for "Los Angeles").
+   Also note: The Burbank FAQ incorrectly references LADBS/LADWP instead of
+   Burbank's own permitting authority (Burbank Building Division and BWP).
+
+6. IMAGE ALT TEXT:
+   No <img> tags found.
+   VERDICT: MISSING.
+
+7. INTERNAL LINKS:
+   Service cards (6), nav, footer, CTAs.
+   VERDICT: GOOD.
+
+8. TARGET KEYWORD: "electrician Burbank CA"
+   Clear targeting.
+
+   ISSUE: FAQ mentions LADBS/LADWP for Burbank permits. Burbank has its own
+   building department and Burbank Water & Power (BWP). This is incorrect and
+   could hurt local SEO credibility.
+
+--------------------------------------------------------------------------------
+F. BLOG: EV CHARGING BENEFITS
+   URL: https://amyelectric.com/blog/ev-charging-benefits.html
+   Type: Blog Post
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Benefits of Home EV Charging in Los Angeles | AMY Electric"
+   Length: 60 characters
+   VERDICT: GOOD. At maximum ideal length. Contains the primary keyword.
+
+2. META DESCRIPTION:
+   "Discover the top benefits of installing a home EV charger in Los Angeles."
+   Length: 76 characters
+   VERDICT: WAY TOO SHORT (ideal 150-160). Missing critical CTA and details.
+   Should be expanded to at least 150 chars. E.g.:
+   "Discover the top benefits of installing a home EV charger in Los Angeles —
+   save money, increase convenience, boost home value. Get a free estimate
+   from AMY Electric's EVITP-certified team. Call (818) 302-5614."
+
+3. H1 HEADING:
+   "The Top Benefits of Installing a Home EV Charger in Los Angeles"
+   Primary keyword check: Contains "home EV charger" and "Los Angeles".
+   VERDICT: GOOD. Strong, descriptive H1.
+
+4. HEADING HIERARCHY:
+   h1: "The Top Benefits of Installing a Home EV Charger in Los Angeles"
+   h2: "Why Install a Home EV Charger in LA?"
+   h2: "Los Angeles-Specific EV Charging Benefits"
+   h2: "What to Expect: Home EV Charger Installation in LA"
+   h2: "Home EV Charger Installation Costs in Los Angeles"
+   h2: "More EV Charging Resources"
+   h3: Used inside benefit cards (e.g., "Unmatched Convenience", "Significant
+        Cost Savings", "Increased Property Value", etc.)
+   VERDICT: GOOD. Logical flow from problem to solution to cost.
+
+5. CONTENT:
+   ~800+ words covering benefits, LA-specific info, installation process,
+   cost table. Good depth for a blog post.
+   VERDICT: GOOD.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found. Only OG image referenced.
+   VERDICT: MISSING. Blog posts especially benefit from images with alt text.
+
+7. INTERNAL LINKS:
+   Breadcrumb, nav, footer, related services (3), CTA buttons.
+   VERDICT: GOOD. Could add more contextual internal links within the body text.
+
+8. TARGET KEYWORD: "home EV charger benefits Los Angeles"
+   Clear targeting.
+
+--------------------------------------------------------------------------------
+G. TESTIMONIALS
+   URL: https://amyelectric.com/testimonials.html
+   Type: Special Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Customer Testimonials | AMY Electric Los Angeles"
+   Length: 49 characters
+   VERDICT: SLIGHTLY SHORT (1 char below 50). Consider:
+   "Customer Reviews & Testimonials | AMY Electric Los Angeles"
+
+2. META DESCRIPTION:
+   "Read what Los Angeles customers say about AMY Electric's electrical services."
+   Length: 79 characters
+   VERDICT: WAY TOO SHORT. Should be 150-160 characters. Missing any CTA or
+   keyword depth. Suggestion:
+   "Read real 5-star reviews from Los Angeles homeowners and businesses about
+   AMY Electric's EV charger installation, panel upgrades, and electrical
+   repair services. Licensed C-10 #981578. Call (818) 302-5614."
+
+3. H1 HEADING: "What Los Angeles Customers Say About AMY Electric"
+   Primary keyword check: Contains "Los Angeles", "Customers", "AMY Electric".
+   VERDICT: MODERATE. Good but could include a testimonial keyword like
+   "5-Star Reviews" or "Customer Testimonials".
+
+4. HEADING HIERARCHY:
+   h1: "What Los Angeles Customers Say About AMY Electric"
+   h2: "Los Angeles Homeowners & Businesses Trust AMY Electric"
+   h2: "We Serve All of Greater Los Angeles"
+   h3: None.
+   VERDICT: WEAK. Only 2 h2 sections and no h3. The testimonial cards use
+   bold text and divs instead of h3 headings. Each testimonial could have an
+   h3 with the customer name or service type.
+
+5. CONTENT:
+   6 detailed testimonials with customer names, locations, and service types.
+   ~500+ words of testimonial content.
+   VERDICT: GOOD Unique user-generated-style content.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found.
+   VERDICT: MISSING.
+
+7. INTERNAL LINKS:
+   Nav, footer, CTAs, city links in "We Serve All of Greater LA" section.
+   VERDICT: GOOD.
+
+8. TARGET KEYWORD: "Los Angeles electrician reviews" / "customer testimonials"
+   Moderate targeting. Could be stronger.
+
+--------------------------------------------------------------------------------
+H. LIGHTING INSTALLATION
+   URL: https://amyelectric.com/lighting-installation.html
+   Type: Service Page
+--------------------------------------------------------------------------------
+
+1. TITLE TAG: "Lighting Installation Los Angeles | AMY Electric"
+   Length: 49 characters
+   VERDICT: SLIGHTLY SHORT (1 below 50). Suggestion:
+   "Lighting Installation Los Angeles | Recessed, Outdoor & Smart Lighting"
+
+2. META DESCRIPTION:
+   "Los Angeles lighting installation — recessed, outdoor, landscape, LED
+   retrofits & smart lighting. Licensed, insured electricians. C-10 #981578."
+   Length: 144 characters
+   VERDICT: SLIGHTLY SHORT (ideal 150-160). Close enough, but missing CTA.
+
+3. H1 HEADING: "Lighting Installation in Los Angeles"
+   Primary keyword check: Contains "Lighting Installation" + "Los Angeles".
+   VERDICT: PASS. Good.
+
+4. HEADING HIERARCHY:
+   h1: "Lighting Installation in Los Angeles"
+   h2: "Lighting Installation in Los Angeles" (duplicated from h1 context)
+   h2: "Lighting Installation Costs"
+   h2: "Related Services"
+   h2: "Lighting Installation FAQ"
+   h3: "Recessed Lighting", "Outdoor & Security Lighting", "Landscape Lighting",
+        "LED Retrofits", "Smart Lighting", "Fixture Installation"
+   VERDICT: GOOD. Clean structure.
+
+5. CONTENT:
+   Good content covering types of lighting, pricing table, FAQ. ~600+ words.
+   VERDICT: GOOD.
+
+6. IMAGE ALT TEXT:
+   No <img> tags found. Has preload for img/lighting.jpg.
+   VERDICT: MISSING.
+
+7. INTERNAL LINKS:
+   Nav, breadcrumbs, related services (3), footer.
+   VERDICT: GOOD.
+
+8. TARGET KEYWORD: "lighting installation Los Angeles"
+   Clear targeting.
+
+================================================================================
+3. CROSS-PAGE FINDINGS & PATTERNS
+================================================================================
+
+A. TITLE TAG ISSUES (4 of 8 pages under 50 characters)
+   - Homepage (40 chars)
+   - City Los Angeles (43 chars)
+   - City Burbank (41 chars)
+   - Testimonials (49 chars)
+   - Lighting Installation (49 chars) — borderline
+   IMPACT: Medium-High. Title tags are the most important on-page SEO element.
+   Short titles miss opportunities to include secondary keywords and may look
+   incomplete in SERPs.
+
+B. META DESCRIPTION ISSUES (2 of 8 pages critically short)
+   - Blog: EV Charging Benefits (76 chars)
+   - Testimonials (79 chars)
+   IMPACT: High. These are the pages that most need compelling meta descriptions
+   to drive organic click-through. Missing 70+ characters of potential messaging.
+
+C. NO <img> TAGS WITH ALT TEXT ON ANY PAGE (0 of 8 pages)
+   All images are loaded as CSS backgrounds, preload hints, or referenced in
+   JSON-LD/OG tags. There is not a single <img> tag with an alt attribute on
+   any page audited.
+   IMPACT: High. Image alt text is a ranking factor (especially for Google
+   Images search) and an accessibility requirement. The hero images for each
+   page (ev-charger.jpg, panel-upgrade.jpg, lighting.jpg, hero-electrician.jpg)
+   should be rendered as <img> elements with descriptive alt text.
+
+D. CITY PAGE FAQ DUPLICATION
+   The FAQ content on city-los-angeles.html and city-burbank.html is nearly
+   identical, with just the city name swapped. Worse, the Burbank FAQ
+   references LADBS/LADWP instead of Burbank's own permitting departments.
+   IMPACT: Medium. Duplicate content issues + factual errors on Burbank page
+   could hurt local rankings and user trust.
+
+E. STRONG JSON-LD ACROSS ALL PAGES
+   All pages have appropriate schema types (Electrician, Service, FAQPage,
+   BlogPosting, BreadcrumbList). This is a major strength.
+   IMPACT: Positive. Excellent structured data implementation.
+
+F. INTERNAL LINKING IS EXCELLENT
+   Every page has comprehensive navigation, breadcrumb trails, related services
+   sections, and footer links. The EV charger page even links to 16 city-specific
+   sub-pages.
+   IMPACT: Positive. Strong internal link equity distribution.
+
+G. CANONICAL TAGS PRESENT ON ALL PAGES
+   Every page has a correct self-referencing canonical URL.
+   IMPACT: Positive.
+
+H. NO PAGE HAS a META KEYWORDS TAG (good — not needed)
+   IMPACT: Positive. Google ignores them.
+
+================================================================================
+4. PRIORITY ACTION ITEMS (RANKED)
+================================================================================
+
+P0 — CRITICAL (fix immediately):
+  1. Add <img> elements with descriptive alt text to all pages. Prioritize
+     hero images and illustrations. This is an accessibility and SEO requirement.
+
+P1 — HIGH (fix within 1 week):
+  2. Expand meta descriptions on blog posts and testimonials pages to 150-160
+     characters with a clear CTA (phone number or "Free Estimate").
+  3. Fix Burbank city page FAQ: Replace LADBS/LADWP references with Burbank
+     Building Division and BWP (Burbank Water and Power).
+  4. Lengthen title tags on all pages under 50 characters. Add secondary
+     keyword phrases where possible.
+
+P2 — MEDIUM (fix within 1 month):
+  5. Make city page FAQ content unique per city rather than find-and-replace
+     templates. Each city has different permitting authorities, utility
+     companies, and common electrical issues.
+  6. Add h3 headings to testimonials page for each testimonial card (using
+     customer name or review topic).
+  7. Add strong call-to-action phrases ("Call (818) 302-5614 for a free
+     estimate") to all meta descriptions on service pages.
+  8. Include the primary keyword "electrician Los Angeles" in the homepage H1
+     while preserving the creative angle.
+
+P3 — LOW (fix within 3 months):
+  9. Add more contextual internal links within blog body text (not just
+     related-services sections).
+  10. Consider adding h2 subsections on city pages for "Permits & Codes" or
+      "Common Electrical Issues in [City]" for additional depth.
+  11. Increase body text on city pages to 800+ words with more neighborhood
+      specificity and local landmarks.
+
+================================================================================
+5. SCORE SUMMARY MATRIX
+================================================================================
+
+Page                    | Title | MetaDesc | H1   | Headings | Content | Alt | IntLinks | Keyword | SCORE
+------------------------|-------|----------|------|----------|---------|-----|----------|---------|------
+Homepage                | FAIL  | PASS     | FAIL | GOOD     | GOOD    | FAIL| EXCELLENT| GOOD    | 6/10
+EV Charger Installation | PASS  | PASS     | PASS | EXCELLENT| EXCELLNT| FAIL| EXCELLENT| GOOD    | 8/10
+Panel Upgrade           | PASS  | MARGINAL | PASS | GOOD     | GOOD    | FAIL| EXCELLENT| GOOD    | 7/10
+City: Los Angeles       | FAIL  | PASS     | PASS | GOOD     | MOD     | FAIL| GOOD     | GOOD    | 6/10
+City: Burbank           | FAIL  | PASS     | PASS | GOOD     | MOD     | FAIL| GOOD     | GOOD    | 6/10
+Blog: EV Charging       | PASS  | FAIL     | PASS | GOOD     | GOOD    | FAIL| GOOD     | GOOD    | 6/10
+Testimonials            | FAIL  | FAIL     | MOD  | WEAK     | GOOD    | FAIL| GOOD     | MOD     | 4/10
+Lighting Installation   | FAIL  | MARGINAL | PASS | GOOD     | GOOD    | FAIL| GOOD     | GOOD    | 6/10
+
+KEY:
+  FAIL      = Requires immediate attention
+  MARGINAL  = Borderline, below ideal
+  MOD       = Moderate, adequate but improvable
+  PASS      = Meets standards
+  GOOD      = Above average
+  EXCELLENT = Best practice
+
+================================================================================
+END OF REPORT
+================================================================================

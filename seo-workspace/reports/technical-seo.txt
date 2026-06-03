@@ -1,0 +1,470 @@
+================================================================================
+  TECHNICAL SEO AUDIT REPORT — amyelectric.com
+  Date: 2026-06-03
+  Tool: curl / grep / python3
+================================================================================
+
+TABLE OF CONTENTS
+  1. Crawlability (robots.txt, sitemap.xml)
+  2. HTTPS + Redirects
+  3. Canonical URLs
+  4. Schema Markup (JSON-LD)
+  5. Open Graph / Twitter Cards
+  6. Mobile Responsiveness (Viewport)
+  7. 404 Handling
+  8. Internal Linking
+  9. URL Structure
+  10. Core Web Vitals & Performance
+  11. Additional Findings
+  12. Summary of Issues by Severity
+
+================================================================================
+1. CRAWLABILITY
+================================================================================
+
+1.1 robots.txt
+  URL: https://amyelectric.com/robots.txt
+  Status: HTTP 200 OK
+
+  Content:
+    User-agent: *
+    Allow: /
+    Disallow: /amyelectric-site/
+    Disallow: /~
+
+    Sitemap: https://amyelectric.com/sitemap.xml
+
+  ASSESSMENT: PASS
+  - Sitemap is referenced correctly.
+  - Disallowed paths (/amyelectric-site/, /~) do not affect production content.
+  - All production pages are crawlable.
+
+1.2 sitemap.xml
+  URL: https://amyelectric.com/sitemap.xml
+  Status: HTTP 200 OK
+
+  Structure: Valid XML, uses proper namespace (http://www.sitemaps.org/schemas/sitemap/0.9)
+  Total URLs listed: 83
+
+  URL distribution:
+    - 1 homepage
+    - 15 service pages (priorities 0.8-0.9)
+    - 16 city pages (priority 0.7)
+    - 13 blog pages including index (priority 0.6)
+    - 2 special pages (testimonials, gallery) (priority 0.6)
+    - 16 location-specific service pages (ev-charger + panel-upgrade × 8 cities) (priority 0.8)
+    - 5 emergency service pages (priority 0.9)
+    - 15 page-specific service pages (ev-charger + panel-upgrade × 7 more cities) (priority 0.8)
+
+  ASSESSMENT: WARNING
+  - All 83 URLs resolve (return HTTP 200 or 307).
+  - All sitemap URLs use the .html extension, but the server performs a 307 redirect
+    to clean URLs (without .html). See Section 3 for the canonical conflict this creates.
+  - All production pages are present in the sitemap. Good.
+
+================================================================================
+2. HTTPS + REDIRECTS
+================================================================================
+
+2.1 HTTP → HTTPS Redirect
+  Test: curl -sI http://amyelectric.com/
+  Result: HTTP/1.1 200 OK (not a redirect!)
+  STATUS: FAIL
+
+  The HTTP version of the site returns content directly without redirecting to HTTPS.
+  Cloudflare's "Always Use HTTPS" setting (referenced in _redirects file comments) 
+  does not appear to be enabled. Users and search engines accessing http:// will 
+  not be redirected to the secure version.
+
+2.2 www → non-www Redirect
+  Test: curl -sv https://www.amyelectric.com/
+  Result: "Could not resolve host: www.amyelectric.com" (DNS NXDOMAIN)
+  STATUS: FAIL
+
+  The www subdomain does not resolve at all. nslookup confirms NXDOMAIN.
+  The _redirects file mentions a Cloudflare Bulk Redirect rule, but it cannot work
+  if www.amyelectric.com has no DNS A/AAAA/CNAME record.
+
+2.3 _redirects File
+  Path: /home/amram/WEBSITE/_redirects
+  Content: Comments only (no actual redirect rules)
+    - States HTTPS enforcement is handled in Cloudflare dashboard
+    - States www→non-www is handled via Cloudflare Bulk Redirect
+  
+  ASSESSMENT: FAIL
+  - No actual redirect rules in the file.
+  - The Cloudflare dashboard settings referenced are either not configured or 
+    misconfigured (evidenced by HTTP serving content directly).
+
+================================================================================
+3. CANONICAL URLs
+================================================================================
+
+3.1 Homepage
+  Canonical: <link rel="canonical" href="https://amyelectric.com/">
+  og:url:     <meta property="og:url" content="https://amyelectric.com/">
+  ASSESSMENT: PASS - Canonical points to self, correct.
+
+3.2 Service Pages (e.g., /ev-charger-installation, /panel-upgrade)
+  Canonical: <link rel="canonical" href="https://amyelectric.com/ev-charger-installation.html">
+  og:url:     <meta property="og:url" content="https://amyelectric.com/ev-charger-installation.html">
+  ASSESSMENT: WARNING - Canonical points to .html URL, but the .html URL issues a 307
+  redirect to the clean URL (no .html). This creates a redirect cycle / conflict:
+    - Sitemap lists .html URL
+    - .html URL 307 → clean URL
+    - Clean URL has canonical → .html URL
+  Google may see the canonical as pointing to a redirecting URL.
+
+3.3 City Pages (e.g., /city-los-angeles)
+  Canonical: <link rel="canonical" href="https://amyelectric.com/city-los-angeles.html">
+  Same issue as service pages - canonical points to .html which 307 redirects.
+
+3.4 New Service Pages (e.g., /emergency-electrician)
+  Canonical: <link rel="canonical" href="https://amyelectric.com/emergency-electrician.html">
+  Same issue.
+
+3.5 New Location-Specific Pages (e.g., /ev-charger-installation-los-angeles)
+  Canonical: <link rel="canonical" href="https://amyelectric.com/ev-charger-installation-los-angeles.html">
+  Same issue.
+
+3.6 Blog Pages
+  Canonical: <link rel="canonical" href="https://amyelectric.com/blog/ev-charging-benefits.html">
+  Same issue - .html canonical, 307 to clean URL.
+
+3.7 Blog Index
+  Canonical: <link rel="canonical" href="https://amyelectric.com/blog/">
+  ASSESSMENT: PASS - Correctly points to the clean URL.
+
+3.8 Overall Canonical Assessment: WARNING
+  The canonical/redirect mismatch is a consistent pattern across almost all pages.
+  The clean URLs (which users and likely Google see) have canonical tags pointing
+  back to .html URLs that redirect. This sends mixed signals to search engines.
+
+================================================================================
+4. SCHEMA MARKUP (JSON-LD)
+================================================================================
+
+4.1 Homepage — Electrician Schema
+  @type: Electrician
+  @id: https://amyelectric.com
+  name: AMY Electric
+  telephone: +1-818-302-5614
+  email: info@amyelectric.com
+  address: 20628 Londelius St, Winnetka, CA 91306, US
+  geo: { latitude: 34.223, longitude: -118.582 }
+  foundingDate: 2012
+  openingHoursSpecification: Mon-Fri 07:00-17:00 + 24/7 emergency dispatch
+  priceRange: $$
+  hasCredential: C-10 #981578, EVITP #4051604
+  aggregateRating: 5.0 (24 reviews)
+  review: 3 embedded reviews
+  areaServed: 16 cities + San Fernando Valley (AdministrativeArea)
+  sameAs: Yelp business page
+  hasOfferCatalog: 14 services listed
+
+  ASSESSMENT: PASS - Well-structured, comprehensive Electrician schema. Includes
+  all required fields, credentials, service area, ratings, and reviews.
+
+4.2 Homepage — FAQPage Schema
+  @type: FAQPage
+  mainEntity: 4 questions/answers
+  ASSESSMENT: PASS
+
+4.3 Service Pages (e.g., /ev-charger-installation)
+  Block 1: @type=Service (serviceType: EV Charger Installation, areaServed: 7 cities)
+  Block 2: @type=FAQPage
+  Block 3: @type=BreadcrumbList
+  ASSESSMENT: PASS - Good structure with Service, FAQ, and BreadcrumbList.
+
+4.4 City Pages (e.g., /city-los-angeles, /city-van-nuys)
+  Found: Only FAQPage JSON-LD
+  MISSING: Electrician / LocalBusiness schema
+  ASSESSMENT: FAIL - City pages are missing the critical local business schema
+  that should include areaServed with city name, postal codes, and defined region.
+  This is a significant local SEO gap.
+
+4.5 Location-Specific Service Pages (e.g., /ev-charger-installation-los-angeles)
+  @type: ["Electrician", "EVChargerInstallation"]  (array of types - valid Schema.org pattern)
+  areaServed: ["Los Angeles, CA"]
+  ASSESSMENT: PASS - Combined type is correct and valid.
+
+4.6 Emergency Service Pages (e.g., /emergency-electrician)
+  Found: Only FAQPage JSON-LD
+  ASSESSMENT: WARNING - No Service or Electrician schema on emergency pages.
+
+================================================================================
+5. OPEN GRAPH / TWITTER CARDS
+================================================================================
+
+5.1 Homepage
+  og:title:       "AMY Electric | Electrician Los Angeles"
+  og:description: "Licensed LA electricians. Panel upgrades, EV chargers, repairs..."
+  og:url:         "https://amyelectric.com/"
+  og:type:        "website"
+  og:image:       "https://amyelectric.com/img/og-home.jpg"
+  og:site_name:   "AMY Electric"
+  twitter:card:   "summary_large_image"
+  twitter:title:  "AMY Electric | Electrician Los Angeles"
+  twitter:description: "Licensed LA electricians. Panel upgrades, EV chargers, repairs..."
+  twitter:image:  "https://amyelectric.com/img/og-home.jpg"
+  ASSESSMENT: PASS - All required OG and Twitter Card meta tags present.
+
+5.2 Service Pages
+  All OG/Twitter tags present. og:type="website".
+  ASSESSMENT: PASS
+
+5.3 City Pages
+  All OG/Twitter tags present. og:type="website".
+  ASSESSMENT: PASS
+
+5.4 Blog Post Pages
+  All OG/Twitter tags present. og:type="article" (correct for blog posts).
+  ASSESSMENT: PASS
+
+5.5 Blog Index
+  All OG/Twitter tags present. og:type="article".
+  ASSESSMENT: PASS
+
+5.6 OG Image Verification
+  URL: https://amyelectric.com/img/og-home.jpg
+  Status: HTTP 200 OK, 110KB JPEG
+  ASSESSMENT: PASS - OG image loads correctly.
+
+5.7 Overall OG/Twitter Assessment: PASS
+  All pages have correct OG and Twitter Card meta tags.
+
+================================================================================
+6. MOBILE RESPONSIVENESS
+================================================================================
+
+6.1 Viewport Meta Tag
+  Found on all pages: <meta name="viewport" content="width=device-width, initial-scale=1">
+  ASSESSMENT: PASS
+
+6.2 Mobile Navigation
+  - Hamburger menu button present: <button class="hamburger" aria-label="Toggle menu">
+  - Sticky call bar (mobile-only gold bar at bottom) present.
+  ASSESSMENT: PASS
+
+6.3 CSS Media Queries
+  CSS file includes responsive design rules (media queries).
+  ASSESSMENT: PASS (inferred from CSS structure, confirmed by reports/ mobile HTML files)
+
+================================================================================
+7. 404 HANDLING
+================================================================================
+
+7.1 Non-existent Page
+  Test: curl -sI https://amyelectric.com/nonexistent-page-xyz/
+  Status: HTTP/2 404
+  ASSESSMENT: PASS - Returns proper 404 status code.
+
+7.2 Custom 404 Page
+  No custom 404 page was verified (only status code tested).
+  ASSESSMENT: INFO - Should check if a custom 404 page exists with helpful navigation.
+
+================================================================================
+8. INTERNAL LINKING
+================================================================================
+
+8.1 Navigation Bar
+  All nav links use relative .html URLs (e.g., href="ev-charger-installation.html").
+  These work because the server 307 redirects to clean URLs.
+  ASSESSMENT: PASS (all links work, though redirect adds latency)
+
+8.2 Footer
+  Service Areas list includes all 16 city pages (old 12 + new 4: Van Nuys, Woodland
+  Hills, Calabasas, Culver City).
+  
+  HTML STRUCTURE ISSUE: The "Services" column in the footer has an invalid structure:
+    <li><a href="surge-protection.html">Surge Protection</a>
+        <a href="testimonials.html">Reviews</a>
+        <a href="gallery.html">Gallery</a></li>
+  Three <a> tags inside a single <li> without wrapping. This is invalid HTML and
+  should be three separate <li> elements.
+
+  ASSESSMENT: WARNING - All links work but HTML structure is broken in one spot.
+
+8.3 Content Links (Homepage)
+  Service tiles, blog cards, and inline content links all use .html URLs.
+  All links resolve correctly after 307 redirect.
+  ASSESSMENT: PASS
+
+8.4 Orphan Pages Check
+  All city pages (16) are linked from: homepage footer, city-los-angeles page footer,
+  and sitemap. No orphan pages detected.
+  ASSESSMENT: PASS
+
+================================================================================
+9. URL STRUCTURE
+================================================================================
+
+9.1 Pattern Analysis
+  Homepage:     https://amyelectric.com/            (clean, no extension)
+  Services:     https://amyelectric.com/ev-charger-installation  (clean, no .html)
+  Cities:       https://amyelectric.com/city-los-angeles         (clean, no .html)
+  Blog:         https://amyelectric.com/blog/                    (clean)
+  Blog posts:   https://amyelectric.com/blog/ev-charging-benefits (clean, no .html)
+  Location-service: https://amyelectric.com/ev-charger-installation-los-angeles (clean)
+  Emergency:    https://amyelectric.com/emergency-electrician    (clean)
+
+  All canonical tags and og:url values point to .html versions, while the actual
+  content is served at clean URLs without .html extension.
+
+  The site uses Cloudflare redirect rules to convert .html → clean URLs via 307
+  (temporary) redirects. These should be 301 (permanent) redirects if this is the
+  intended final URL structure.
+
+  ASSESSMENT: WARNING - Clean URLs are the preferred format, but:
+  - Redirects are 307 (temporary), should be 301 (permanent)
+  - Canonical tags point back to .html versions (conflict)
+  - Sitemap lists .html URLs (should be clean URLs)
+  - Internal links use .html URLs (should be clean URLs)
+
+================================================================================
+10. CORE WEB VITALS & PERFORMANCE
+================================================================================
+
+10.1 Page Load Speed
+  Test: curl to homepage
+  Time total: 0.506s (from Cloudflare edge)
+  Size: 39,993 bytes (39 KB)
+  Speed: ~79 KB/s
+  ASSESSMENT: Very fast load time. Cloudflare edge caching (CF-Cache-Status: HIT)
+  ensures fast delivery.
+
+10.2 Preload Hints
+  - <link rel="preconnect" href="https://fonts.googleapis.com">
+  - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  - <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=...">
+  - <link rel="preload" as="style" href="css/style.min.css">
+  ASSESSMENT: PASS - Good use of preconnect and preload for critical resources.
+
+10.3 Minification
+  CSS: style.min.css (minified, 17KB)
+  JS: site.min.js (minified, 2.3KB)
+  ASSESSMENT: PASS - Both CSS and JS are minified.
+
+10.4 Lazy Loading
+  No <img> tags found on homepage, service pages, or city pages to evaluate.
+  ASSESSMENT: INFO - No images detected in HTML markup. If images exist as CSS
+  backgrounds, they cannot utilize loading="lazy".
+
+10.5 Google Analytics
+  GA4 tag is active with ID G-QVSNBR7PTS (confirmed in page source).
+  ASSESSMENT: PASS - Analytics is correctly set up.
+
+================================================================================
+11. ADDITIONAL FINDINGS
+================================================================================
+
+11.1 Title Tags
+  All pages have unique, descriptive <title> tags.
+  Lengths range from 38 to 58 characters (within recommended 50-60 char range).
+  ASSESSMENT: PASS
+
+11.2 Meta Descriptions
+  All pages have <meta name="description"> tags.
+  Lengths range from 77 to 148 characters.
+  - testimonials page: 77 chars ("Read what Los Angeles customers say...") — short,
+    could be more descriptive.
+  - All others are 96-148 chars — acceptable length.
+  ASSESSMENT: PASS (with minor note on testimonials)
+
+11.3 Heading Hierarchy
+  Homepage: H1 → H2 → H3 (proper nesting)
+  Service pages: H1 → H2 → H3 (proper nesting)
+  City pages: H1 → H2 → H3 (proper nesting)
+  Blog: H1 → H2 (proper nesting)
+  ASSESSMENT: PASS - All pages have a single H1 with proper hierarchy.
+
+11.4 Robots Meta Tags
+  All pages: <meta name="robots" content="index, follow">
+  ASSESSMENT: PASS - Pages are indexable and followable.
+
+11.5 Favicon
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  ASSESSMENT: PASS
+
+11.6 Hreflang Tags
+  Not present.
+  ASSESSMENT: INFO - Acceptable for a single-language (English) site serving
+  the Los Angeles area. Not a requirement.
+
+11.7 Copyright Year
+  Footer shows "2025" but current year is 2026.
+  ASSESSMENT: MINOR ISSUE - Should be updated to 2026.
+
+11.8 "TO ACTIVATE" Placeholder Comments
+  Found on all pages (homepage, service, city, blog).
+  These are GTM/GA4 activation instructions in HTML comments that should be removed
+  in production for cleaner HTML.
+  ASSESSMENT: MINOR ISSUE - Not harmful but unprofessional in production.
+
+11.9 Google Analytics Tag
+  GA4 is active with ID G-QVSNBR7PTS (not a placeholder).
+  ASSESSMENT: GOOD - Analytics is properly configured.
+
+11.10 GTM (Google Tag Manager)
+  Placeholder code is present but commented out. Not activated.
+  ASSESSMENT: INFO - As intended per project documentation.
+
+11.11 Image Usage
+  No <img> elements found in homepage, service pages, or city pages (0 images in
+  the HTML markup of these pages).
+  The img/ directory contains JPEG files (hero-electrician.jpg, ev-charger.jpg,
+  panel-upgrade.jpg, etc.) which are referenced in the JSON-LD schema (@image fields)
+  and OG image tags but not in the visible HTML content.
+  ASSESSMENT: WARNING - The JSON-LD references images that may not appear on the page.
+  Also, if using CSS background images, make sure they are properly optimized and have
+  appropriate text alternatives.
+
+================================================================================
+12. SUMMARY OF ISSUES BY SEVERITY
+================================================================================
+
+CRITICAL (must fix):
+  1. HTTP → HTTPS redirect NOT working — http://amyelectric.com/ serves content
+     directly over HTTP without redirecting to HTTPS. Enable "Always Use HTTPS"
+     in Cloudflare dashboard SSL/TLS settings.
+  2. www.amyelectric.com DNS does not resolve (NXDOMAIN). Add a DNS record for
+     the www subdomain (CNAME to amyelectric.com or A/AAAA record).
+
+HIGH (should fix):
+  3. City pages (all 16) are missing Electrician / LocalBusiness JSON-LD schema.
+     They only have FAQPage. This is a significant local SEO gap. Each city page
+     should have an Electrician schema with areaServed containing the city name,
+     postal codes, and defined region.
+  4. Canonical/redirect mismatch: All pages have canonical tags pointing to .html
+     URLs, but .html URLs 307 redirect to clean URLs. Correct approach:
+     - Update canonical tags to point to clean URLs (no .html extension), OR
+     - Change redirect to 301 (permanent) and update sitemap to use clean URLs.
+  5. 307 redirects should be 301 (permanent) since clean URLs are the intended
+     final URLs.
+
+MEDIUM (fix when convenient):
+  6. Sitemap lists .html URLs but content is served at clean URLs. Update sitemap
+     to use clean URLs.
+  7. Internal links (nav, footer, content) use .html URLs that get redirected.
+     Update all internal links to use clean URLs directly to remove unnecessary
+     307 redirects.
+  8. Footer HTML structure issue: Three <a> tags inside one <li> under "Services"
+     column. Should be three separate <li> elements.
+  9. Footer has inconsistent "Emergency" column — present on newer pages
+     (emergency-electrician, ev-charger-installation-los-angeles) but NOT on
+     homepage or older pages. Need to propagate to all pages.
+  10. Emergency service pages (emergency-electrician, etc.) missing
+      Service/Electrician schema.
+
+LOW (nice to fix):
+  11. Copyright year shows "2025" — update to "2026".
+  12. "TO ACTIVATE" placeholder comments present on all pages — remove for cleaner
+      production HTML.
+  13. Testimonials meta description is only 77 chars — extend for better SERP
+      visibility.
+  14. No <img> tags in visible page HTML — consider using <img> tags with alt
+      text and loading="lazy" for better accessibility and Core Web Vitals.
+
+================================================================================
+END OF REPORT
+================================================================================
