@@ -60,4 +60,23 @@
   handleForm('quick-form', 'quick-form-success');
   handleForm('estimate-form', 'estimate-form-success');
 
+  function loadGA() {
+    if (window.gaLoaded) return;
+    window.gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-QVSNBR7PTS';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QVSNBR7PTS');
+  }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadGA, { timeout: 2000 });
+  } else {
+    setTimeout(loadGA, 2000);
+  }
+
 })();
