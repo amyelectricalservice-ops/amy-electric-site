@@ -1,33 +1,13 @@
-// HTTP → HTTPS redirect for Cloudflare Pages
+// Pages Function middleware — runs for requests that reach the Workers runtime
+// NOTE: HTTP→HTTPS redirect requires "Always Use HTTPS" in Cloudflare dashboard
+// (SSL/TLS → Edge Certificates). This middleware covers edge cases where the
+// request reaches Pages via HTTP despite that setting (e.g., direct origin access).
 export async function onRequest(context) {
   const { request } = context;
   const url = new URL(request.url);
-  const forwardedProto = request.headers.get('x-forwarded-proto') || '';
-  const cfVisitor = request.headers.get('cf-visitor') || '';
-  const cloudflareForwardedProto = request.headers.get('Cloudflare-Forwarded-Proto') || '';
-
-  // Try all known Cloudflare protocol signals
-  const isHttp =
-    url.protocol === 'http:' ||
-    forwardedProto === 'http' ||
-    cfVisitor.includes('"scheme":"http"') ||
-    cloudflareForwardedProto === 'http';
-
-  if (isHttp) {
+  if (url.protocol === 'http:' || request.headers.get('x-forwarded-proto') === 'http') {
     url.protocol = 'https:';
-    url.port = '';
     return Response.redirect(url.toString(), 301);
   }
-
-  const response = await context.next();
-  // Debug: tag responses so we can see middleware ran
-  const newHeaders = new Headers(response.headers);
-  newHeaders.set('x-debug-proto', url.protocol);
-  newHeaders.set('x-debug-fwd', forwardedProto);
-  newHeaders.set('x-debug-cfproto', cloudflareForwardedProto);
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: newHeaders,
-  });
+  return context.next();
 }
