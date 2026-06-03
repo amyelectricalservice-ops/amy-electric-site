@@ -34,10 +34,10 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **All pages share the same nav bar** and footer — when updating shared layout, update every `.html` file
 - **No framework** — vanilla HTML
 - **Images**: 5 original JPEGs in `img/`. WebP conversion handled by Cloudflare Polish.
-- **Analytics placeholder**: All pages have commented-out GA4/GTM code. Activate by replacing `G-XXXXXXXXXX` and `GTM-XXXXXXX` placeholders.
+- **Analytics**: Cloudflare Web Analytics — one-click enable in dashboard (Workers & Pages → project → Metrics → Enable). Free, privacy-first, auto-injects beacon. No client-side analytics code in `site.js`. The GA deferred loader was removed.
 - **Contact forms**:
   - Homepage: Two-tier — `quick-form` (3 fields: name, phone, service) by default, `estimate-form` (7 fields) in expandable `<details>` toggle
-  - Replace `action="https://formspree.io/f/your-form-id"` with real endpoint
+  - POST to `/api/contact` (Cloudflare Pages Function) — no form service dependency
 - **Sticky call bar**: Mobile-only gold bar fixed to bottom on all 42 pages (hidden ≥768px)
 
 ## File conventions
