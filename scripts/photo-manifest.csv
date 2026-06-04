@@ -1,7 +1,7 @@
-source_file,slug,category,caption,city,year
+source_file,slug,category,caption,city,year,custom_crop
 PXL_20220919_192349350.jpg,gallery-panel-siemens-stucco,panel,"Siemens 200A panel upgrade with exterior stucco finish",Los Angeles,2022
 PXL_20220828_161543284.jpg,gallery-panel-subpanel-labeled,panel,"New subpanel installation with clearly labeled circuits",Sherman Oaks,2022
-PXL_20220828_161553337.jpg,gallery-panel-dual-meter,panel,"Dual-meter exterior service installation",Sherman Oaks,2022
+PXL_20220828_161553337.jpg,gallery-panel-dual-meter,panel,"Dual-meter exterior service installation",Sherman Oaks,2022,"0,0,3024,2268"
 PXL_20201106_164020592.jpg,gallery-panel-three-wire,panel,"Single-phase panel wiring with drywall enclosure",Los Angeles,2020
 PXL_20230130_160003939.jpg,gallery-panel-commercial-disconnect,panel,"Commercial main disconnect with house meter panel",Los Angeles,2023
 PXL_20220127_182456344.jpg,gallery-panel-meter-removal,panel,"Old meter base removal during service upgrade",Burbank,2022

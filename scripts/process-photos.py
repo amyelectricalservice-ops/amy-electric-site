@@ -36,8 +36,14 @@ def exif_transpose_fix(im):
     return im.copy()
 
 
-def center_crop_4_3(im):
-    """Crop to 4:3 landscape ratio, centered."""
+def center_crop_4_3(im, custom=None):
+    """Crop to 4:3 landscape ratio, centered.
+
+    If `custom` is provided as (x1, y1, x2, y2) in source pixel coords,
+    use that region directly. Otherwise crop to 4:3 centered.
+    """
+    if custom is not None:
+        return im.crop(custom)
     w, h = im.size
     target = w / 4 * 3
     if h > target:
@@ -57,13 +63,23 @@ def process_one(row):
     caption = row["caption"].strip()
     city = row.get("city", "").strip()
     year = row.get("year", "").strip()
+    custom_crop = (row.get("custom_crop") or "").strip()
 
     src_path = SRC / source
     if not src_path.exists():
         print(f"  SKIP: {source} not found")
         return
 
-    print(f"  Processing: {source} → {slug}")
+    crop = None
+    if custom_crop:
+        try:
+            crop = tuple(int(x) for x in custom_crop.split(","))
+            assert len(crop) == 4
+        except (ValueError, AssertionError):
+            print(f"  WARN: bad custom_crop '{custom_crop}', using centered")
+            crop = None
+
+    print(f"  Processing: {source} → {slug}" + (f" (custom crop {crop})" if crop else ""))
     with Image.open(src_path) as im:
         # Fix orientation
         im = exif_transpose_fix(im)
@@ -75,8 +91,8 @@ def process_one(row):
         if im.mode != "RGB":
             im = im.convert("RGB")
 
-        # Crop to 4:3
-        im = center_crop_4_3(im)
+        # Crop
+        im = center_crop_4_3(im, custom=crop)
 
         w, h = im.size
 
