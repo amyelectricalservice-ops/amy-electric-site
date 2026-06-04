@@ -356,10 +356,40 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://amyelectric.com/gallery</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.6</priority>
-  </url>
+<loc>https://amyelectric.com/gallery</loc>
+<lastmod>2026-06-04</lastmod>
+<priority>0.7</priority>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-siemens-stucco-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-subpanel-labeled-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-dual-meter-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-three-wire-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-commercial-disconnect-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-meter-removal-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-panel-drywall-install-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-switchgear-tall-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-switchgear-angle-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-bus-duct-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-parking-team-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-meter-bank-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-switchgear-clean-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-switchgear-200a-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-roughin-framing-conduit-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-roughin-steel-stud-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-roughin-foundation-pipe-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-construction-apartment-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-roughin-worker-framing-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-lighting-kitchen-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-lighting-commercial-install-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-lighting-chandelier-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-utility-crane-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-team-worker-foundation-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-team-utility-lines-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-commercial-parking-conduit-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-lifestyle-home-pool-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-exterior-spanish-apartment-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-lighting-kitchen-alt-1200w.webp</image:loc></image:image>
+<image:image><image:loc>https://amyelectric.com/img/gallery/gallery-equipment-pipe-threader-1200w.webp</image:loc></image:image>
+</url>
   <url>
     <loc>https://amyelectric.com/llms.txt</loc>
     <lastmod>2026-06-03</lastmod>

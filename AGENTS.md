@@ -33,12 +33,13 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **No dev server** — open HTML files directly in a browser to preview
 - **All pages share the same nav bar** and footer — when updating shared layout, update every `.html` file
 - **No framework** — vanilla HTML
-- **Images**: 5 original JPEGs in `img/`. WebP conversion handled by Cloudflare Polish.
+- **Images**: 5 original JPEGs in `img/`. 30 real project photos in `img/gallery/` (1200w WebP + 1200w JPEG + 400w WebP per photo). WebP conversion handled by Cloudflare Polish.
 - **Analytics**: Cloudflare Web Analytics — one-click enable in dashboard (Workers & Pages → project → Metrics → Enable). Free, privacy-first, auto-injects beacon. No client-side analytics code in `site.js`. The GA deferred loader was removed.
 - **Contact forms**:
   - Homepage: Two-tier — `quick-form` (3 fields: name, phone, service) by default, `estimate-form` (7 fields) in expandable `<details>` toggle
   - POST to `/api/contact` (Cloudflare Pages Function) — no form service dependency
 - **Sticky call bar**: Mobile-only gold bar fixed to bottom on all 42 pages (hidden ≥768px)
+- **Photo pipeline**: Raw photos in `/home/amram/Pictures/Electric Work/` → `scripts/process-photos.py` + `scripts/photo-manifest.csv` → `img/gallery/`. Each photo outputs 1200w WebP + 1200w JPEG + 400w WebP. EXIF stripped, 4:3 crop, orientation fixed. To add new photos: edit manifest and run `python3 scripts/process-photos.py`.
 
 ## File conventions
 
