@@ -3,6 +3,7 @@
 
 ## Services
 - EV Charger Installation: https://amyelectric.com/ev-charger-installation
+- Hardwired vs Plug-In (Comparison): https://amyelectric.com/ev-charger-hardwired-vs-plug-in
 - Tesla Charger Installation: https://amyelectric.com/tesla-charger-installation
 - Panel Upgrades: https://amyelectric.com/panel-upgrade
 - 100A vs 200A Panel (Comparison): https://amyelectric.com/panel-100a-vs-200a
