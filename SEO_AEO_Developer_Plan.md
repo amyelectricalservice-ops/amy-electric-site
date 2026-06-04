@@ -523,7 +523,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             <h3>About Amy</h3>
             <p>
               Amy is a California-licensed C-10 electrical contractor (License #981578) and 
-              EVITP-certified for EV infrastructure (Cert #4051604). She has 15+ years of experience 
+              EVITP-certified for EV infrastructure (Cert #4051604). He has 15+ years of experience 
               in residential and commercial electrical work, specializing in panel upgrades, EV charger 
               installation, and whole-home rewiring. Amy founded Amy Electric in 2012 to bring 
               transparent, code-perfect electrical work to the Los Angeles area.
@@ -577,18 +577,18 @@ export default function BlogPost({ post }: BlogPostProps) {
     <div>
       <p>
         <strong>Amy</strong> is a California-licensed C-10 electrical contractor (License #981578) 
-        with 15+ years of hands-on electrical expertise. She holds an EVITP certification (#4051604) 
+        with 15+ years of hands-on electrical expertise. He holds an EVITP certification (#4051604) 
         for electric vehicle charging infrastructure and has completed 2,000+ residential and commercial 
         electrical projects across Greater Los Angeles.
       </p>
       <p>
         Amy founded <strong>AMY Electric in 2012</strong> to bridge the gap between expert craftsmanship 
-        and transparent pricing. She personally evaluates complex electrical problems and directs every 
+        and transparent pricing. He personally evaluates complex electrical problems and directs every 
         significant project, ensuring code-perfect work and customer satisfaction.
       </p>
       <p>
         When not on a job site, Amy builds custom tools to streamline electrical estimation and 
-        project management—combining her passion for coding with her contracting expertise.
+        project management—combining his passion for coding with his contracting expertise.
       </p>
     </div>
   </div>
