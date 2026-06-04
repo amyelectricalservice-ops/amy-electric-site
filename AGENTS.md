@@ -8,14 +8,14 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **License**: C-10 #981578 (verify at [CSLB](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578)), EVITP #4051604
 - **Phone**: (818) 302-5614
 - **Email**: info@amyelectric.com
-- **Service area**: Greater Los Angeles (12 city pages, 62+ ZIP codes)
+- **Service area**: Greater Los Angeles (16 city pages, 62+ ZIP codes)
 
 ## Current state
 
 - **42 HTML pages total**:
   - Homepage: `index.html`
-  - **15 service pages**: `ev-charger-installation.html`, `panel-upgrade.html`, `electrical-repair.html`, `commercial-electrical.html`, `lighting-installation.html`, `tesla-charger-installation.html`, `whole-home-rewiring.html`, `surge-protection.html`, `outlet-switch-installation.html`, `ceiling-fan-installation.html`, `smoke-co-detector-installation.html`, `generator-transfer-switch.html`, `dedicated-circuits.html`, `smart-home-electrical.html`, `electrical-safety-inspections.html`
-  - **12 location pages**: `city-los-angeles.html`, `city-sherman-oaks.html`, `city-burbank.html`, `city-glendale.html`, `city-pasadena.html`, `city-studio-city.html`, `city-north-hollywood.html`, `city-hollywood.html`, `city-beverly-hills.html`, `city-west-la.html`, `city-encino.html`, `city-santa-monica.html`
+  - **15 service pages** (`ev-charger-installation.html`, `panel-upgrade.html`, `electrical-repair.html`, `commercial-electrical.html`, `lighting-installation.html`, `tesla-charger-installation.html`, `whole-home-rewiring.html`, `surge-protection.html`, `outlet-switch-installation.html`, `ceiling-fan-installation.html`, `smoke-co-detector-installation.html`, `generator-transfer-switch.html`, `dedicated-circuits.html`, `smart-home-electrical.html`, `electrical-safety-inspections.html`)
+  - **16 city pages**: `city-los-angeles.html`, `city-sherman-oaks.html`, `city-burbank.html`, `city-glendale.html`, `city-pasadena.html`, `city-studio-city.html`, `city-north-hollywood.html`, `city-hollywood.html`, `city-beverly-hills.html`, `city-west-la.html`, `city-encino.html`, `city-santa-monica.html`, `city-woodland-hills.html`, `city-van-nuys.html`, `city-calabasas.html`, `city-culver-city.html`
   - **2 special pages**: `testimonials.html`, `gallery.html`
   - **12 blog pages** in `blog/`: 10 posts + `blog/index.html`
 - **CSS** at `css/style.min.css` (production, 17KB) — original at `css/style.css`
@@ -40,6 +40,9 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
   - POST to `/api/contact` (Cloudflare Pages Function) — no form service dependency
 - **Sticky call bar**: Mobile-only gold bar fixed to bottom on all 42 pages (hidden ≥768px)
 - **Photo pipeline**: Raw photos in `/home/amram/Pictures/Electric Work/` → `scripts/process-photos.py` + `scripts/photo-manifest.csv` → `img/gallery/`. Each photo outputs 1200w WebP + 1200w JPEG + 400w WebP. EXIF stripped, 4:3 crop, orientation fixed. To add new photos: edit manifest and run `python3 scripts/process-photos.py`.
+- **Privacy redactions**: `scripts/redact-photos.py` applies in-place edits to published photos. Supports Gaussian face blur (`blur_box`) and black-box text redaction (`blackout_box`). Run after `process-photos.py` for photos containing faces or identifiable text/numbers.
+- **Custom crop per photo**: Add `custom_crop` column to `photo-manifest.csv` with source-pixel coordinates `x1,y1,x2,y2`. Used when a center 4:3 crop doesn't exclude privacy-sensitive content (e.g., meter face with account numbers). Example: `"0,0,3024,2268"` for a portrait photo cropped to top 56%.
+- **Privacy rule**: Any published photo with visible street number/address, customer name, identifiable face (unless confirmed as consenting team member), or LADWP account number must be cropped/blurred/redacted before deployment. Review every photo before publishing — addresses can appear on equipment labels, meter faces, stickers, and handwritten notes.
 
 ## File conventions
 
