@@ -1,6 +1,6 @@
 # Cloudflare Pages _headers
 
-# HTML pages — short cache, revalidate frequently
+# Security headers + base cache for all responses
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -8,14 +8,15 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), geolocation=(), microphone=()
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-src 'none'; object-src 'none'
-  Cache-Control: public, max-age=300, s-maxage=600, stale-while-revalidate=86400
 
-# CSS/JS — long cache (files are versioned via minification)
+# CSS — long cache
 /*.css
   Cache-Control: public, max-age=31536000, immutable
+
+# JS — long cache
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 
-# Images — aggressive cache (filenames are stable, content changes rarely)
+# Images — aggressive cache
 /img/*
   Cache-Control: public, max-age=2592000, s-maxage=604800, stale-while-revalidate=604800
