@@ -1,6 +1,18 @@
 # Cloudflare Pages _headers
 
-# Security headers + base cache for all responses
+# CSS — long cache (immutable, versioned via minification)
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# JS — long cache (immutable, versioned via minification)
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images — aggressive cache (stable filenames)
+/img/*
+  Cache-Control: public, max-age=2592000, s-maxage=604800, stale-while-revalidate=604800
+
+# Security headers for all responses
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -8,15 +20,3 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), geolocation=(), microphone=()
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-src 'none'; object-src 'none'
-
-# CSS — long cache
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-
-# JS — long cache
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-
-# Images — aggressive cache
-/img/*
-  Cache-Control: public, max-age=2592000, s-maxage=604800, stale-while-revalidate=604800
