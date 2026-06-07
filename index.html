@@ -28,6 +28,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional"></noscript>
 <link rel="stylesheet" href="css/style.min.css">
+<link rel="alternate" type="text/markdown" href="/llms.txt">
 <!-- Preload hints for performance -->
 
 <!-- LocalBusiness JSON-LD Schema -->
@@ -38,6 +39,7 @@
   "@id": "https://amyelectric.com",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
+  "logo": "https://amyelectric.com/img/og-home.jpg",
   "description": "Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
   "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
@@ -278,11 +280,6 @@
   "sameAs": [
     "https://www.yelp.com/biz/amy-electric-los-angeles"
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "24"
-  },
   "review": [
     {
       "@type": "Review",
@@ -328,6 +325,24 @@
 </script>
 
 
+<!-- WebSite + SearchAction Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AMY Electric",
+  "url": "https://amyelectric.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://amyelectric.com/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
 <!-- FAQPage Schema -->
 <script type="application/ld+json">
 {
@@ -353,6 +368,21 @@
       "@type": "Question",
       "name": "How much does an EV charger installation cost in LA?",
       "acceptedAnswer": { "@type": "Answer", "text": "Most Level 2 EV charger installations run $350–$900 for a straightforward garage install. If a panel upgrade is needed, add $2,500–$4,500. We provide free estimates." }
+    }
+  ]
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home"
     }
   ]
 }
