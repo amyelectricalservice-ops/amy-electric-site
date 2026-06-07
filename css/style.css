@@ -287,6 +287,8 @@ p:last-child { margin-bottom: 0; }
 .card-icon { font-size: 32px; margin-bottom: 16px; }
 .card h3 { font-size: 20px; margin-bottom: 8px; }
 .card p  { font-size: 15px; }
+.card p a { text-decoration: underline; text-decoration-color: rgba(245,166,35,.4); text-underline-offset: 2px; }
+.card p a:hover { text-decoration-color: var(--gold); }
 .card-link { margin-top: 16px; display: inline-block; font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
 .card-link::after { content: ' →'; }
 

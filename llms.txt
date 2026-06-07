@@ -1,40 +1,48 @@
 # AMY Electric — Los Angeles Licensed Electrician
-> C-10 #981578 · EVITP #4051604 · (818) 302-5614
+
+> C-10 #981578 · EVITP #4051604 · (818) 302-5614. Licensed residential and commercial electrician serving Greater Los Angeles.
 
 ## Services
-- EV Charger Installation: https://amyelectric.com/ev-charger-installation
-- Hardwired vs Plug-In (Comparison): https://amyelectric.com/ev-charger-hardwired-vs-plug-in
-- Tesla Charger Installation: https://amyelectric.com/tesla-charger-installation
-- Panel Upgrades: https://amyelectric.com/panel-upgrade
-- 100A vs 200A Panel (Comparison): https://amyelectric.com/panel-100a-vs-200a
-- Electrical Repair: https://amyelectric.com/electrical-repair
-- Commercial Electrical: https://amyelectric.com/commercial-electrical
-- Lighting Installation: https://amyelectric.com/lighting-installation
-- Whole Home Rewiring: https://amyelectric.com/whole-home-rewiring
-- Surge Protection: https://amyelectric.com/surge-protection
-- Outlet & Switch Installation: https://amyelectric.com/outlet-switch-installation
-- Ceiling Fan Installation: https://amyelectric.com/ceiling-fan-installation
-- Smoke & CO Detector Installation: https://amyelectric.com/smoke-co-detector-installation
-- Generator Transfer Switch: https://amyelectric.com/generator-transfer-switch
-- Dedicated Circuits: https://amyelectric.com/dedicated-circuits
-- Smart Home Electrical: https://amyelectric.com/smart-home-electrical
-- Electrical Safety Inspections: https://amyelectric.com/electrical-safety-inspections
+
+- [EV Charger Installation](/ev-charger-installation)
+- [Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in)
+- [Tesla Charger Installation](/tesla-charger-installation)
+- [Panel Upgrades](/panel-upgrade)
+- [100A vs 200A Panel](/panel-100a-vs-200a)
+- [Electrical Repair](/electrical-repair)
+- [Commercial Electrical](/commercial-electrical)
+- [Lighting Installation](/lighting-installation)
+- [Whole Home Rewiring](/whole-home-rewiring)
+- [Surge Protection](/surge-protection)
+- [Outlet & Switch Installation](/outlet-switch-installation)
+- [Ceiling Fan Installation](/ceiling-fan-installation)
+- [Smoke & CO Detector Installation](/smoke-co-detector-installation)
+- [Generator Transfer Switch](/generator-transfer-switch)
+- [Dedicated Circuits](/dedicated-circuits)
+- [Smart Home Electrical](/smart-home-electrical)
+- [Electrical Safety Inspections](/electrical-safety-inspections)
 
 ## Service Areas
-- Los Angeles: https://amyelectric.com/city-los-angeles
-- Sherman Oaks: https://amyelectric.com/city-sherman-oaks
-- Burbank: https://amyelectric.com/city-burbank
-- Glendale: https://amyelectric.com/city-glendale
-- Pasadena: https://amyelectric.com/city-pasadena
-- Studio City: https://amyelectric.com/city-studio-city
-- North Hollywood: https://amyelectric.com/city-north-hollywood
-- Hollywood: https://amyelectric.com/city-hollywood
-- Beverly Hills: https://amyelectric.com/city-beverly-hills
-- West LA: https://amyelectric.com/city-west-la
-- Encino: https://amyelectric.com/city-encino
-- Santa Monica: https://amyelectric.com/city-santa-monica
+
+- [Los Angeles](/city-los-angeles)
+- [Sherman Oaks](/city-sherman-oaks)
+- [Burbank](/city-burbank)
+- [Glendale](/city-glendale)
+- [Pasadena](/city-pasadena)
+- [Studio City](/city-studio-city)
+- [North Hollywood](/city-north-hollywood)
+- [Hollywood](/city-hollywood)
+- [Beverly Hills](/city-beverly-hills)
+- [West LA](/city-west-la)
+- [Encino](/city-encino)
+- [Santa Monica](/city-santa-monica)
+- [Woodland Hills](/city-woodland-hills)
+- [Van Nuys](/city-van-nuys)
+- [Calabasas](/city-calabasas)
+- [Culver City](/city-culver-city)
 
 ## About
-- Testimonials: https://amyelectric.com/testimonials
-- Gallery: https://amyelectric.com/gallery
-- Blog: https://amyelectric.com/blog/
+
+- [Testimonials](/testimonials)
+- [Gallery](/gallery)
+- [Blog](/blog/)
