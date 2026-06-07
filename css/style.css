@@ -466,6 +466,14 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .page-hero p { font-size: 18px; color: rgba(244,241,235,.8); max-width: 620px; margin-bottom: 28px; }
 .page-hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
+/* ── PHOTO GRID (inline project photos) ── */
+.photo-grid { display: grid; gap: 20px; margin: 32px 0; }
+.photo-grid.cols-3 { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.inline-project-photo { border-radius: 6px; overflow: hidden; background: var(--navy2); border: 1px solid rgba(255,255,255,.08); }
+.inline-project-photo img,
+.inline-project-photo picture { display: block; width: 100%; height: auto; }
+.photo-caption { padding: 10px 12px; font-size: 13px; color: var(--white); margin: 0; text-align: center; font-style: italic; opacity: 0.85; }
+
 /* ── CONTENT PROSE ── */
 .prose { max-width: 760px; }
 .prose h2 { font-size: 30px; margin-top: 40px; margin-bottom: 12px; }
