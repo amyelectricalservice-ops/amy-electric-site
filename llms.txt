@@ -1,26 +1,40 @@
 # AMY Electric — Los Angeles Licensed Electrician
 
-> C-10 #981578 · EVITP #4051604 · (818) 302-5614. Licensed residential and commercial electrician serving Greater Los Angeles.
+> C-10 #981578 · EVITP #4051604 · (818) 302-5614. Licensed residential and commercial electrician serving Greater Los Angeles since 2012.
+
+## Contact
+
+- Phone: (818) 302-5614
+- Email: info@amyelectric.com
+- Service Area: Greater Los Angeles, CA
+- Hours: Mon–Fri 7 AM–5 PM, 24/7 Emergency
+
+## Credentials
+
+- California C-10 Electrical Contractor License #981578
+- EVITP (Electric Vehicle Infrastructure Training Program) Certification #4051604
+- Licensed, bonded, and insured
+- Verified at CSLB: https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578
 
 ## Services
 
-- [EV Charger Installation](/ev-charger-installation)
-- [Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in)
-- [Tesla Charger Installation](/tesla-charger-installation)
-- [Panel Upgrades](/panel-upgrade)
-- [100A vs 200A Panel](/panel-100a-vs-200a)
-- [Electrical Repair](/electrical-repair)
-- [Commercial Electrical](/commercial-electrical)
-- [Lighting Installation](/lighting-installation)
-- [Whole Home Rewiring](/whole-home-rewiring)
-- [Surge Protection](/surge-protection)
-- [Outlet & Switch Installation](/outlet-switch-installation)
-- [Ceiling Fan Installation](/ceiling-fan-installation)
-- [Smoke & CO Detector Installation](/smoke-co-detector-installation)
-- [Generator Transfer Switch](/generator-transfer-switch)
-- [Dedicated Circuits](/dedicated-circuits)
-- [Smart Home Electrical](/smart-home-electrical)
-- [Electrical Safety Inspections](/electrical-safety-inspections)
+- [EV Charger Installation](/ev-charger-installation) — Level 2 EV charger install for Tesla, Rivian, and all EVs. EVITP-certified.
+- [Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in) — Comparison guide for EV charger types.
+- [Tesla Charger Installation](/tesla-charger-installation) — Tesla Wall Connector and NEMA 14-50 outlet installation.
+- [Panel Upgrades](/panel-upgrade) — 100A to 200A electrical panel upgrades. LADWP-coordinated.
+- [100A vs 200A Panel](/panel-100a-vs-200a) — Which amp service is right for your home.
+- [Electrical Repair](/electrical-repair) — Troubleshooting, wiring repairs, and code corrections.
+- [Commercial Electrical](/commercial-electrical) — Commercial tenant improvements, wiring, and maintenance.
+- [Lighting Installation](/lighting-installation) — Interior and exterior lighting installation.
+- [Whole Home Rewiring](/whole-home-rewiring) — Complete electrical rewiring for older homes.
+- [Surge Protection](/surge-protection) — Whole-home surge protector installation.
+- [Outlet & Switch Installation](/outlet-switch-installation) — New outlets, switches, and GFCI/AFCI upgrades.
+- [Ceiling Fan Installation](/ceiling-fan-installation) — Ceiling fan install and replacement.
+- [Smoke & CO Detector Installation](/smoke-co-detector-installation) — Hardwired smoke and carbon monoxide detectors.
+- [Generator Transfer Switch](/generator-transfer-switch) — Manual and automatic transfer switch installation.
+- [Dedicated Circuits](/dedicated-circuits) — Dedicated circuits for appliances and equipment.
+- [Smart Home Electrical](/smart-home-electrical) — Smart switches, outlets, and home automation wiring.
+- [Electrical Safety Inspections](/electrical-safety-inspections) — Home electrical safety inspections.
 
 ## Service Areas
 
@@ -46,3 +60,37 @@
 - [Testimonials](/testimonials)
 - [Gallery](/gallery)
 - [Blog](/blog/)
+
+## Blog
+
+- [EV Charging Benefits for Los Angeles Drivers](/blog/ev-charging-benefits)
+- [EV Charging in Los Angeles: What You Need to Know](/blog/ev-charging-los-angeles)
+- [EV Charger Installation Cost in LA](/blog/ev-charger-installation-cost-la)
+- [EV vs Gas Vehicle Cost in Los Angeles](/blog/ev-vs-gas-vehicle-cost-los-angeles)
+- [Tesla Wall Connector vs Other EV Chargers](/blog/tesla-wall-connector-vs-other-ev-chargers)
+- [Panel Upgrade Signs: When to Upgrade](/blog/panel-upgrade-signs)
+- [Signs You Need an Electrical Panel Upgrade](/blog/signs-you-need-electrical-panel-upgrade)
+- [Panel Upgrade Cost in Los Angeles](/blog/panel-upgrade-cost-los-angeles)
+- [How to Choose an Electrician in Los Angeles](/blog/how-to-choose-electrician-los-angeles)
+- [Electrical Contractor vs Handyman in LA](/blog/electrical-contractor-vs-handyman-la)
+- [Emergency Electrician in Los Angeles](/blog/emergency-electrician-los-angeles)
+- [Electrical Safety Tips for LA Homeowners](/blog/electrical-safety-tips-homeowners-la)
+- [LA Electrical Safety Tips](/blog/la-electrical-safety-tips)
+- [Electrical Inspection Cost in Los Angeles](/blog/electrical-inspection-cost-los-angeles)
+- [Electrical Permit in Los Angeles](/blog/electrical-permit-los-angeles)
+- [LA Electrical Code Requirements](/blog/la-electrical-code-requirements)
+- [Whole Home Rewiring Cost in LA](/blog/whole-home-rewiring-cost-la)
+- [Whole Home Rewiring Guide](/blog/whole-home-rewiring-guide)
+- [Dedicated Circuit Installation Cost](/blog/dedicated-circuit-installation-cost)
+- [Ceiling Fan Installation Cost in LA](/blog/ceiling-fan-installation-cost-la)
+- [Ceiling Fan Installation in LA](/blog/ceiling-fan-installation-la)
+- [Commercial Electrical in LA](/blog/commercial-electrical-la)
+- [Outdoor Lighting Installation in LA](/blog/outdoor-lighting-installation-la)
+- [Smart Home Electrical Upgrades](/blog/smart-home-electrical-upgrades)
+- [Smart Home Electrical Upgrades in LA](/blog/smart-home-electrical-upgrades-la)
+- [Smoke & CO Detector Installation in LA](/blog/smoke-co-detector-installation-la)
+- [Surge Protector vs Power Strip](/blog/surge-protector-vs-power-strip)
+- [Choosing an Electrician in LA](/blog/choosing-electrician-la)
+- [GFCI & AFCI Protection in LA](/blog/gfci-afci-protection-la)
+- [Breaker Keeps Tripping: Causes & Fixes](/blog/breaker-keeps-tripping-causes)
+- [Generator Installation Cost in LA](/blog/generator-installation-cost-la)

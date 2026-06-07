@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /amyelectric-site/
+Disallow: /reports/
+Disallow: /api/
 Disallow: /~
 
 Sitemap: https://amyelectric.com/sitemap.xml
