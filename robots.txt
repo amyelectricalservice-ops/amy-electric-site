@@ -24,6 +24,12 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # Training crawlers — blocked (no licensing agreement)
 User-agent: CCBot
 Disallow: /
@@ -33,5 +39,7 @@ Disallow: /
 
 User-agent: cohere-ai
 Disallow: /
+
+License: /rsl.json
 
 Sitemap: https://amyelectric.com/sitemap.xml

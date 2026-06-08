@@ -25,9 +25,58 @@
 <meta name="twitter:image" content="https://amyelectric.com/img/og-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional"></noscript>
-<link rel="stylesheet" href="css/style.min.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional"></noscript>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--navy);color:var(--white);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:0 0 var(--radius) var(--radius);font-family:var(--cond);font-weight:700;z-index:9999;text-decoration:none}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.topbar{background:var(--gold);color:var(--navy);font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.04em;padding:7px 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--navy)}
+header{background:var(--navy2);border-bottom:3px solid var(--mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);font-family:var(--cond);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);flex-shrink:0}
+.logo-text{font-family:var(--cond)}
+.logo-name{font-size:22px;font-weight:800;color:var(--white);letter-spacing:.02em;display:block}
+.logo-sub{font-size:11px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;display:block}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray);padding:8px 12px;border-radius:var(--radius);transition:color .18s,background .18s;text-decoration:none}
+nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:8px 16px!important;margin-left:8px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:24px;height:24px;background:var(--white);margin:5px 0;transition:.3s}
+.btn{display:inline-block;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .12s,box-shadow .18s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(245,166,35,.35)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4)}
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0d1e3a 60%,#091420 100%);padding:80px 24px 72px;position:relative;overflow:hidden}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:var(--cond);font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;color:var(--white);margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-desc{font-size:18px;color:rgba(244,241,235,.8);margin-bottom:32px;max-width:500px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:5px 14px;font-family:var(--cond);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--white)}
+.badge .dot{width:7px;height:7px;background:#4cdb7a;border-radius:50%}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.page-hero{background:linear-gradient(135deg,var(--navy2) 0%,#091420 100%);padding:56px 24px 48px;border-bottom:3px solid var(--mid)}
+.breadcrumb{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:14px}
+.breadcrumb a{color:var(--gray)}
+.page-hero h1{font-family:var(--cond);font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:16px;color:var(--white)}
+.page-hero p{font-size:18px;color:rgba(244,241,235,.8);max-width:620px;margin-bottom:28px}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}</style>
+<link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <!-- Preload hints for performance -->
 
@@ -54,8 +103,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 34.223,
-    "longitude": -118.582
+    "latitude": 34.22281,
+    "longitude": -118.58241
   },
   "foundingDate": "2012",
   "founder": {
@@ -338,8 +387,42 @@
       "@type": "EntryPoint",
       "urlTemplate": "https://amyelectric.com/?q={search_term_string}"
     },
-    "query-input": "required name=search_term_string"
   }
+}
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://amyelectric.com/#organization",
+  "name": "AMY Electric",
+  "url": "https://amyelectric.com",
+  "logo": "https://amyelectric.com/img/og-home.jpg",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-818-302-5614",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles"
+  ]
+}
+</script>
+
+<!-- Person Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://amyelectric.com/#person",
+  "name": "Amy",
+  "description": "California C-10 licensed electrical contractor (License #981578) with 15+ years of experience, EVITP-certified (#4051604)",
+  "image": "https://amyelectric.com/img/author-amy-400w.jpg",
+  "url": "https://amyelectric.com",
+  "knowsAbout": ["Electrical Contracting", "EV Charger Installation", "Panel Upgrades", "Electrical Safety"]
 }
 </script>
 
@@ -389,6 +472,8 @@
 </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 
 <!-- Topbar -->
 <div class="topbar">
@@ -430,7 +515,7 @@
 
 <!-- Hero -->
 <section class="hero">
-    <div class="hero-inner" style="grid-template-columns:1fr">
+    <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-eyebrow">Los Angeles · Residential &amp; Commercial</div>
         <h1>Los Angeles Electrician —<br><em>Safe, Code-Perfect</em><br>Electrical Work</h1>
@@ -445,18 +530,21 @@
           <a href="#estimate" class="btn btn-outline">Free Estimate</a>
         </div>
       </div>
-      <div class="hero-ctas">
-        <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
-        <a href="#estimate" class="btn btn-outline">Free Estimate</a>
+      <div class="hero-img">
+        <picture>
+          <source srcset="img/hero-electrician-800w.webp" type="image/webp">
+          <source srcset="img/hero-electrician-800w.jpg" type="image/jpeg">
+          <img src="img/hero-electrician-800w.jpg" alt="Licensed electrician working on electrical panel in Los Angeles" width="560" height="420" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
     </div>
-  </div>
 </section>
 
 <!-- Blog / Resources -->
 <section class="section-navy">
   <div class="wrap text-center">
     <div class="section-label">Electrical Resources</div>
-    <h2>Helpful Guides for LA Homeowners</h2>
+    <h2>What Electrical Guides Should LA Homeowners Read?</h2>
     <p style="max-width:640px; margin:0 auto 32px;">Practical advice on common electrical projects, code requirements, and choosing the right electrician in Los Angeles.</p>
     <div class="related-grid" style="text-align:left; max-width:1000px; margin:0 auto;">
       <a href="blog/ev-charging-benefits" class="related-card"><div class="rc-icon">⚡</div><strong>EV Charging Benefits</strong><div style="color:var(--gray); font-size:13px; margin-top:6px;">5 min read</div></a>
@@ -488,7 +576,7 @@
 <section style="padding: 72px 0;">
   <div class="wrap">
     <div class="section-label">What We Do</div>
-    <h2>Full-Service Electrical for Los Angeles</h2>
+    <h2>What Electrical Services Do We Offer in Los Angeles?</h2>
     <p style="max-width:600px;">From a single outlet to a complete service upgrade — residential, commercial, and EV infrastructure across Greater LA.</p>
 
     <div class="service-grid">
@@ -561,7 +649,7 @@
     <div class="why-grid">
       <div>
         <div class="section-label">Why Choose Us</div>
-        <h2>Why Los Angeles Homeowners Choose AMY Electric</h2>
+        <h2>Why Do Los Angeles Homeowners Choose AMY Electric?</h2>
         <ul class="why-list">
           <li>
             <div class="why-num">01</div>
@@ -631,6 +719,151 @@
   </div>
 </section>
 
+<!-- Quote Estimator -->
+<section class="estimate-section" id="estimator" style="padding: 72px 24px; background: var(--navy2);">
+  <div class="wrap text-center" style="max-width: 760px;">
+    <div class="section-label">Quick Quote</div>
+    <h2>See Your Price Instantly</h2>
+    <p>Answer a few quick questions and we will give you a price range with no surprises.</p>
+
+    <div id="quote-estimator" class="qe-estimator">
+      <div class="qe-progress">
+        <div class="qe-step-labels">
+          <span class="qe-step-label active">Service</span>
+          <span class="qe-step-label">Charger</span>
+          <span class="qe-step-label">Setup</span>
+          <span class="qe-step-label">Quote</span>
+        </div>
+        <div class="qe-dots">
+          <span class="qe-dot active"></span>
+          <span class="qe-dot"></span>
+          <span class="qe-dot"></span>
+          <span class="qe-dot"></span>
+        </div>
+      </div>
+
+      <div class="qe-step active" data-step="1">
+        <h3 class="qe-step-title">What do you need?</h3>
+        <div class="qe-svc-grid">
+          <button class="qe-svc-card selected" data-value="ev-charger">
+            <span class="qe-svc-icon">&#9889;</span>
+            <span class="qe-svc-name">EV Charger Installation</span>
+            <span class="qe-svc-desc">Level 2 charger for your electric vehicle</span>
+          </button>
+          <button class="qe-svc-card" data-value="panel-upgrade">
+            <span class="qe-svc-icon">&#128268;</span>
+            <span class="qe-svc-name">Panel Upgrade</span>
+            <span class="qe-svc-desc">Upgrade to 200A electrical service</span>
+          </button>
+          <button class="qe-svc-card" data-value="other">
+            <span class="qe-svc-icon">&#128295;</span>
+            <span class="qe-svc-name">Other Electrical</span>
+            <span class="qe-svc-desc">Repairs, lighting, rewiring and more</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="qe-step" data-step="2">
+        <h3 class="qe-step-title">EV Charger Details</h3>
+        <div class="qe-field">
+          <label>Charger Type</label>
+          <div class="qe-charger-options">
+            <button class="qe-charger-btn selected" data-value="nema14-50">
+              <span class="qe-charger-name">NEMA 14-50 Outlet</span>
+              <span class="qe-charger-desc">Use your vehicle mobile charger. Most affordable option.</span>
+            </button>
+            <button class="qe-charger-btn" data-value="tesla-wall">
+              <span class="qe-charger-name">Tesla Wall Connector</span>
+              <span class="qe-charger-desc">Hardwired, faster charging for Teslas. Sleekest look.</span>
+            </button>
+            <button class="qe-charger-btn" data-value="hardwired">
+              <span class="qe-charger-name">Hardwired EVSE</span>
+              <span class="qe-charger-desc">J1772 hardwired station (ChargePoint, JuiceBox, etc.)</span>
+            </button>
+          </div>
+        </div>
+        <div class="qe-field-row">
+          <div class="qe-field">
+            <label for="qe-make">Vehicle Make</label>
+            <select id="qe-make" class="qe-select">
+              <option value="">Select make...</option>
+            </select>
+          </div>
+          <div class="qe-field">
+            <label for="qe-model">Model</label>
+            <select id="qe-model" class="qe-select">
+              <option value="">Select model...</option>
+            </select>
+          </div>
+        </div>
+        <div class="qe-nav">
+          <button class="btn btn-gold" data-qe="next-s2">Continue</button>
+        </div>
+      </div>
+
+      <div class="qe-step" data-step="3">
+        <h3 class="qe-step-title">Your Setup</h3>
+        <div class="qe-field">
+          <label>Current Panel</label>
+          <div class="qe-radio-group">
+            <label class="qe-radio"><input type="radio" name="panel" value="100a" checked><span>100 Amp</span></label>
+            <label class="qe-radio"><input type="radio" name="panel" value="200a"><span>200 Amp</span></label>
+            <label class="qe-radio"><input type="radio" name="panel" value="unsure"><span>Not Sure</span></label>
+          </div>
+        </div>
+        <div class="qe-field">
+          <label>Distance From Panel</label>
+          <div class="qe-radio-group">
+            <label class="qe-radio"><input type="radio" name="distance" value="short" checked><span>&lt; 25 ft</span></label>
+            <label class="qe-radio"><input type="radio" name="distance" value="medium"><span>25&ndash;50 ft</span></label>
+            <label class="qe-radio"><input type="radio" name="distance" value="long"><span>&gt; 50 ft</span></label>
+          </div>
+        </div>
+        <div class="qe-field">
+          <label>Installation Location</label>
+          <div class="qe-radio-group">
+            <label class="qe-radio"><input type="radio" name="location" value="indoor" checked><span>Indoor Garage</span></label>
+            <label class="qe-radio"><input type="radio" name="location" value="outdoor"><span>Outdoor</span></label>
+          </div>
+        </div>
+        <div class="qe-nav">
+          <button class="btn btn-outline" data-qe="back-s1">&larr; Back</button>
+          <button class="btn btn-gold" data-qe="next-s3">Get My Estimate</button>
+        </div>
+      </div>
+
+      <div class="qe-step" data-step="4">
+        <h3 class="qe-step-title">Your Estimated Price</h3>
+        <div id="qe-result">
+          <div id="qe-result-value" class="qe-price"></div>
+          <div id="qe-breakdown" class="qe-breakdown"></div>
+          <div id="qe-result-cta">
+            <p style="margin-bottom: 20px;">Want the exact number? Enter your info below and we will confirm pricing.</p>
+            <div id="qe-form-wrap">
+              <form id="qe-form" class="qe-form">
+                <div class="qe-form-grid">
+                  <input type="text" id="qe-name" placeholder="Your name" required>
+                  <input type="tel" id="qe-phone" placeholder="Phone number" required>
+                  <input type="email" id="qe-email" placeholder="Email (optional)">
+                  <input type="text" id="qe-city" placeholder="Your city">
+                </div>
+                <button type="submit" class="btn btn-gold form-submit" style="width:100%;">Get Exact Quote</button>
+              </form>
+            </div>
+            <div id="qe-form-success" style="display:none; padding:24px;">
+              <strong>Thank you!</strong> We will review your details and send a confirmed price.
+            </div>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--gray);">Or call <a href="tel:18183025614" style="color:var(--gold);white-space:nowrap;">(818) 302-5614</a> for an immediate quote.</p>
+          </div>
+        </div>
+        <div class="qe-nav" style="margin-top: 24px;">
+          <button class="btn btn-outline" data-qe="back-s2">&larr; Adjust Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Estimate Form -->
 <section class="estimate-section" id="estimate" style="padding: 72px 24px;">
   <div class="wrap" style="max-width: 760px;">
@@ -639,6 +872,10 @@
     <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
 
     <form id="quick-form" class="estimate-form quick-form" action="/api/contact" method="POST" aria-label="Quick quote form">
+      <div style="position:absolute;left:-9000px;aria-hidden:true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form-grid">
         <div class="form-group">
           <label for="q-name">Name</label>
@@ -683,6 +920,10 @@
     <details id="detailed-form" class="detailed-form-block mt-lg">
       <summary style="cursor:pointer; color:var(--gold); font-weight:600; padding:14px 0;">📋 Detailed Estimate Form (4 additional fields)</summary>
       <form id="estimate-form" class="estimate-form" action="/api/contact" method="POST" aria-label="Detailed estimate form" style="margin-top:16px;">
+        <div style="position:absolute;left:-9000px;aria-hidden:true">
+          <label for="website2">Website</label>
+          <input type="text" id="website2" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-grid">
           <div class="form-group full">
             <label>What can we help you with?</label>
@@ -860,6 +1101,7 @@
         <li><a href="gallery">Gallery</a></li>
         <li><a href="index.html#estimate">Free Estimate</a></li>
         <li><a href="city-los-angeles">All Service Areas</a></li>
+        <li><a href="privacy-policy">Privacy Policy</a></li>
         <li><a href="tel:18183025614">Call Us</a></li>
       </ul>
     </div>
@@ -875,6 +1117,7 @@
 </footer>
 
 <script defer src="js/site.min.js"></script>
+<script defer src="js/estimator.min.js"></script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call">
     <span class="sticky-icon" aria-hidden="true">📞</span>
@@ -884,9 +1127,9 @@
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>
-  <a href="#estimate" class="sticky-btn sticky-estimate">
-    <span class="sticky-icon" aria-hidden="true">📋</span>
-    <span class="sticky-label">Get Estimate</span>
+  <a href="#estimator" class="sticky-btn sticky-estimate">
+    <span class="sticky-icon" aria-hidden="true">⚡</span>
+    <span class="sticky-label">Quick Quote</span>
   </a>
 </div>
 </body>

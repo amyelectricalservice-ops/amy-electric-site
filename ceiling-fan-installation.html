@@ -21,15 +21,99 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=optional"></noscript>
-<link rel="stylesheet" href="css/style.min.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional"></noscript>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--navy);color:var(--white);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:0 0 var(--radius) var(--radius);font-family:var(--cond);font-weight:700;z-index:9999;text-decoration:none}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.topbar{background:var(--gold);color:var(--navy);font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.04em;padding:7px 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--navy)}
+header{background:var(--navy2);border-bottom:3px solid var(--mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);font-family:var(--cond);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);flex-shrink:0}
+.logo-text{font-family:var(--cond)}
+.logo-name{font-size:22px;font-weight:800;color:var(--white);letter-spacing:.02em;display:block}
+.logo-sub{font-size:11px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;display:block}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray);padding:8px 12px;border-radius:var(--radius);transition:color .18s,background .18s;text-decoration:none}
+nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:8px 16px!important;margin-left:8px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:24px;height:24px;background:var(--white);margin:5px 0;transition:.3s}
+.btn{display:inline-block;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .12s,box-shadow .18s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(245,166,35,.35)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4)}
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0d1e3a 60%,#091420 100%);padding:80px 24px 72px;position:relative;overflow:hidden}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:var(--cond);font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;color:var(--white);margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-desc{font-size:18px;color:rgba(244,241,235,.8);margin-bottom:32px;max-width:500px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:5px 14px;font-family:var(--cond);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--white)}
+.badge .dot{width:7px;height:7px;background:#4cdb7a;border-radius:50%}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.cta-band{background:var(--gold);padding:56px 24px;text-align:center}
+.cta-band h2{color:var(--navy);font-size:38px;margin-bottom:10px}
+.cta-band p{color:var(--navy);opacity:.8;margin-bottom:28px}
+.cta-band .btn-navy{background:var(--navy);color:var(--white)}
+.section-label{font-family:var(--cond);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.1;margin-bottom:16px;color:var(--white)}
+.page-hero{background:linear-gradient(135deg,var(--navy2) 0%,#091420 100%);padding:56px 24px 48px;border-bottom:3px solid var(--mid)}
+.breadcrumb{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:14px}
+.breadcrumb a{color:var(--gray)}
+.page-hero h1{font-family:var(--cond);font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:16px;color:var(--white)}
+.page-hero p{font-size:18px;color:rgba(244,241,235,.8);max-width:620px;margin-bottom:28px}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,.2);background:var(--gold)}
+.sticky-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 4px;min-height:60px;color:var(--navy);text-decoration:none;font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid rgba(11,22,40,.15)}
+.sticky-estimate{background:var(--navy);color:var(--gold)}
+@media(min-width:768px){.sticky-bar{display:none}}
+@media(max-width:767px){body{padding-bottom:68px}}</style>
+<link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need a permit to install a ceiling fan in Los Angeles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — we handle all permitting and inspections as part of every installation. We manage the entire process: permit applications with LADBS (Los Angeles Department of Building and Safety), plan review submissions, coordination with LADWP for service upgrades, scheduling inspections, and obtaining the final Certificate of Completion. The permit process typically takes 3-10 business days, depending on the scope of work. Permitting ensures code compliance and protects your insurance."}}, {"@type": "Question", "name": "Can my ceiling support a fan?", "acceptedAnswer": {"@type": "Answer", "text": "We inspect the joists and existing box (if any) to ensure proper support. For older homes, we may install a fan-rated brace between joists to handle the weight and torque of the fan.</p>"}}, {"@type": "Question", "name": "Do I need to hire an electrician for ceiling fan installation?", "acceptedAnswer": {"@type": "Answer", "text": "While handy-homeowners can install fans, improper wiring, insecure mounting, or incorrect boxing can create safety hazards. Licensed electricians ensure code-compliant, safe, and long-lasting installation.</p>"}}, {"@type": "Question", "name": "What's the difference between indoor and outdoor ceiling fans?", "acceptedAnswer": {"@type": "Answer", "text": "Outdoor fans have moisture-resistant motors, UV-stabilized blades, and are rated for wet locations. Indoor fans are not protected against humidity and can fail quickly when used outside.</p>"}}, {"@type": "Question", "name": "How long does ceiling fan installation take?", "acceptedAnswer": {"@type": "Answer", "text": "Most standard indoor fan installations take 1-2 hours. Outdoor fans or those requiring new wiring or support boxing may take 2-4 hours. We provide a time estimate during the quote.</p>"}}]}</script>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amyelectric.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://amyelectric.com/#services"}, {"@type": "ListItem", "position": 3, "name": "Ceiling Fan Installation Los Angeles", "item": "https://amyelectric.com/ceiling-fan-installation"}]}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Ceiling Fan Installation",
+  "name": "Ceiling Fan Installation Los Angeles",
+  "description": "Professional ceiling fan installation with proper mounting, balancing, and wiring for energy-efficient cooling.",
+  "datePublished": "2024-01-15",
+  "dateModified": "2026-06-08",
+  "provider": {
+    "@type": "Electrician",
+    "name": "AMY Electric",
+    "telephone": "+18183025614",
+    "url": "https://amyelectric.com"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Los Angeles"
+  }
+}
+</script>
+
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
 <header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav><a href="index">Home</a><a href="ev-charger-installation">EV Chargers</a><a href="panel-upgrade">Panel Upgrades</a><a href="electrical-repair">Repairs</a><a href="commercial-electrical">Commercial</a><a href="lighting-installation">Lighting</a><a href="tesla-charger-installation">Tesla Charger</a><a href="whole-home-rewiring">Rewiring</a><a href="surge-protection">Surge Protection</a>
       <a href="testimonials">Reviews</a>
@@ -140,7 +224,8 @@
 </section>
 </main>
 
-<footer><div class="footer-grid"><div class="footer-brand"><div class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></div><p>Licensed, insured, and EVITP-certified electrical contractors serving Greater Los Angeles since 2012.</p><div class="footer-contact"><a href="tel:18183025614">(818) 302-5614</a><span class="text-sm-gray">Mon–Fri 7 AM–5 PM</span></div></div>
+<footer><div class="footer-grid"><div class="footer-brand"><div class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></div><p>Licensed, insured, and EVITP-certified electrical contractors serving Greater Los Angeles since 2012.</p>
+<p style="font-size:13px; color:var(--gray); margin-top:8px;"><strong>AMY Electric</strong><br>20628 Londelius St, Winnetka, CA 91306</p><div class="footer-contact"><a href="tel:18183025614">(818) 302-5614</a><span class="text-sm-gray">Mon–Fri 7 AM–5 PM</span></div></div>
 <div class="footer-col"><h3>Services</h3><ul><li><a href="ev-charger-installation">EV Charger Installation</a></li><li><a href="panel-upgrade">Panel Upgrades</a></li><li><a href="electrical-repair">Electrical Repairs</a></li><li><a href="commercial-electrical">Commercial</a></li>
 <li><a href="tesla-charger-installation">Tesla Charger</a></li><li><a href="whole-home-rewiring">Rewiring</a></li><li><a href="surge-protection">Surge Protection</a>
       <a href="testimonials">Reviews</a>
@@ -167,7 +252,8 @@
       </ul></div>
 <div class="footer-col"><h3>Company</h3><ul><li><a href="testimonials">Reviews</a></li>
         <li><a href="gallery">Gallery</a></li>
-        <li><a href="index.html#estimate">Free Estimate</a></li><li><a href="city-los-angeles">All Service Areas</a></li><li><a href="tel:18183025614">Call Us</a></li></ul></div>
+        <li><a href="index.html#estimate">Free Estimate</a></li><li><a href="city-los-angeles">All Service Areas</a></li><li><a href="privacy-policy">Privacy Policy</a></li>
+        <li><a href="tel:18183025614">Call Us</a></li></ul></div>
 </div><div class="footer-bottom"><span>© 2026 AMY Electric. All rights reserved.</span><div class="license-chips"><span class="chip">C-10 #981578</span><span class="chip">EVITP #4051604</span><span class="chip">Los Angeles, CA</span></div></div></footer>
 <script defer src="js/site.min.js"></script>
 <div class="sticky-bar">

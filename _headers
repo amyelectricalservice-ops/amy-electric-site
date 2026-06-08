@@ -1,25 +1,51 @@
-# Cloudflare Pages _headers
+# Security Headers for AMY Electric
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
 
-# CSS — long cache (immutable, versioned via minification)
-/*.css
+# Enforce HTTPS for 1 year (includes subdomains)
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# Prevent clickjacking
+X-Frame-Options: DENY
+
+# Prevent MIME type sniffing
+X-Content-Type-Options: nosniff
+
+# Referrer policy - only send origin on cross-origin requests
+Referrer-Policy: strict-origin-when-cross-origin
+
+# Content Security Policy
+# Allows: self, Google Fonts, Cloudflare (for challenges), MailChannels (for forms)
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://amyelectric.com; connect-src 'self' https://api.mailchannels.net https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.mailchannels.net;
+
+# Permissions Policy - restrict browser features
+Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+# Certificate Transparency enforcement
+Expect-CT: max-age=86400, enforce
+
+# Cache static assets for 1 year (immutable)
+/css/style.min.css:
   Cache-Control: public, max-age=31536000, immutable
 
-# JS — long cache (immutable, versioned via minification)
-/*.js
+/js/site.min.js:
   Cache-Control: public, max-age=31536000, immutable
 
-# Images — aggressive cache (stable filenames)
-/img/*
-  Cache-Control: public, max-age=2592000, s-maxage=604800, stale-while-revalidate=604800
+/img/*:
+  Cache-Control: public, max-age=31536000, immutable
 
-# Security headers for all responses
-/*
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), geolocation=(), microphone=()
-  X-XSS-Protection: 1; mode=block
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Resource-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-src 'none'; object-src 'none'
+/favicon.svg:
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - short cache with revalidation
+/*.html:
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Sitemap and robots - cache for 1 day
+/sitemap.xml:
+  Cache-Control: public, max-age=86400
+
+/robots.txt:
+  Cache-Control: public, max-age=86400
+
+/llms.txt:
+  Cache-Control: public, max-age=86400

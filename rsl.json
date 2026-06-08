@@ -1,0 +1,9 @@
+{
+  "@context": "https://rsl.xyz/context",
+  "@type": "RobotsSearchLicense",
+  "license": "https://rsl.xyz/licenses/1.0/",
+  "crawler": "*",
+  "permission": "search-and-summarize",
+  "attribution": true,
+  "modified": "2026-06-08"
+}

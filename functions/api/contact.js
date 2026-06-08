@@ -22,6 +22,25 @@ export async function onRequest(context) {
       data = Object.fromEntries(formData);
     }
 
+    // Honeypot check — reject if the hidden field was filled (bot)
+    if (data.website && data.website.trim() !== '') {
+      return new Response(JSON.stringify({ success: true, message: 'Thank you! We\'ll be in touch shortly.' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Rate limit: reject if submitted too quickly (< 3 seconds)
+    if (data._timestamp) {
+      const elapsed = Date.now() - new Date(data._timestamp).getTime();
+      if (elapsed < 3000) {
+        return new Response(JSON.stringify({ success: true, message: 'Thank you! We\'ll be in touch shortly.' }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
     data._timestamp = new Date().toISOString();
     data._ip = request.headers.get('CF-Connecting-IP') || '';
 
