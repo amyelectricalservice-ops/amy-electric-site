@@ -5,4 +5,33 @@ Disallow: /reports/
 Disallow: /api/
 Disallow: /~
 
+# AI search crawlers — allowed for AI Overviews, ChatGPT, Perplexity
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Training crawlers — blocked (no licensing agreement)
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
 Sitemap: https://amyelectric.com/sitemap.xml
