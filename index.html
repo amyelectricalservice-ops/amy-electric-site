@@ -16,7 +16,9 @@
 <meta property="og:description" content="Licensed LA electricians. Panel upgrades, EV chargers, repairs. C-10 #981578 · EVITP #4051604.">
 <meta property="og:url" content="https://amyelectric.com/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://amyelectric.com/img/og-home.jpg">
+<meta property="og:image" content="https://amyelectric.com/img/og-home.jpg"
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">>
 <meta property="og:site_name" content="AMY Electric">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -27,6 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=optional"></noscript>
+<link rel="preload" as="image" href="img/hero-electrician-800w.webp" fetchpriority="high">
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
 html{scroll-behavior:smooth}
@@ -460,19 +463,14 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 }
 </script>
 
-<!-- BreadcrumbList Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home"
-    }
-  ]
-}
+
+<!-- Google Analytics (GA4) — replace G-QVSNBR7PTS with your measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QVSNBR7PTS"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-QVSNBR7PTS');
 </script>
 </head>
 <body>
@@ -523,15 +521,16 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       <div class="hero-content">
         <div class="hero-eyebrow">Los Angeles · Residential &amp; Commercial</div>
         <h1>Los Angeles Electrician —<br><em>Safe, Code-Perfect</em><br>Electrical Work</h1>
-        <p class="hero-desc">AMY Electric is a trusted Los Angeles electrical contractor — licensed (C-10 #981578), insured, and EVITP-certified. We handle everything from panel upgrades and EV charger installations to residential rewiring and commercial build-outs.</p>
+        <p class="hero-desc">AMY Electric is a trusted Los Angeles electrical contractor built on safety, code-compliance, and craftsmanship. Since 2012, we have been serving homeowners, property managers, and business owners across Greater Los Angeles with comprehensive electrical solutions. As a licensed C-10 contractor (CSLB #981578) with an EVITP certification (#4051604) for electric vehicle charging infrastructure, every job we complete is backed by proper permits, thorough inspections, and full liability insurance. Our services range from residential panel upgrades and whole-home rewiring to Level 2 EV charger installations, dedicated circuits for home appliances, surge protection, lighting design and installation, ceiling fan installation, outlet and switch upgrades, and commercial build-outs. We proudly serve Los Angeles, Sherman Oaks, Burbank, Glendale, Pasadena, Studio City, North Hollywood, Hollywood, Beverly Hills, West LA, Encino, Santa Monica, Woodland Hills, Van Nuys, Calabasas, and Culver City. Whether you need an emergency repair after hours or a planned electrical upgrade for your remodel, our electricians deliver reliable workmanship with transparent pricing and same-day response times.</p>
         <div class="hero-badges">
           <span class="badge"><span class="dot"></span> C-10 Licensed &amp; Bonded</span>
           <span class="badge"><span class="dot"></span> EVITP Certified #4051604</span>
-          <span class="badge"><span class="dot"></span> 100+ 5-Star Reviews</span>
+           <span class="badge"><span class="dot"></span> 87 5-Star Reviews</span>
         </div>
         <div class="hero-ctas">
           <a href="tel:18183025614" class="btn btn-gold">Call (818) 302-5614</a>
-          <a href="#estimate" class="btn btn-outline">Free Estimate</a>
+          <a href="#estimator" class="btn btn-outline">Get Online Price</a>
+          <a href="#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">📅 Book Online</a>
         </div>
       </div>
       <div class="hero-img">
@@ -1103,7 +1102,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       <ul>
         <li><a href="testimonials">Reviews</a></li>
         <li><a href="gallery">Gallery</a></li>
-        <li><a href="index.html#estimate">Free Estimate</a></li>
+        <li><a href="index.html#estimator">Free Estimate</a></li>
         <li><a href="city-los-angeles">All Service Areas</a></li>
         <li><a href="privacy-policy">Privacy Policy</a></li>
         <li><a href="tel:18183025614">Call Us</a></li>

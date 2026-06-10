@@ -20,12 +20,37 @@
     }
   });
 
+  // GA4 event tracking
+  function trackEvent(action, label) {
+    if (typeof gtag === 'function') {
+      gtag('event', action, { 'event_category': 'engagement', 'event_label': label });
+    }
+  }
+
+  // Track phone clicks
+  document.addEventListener('click', function (e) {
+    var tel = e.target.closest('a[href^="tel:"]');
+    if (tel) {
+      trackEvent('phone_click', tel.getAttribute('href'));
+    }
+  });
+
+  // Track CTA clicks (buttons with btn-gold, btn-outline, btn-navy)
+  document.addEventListener('click', function (e) {
+    var cta = e.target.closest('.btn, a.btn');
+    if (cta) {
+      var label = cta.textContent.trim().substring(0, 100);
+      trackEvent('cta_click', label);
+    }
+  });
+
   function handleForm(formId, successId) {
     var form = document.getElementById(formId);
     if (!form) return;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      trackEvent('form_submit', formId);
       var btn = form.querySelector('.form-submit');
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
@@ -59,4 +84,10 @@
 
   handleForm('quick-form', 'quick-form-success');
   handleForm('estimate-form', 'estimate-form-success');
+
+  // Open estimator when linked from other pages
+  if (window.location.hash === '#estimator') {
+    document.getElementById('estimator') && document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('quote-estimator') && document.getElementById('quote-estimator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 })();
