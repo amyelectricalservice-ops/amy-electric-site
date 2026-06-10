@@ -112,17 +112,49 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   "foundingDate": "2012",
   "priceRange": "$$",
   "openingHoursSpecification": [
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:00"},
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00"}
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }
   ],
-  "sameAs": ["https://www.yelp.com/biz/amy-electric-los-angeles"],
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review"
+  ],
   "hasCredential": [
-    {"@type": "EducationalOccupationalCredential", "name": "C-10 Electrical Contractor License #981578"},
-    {"@type": "EducationalOccupationalCredential", "name": "EVITP Certification #4051604"}
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "C-10 Electrical Contractor License #981578"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "EVITP Certification #4051604"
+    }
   ],
   "areaServed": [
-    {"@type": "City", "name": "Los Angeles", "@id": "https://en.wikipedia.org/wiki/Los_Angeles"},
-    {"@type": "AdministrativeArea", "name": "San Fernando Valley"}
+    {
+      "@type": "City",
+      "name": "Los Angeles",
+      "@id": "https://en.wikipedia.org/wiki/Los_Angeles"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -131,7 +163,140 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "bestRating": "5",
     "worstRating": "1"
   },
-  "review": [{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Michael R."},"reviewBody":"AMY Electric installed our Tesla Wall Connector and handled the entire process from permit to inspection. The electrician was knowledgeable, clean, and explained everything clearly. Our charger works ...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"EV Charger Installation","provider":{"@type":"Electrician","name":"AMY Electric"}}},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Lisa T."},"reviewBody":"After experiencing frequent breaker trips in our 1960s Sherman Oaks home, we called AMY Electric for a panel upgrade. They arrived on time, protected our floors, and completed the 200A upgrade in one ...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"Panel Upgrade","provider":{"@type":"Electrician","name":"AMY Electric"}}},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"David K."},"reviewBody":"AMY Electric fixed an electrical short that was causing lights to flicker throughout our Hollywood apartment building. They diagnosed the problem quickly, made the repair, and provided a detailed repo...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"Commercial Electrical Repair","provider":{"@type":"Electrician","name":"AMY Electric"}}},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Jennifer &amp; Robert M."},"reviewBody":"We had AMY Electric install recessed lighting in our Burbank kitchen and bathrooms. The work was neat, they cleaned up thoroughly, and the lighting transformed our spaces. We've since hired them for a...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"Lighting Installation","provider":{"@type":"Electrician","name":"AMY Electric"}}},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Thomas W."},"reviewBody":"During a rainy night, our Glendale home lost power due to a faulty outdoor outlet. AMY Electric responded within an hour for emergency repair, identified a ground fault issue, and had us back up and r...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"Emergency Electrical Repair","provider":{"@type":"Electrician","name":"AMY Electric"}}},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Amanda S."},"reviewBody":"AMY Electric upgraded our Pasadena home from a 100A to 200A panel to accommodate our home addition and EV charger. They coordinated with LADWP, handled all permits, and the inspection passed without i...","datePublished":"2026-05-15","itemReviewed":{"@type":"Service","name":"Panel Upgrade &amp; EV Charger","provider":{"@type":"Electrician","name":"AMY Electric"}}}]
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michael R."
+      },
+      "reviewBody": "AMY Electric installed our Tesla Wall Connector and handled the entire process from permit to inspection. The electrician was knowledgeable, clean, and explained everything clearly. Our charger works ...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "EV Charger Installation",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Lisa T."
+      },
+      "reviewBody": "After experiencing frequent breaker trips in our 1960s Sherman Oaks home, we called AMY Electric for a panel upgrade. They arrived on time, protected our floors, and completed the 200A upgrade in one ...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Panel Upgrade",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "David K."
+      },
+      "reviewBody": "AMY Electric fixed an electrical short that was causing lights to flicker throughout our Hollywood apartment building. They diagnosed the problem quickly, made the repair, and provided a detailed repo...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Commercial Electrical Repair",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer &amp; Robert M."
+      },
+      "reviewBody": "We had AMY Electric install recessed lighting in our Burbank kitchen and bathrooms. The work was neat, they cleaned up thoroughly, and the lighting transformed our spaces. We've since hired them for a...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Lighting Installation",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Thomas W."
+      },
+      "reviewBody": "During a rainy night, our Glendale home lost power due to a faulty outdoor outlet. AMY Electric responded within an hour for emergency repair, identified a ground fault issue, and had us back up and r...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Emergency Electrical Repair",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Amanda S."
+      },
+      "reviewBody": "AMY Electric upgraded our Pasadena home from a 100A to 200A panel to accommodate our home addition and EV charger. They coordinated with LADWP, handled all permits, and the inspection passed without i...",
+      "datePublished": "2026-05-15",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Panel Upgrade &amp; EV Charger",
+        "provider": {
+          "@type": "Electrician",
+          "name": "AMY Electric"
+        }
+      }
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://amyelectric.com/"},{"@type":"ListItem","position":2,"name":"Testimonials","item":"https://amyelectric.com/testimonials"}]}</script>
