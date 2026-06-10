@@ -38,6 +38,6 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
-License: /rsl.json
+# RSL License: /rsl.json
 
 Sitemap: https://amyelectric.com/sitemap.xml
