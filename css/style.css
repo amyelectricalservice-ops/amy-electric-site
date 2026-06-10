@@ -735,7 +735,7 @@ footer {
 .qe-estimator select:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
 .qe-progress { margin-bottom: 36px; }
 .qe-step-labels { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.qe-step-label { font-family: var(--cond); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); opacity: .7; transition: opacity .3s; }
+.qe-step-label { font-family: var(--cond); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); opacity: .9; transition: opacity .3s; }
 .qe-step-label.active { opacity: 1; color: var(--gold); }
 .qe-dots { display: flex; gap: 8px; justify-content: center; }
 .qe-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mid); transition: background .3s; }
