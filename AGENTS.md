@@ -12,25 +12,23 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## Current state
 
-- **42 HTML pages total**:
+- **76 HTML pages total**:
   - Homepage: `index.html`
-  - **15 service pages** (`ev-charger-installation.html`, `panel-upgrade.html`, `electrical-repair.html`, `commercial-electrical.html`, `lighting-installation.html`, `tesla-charger-installation.html`, `whole-home-rewiring.html`, `surge-protection.html`, `outlet-switch-installation.html`, `ceiling-fan-installation.html`, `smoke-co-detector-installation.html`, `generator-transfer-switch.html`, `dedicated-circuits.html`, `smart-home-electrical.html`, `electrical-safety-inspections.html`)
-  - **16 city pages**: `city-los-angeles.html`, `city-sherman-oaks.html`, `city-burbank.html`, `city-glendale.html`, `city-pasadena.html`, `city-studio-city.html`, `city-north-hollywood.html`, `city-hollywood.html`, `city-beverly-hills.html`, `city-west-la.html`, `city-encino.html`, `city-santa-monica.html`, `city-woodland-hills.html`, `city-van-nuys.html`, `city-calabasas.html`, `city-culver-city.html`
+  - **15 service pages** with FAQPage + BreadcrumbList + PriceRange schema
+  - **16 city pages** with FAQPage + BreadcrumbList + Electrician schema
+  - **32 geo service pages** (16 `ev-charger-installation-{city}.html` + 16 `panel-upgrade-{city}.html`) with FAQPage (7 Qs each) + BreadcrumbList + Electrician schema
+  - **2 comparison pages** with FAQPage + BreadcrumbList
+  - **5 emergency/info pages** with FAQPage + BreadcrumbList
+  - **33 blog pages** (31 posts + index + 2 new) with BlogPosting + FAQPage + BreadcrumbList
   - **2 special pages**: `testimonials.html`, `gallery.html`
-  - **31 blog pages** in `blog/`: 30 posts + `blog/index.html`
-  - **2 comparison pages**: `panel-100a-vs-200a.html`, `ev-charger-hardwired-vs-plug-in.html`
-  - **16 geo service pages**: `panel-upgrade-{city}.html`, `ev-charger-installation-{city}.html`
   - **1 privacy policy**: `privacy-policy.html`
-  - **31 blog pages** in `blog/`: 30 posts + `blog/index.html`
-  - **2 comparison pages**: `panel-100a-vs-200a.html`, `ev-charger-hardwired-vs-plug-in.html`
-  - **4 geo service pages**: `panel-upgrade-{city}.html` (16), `ev-charger-installation-{city}.html` (16)
-  - **1 privacy policy**: `privacy-policy.html`
+- **4 service pages** have HowTo schema (panel-upgrade, ev-charger-installation, generator-transfer-switch, whole-home-rewiring)
 - **CSS** at `css/style.min.css` (production, 17KB) — original at `css/style.css`
 - **JS** at `js/site.min.js` (production, 2.3KB) — original at `js/site.js`
 - **`favicon.svg`** — navy background with gold "AE" lightning bolt
 - **`robots.txt`** — allows /, explicitly allows 8 AI search crawlers, blocks 3 training crawlers, RSL link, Sitemap
 - **`_redirects`** — Cloudflare Pages HTTPS + www canonicalization
-- **`sitemap.xml`** — all 42 pages with `<lastmod>`, priorities (1.0 home, 0.9 high-value services, 0.8 services, 0.7 cities, 0.6 special/blog)
+- **`sitemap.xml`** — all 76+ pages with `<lastmod>`, priorities (1.0 home, 0.9 high-value services, 0.8 services, 0.7 cities, 0.6 special/blog)
 - **`gbp-posts-document.txt`** — 30 Google Business Profile post ideas
 - **`*~`** and **`.antigravitycli/`** are in `.gitignore`
 
@@ -89,4 +87,5 @@ Achieved via: minified CSS/JS, lazy-loaded images, preload hints, HTTPS redirect
 
 - **Deployment**: Workers + Assets via Workers Builds (GitHub → auto-deploy). `npx wrangler deploy` triggered by pushing to `main`. Workers Builds runs in Cloudflare infra — no local API token needed. The `_headers` file must use proper path-prefixed format for Workers + Assets (each block starts with a URL path like `/*` or `/css/*`).
 - **IndexNow**: Key at `/16076f14-4d06-4581-b281-38a7a89804ca.txt`. Notify after each deploy by running `bash scripts/notify-indexnow.sh` or via `curl` to `https://api.indexnow.org/indexnow`.
-- **New files added this session**: `privacy-policy.html`, `rsl.json`, `js/estimator.js`, `js/estimator.min.js`, `img/author-amy-200w.jpg`, `img/author-amy-200w.webp`, `img/author-amy-400w.jpg`, `img/author-amy-400w.webp`, `GEO-ANALYSIS.md`, `SEO-AUDIT-REPORT.md`, `scripts/notify-indexnow.sh`, `16076f14-4d06-4581-b281-38a7a89804ca.txt`.
+- **New files this session**: `blog/california-electrical-code-changes-2026.html`, `blog/ladwp-ev-charger-rebate-guide-2026.html`
+- **Schema improvements this session**: FAQPage (4→7 Qs) + BreadcrumbList on all 32 geo pages; BreadcrumbList on 7 root pages + 31 blog posts; HowTo schema on 4 service pages; PriceRange/offers on 11 service pages; homepage FAQ expanded 4→15 Qs
