@@ -1,74 +1,170 @@
 # SEO Action Plan — AMY Electric
 
-**Generated:** June 18, 2026  
-**Overall Score:** 7.6/10
+**Priority Definitions**:
+- **Critical**: Blocks indexing or causes penalties (fix immediately)
+- **High**: Significantly impacts rankings (fix within 1 week)
+- **Medium**: Optimization opportunity (fix within 1 month)
+- **Low**: Nice to have (backlog)
 
 ---
 
-## CRITICAL — Fix Immediately
+## Critical (4 items)
 
-| # | Task | Pages | Effort | Impact |
-|---|------|-------|--------|--------|
-| 1 | **Fix www.amyelectric.com 522 error** — Add DNS CNAME or redirect | DNS | 5 min | Users typing www see error page |
-| 2 | **Fix og:image closing tag** — Add `>` to og:image, remove extra `>` from og:image:height | 107 | 5 min (find/replace) | Social previews broken |
-| 3 | **Fix JSON-LD on comparison pages** — Remove stray comma + duplicate fields | 2 | 5 min each | Entire schema rejected by Google |
-| 4 | **Fix breadcrumb text concatenation** — "Emergency Electrician24/7 Service" etc. | 5 | 10 min | Rich results display nonsense |
-| 5 | **Consolidate 3 duplicate blog pairs** — 301 redirect shorter to longer | 6→3 | 15 min | Duplicate content diluting rankings |
+### C1. Fix www.amyelectric.com 522 Error
+**Problem**: www subdomain returns Cloudflare 522 (connection timeout). DNS CNAME record `www` → `amyelectric.com` is missing.
+**Action**: Log into Cloudflare Dashboard → DNS → Add CNAME record: `www` → `amyelectric.com`, proxied (orange cloud).
+**Impact**: Without this, all links pointing to www drop authority, and users may get errors.
+**Effort**: 2 minutes (Dashboard). **Blocked on API: read-only token.**
 
----
+### C2. Fix 3 Blog Posts Missing BlogPosting + BreadcrumbList Schema
+**Files**:
+- `blog/how-to-choose-electrician-los-angeles.html`
+- `blog/signs-you-need-electrical-panel-upgrade.html`
+- `blog/smart-home-electrical-upgrades-la.html`
+**Action**: These are redirect stubs with `<meta http-equiv="refresh"> + <meta name="robots" content="noindex">`. They currently have only `WebPage` schema. Add `BlogPosting` schema and wrap in appropriate JSON-LD.
+**Effort**: 15 minutes.
 
-## HIGH PRIORITY — Week 1
+### C3. Fix Homepage FAQ Typo
+**File**: `index.html:517`
+**Problem**: Question text: `"Do you offer surge protection for my home?s"` — trailing `?s` instead of `?`
+**Action**: Change `home?s` to `home?`
+**Effort**: 30 seconds.
 
-| # | Task | Pages | Effort | Impact |
-|---|------|-------|--------|--------|
-| 6 | **Add FAQ sections to all blog posts** — 3–5 Qs + FAQPage schema per post | 32 | 2–3 hrs | Zero blog posts have FAQs |
-| 7 | **Expand 10 thin blog posts** to 1,500+ words with unique value | 10 | 3–4 hrs | Thin content risk |
-| 8 | **Add author byline to all blog posts** — "By Amy, Licensed C-10 Electrician" | 32 | 30 min | E-E-A-T gap |
-| 9 | **Add external source citations** — NEC, NFPA, LADWP, CSLB, DOE on each service page | 14 | 1 hr | Only 1/15 cites sources |
-| 10 | **Add Electrician schema to emergency pages** | 5 | 15 min | No local rich results |
-| 11 | **Add Service schema to geo service pages** | 32 | 30 min | No service rich results |
-| 12 | **Assign page-specific OG images** to high-value service pages | 15 | 30 min | All share same generic image |
-| 13 | **Fix breadcrumb middle level** — Add "Services" intermediate on emergency/comparison pages | 7 | 15 min | Missing hierarchy |
-
----
-
-## MEDIUM PRIORITY — Week 2–3
-
-| # | Task | Pages | Effort | Impact |
-|---|------|-------|--------|--------|
-| 14 | **Add SpeakableSchema to remaining 90 pages** | 90 | 1 hr | Voice search gap |
-| 15 | **Add Quick Answer sections** to city + geo pages | 48 | 2 hrs | AI citation gap |
-| 16 | **Add visible publication dates** to blog posts | 32 | 30 min | Freshness signal |
-| 17 | **Create /about page** with Amy's full credentials | 1 | 2 hrs | Major E-E-A-T gap |
-| 18 | **Expand city page FAQs** to 5–7 questions with unique local content | 16 | 2 hrs | Only 3 Qs, copy-pasted |
-| 19 | **Improve blog internal linking** — target 5–7 cross-links per post | 32 | 1 hr | Averaging only 3 |
-| 20 | **Deduplicate emergency FAQ answers** — each question gets unique answer | 5 | 30 min | Same answer for all 3 Qs |
+### C4. Re-encode Gallery WebP at Quality 80-85
+**Problem**: Gallery WebP files are encoded at too-high quality (~95-100), averaging only 1-20% savings over JPEG. Some WebP files are 285 KB (vs 289 KB JPEG — only 1% savings).
+**Action**: Run `scripts/process-photos.py` with `--quality 85` flag to re-encode all gallery WebP. Could save 3-4 MB total.
+**Effort**: Run script (automated).
 
 ---
 
-## LOW PRIORITY — Month 2+
+## High Priority (6 items)
 
-| # | Task | Pages | Effort | Impact |
-|---|------|-------|--------|--------|
-| 21 | **Add WebSite/SearchAction schema** to homepage | 1 | 15 min | Sitelinks search box |
-| 22 | **Add dateModified to city pages** | 16 | 15 min | Freshness signal |
-| 23 | **Remove deprecated expect-ct header** | _headers | 2 min | Clean headers |
-| 24 | **Create project case studies** with photos | New | 4 hrs | Authority + E-E-A-T |
-| 25 | **Add video content** to service pages | 15 | Ongoing | Engagement + dwell time |
+### H1. Expand City Page FAQ from 3→5+ Questions
+**Files**: All 16 `city-*.html`
+**Action**: Add 2-4 more city-specific FAQ questions (e.g., permitting in that city, local utility requirements, common electrical issues in that area's housing stock).
+**Impact**: Deepens FAQPage schema for rich results, improves local relevance.
+**Effort**: 2-3 hours (script-assisted).
+
+### H2. Add Facebook, Nextdoor, BBB to sameAs
+**Files**: All pages with Electrician schema (105 files)
+**Action**: Add `"https://www.facebook.com/...", "https://www.nextdoor.com/...", "https://www.bbb.org/.../amy-electric"` to `sameAs` arrays.
+**Pre-req**: Claim/create these profiles first.
+**Effort**: 1-2 hours for schema update + profile creation.
+
+### H3. Fix Opening Hours Inconsistency
+**Files**: All 16 `city-*.html`
+**Action**: Add 24/7 emergency `openingHoursSpecification` (Mon-Sun 00:00-23:59) alongside current Saturday hours to match homepage. This ensures consistency in LocalBusiness schema.
+**Effort**: 30 minutes (script-assisted).
+
+### H4. Add FAQPage to testimonials.html
+**File**: `testimonials.html`
+**Action**: Add FAQPage JSON-LD with 3-4 questions about the review process, how to leave a review, etc.
+**Effort**: 15 minutes.
+
+### H5. Fix Duplicate Title: smoke-co-detector
+**Files**: `smoke-co-detector-installation.html` and `blog/smoke-co-detector-installation-la.html`
+**Action**: Differentiate the service page and blog post titles. Service: "Smoke & CO Detector Installation Los Angeles | AMY Electric". Blog: "Smoke and CO Detector Installation Guide for LA Homes | AMY Electric".
+**Effort**: 5 minutes.
+
+### H6. Add Electrician @id to Geo-Page Schemas
+**Files**: All 32 geo pages + 5 emergency + privacy-policy.html (38 files)
+**Action**: Add `@id` property (e.g., `"@id": "https://amyelectric.com/ev-charger-installation-los-angeles#electrician"`) to Electrician schema for entity linkage. Also add `hasCredential` with C-10 license.
+**Effort**: 1 hour (script-assisted).
 
 ---
 
-## Dashboard Actions Required (User)
+## Medium Priority (5 items)
 
-| # | Action | Where | Impact |
-|---|--------|-------|--------|
-| A | Add DNS CNAME for www.amyelectric.com → project.pages.dev | Cloudflare DNS | Fix 522 error |
-| B | Disable Cloudflare Web Analytics beacon | Workers & Pages → Metrics | −200ms TBT |
-| C | Set Security Level to "Essentially Off" | Security → Settings | −500ms TBT |
-| D | Enable Cloudflare Polish (Lossy + WebP) | Speed → Settings | Image optimization |
-| E | Reduce Turnstile security or disable on static pages | Turnstile settings | −500ms exec |
+### M1. Add 1200w/1600w Hero Image Variants
+**Files**: Index.html hero `<picture>` + all pages with hero images
+**Action**: Add 1200w and 1600w WebP/JPEG sources with corresponding `media` queries for retina displays and large screens.
+**Effort**: 2-3 hours (photo processing + HTML updates).
+
+### M2. Expand Geo-Service Page City-Specific Content
+**Files**: All 32 `ev-charger-installation-{city}.html` and `panel-upgrade-{city}.html`
+**Action**: Add 1-2 unique paragraphs per page about that city's specific electrical landscape (e.g., "In Burbank, many homes from the 1950s still have original 60A panels...").
+**Effort**: 4-6 hours (significant content work).
+
+### M3. Add HowTo Schema to Remaining 11 Service Pages
+**Files**: 11 service pages without HowTo (ceiling-fan, commercial, dedicated-circuits, electrical-repair, electrical-safety, lighting, outlet-switch, smart-home, smoke-co, surge-protection, tesla-charger)
+**Action**: Add HowTo schema with 4-6 steps to each page.
+**Effort**: 3-4 hours.
+
+### M4. Add AVIF Sources in Hero `<picture>` Elements
+**Files**: All pages with hero images (~56 pages)
+**Action**: Add `<source type="image/avif">` before WebP sources for ~30% additional compression savings.
+**Effort**: 2 hours (script-assisted).
+
+### M5. Remove datePublished/dateModified from Service Schema
+**Files**: 15 root service pages
+**Action**: These properties are not valid for `@type: Service`. Remove them from Service JSON-LD blocks. They belong on `WebPage` schema instead.
+**Effort**: 30 minutes (script-assisted).
 
 ---
 
-*Estimated total effort: ~20 hours for Critical + High priority items.*
-*Estimated SEO score improvement: 7.6 → 8.5+ after completing items 1–13.*
+## Low Priority (4 items)
+
+### L1. Fix Breadcrumb Text Formatting
+**Files**: `blog/ev-charger-installation-cost-la.html`, `blog/panel-upgrade-cost-los-angeles.html`, `blog/emergency-electrician-los-angeles.html`
+**Action**: Fix missing spaces in BreadcrumbList `name` fields.
+**Effort**: 5 minutes.
+
+### L2. Add WebSite Schema to All City Pages
+**Files**: All 16 city pages
+**Action**: Mirror the homepage's `WebSite + SearchAction` schema on city pages for site-wide search capability in rich results.
+**Effort**: 30 minutes (script-assisted).
+
+### L3. Expand Schema Breadcrumbs on Blog Posts to 3-Level
+**Files**: All 33 blog posts
+**Action**: Add intermediate "Blog" category in BreadcrumbList (Home > Blog > Post Title) instead of 2-level (Home > Post Title).
+**Effort**: 1 hour (script-assisted).
+
+### L4. Convert Gallery to Programmatic srcset
+**Files**: `gallery.html`
+**Action**: Use `srcset` and `sizes` attributes on gallery images to serve 400w thumbnails on mobile and 1200w on desktop, instead of manual file-per-page selection.
+**Effort**: 2 hours.
+
+---
+
+## Implementation Roadmap
+
+### Week 1 (Critical + High Priority)
+| Day | Tasks |
+|-----|-------|
+| Day 1 | [Dashboard] Fix www CNAME record, [Edit] Fix FAQ typo |
+| Day 2 | [Script] Fix 3 blog post schema stubs, Fix duplicate title |
+| Day 3 | [Script] Add FAQ to testimonials, Fix opening hours |
+| Day 4 | [Script] Add @id to 38 geo/emergency schemas |
+| Day 5 | [Script] Re-encode gallery WebP at q80 |
+| Day 6 | Expand city FAQ from 3→5 Qs (start) |
+| Day 7 | Complete city FAQ expansion |
+
+### Week 2 (Medium Priority)
+| Day | Tasks |
+|-----|-------|
+| Day 1-2 | Add 1200w/1600w hero variants |
+| Day 3-4 | Add HowTo schema to 11 service pages |
+| Day 5 | Add AVIF sources, Remove invalid Schema.org props |
+| Day 6-7 | Start geo-service page content expansion |
+
+### Week 3+ (Low Priority + Ongoing)
+| Task | Timeline |
+|------|----------|
+| Fix breadcrumb formatting | Week 3 |
+| Add WebSite schema to city pages | Week 3 |
+| Expand blog breadcrumbs to 3-level | Week 3 |
+| Programmatic srcset for gallery | Week 4 |
+| Build citation profiles (Facebook, Nextdoor, BBB) | Week 3-4 |
+| 150+ review campaign | Ongoing |
+
+---
+
+## Effort Summary
+
+| Priority | Items | Estimated Total Effort |
+|---|---|---|
+| Critical | 4 | 20 minutes + 1 script run + Dashboard action |
+| High | 6 | 4-6 hours (mostly script-assisted) |
+| Medium | 5 | 12-16 hours (significant content work) |
+| Low | 4 | 4-5 hours |
+| **Total** | **19** | **20-27 hours** |
