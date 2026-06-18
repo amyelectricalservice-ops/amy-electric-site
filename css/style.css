@@ -816,3 +816,13 @@ footer {
   .qe-radio-group { flex-direction: column; }
   .qe-price { font-size: 34px; }
 }
+
+/* ── AUTHOR BYLINE ── */
+.author-byline{font-family:var(--cond);font-size:14px;color:var(--gray);margin-top:-8px;margin-bottom:20px}
+.author-byline a{color:var(--gold)}
+.post-date{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:20px}
+
+/* ── QUICK ANSWER (VOICE SEARCH CALLOUT) ── */
+.quick-answer{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.quick-answer p{font-size:16px;color:rgba(244,241,235,.9);margin:0;line-height:1.6}
+.quick-answer strong{color:var(--gold)}
