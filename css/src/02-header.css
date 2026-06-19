@@ -1,0 +1,82 @@
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--cond);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 7px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar a { color: var(--navy); }
+.topbar a:hover { text-decoration: underline; }
+
+/* ── HEADER / NAV ── */
+header {
+  background: var(--navy2);
+  border-bottom: 3px solid var(--mid);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,.5);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 44px; height: 44px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--cond);
+  font-weight: 800;
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+.logo-text { font-family: var(--cond); }
+.logo-name { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: .02em; display: block; }
+.logo-sub  { font-size: 11px; color: var(--gray); letter-spacing: .06em; text-transform: uppercase; display: block; }
+
+nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+nav a {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  transition: color .18s, background .18s;
+  text-decoration: none;
+}
+nav a:hover, nav a.active { color: var(--gold); background: rgba(245,166,35,.1); }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  padding: 8px 16px !important;
+  margin-left: 8px;
+}
+.nav-cta:hover { background: var(--gold2) !important; }
+
+/* hamburger */
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: .3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

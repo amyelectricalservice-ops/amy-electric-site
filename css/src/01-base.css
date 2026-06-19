@@ -1,0 +1,195 @@
+/* ── SELF-HOSTED FONTS ── */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url('../fonts/BarlowCondensed-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('../fonts/BarlowCondensed-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 800;
+  font-display: optional;
+  src: url('../fonts/BarlowCondensed-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: optional;
+  src: url('../fonts/SourceSerif4-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 400;
+  font-display: optional;
+  src: url('../fonts/SourceSerif4-400italic.woff2') format('woff2');
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0b1628;
+  --navy2:   #122040;
+  --gold:    #f5a623;
+  --gold2:   #e8951a;
+  --white:   #f4f1eb;
+  --gray: #98a6b8;
+  --mid:     #1e3055;
+  --accent:  #3dd6f5;
+  --danger:  #e05050;
+  --radius:  4px;
+  --max:     1140px;
+  --serif:   'Source Serif 4', Georgia, serif;
+  --cond:    'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --shadow:  0 4px 24px rgba(0,0,0,.45);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--serif);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+
+/* ── UTILITY ── */
+.wrap        { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.text-center { text-align: center; }
+.sr-only     { position: absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 12px 24px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-family: var(--cond);
+  font-weight: 700;
+  z-index: 9999;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* ── FOCUS STYLES ── */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── SECTION BASICS ── */
+section { padding: 72px 24px; }
+.section-label {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+h2 {
+  font-family: var(--cond);
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+h3 {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+p { margin-bottom: 16px; color: rgba(244,241,235,.85); }
+p:last-child { margin-bottom: 0; }
+
+/* ── CONTENT PROSE ── */
+.prose { max-width: 760px; }
+.prose h2 { font-size: 30px; margin-top: 40px; margin-bottom: 12px; }
+.prose h3 { font-size: 21px; margin-top: 28px; margin-bottom: 8px; }
+.prose ul { padding-left: 24px; margin-bottom: 16px; }
+.prose ul li { margin-bottom: 8px; color: rgba(244,241,235,.85); }
+.prose strong { color: var(--white); }
+
+/* ── PRICE TABLE ── */
+.price-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+.price-table th { font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--gray); padding: 10px 16px; text-align: left; border-bottom: 2px solid var(--mid); }
+.price-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 15px; }
+.price-table tr:last-child td { border-bottom: none; }
+.price-table .price { font-family: var(--cond); font-size: 18px; font-weight: 700; color: var(--gold); }
+
+/* ── ALERT BANNER ── */
+.alert-info {
+  background: rgba(61,214,245,.1);
+  border: 1px solid rgba(61,214,245,.3);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 15px;
+  margin-bottom: 24px;
+  color: var(--accent);
+}
+
+/* Utility classes */
+.flex-card { flex: 1 1 200px; min-width: 180px; padding: 20px; text-align: left; }
+.sub-text { display: block; font-size: 13px; color: var(--gray); margin-top: 6px; }
+.section-navy { background: var(--navy2); padding: 72px 24px; }
+.section-pad { padding: 72px 24px; }
+.mr-sm { margin-right: 14px; }
+.text-sm-gray { color: var(--gray); font-size: 13px; }
+.mt-lg { margin-top: 32px; }
+.no-underline { text-decoration: none; }
+.text-left { text-align: left; }
+.max-w-640 { max-width: 640px; }
+.mt-xl { margin-top: 40px; }
+.flex-center-wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; max-width: 700px; margin: 0 auto; }
+.text-sm { font-size: 14px; color: var(--gray); }
+.flex-item { flex: 1 1 180px; min-width: 160px; }
+.mx-sm { margin: 0 8px; }
+.text-sm-mt { font-size: 14px; color: var(--gray); margin-top: 12px; }
+.max-w-720 { max-width: 720px; }
+.max-w-680 { max-width: 680px; }
+.max-w-560-mt { max-width: 560px; margin-top: 16px; }
+.callout-box { margin-top: 48px; padding: 32px; background: var(--navy2); border-radius: 8px; }
+.flex-start-wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: start; }
+.flex-1-240 { flex: 1; min-width: 240px; }
+.text-sm-mb { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+.text-sm-lh { font-size: 14px; line-height: 1.6; color: var(--gray); }
+.heading-lg { font-size: 36px; margin-bottom: 12px; }
+.label-white { color: white; display: block; margin-bottom: 8px; }

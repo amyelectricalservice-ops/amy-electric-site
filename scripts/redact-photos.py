@@ -13,32 +13,7 @@ QUALITY = 82
 QUALITY_THUMB = 75
 FACE_BLUR_RADIUS = 12
 
-# Each entry: slug, list of (x1, y1, x2, y2) boxes in 1200x900 coords
-# faces → Gaussian blur, text → black box
-REDACTIONS = {
-    "gallery-commercial-parking-team": [
-        # Worker 1 (orange hoodie, crouching, partial face)
-        (340, 400, 470, 520),
-        # Worker 2 (dark hoodie, back to camera, partial profile)
-        (500, 340, 630, 470),
-        # Worker 3 (black hoodie, full face profile)
-        (645, 360, 795, 480),
-    ],
-    "gallery-lighting-commercial-install": [
-        # Worker 1 (green shirt on ladder, face profile)
-        (490, 100, 690, 260),
-        # Worker 2 (orange shirt, full face with glasses)
-        (480, 440, 690, 660),
-    ],
-    "gallery-team-utility-lines": [
-        # Worker in dark blue jacket, full face with glasses
-        (370, 320, 650, 680),
-    ],
-    "gallery-roughin-steel-stud": [
-        # "302" handwritten on drywall
-        (400, 250, 605, 360),
-    ],
-}
+REDACTIONS_PATH = Path(__file__).parent / "photo-redactions.json"
 
 
 def blur_box(im, box):
@@ -56,7 +31,12 @@ def blackout_box(im, box):
 
 
 def main():
-    for slug, boxes in REDACTIONS.items():
+    import json
+    with open(REDACTIONS_PATH) as f:
+        raw = json.load(f)
+    redactions = {slug: [tuple(b) for b in boxes] for slug, boxes in raw.items()}
+
+    for slug, boxes in redactions.items():
         src_1200 = OUT / f"{slug}-1200w.jpg"
         if not src_1200.exists():
             print(f"SKIP: {src_1200} not found")

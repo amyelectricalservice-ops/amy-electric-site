@@ -1,0 +1,12 @@
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero-desc, .hero-badges, .hero-ctas {
+  animation: fadeUp .6s ease both;
+}
+.hero h1       { animation-delay: .05s; }
+.hero-desc     { animation-delay: .15s; }
+.hero-badges   { animation-delay: .25s; }
+.hero-ctas     { animation-delay: .35s; }

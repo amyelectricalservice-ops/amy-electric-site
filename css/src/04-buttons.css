@@ -1,0 +1,21 @@
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: background .18s, transform .12s, box-shadow .18s;
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn-gold  { background: var(--gold); color: var(--navy); box-shadow: 0 4px 16px rgba(245,166,35,.35); }
+.btn-gold:hover { background: var(--gold2); box-shadow: 0 6px 20px rgba(245,166,35,.5); }
+.btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.4); }
+.btn-outline:hover { border-color: var(--white); }
+.btn-sm { font-size: 14px; padding: 10px 20px; }

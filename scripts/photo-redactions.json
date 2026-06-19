@@ -1,0 +1,17 @@
+{
+  "gallery-commercial-parking-team": [
+    [340, 400, 470, 520],
+    [500, 340, 630, 470],
+    [645, 360, 795, 480]
+  ],
+  "gallery-lighting-commercial-install": [
+    [490, 100, 690, 260],
+    [480, 440, 690, 660]
+  ],
+  "gallery-team-utility-lines": [
+    [370, 320, 650, 680]
+  ],
+  "gallery-roughin-steel-stud": [
+    [400, 250, 605, 360]
+  ]
+}
