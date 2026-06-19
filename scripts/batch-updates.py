@@ -70,7 +70,7 @@ def get_new_faqs(city):
 
 
 def expand_city_faqs():
-    """Add 2 new FAQ Qs to each city page (HTML + JSON-LD)."""
+    """Add 2 new FAQ Qs to each city page (HTML + JSON-LD). Idempotent — skips if already present."""
     for stem, (city, utility) in sorted(CITY_MAP.items()):
         path = os.path.join(SITE_DIR, f"{stem}.html")
         if not os.path.exists(path):
@@ -80,41 +80,33 @@ def expand_city_faqs():
         with open(path, "r", encoding="utf-8") as f:
             html = f.read()
 
-        new_faqs = get_new_faqs(city)
+        new_faqs = [f for f in get_new_faqs(city) if f["q"] not in html]
+        if not new_faqs:
+            print(f"  {stem}.html: FAQ already up to date")
+            continue
 
         # ── 1. HTML FAQ section ──
-        # Find the last </details> in the faq-list, insert before </div> that closes it
         html_faq_blocks = ""
         for faq in new_faqs:
             html_faq_blocks += f'\n    <details class="faq-item"><summary class="faq-q">{faq["q"]} <span class="faq-chevron">▾</span></summary><div class="faq-a">{faq["a"]}</div></details>'
 
-        # Insert before the closing </div> of faq-list
-        pattern_html = r'(</details>\s*</div>\s*<div style="margin-top:40px;">)'
-        replacement_html = f'</details>{html_faq_blocks}\n  </div>\n  <div style="margin-top:40px;">'
-        
-        # Simpler approach: replace the first </details> that's followed by </div> then margin
         old = '</details>\n  </div>\n  <div style="margin-top:40px;">'
         new = f'</details>{html_faq_blocks}\n  </div>\n  <div style="margin-top:40px;">'
         
         if old not in html:
-            # Try with different whitespace patterns
             import re
             match = re.search(r'(</details>)\s*(</div>\s*<div style="margin-top:40px;">)', html)
             if match:
                 old_raw = match.group(0)
                 new_raw = f'</details>{html_faq_blocks}\n  {match.group(2)}'
                 html = html.replace(old_raw, new_raw, 1)
-                print(f"  {stem}.html: HTML FAQ regex-matched")
             else:
                 print(f"  FAIL {stem}.html: could not find HTML FAQ insertion point")
                 continue
         else:
             html = html.replace(old, new, 1)
-            print(f"  {stem}.html: HTML FAQ inserted")
 
         # ── 2. JSON-LD FAQPage ──
-        # Find the FAQPage JSON-LD block and add entries
-        # Pattern: ...}]}</script> at end of FAQPage
         jsonld_blocks = []
         for faq in new_faqs:
             entry = json.dumps({"@type": "Question", "name": faq["q"], "acceptedAnswer": {"@type": "Answer", "text": faq["a"]}}, ensure_ascii=False)
@@ -122,20 +114,19 @@ def expand_city_faqs():
 
         new_entries = ", " + ", ".join(jsonld_blocks)
         
-        # Insert before ]} in FAQPage JSON-LD
-        # The FAQPage ends with: ...}]}</script>
         old_json = '}]}</script>'
         new_json = f'{new_entries}]}}</script>'
         
         if old_json in html:
             html = html.replace(old_json, new_json, 1)
-            print(f"  {stem}.html: JSON-LD FAQ inserted")
         else:
             print(f"  FAIL {stem}.html: could not find JSON-LD FAQ insertion point")
             continue
 
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
+
+        print(f"  {stem}.html: FAQ expanded ({len(new_faqs)} new Qs)")
 
     print("City FAQ expansion complete.")
 
