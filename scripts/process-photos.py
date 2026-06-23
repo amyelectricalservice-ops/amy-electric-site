@@ -24,8 +24,9 @@ from PIL import Image, ImageOps
 SRC = Path("/home/amram/Pictures/Electric Work")
 OUT = Path("/home/amram/WEBSITE/img/gallery")
 MANIFEST = Path(__file__).parent / "photo-manifest.csv"
-QUALITY = 82
-QUALITY_THUMB = 75
+QUALITY = 75
+QUALITY_MID = 72
+QUALITY_THUMB = 70
 
 
 def exif_transpose_fix(im):
@@ -98,21 +99,29 @@ def process_one(row):
 
         # Resize variants
         if w > 1200:
-            ratio = 1200.0 / w
-            im_1200 = im.resize((1200, int(h * ratio)), Image.LANCZOS)
+            ratio1200 = 1200.0 / w
+            im_1200 = im.resize((1200, int(h * ratio1200)), Image.LANCZOS)
         else:
             im_1200 = im.copy()
 
-        if w > 400:
-            ratio = 400.0 / w
-            im_400 = im.resize((400, int(h * ratio)), Image.LANCZOS)
+        if w > 800:
+            ratio800 = 800.0 / w
+            im_800 = im.resize((800, int(h * ratio800)), Image.LANCZOS)
         else:
-            im_400 = im.copy()
+            im_800 = im_1200.copy()
+
+        if w > 400:
+            ratio400 = 400.0 / w
+            im_400 = im.resize((400, int(h * ratio400)), Image.LANCZOS)
+        else:
+            im_400 = im_1200.copy()
 
         # WebP (1200w)
         im_1200.save(OUT / f"{slug}-1200w.webp", "WEBP", quality=QUALITY, method=6)
         # JPEG fallback (1200w)
         im_1200.save(OUT / f"{slug}-1200w.jpg", "JPEG", quality=QUALITY, optimize=True)
+        # WebP intermediate (800w)
+        im_800.save(OUT / f"{slug}-800w.webp", "WEBP", quality=QUALITY_MID, method=6)
         # WebP thumbnail (400w)
         im_400.save(OUT / f"{slug}-400w.webp", "WEBP", quality=QUALITY_THUMB, method=6)
 

@@ -23,8 +23,8 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
   - **2 special pages**: `testimonials.html`, `gallery.html`
   - **1 privacy policy**: `privacy-policy.html`
 - **4 service pages** have HowTo schema (panel-upgrade, ev-charger-installation, generator-transfer-switch, whole-home-rewiring)
-- **CSS** at `css/style.min.css` (production, 17KB) — original at `css/style.css`
-- **JS** at `js/site.min.js` (production, 2.3KB) — original at `js/site.js`
+- **CSS** at `css/style.min.css` (production, 28KB) — source modules in `css/src/01-*.css` through `css/src/12-*.css`, built via `scripts/build-css.py`
+- **JS** at `js/site.min.js` (production, 2.6KB) — source modules in `js/src/01-*.js` through `js/src/03-*.js`, built via `scripts/build-js.py`
 - **`favicon.svg`** — navy background with gold "AE" lightning bolt
 - **`robots.txt`** — allows /, explicitly allows 8 AI search crawlers, blocks 3 training crawlers, RSL link, Sitemap
 - **`_redirects`** — Cloudflare Pages HTTPS + www canonicalization
@@ -88,4 +88,5 @@ Achieved via: minified CSS/JS, lazy-loaded images, preload hints, HTTPS redirect
 - **Deployment**: Workers + Assets via Workers Builds (GitHub → auto-deploy). `npx wrangler deploy` triggered by pushing to `main`. Workers Builds runs in Cloudflare infra — no local API token needed. The `_headers` file must use proper path-prefixed format for Workers + Assets (each block starts with a URL path like `/*` or `/css/*`).
 - **IndexNow**: Key at `/16076f14-4d06-4581-b281-38a7a89804ca.txt`. Notify after each deploy by running `bash scripts/notify-indexnow.sh` or via `curl` to `https://api.indexnow.org/indexnow`.
 - **New files this session**: `blog/california-electrical-code-changes-2026.html`, `blog/ladwp-ev-charger-rebate-guide-2026.html`
+- **Gallery**: `gallery.html` (273KB, 309 photos) — first 36 items HTML, 273 JS-lazy via "Show More". Inline CSS → `css/src/12-gallery.css`. `scripts/update-gallery.py` is idempotent.
 - **Schema improvements this session**: FAQPage (4→7 Qs) + BreadcrumbList on all 32 geo pages; BreadcrumbList on 7 root pages + 31 blog posts; HowTo schema on 4 service pages; PriceRange/offers on 11 service pages; homepage FAQ expanded 4→15 Qs
