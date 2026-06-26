@@ -8,26 +8,7 @@
   "assets": {
     "directory": ".",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash",
-    "exclude_rules": [
-      { "glob": ".git/**" },
-      { "glob": ".antigravitycli/**" },
-      { "glob": "node_modules/**" },
-      { "glob": "scripts/**" },
-      { "glob": "css/src/**" },
-      { "glob": "js/src/**" },
-      { "glob": "AGENTS.md" },
-      { "glob": "wrangler.jsonc" },
-      { "glob": "package.json" },
-      { "glob": "pnpm-lock.yaml" },
-      { "glob": "*.py" },
-      { "glob": ".gitignore" },
-      { "glob": "gbp-posts-document.txt" },
-      { "glob": "*.csv" },
-      { "glob": "photo-*-config.json" },
-      { "glob": "photo-*" },
-      { "glob": "reports/**" }
-    ]
+    "html_handling": "auto-trailing-slash"
   },
   "compatibility_flags": [
     "nodejs_compat"

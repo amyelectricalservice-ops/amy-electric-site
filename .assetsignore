@@ -1,0 +1,16 @@
+.git
+.antigravitycli
+node_modules
+scripts
+css/src
+js/src
+AGENTS.md
+wrangler.jsonc
+package.json
+pnpm-lock.yaml
+*.py
+.gitignore
+gbp-posts-document.txt
+*.csv
+photo-*.json
+reports
