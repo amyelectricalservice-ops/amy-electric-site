@@ -28,6 +28,12 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
 # Training crawlers — blocked (no licensing agreement)
 User-agent: CCBot
 Disallow: /
