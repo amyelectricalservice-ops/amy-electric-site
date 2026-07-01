@@ -1,0 +1,4 @@
+Contact: mailto:info@amyelectric.com
+Expires: 2027-06-29T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://amyelectric.com/.well-known/security.txt
