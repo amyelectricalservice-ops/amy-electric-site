@@ -24,34 +24,8 @@
   });
 })();
 
-(function () {
-  'use strict';
-
-  // GA4 event tracking
-  function trackEvent(action, label) {
-    if (typeof gtag === 'function') {
-      gtag('event', action, { 'event_category': 'engagement', 'event_label': label });
-    }
-  }
-
-  // Track phone clicks
-  document.addEventListener('click', function (e) {
-    var tel = e.target.closest('a[href^="tel:"]');
-    if (tel) {
-      trackEvent('phone_click', tel.getAttribute('href'));
-    }
-  });
-
-  // Track CTA clicks (buttons with btn-gold, btn-outline, btn-navy)
-  document.addEventListener('click', function (e) {
-    var cta = e.target.closest('.btn, a.btn');
-    if (cta) {
-      var label = cta.textContent.trim().substring(0, 100);
-      trackEvent('cta_click', label);
-    }
-  });
-})();
-
+// Analytics tracking removed — using Cloudflare Web Analytics (auto-injected beacon)
+// Event tracking (gtag) was removed with Google Analytics migration.
 (function () {
   'use strict';
 
@@ -61,7 +35,6 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      trackEvent('form_submit', formId);
       var btn = form.querySelector('.form-submit');
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
@@ -91,12 +64,6 @@
           document.getElementById(successId).style.display = 'block';
         });
     });
-  }
-
-  function trackEvent(action, label) {
-    if (typeof gtag === 'function') {
-      gtag('event', action, { 'event_category': 'engagement', 'event_label': label });
-    }
   }
 
   handleForm('quick-form', 'quick-form-success');

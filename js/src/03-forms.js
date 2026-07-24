@@ -7,7 +7,6 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      trackEvent('form_submit', formId);
       var btn = form.querySelector('.form-submit');
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
@@ -37,12 +36,6 @@
           document.getElementById(successId).style.display = 'block';
         });
     });
-  }
-
-  function trackEvent(action, label) {
-    if (typeof gtag === 'function') {
-      gtag('event', action, { 'event_category': 'engagement', 'event_label': label });
-    }
   }
 
   handleForm('quick-form', 'quick-form-success');
