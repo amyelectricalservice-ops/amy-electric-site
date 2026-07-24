@@ -1,6 +1,13 @@
-# SEO Action Plan — AMY Electric
+# ACTION-PLAN.md — AMY Electric SEO Priorities
 
-**Priority Definitions**:
+**Generated:** July 24, 2026  
+**Overall Score:** 91/100  
+**Baseline:** 89/100 (Jul 23, 2026)
+
+---
+
+## Priority Definitions
+
 - **Critical**: Blocks indexing or causes penalties (fix immediately)
 - **High**: Significantly impacts rankings (fix within 1 week)
 - **Medium**: Optimization opportunity (fix within 1 month)
@@ -8,163 +15,153 @@
 
 ---
 
-## Critical (4 items)
+## CRITICAL — Fix Immediately
 
-### C1. Fix www.amyelectric.com 522 Error
-**Problem**: www subdomain returns Cloudflare 522 (connection timeout). DNS CNAME record `www` → `amyelectric.com` is missing.
-**Action**: Log into Cloudflare Dashboard → DNS → Add CNAME record: `www` → `amyelectric.com`, proxied (orange cloud).
-**Impact**: Without this, all links pointing to www drop authority, and users may get errors.
-**Effort**: 2 minutes (Dashboard). **Blocked on API: read-only token.**
-
-### C2. Fix 3 Blog Posts Missing BlogPosting + BreadcrumbList Schema
-**Files**:
-- `blog/how-to-choose-electrician-los-angeles.html`
-- `blog/signs-you-need-electrical-panel-upgrade.html`
-- `blog/smart-home-electrical-upgrades-la.html`
-**Action**: These are redirect stubs with `<meta http-equiv="refresh"> + <meta name="robots" content="noindex">`. They currently have only `WebPage` schema. Add `BlogPosting` schema and wrap in appropriate JSON-LD.
-**Effort**: 15 minutes.
-
-### C3. Fix Homepage FAQ Typo
-**File**: `index.html:517`
-**Problem**: Question text: `"Do you offer surge protection for my home?s"` — trailing `?s` instead of `?`
-**Action**: Change `home?s` to `home?`
-**Effort**: 30 seconds.
-
-### C4. Re-encode Gallery WebP at Quality 80-85
-**Problem**: Gallery WebP files are encoded at too-high quality (~95-100), averaging only 1-20% savings over JPEG. Some WebP files are 285 KB (vs 289 KB JPEG — only 1% savings).
-**Action**: Run `scripts/process-photos.py` with `--quality 85` flag to re-encode all gallery WebP. Could save 3-4 MB total.
-**Effort**: Run script (automated).
+*None identified.* The site has no critical issues blocking indexing or causing penalties.
 
 ---
 
-## High Priority (6 items)
+## HIGH — Fix Within 1 Week
 
-### H1. Expand City Page FAQ from 3→5+ Questions
-**Files**: All 16 `city-*.html`
-**Action**: Add 2-4 more city-specific FAQ questions (e.g., permitting in that city, local utility requirements, common electrical issues in that area's housing stock).
-**Impact**: Deepens FAQPage schema for rich results, improves local relevance.
-**Effort**: 2-3 hours (script-assisted).
+### H1. Replace `Electrician` schema with `LocalBusiness` (or `ElectricalContractor`)
+**Impact:** Affects 130 schema blocks across 107+ pages  
+**Effort:** Medium (batch script)  
+**Why:** `Electrician` is not a recognized schema.org type. Google may ignore these schemas entirely, losing rich result eligibility.  
+**Action:**
+- Change `@type: "Electrician"` to `@type: "LocalBusiness"` with `subType: "ElectricalContractor"` (or use the proposed `ElectricalContractor` type if Google adds support)
+- Update all 107 pages via batch script
+- Validate with Google Rich Results Test
 
-### H2. Add Facebook, Nextdoor, BBB to sameAs
-**Files**: All pages with Electrician schema (105 files)
-**Action**: Add `"https://www.facebook.com/...", "https://www.nextdoor.com/...", "https://www.bbb.org/.../amy-electric"` to `sameAs` arrays.
-**Pre-req**: Claim/create these profiles first.
-**Effort**: 1-2 hours for schema update + profile creation.
+### H2. Reduce LCP below 2.5s target
+**Impact:** Performance score capped at 82, LCP at 3.2s  
+**Effort:** Medium  
+**Why:** LCP is a Core Web Vitals ranking signal. Currently 0.7s above target.  
+**Action:**
+- Consider converting hero image to AVIF format (30-50% smaller than WebP)
+- Preload the exact LCP element (hero image) with `fetchpriority="high"` (already done)
+- Test with Cloudflare Image Resizing for automatic format negotiation
+- Consider inlining critical CSS to reduce render-blocking resources
 
-### H3. Fix Opening Hours Inconsistency
-**Files**: All 16 `city-*.html`
-**Action**: Add 24/7 emergency `openingHoursSpecification` (Mon-Sun 00:00-23:59) alongside current Saturday hours to match homepage. This ensures consistency in LocalBusiness schema.
-**Effort**: 30 minutes (script-assisted).
+### H3. Add "Latest Articles" section to homepage
+**Impact:** 26 of 33 blog posts orphaned from strongest internal link hub  
+**Effort:** Low (30 min)  
+**Why:** Internal links from high-authority pages (homepage) pass the most link equity. 79% of blog posts have no homepage link.  
+**Action:**
+- Add a "Latest Articles" or "Electrical Resources" section to `index.html`
+- Link to all 33 blog posts (or at minimum the 26 orphaned ones)
+- Use a grid layout with article title + brief description
 
-### H4. Add FAQPage to testimonials.html
-**File**: `testimonials.html`
-**Action**: Add FAQPage JSON-LD with 3-4 questions about the review process, how to leave a review, etc.
-**Effort**: 15 minutes.
-
-### H5. Fix Duplicate Title: smoke-co-detector
-**Files**: `smoke-co-detector-installation.html` and `blog/smoke-co-detector-installation-la.html`
-**Action**: Differentiate the service page and blog post titles. Service: "Smoke & CO Detector Installation Los Angeles | AMY Electric". Blog: "Smoke and CO Detector Installation Guide for LA Homes | AMY Electric".
-**Effort**: 5 minutes.
-
-### H6. Add Electrician @id to Geo-Page Schemas
-**Files**: All 32 geo pages + 5 emergency + privacy-policy.html (38 files)
-**Action**: Add `@id` property (e.g., `"@id": "https://amyelectric.com/ev-charger-installation-los-angeles#electrician"`) to Electrician schema for entity linkage. Also add `hasCredential` with C-10 license.
-**Effort**: 1 hour (script-assisted).
-
----
-
-## Medium Priority (5 items)
-
-### M1. Add 1200w/1600w Hero Image Variants
-**Files**: Index.html hero `<picture>` + all pages with hero images
-**Action**: Add 1200w and 1600w WebP/JPEG sources with corresponding `media` queries for retina displays and large screens.
-**Effort**: 2-3 hours (photo processing + HTML updates).
-
-### M2. Expand Geo-Service Page City-Specific Content
-**Files**: All 32 `ev-charger-installation-{city}.html` and `panel-upgrade-{city}.html`
-**Action**: Add 1-2 unique paragraphs per page about that city's specific electrical landscape (e.g., "In Burbank, many homes from the 1950s still have original 60A panels...").
-**Effort**: 4-6 hours (significant content work).
-
-### M3. Add HowTo Schema to Remaining 11 Service Pages
-**Files**: 11 service pages without HowTo (ceiling-fan, commercial, dedicated-circuits, electrical-repair, electrical-safety, lighting, outlet-switch, smart-home, smoke-co, surge-protection, tesla-charger)
-**Action**: Add HowTo schema with 4-6 steps to each page.
-**Effort**: 3-4 hours.
-
-### M4. Add AVIF Sources in Hero `<picture>` Elements
-**Files**: All pages with hero images (~56 pages)
-**Action**: Add `<source type="image/avif">` before WebP sources for ~30% additional compression savings.
-**Effort**: 2 hours (script-assisted).
-
-### M5. Remove datePublished/dateModified from Service Schema
-**Files**: 15 root service pages
-**Action**: These properties are not valid for `@type: Service`. Remove them from Service JSON-LD blocks. They belong on `WebPage` schema instead.
-**Effort**: 30 minutes (script-assisted).
+### H4. Add Apple Maps and Bing Places sameAs profiles
+**Impact:** Missing citation signals for AI crawlers and local SEO  
+**Effort:** Low (requires manual profile claiming)  
+**Why:** Apple Maps feeds Siri/Apple Intelligence; Bing Places feeds Bing/Copilot. Both are citation sources for AI search.  
+**Action:**
+- Claim Apple Maps business profile at mapsconnect.apple.com
+- Claim Bing Places profile at bingplaces.com
+- Add URLs to sameAs arrays in homepage schema (Electrician, Organization, WebSite)
 
 ---
 
-## Low Priority (4 items)
+## MEDIUM — Fix Within 1 Month
 
-### L1. Fix Breadcrumb Text Formatting
-**Files**: `blog/ev-charger-installation-cost-la.html`, `blog/panel-upgrade-cost-los-angeles.html`, `blog/emergency-electrician-los-angeles.html`
-**Action**: Fix missing spaces in BreadcrumbList `name` fields.
-**Effort**: 5 minutes.
+### M1. Add `WebSite` schema to all service and blog pages
+**Impact:** 92 pages lack WebSite schema  
+**Effort:** Low (batch script)  
+**Why:** WebSite schema enables sitelinks search box in Google SERPs.  
+**Action:**
+- Add WebSite schema block to all service pages and blog posts
+- Include `potentialAction: SearchAction`
 
-### L2. Add WebSite Schema to All City Pages
-**Files**: All 16 city pages
-**Action**: Mirror the homepage's `WebSite + SearchAction` schema on city pages for site-wide search capability in rich results.
-**Effort**: 30 minutes (script-assisted).
+### M2. Add `SpeakableSpecification` to 32 geo service pages
+**Impact:** Voice assistants can't read these pages  
+**Effort:** Low (batch script)  
+**Why:** Speakable markup enables Google Assistant to read page content aloud.  
+**Action:**
+- Add SpeakableSpecification to all `ev-charger-installation-{city}.html` and `panel-upgrade-{city}.html` pages
+- Target `.page-hero h1` and `.page-hero p` selectors
 
-### L3. Expand Schema Breadcrumbs on Blog Posts to 3-Level
-**Files**: All 33 blog posts
-**Action**: Add intermediate "Blog" category in BreadcrumbList (Home > Blog > Post Title) instead of 2-level (Home > Post Title).
-**Effort**: 1 hour (script-assisted).
+### M3. Remove deprecated `Expect-CT` header
+**Impact:** ~40 bytes added to every response, no benefit  
+**Effort:** Trivial (2 min)  
+**Why:** Chrome removed Expect-CT enforcement in 2022. The header is purely informational and adds unnecessary bytes.  
+**Action:**
+- Remove `Expect-CT: max-age=86400, enforce` from `_headers`
 
-### L4. Convert Gallery to Programmatic srcset
-**Files**: `gallery.html`
-**Action**: Use `srcset` and `sizes` attributes on gallery images to serve 400w thumbnails on mobile and 1200w on desktop, instead of manual file-per-page selection.
-**Effort**: 2 hours.
+### M4. Fix 3 blog redirect stubs
+**Impact:** Low (noindex'd pages)  
+**Effort:** Low  
+**Why:** These pages have incomplete BlogPosting schemas (missing author, datePublished). While noindex'd, they could still appear in AI training data.  
+**Action:**
+- Either: complete the schemas to match other blog posts
+- Or: remove the BlogPosting schema entirely (since they're redirects)
 
----
-
-## Implementation Roadmap
-
-### Week 1 (Critical + High Priority)
-| Day | Tasks |
-|-----|-------|
-| Day 1 | [Dashboard] Fix www CNAME record, [Edit] Fix FAQ typo |
-| Day 2 | [Script] Fix 3 blog post schema stubs, Fix duplicate title |
-| Day 3 | [Script] Add FAQ to testimonials, Fix opening hours |
-| Day 4 | [Script] Add @id to 38 geo/emergency schemas |
-| Day 5 | [Script] Re-encode gallery WebP at q80 |
-| Day 6 | Expand city FAQ from 3→5 Qs (start) |
-| Day 7 | Complete city FAQ expansion |
-
-### Week 2 (Medium Priority)
-| Day | Tasks |
-|-----|-------|
-| Day 1-2 | Add 1200w/1600w hero variants |
-| Day 3-4 | Add HowTo schema to 11 service pages |
-| Day 5 | Add AVIF sources, Remove invalid Schema.org props |
-| Day 6-7 | Start geo-service page content expansion |
-
-### Week 3+ (Low Priority + Ongoing)
-| Task | Timeline |
-|------|----------|
-| Fix breadcrumb formatting | Week 3 |
-| Add WebSite schema to city pages | Week 3 |
-| Expand blog breadcrumbs to 3-level | Week 3 |
-| Programmatic srcset for gallery | Week 4 |
-| Build citation profiles (Facebook, Nextdoor, BBB) | Week 3-4 |
-| 150+ review campaign | Ongoing |
+### M5. Add FAQPage schema to 3 blog posts
+**Impact:** These posts lose FAQ rich results  
+**Effort:** Low (5 min each)  
+**Action:**
+- Add FAQPage schema to `blog/how-to-choose-electrician-los-angeles.html`
+- Add FAQPage schema to `blog/signs-you-need-electrical-panel-upgrade.html`
+- Add FAQPage schema to `blog/smart-home-electrical-upgrades-la.html`
 
 ---
 
-## Effort Summary
+## LOW — Backlog
 
-| Priority | Items | Estimated Total Effort |
-|---|---|---|
-| Critical | 4 | 20 minutes + 1 script run + Dashboard action |
-| High | 6 | 4-6 hours (mostly script-assisted) |
-| Medium | 5 | 12-16 hours (significant content work) |
-| Low | 4 | 4-5 hours |
-| **Total** | **19** | **20-27 hours** |
+### L1. Expand 3 thin blog posts
+**Impact:** Minor — these posts are 2.2-2.3KB  
+**Effort:** Medium  
+**Action:**
+- Expand `signs-you-need-electrical-panel-upgrade`, `smart-home-electrical-upgrades-la`, `how-to-choose-electrician` with more content (target 3KB+)
+
+### L2. Polish truncated meta descriptions
+**Impact:** Minor — some descriptions end with `"... & more."`  
+**Effort:** Low  
+**Action:**
+- Rewrite descriptions that end with truncated text to read naturally
+
+### L3. Add YouTube channel sameAs
+**Impact:** YouTube is the #1 AI citation source (0.737 correlation)  
+**Effort:** Medium (requires creating channel + uploading videos)  
+**Action:**
+- Create YouTube channel
+- Upload the 5 video scripts from `reports/youtube-scripts-2026-07-24.md`
+- Add channel URL to sameAs arrays
+
+### L4. Build Reddit presence
+**Impact:** Reddit is 46.7% of Perplexity sources — AMY Electric has zero Reddit mentions  
+**Effort:** Medium (ongoing)  
+**Action:**
+- Get customers to mention AMY Electric in r/LosAngeles electrician recommendation threads
+- Consider an AMA or helpful comment presence (not promotional)
+
+### L5. Claim BBB profile
+**Impact:** BBB is a trusted citation source  
+**Effort:** Low  
+**Action:**
+- Claim profile at bbb.org
+- Add URL to sameAs arrays
+
+### L6. Claim LinkedIn company page
+**Impact:** LinkedIn is a trusted business citation  
+**Effort:** Low  
+**Action:**
+- Create LinkedIn company page
+- Add URL to sameAs arrays
+
+---
+
+## Summary
+
+| Priority | Count | Effort |
+|----------|-------|--------|
+| Critical | 0 | — |
+| High | 4 | 2 medium, 2 low |
+| Medium | 5 | 1 trivial, 4 low |
+| Low | 6 | 2 medium, 4 low |
+
+**Estimated total effort:** ~4-6 hours for all High + Medium items  
+**Expected score improvement:** 91 → 95+ (with High items completed)
+
+---
+
+*Generated by opencode SEO audit — July 24, 2026*
