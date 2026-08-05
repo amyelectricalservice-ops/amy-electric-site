@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /reports/
+Disallow: /amyelectric-site/
+Disallow: /partials/
 Disallow: /~
 
 # AI search crawlers — allowed for AI Overviews, ChatGPT, Perplexity
