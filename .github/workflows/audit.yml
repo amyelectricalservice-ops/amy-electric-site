@@ -1,0 +1,52 @@
+name: Website Quality & SEO Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Run Site Audit & Schema Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate Structured Data (JSON-LD Schemas)
+        run: |
+          python3 scripts/schema-tool.py validate
+
+      - name: Verify CSS & JS Production Builds
+        run: |
+          python3 scripts/build-css.py
+          python3 scripts/build-js.py
+          git diff --exit-code css/style.min.css js/site.min.js || (echo "Minified CSS/JS out of sync! Run scripts/build-css.py and scripts/build-js.py" && exit 1)
+
+      - name: Verify Sitemap Integrity
+        run: |
+          python3 -c "
+          import xml.etree.ElementTree as ET
+          import glob, sys
+
+          tree = ET.parse('sitemap.xml')
+          root = tree.getroot()
+          sitemap_urls = {elem.text.strip() for elem in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+
+          html_files = glob.glob('*.html') + glob.glob('blog/*.html')
+          html_urls = {'https://amyelectric.com/' + f.replace('./', '') for f in html_files if f != '404.html'}
+
+          missing_in_sitemap = html_urls - sitemap_urls
+          if missing_in_sitemap:
+              print(f'Error: Missing URLs in sitemap ({len(missing_in_sitemap)}): {missing_in_sitemap}')
+              sys.exit(1)
+          print('Sitemap integrity check passed!')
+          "
