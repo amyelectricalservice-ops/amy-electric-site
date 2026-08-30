@@ -30,6 +30,22 @@ BUSINESS = {
     "priceRange": "$$",
     "license": "C-10 #981578",
     "evitp": "EVITP #4051604",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Electrical Contracting Services",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {"@type": "Service", "name": "Level 2 EV Charger Installation"},
+                "priceSpecification": {"@type": "PriceSpecification", "price": "750.00", "priceCurrency": "USD", "description": "Starting price for standard installation"}
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {"@type": "Service", "name": "200 Amp Electrical Panel Upgrade"},
+                "priceSpecification": {"@type": "PriceSpecification", "price": "1500.00", "priceCurrency": "USD", "description": "Starting price including permit coordination"}
+            }
+        ]
+    },
     "aggregateRating": {"ratingValue": "4.9", "reviewCount": "87", "bestRating": "5", "worstRating": "1"},
     "sameAs": [
         "https://www.yelp.com/biz/amy-electric-los-angeles",
