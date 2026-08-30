@@ -140,14 +140,15 @@ def cmd_validate():
         base_stem = os.path.splitext(os.path.basename(fname))[0]
         is_redirect = 'noindex' in html and 'http-equiv="refresh"' in html
 
-        # ── Electrician check ──
+        # ── Electrician / Service check ──
         if fname.startswith("blog/") or is_redirect:
             pass
         else:
             elecs = find_jsonld(html, "Electrician")
-            if not elecs:
-                issues.append(f"MISSING Electrician schema: {fname}")
-            else:
+            services = find_jsonld(html, "Service")
+            if not elecs and not services:
+                issues.append(f"MISSING Electrician/Service schema: {fname}")
+            elif elecs:
                 _, _, data, _ = elecs[0]
                 if isinstance(data, dict) and '@graph' in data:
                     for item in data['@graph']:
