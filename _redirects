@@ -1,2 +1,3 @@
 # Strip .html extension (301)
 /*.html  /:splat  301
+/api/*   /api/:splat  200
