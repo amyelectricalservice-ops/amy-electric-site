@@ -29,5 +29,6 @@ pnpm-lock.yaml
 gbp-posts-document.txt
 *.csv
 photo-*.json
+audit-performance.json
 reports
 amyelectric-site
