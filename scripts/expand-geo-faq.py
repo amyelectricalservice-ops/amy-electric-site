@@ -32,7 +32,7 @@ panel_templates = [
     # Q4: Same-day
     (
         "Do you offer same-day service in {city}?",
-        "Yes — we offer same-day emergency dispatch for urgent electrical situations in {city} and throughout Greater Los Angeles. Call (818) 302-5614 anytime, 24 hours a day, 7 days a week, including weekends and holidays. We prioritize emergencies such as complete power outages affecting only your home, sparking or smoking electrical panels, exposed live wires, burning odors from outlets or switches, and any situation involving water near electrical equipment. Our electricians carry comprehensive diagnostic tools and commonly needed replacement parts on every truck, allowing us to resolve most emergency issues on the very first visit rather than having to diagnose the problem first and then return with parts on a second trip. When call volume permits, we also dispatch same-day for non-emergency panel inspections and estimates in addition to all urgent electrical calls from {city} homeowners."
+        "Call (818) 302-5614 to discuss current emergency dispatch availability for urgent electrical situations in {city} and throughout Greater Los Angeles. Common emergencies include complete power outages affecting only your home, sparking or smoking electrical panels, exposed live wires, burning odors, and water near electrical equipment. Call 911 first for active fire, severe shock, or downed power lines."
     ),
     # Q5: Home value
     (
@@ -71,7 +71,7 @@ ev_templates = [
     # Q4: Same-day
     (
         "Do you offer same-day service in {city}?",
-        "Yes — we offer same-day emergency dispatch for urgent electrical situations in {city} and throughout Greater Los Angeles. Call (818) 302-5614 anytime, 24 hours a day, 7 days a week, including weekends and holidays. We prioritize emergencies such as complete power outages affecting only your home, sparking or smoking electrical panels, exposed live wires, burning odors from outlets or switches, and any situation involving water near electrical equipment. Our electricians carry comprehensive diagnostic tools and commonly needed replacement parts on every truck, allowing us to resolve most emergency issues on the very first visit rather than having to diagnose the problem first and then return with parts on a second trip. When call volume permits, we also dispatch same-day for non-emergency EV charger inspections and estimates in addition to urgent calls."
+        "Call (818) 302-5614 to discuss current emergency dispatch availability for urgent electrical situations in {city} and throughout Greater Los Angeles. Common emergencies include complete power outages affecting only your home, sparking or smoking electrical panels, exposed live wires, burning odors, and water near electrical equipment. Call 911 first for active fire, severe shock, or downed power lines."
     ),
     # Q5: Permit
     (

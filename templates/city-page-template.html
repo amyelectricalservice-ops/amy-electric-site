@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{CITY}} Electrician | AMY Electric</title>
+  <meta name="description" content="Licensed C-10 electrician serving {{CITY}}, CA. Electrical repairs, panel upgrades, EV charger installation, and more. Call (818) 302-5614.">
+  <link rel="canonical" href="https://amyelectric.com/city-{{SLUG}}">
+  <meta property="og:title" content="{{CITY}} Electrician | AMY Electric">
+  <meta property="og:description" content="Electrical repairs, panel upgrades, EV charger installation, and more for {{CITY}} homeowners and businesses.">
+  <meta property="og:url" content="https://amyelectric.com/city-{{SLUG}}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://amyelectric.com/img/hero-electrician.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{CITY}} Electrician | AMY Electric">
+  <meta name="twitter:description" content="Licensed electrical services for {{CITY}}, CA.">
+  <meta name="twitter:image" content="https://amyelectric.com/img/hero-electrician.jpg">
+  <link rel="stylesheet" href="css/style.min.css">
+  <!-- Replace every {{PLACEHOLDER}} and verify claims before publishing. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "@id": "https://amyelectric.com/city-{{SLUG}}",
+    "name": "AMY Electric",
+    "url": "https://amyelectric.com/city-{{SLUG}}",
+    "telephone": "+1-818-302-5614",
+    "areaServed": {"@type": "City", "name": "{{CITY}}", "addressRegion": "CA", "addressCountry": "US"},
+    "parentOrganization": {"@type": "Organization", "name": "AMY Electric"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What electrical services do you offer in {{CITY}}?","acceptedAnswer":{"@type":"Answer","text":"{{SERVICE_SUMMARY}}"}},
+    {"@type":"Question","name":"How do I request an estimate in {{CITY}}?","acceptedAnswer":{"@type":"Answer","text":"Call (818) 302-5614 or use the estimate form to describe your project and schedule the next step."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://amyelectric.com/"},
+    {"@type":"ListItem","position":2,"name":"Service Areas","item":"https://amyelectric.com/service-areas.html"},
+    {"@type":"ListItem","position":3,"name":"{{CITY}}","item":"https://amyelectric.com/city-{{SLUG}}"}
+  ]}
+  </script>
+</head>
+<body>
+  <header><!-- Use the current shared AMY Electric navigation here. --></header>
+  <main>
+    <section class="page-hero"><div class="wrap">
+      <div class="breadcrumb"><a href="index">Home</a> › <a href="service-areas.html">Service Areas</a> › {{CITY}}</div>
+      <h1>Electrician in {{CITY}}, CA</h1>
+      <p>{{INTRODUCTION}}</p>
+      <a class="btn btn-gold" href="tel:18183025614">Call (818) 302-5614</a>
+      <a class="btn btn-outline" href="index#estimate">Request an Estimate</a>
+    </div></section>
+    <section class="section-pad"><div class="wrap">
+      <div class="section-label">Local electrical services</div>
+      <h2>Electrical Help for {{CITY}} Homes and Businesses</h2>
+      <p>{{LOCAL_CONTEXT}}</p>
+      <div class="card-grid">
+        <a class="card" href="electrical-repair"><h3>Electrical Repairs</h3><p>Diagnosis and repair for the issue described during your estimate.</p></a>
+        <a class="card" href="panel-upgrade"><h3>Panel Upgrades</h3><p>Evaluate available capacity and discuss an appropriate upgrade.</p></a>
+        <a class="card" href="ev-charger-installation"><h3>EV Charger Installation</h3><p>Plan a properly sized home charging installation.</p></a>
+      </div>
+    </div></section>
+    <section class="section-navy"><div class="wrap">
+      <div class="section-label">Frequently asked questions</div>
+      <h2>{{CITY}} Electrical FAQ</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary class="faq-q">What electrical services do you offer in {{CITY}}?</summary><div class="faq-a">{{SERVICE_SUMMARY}}</div></details>
+        <details class="faq-item"><summary class="faq-q">How do I request an estimate?</summary><div class="faq-a">Call (818) 302-5614 or use the estimate form. Share the property type, location, and project goals so the team can recommend the next step.</div></details>
+        <details class="faq-item"><summary class="faq-q">Will my project need a permit?</summary><div class="faq-a">Permit needs depend on the work and the local jurisdiction. AMY Electric can explain the expected process after reviewing the project scope.</div></details>
+      </div>
+    </div></section>
+    <section class="section-pad"><div class="wrap">
+      <div class="section-label">Explore more</div>
+      <h2>Service Areas and Related Services</h2>
+      <p><a href="service-areas.html">View all AMY Electric service areas</a> or learn more about <a href="panel-upgrade">panel upgrades</a>, <a href="ev-charger-installation">EV charger installation</a>, and <a href="electrical-repair">electrical repairs</a>.</p>
+    </div></section>
+    <section class="cta-band"><div class="wrap">
+      <h2>Ready to discuss your {{CITY}} electrical project?</h2>
+      <p>Call AMY Electric or request an estimate online.</p>
+      <a class="btn btn-navy" href="tel:18183025614">Call (818) 302-5614</a>
+      <a class="btn btn-navy" href="index#estimate">Request an Estimate</a>
+    </div></section>
+  </main>
+</body>
+</html>

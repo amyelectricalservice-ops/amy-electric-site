@@ -143,7 +143,7 @@ def update_service_page(filepath, photos):
 
     insert_at = trust_match.end()
     photo_html = make_photo_grid(photos)
-    photo_section = f'\n<section style="padding:48px 24px 24px;"><div class="wrap">\n  <div class="section-label">Recent Projects</div>\n  <h3>Real Projects by {filepath.stem.replace("-", " ").title().replace("Ev", "EV").replace("La", "LA")}</h3>\n  <p style="max-width:640px;">Browse project photos from our team\'s work across Greater Los Angeles.</p>{photo_html}\n</div></section>\n'
+    photo_section = f'\n<section style="padding:48px 24px 24px;"><div class="wrap">\n  <div class="section-label">Project Photos</div>\n  <h3>{filepath.stem.replace("-", " ").title().replace("Ev", "EV").replace("La", "LA")} Project Photos</h3>\n  <p style="max-width:640px;">Browse representative project photos from electrical work across Greater Los Angeles. Equipment and scope vary by property.</p>{photo_html}\n</div></section>\n'
 
     content = content[:insert_at] + photo_section + content[insert_at:]
 

@@ -1,4 +1,34 @@
-# AMY Electric — SEO Audit Report
+# AMY Electric — SEO Workspace
+
+This folder is the working source of truth for SEO notes, exports, briefs, outreach, and reports for `https://amyelectric.com`.
+
+## Current priorities
+
+1. Increase qualified calls and estimate requests.
+2. Improve Greater Los Angeles local visibility and service-page rankings.
+3. Establish reliable measurement before buying additional research or publishing more pages.
+
+## Site context
+
+- Static HTML site on Cloudflare Workers + Assets.
+- English-language United States market focused on Greater Los Angeles.
+- Core commercial topics: EV charger installation, panel upgrades, emergency electrical repair, rewiring, commercial electrical, lighting, and safety.
+- Existing page groups include service pages, city pages, geo-service pages, blog content, and illustrative case studies.
+
+## Next input needed
+
+Export Google Search Console query and page reports and place them in `gsc/`, using names such as:
+
+- `queries-last-3-months.csv`
+- `pages-last-3-months.csv`
+- `queries-last-16-months.csv`
+- `pages-last-16-months.csv`
+
+Use those exports to prioritize page improvements and keyword clustering. Do not treat older reports in this folder as live performance data unless their date and source are confirmed.
+
+---
+
+# Historical SEO Audit Report
 
 **Date**: 2026-06-03
 **Tool**: OpenSEO Agent Skills + Lighthouse + Manual Analysis

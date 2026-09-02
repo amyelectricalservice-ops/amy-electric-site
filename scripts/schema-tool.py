@@ -30,21 +30,21 @@ FAQ_LICENSING = [
 ]
 
 FAQ_HOMEPAGE = [
-    {"q": "Do you offer emergency electrical services?", "a": f"Yes — we provide 24/7 emergency electrical services throughout Los Angeles. Call {BUSINESS['telephone_display']} anytime for power outages, sparking panels, exposed wires, or any electrical emergency. Our electricians carry diagnostic equipment and common replacement parts to handle most emergencies on the first visit."},
+    {"q": "Do you offer emergency electrical services?", "a": f"Call {BUSINESS['telephone_display']} to discuss current emergency dispatch availability throughout Los Angeles. For active fire, severe shock, or downed power lines, call 911 first."},
     {"q": "How much does a panel upgrade cost in Los Angeles?", "a": "Panel upgrade costs in Los Angeles typically range from $1,500 to $3,500 for a 100A to 200A upgrade, depending on your home's wiring, the distance from the meter to the panel, and LADWP requirements. We provide free, detailed estimates after an on-site assessment."},
     {"q": "Do you install EV chargers?", "a": "Yes — we specialize in Level 2 EV charger installations for Tesla, Rivian, ChargePoint, and all EV brands. We handle all LADBS permitting, utility coordination, and final inspection. Our EVITP-certified electricians ensure your charger is installed safely and to code. Most installations are completed in one day."},
     {"q": "What areas do you serve?", "a": "We serve the greater Los Angeles area including Sherman Oaks, Burbank, Glendale, Pasadena, Studio City, North Hollywood, Hollywood, Beverly Hills, West LA, Encino, Santa Monica, Van Nuys, Woodland Hills, Calabasas, and Culver City."},
     {"q": "How long does a typical installation take?", "a": "Most residential electrical installations take 1–2 days. EV charger installations are typically completed in 4–6 hours. Panel upgrades take 6–8 hours with a planned power outage. Commercial projects vary based on scope. We provide precise timelines during the estimate process."},
     {"q": "Do you handle permits and inspections?", "a": "Yes — we handle all permitting and inspections as part of every installation. We manage the entire process: permit applications, plan review submissions, scheduling inspections, and obtaining the final Certificate of Completion. Permitting ensures code compliance and protects your insurance."},
     {"q": "What payment methods do you accept?", "a": "We accept all major credit cards, debit cards, and electronic transfers. Financing options are available for larger projects including panel upgrades and EV charger installations. We provide detailed invoices for all work."},
-    {"q": "Are you available on weekends?", "a": "Our office hours are Monday–Friday 7 AM–5 PM and Saturday 8 AM–2 PM. Emergency dispatch is available 24/7 every day of the week for urgent electrical issues."},
+    {"q": "Are you available on weekends?", "a": "Our office hours are Monday–Friday 7 AM–5 PM and Saturday 8 AM–2 PM. Call to discuss current availability for urgent electrical issues."},
     {"q": "Do you offer warranties on your work?", "a": "Yes — all work performed by AMY Electric is backed by a workmanship warranty. We stand behind our installations and are always available to address any issues that arise. Manufacturer warranties also apply to parts and equipment we install."},
     {"q": "Can you match existing fixture styles?", "a": "Yes — we can match existing fixture styles, finishes, and brands for additions and replacements. We carry access to a wide range of electrical fixtures and can source matching parts for older installations."},
     {"q": "What is the C-10 license?", "a": "A C-10 Electrical Contractor license is issued by the California Contractors State License Board (CSLB). It authorizes us to perform electrical work of any type in California. Our license number #981578 is active and in good standing. You can verify it at cslb.ca.gov."},
     {"q": "Do you work with property managers?", "a": "Yes — we work extensively with property managers, HOAs, and commercial property owners. We offer preferred pricing for ongoing maintenance contracts, bulk installations, and multi-unit properties. We understand the scheduling and notification requirements of managed properties."},
-    {"q": "How do I schedule an appointment?", "a": f"Call us at {BUSINESS['telephone_display']}, use the estimate form on this page, or email {BUSINESS['email']}. We typically respond within 2 hours during business hours and offer 24/7 emergency dispatch."},
+    {"q": "How do I schedule an appointment?", "a": f"Call us at {BUSINESS['telephone_display']}, use the estimate form on this page, or email {BUSINESS['email']}. We will confirm availability and the next available appointment."},
     {"q": "Do you install smart home devices?", "a": "Yes — we install smart switches, dimmers, thermostats, lighting controls, and home automation systems. We ensure proper neutral wire connections, which older homes may lack, and configure WiFi-enabled devices for seamless integration."},
-    {"q": "What should I do in an electrical emergency?", "a": "If you smell burning, see sparks, or have a power outage affecting only your home: (1) Turn off the affected circuit at the main panel if safe, (2) Call 911 if there is active fire or smoke, (3) Call us at (818) 302-5614 for emergency dispatch. We respond 24/7 and carry common replacement parts."},
+    {"q": "What should I do in an electrical emergency?", "a": "If you smell burning, see sparks, or have a power outage affecting only your home: (1) Turn off the affected circuit at the main panel if safe, (2) Call 911 if there is active fire or smoke, (3) Call us at (818) 302-5614 to discuss current emergency availability."},
 ]
 
 FAQ_CITY_EXTRA = [
@@ -54,8 +54,8 @@ FAQ_CITY_EXTRA = [
 
 FAQ_TESTIMONIALS = [
     {"q": "How can I leave a review for AMY Electric?", "a": "You can leave a review on Google, Yelp, or Nextdoor. The fastest way is to use our direct Google review link: https://g.page/r/CVdK9ZAvNBrZEAI/review. We appreciate detailed feedback about your experience with our electrical services."},
-    {"q": "How quickly do you respond to reviews?", "a": "We respond to all reviews within 48 hours, including weekends. Each review is personally read and responded to. If you've had a less-than-perfect experience, please mention it in your review so we can make it right."},
-    {"q": "Are your Google reviews verified?", "a": "Yes — every review on our Google Business Profile is from a verified Google user who has interacted with our business. We never solicit fake reviews or offer incentives for positive reviews. Our 4.9-star rating across 87+ reviews reflects real customer experiences with our electrical services."},
+    {"q": "How does AMY Electric handle customer feedback?", "a": "Customer feedback helps us understand what went well and where communication or service can improve. If you have a concern about an electrical service, contact AMY Electric directly so the team can review the details."},
+    {"q": "Where can I read customer reviews?", "a": "Customer reviews may be available through the linked Google and Yelp profiles. Review counts and ratings can change over time, so check those profiles for the current information."},
 ]
 
 FAQ_GALLERY = [
@@ -233,7 +233,7 @@ def cmd_generate():
         else:
             html = _inject_or_replace(html, "Electrician", elec_block)
 
-        # ── WebSite+SearchAction on city pages and homepage ──
+        # ── WebSite schema on city pages and homepage ──
         base = os.path.basename(fname)
         if base in CITY_PAGES or base == "index.html":
             ws_block = json_ld(make_website())

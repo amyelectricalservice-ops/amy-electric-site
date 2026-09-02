@@ -55,7 +55,6 @@ BUSINESS = {
     "openingHours": [
         {"days": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:00", "desc": "Office hours"},
         {"days": "Saturday", "opens": "08:00", "closes": "14:00", "desc": "Office hours"},
-        {"days": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59", "desc": "24/7 emergency service dispatch"}
     ],
     "credentials": [
         {"name": "C-10 Electrical Contractor License #981578"},
@@ -235,7 +234,6 @@ def make_blogposting(headline, description, image, date_published, date_modified
         "author": {
             "@type": "Person",
             "name": author_name,
-            "image": "https://amyelectric.com/img/author-amy-400w.jpg",
             "description": "California C-10 licensed electrical contractor with 15+ years of experience",
             "url": "https://amyelectric.com"
         },
@@ -253,11 +251,7 @@ def make_website():
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": BUSINESS["name"],
-        "url": BUSINESS["url"],
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {"@type": "EntryPoint", "urlTemplate": f"{BUSINESS['url']}/?q={{search_term_string}}"}
-        }
+        "url": BUSINESS["url"]
     }
 
 

@@ -88,8 +88,8 @@ SERVICE_SCHEMAS = {
         'url': 'https://amyelectric.com/burning-smell-panel',
     },
     'emergency-electrician.html': {
-        'name': '24/7 Emergency Electrician',
-        'description': '24/7 emergency electrical service in Los Angeles. Power outages, sparking panels, downed wires. Same-day dispatch by licensed C-10 electrician.',
+        'name': 'Emergency Electrician',
+        'description': 'Emergency electrical service in Los Angeles for power outages, sparking panels, and downed wires. Call to discuss availability.',
         'serviceType': 'Emergency Electrical Service',
         'url': 'https://amyelectric.com/emergency-electrician',
     },

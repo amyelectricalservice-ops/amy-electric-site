@@ -70,6 +70,13 @@ AMY Electric is NOT ranking for:
 
 ---
 
+## Month 6 authority execution docs
+
+- [YouTube video SEO strategy](SEO_YOUTUBE_STRATEGY.md)
+- [Backlink outreach plan](SEO_BACKLINK_OUTREACH_PLAN.md)
+- [Local citation plan](SEO_LOCAL_CITATION_PLAN.md)
+- [Manual AI visibility baseline](SEO_AI_VISIBILITY_BASELINE.md)
+
 ## 3. Architecture & URL Structure
 
 ### Current URL Hierarchy

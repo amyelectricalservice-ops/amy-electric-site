@@ -11,14 +11,7 @@ WEBSITE_SCHEMA = '''<script type="application/ld+json">
   "sameAs": [
     "https://www.yelp.com/biz/amy-electric-los-angeles",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
-  ],
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://amyelectric.com/?q={search_term_string}"
-    }
-  }
+  ]
 }
 </script>'''
 
