@@ -10,6 +10,7 @@
 open-seo
 node_modules
 scripts
+functions
 partials
 templates
 seo-workspace
