@@ -49,7 +49,9 @@ Verify the production hostname before considering the cutover complete:
 ```bash
 curl -fsSL https://amyelectric.com/licensed-electrician-los-angeles | grep -m1 '<title>'
 curl -fsSL https://amyelectric.com/service-areas | grep -m1 'meta name="description"'
-curl -fsSL -o /dev/null -w '%{http_code}\n' https://amyelectric.com/api/contact
+curl -sS -X POST -H 'Content-Type: application/json' \
+  --data '{"website":"deployment-check"}' \
+  -o /dev/null -w '%{http_code}\n' https://amyelectric.com/api/contact
 ```
 
 Do not delete or transfer Revitaldaycare resources as part of this setup.
