@@ -22,12 +22,18 @@ which prevents an account ID from being committed to the repository.
 1. Confirm that `amyelectric.com` is an active zone in the Cloudflare account.
 2. Create or authorize the `amy-electric-site-production` Worker.
 3. Connect the Worker to the GitHub repository and `main` branch through
-   Workers Builds, or use an account-scoped deployment token.
+   Workers Builds. Set its deploy command to
+   `npx wrangler deploy --config wrangler.production.jsonc`, or use an
+   account-scoped deployment token with that same config.
 4. Configure the custom domain from `wrangler.production.jsonc`.
 5. Confirm the intended `www` redirect separately; the custom domain matches
    only the exact hostname configured.
 6. Keep the current `amy-electric-site` Worker in the Revitaldaycare account
    as a temporary preview until the production hostname is verified.
+
+The production Worker includes the shared `/api/contact` handler. Do not use
+an assets-only deployment for production, or form submissions will not be
+processed.
 
 ## Deployment and verification
 

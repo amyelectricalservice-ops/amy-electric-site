@@ -27,6 +27,8 @@ wrangler.jsonc
 package.json
 pnpm-lock.yaml
 *.py
+contact-handler.js
+worker.js
 .gitignore
 gbp-posts-document.txt
 *.csv

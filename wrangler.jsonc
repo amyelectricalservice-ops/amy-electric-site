@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "amy-electric-site",
+  "main": "worker.js",
   "workers_dev": true,
   "compatibility_date": "2026-05-21",
   "observability": {
@@ -8,6 +9,7 @@
   },
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   },
