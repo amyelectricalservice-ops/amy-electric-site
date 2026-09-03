@@ -20,7 +20,9 @@ GEMINI.md
 README.md
 QUICK-START.md
 SEO*.md
+DEPLOYMENT-AMY-ELECTRIC.md
 plan.md
+wrangler.production.jsonc
 wrangler.jsonc
 package.json
 pnpm-lock.yaml

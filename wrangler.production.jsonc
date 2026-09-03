@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "amy-electric-site-production",
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2026-09-02",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    {
+      "pattern": "amyelectric.com",
+      "custom_domain": true,
+      "zone_name": "amyelectric.com"
+    }
+  ],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
