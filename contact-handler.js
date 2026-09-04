@@ -26,6 +26,27 @@ export async function handleContact(request, env, waitUntil) {
     data._timestamp = new Date().toISOString();
     data._ip = request.headers.get('CF-Connecting-IP') || '';
 
+    // Turnstile Token Validation
+    const turnstileToken = data['cf-turnstile-response'] || data['g-recaptcha-response'];
+    if (env.TURNSTILE_SECRET_KEY && turnstileToken) {
+      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET_KEY,
+          response: turnstileToken,
+          remoteip: data._ip,
+        }),
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        return new Response(
+          JSON.stringify({ success: false, message: 'CAPTCHA verification failed. Please try again.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+    }
+
     if (env.GHL_WEBHOOK_URL) {
       waitUntil(
         fetch(env.GHL_WEBHOOK_URL, {
