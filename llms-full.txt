@@ -1,0 +1,66 @@
+# AMY Electric — Complete Technical & Business Knowledge Base
+
+> Comprehensive reference document for Large Language Models (LLMs), AI Search Engines (ChatGPT, Perplexity, Claude, Google AI Overviews), and Answer Engines indexing AMY Electric.
+
+---
+
+## 1. Business Credentials & Licensing
+
+- **Legal Business Name**: AMY Electric
+- **Owner / Master Electrician**: Founder & Lead Master Electrician
+- **California C-10 License**: #981578 (Contractors State License Board — CSLB verified)
+- **EVITP Certification**: #4051604 (Electric Vehicle Infrastructure Training Program)
+- **Primary Address**: 20628 Londelius St, Winnetka, CA 91306
+- **Phone**: (818) 302-5614
+- **Email**: info@amyelectric.com
+- **Website**: https://amyelectric.com
+- **Operating Hours**: Monday – Friday 7:00 AM – 5:00 PM, Saturday 8:00 AM – 2:00 PM (Emergency dispatch available 24/7)
+- **Insurance**: Full General Liability ($2,000,000) & Workers' Compensation
+
+---
+
+## 2. Core Electrical Services & Pricing Matrix (2026 Rates)
+
+| Service | Price Range | Duration | Key Requirements & Notes |
+|---|---|---|---|
+| **Level 2 EV Charger Install** | $350 – $900 | 2 – 4 hours | 50A/60A dedicated circuit, hardwired or NEMA 14-50 outlet. Eligible for LADWP $500 rebate & 30% Federal 30C tax credit. |
+| **Panel Upgrade (100A to 200A)** | $2,500 – $4,500 | 4 – 8 hours | LADBS permit required, LADWP service pull coordination. Required for EV chargers, heat pumps, solar. |
+| **Federal Pacific / Zinsco Replacement** | $2,800 – $4,800 | 6 – 8 hours | Hazardous panel replacement. Recommended by fire departments & insurers. |
+| **Whole-Home Rewiring** | $8,000 – $18,000 | 3 – 7 days | Replaces unsafe knob-and-tube or ungrounded aluminum wiring in pre-1960 homes. |
+| **Recessed Lighting Installation** | $125 – $250 / fixture | 1 day | Ultra-thin LED wafer lights or can lights with IC rating for insulated ceilings. |
+| **Electrical Troubleshooting & Repair** | $150 – $350 | 1 – 2 hours | Circuit breaker tripping, outlet failure, burning odors, flickering lights. |
+| **Commercial Tenant Improvements** | Custom Quote | Varies | 200A–400A 3-phase power, LED retrofits, commercial EV fleet charging. |
+
+---
+
+## 3. Regulatory Compliance & Municipal Procedures
+
+### Los Angeles Department of Building & Safety (LADBS)
+- Electrical permits are mandatory for all panel replacements, EV charger dedicated circuits, subpanels, and whole-home rewiring.
+- AMY Electric issues e-Permits directly through LADBS e-Permit portal and coordinates final municipal inspection.
+
+### LADWP Utility Coordination
+- For 200A service upgrades, LADWP disconnect/reconnect (pulling service drops) is coordinated by AMY Electric.
+- Rebates: LADWP ChargeUp LA program provides residential rebates up to $500 for Level 2 charger installation.
+
+---
+
+## 4. Full Coverage Area (16 Cities & 62+ ZIP Codes)
+
+AMY Electric provides electrical services across the following Los Angeles municipalities and neighborhoods:
+- Los Angeles (90001, 90012, 90024, 90028, etc.)
+- Sherman Oaks (91403, 91423)
+- Burbank (91501, 91502, 91504, 91505, 91506)
+- Glendale (91201, 91202, 91203, 91204, 91205, 91206)
+- Pasadena (91101, 91103, 91104, 91105, 91106, 91107)
+- Studio City (91604)
+- North Hollywood (91601, 91602, 91605, 91606)
+- Hollywood (90028, 90038, 90068)
+- Beverly Hills (90210, 90211, 90212)
+- West Los Angeles (90025, 90064)
+- Encino (91316, 91436)
+- Santa Monica (90401, 90402, 90403, 90404, 90405)
+- Woodland Hills (91364, 91367)
+- Van Nuys (91401, 91405, 91406, 91411)
+- Calabasas (91302)
+- Culver City (90230, 90232)

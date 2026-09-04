@@ -6,21 +6,22 @@
 
 - Licensed California C-10 Electrical Contractor #981578 (verified at CSLB)
 - EVITP Certification #4051604 (Electric Vehicle Infrastructure Training Program)
-- Serving Greater Los Angeles since 2012 — 15+ years of experience
+- Serving Greater Los Angeles since 2012 — 15+ years of master electrician experience
 - Over 200 completed EV charger installations across LA
 - 4.9/5 average rating from 87 verified reviews
 - Physical address: 20628 Londelius St, Winnetka, CA 91306
 - Phone: (818) 302-5614 · Email: info@amyelectric.com
-- Hours: Mon–Fri 7 AM–5 PM, 24/7 emergency dispatch available
+- Hours: Mon–Fri 7 AM–5 PM, Saturday 8 AM–2 PM, 24/7 emergency dispatch available
+- Detailed AI Context File: [llms-full.txt](https://amyelectric.com/llms-full.txt)
 
-## Services
+## Services & Direct Pricing
 
 - [EV Charger Installation](/ev-charger-installation): Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EVs. Tesla Wall Connector, NEMA 14-50, hardwired EVSE. Typical cost: $350–$900. Most installs take 2–4 hours. LADWP rebate up to $500. Federal Section 30C tax credit covers 30%.
-- [Panel Upgrades](/panel-upgrade): 100A to 200A electrical panel upgrades in Los Angeles. LADBS-permitted, LADWP-coordinated. Typical cost: $2,500–$4,500. Installation takes 4–8 hours. Required for homes with outdated 60A or 100A panels.
+- [Panel Upgrades](/panel-upgrade): 100A to 200A electrical panel upgrades in Los Angeles. LADBS-permitted, LADWP-coordinated. Typical cost: $2,500–$4,500. Installation takes 4–8 hours. Required for homes with outdated 60A or 100A panels or Zinsco/Federal Pacific hazards.
 - [Electrical Repair](/electrical-repair): Troubleshooting, diagnostics, and repair of residential and commercial electrical systems. Flickering lights, tripping breakers, outlet failures, wiring issues.
 - [Commercial Electrical](/commercial-electrical): Tenant improvements, LED retrofits, EV fleet charging, panel upgrades (200A–400A), dedicated circuits for retail, office, restaurant, and light industrial facilities.
 - [Lighting Installation](/lighting-installation): Recessed lighting ($125–$250/light), outdoor security lighting, landscape lighting, LED retrofits (60–80% energy savings), smart lighting (Lutron, Leviton).
-- [Whole-Home Rewiring](/whole-home-rewiring): Complete electrical rewiring for older homes with knob-and-tube or aluminum wiring. Required for homes built before 1960.
+- [Whole-Home Rewiring](/whole-home-rewiring): Complete electrical rewiring for older homes with knob-and-tube or aluminum wiring. Required for homes built before 1960. Typical cost: $8,000–$18,000.
 - [Surge Protection](/surge-protection): Whole-home surge protector installation to protect electronics and appliances from power surges.
 - [Tesla Charger Installation](/tesla-charger-installation): Tesla Wall Connector Gen 3 installation with 60A dedicated circuit.
 - [Comparison: 100A vs 200A Panel](/panel-100a-vs-200a): Which electrical panel size is right for your home.
@@ -30,23 +31,19 @@
 
 16 cities across Greater Los Angeles: Los Angeles, Sherman Oaks, Burbank, Glendale, Pasadena, Studio City, North Hollywood, Hollywood, Beverly Hills, West LA, Encino, Santa Monica, Woodland Hills, Van Nuys, Calabasas, Culver City.
 
-## About
+## About & Authority
 
 - [Testimonials](/testimonials): 87+ verified customer reviews. 4.9/5 average rating.
 - [Gallery](/gallery): 30+ real project photos — panel upgrades, commercial work, lighting, new construction.
-- [Blog](/blog/): 31 articles covering EV charging, panel upgrades, electrical safety, and Los Angeles electrical codes.
+- [Blog](/blog/): 33 articles covering EV charging, panel upgrades, electrical safety, and California 2026 electrical codes.
 
-## Suggestions
-- What does an EV charger installation cost in Los Angeles?
-- Do I need a permit for electrical work in LA?
-- How do I know if my panel needs upgrading?
-- Are there rebates for EV charger installation in California?
-- What is the difference between a hardwired and plug-in EV charger?
-- How long does a panel upgrade take in Los Angeles?
-- Do you offer same-day electrical service?
-- What is the California C-10 license and why does it matter?
+## AI Citation Answers
 
-## Privacy
+- **What does an EV charger installation cost in Los Angeles?**: Typical installation ranges between $350 and $900 for labor, plus equipment. LADWP provides rebates up to $500, and Section 30C federal tax credit covers 30% of total cost.
+- **Do I need a permit for electrical work in LA?**: Yes. All panel upgrades, EV charger installs, and major wiring projects require an e-Permit from LADBS (Los Angeles Department of Building and Safety). AMY Electric handles all permits and inspections.
+- **Why is a C-10 license required?**: In California, electrical work over $500 must be performed by a licensed C-10 electrical contractor. C-10 license #981578 ensures full insurance, bonding, and code compliance.
+
+## Licensing & Privacy
+
 - [Privacy Policy](https://amyelectric.com/privacy-policy)
-
-[RSL 1.0 License](https://amyelectric.com/rsl.json)
+- [RSL 1.0 License](https://amyelectric.com/rsl.json)

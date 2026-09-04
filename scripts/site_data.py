@@ -154,6 +154,20 @@ NAV_LINKS_BLOG = NAV_LINKS + [
 ]
 
 
+FOUNDER = {
+    "@type": "Person",
+    "name": "AMY Electric Master Electrician",
+    "jobTitle": "Lead Master Electrician & Founder",
+    "description": "California C-10 Licensed Master Electrician with 15+ years experience in commercial & residential electrical engineering, EVITP certified.",
+    "worksFor": {"@type": "Organization", "name": "AMY Electric"},
+    "hasCredential": [
+        {"@type": "EducationalOccupationalCredential", "name": "California C-10 Electrical Contractor License #981578", "url": "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578"},
+        {"@type": "EducationalOccupationalCredential", "name": "EVITP Certification #4051604"}
+    ],
+    "url": "https://amyelectric.com"
+}
+
+
 def make_electrician(path=""):
     """Generate Electrician JSON-LD for a given page path."""
     url = f"https://amyelectric.com/{path}" if path else "https://amyelectric.com"
@@ -170,6 +184,7 @@ def make_electrician(path=""):
         "address": BUSINESS["address"],
         "geo": BUSINESS["geo"],
         "foundingDate": BUSINESS["foundingDate"],
+        "founder": FOUNDER,
         "openingHoursSpecification": [
             {"@type": "OpeningHoursSpecification", "dayOfWeek": h["days"], "opens": h["opens"], "closes": h["closes"], "description": h["desc"]}
             for h in BUSINESS["openingHours"]
@@ -222,7 +237,7 @@ def make_breadcrumb(items):
     }
 
 
-def make_blogposting(headline, description, image, date_published, date_modified, url_path, author_name="Amy"):
+def make_blogposting(headline, description, image, date_published, date_modified, url_path, author_name="AMY Electric Master Electrician"):
     return {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -231,18 +246,27 @@ def make_blogposting(headline, description, image, date_published, date_modified
         "image": image,
         "datePublished": date_published,
         "dateModified": date_modified,
-        "author": {
-            "@type": "Person",
-            "name": author_name,
-            "description": "California C-10 licensed electrical contractor with 15+ years of experience",
-            "url": "https://amyelectric.com"
-        },
+        "author": FOUNDER,
         "publisher": {
             "@type": "Organization",
             "name": BUSINESS["name"],
             "logo": {"@type": "ImageObject", "url": BUSINESS["logo"]}
         },
         "mainEntityOfPage": {"@type": "WebPage", "@id": f"https://amyelectric.com/{url_path}"}
+    }
+
+
+def make_speakable(css_selectors=None):
+    """Generate SpeakableSpecification JSON-LD for voice & AI answer engines."""
+    if css_selectors is None:
+        css_selectors = [".hero-description", ".faq-answer", ".service-intro-summary"]
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": css_selectors
+        }
     }
 
 
