@@ -168,10 +168,10 @@ FOUNDER = {
 }
 
 
-def make_electrician(path=""):
+def make_electrician(path="", city_name=None):
     """Generate Electrician JSON-LD for a given page path."""
     url = f"https://amyelectric.com/{path}" if path else "https://amyelectric.com"
-    return {
+    data = {
         "@context": "https://schema.org",
         "@type": "Electrician",
         "@id": url,
@@ -194,6 +194,18 @@ def make_electrician(path=""):
         "priceRange": BUSINESS["priceRange"],
         "sameAs": BUSINESS["sameAs"]
     }
+    if city_name:
+        data["areaServed"] = {
+            "@type": "City",
+            "name": city_name,
+            "containedInPlace": {"@type": "AdministrativeArea", "name": "Los Angeles County, CA"}
+        }
+    else:
+        data["areaServed"] = {
+            "@type": "AdministrativeArea",
+            "name": "Greater Los Angeles Area, CA"
+        }
+    return data
 
 
 def make_service(name=None):

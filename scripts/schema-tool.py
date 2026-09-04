@@ -225,8 +225,19 @@ def cmd_generate():
         stem = os.path.splitext(os.path.basename(fname))[0]
         orig = html
 
+        # ── Detect City Name from Stem ──
+        city_name = None
+        for prefix in ("city-", "electrician-", "ev-charger-installation-", "panel-upgrade-", "whole-home-rewiring-"):
+            if stem.startswith(prefix) and len(stem) > len(prefix):
+                city_slug = stem[len(prefix):]
+                if city_slug in CITY_LOOKUP:
+                    city_name = CITY_LOOKUP[city_slug]["name"]
+                else:
+                    city_name = city_slug.replace("-", " ").title()
+                break
+
         # ── Electrician ──
-        elec_block = json_ld(make_electrician(page_path(stem)))
+        elec_block = json_ld(make_electrician(page_path(stem), city_name=city_name))
         if jsonld_in_html(html, "Electrician"):
             start, end, data, raw = find_jsonld(html, "Electrician")[0]
             html = html[:start] + "\n" + elec_block + "\n" + html[end:]
