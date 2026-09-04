@@ -15,7 +15,7 @@
 @keyframes qeFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 .qe-step-title { font-family: var(--cond); font-size: 24px; font-weight: 700; margin-bottom: 24px; color: var(--white); }
 .qe-svc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.qe-svc-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 16px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: all .2s; font-family: inherit; color: var(--white); text-align: center; }
+.qe-svc-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 16px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: border-color .2s, background-color .2s, box-shadow .2s; font-family: inherit; color: var(--white); text-align: center; }
 .qe-svc-card:hover { border-color: var(--gold2); background: rgba(245,166,35,.06); }
 .qe-svc-card.selected, .qe-svc-card.selected:hover { border-color: var(--gold); background: rgba(245,166,35,.1); box-shadow: 0 0 0 1px var(--gold); }
 .qe-svc-icon { font-size: 32px; line-height: 1; }
@@ -25,13 +25,13 @@
 .qe-field label { display: block; font-family: var(--cond); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--gray); margin-bottom: 8px; }
 .qe-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .qe-charger-options { display: flex; flex-direction: column; gap: 10px; }
-.qe-charger-btn { display: block; width: 100%; padding: 16px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: all .2s; font-family: inherit; color: var(--white); text-align: left; }
+.qe-charger-btn { display: block; width: 100%; padding: 16px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: border-color .2s, background-color .2s, box-shadow .2s; font-family: inherit; color: var(--white); text-align: left; }
 .qe-charger-btn:hover { border-color: var(--gold2); background: rgba(245,166,35,.06); }
 .qe-charger-btn.selected, .qe-charger-btn.selected:hover { border-color: var(--gold); background: rgba(245,166,35,.1); box-shadow: 0 0 0 1px var(--gold); }
 .qe-charger-name { display: block; font-family: var(--cond); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
 .qe-charger-desc { display: block; font-size: 13px; color: var(--gray); line-height: 1.4; }
 .qe-radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
-.qe-radio { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: all .2s; font-size: 15px; }
+.qe-radio { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--navy); border: 2px solid var(--mid); border-radius: 8px; cursor: pointer; transition: border-color .2s, background-color .2s, box-shadow .2s; font-size: 15px; }
 .qe-radio:hover { border-color: var(--gold2); background: rgba(245,166,35,.06); }
 .qe-radio:has(input:checked) { border-color: var(--gold); background: rgba(245,166,35,.1); box-shadow: 0 0 0 1px var(--gold); }
 .qe-radio input { accent-color: var(--gold); }

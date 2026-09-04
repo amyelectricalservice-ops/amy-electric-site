@@ -68,6 +68,7 @@ body {
 
 a { color: var(--gold); text-decoration: none; }
 a:hover { text-decoration: underline; }
+p a, li a { text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
 img { max-width: 100%; display: block; }
 
 /* ── UTILITY ── */

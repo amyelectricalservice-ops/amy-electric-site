@@ -84,7 +84,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 @media(min-width:768px){.sticky-bar{display:none}}
 @media(max-width:767px){body{padding-bottom:68px}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+<noscript><link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <!-- Preload hints for performance -->
 
@@ -103,8 +104,11 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 </script>
 -->
 
+<link rel="preload" as="font" href="fonts/BarlowCondensed-600.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-700.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/SourceSerif4-400.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/SourceSerif4-400italic.woff2" crossorigin>
 <link rel="preload" as="image" href="img/panel-upgrade.jpg" imagesrcset="img/panel-upgrade-400.webp 400w, img/panel-upgrade-800w.webp 800w, img/panel-upgrade.jpg 1200w" imagesizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, 1200px">
 
 <script type="application/ld+json">
@@ -146,13 +150,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       "opens": "08:00",
       "closes": "14:00",
       "description": "Office hours"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "00:00",
-      "closes": "23:59",
-      "description": "24/7 emergency service dispatch"
     }
   ],
   "aggregateRating": {
@@ -296,7 +293,9 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/panel-upgrade","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/panel-upgrade","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency service dispatch"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/panel-upgrade","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/panel-upgrade","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
 
 
 </head>
@@ -312,7 +311,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a>
     <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav>
-      <a href="/services.html">Services</a>
+      <a href="/services">Services</a>
       <a href="index">Home</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade" class="active">Panel Upgrades</a>
@@ -343,7 +342,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <div class="ctas">
       <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
       <a href="index#estimator" class="btn btn-outline">Free Estimate</a>
-          <a href="index#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">📅 Book Online</a>
+          <a href="index#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">Request an Estimate</a>
     </div>
   </div>
 </div>
@@ -368,7 +367,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <div style="display:grid; grid-template-columns: 1fr 340px; gap: 56px;" class="two-col">
       <div class="prose">
         <div class="section-label">Panel Upgrades</div>
-        <h2>What Is a Electrical Panel Upgrade?</h2>
+        <h2>What Is an Electrical Panel Upgrade?</h2>
         <p>An <strong>electrical panel upgrade</strong> replaces your existing breaker box — the metal panel that distributes electricity throughout your home — with a modern, higher-capacity unit. Most Los Angeles homes built before 1980 were wired with 60A or 100A service panels, designed before air conditioning, EV chargers, and modern appliances existed. An overloaded panel is more than an inconvenience; it's a fire and safety hazard.</p>
         <p>AMY Electric upgrades panels to modern 200A or 400A service. We handle the entire process: LADBS permit, LADWP service upgrade request, installation, and inspection sign-off. A typical 200A panel upgrade in Los Angeles costs $2,500–$4,500 and takes 4–8 hours of on-site work.</p>
   <div class="expert-quote" style="background:rgba(245,166,35,.06); border-left:4px solid var(--gold); padding:20px 24px; margin:24px 0; border-radius:0 var(--radius) var(--radius) 0;">
@@ -416,7 +415,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <tbody>
       <tr>
         <td>100A to 200A Panel Replacement</td>
-        <td><span class="price">$1,800 – $3,200</span></td>
+        <td><span class="price">$2,500 – $4,500</span></td>
         <td>1 Day (6–8 hrs)</td>
       </tr>
       <tr>
@@ -431,7 +430,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       </tr>
     </tbody>
   </table>
-  <p class="text-sm"><em>Note: All work includes free written estimates, LADBS permit fees, and utility disconnect/reconnect scheduling.</em></p>
+  <p class="text-sm"><em>Note: Estimates include LADBS permit fees and utility disconnect/reconnect coordination. Utility charges or required service-entrance work may be billed separately and will be listed in the written estimate.</em></p>
 </div>
           </div>
           <div class="card">
@@ -459,7 +458,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
             <table class="price-table" style="margin-top:12px;">
               <tr><td>200A Panel Replacement</td><td class="price">$2,500–$4,500</td></tr>
               <tr><td>Main Service Upgrade</td><td class="price">$3,000–$6,000</td></tr>
-              <tr><td>EV-Ready Upgrade</td><td class="price">Included EV circuit</td></tr>
+              <tr><td>EV-Ready Upgrade</td><td class="price">Price varies; EV circuit scoped in estimate</td></tr>
               <tr><td>Sub-Panel Add</td><td class="price">$1,200–$2,500</td></tr>
             </table>
             <p style="font-size:13px; color:var(--gray); margin-top:12px;">All prices include permit and inspection. Free detailed estimate always provided first.</p>
@@ -504,7 +503,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <h2>Ready for a Modern, Safe Panel?</h2>
   <p>Get a free, no-obligation estimate from a licensed LA electrician.</p>
   <a href="tel:18183025614" class="btn btn-navy mr-sm">☎ Call (818) 302-5614</a>
-  <a href="index#estimator" class="btn btn-navy">Request Estimate Online</a>
+  <a href="index#estimator" class="btn btn-navy">Request an Estimate</a>
 </div></div>
 
 <!-- Panel Upgrades by City -->
@@ -645,7 +644,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     </div>
   </div>
 </footer>
-<script defer src="js/estimator.min.js"></script>
 <script defer src="js/site.min.js"></script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">

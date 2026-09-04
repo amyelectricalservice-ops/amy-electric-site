@@ -311,19 +311,23 @@ def main():
 
 def update_sitemap(rows):
     sitemap_content = SITEMAP_FILE.read_text(encoding="utf-8")
+    prefix = "ns0:" if "<ns0:urlset" in sitemap_content else ""
+    image_prefix = "ns1:" if "xmlns:ns1=" in sitemap_content else "image:"
     image_tags = "".join(
-        '<image:image><image:loc>https://amyelectric.com/img/gallery/%s-1200w.webp</image:loc></image:image>\n'
-        % r["slug"] for r in rows
+        '<%simage><%sloc>https://amyelectric.com/img/gallery/%s-1200w.webp</%sloc></%simage>\n'
+        % (image_prefix, image_prefix, r["slug"], image_prefix, image_prefix)
+        for r in rows
     )
     new_gallery_entry = (
-        '<url>\n'
-        '<loc>https://amyelectric.com/gallery</loc>\n'
-        '<lastmod>2026-06-19</lastmod>\n'
-        '<priority>0.7</priority>\n'
+        '<%surl>\n'
+        '<%sloc>https://amyelectric.com/gallery</%sloc>\n'
+        '<%slastmod>2026-06-19</%slastmod>\n'
+        '<%spriority>0.7</%spriority>\n'
         f'{image_tags}'
-        '</url>'
+        '</%surl>'
+        % (prefix, prefix, prefix, prefix, prefix, prefix, prefix, prefix)
     )
-    pattern = r'<url>\s*<loc>https://amyelectric\.com/gallery</loc>.*?</url>'
+    pattern = rf'<{prefix}url>\s*<{prefix}loc>https://amyelectric\.com/gallery</{prefix}loc>.*?</{prefix}url>'
     match = re.search(pattern, sitemap_content, re.DOTALL)
     if match:
         sitemap_content = sitemap_content.replace(match.group(0), new_gallery_entry)

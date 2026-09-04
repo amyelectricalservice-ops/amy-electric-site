@@ -24,10 +24,12 @@
 <meta name="twitter:title" content="Electrician Los Angeles | Panel Upgrades, EV Chargers &amp; Repairs | AMY Electric">
 <meta name="twitter:description" content="Licensed LA electricians. Panel upgrades, EV chargers, repairs. C-10 #981578 · EVITP #4051604.">
 <meta name="twitter:image" content="https://amyelectric.com/img/og-home.jpg">
+<link rel="preload" as="font" href="fonts/BarlowCondensed-600.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-700.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/SourceSerif4-400.woff2" crossorigin>
-<link rel="preload" as="image" href="img/hero-electrician-400.webp" media="(max-width: 480px)" fetchpriority="high">
-<link rel="preload" as="image" href="img/hero-electrician-800w.webp" media="(min-width: 481px)" fetchpriority="high">
+<link rel="preload" as="font" href="fonts/SourceSerif4-400italic.woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero-electrician-560x420.webp" media="(min-width: 481px)" fetchpriority="high">
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
 html{scroll-behavior:smooth}
@@ -79,7 +81,8 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
 @media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+<noscript><link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <!-- Preload hints for performance -->
 
@@ -128,21 +131,6 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       "opens": "07:00",
       "closes": "17:00",
       "description": "Office hours"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "00:00",
-      "closes": "23:59",
-      "description": "24/7 emergency service dispatch"
     }
   ],
   "aggregateRating": {
@@ -391,7 +379,9 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 </script>
 
 <!-- WebSite schema -->
+
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"AMY Electric","url":"https://amyelectric.com"}</script>
+
 
 
 
@@ -533,7 +523,9 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 </script>
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency service dispatch"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
 
 
 </head>
@@ -560,7 +552,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       <span></span><span></span><span></span>
     </button>
     <nav>
-      <a href="/services.html">Services</a>
+      <a href="/services">Services</a>
       <a href="index">Home</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
@@ -584,8 +576,8 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-eyebrow">Los Angeles · Residential &amp; Commercial</div>
-        <h1>Los Angeles Electrician —<br><em>Safe, Code-Perfect</em><br>Electrical Work</h1>
-        <p class="hero-desc">AMY Electric is a trusted Los Angeles electrical contractor built on safety, code-compliance, and craftsmanship. Since 2012, we have been serving homeowners, property managers, and business owners across Greater Los Angeles with comprehensive electrical solutions. As a licensed C-10 contractor (CSLB #981578) with an EVITP certification (#4051604) for electric vehicle charging infrastructure, every job we complete is backed by proper permits, thorough inspections, and full liability insurance. Our services range from residential panel upgrades and whole-home rewiring to Level 2 EV charger installations, dedicated circuits for home appliances, surge protection, lighting design and installation, ceiling fan installation, outlet and switch upgrades, and commercial build-outs. We proudly serve Los Angeles, Sherman Oaks, Burbank, Glendale, Pasadena, Studio City, North Hollywood, Hollywood, Beverly Hills, West LA, Encino, Santa Monica, Woodland Hills, Van Nuys, Calabasas, and Culver City. Whether you need an emergency repair after hours or a planned electrical upgrade for your remodel, our electricians deliver reliable workmanship with transparent pricing and same-day response times.</p>
+        <h1>Los Angeles Electrician —<br><em>Safe, Code-Compliant</em><br>Electrical Work</h1>
+        <p class="hero-desc">AMY Electric is a Los Angeles electrical contractor focused on safe, code-compliant electrical work. Since 2012, we have served homeowners, property managers, and business owners across Greater Los Angeles. We are a licensed C-10 contractor (CSLB #981578) with EVITP certification (#4051604) for electric vehicle charging infrastructure. We install and repair panels, wiring, EV chargers, dedicated circuits, lighting, and other residential and commercial electrical systems. We provide written estimates and offer same-day emergency dispatch when scheduling allows; call to confirm current availability.</p>
         <div class="hero-badges">
           <span class="badge"><span class="dot"></span> C-10 Licensed &amp; Bonded</span>
           <span class="badge"><span class="dot"></span> EVITP Certified #4051604</span>
@@ -593,15 +585,15 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
         </div>
         <div class="hero-ctas">
           <a href="tel:18183025614" class="btn btn-gold">Call (818) 302-5614</a>
-          <a href="#estimator" class="btn btn-outline">Get Online Price</a>
-          <a href="#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">📅 Book Online</a>
+          <a href="#estimator" class="btn btn-outline">Request a Quote</a>
+          <a href="#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">Request an Estimate</a>
         </div>
       </div>
       <div class="hero-img">
         <picture>
   <source srcset="img/hero-electrician-400.webp" media="(max-width: 480px)" type="image/webp">
-  <source srcset="img/hero-electrician-800w.webp" type="image/webp">
-  <img src="img/hero-electrician-800w.jpg" alt="Licensed electrician working on electrical panel in Los Angeles" width="560" height="420" loading="eager" fetchpriority="high" decoding="async">
+  <source srcset="img/hero-electrician-560x420.webp" type="image/webp">
+  <img src="img/hero-electrician-560x420.jpg" alt="Licensed electrician working on electrical panel in Los Angeles" width="560" height="420" loading="eager" fetchpriority="high" decoding="async">
 </picture>
       </div>
     </div>
@@ -762,7 +754,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
           <li>
             <div class="why-num">04</div>
             <div class="why-text">
-              <strong>Clean, Code-Perfect Work</strong>
+              <strong>Clean, Code-Compliant Work</strong>
               <span>Neat wiring, labeled panels, and work that passes inspection the first time — every time.</span>
             </div>
           </li>
@@ -955,7 +947,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 <section class="estimate-section" id="estimate" style="padding: 72px 24px;">
   <div class="wrap" style="max-width: 760px;">
     <div class="section-label">Get Started</div>
-    <h2>Request a Service or Free Estimate</h2>
+    <h2>Request Service or an Estimate</h2>
     <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
 
     <form id="quick-form" class="estimate-form quick-form" action="/api/contact" method="POST" aria-label="Quick quote form">
@@ -997,7 +989,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
            <div id="q-service-error" class="form-error" style="display:none; color:red; margin-top:5px;" aria-live="polite">Please select a service.</div>
          </div>
        </div>
-       <button type="submit" class="btn btn-gold form-submit">Get Free Quote</button>
+       <button type="submit" class="btn btn-gold form-submit">Request Free Quote</button>
       <p class="form-divider">— or —</p>
       <a href="#detailed-form" class="form-toggle" onclick="document.getElementById('detailed-form').open=true;">Need a detailed estimate? Click here →</a>
       <p class="form-note">We typically respond within a few hours during business hours. For urgent issues, call <a href="tel:18183025614">(818) 302-5614</a>.</p>
@@ -1262,7 +1254,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       </div>
     </div>
     <div style="text-align:center; margin-top:40px;">
-      <a href="testimonials.html" class="btn btn-outline">Read More Testimonials</a>
+      <a href="testimonials" class="btn btn-outline">Read More Testimonials</a>
       <a href="https://g.page/r/CVdK9ZAvNBrZEAI/review" class="btn btn-gold" style="margin-left:12px;">Leave a Review on Google</a>
     </div>
   </div>

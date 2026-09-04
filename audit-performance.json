@@ -1,0 +1,222 @@
+[
+  {
+    "url": "https://amyelectric.com/",
+    "strategy": "mobile",
+    "performance": 95,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 2464.181,
+    "cls": 0.00027843518,
+    "inpMs": null,
+    "ttfbMs": 58
+  },
+  {
+    "url": "https://amyelectric.com/",
+    "strategy": "desktop",
+    "performance": 80,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 615.8315,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 75
+  },
+  {
+    "url": "https://amyelectric.com/blog/",
+    "strategy": "mobile",
+    "performance": 99,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 1597.719,
+    "cls": 0.00088063395,
+    "inpMs": null,
+    "ttfbMs": 50
+  },
+  {
+    "url": "https://amyelectric.com/blog/",
+    "strategy": "desktop",
+    "performance": 80,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 465.057,
+    "cls": 0.47405723,
+    "inpMs": null,
+    "ttfbMs": 47
+  },
+  {
+    "url": "https://amyelectric.com/blog/breaker-keeps-tripping-causes",
+    "strategy": "mobile",
+    "performance": 98,
+    "accessibility": 96,
+    "seo": 100,
+    "lcpMs": 1585.082,
+    "cls": 0.0777002,
+    "inpMs": null,
+    "ttfbMs": 64
+  },
+  {
+    "url": "https://amyelectric.com/blog/breaker-keeps-tripping-causes",
+    "strategy": "desktop",
+    "performance": 80,
+    "accessibility": 94,
+    "seo": 100,
+    "lcpMs": 445.958,
+    "cls": 0.47405723,
+    "inpMs": null,
+    "ttfbMs": 35
+  },
+  {
+    "url": "https://amyelectric.com/ceiling-fan-installation",
+    "strategy": "mobile",
+    "performance": 99,
+    "accessibility": 96,
+    "seo": 100,
+    "lcpMs": 1895.672,
+    "cls": 0.0007612569,
+    "inpMs": null,
+    "ttfbMs": 62
+  },
+  {
+    "url": "https://amyelectric.com/ceiling-fan-installation",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 94,
+    "seo": 100,
+    "lcpMs": 479.837,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 50
+  },
+  {
+    "url": "https://amyelectric.com/commercial-electrical",
+    "strategy": "mobile",
+    "performance": 99,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 1582.7625,
+    "cls": 0.0006586885,
+    "inpMs": null,
+    "ttfbMs": 39
+  },
+  {
+    "url": "https://amyelectric.com/commercial-electrical",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 507.1245,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 70
+  },
+  {
+    "url": "https://amyelectric.com/electrical-repair",
+    "strategy": "mobile",
+    "performance": 99,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 1569.426,
+    "cls": 0.0007612569,
+    "inpMs": null,
+    "ttfbMs": 35
+  },
+  {
+    "url": "https://amyelectric.com/electrical-repair",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 472.365,
+    "cls": 0.422254,
+    "inpMs": null,
+    "ttfbMs": 65
+  },
+  {
+    "url": "https://amyelectric.com/gallery",
+    "strategy": "mobile",
+    "performance": 95,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 2818.881,
+    "cls": 0.0006586885,
+    "inpMs": null,
+    "ttfbMs": 63
+  },
+  {
+    "url": "https://amyelectric.com/gallery",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 713.0275,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 50
+  },
+  {
+    "url": "https://amyelectric.com/lighting-installation",
+    "strategy": "mobile",
+    "performance": 98,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 1972.8564,
+    "cls": 0.058243036,
+    "inpMs": null,
+    "ttfbMs": 47
+  },
+  {
+    "url": "https://amyelectric.com/lighting-installation",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 100,
+    "seo": 100,
+    "lcpMs": 554.8455,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 63
+  },
+  {
+    "url": "https://amyelectric.com/panel-upgrade",
+    "strategy": "mobile",
+    "performance": 99,
+    "accessibility": 96,
+    "seo": 100,
+    "lcpMs": 1855.1935,
+    "cls": 0.00022365701,
+    "inpMs": null,
+    "ttfbMs": 52
+  },
+  {
+    "url": "https://amyelectric.com/panel-upgrade",
+    "strategy": "desktop",
+    "performance": 81,
+    "accessibility": 94,
+    "seo": 100,
+    "lcpMs": 582.5655,
+    "cls": 0.42169937,
+    "inpMs": null,
+    "ttfbMs": 37
+  },
+  {
+    "url": "https://amyelectric.com/service-areas",
+    "strategy": "mobile",
+    "performance": 97,
+    "accessibility": 88,
+    "seo": 100,
+    "lcpMs": 930.776,
+    "cls": 0.10049177,
+    "inpMs": null,
+    "ttfbMs": 50
+  },
+  {
+    "url": "https://amyelectric.com/service-areas",
+    "strategy": "desktop",
+    "performance": 100,
+    "accessibility": 92,
+    "seo": 100,
+    "lcpMs": 466.526,
+    "cls": 0.014069385,
+    "inpMs": null,
+    "ttfbMs": 64
+  }
+]

@@ -22,8 +22,11 @@
 <meta name="twitter:description" content="Circuit breaker keeps tripping? AMY Electric diagnoses and repairs tripping breakers in Los Angeles. Same-day service. (818) 302-5614.">
 <meta name="twitter:image" content="https://amyelectric.com/img/hero-electrician.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" as="font" href="fonts/BarlowCondensed-600.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-700.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/SourceSerif4-400.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/SourceSerif4-400italic.woff2" crossorigin>
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
 html{scroll-behavior:smooth}
@@ -84,7 +87,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 @media(min-width:768px){.sticky-bar{display:none}}
 @media(max-width:767px){body{padding-bottom:68px}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+<noscript><link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does my breaker keep tripping?", "acceptedAnswer": {"@type": "Answer", "text": "A breaker that trips repeatedly is typically caused by one of three issues: an overloaded circuit drawing more current than the breaker rating allows, a short circuit where a hot wire touches a neutral or ground wire creating a sudden surge of current, or a ground fault where current is leaking to an unintended path such as a grounded surface or water. Less common causes include a failing or aging breaker that has worn out from years of thermal cycling, a loose connection at the breaker terminal or bus bar, moisture intrusion in outdoor outlet boxes, or a damaged appliance pulling excess current. We diagnose the exact root cause using specialized equipment including multimeters, clamp meters that measure current draw without disconnecting wires, and insulation resistance testers that detect hidden wiring damage. Once identified, we repair the underlying cause permanently — not just reset the breaker and leave it to trip again."}}, {"@type": "Question", "name": "Is a tripping breaker dangerous?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a breaker that trips repeatedly should never be ignored or treated as a minor inconvenience. Frequent tripping indicates an underlying electrical problem that, left unaddressed, can generate enough heat to melt wire insulation, damage outlet and switch connections, and potentially ignite surrounding wood framing or drywall. According to the Electrical Safety Foundation International (ESFI), electrical failures and malfunctions cause an estimated 51,000 home fires each year in the United States, resulting in roughly 500 deaths and over $1.3 billion in property damage. A breaker that trips is doing its job of protecting your wiring, but the underlying fault that causes the trip is the real danger. If you ever notice a breaker that feels hot to the touch, a buzzing sound from the panel, or a burning smell near outlets or the panel, turn off the affected circuit immediately and contact a licensed electrician for an emergency inspection."}}, {"@type": "Question", "name": "Can I just replace the breaker with a larger one?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely not — replacing a breaker with a larger amp rating than the circuit wiring is designed for is dangerous and a direct violation of the California Electrical Code (CEC). The breaker's amp rating is matched to the wire gauge on that circuit: 15-amp breakers protect 14-gauge wire, 20-amp breakers protect 12-gauge wire, and 30-amp breakers protect 10-gauge wire. Installing a 20-amp breaker on a circuit wired with 14-gauge wire allows up to 20 amps of current to flow through wire rated for only 15 amps, which will cause the wire to overheat and potentially start a fire before the breaker ever trips. This practice is known as a Code violation under CEC 240.4 and is one of the most common dangerous electrical mistakes we see in older Los Angeles homes. If your breaker trips frequently because you need more power, the correct solution is to either redistribute loads across existing circuits or install a new dedicated circuit."}}]}</script>
 
@@ -196,7 +200,9 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/breaker-tripping","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/breaker-tripping","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency service dispatch"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/breaker-tripping","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/breaker-tripping","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
 
 
 </head>
@@ -211,7 +217,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a>
   <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   <nav>
-      <a href="/services.html">Services</a>
+      <a href="/services">Services</a>
       <a href="index">Home</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
@@ -373,7 +379,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     </div>
   </div>
 </footer>
-<script defer src="js/estimator.min.js"></script>
 <script defer src="js/site.min.js"></script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">

@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""Reduce font preloads from 5 to 2 (BC-800 + SS4-400) across all pages."""
+"""Ensure all self-hosted fonts are preloaded across all HTML pages."""
 import glob, re
 
-KEEP_FONTS = {'BarlowCondensed-800.woff2', 'SourceSerif4-400.woff2'}
+FONT_FILES = (
+    'BarlowCondensed-600.woff2',
+    'BarlowCondensed-700.woff2',
+    'BarlowCondensed-800.woff2',
+    'SourceSerif4-400.woff2',
+    'SourceSerif4-400italic.woff2',
+)
 FONT_PRELOAD = re.compile(r'<link rel="preload" as="font"[^>]*>\s*')
 
 html_files = sorted(
@@ -17,22 +23,13 @@ for filepath in html_files:
     with open(filepath) as f:
         content = f.read()
 
-    # Find all font preloads
-    preloads = FONT_PRELOAD.findall(content)
-    unique = list(dict.fromkeys(p.strip() for p in preloads))  # deduplicate, preserve order
-
-    if not unique:
-        continue
-
-    # Filter to keep only critical fonts
-    keep = [p for p in unique if any(k in p for k in KEEP_FONTS)]
-    dropped = len(unique) - len(keep)
-
-    if dropped == 0 and len(unique) < 6:
-        continue  # no change needed
-
-    # Remove ALL font preloads, then re-insert kept ones
+    # Remove existing font preloads, then insert one canonical block.
     new_content = FONT_PRELOAD.sub('', content)
+    prefix = '../' if '/blog/' in filepath else ''
+    keep = [
+        f'<link rel="preload" as="font" href="{prefix}fonts/{font}" crossorigin>'
+        for font in FONT_FILES
+    ]
 
     # Find insertion point: before the first non-font preload
     # Insert right before the first image preload, or before <style>, or before </head>
@@ -51,14 +48,17 @@ for filepath in html_files:
         continue
 
     # Insert the kept preloads
-    block = '\n'.join(p.strip() for p in keep) + '\n'
+    block = '\n'.join(keep) + '\n'
     new_content = new_content[:pos] + block + new_content[pos:]
+
+    if new_content == content:
+        continue
 
     with open(filepath, 'w') as f:
         f.write(new_content)
 
     changed += 1
     rel = '/'.join(filepath.split('/')[-2:])
-    print(f'  {rel}: {len(unique)} preloads → {len(keep)} ({dropped} dropped)')
+    print(f'  {rel}: normalized to {len(keep)} font preloads')
 
 print(f'\n{changed} files changed')

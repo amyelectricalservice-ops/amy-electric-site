@@ -12,8 +12,11 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <!-- Preload hints for performance -->
 
+<link rel="preload" as="font" href="fonts/BarlowCondensed-600.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-700.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="fonts/SourceSerif4-400.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/SourceSerif4-400italic.woff2" crossorigin>
 <link rel="preload" as="image" href="img/ev-charger.jpg" imagesrcset="img/ev-charger-400.webp 400w, img/ev-charger-800w.webp 800w, img/ev-charger.jpg 1200w" imagesizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, 1200px">
 <meta property="og:title" content="EV Charger Installation Los Angeles | AMY Electric">
 <meta property="og:description" content="EVITP-certified Level 2 EV charger installation. Tesla, Rivian, ChargePoint, NEMA 14-50. Free estimates. (818) 302-5614.">
@@ -87,7 +90,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 @media(min-width:768px){.sticky-bar{display:none}}
 @media(max-width:767px){body{padding-bottom:68px}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+<noscript><link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 
 <script type="application/ld+json">
@@ -129,13 +133,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       "opens": "08:00",
       "closes": "14:00",
       "description": "Office hours"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "00:00",
-      "closes": "23:59",
-      "description": "24/7 emergency service dispatch"
     }
   ],
   "aggregateRating": {
@@ -279,7 +276,9 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/ev-charger-installation","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/ev-charger-installation","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency service dispatch"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/ev-charger-installation","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/ev-charger-installation","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}],"aggregateRating":{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"name":"C-10 Electrical Contractor License #981578"},{"name":"EVITP Certification #4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"]}</script>
+
 
 
 </head>
@@ -302,7 +301,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     </a>
     <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav>
-      <a href="/services.html">Services</a>
+      <a href="/services">Services</a>
       <a href="index">Home</a>
       <a href="ev-charger-installation" class="active">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
@@ -329,12 +328,12 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <p>Professional Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all electric vehicles — installed by EVITP-certified electricians. Permits handled. Free estimates.</p>
       <div id="quick-answer" style="background:rgba(245,166,35,.08); border-left:4px solid var(--gold); padding:16px 20px; margin-bottom:20px; border-radius:0 var(--radius) var(--radius) 0; font-size:15px; line-height:1.65;">
     <strong style="font-family:var(--cond); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px;">At a Glance</strong>
-    A Level 2 EV charger installation in Los Angeles typically costs between $350 and $900 for a standard garage installation with existing 240V service. According to the U.S. Department of Energy's Alternative Fuels Data Center, Level 2 chargers deliver 20–35 miles of range per hour — enough to fully charge most electric vehicles overnight. Most installations take 2–4 hours with permits handled by your electrician.
+    EV charger installation costs depend on the charger, panel capacity, wiring distance, and site access. According to the U.S. Department of Energy's Alternative Fuels Data Center, Level 2 chargers deliver 20–35 miles of range per hour — enough to fully charge most electric vehicles overnight. The on-site installation often takes 2–4 hours, but the full project timeline can be longer because permit approval, utility coordination, and inspection scheduling vary.
   </div>
     <div class="ctas">
       <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
       <a href="index#estimator" class="btn btn-outline">Free Estimate</a>
-          <a href="index#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">📅 Book Online</a>
+          <a href="index#estimator" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">Request an Estimate</a>
     </div>
   </div>
 </div>
@@ -350,7 +349,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 
     <div class="trust-item"><span class="trust-icon">📋</span> Permits &amp; Inspections Handled</div>
     <div class="trust-item"><span class="trust-icon">💰</span> LADWP &amp; CALeVIP Rebate Help</div>
-    <div class="trust-item"><span class="trust-icon">🕐</span> Most Installs in 2–4 Hours</div>
+    <div class="trust-item"><span class="trust-icon">🕐</span> On-Site Work Often 2–4 Hours</div>
   </div>
 </div>
 
@@ -400,7 +399,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
           <div class="card">
             <div class="card-icon">📐</div>
             <h3>Load Calculation</h3>
-            <p>Free load calc to determine if your panel can support a charger — required for most permits.</p>
+            <p>Load calculation to determine whether your panel can support the charger; included with the estimate when applicable.</p>
           </div>
         </div>
 
@@ -423,7 +422,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
           <div class="step">
             <div class="step-num">3</div>
             <div class="step-body">
-              <strong>Installation Day (2–4 Hours)</strong>
+              <strong>On-Site Installation (Typically 2–4 Hours)</strong>
               <p>We run the dedicated circuit, mount the charger or NEMA outlet, label the breaker, and test the system fully before we leave.</p>
             </div>
           </div>
@@ -437,7 +436,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         </div>
 
         <h2>What Rebates and Incentives Are Available for EV Charger Installation in Los Angeles?</h2>
-        <div class="alert-info">💡 LA residents may qualify for significant EV charger rebates that can offset 50–100% of installation cost.</div>
+        <div class="alert-info">💡 Some customers may qualify for LADWP, CALeVIP, or federal incentives. Eligibility, amounts, and program availability vary; verify current requirements before relying on an incentive.</div>
         <ul>
           <li><strong>LADWP Residential EV Charger Rebate</strong> — Up to $500 for qualifying LADWP customers installing a Level 2 charger. <a href="https://www.ladwp.com/saving-energy/commercial-service-programs/electric-vehicle-incentive-program" target="_blank" rel="noopener">LADWP EV Program →</a></li>
           <li><strong>CALeVIP</strong> — California Electric Vehicle Infrastructure Project offers rebates for charger hardware and installation at qualifying sites. <a href="https://www.calvip.org/" target="_blank" rel="noopener">CALeVIP.org →</a></li>
@@ -451,7 +450,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
           <li><strong>NEC Article 625</strong> — Electric Vehicle Power Transfer System (National Electrical Code requirement for EV charging)</li>
           <li><strong>NEC Article 210</strong> — Branch circuits (dedicated circuit requirements for EV chargers)</li>
           <li><strong>LADBS</strong> — Los Angeles Department of Building and Safety electrical permit requirements</li>
-          <li><strong>LADWP</strong> — Service upgrade coordination for 200A+ panels</li>
+          <li><strong>LADWP</strong> — Utility coordination when the project requires a service upgrade</li>
         </ul>
         <p style="font-size: 14px; color: var(--gray);">References: <a href="https://www.nfpa.org/codes-and-standards/nfpa-70-standard-for-electrical-safety-in-the-workplace" target="_blank" rel="noopener">NFPA 70 (NEC)</a> · <a href="https://www.ladbs.org/" target="_blank" rel="noopener">LADBS</a> · <a href="https://www.ladwp.com/" target="_blank" rel="noopener">LADWP</a></p>
       </div>
@@ -588,7 +587,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <h2>Ready to Charge at Home?</h2>
     <p>Get a free, no-obligation estimate from an EVITP-certified electrician.</p>
     <a href="tel:18183025614" class="btn btn-navy mr-sm">☎ Call (818) 302-5614</a>
-    <a href="index#estimator" class="btn btn-navy">Request Estimate Online</a>
+    <a href="index#estimator" class="btn btn-navy">Request an Estimate</a>
   </div>
 </div>
 
@@ -702,7 +701,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     </div>
   </div>
 </footer>
-<script defer src="js/estimator.min.js"></script>
 <script defer src="js/site.min.js"></script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
