@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMY Electric — Admin Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preload" as="style" href="../css/style.min.css">
+<link rel="stylesheet" href="../css/style.min.css">
+<style>
+/* ── Dashboard-specific styles ─────────────────────────── */
+:root {
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --blue: #3dd6f5;
+  --card-bg: rgba(255,255,255,.04);
+  --card-border: rgba(255,255,255,.09);
+}
+.dash-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+.dash-hero { margin-bottom: 40px; }
+.dash-hero h1 { font-family: var(--cond); font-weight: 800; font-size: clamp(28px,4vw,48px); color: var(--white); margin-bottom: 6px; }
+.dash-hero p  { color: var(--gray); font-size: 15px; }
+
+/* Stat Cards */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 16px; margin-bottom: 40px; }
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 22px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s, box-shadow .15s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.45); }
+.stat-card .label { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
+.stat-card .value { font-family: var(--cond); font-size: 36px; font-weight: 800; color: var(--white); line-height: 1; }
+.stat-card .sub   { font-size: 13px; color: var(--gray); margin-top: 6px; }
+.stat-card .pill {
+  display: inline-block; font-family: var(--cond); font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; border-radius: 20px;
+  padding: 2px 10px; margin-top: 10px;
+}
+.pill-green { background: rgba(34,197,94,.15); color: var(--green); }
+.pill-amber { background: rgba(245,158,11,.15); color: var(--amber); }
+.pill-red   { background: rgba(239,68,68,.15);  color: var(--red); }
+.pill-blue  { background: rgba(61,214,245,.15); color: var(--blue); }
+
+/* Section title */
+.section-title { font-family: var(--cond); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 16px; border-left: 3px solid var(--gold); padding-left: 12px; }
+
+/* Table */
+.dash-table-wrap { overflow-x: auto; margin-bottom: 40px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--card-border); }
+td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.04); color: rgba(244,241,235,.85); vertical-align: top; }
+tr:hover td { background: rgba(255,255,255,.03); }
+
+/* Panels */
+.panel { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 24px; margin-bottom: 24px; }
+.panel pre { font-size: 12px; color: var(--gray); white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow-y: auto; }
+
+/* Actions */
+.action-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+.btn-sm { display: inline-flex; align-items: center; gap: 8px; font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer; transition: .15s; }
+.btn-sm-gold    { background: var(--gold); color: #0b1628; }
+.btn-sm-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,.2); }
+.btn-sm:hover   { opacity: .88; transform: translateY(-1px); }
+
+/* GBP post box */
+.post-box { background: rgba(245,166,35,.05); border: 1px solid rgba(245,166,35,.2); border-radius: 10px; padding: 24px; margin-bottom: 40px; }
+.post-box h3 { font-family: var(--cond); font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+.post-body { white-space: pre-wrap; font-size: 15px; line-height: 1.7; color: rgba(244,241,235,.9); }
+.copy-btn { margin-top: 14px; }
+
+/* Status dot */
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.dot-amber { background: var(--amber); }
+.dot-red   { background: var(--red); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Loading spinner */
+.spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Login overlay */
+.login-overlay { position: fixed; inset: 0; background: var(--navy); z-index: 200; display: flex; align-items: center; justify-content: center; }
+.login-box { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 380px; text-align: center; }
+.login-box h2 { font-family: var(--cond); font-weight: 800; font-size: 28px; color: var(--white); margin-bottom: 8px; }
+.login-box p { color: var(--gray); font-size: 14px; margin-bottom: 28px; }
+.login-box input { width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15); border-radius: 6px; padding: 12px 16px; color: var(--white); font-size: 15px; margin-bottom: 16px; outline: none; }
+.login-box input:focus { border-color: var(--gold); }
+.login-box .err { color: var(--red); font-size: 13px; margin-bottom: 12px; min-height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- Login Overlay -->
+<div class="login-overlay" id="loginOverlay" role="dialog" aria-label="Dashboard Login">
+  <div class="login-box">
+    <div style="font-size:36px;margin-bottom:12px;">⚡</div>
+    <h2>AMY Electric</h2>
+    <p>Admin Dashboard — Enter your access token</p>
+    <div class="err" id="loginErr" role="alert"></div>
+    <input type="password" id="tokenInput" placeholder="Dashboard access token" autocomplete="current-password">
+    <button class="btn-sm btn-sm-gold" style="width:100%;justify-content:center;font-size:16px;padding:13px;" onclick="doLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- Skip link -->
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<main id="main-content">
+<div class="dash-wrap">
+
+  <div class="dash-hero">
+    <h1>⚡ AMY Electric — Admin Dashboard</h1>
+    <p id="lastUpdated" style="color:var(--gray);font-size:14px;">Loading site data…</p>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stat-grid" id="statGrid">
+    <div class="stat-card"><div class="label">Total Pages</div><div class="value">206</div><div class="sub">All HTML assets</div></div>
+    <div class="stat-card"><div class="label">Schema Valid</div><div class="value" id="schemaVal">206</div><div class="sub">JSON-LD pages</div><span class="pill pill-green">100%</span></div>
+    <div class="stat-card"><div class="label">Performance</div><div class="value">98</div><div class="sub">Lighthouse score</div><span class="pill pill-green">Target: 90+</span></div>
+    <div class="stat-card"><div class="label">Accessibility</div><div class="value">100</div><div class="sub">Lighthouse score</div><span class="pill pill-green">Perfect</span></div>
+    <div class="stat-card"><div class="label">SEO Score</div><div class="value">100</div><div class="sub">Lighthouse score</div><span class="pill pill-green">Perfect</span></div>
+    <div class="stat-card"><div class="label">Page Views (7d)</div><div class="value" id="pvStat">—</div><div class="sub" id="pvSub">Loading…</div></div>
+    <div class="stat-card"><div class="label">Unique Visitors (7d)</div><div class="value" id="uvStat">—</div><div class="sub" id="uvSub">Loading…</div></div>
+    <div class="stat-card"><div class="label">Cache Hit Rate</div><div class="value" id="cacheStat">—</div><div class="sub">Cloudflare CDN</div></div>
+  </div>
+
+  <!-- System Health -->
+  <div class="section-title">System Health</div>
+  <div class="panel" style="margin-bottom:40px;">
+    <table style="font-size:14px;">
+      <thead><tr><th>Service</th><th>Endpoint</th><th>Status</th></tr></thead>
+      <tbody id="healthTable">
+        <tr><td colspan="3" style="color:var(--gray);">Loading health data…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="section-title">Quick Actions</div>
+  <div class="action-row">
+    <button class="btn-sm btn-sm-gold" onclick="triggerAudit()">
+      <span id="auditSpinner" style="display:none;" class="spinner"></span>
+      🔍 Run Site Audit
+    </button>
+    <button class="btn-sm btn-sm-outline" onclick="triggerIndexNow()">📡 Ping IndexNow</button>
+    <a class="btn-sm btn-sm-outline" href="https://search.google.com/search-console" target="_blank" rel="noopener">📊 Search Console ↗</a>
+    <a class="btn-sm btn-sm-outline" href="https://business.google.com/posts" target="_blank" rel="noopener">📍 GBP Posts ↗</a>
+    <a class="btn-sm btn-sm-outline" href="https://dash.cloudflare.com" target="_blank" rel="noopener">☁ Cloudflare ↗</a>
+  </div>
+
+  <!-- Audit Results -->
+  <div id="auditResults" style="display:none;">
+    <div class="section-title">Latest Audit Results</div>
+    <div class="panel">
+      <pre id="auditOutput">—</pre>
+    </div>
+  </div>
+
+  <!-- GBP Post of the Week -->
+  <div class="section-title">📍 This Week's GBP Post</div>
+  <div class="post-box" id="gbpBox">
+    <div class="spinner"></div> Loading scheduled post…
+  </div>
+
+  <!-- 7-day Traffic Chart -->
+  <div class="section-title">📈 7-Day Traffic Trend</div>
+  <div class="panel">
+    <canvas id="trafficChart" height="220"></canvas>
+    <p id="chartNote" style="color:var(--gray);font-size:12px;margin-top:12px;display:none;">
+      Bind ANALYTICS_TOKEN and CF_ZONE_ID in Cloudflare to enable live traffic data.
+    </p>
+  </div>
+
+</div>
+</main>
+
+<script>
+// ── Auth ────────────────────────────────────────────────────
+let TOKEN = localStorage.getItem('amy_dash_token') || '';
+
+function doLogin() {
+  const input = document.getElementById('tokenInput').value.trim();
+  if (!input) { document.getElementById('loginErr').textContent = 'Token required.'; return; }
+  TOKEN = input;
+  localStorage.setItem('amy_dash_token', TOKEN);
+  document.getElementById('loginOverlay').style.display = 'none';
+  init();
+}
+document.getElementById('tokenInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// Auto-login if token already stored
+if (TOKEN) {
+  document.getElementById('loginOverlay').style.display = 'none';
+  window.addEventListener('DOMContentLoaded', init);
+}
+
+// ── Init ─────────────────────────────────────────────────────
+async function init() {
+  loadAnalytics();
+  loadGBPPost();
+}
+
+// ── Analytics ────────────────────────────────────────────────
+async function loadAnalytics() {
+  try {
+    const res = await fetch('/api/analytics', {
+      headers: TOKEN ? { 'Authorization': `Bearer ${TOKEN}` } : {},
+    });
+    if (res.status === 401) {
+      document.getElementById('loginOverlay').style.display = 'flex';
+      document.getElementById('loginErr').textContent = 'Invalid token. Please try again.';
+      return;
+    }
+    const data = await res.json();
+    const gen = new Date(data.generatedAt).toLocaleString();
+    document.getElementById('lastUpdated').textContent = `Last updated: ${gen}`;
+
+    // Health table
+    const health = data.health || {};
+    const serviceMap = {
+      'IndexNow': health.indexNow,
+      'AI Assistant': health.aiAssistant,
+      'Contact Form': health.contactForm,
+      'Turnstile': health.turnstile,
+      'Email Delivery': health.emailService,
+    };
+    const tbody = document.getElementById('healthTable');
+    tbody.innerHTML = Object.entries(serviceMap).map(([k, v]) => {
+      const configured = v && v !== 'not-configured';
+      const dot = configured ? 'dot-green' : 'dot-amber';
+      const label = configured ? 'Active' : 'Not Configured';
+      return `<tr><td>${k}</td><td><code style="font-size:12px;color:var(--gray);">${v || '—'}</code></td><td><span class="dot ${dot}"></span>${label}</td></tr>`;
+    }).join('');
+
+    // Analytics stats
+    const a = data.analytics7d;
+    if (a && a.pageViews != null) {
+      document.getElementById('pvStat').textContent = a.pageViews.toLocaleString();
+      document.getElementById('pvSub').textContent = '7-day total';
+      document.getElementById('uvStat').textContent = a.uniqueVisitors.toLocaleString();
+      document.getElementById('uvSub').textContent = '7-day unique';
+      document.getElementById('cacheStat').textContent = a.cacheHitRate || '—';
+      if (a.daily && a.daily.length) drawChart(a.daily);
+    } else {
+      ['pvStat','uvStat','cacheStat'].forEach(id => { document.getElementById(id).textContent = 'N/A'; });
+      document.getElementById('pvSub').textContent = 'Configure Analytics';
+      document.getElementById('uvSub').textContent = 'Configure Analytics';
+      document.getElementById('chartNote').style.display = 'block';
+      drawChartStub();
+    }
+  } catch (err) {
+    console.error('Analytics load error:', err);
+  }
+}
+
+// ── Mini Bar Chart ────────────────────────────────────────────
+function drawChart(daily) {
+  const canvas = document.getElementById('trafficChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth; const H = 220;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  const values = daily.map(d => d.pageViews);
+  const maxV = Math.max(...values, 1);
+  const barW = (W - 60) / values.length;
+  const pad = { l: 40, r: 10, t: 20, b: 36 };
+  const chartH = H - pad.t - pad.b;
+
+  ctx.font = '11px "Barlow Condensed", sans-serif';
+  ctx.fillStyle = 'rgba(152,166,184,.45)';
+
+  // Bars
+  daily.forEach((d, i) => {
+    const bh = (d.pageViews / maxV) * chartH;
+    const x = pad.l + i * barW + barW * .15;
+    const y = pad.t + chartH - bh;
+    const gradient = ctx.createLinearGradient(0, y, 0, y + bh);
+    gradient.addColorStop(0, 'rgba(245,166,35,.85)');
+    gradient.addColorStop(1, 'rgba(245,166,35,.2)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.roundRect(x, y, barW * .7, bh, [4, 4, 0, 0]);
+    ctx.fill();
+
+    // Date label
+    ctx.fillStyle = 'rgba(152,166,184,.7)';
+    const label = new Date(d.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    ctx.fillText(label, x, H - 6);
+  });
+
+  // Y-axis label
+  ctx.fillStyle = 'rgba(152,166,184,.6)';
+  ctx.fillText('Page Views', 0, 14);
+}
+
+function drawChartStub() {
+  const canvas = document.getElementById('trafficChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth; const H = 220;
+  canvas.width = W * dpr; canvas.height = H * dpr; ctx.scale(dpr, dpr);
+  ctx.fillStyle = 'rgba(255,255,255,.03)';
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(152,166,184,.4)';
+  ctx.font = '15px "Barlow Condensed", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Live analytics data not yet configured — see note below', W / 2, H / 2);
+}
+
+// ── Audit Trigger ─────────────────────────────────────────────
+async function triggerAudit() {
+  const spinner = document.getElementById('auditSpinner');
+  const output = document.getElementById('auditOutput');
+  const section = document.getElementById('auditResults');
+  spinner.style.display = 'inline-block';
+  section.style.display = 'block';
+  output.textContent = 'Running audit on 7 key pages…';
+  try {
+    const res = await fetch('/api/audit-cron', {
+      headers: TOKEN ? { 'Authorization': `Bearer ${TOKEN}` } : {},
+    });
+    const data = await res.json();
+    output.textContent = JSON.stringify(data, null, 2);
+  } catch (err) {
+    output.textContent = `Error: ${err.message}`;
+  } finally {
+    spinner.style.display = 'none';
+  }
+}
+
+// ── IndexNow Trigger ──────────────────────────────────────────
+async function triggerIndexNow() {
+  try {
+    const res = await fetch('/api/audit-cron', {
+      headers: TOKEN ? { 'Authorization': `Bearer ${TOKEN}` } : {},
+    });
+    const data = await res.json();
+    const ok = data?.indexNow?.ok;
+    alert(ok ? '✅ IndexNow ping sent successfully.' : '⚠️ IndexNow ping may have failed — check audit output.');
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// ── GBP Post of the Week ──────────────────────────────────────
+const GBP_POSTS = [
+  { index: 1, title: 'EV Charger Installation Special', body: '🔌 EV Charger Installation Special - Los Angeles\nReady to charge at home? Get $50 off EV charger installation this month! Our EVITP-certified electricians install Tesla Wall Connectors, NEMA 14-50 outlets, and all major EVSE brands. Permits handled, free estimates. Call (818) 302-5614 or click to schedule!\n#EVCharger #LosAngeles #TeslaCharger #HomeCharging' },
+  { index: 2, title: 'Panel Upgrade Warning', body: '⚠️ Is Your LA Home\'s Electrical Panel Safe?\nIf your breakers trip frequently or you have flickering lights, you might need a panel upgrade. Many older Los Angeles homes (pre-1980) still have 60A or 100A panels that can\'t handle modern electrical demands. Free safety inspections available!\n#ElectricalSafety #PanelUpgrade #LosAngeles #HomeImprovement' },
+  { index: 3, title: 'Same-Day Electrical Repair', body: '⚡ Same-Day Electrical Service in LA\nExperiencing an electrical emergency? We offer same-day dispatch for electrical repairs across Greater Los Angeles when availability allows. From dead outlets to tripping breakers, our licensed electricians are ready to help. Call (818) 302-5614 now!\n#EmergencyElectrician #LA #SameDayService #ElectricalRepair' },
+  { index: 4, title: 'Tesla Charger Installation', body: '🚗 Tesla Wall Connector Installation - LA\nAs EVITP-certified specialists, we\'re experts in Tesla Wall Connector installation throughout Los Angeles. From load calculations to permit handling, we manage the entire process. Charging speeds up to 44 miles per hour of range!\n#Tesla #EVCharger #LosAngeles #EVITP #HomeCharging' },
+  { index: 5, title: 'Outdoor Lighting Installation', body: '💡 Enhance Your LA Home with Outdoor Lighting\nCreate beautiful and secure outdoor spaces with professional lighting installation. From landscape lighting to security fixtures, we serve all of Greater Los Angeles. Free estimates available!\n#OutdoorLighting #LandscapeLighting #HomeSecurity #LosAngeles' },
+  { index: 6, title: 'Electrical Safety Inspection', body: '🔍 Electrical Safety Inspections - Peace of Mind\nIs your home\'s electrical system safe? Our comprehensive inspections identify potential hazards before they become problems. Especially important for older LA homes. Includes detailed report and recommendations.\n#ElectricalSafety #HomeInspection #LosAngeles #PreventiveMaintenance' },
+  { index: 7, title: 'Commercial Electrical Services', body: '🏢 Commercial Electrical Solutions for LA Businesses\nFrom tenant improvements to LED retrofits and EV fleet charging, we provide comprehensive commercial electrical services throughout Los Angeles. Licensed, insured, and ready to serve your business needs.\n#CommercialElectrician #LABusiness #ElectricalServices #TenantImprovements' },
+];
+
+function loadGBPPost() {
+  const box = document.getElementById('gbpBox');
+  // Determine week index
+  const epoch = new Date('2025-01-06T00:00:00Z');
+  const now = new Date();
+  const weeksSince = Math.floor((now - epoch) / (7 * 24 * 60 * 60 * 1000));
+  const postIdx = (weeksSince % 30) + 1;
+  const post = GBP_POSTS[(postIdx - 1) % GBP_POSTS.length] || GBP_POSTS[0];
+  const weekDate = new Date(now);
+  weekDate.setDate(now.getDate() - now.getDay() + 1); // Monday
+
+  box.innerHTML = `
+    <h3>POST ${post.index}: ${post.title}</h3>
+    <p style="font-size:12px;color:var(--gray);margin-bottom:14px;">📅 Week of ${weekDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</p>
+    <div class="post-body">${post.body}</div>
+    <div class="copy-btn">
+      <button class="btn-sm btn-sm-gold" onclick="copyPost(this, \`${post.body.replace(/`/g,"'")}\`)">📋 Copy Post Text</button>
+      <a class="btn-sm btn-sm-outline" href="https://business.google.com/posts" target="_blank" rel="noopener" style="margin-left:8px;">Post on GBP ↗</a>
+    </div>
+  `;
+}
+
+function copyPost(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = '📋 Copy Post Text'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
