@@ -36,20 +36,36 @@ export async function handleContact(request, env, waitUntil) {
       );
     }
 
-    const notification = {
-      personalizations: [{ to: [{ email: 'info@amyelectric.com' }] }],
-      from: { email: 'noreply@amyelectric.com' },
-      subject: `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`,
-      content: [{ type: 'text/plain', value: formatLeadText(data) }],
-    };
+    const subject = `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`;
+    const bodyText = formatLeadText(data);
 
-    waitUntil(
-      fetch('https://api.mailchannels.net/tx/v1/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(notification),
-      }).catch(() => {})
-    );
+    // 1. Cloudflare Email Service Binding (env.EMAIL or env.SEB)
+    if (env.EMAIL && typeof env.EMAIL.send === 'function') {
+      waitUntil(
+        env.EMAIL.send({
+          to: 'info@amyelectric.com',
+          from: 'noreply@amyelectric.com',
+          subject: subject,
+          content: bodyText,
+        }).catch(err => console.warn('Cloudflare Email Service error:', err))
+      );
+    } else {
+      // 2. MailChannels REST API Fallback
+      const notification = {
+        personalizations: [{ to: [{ email: 'info@amyelectric.com' }] }],
+        from: { email: 'noreply@amyelectric.com', name: 'AMY Electric Website' },
+        subject: subject,
+        content: [{ type: 'text/plain', value: bodyText }],
+      };
+
+      waitUntil(
+        fetch('https://api.mailchannels.net/tx/v1/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(notification),
+        }).catch(() => {})
+      );
+    }
 
     return successResponse();
   } catch (err) {
