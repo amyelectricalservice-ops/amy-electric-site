@@ -139,13 +139,13 @@
     container.style.cssText = 'position:fixed;bottom:80px;right:20px;z-index:9999;font-family:system-ui,sans-serif';
 
     container.innerHTML = `
-      <button id="ae-ai-toggle" aria-label="Ask AI Assistant" style="background:#f59e0b;color:#0a192f;border:none;border-radius:50px;padding:12px 20px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.3);display:flex;align-items:center;gap:8px">
+      <button id="ae-ai-toggle" aria-label="Ask AI Electrician" style="background:#f59e0b;color:#0a192f;border:none;border-radius:50px;padding:12px 20px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.3);display:flex;align-items:center;gap:8px">
         ⚡ Ask AI Electrician
       </button>
       <div id="ae-ai-box" style="display:none;position:absolute;bottom:60px;right:0;width:320px;background:#0f233e;border:1px solid #1e3a5f;border-radius:12px;padding:16px;box-shadow:0 10px 25px rgba(0,0,0,0.5);color:#fff">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #1e3a5f;padding-bottom:8px">
           <strong style="font-size:15px;color:#f59e0b">⚡ AMY AI Assistant</strong>
-          <button id="ae-ai-close" style="background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer">&times;</button>
+          <button id="ae-ai-close" aria-label="Close Assistant" style="background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer">&times;</button>
         </div>
         <p style="font-size:13px;color:#cbd5e1;margin-bottom:12px;line-height:1.4">Ask about LADWP $500 rebates, 200A panel upgrade costs, or EV charger permits!</p>
         <div id="ae-ai-output" style="max-height:160px;overflow-y:auto;font-size:13px;background:#0a192f;padding:10px;border-radius:6px;margin-bottom:12px;color:#e2e8f0;display:none"></div>

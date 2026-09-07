@@ -25,35 +25,39 @@ def apply_fixes():
 
     # 2. Meta Description Fixes
     desc_fixes = {
-        '200-amp-panel-upgrade.html': 'Upgrade your electrical panel to 200 amps for modern home demands. Licensed C-10 installation with LADBS permits in Los Angeles. Call (818) 302-5614.',
-        '404.html': 'Page not found - AMY Electric. Contact our licensed Los Angeles electricians for 24/7 service, panel upgrades, and EV charger installs.',
-        'blog/electrical-panel-labeling-guide.html': 'Learn why electrical panel labeling matters for safety and how to label your panel correctly. Expert tips from C-10 electricians. Call (818) 302-5614.',
-        'blog/ev-charger-levels-explained.html': 'Understand Level 1, Level 2, and DC Fast charging for your electric vehicle. Expert home EV charger installation tips in LA. Call (818) 302-5614.',
-        'blog/how-to-tell-if-your-panel-needs-upgrading.html': 'Learn warning signs your LA home needs a panel upgrade. From breaker trips to dimming lights, AMY Electric explains key signs. Call (818) 302-5614.',
-        'blog/ladwp-e-permit-guide.html': 'Guide to LADWP e-permits for electrical work in Los Angeles. Step-by-step process, costs, and timeline from C-10 pros. Call (818) 302-5614.',
-        'city-winnetka.html': 'Licensed C-10 electrician in Winnetka, CA. Emergency repairs, panel upgrades, EV chargers, and free estimates. Call (818) 302-5614.',
-        'commercial-ev-fleet-charging.html': 'Commercial EV fleet charging installation in Los Angeles. EVITP-certified electricians install Level 2 & DC Fast chargers. Call (818) 302-5614.',
-        'portable-vs-standby-generator.html': 'Compare portable and standby generators for LA homes. Learn costs, fuel types, and backup power options from C-10 pros. Call (818) 302-5614.',
-        'services.html': 'Complete electrical services in Los Angeles: EV chargers, panel upgrades, rewiring, lighting & 24/7 emergency repair. Call (818) 302-5614.',
-        'testimonials.html': 'Read customer reviews and testimonials for AMY Electric. Trusted C-10 licensed electricians serving Greater Los Angeles. Call (818) 302-5614.',
-        'whole-home-rewiring-beverly-hills.html': 'Licensed electricians rewire homes in Beverly Hills, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-culver-city.html': 'Licensed electricians rewire homes in Culver City, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-los-angeles.html': 'Licensed electricians rewire homes in Los Angeles, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-north-hollywood.html': 'Licensed electricians rewire homes in North Hollywood, CA. Replace knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-santa-monica.html': 'Licensed electricians rewire homes in Santa Monica, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-sherman-oaks.html': 'Licensed electricians rewire homes in Sherman Oaks, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-studio-city.html': 'Licensed electricians rewire homes in Studio City, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-west-la.html': 'Licensed electricians rewire homes in West LA, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.',
-        'whole-home-rewiring-woodland-hills.html': 'Licensed electricians rewire homes in Woodland Hills, CA. Replace outdated knob-and-tube & update panels to code. Call (818) 302-5614.'
+        '200-amp-panel-upgrade.html': 'Upgrade your panel to 200 amps for modern home demands. Licensed C‑10 installation with permits in Los Angeles. Call (818) 302‑5614.',
+        '404.html': 'Page not found – AMY Electric. Contact our LA electricians for 24/7 service, panel upgrades, and EV charger installs.',
+        'blog/electrical-panel-labeling-guide.html': 'Why panel labeling matters and how to label correctly. Tips from C‑10 electricians. Call (818) 302‑5614.',
+        'blog/ev-charger-levels-explained.html': 'Level 1, 2, and DC Fast EV charging explained. Home charger tips in LA. Call (818) 302‑5614.',
+        'blog/how-to-tell-if-your-panel-needs-upgrading.html': 'Warning signs your LA home needs a panel upgrade. Call (818) 302‑5614.',
+        'blog/ladwp-e-permit-guide.html': 'LADWP e‑permit guide for LA electrical work. Steps, costs, timeline. Call (818) 302‑5614.',
+        'city-winnetka.html': 'C‑10 electrician in Winnetka. Emergency repairs, panel upgrades, EV chargers. Call (818) 302‑5614.',
+        'commercial-ev-fleet-charging.html': 'Commercial EV fleet charging in LA. EVITP‑certified installers. Call (818) 302‑5614.',
+        'portable-vs-standby-generator.html': 'Portable vs standby generators for LA homes. Costs, fuel, backup options. Call (818) 302‑5614.',
+        'services.html': 'Electrical services in LA: EV chargers, panel upgrades, rewiring, lighting, 24/7 emergency. Call (818) 302‑5614.',
+        'testimonials.html': 'Customer reviews for AMY Electric. Trusted LA C‑10 electricians. Call (818) 302‑5614.',
+        'whole-home-rewiring-beverly-hills.html': 'Rewire homes in Beverly Hills. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-culver-city.html': 'Rewire homes in Culver City. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-los-angeles.html': 'Rewire homes in Los Angeles. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-north-hollywood.html': 'Rewire homes in North Hollywood. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-santa-monica.html': 'Rewire homes in Santa Monica. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-sherman-oaks.html': 'Rewire homes in Sherman Oaks. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-studio-city.html': 'Rewire homes in Studio City. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-west-la.html': 'Rewire homes in West LA. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.',
+        'whole-home-rewiring-woodland-hills.html': 'Rewire homes in Woodland Hills. Replace knob‑and‑tube, update panels. Call (818) 302‑5614.'
     }
 
     for f, new_d in desc_fixes.items():
         if os.path.exists(f):
             with open(f, 'r', encoding='utf-8') as fh:
                 c = fh.read()
+            # Ensure description length <= 155 characters
+            trimmed_desc = new_d.strip()
+            if len(trimmed_desc) > 155:
+                trimmed_desc = trimmed_desc[:152].rstrip() + "..."
             c = re.sub(
                 r'<meta\s+(?:name=["\']description["\']\s+content=["\'][^"\']*["\']|content=["\'][^"\']*["\']\s+name=["\']description["\'])',
-                f'<meta name="description" content="{new_d}"',
+                f'<meta name="description" content="{trimmed_desc}"',
                 c,
                 flags=re.IGNORECASE
             )
@@ -94,6 +98,21 @@ def apply_fixes():
     html_files = glob.glob('**/*.html', recursive=True)
     ignore_prefixes = ('reports/', '.', 'amyelectric-site/', 'templates/', 'partials/', 'open-seo/')
     html_files = [f for f in sorted(html_files) if not any(f.startswith(p) for p in ignore_prefixes)]
+
+    # 4b. Ensure every HTML file has a meta description. If missing, insert a concise generic description.
+    generic_desc = "AMY Electric – Licensed C‑10 contractor in Greater Los Angeles. Call (818) 302‑5614 for panel upgrades, EV charger installs, and 24/7 emergency service."
+    for f in html_files:
+        try:
+            with open(f, 'r', encoding='utf-8') as fh:
+                content = fh.read()
+        except Exception:
+            continue
+        if not re.search(r'<meta\s+name=["\']description["\']', content, re.IGNORECASE):
+            if '</head>' in content:
+                content = content.replace('</head>', f'    <meta name="description" content="{generic_desc}">\n</head>')
+                with open(f, 'w', encoding='utf-8') as fh:
+                    fh.write(content)
+        
 
     for f in html_files:
         with open(f, 'r', encoding='utf-8') as fh:
