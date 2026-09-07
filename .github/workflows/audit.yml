@@ -42,7 +42,18 @@ jobs:
           sitemap_urls = {elem.text.strip() for elem in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
 
           html_files = glob.glob('*.html') + glob.glob('blog/*.html')
-          html_urls = {'https://amyelectric.com/' + f.replace('./', '') for f in html_files if f != '404.html'}
+
+          def file_to_clean_url(f):
+              f = f.replace('./', '')
+              if f == 'index.html':
+                  return 'https://amyelectric.com/'
+              if f.endswith('/index.html'):
+                  return 'https://amyelectric.com/' + f[:-10]
+              if f.endswith('.html'):
+                  return 'https://amyelectric.com/' + f[:-5]
+              return 'https://amyelectric.com/' + f
+
+          html_urls = {file_to_clean_url(f) for f in html_files if f != '404.html'}
 
           missing_in_sitemap = html_urls - sitemap_urls
           if missing_in_sitemap:
