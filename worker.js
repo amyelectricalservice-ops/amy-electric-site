@@ -60,6 +60,28 @@ export default {
       });
     }
 
+    if (url.pathname === '/.well-known/agent-skills/index.json') {
+      const agentSkills = {
+        "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+        "skills": [
+          {
+            "name": "amy-electric",
+            "type": "skill-md",
+            "description": "Interact with AMY Electric for electrical services, estimates, and business information in Greater Los Angeles",
+            "url": "/.well-known/agent-skills/SKILL.md",
+            "digest": "sha256:2bd5819ac20ede6f5e4c34325e56c77b310cf181f63d54c732603ba5ce03e420"
+          }
+        ]
+      };
+      return new Response(JSON.stringify(agentSkills, null, 2), {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    }
+
     if (url.pathname === '/.well-known/mcp/server-card.json') {
       const mcpServerCard = {
         "serverInfo": {
