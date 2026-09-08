@@ -40,6 +40,57 @@ export default {
       });
     }
 
+    if (url.pathname === '/.well-known/mcp/server-card.json') {
+      const mcpServerCard = {
+        "serverInfo": {
+          "name": "amy-electric",
+          "version": "1.0.0"
+        },
+        "endpoint": "/mcp",
+        "capabilities": {
+          "tools": [
+            {
+              "name": "getBusinessInfo",
+              "description": "Get AMY Electric business information, hours, and service area"
+            },
+            {
+              "name": "getServices",
+              "description": "List available electrical services offered by AMY Electric"
+            },
+            {
+              "name": "getContactInfo",
+              "description": "Get contact details for AMY Electric"
+            }
+          ],
+          "resources": [
+            {
+              "uri": "amy-electric://services",
+              "name": "Services List",
+              "description": "Complete list of electrical services offered"
+            },
+            {
+              "uri": "amy-electric://locations",
+              "name": "Service Locations",
+              "description": "Areas served by AMY Electric"
+            }
+          ],
+          "prompts": [
+            {
+              "name": "scheduleEstimate",
+              "description": "Help schedule a free estimate appointment"
+            }
+          ]
+        }
+      };
+      return new Response(JSON.stringify(mcpServerCard, null, 2), {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    }
+
     return env.ASSETS.fetch(request);
   },
 };
