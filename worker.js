@@ -111,6 +111,38 @@ export default {
       });
     }
 
+    const accept = request.headers.get('Accept') || '';
+    if (accept.includes('text/markdown')) {
+      const markdownPaths = {
+        '/': '/markdown/home.md',
+        '/index.html': '/markdown/home.md',
+        '/about.html': '/markdown/about.md',
+        '/services.html': '/markdown/services.md',
+        '/contact.html': '/markdown/contact.md'
+      };
+
+      const mdPath = markdownPaths[url.pathname];
+      if (mdPath) {
+        const mdResponse = await env.ASSETS.fetch(new Request(
+          new URL(mdPath, request.url).toString(),
+          request
+        ));
+        if (mdResponse.ok) {
+          return new Response(mdResponse.body, {
+            headers: {
+              'Content-Type': 'text/markdown; charset=utf-8',
+              'Cache-Control': 'public, max-age=3600'
+            }
+          });
+        }
+      }
+
+      return new Response('Not Acceptable: Markdown not available for this path', {
+        status: 406,
+        headers: { 'Content-Type': 'text/plain' }
+      });
+    }
+
     return env.ASSETS.fetch(request);
   },
 };
