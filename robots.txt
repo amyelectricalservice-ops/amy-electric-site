@@ -49,4 +49,7 @@ Disallow: /
 
 # RSL License: /rsl.json
 
+# Content Signals — AI agent preferences
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
 Sitemap: https://amyelectric.com/sitemap.xml
