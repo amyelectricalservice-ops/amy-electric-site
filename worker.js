@@ -143,6 +143,21 @@ export default {
       });
     }
 
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+
+    if (url.pathname === '/' || url.pathname === '/index.html') {
+      const headers = new Headers(response.headers);
+      headers.append('Link', '</.well-known/mcp/server-card.json>; rel="service-desc"');
+      headers.append('Link', '</.well-known/openid-configuration>; rel="describedby"');
+      headers.append('Link', '</.well-known/http-message-signatures-directory>; rel="api-catalog"');
+      headers.append('Link', '</robots.txt>; rel="service-doc"');
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers
+      });
+    }
+
+    return response;
   },
 };
