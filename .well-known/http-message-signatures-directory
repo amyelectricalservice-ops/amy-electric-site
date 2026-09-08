@@ -1,0 +1,10 @@
+{
+  "keys": [
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "M4aJ5aIFHslCAjNWJFCZVrLaC3N_CpvmwJzFqUF1h58",
+      "kid": "amy-electric-2026"
+    }
+  ]
+}

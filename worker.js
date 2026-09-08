@@ -40,6 +40,26 @@ export default {
       });
     }
 
+    if (url.pathname === '/.well-known/http-message-signatures-directory') {
+      const jwks = {
+        "keys": [
+          {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "x": "M4aJ5aIFHslCAjNWJFCZVrLaC3N_CpvmwJzFqUF1h58",
+            "kid": "amy-electric-2026"
+          }
+        ]
+      };
+      return new Response(JSON.stringify(jwks, null, 2), {
+        headers: {
+          'Content-Type': 'application/http-message-signatures-directory+json',
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    }
+
     if (url.pathname === '/.well-known/mcp/server-card.json') {
       const mcpServerCard = {
         "serverInfo": {
