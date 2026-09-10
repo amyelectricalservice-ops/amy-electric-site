@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Generate city pages for extended zone cities (15-25mi from Winnetka)."""
+import json
+import os
+
+TEMPLATE = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Electrician in {city_name}, CA | Panel Upgrades | AMY Electric</title>
+<meta name="description" content="Licensed {city_name} electrician. Panel upgrades, EV charger installation, rewiring & electrical repairs. C-10 #981578. Free estimates. Call (818) 302-5614.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://amyelectric.com/city-{slug}">
+<!-- Open Graph -->
+<meta property="og:title" content="Electrician in {city_name}, CA | Panel Upgrades, EV Chargers &amp; Repairs | AMY Electric">
+<meta property="og:description" content="Licensed electrician in {city_name}, CA. Panel upgrades, EV charger installation, electrical repairs. EVITP-certified, C-10 #981578. Free estimates. (818) 302-5614.">
+<meta property="og:url" content="https://amyelectric.com/city-{slug}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://amyelectric.com/img/hero-electrician.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta property="og:site_name" content="AMY Electric">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Electrician in {city_name}, CA | Panel Upgrades, EV Chargers &amp; Repairs | AMY Electric">
+<meta name="twitter:description" content="Licensed electrician in {city_name}, CA. Panel upgrades, EV charger installation, electrical repairs. EVITP-certified, C-10 #981578. Free estimates. (818) 302-5614.">
+<meta name="twitter:image" content="https://amyelectric.com/img/hero-electrician.jpg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" as="font" href="fonts/BarlowCondensed-600.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-700.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/BarlowCondensed-800.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/SourceSerif4-400.woff2" crossorigin>
+<link rel="preload" as="font" href="fonts/SourceSerif4-400italic.woff2" crossorigin>
+<link rel="preload" as="style" href="css/style.min.css">
+<link rel="stylesheet" href="css/style.min.css">
+<!-- Schema: Electrician + FAQPage + BreadcrumbList -->
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "name": "AMY Electric",
+  "image": "https://amyelectric.com/img/hero-electrician.jpg",
+  "url": "https://amyelectric.com",
+  "telephone": "+1-818-302-5614",
+  "priceRange": "$$",
+  "address": {{
+    "@type": "PostalAddress",
+    "addressLocality": "Winnetka",
+    "addressRegion": "CA",
+    "postalCode": "91306",
+    "addressCountry": "US"
+  }},
+  "geo": {{
+    "@type": "GeoCoordinates",
+    "latitude": 34.2069,
+    "longitude": -118.5734
+  }},
+  "areaServed": [
+    {{
+      "@type": "City",
+      "name": "{city_name}",
+      "sameAs": "https://en.wikipedia.org/wiki/{city_name},_California"
+    }}
+  ],
+  "openingHoursSpecification": [
+    {{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "18:00"
+    }}
+  ],
+  "hasOfferCatalog": {{
+    "@type": "OfferCatalog",
+    "name": "Electrical Services",
+    "itemListElement": [
+      {{"@type": "Offer", "itemOffered": {{"@type": "Service", "name": "200 Amp Panel Upgrade"}}}},
+      {{"@type": "Offer", "itemOffered": {{"@type": "Service", "name": "EV Charger Installation"}}}},
+      {{"@type": "Offer", "itemOffered": {{"@type": "Service", "name": "Whole Home Rewiring"}}}},
+      {{"@type": "Offer", "itemOffered": {{"@type": "Service", "name": "Generator Transfer Switch"}}}}
+    ]
+  }}
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amyelectric.com/"}},
+    {{"@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://amyelectric.com/areas-served"}},
+    {{"@type": "ListItem", "position": 3, "name": "{city_name}", "item": "https://amyelectric.com/city-{slug}"}}
+  ]
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{
+      "@type": "Question",
+      "name": "Do you provide electrical services in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "Yes, AMY Electric provides full electrical services in {city_name}, CA. We handle panel upgrades, EV charger installation, rewiring, electrical repairs, and more. Call (818) 302-5614 for a free estimate."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "What electrical services do you offer in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "We offer 200 amp panel upgrades, EV charger installation (Level 2 and Tesla Wall Connector), whole home rewiring, generator transfer switches, electrical repairs, and commercial electrical services in {city_name}."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "Are you licensed to work in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "Yes, AMY Electric holds California C-10 electrical contractor license #981578 and EVITP certification #4051604. We are fully licensed, bonded, and insured to perform electrical work in {city_name} and throughout Los Angeles County."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "How much does a panel upgrade cost in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "Panel upgrade costs in {city_name} typically range from $2,500 to $6,000 depending on your home's electrical needs, panel size, and any additional wiring required. Contact us for a free on-site estimate."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "Do you install EV chargers in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "Yes, we are EVITP-certified and install Level 2 EV chargers and Tesla Wall Connectors throughout {city_name}. We handle the full installation including panel assessment, permitting, and inspection."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "How quickly can you respond to electrical issues in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "We typically respond to {city_name} service calls within 24-48 hours. For emergency electrical issues, call us at (818) 302-5614 and we'll prioritize your call."
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "Do you offer free estimates in {city_name}?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "Yes, we provide free on-site estimates for all electrical projects in {city_name}. Call (818) 302-5614 or fill out our contact form to schedule your free estimate."
+      }}
+    }}
+  ]
+}}
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="topbar">
+  <span>Licensed &amp; Insured · C-10 #981578 · EVITP #4051604</span>
+  <a href="tel:18183025614">(818) 302-5614</a>
+</div>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">AE</div>
+      <div class="logo-text">
+        <span class="logo-name">AMY Electric</span>
+        <span class="logo-sub">Los Angeles Electrical Contractor</span>
+      </div>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/areas-served" class="active">Service Areas</a>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact" class="nav-cta">Free Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href="/areas-served">Service Areas</a> › <span>{city_name}</span>
+    </nav>
+    <h1>Electrician in <em>{city_name}</em>, CA</h1>
+    <p class="hero-desc">Licensed {city_name} electrician providing panel upgrades, EV charger installation, rewiring, and electrical repairs. Free estimates. Call <a href="tel:18183025614">(818) 302-5614</a>.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-label">Why AMY Electric</span>
+    <h2>Trusted {city_name} Electrical Contractor</h2>
+    <p>AMY Electric is a licensed, insured electrical contractor serving {city_name} and surrounding communities. With years of experience in the greater Los Angeles area, we provide reliable, code-compliant electrical services for residential and commercial properties.</p>
+    
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Panel Upgrades</h3>
+        <p>Upgrade your electrical panel to 200 amps for increased capacity and safety. Essential for EV chargers, solar systems, and modern home electrical demands.</p>
+        <a href="/panel-upgrade">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <h3>EV Charger Installation</h3>
+        <p>EVITP-certified installation of Level 2 chargers and Tesla Wall Connectors. We handle permits, panel assessment, and inspection.</p>
+        <a href="/ev-charger-installation">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <h3>Whole Home Rewiring</h3>
+        <p>Complete or partial rewiring for older homes with aluminum or knob-and-tube wiring. Improve safety and meet current code requirements.</p>
+        <a href="/whole-home-rewiring">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <h3>Generator Transfer Switch</h3>
+        <p>Install a manual or automatic transfer switch to safely connect your generator during power outages.</p>
+        <a href="/generator-transfer-switch">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <span class="section-label">Local Service</span>
+    <h2>{city_name} Electrical Services</h2>
+    <p>As a {city_name} electrician, we understand the unique electrical needs of homes and businesses in this area. From older homes requiring rewiring to modern installations like EV chargers, we provide comprehensive electrical solutions.</p>
+    <p>Our team is familiar with local building codes and permitting requirements, ensuring your project is completed efficiently and to the highest standards.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready for Your Free Estimate?</h2>
+    <p>Call us today or fill out our contact form for a free, no-obligation estimate on your {city_name} electrical project.</p>
+    <a href="/contact" class="btn btn-navy">Get Free Estimate</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-label">Frequently Asked Questions</span>
+    <h2>{city_name} Electrical FAQ</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Do you provide electrical services in {city_name}?</summary>
+        <p>Yes, AMY Electric provides full electrical services in {city_name}, CA. We handle panel upgrades, EV charger installation, rewiring, electrical repairs, and more. Call (818) 302-5614 for a free estimate.</p>
+      </details>
+      <details>
+        <summary>What electrical services do you offer in {city_name}?</summary>
+        <p>We offer 200 amp panel upgrades, EV charger installation (Level 2 and Tesla Wall Connector), whole home rewiring, generator transfer switches, electrical repairs, and commercial electrical services in {city_name}.</p>
+      </details>
+      <details>
+        <summary>Are you licensed to work in {city_name}?</summary>
+        <p>Yes, AMY Electric holds California C-10 electrical contractor license #981578 and EVITP certification #4051604. We are fully licensed, bonded, and insured to perform electrical work in {city_name} and throughout Los Angeles County.</p>
+      </details>
+      <details>
+        <summary>How much does a panel upgrade cost in {city_name}?</summary>
+        <p>Panel upgrade costs in {city_name} typically range from $2,500 to $6,000 depending on your home's electrical needs, panel size, and any additional wiring required. Contact us for a free on-site estimate.</p>
+      </details>
+      <details>
+        <summary>Do you install EV chargers in {city_name}?</summary>
+        <p>Yes, we are EVITP-certified and install Level 2 EV chargers and Tesla Wall Connectors throughout {city_name}. We handle the full installation including panel assessment, permitting, and inspection.</p>
+      </details>
+      <details>
+        <summary>How quickly can you respond to electrical issues in {city_name}?</summary>
+        <p>We typically respond to {city_name} service calls within 24-48 hours. For emergency electrical issues, call us at (818) 302-5614 and we'll prioritize your call.</p>
+      </details>
+      <details>
+        <summary>Do you offer free estimates in {city_name}?</summary>
+        <p>Yes, we provide free on-site estimates for all electrical projects in {city_name}. Call (818) 302-5614 or fill out our contact form to schedule your free estimate.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <span class="section-label">Service Areas</span>
+    <h2>Other Cities We Serve Near {city_name}</h2>
+    <p>AMY Electric serves {city_name} and surrounding communities throughout the greater Los Angeles area. We provide reliable electrical services to residential and commercial customers.</p>
+    <a href="/areas-served" class="btn btn-gold">View All Service Areas</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-mark">AE</div>
+        <p>AMY Electric<br>Licensed C-10 #981578<br>EVITP #4051604</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/panel-upgrade">Panel Upgrades</a></li>
+          <li><a href="/ev-charger-installation">EV Charger Installation</a></li>
+          <li><a href="/whole-home-rewiring">Whole Home Rewiring</a></li>
+          <li><a href="/generator-transfer-switch">Generator Transfer Switch</a></li>
+          <li><a href="/commercial-electrical">Commercial Electrical</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="/city-los-angeles">Los Angeles</a></li>
+          <li><a href="/city-burbank">Burbank</a></li>
+          <li><a href="/city-glendale">Glendale</a></li>
+          <li><a href="/city-pasadena">Pasadena</a></li>
+          <li><a href="/areas-served">All Areas</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:18183025614">(818) 302-5614</a></li>
+          <li><a href="mailto:info@amyelectric.com">info@amyelectric.com</a></li>
+          <li><a href="/contact">Contact Form</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 AMY Electric. All rights reserved. Licensed Electrical Contractor C-10 #981578.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-call" aria-hidden="true">
+  <a href="tel:18183025614" class="btn btn-gold">📞 Call (818) 302-5614</a>
+</div>
+
+<script src="js/site.min.js" defer></script>
+</body>
+</html>'''
+
+# Load cities
+with open('/tmp/extended_cities.json', 'r') as f:
+    cities = json.load(f)
+
+# Deduplicate by slug
+seen = set()
+unique_cities = []
+for c in cities:
+    if c['slug'] not in seen:
+        seen.add(c['slug'])
+        unique_cities.append(c)
+
+# Generate pages
+created = 0
+skipped = 0
+
+for city in unique_cities:
+    slug = city['slug']
+    name = city['name']
+    filename = f'/home/amram/WEBSITE/city-{slug}.html'
+    
+    if os.path.exists(filename):
+        print(f"  SKIPPED: {slug} (already exists)")
+        skipped += 1
+        continue
+    
+    content = TEMPLATE.format(city_name=name, slug=slug)
+    
+    with open(filename, 'w') as f:
+        f.write(content)
+    
+    print(f"  CREATED: city-{slug}.html ({name})")
+    created += 1
+
+print(f"\nDone: {created} created, {skipped} skipped")
