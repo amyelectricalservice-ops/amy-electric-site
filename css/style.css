@@ -1,40 +1,77 @@
 /* AMY ELECTRIC — Stylesheet */
 /* Source: css/src/ — edit modules, not this file */
 /* Run: python3 scripts/build-css.py */
+/* Design Tokens - Warm orange & charcoal theme */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* Primary palette */
+  --color-primary: #ff7f00; /* warm orange */
+  --color-primary-dark: #cc6600;
+  --color-primary-light: #ff9f33;
+
+  /* Secondary / neutral */
+  --color-bg: #1a1a1a; /* charcoal background */
+  --color-bg-light: #2e2e2e;
+  --color-text: #f5f5f5; /* off-white text */
+  --color-text-muted: #b0b0b0;
+
+  /* Accent */
+  --color-accent: #ffcc00; /* gold accent */
+
+  /* Typography */
+  --font-family-base: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-size-base: clamp(1rem, 0.9vw + 0.5rem, 1.125rem);
+  --font-size-h1: clamp(2rem, 2vw + 1rem, 3rem);
+  --font-size-h2: clamp(1.75rem, 1.5vw + 0.75rem, 2.5rem);
+
+  /* Spacing */
+  --spacing-unit: 1rem;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0d0d0d;
+    --color-bg-light: #1a1a1a;
+    --color-text: #e0e0e0;
+  }
+}
+
 /* ── SELF-HOSTED FONTS ── */
 @font-face {
   font-family: 'Barlow Condensed';
   font-style: normal;
   font-weight: 600;
-  font-display: swap;
+  font-display: optional;
   src: url('../fonts/BarlowCondensed-600.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Barlow Condensed';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: optional;
   src: url('../fonts/BarlowCondensed-700.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Barlow Condensed';
   font-style: normal;
   font-weight: 800;
-  font-display: swap;
+  font-display: optional;
   src: url('../fonts/BarlowCondensed-800.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Source Serif 4';
   font-style: normal;
   font-weight: 400 600;
-  font-display: swap;
+  font-display: optional;
   src: url('../fonts/SourceSerif4-400.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Source Serif 4';
   font-style: italic;
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
   src: url('../fonts/SourceSerif4-400italic.woff2') format('woff2');
 }
 
