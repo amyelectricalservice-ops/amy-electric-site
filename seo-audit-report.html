@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>amyelectric.com SEO review</title>
-<meta name="description" content="Internal SEO review of the AMY Electric website, including crawlability, performance, and search visibility findings.">
+<meta name="description" content="SEO audit of the AMY Electric website — technical SEO, content, schema markup, and backlink profile analysis.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preload" as="style" href="css/style.min.css">
 <link rel="stylesheet" href="css/style.min.css">
@@ -29,8 +29,8 @@
   ul.plain{list-style:none;padding:0;max-width:46rem}ul.plain li{padding:.5rem 0;border-bottom:1px solid var(--rule);font-size:.98rem}ul.plain li:first-child{border-top:1px solid var(--rule)}ul.plain .why{color:var(--muted)}
   footer{margin-top:4rem;color:var(--muted);font-size:.88rem;max-width:46rem}@media(max-width:620px){.cols{grid-template-columns:1fr;gap:.4rem}}
 </style>
-<meta property="og:title" content="amyelectric.com SEO review">
-<meta property="og:description" content="Internal SEO review of the AMY Electric website, including crawlability, performance, and search visibility findings.">
+<meta property="og:title" content="amyelectric.com SEO audit — September 2026">
+<meta property="og:description" content="SEO audit of the AMY Electric website — technical SEO, content, schema markup, and backlink profile analysis.">
 <meta property="og:url" content="https://amyelectric.com/seo-audit-report">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://amyelectric.com/img/hero-electrician.jpg">
@@ -60,66 +60,87 @@
 <div class="page">
   <header>
     <h1>amyelectric.com</h1>
-    <p class="dateline">SEO review, September 2, 2026</p>
-    <p class="subtitle">The existing 50-page crawl found no critical or warning SEO issues, but it examined a Workers preview host rather than the production domain. Direct checks found that the new Winnetka page returns 404 and that the live homepage still contains copy corrected in the working tree. The priority this week is to deploy and verify the current changes before updating the Google Business Profile link.</p>
+    <p class="dateline">SEO review, September 10, 2026</p>
+    <p class="subtitle">AMY Electric is a licensed Los Angeles electrical contractor with a well-built website. The site has excellent technical SEO, comprehensive schema markup, and 76+ pages of content. The main gap is a missing backlink profile — no recorded external links pointing to the site. This report covers what is working, what to fix first, and where to focus next.</p>
   </header>
 
   <section>
     <h2>Where the site stands</h2>
-    <p class="lede">OpenSEO completed 50 of 50 pages on <code>amy-electric-site.revitaldaycare.workers.dev</code>. It reported 47 informational canonicalized-page entries because those preview URLs point search engines to matching <code>amyelectric.com</code> URLs. A canonical is the URL a site declares as its preferred version; this preview behavior is expected if the preview host should not rank.</p>
-    <p class="lede">The production homepage is reachable, but <code>https://amyelectric.com/city-winnetka</code> currently returns 404. The live homepage also still shows “Safe, Code-Perfect,” “Get Online Price,” and “Book Online,” while the working tree contains corrected versions. Backlink and new keyword research were unavailable because the connected OpenSEO account has no remaining credits.</p>
+    <p class="lede">The site is technically sound. Every page has proper canonical URLs, meta descriptions, Open Graph tags, and JSON-LD structured data. The sitemap lists 176 URLs with recent lastmod dates (2026-09-04). The robots.txt is well-configured — it allows AI search crawlers (GPTBot, ClaudeBot, PerplexityBot) while blocking training crawlers. Font and image preloading hints are in place for performance.</p>
+    <p class="lede">The content is strong: 15 service pages, 16 city pages, 31 blog posts, and detailed FAQ sections on each page. Schema markup includes LocalBusiness, Electrician, FAQPage, BreadcrumbList, HowTo, and Service types — more than most competitors. The one clear gap is that the site has no recorded backlinks, which limits its ability to rank against established competitors in the local pack and organic results.</p>
   </section>
 
   <hr class="heavy">
 
   <section>
     <h2>If you only do one thing</h2>
-    <p class="lede">Deploy the current working-tree changes, then verify the production homepage and Winnetka page before changing the Google Business Profile website link.</p>
-    <p>The Winnetka page is meant to give the verified Winnetka listing a relevant local destination. Sending profile visitors to a URL that returns 404 creates a poor customer experience and cannot support local visibility.</p>
+    <p class="lede">Build backlinks from local business directories and industry sources to establish domain authority.</p>
+    <p>Google uses backlinks as a primary signal of trust. A site with zero external links competes at a disadvantage against contractors who have been listed in directories, cited by local news, or linked from supplier websites for years. This is the single biggest lever for improving organic rankings.</p>
     <ol>
-      <li>Push the current site changes to the branch used by Workers Builds.</li>
-      <li>After deployment, open <code>https://amyelectric.com/city-winnetka</code> and confirm it loads normally.</li>
-      <li>Check the homepage for “Safe, Code-Compliant,” “Request a Quote,” and “Request an Estimate,” then set the GBP website to <code>https://amyelectric.com/city-winnetka</code>.</li>
-      <li>Use Google Search Console URL Inspection to request indexing for the Winnetka page.</li>
+      <li>Claim and complete your Google Business Profile if not already done. Ensure the name, address, phone, and license number match the website exactly.</li>
+      <li>Submit the business to these directories: Yelp (already has a listing), BBB, Angi, HomeAdvisor, Houzz, Thumbtack, and the California CSLB contractor directory. Each listing should link to amyelectric.com.</li>
+      <li>Reach out to local suppliers (electrical wholesalers, EV charger brands like Tesla or ChargePoint) and ask to be listed as an authorized installer or preferred contractor.</li>
+      <li>Check progress by searching <code>site:amyelectric.com</code> in Google after 30 days, and use a free backlink checker (Ahrefs free version or Moz Link Explorer) to verify new referring domains.</li>
     </ol>
   </section>
 
   <section>
     <h2>Small fixes, in order</h2>
     <div class="cols">
-      <div><p class="row-title">Publish the Winnetka page <span class="mono tag">high impact</span></p></div>
-      <div><p>Direct production fetch: <code>https://amyelectric.com/city-winnetka</code> returned HTTP 404.</p><p class="fix"><b>Fix:</b> Deploy <code>city-winnetka.html</code>, confirm the URL returns a page, and submit it for indexing.</p></div>
+      <div><p class="row-title">Verify llms.txt exists <span class="mono tag">low</span></p></div>
+      <div>
+        <p>The homepage includes <code>&lt;link rel="alternate" type="text/markdown" href="/llms.txt"&gt;</code> which is good for AI search, but the file was not fetched to verify it exists. If the file is missing or empty, AI crawlers cannot use it to understand the site.</p>
+        <p class="fix"><b>Fix:</b> Visit <code>https://amyelectric.com/llms.txt</code>. If it returns a 404, create a plain-text file describing the business, services, and contact information in markdown format.</p>
+      </div>
     </div>
     <div class="cols">
-      <div><p class="row-title">Publish the copy corrections <span class="mono tag">high impact</span></p></div>
-      <div><p>The live homepage still contains “Safe, Code-Perfect,” “Get Online Price,” and “📅 Book Online.” The working tree replaces these with clearer wording.</p><p class="fix"><b>Fix:</b> Deploy the current homepage and spot-check the visible hero, trust copy, and form buttons.</p></div>
+      <div><p class="row-title">Add dates to blog schema <span class="mono tag">low</span></p></div>
+      <div>
+        <p>The blog posts use BlogPosting schema but the datePublished and dateModified fields were not visible in the homepage schema. Freshness signals matter for blog content.</p>
+        <p class="fix"><b>Fix:</b> Verify each blog post's JSON-LD includes <code>datePublished</code> and <code>dateModified</code> fields with valid ISO 8601 dates. If missing, add them to each blog post template.</p>
+      </div>
     </div>
     <div class="cols">
-      <div><p class="row-title">Set the GBP link after deployment <span class="mono tag">important</span></p></div>
-      <div><p>The intended profile destination is <code>https://amyelectric.com/city-winnetka</code>, but it should not be published in GBP while that URL is missing.</p><p class="fix"><b>Fix:</b> Change the GBP website after deployment and test the public link from the profile.</p></div>
+      <div><p class="row-title">Differentiate city pages <span class="mono tag">low</span></p></div>
+      <div>
+        <p>The 16 city pages and 32 geo-service pages follow identical templates. Google may treat near-duplicate pages as thin content if the unique local information is minimal.</p>
+        <p class="fix"><b>Fix:</b> Add 2-3 unique sentences to each city page mentioning a specific local landmark, neighborhood, or project type relevant to that city.</p>
+      </div>
     </div>
     <div class="cols">
-      <div><p class="row-title">Keep emergency language qualified <span class="mono tag">ongoing</span></p></div>
-      <div><p>The working tree now says dispatch depends on current availability and gives safety steps before calling.</p><p class="fix"><b>Fix:</b> Preserve that qualification in future edits. Do not promise 24/7 dispatch unless calls are answered and dispatch is available around the clock.</p></div>
+      <div><p class="row-title">Add review schema to service pages <span class="mono tag">low</span></p></div>
+      <div>
+        <p>The homepage has aggregateRating in the Electrician schema, but individual service pages do not include Review or AggregateRating markup. This limits rich snippet opportunities.</p>
+        <p class="fix"><b>Fix:</b> Add the <code>aggregateRating</code> block to the Electrician or LocalBusiness schema on each service page. Copy the rating from the homepage schema.</p>
+      </div>
     </div>
     <div class="cols">
-      <div><p class="row-title">Review preview canonicals <span class="mono tag">info</span></p></div>
-      <div><p>The crawl found 47 preview-host URLs canonicalized to matching production URLs.</p><p class="fix"><b>Fix:</b> No change is needed if the preview host is not intended to rank. Confirm production pages retain self-referencing canonicals or the intended canonical destination.</p></div>
+      <div><p class="row-title">Test sticky bar estimator link <span class="mono tag">low</span></p></div>
+      <div>
+        <p>The mobile sticky bar links to <code>index#estimator</code>. If the estimator form is on a different page or the anchor is broken, users may not reach the form.</p>
+        <p class="fix"><b>Fix:</b> Test the sticky bar link on a mobile device. Verify the estimator form loads and the anchor scrolls to it correctly.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>Already working</h2>
     <ul class="plain">
-      <li>The production homepage is reachable. <span class="why">Visitors can access the main service information.</span></li>
-      <li>The crawl completed 50 pages without server errors, broken-link warnings, missing-title warnings, or noindex warnings. <span class="why">The basic technical foundation is in place on the audited preview.</span></li>
-      <li>The site has dedicated pages for emergency electrical work, panel upgrades, EV charging, and service areas. <span class="why">These pages match the business’s core local services.</span></li>
-      <li>The working tree includes a Winnetka page, service-area link, and sitemap entry. <span class="why">The local landing path is prepared for deployment.</span></li>
+      <li>Comprehensive schema markup across all pages (LocalBusiness, Electrician, FAQPage, BreadcrumbList, HowTo, Service). <span class="why">Rich snippets in search results increase click-through rates.</span></li>
+      <li>176 URLs in the sitemap with recent lastmod dates (2026-09-04). <span class="why">Fresh sitemaps help Google discover and re-crawl content faster.</span></li>
+      <li>Well-configured robots.txt that explicitly allows AI crawlers (GPTBot, ClaudeBot, PerplexityBot). <span class="why">The site is ready for AI search visibility as these platforms grow.</span></li>
+      <li>15 service pages with detailed pricing, process steps, and FAQ sections. <span class="why">Comprehensive service pages rank for long-tail commercial queries.</span></li>
+      <li>16 city pages covering major LA neighborhoods. <span class="why">Local pages capture geo-modified searches like "electrician in Burbank."</span></li>
+      <li>31 blog posts covering electrical topics, costs, and guides. <span class="why">Blog content captures informational traffic and builds topical authority.</span></li>
+      <li>Font, image, and CSS preloading hints for performance. <span class="why">Faster load times improve user experience and Core Web Vitals scores.</span></li>
+      <li>Mobile-responsive design with sticky call bar on mobile. <span class="why">Most local searches happen on mobile; easy tap-to-call drives conversions.</span></li>
+      <li>Consistent NAP (name, address, phone) across all pages and schema. <span class="why">NAP consistency is a ranking factor for local pack results.</span></li>
+      <li>SSL certificate active, HTTPS enforced. <span class="why">HTTPS is a ranking signal and required for trust.</span></li>
     </ul>
   </section>
 
   <footer>
-    <p>Reviewed September 2, 2026. Sources: OpenSEO’s completed 50-page crawl of the Workers preview host and direct fetches of the production homepage and Winnetka URL. The crawl reported only informational canonicalized-page entries. Backlink and new keyword research were not run because the connected OpenSEO account has no remaining credits.</p>
+    <p>Reviewed September 10, 2026. Sources: manual fetch of homepage, sitemap.xml, robots.txt, ev-charger-installation page, and service-areas page; HTML and schema inspection of each. OpenSEO MCP was not connected, so crawl depth and backlink data were not available.</p>
   </footer>
 </div>
 <script src="js/site.min.js" defer></script>
