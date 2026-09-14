@@ -35,7 +35,7 @@ export default {
       return new Response(JSON.stringify(oidcDiscovery(clientId), null, 2), {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Cache-Control': 'public, max-age=3600',
+          'Cache-Control': 'no-store',
           'Access-Control-Allow-Origin': '*'
         }
       });
