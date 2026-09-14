@@ -1,10 +1,10 @@
 import { handleContact } from './contact-handler.js';
 
-const oidcDiscovery = {
+const oidcDiscovery = (clientId) => ({
   "issuer": "https://amyelectric.com",
-  "authorization_endpoint": "https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/PLACEHOLDER_CLIENT_ID/authorize",
-  "token_endpoint": "https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/PLACEHOLDER_CLIENT_ID/token",
-  "jwks_uri": "https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/PLACEHOLDER_CLIENT_ID/jwks",
+  "authorization_endpoint": `https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/${clientId}/authorize`,
+  "token_endpoint": `https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/${clientId}/token`,
+  "jwks_uri": `https://amyelectric.cloudflareaccess.com/cdn-cgi/access/sso/oidc/${clientId}/jwks`,
   "response_types_supported": ["code", "id_token", "id_token token"],
   "subject_types_supported": ["public"],
   "id_token_signing_alg_values_supported": ["RS256"],
@@ -15,7 +15,7 @@ const oidcDiscovery = {
   "service_documentation": "https://developers.cloudflare.com/cloudflare-one/identity/",
   "op_policy_uri": "https://amyelectric.com/privacy-policy.html",
   "op_tos_uri": "https://amyelectric.com/terms-of-service.html"
-};
+});
 
 export default {
   async fetch(request, env, ctx) {
@@ -31,7 +31,8 @@ export default {
     }
 
     if (url.pathname === '/.well-known/openid-configuration') {
-      return new Response(JSON.stringify(oidcDiscovery, null, 2), {
+      const clientId = env.OIDC_CLIENT_ID || 'not-configured';
+      return new Response(JSON.stringify(oidcDiscovery(clientId), null, 2), {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'Cache-Control': 'public, max-age=3600',
