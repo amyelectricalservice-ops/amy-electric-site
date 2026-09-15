@@ -11,6 +11,7 @@ NEW_BLOG_POSTS = [
     ("panel-upgrade-cost-los-angeles", "Panel Upgrade Cost"),
     ("ev-charger-installation-cost-los-angeles", "EV Charger Cost"),
     ("whole-home-rewiring-cost-los-angeles", "Rewiring Cost"),
+    ("is-your-home-ev-ready-los-angeles", "Is Your Home EV Ready?"),
 ]
 
 # Insert after the last blog post in nav (find the blog/ links)
