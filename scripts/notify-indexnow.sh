@@ -29,7 +29,19 @@ curl -X POST "https://api.indexnow.org/indexnow" \
       "'"$SITE/dedicated-circuits"'",
       "'"$SITE/smart-home-electrical"'",
       "'"$SITE/electrical-safety-inspections"'",
-      "'"$SITE/blog"'"
+      "'"$SITE/blog"'",
+      "'"$SITE/gallery"'",
+      "'"$SITE/gallery-los-angeles"'",
+      "'"$SITE/gallery-sherman-oaks"'",
+      "'"$SITE/gallery-beverly-hills"'",
+      "'"$SITE/gallery-studio-city"'",
+      "'"$SITE/gallery-encino"'",
+      "'"$SITE/gallery-burbank"'",
+      "'"$SITE/gallery-glendale"'",
+      "'"$SITE/gallery-north-hollywood"'",
+      "'"$SITE/gallery-pasadena"'",
+      "'"$SITE/gallery-hollywood-hills"'",
+      "'"$SITE/gallery-santa-monica"'"
     ]
   }'
 
