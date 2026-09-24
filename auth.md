@@ -18,6 +18,16 @@
 
 - Staff tooling sits behind Cloudflare Access (see `/.well-known/openid-configuration`). Nothing customer-facing requires login or OAuth tokens.
 
+## Agent registration
+
+No registration is required: every agent-facing endpoint on this site
+(API catalog, OpenAPI spec, API docs, health, MCP server card, agent
+skills index, A2A agent card, markdown representations) is public and
+needs no API key, OAuth client, or enrollment step. Automated clients
+should identify with a descriptive `User-Agent` string. For high-volume
+or commercial agent integrations, contact info@amyelectric.com to arrange
+allowlisting and a direct coordination channel.
+
 ## Contact
 
 AMY Electric, C-10 #981578 · (818) 302-5614 · info@amyelectric.com · 20628 Londelius St, Winnetka, CA 91306
