@@ -35,7 +35,9 @@ Although no key or enrollment is required to start, production agent
 integrations should register so we can allowlist your traffic and notify
 you of API changes. Registration is a short email exchange:
 
-1. Email info@amyelectric.com with subject `Agent registration`.
+1. Register with the estimate form at https://amyelectric.com/#estimator
+   (put `Agent registration` in the project details), or email
+   [info@amyelectric.com](mailto:info@amyelectric.com) with subject `Agent registration`.
 2. Include your `User-Agent` string, the endpoints you call
    (`/.well-known/api-catalog`, `/openapi.json`, `/a2a`), and expected
    request volume.
