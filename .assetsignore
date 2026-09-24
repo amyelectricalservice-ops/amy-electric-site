@@ -37,3 +37,5 @@ photo-*.json
 audit-performance.json
 reports
 amyelectric-site
+gallery-pipeline
+REFS_SPEC*.md
