@@ -599,6 +599,18 @@ export default {
       headers.append('Link', '</.well-known/openid-configuration>; rel="describedby"');
       headers.append('Link', '</.well-known/http-message-signatures-directory>; rel="api-catalog"');
       headers.append('Link', '</robots.txt>; rel="service-doc"');
+      headers.append('Vary', 'Accept');
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers
+      });
+    }
+
+    const responseType = response.headers.get('Content-Type') || '';
+    if (responseType.includes('text/html')) {
+      const headers = new Headers(response.headers);
+      headers.append('Vary', 'Accept');
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,

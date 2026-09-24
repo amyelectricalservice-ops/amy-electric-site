@@ -1,4 +1,4 @@
-# Authentication — AMY Electric
+# Auth.md — Authentication for AMY Electric
 
 > How authentication and abuse protection work on amyelectric.com. No customer-facing login exists.
 
