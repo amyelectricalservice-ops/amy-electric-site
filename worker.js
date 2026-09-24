@@ -128,6 +128,7 @@ function a2aAgentCard() {
     description: 'Answer questions about residential and commercial electrical work in Greater Los Angeles (services, pricing ranges, licensing, permits, rebates) and guide estimate requests. Operated by AMY Electric, C-10 #981578.',
     url: 'https://amyelectric.com/a2a',
     version: '1.0.0',
+    supportedInterfaces: [{ url: 'https://amyelectric.com/a2a', protocol: 'JSONRPC' }],
     capabilities: { streaming: true, pushNotifications: false, stateTransitionHistory: true },
     defaultInputModes: ['text'],
     defaultOutputModes: ['text'],
@@ -491,7 +492,7 @@ export default {
       });
     }
 
-    if (url.pathname === '/.well-known/agent.json' && request.method === 'GET') {
+    if ((url.pathname === '/.well-known/agent.json' || url.pathname === '/.well-known/agent-card.json') && request.method === 'GET') {
       return new Response(JSON.stringify(a2aAgentCard(), null, 2), {
         headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=3600' }
       });
