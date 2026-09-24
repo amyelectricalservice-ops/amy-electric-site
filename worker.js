@@ -160,6 +160,19 @@ export default {
         }
       }
 
+      const llmsFallback = await env.ASSETS.fetch(new Request(
+        new URL('/llms.txt', request.url).toString(),
+        request
+      ));
+      if (llmsFallback.ok) {
+        return new Response(llmsFallback.body, {
+          headers: {
+            'Content-Type': 'text/markdown; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600'
+          }
+        });
+      }
+
       return new Response('Not Acceptable: Markdown not available for this path', {
         status: 406,
         headers: { 'Content-Type': 'text/plain' }
