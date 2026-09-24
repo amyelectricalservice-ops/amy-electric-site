@@ -28,6 +28,22 @@ should identify with a descriptive `User-Agent` string. For high-volume
 or commercial agent integrations, contact info@amyelectric.com to arrange
 allowlisting and a direct coordination channel.
 
+## How to register an agent integration
+
+Although no key or enrollment is required to start, production agent
+integrations should register so we can allowlist your traffic and notify
+you of API changes. Registration is a short email exchange:
+
+1. Email info@amyelectric.com with subject `Agent registration`.
+2. Include your `User-Agent` string, the endpoints you call
+   (`/.well-known/api-catalog`, `/openapi.json`, `/a2a`), and expected
+   request volume.
+3. We reply within two business days confirming allowlisting, plus a
+   contact channel for breaking-change notices.
+
+Registered integrations are listed for abuse-triage purposes only; there
+are no fees, tiers, or credential issuance.
+
 ## Contact
 
 AMY Electric, C-10 #981578 · (818) 302-5614 · info@amyelectric.com · 20628 Londelius St, Winnetka, CA 91306
