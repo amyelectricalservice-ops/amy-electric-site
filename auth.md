@@ -23,9 +23,10 @@
 No registration is required: every agent-facing endpoint on this site
 (API catalog, OpenAPI spec, API docs, health, MCP server card, agent
 skills index, A2A agent card, markdown representations) is public and
-needs no API key, OAuth client, or enrollment step. Automated clients
+needs no API key, OAuth client, enrollment, or sign-up form. There is no
+self-serve signup portal. Automated clients
 should identify with a descriptive `User-Agent` string. For high-volume
-or commercial agent integrations, contact info@amyelectric.com to arrange
+or commercial agent integrations, contact [info@amyelectric.com](mailto:info@amyelectric.com) to arrange
 allowlisting and a direct coordination channel.
 
 ## How to register an agent integration
