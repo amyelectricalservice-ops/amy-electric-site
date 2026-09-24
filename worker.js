@@ -120,6 +120,171 @@ function htmlToMarkdown(html, pageUrl) {
   return out;
 }
 
+const a2aTasks = new Map();
+
+function a2aAgentCard() {
+  return {
+    name: 'AMY Electric Estimator',
+    description: 'Answer questions about residential and commercial electrical work in Greater Los Angeles (services, pricing ranges, licensing, permits, rebates) and guide estimate requests. Operated by AMY Electric, C-10 #981578.',
+    url: 'https://amyelectric.com/a2a',
+    version: '1.0.0',
+    capabilities: { streaming: true, pushNotifications: false, stateTransitionHistory: true },
+    defaultInputModes: ['text'],
+    defaultOutputModes: ['text'],
+    skills: [
+      { id: 'answer-faq', name: 'Answer electrical questions', description: 'Pricing ranges, licensing, permits, LADWP rebates, and service guidance for LA electrical work.', tags: ['electrical', 'pricing', 'faq'] },
+      { id: 'guide-estimate', name: 'Guide an estimate request', description: 'Collect service type, city, and contact details, then direct the customer to booking channels.', tags: ['estimate', 'lead'] }
+    ]
+  };
+}
+
+function a2aAnswer(text) {
+  const t = text.toLowerCase();
+  const has = (...words) => words.some(w => t.includes(w));
+  if (has('license', 'licensed', 'c-10', 'c10', 'insured', 'legit')) {
+    return 'AMY Electric holds California C-10 Electrical Contractor license #981578, verifiable at cslb.ca.gov, plus EVITP certification #4051604 for charging infrastructure. We carry general liability and workers compensation insurance. California requires a C-10 license for electrical jobs over $500 — always verify before signing.';
+  }
+  if (has('rebate', 'credit', 'ladwp', 'incentive', '30c')) {
+    return 'Two incentives stack on most installs: the LADWP rebate up to $500 for qualifying Level 2 chargers, and the 30 percent federal 30C tax credit up to $1,000 through 2032. Combined they can bring a standard $900 install under $200 net. LADWP jobs need a licensed contractor, permit, and inspection — our standard process.';
+  }
+  if (has('price', 'cost', 'much', 'quote', 'estimate', 'charge')) {
+    if (has('panel', 'upgrade', '200a', '200 amp', 'amp')) return 'A 100A to 200A panel upgrade in Los Angeles runs $2,500 to $4,500 including permit, labor, materials, and inspection, over a four to eight hour power-off day. Federal Pacific or Zinsco replacements run $2,800 to $4,800. We quote firm itemized pricing after an on-site evaluation.';
+    if (has('rewire', 'rewiring', 're-wire')) return 'Whole-home rewiring in Los Angeles runs $8,000 to $18,000 over three to seven days depending on size and access. Trigger signs: knob-and-tube or aluminum wiring, ungrounded two-prong outlets, and insurance restrictions.';
+    if (has('tesla', 'wall connector')) return 'Tesla Wall Connector installation runs $500 to $1,200 including the dedicated 60A circuit, wiring, mounting, permit, and commissioning. The unit itself ($475) is purchased separately from Tesla.';
+    return 'Typical Los Angeles ranges: Level 2 EV charger $350 to $900, panel upgrade $2,500 to $4,500, troubleshooting visits $150 to $350, whole-home rewiring $8,000 to $18,000. Every project gets an itemized written estimate after an on-site load calculation — call (818) 302-5614.';
+  }
+  if (has('permit')) {
+    return 'Most LA electrical work — panel upgrades, EV chargers, new circuits, rewiring — requires an LADBS e-permit plus city inspection to California Electrical Code, with LADWP coordination where service work is involved. We submit permits, schedule and attend inspections, and deliver final records. Unpermitted work must be disclosed at sale.';
+  }
+  if (has('emergency', 'spark', 'burning', 'outage', 'urgent')) {
+    return 'For sparking outlets, burning smells, or power loss affecting only your home, call (818) 302-5614 immediately — we dispatch same-day for emergencies when crews are available. Stop using the affected circuit and do not keep resetting a tripping breaker.';
+  }
+  if (has('ev', 'charger', 'tesla', 'chargepoint', 'nema')) {
+    return 'Most LA homeowners install a 40A or 48A Level 2 charger ($350 to $900 installed) after a free load calculation confirms panel capacity; 100A services often need the $2,500 to $4,500 upgrade first. We install Tesla, ChargePoint, and universal stations, permitted and inspected, and prepare LADWP rebate paperwork up to $500.';
+  }
+  return null;
+}
+
+function a2aTaskNew(text) {
+  const id = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+  return {
+    id, contextId: id,
+    status: { state: 'submitted', timestamp: new Date().toISOString() },
+    history: [{ messageId: id + '-u1', role: 'user', parts: [{ kind: 'text', text }] }],
+    artifacts: []
+  };
+}
+
+function a2aComplete(task, answer) {
+  const now = new Date().toISOString();
+  task.history.push({ messageId: task.id + '-a' + task.history.length, role: 'agent', parts: [{ kind: 'text', text: answer }] });
+  task.artifacts.push({ artifactId: task.id + '-art1', name: 'answer', parts: [{ kind: 'text', text: answer }] });
+  task.status = { state: 'completed', timestamp: now };
+  return task;
+}
+
+function a2aRpcError(id, code, message) {
+  return new Response(JSON.stringify({ jsonrpc: '2.0', id: id === undefined ? null : id, error: { code, message } }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json; charset=utf-8' }
+  });
+}
+
+function a2aRpcResult(id, result) {
+  return new Response(JSON.stringify({ jsonrpc: '2.0', id, result }), {
+    headers: { 'Content-Type': 'application/json; charset=utf-8' }
+  });
+}
+
+async function a2aHandler(request) {
+  if (request.method === 'GET') {
+    return new Response(JSON.stringify({ error: 'Use POST with a JSON-RPC body. Agent card: /.well-known/agent.json' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json', Allow: 'POST' }
+    });
+  }
+  if (request.method !== 'POST') {
+    return new Response('Method not allowed', { status: 405 });
+  }
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return a2aRpcError(null, -32700, 'Parse error: invalid JSON');
+  }
+  if (!body || body.jsonrpc !== '2.0' || typeof body.method !== 'string') {
+    return a2aRpcError(body && body.id, -32600, 'Invalid Request');
+  }
+  const id = body.id === undefined ? null : body.id;
+
+  if (body.method === 'message/send') {
+    const msg = body.params && body.params.message;
+    const text = msg && Array.isArray(msg.parts)
+      ? msg.parts.filter(p => p.kind === 'text' && typeof p.text === 'string').map(p => p.text).join('\n')
+      : '';
+    if (!text.trim()) return a2aRpcError(id, -32602, 'Invalid params: message.parts with text content required');
+    let task = null;
+    const ctxId = msg.contextId;
+    if (ctxId && a2aTasks.has(ctxId)) {
+      task = a2aTasks.get(ctxId);
+      if (task.status.state === 'canceled' || task.status.state === 'failed' || task.status.state === 'completed') task = null;
+    }
+    if (!task) {
+      task = a2aTaskNew(text);
+      a2aTasks.set(task.contextId, task);
+    } else {
+      task.history.push({ messageId: task.id + '-u' + task.history.length, role: 'user', parts: [{ kind: 'text', text }] });
+    }
+    const answer = a2aAnswer(text);
+    if (answer) return a2aRpcResult(id, a2aComplete(task, answer));
+    const clarify = 'I can help with AMY Electric services, pricing ranges, licensing, permits, and rebates across Greater Los Angeles — or guide an estimate request. Tell me the service you need and your city (for humans: (818) 302-5614). Which project are you planning?';
+    task.history.push({ messageId: task.id + '-a' + task.history.length, role: 'agent', parts: [{ kind: 'text', text: clarify }] });
+    task.status = { state: 'input-required', timestamp: new Date().toISOString() };
+    return a2aRpcResult(id, task);
+  }
+
+  if (body.method === 'message/stream') {
+    const msg = body.params && body.params.message;
+    const text = msg && Array.isArray(msg.parts)
+      ? msg.parts.filter(p => p.kind === 'text' && typeof p.text === 'string').map(p => p.text).join('\n')
+      : '';
+    if (!text.trim()) return a2aRpcError(id, -32602, 'Invalid params: message.parts with text content required');
+    const task = a2aTaskNew(text);
+    a2aTasks.set(task.contextId, task);
+    const answer = a2aAnswer(text) || 'Tell me the service you need and your city, or call (818) 302-5614 for an immediate quote.';
+    const working = { jsonrpc: '2.0', id, result: { ...task, status: { state: 'working', timestamp: new Date().toISOString() } } };
+    const done = { jsonrpc: '2.0', id, result: a2aComplete(task, answer) };
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode('data: ' + JSON.stringify(working) + '\n\n'));
+        controller.enqueue(new TextEncoder().encode('data: ' + JSON.stringify(done) + '\n\n'));
+        controller.close();
+      }
+    });
+    return new Response(stream, {
+      headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-store' }
+    });
+  }
+
+  if (body.method === 'tasks/get') {
+    const taskId = body.params && (body.params.id || body.params.taskId);
+    const task = [...a2aTasks.values()].find(t => t.id === taskId || t.contextId === taskId);
+    if (!task) return a2aRpcError(id, -32002, 'Task not found');
+    return a2aRpcResult(id, task);
+  }
+
+  if (body.method === 'tasks/cancel') {
+    const taskId = body.params && (body.params.id || body.params.taskId);
+    const task = [...a2aTasks.values()].find(t => t.id === taskId || t.contextId === taskId);
+    if (!task) return a2aRpcError(id, -32002, 'Task not found');
+    if (task.status.state === 'completed') return a2aRpcError(id, -32003, 'Task already completed');
+    task.status = { state: 'canceled', timestamp: new Date().toISOString() };
+    return a2aRpcResult(id, task);
+  }
+
+  return a2aRpcError(id, -32601, 'Method not found');
+}
+
 function contactApiSpec() {
   return {
     openapi: '3.1.0',
@@ -324,6 +489,16 @@ export default {
           'Access-Control-Allow-Origin': '*'
         }
       });
+    }
+
+    if (url.pathname === '/.well-known/agent.json' && request.method === 'GET') {
+      return new Response(JSON.stringify(a2aAgentCard(), null, 2), {
+        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=3600' }
+      });
+    }
+
+    if (url.pathname === '/a2a') {
+      return a2aHandler(request);
     }
 
     if (url.pathname === '/api/health') {
