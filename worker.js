@@ -384,6 +384,11 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    if (url.hostname === 'www.amyelectric.com') {
+      url.hostname = 'amyelectric.com';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact') {
       return handleContact(request, env, ctx.waitUntil.bind(ctx));
     }
