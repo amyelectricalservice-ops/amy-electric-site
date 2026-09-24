@@ -55,3 +55,27 @@ curl -sS -X POST -H 'Content-Type: application/json' \
 ```
 
 Do not delete or transfer Revitaldaycare resources as part of this setup.
+
+## Direct deploy notes (2026-09-23, verified live)
+
+The local Wrangler login is currently `a.m.y.electricalservice@gmail.com`
+(account `a08528fe…`), not Revitaldaycare — the note above about the
+Revitaldaycare login is outdated. Direct deploys work from this login:
+
+```bash
+wrangler deploy --dry-run   # validates worker bundle + asset list
+wrangler deploy             # publishes worker + assets, prints Version ID
+```
+
+The 2026-09-23 deploy (worker `amy-electric-site`, version `4091f2a0`)
+was verified live via `/api/health`, `/.well-known/api-catalog`,
+`/.well-known/agent.json`, and page content. `gallery-pipeline/` and
+stray docs are excluded from uploads via `.assetsignore`.
+
+Mandatory post-deploy step: purge the edge HTML cache. Edge entries are
+served without `Accept` partitioning, so markdown/agent requests otherwise
+receive stale HTML (observed as `cf-cache-status: HIT` with no `Vary`
+header). The local OAuth token lacks the Cache Purge scope, so purging
+needs the dashboard (Caching → Purge Everything) or an API token with
+Zone Cache Purge + Zone Settings:Read. `worker.js` now emits
+`Vary: Accept` on HTML responses so future entries partition correctly.
