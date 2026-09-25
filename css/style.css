@@ -674,6 +674,12 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .author-byline a{color:var(--gold)}
 .post-date{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:20px}
 
+/* ── OFF-SCREEN DOM PERFORMANCE OPTIMIZATION ── */
+.nearby-cities, .site-footer, .faq-list {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
 /* ── ESTIMATE FORM ── */
 .estimate-section { background: var(--mid); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
