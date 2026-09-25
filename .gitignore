@@ -8,3 +8,9 @@
 .env*
 !.env.example
 lighthouse-report*.json
+.omo/
+.playwright-mcp/
+__pycache__/
+*.pyc
+gallery-pipeline/processed/
+gallery-pipeline/raw/

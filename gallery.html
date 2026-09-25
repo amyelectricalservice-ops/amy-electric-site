@@ -857,13 +857,7 @@ function renderGalleryItem(d) {
   var h = '<div class="gallery-item" data-category="' + d.c + '" data-city="' + d.city + '" data-year="' + d.y + '">';
   h += '<picture><source srcset="img/gallery/' + d.s + '-400w.webp 400w, img/gallery/' + d.s + '-800w.webp 800w, img/gallery/' + d.s + '-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(33vw - 32px), 300px">';
   h += '<source srcset="img/gallery/' + d.s + '-1200w.jpg" type="image/jpeg">';
-  h += '
-  <source srcset="img/gallery/' + d.s + '-1200w.webp" type="image/webp">
-  
-  <source srcset="img/gallery/' + d.s + '-1200w.webp" type="image/webp">
-  <img src="img/gallery/' + d.s + '-1200w.jpg" alt="' + d.cap + ' - AMY Electric ' + d.city + '" width="1200" height="900" loading="lazy" decoding="async">
-
-</picture>';
+  h += '<img src="img/gallery/' + d.s + '-1200w.jpg" alt="' + d.cap + ' - AMY Electric ' + d.city + '" width="1200" height="900" loading="lazy" decoding="async"></picture>';
   h += '<div class="gallery-overlay"><h3>' + d.cap + '</h3>';
   h += '<p class="gallery-location">' + d.city + ', CA &middot; ' + d.y + '</p>';
   h += '<span class="gallery-tag" style="background:' + d.bg + ';color:' + d.cl + '">' + d.lbl + '</span></div></div>';
