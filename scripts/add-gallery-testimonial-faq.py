@@ -40,7 +40,7 @@ TESTIMONIALS = """<section class="section-navy"><div class="wrap text-center">
 
 for path, block in [("gallery.html", GALLERY), ("testimonials.html", TESTIMONIALS)]:
     doc = open(path, encoding="utf-8").read()
-    if 'class="faq-list"' in doc:
+    if 'class="faq-list text-left"' in doc:
         print("  %-22s already has a FAQ section" % path)
         continue
     marker = '<section class="section-navy"><div class="wrap text-center">\n  <div class="section-label">Service Areas'
