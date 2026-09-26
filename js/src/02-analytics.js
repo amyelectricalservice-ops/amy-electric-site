@@ -34,8 +34,18 @@
       fireEvent('cta_click', link.textContent.trim() || 'cta_link', 1);
     }
 
-    if (link.href && !/^mailto:|^tel:|^https?:/.test(link.href) && link.href.indexOf('amyelectric.com') === -1) {
-      fireEvent('internal_link_click', link.getAttribute('href') || 'internal_link', 1);
+    // link.href is always absolute in the DOM, so scheme/host tests have to run
+    // against the resolved URL rather than the raw attribute.
+    if (link.href && !/^(mailto:|tel:|sms:)/i.test(link.href)) {
+      var sameSite = false;
+      try {
+        sameSite = new URL(link.href, window.location.href).origin === window.location.origin;
+      } catch (err) {
+        sameSite = false;
+      }
+      if (sameSite) {
+        fireEvent('internal_link_click', link.getAttribute('href') || 'internal_link', 1);
+      }
     }
   });
 
