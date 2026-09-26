@@ -1,2 +1,13 @@
+# Retired duplicate blog stubs -> canonical post (301).
+# These three pages were empty shells (33-39 words, noindex) that duplicated a real post.
+/blog/smart-home-electrical-upgrades-la  /blog/smart-home-electrical-upgrades  301
+/blog/how-to-choose-electrician-los-angeles  /blog/choosing-electrician-la  301
+/blog/signs-you-need-electrical-panel-upgrade  /blog/panel-upgrade-signs  301
+
+# Directory index paths (301). The assets config would otherwise answer these
+# with a 307; a canonical redirect should be a 301.
+/blog  /blog/  301
+/case-studies  /case-studies/  301
+
 # Strip .html extension (301)
 /*.html  /:splat  301

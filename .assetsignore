@@ -39,3 +39,15 @@ reports
 amyelectric-site
 gallery-pipeline
 REFS_SPEC*.md
+report.json
+report.md
+map.osm
+*.bak
+go.mod
+setup-notes.txt
+main.txt
+skills-lock.json
+audit/
+accessibility-audit/
+cmd/
+img/raw/
