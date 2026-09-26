@@ -1,83 +1,121 @@
 #!/usr/bin/env python3
-"""Collapse the duplicate business entity on the 2 pages that had one.
+"""Collapse business entities that share an @id into a single Electrician node.
 
-emergency-electrical.html and reviews.html each carried a LocalBusiness node. An
-Electrician node was added to satisfy schema-tool.py, which left two nodes sharing
-one @id with different @type - a data-modelling error, since @id identifies a node
-and Electrician is itself a LocalBusiness subtype.
+117 pages declare both a LocalBusiness and an Electrician node with an identical
+@id (the page's own URL). Electrician is a LocalBusiness subtype and @id identifies
+a single node, so this is a data-modelling error: a consumer merging by @id sees a
+type conflict, and one that does not merge sees two competing businesses per page.
 
-This merges them into a single Electrician node: the page's own LocalBusiness values
-win, and any property only the Electrician node carried (founder, foundingDate,
-hasCredential, openingHoursSpecification, areaServed) is folded in. Idempotent.
+Merge rule, chosen so nothing is lost and the richer signal wins:
+  - union of both nodes' properties. This matters: LocalBusiness is the sole
+    carrier of `speakable` on 20 pages, and of logo/knowsAbout/review/
+    hasOfferCatalog/openingHours on index.html, so keeping only the Electrician
+    node would silently drop them.
+  - on conflict the LocalBusiness value wins. areaServed is the only property
+    where both nodes regularly differ, and only on 3 pages (index, service-areas,
+    services) where LocalBusiness lists 16-17 cities against Electrician's single
+    generic region. On the other 114 only Electrician has areaServed, so there is
+    nothing to resolve.
+  - the result is typed Electrician, the more specific type and the one
+    scripts/schema-tool.py requires (with openingHoursSpecification + hasCredential)
+  - null values never overwrite a real value
+
+Service nodes and business groups with distinct @ids are left untouched.
+Idempotent.
 """
 import json
+import os
 import re
+import sys
+from collections import defaultdict
 
-ROOT = "/home/amram/WEBSITE"
-TARGETS = ["emergency-electrical.html", "reviews.html"]
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+APPLY = "--apply" in sys.argv
+BUSINESS = ("Electrician", "LocalBusiness", "Service")
 BLOCK = re.compile(r'(?is)(<script[^>]*type="application/ld\+json"[^>]*>)(.*?)(</script>)')
 
 
-def nodes(doc):
-    out = []
-    for m in BLOCK.finditer(doc):
-        try:
-            obj = json.loads(m.group(2).strip())
-        except Exception:
-            continue
-        for it in (obj if isinstance(obj, list) else [obj]):
-            if isinstance(it, dict):
-                out.append((m, it))
+def pages():
+    out = [f for f in sorted(os.listdir(ROOT)) if f.endswith(".html")]
+    for sub in ("blog", "case-studies"):
+        sd = os.path.join(ROOT, sub)
+        if os.path.isdir(sd):
+            out += [sub + "/" + e for e in sorted(os.listdir(sd)) if e.endswith(".html")]
     return out
 
 
-for fname in TARGETS:
-    path = f"{ROOT}/{fname}"
-    doc = open(path, encoding="utf-8").read()
-    ents = nodes(doc)
-    lb = [(m, it) for m, it in ents if it.get("@type") == "LocalBusiness"]
-    el = [(m, it) for m, it in ents if it.get("@type") == "Electrician"]
+def parse(doc):
+    out = []
+    for m in BLOCK.finditer(doc):
+        try:
+            out.append((m, json.loads(m.group(2).strip())))
+        except Exception:
+            pass
+    return out
 
-    if not lb:
-        print("  %-30s no LocalBusiness node, skipped" % fname)
-        continue
-    if not el:
-        print("  %-30s no Electrician node, nothing to merge" % fname)
-        continue
 
-    lb_m, lb_node = lb[0]
-    merged = dict(el[0][1])
-    merged.update(lb_node)
+def prune_nulls(d):
+    return {k: v for k, v in d.items() if v is not None}
+
+
+def build(lb, el, node_id):
+    merged = dict(prune_nulls(el))
+    merged.update(prune_nulls(lb))
     merged["@type"] = "Electrician"
     merged.setdefault("@context", "https://schema.org")
+    merged["@id"] = node_id
+    return merged
 
-    # rewrite the LocalBusiness block as the merged node, drop the Electrician block
-    payload = json.dumps(merged, indent=2, ensure_ascii=False)
-    doc = doc[:lb_m.start()] + lb_m.group(1) + "\n" + payload + "\n" + lb_m.group(3) + doc[lb_m.end():]
-    # recompute and remove the now-duplicate Electrician block
-    for m, _ in nodes(doc):
-        if _.get("@type") == "Electrician" and m.start() != doc.find('"@type": "Electrician"'):
-            pass
-    ents2 = nodes(doc)
-    seen = False
-    for m, it in ents2:
-        if it.get("@type") != "Electrician":
-            continue
-        if not seen:
-            seen = True
-            continue
-        doc = doc[:m.start()] + doc[m.end():]
 
-    open(path, "w", encoding="utf-8").write(doc)
+merged_pages = 0
+merged_nodes = 0
+detail = []
 
-    final = nodes(doc)
-    biz = [(it.get("@type"), it.get("@id")) for _, it in final
-           if it.get("@type") in ("Electrician", "LocalBusiness", "Service")]
-    ids = [i for _, i in biz]
-    print("  %-30s business entities now: %s" % (fname, biz))
-    print("  %-30s duplicate @id: %s" % ("", len(ids) != len(set(ids))))
-    elec = [it for _, it in final if it.get("@type") == "Electrician"]
-    if elec:
-        e = elec[0]
-        print("  %-30s openingHoursSpecification=%s hasCredential=%s"
-              % ("", "openingHoursSpecification" in e, "hasCredential" in e))
+for rel in pages():
+    path = os.path.join(ROOT, rel)
+    doc = open(path, encoding="utf-8", errors="replace").read()
+    if "LocalBusiness" not in doc:
+        continue
+
+    groups = defaultdict(lambda: defaultdict(list))
+    for m, obj in parse(doc):
+        for it in (obj if isinstance(obj, list) else [obj]):
+            if isinstance(it, dict) and it.get("@type") in BUSINESS:
+                groups[it.get("@id")][it["@type"]].append((m, it))
+
+    targets = {i: g for i, g in groups.items()
+               if i is not None and g.get("LocalBusiness") and g.get("Electrician")}
+    if not targets:
+        continue
+
+    for node_id, g in targets.items():
+        lb = g["LocalBusiness"][0][1]
+        el = g["Electrician"][0][1]
+        merged = build(lb, el, node_id)
+        detail.append((rel, node_id, len(lb), len(el), len(merged)))
+        merged_nodes += 1
+
+    if APPLY:
+        edits = []
+        for node_id, g in targets.items():
+            lb_m, lb = g["LocalBusiness"][0]
+            el_m, el = g["Electrician"][0]
+            first, second = (lb_m, el_m) if lb_m.start() < el_m.start() else (el_m, lb_m)
+            edits.append((second.start(), second.end(), ""))
+            edits.append((first.start(2), first.end(2),
+                          "\n" + json.dumps(build(lb, el, node_id), indent=2, ensure_ascii=False) + "\n"))
+        out = doc
+        for s, e, payload in sorted(edits, key=lambda x: -x[0]):
+            out = out[:s] + payload + out[e:]
+        open(path, "w", encoding="utf-8").write(re.sub(r"\n{3,}", "\n\n", out))
+        merged_pages += 1
+
+print("mode:                       %s" % ("APPLY" if APPLY else "DRY RUN"))
+print("pages merged:               %d" % merged_pages)
+print("duplicate node pairs fixed: %d" % merged_nodes)
+print()
+print("sample (page, slug, lb_props + el_props -> merged):")
+for rel, nid, a, b, c in detail[:10]:
+    print("  %-36s %-26s %2d + %2d -> %2d" % (rel, (nid or "").replace("https://amyelectric.com", "") or "/", a, b, c))
+if len(detail) > 10:
+    print("  ... and %d more" % (len(detail) - 10))
