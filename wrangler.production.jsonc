@@ -4,7 +4,7 @@
   "main": "worker.js",
   "workers_dev": false,
   "preview_urls": false,
-  "compatibility_date": "2026-09-02",
+  "compatibility_date": "2026-05-21",
   "observability": {
     "enabled": true
   },
@@ -19,6 +19,10 @@
     {
       "pattern": "amyelectric.com",
       "custom_domain": true,
+      "zone_name": "amyelectric.com"
+    },
+    {
+      "pattern": "www.amyelectric.com/*",
       "zone_name": "amyelectric.com"
     }
   ],
