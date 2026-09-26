@@ -41,10 +41,14 @@ jobs:
           root = tree.getroot()
           sitemap_urls = {elem.text.strip() for elem in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
 
-          html_files = glob.glob('*.html') + glob.glob('blog/*.html')
+          html_files = glob.glob('*.html') + glob.glob('blog/*.html') + glob.glob('case-studies/*.html')
           html_urls = set()
           for f in html_files:
               if f == '404.html':
+                  continue
+              with open(f, encoding='utf-8', errors='replace') as fh:
+                  head = fh.read(4000)
+              if 'noindex' in head:
                   continue
               clean = f.replace('./', '').removesuffix('.html')
               if clean == 'index':
