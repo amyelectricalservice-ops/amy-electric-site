@@ -1,81 +1,71 @@
 # AMY Electric production deployment
 
-Production must be deployed from the Cloudflare account that owns the
-`amyelectric.com` zone. The local Wrangler login is currently associated with
-the unrelated Revitaldaycare account, so it is suitable only for the
-temporary `amy-electric-site.revitaldaycare.workers.dev` preview.
+## Verified state (checked 2026-09-27 against the Cloudflare API)
+
+- Live Worker: **`amy-electric-site`**
+- Live config: **`wrangler.jsonc`**
+- Account: `a08528fe46962a4d732de2d8d30eeef5` (`a.m.y.electricalservice@gmail.com`)
+- Deployed compatibility date: `2026-05-21`, flags `["nodejs_compat"]`
+- Deployments on record: 10, **all with `source: "wrangler"`, none from Git**
+
+That last line is the important one: **pushing to `main` does not deploy this site.** Workers Builds
+has never run for this Worker, so every deploy has been a manual `wrangler deploy`. Earlier revisions
+of this file referred to a `amy-electric-site-production` Worker and to the Revitaldaycare account;
+neither is true of the site actually serving `amyelectric.com`, and both notes have been removed.
 
 ## Production boundary
 
 - GitHub repository: `amyelectricalservice-ops/amy-electric-site`
-- Production Worker: `amy-electric-site-production`
-- Production hostname: `amyelectric.com`
-- Wrangler configuration: `wrangler.production.jsonc`
+- Production Worker: `amy-electric-site`
+- Production hostname: `amyelectric.com` (plus the `www` redirect)
+- Wrangler configuration: `wrangler.jsonc`
 - Public assets are filtered by `.assetsignore`
 
-The production config intentionally has no `account_id`. Wrangler should be
-run only after authenticating to the account that owns the AMY Electric zone,
-which prevents an account ID from being committed to the repository.
+`wrangler.jsonc` intentionally has no `account_id`, so the account comes from the authenticated
+login rather than being committed.
 
-## One-time setup by the zone owner
+`wrangler.production.jsonc` is retained as a hardened alternative. It is now equivalent to
+`wrangler.jsonc` for `main`, `compatibility_date`, `compatibility_flags`, `observability`, `assets`
+and host coverage, but it targets a different Worker name and sets `workers_dev: false`. It is not
+what serves production today. Adopting it would require creating that Worker and moving the
+`amyelectric.com` custom domain onto it.
 
-1. Confirm that `amyelectric.com` is an active zone in the Cloudflare account.
-2. Create or authorize the `amy-electric-site-production` Worker.
-3. Connect the Worker to the GitHub repository and `main` branch through
-   Workers Builds. Set its deploy command to
-   `npx wrangler deploy --config wrangler.production.jsonc`, or use an
-   account-scoped deployment token with that same config.
-4. Configure the custom domain from `wrangler.production.jsonc`.
-5. Confirm the intended `www` redirect separately; the custom domain matches
-   only the exact hostname configured.
-6. Keep the current `amy-electric-site` Worker in the Revitaldaycare account
-   as a temporary preview until the production hostname is verified.
-
-The production Worker includes the shared `/api/contact` handler. Do not use
-an assets-only deployment for production, or form submissions will not be
-processed.
-
-## Deployment and verification
-
-From the repository root, after logging in to the zone-owning account:
+## Deploying
 
 ```bash
-npx wrangler@latest deploy --config wrangler.production.jsonc --dry-run
-npx wrangler@latest deploy --config wrangler.production.jsonc --message "Deploy AMY Electric production site"
+wrangler deploy --dry-run --config wrangler.jsonc   # validates bundle + asset list
+wrangler deploy --config wrangler.jsonc            # publishes, prints Version ID
 ```
 
-Verify the production hostname before considering the cutover complete:
+`wrangler login` must have been run against the zone-owning account. Deploys currently ride an
+OAuth token that expires; if a deploy fails with `CLOUDFLARE_API_TOKEN` required, re-run it — that
+is a token-refresh race, not a broken config.
+
+Verify before considering a deploy complete:
 
 ```bash
-curl -fsSL https://amyelectric.com/licensed-electrician-los-angeles | grep -m1 '<title>'
-curl -fsSL https://amyelectric.com/service-areas | grep -m1 'meta name="description"'
-curl -sS -X POST -H 'Content-Type: application/json' \
-  --data '{"website":"deployment-check"}' \
-  -o /dev/null -w '%{http_code}\n' https://amyelectric.com/api/contact
+curl -fsSL https://amyelectric.com/ | grep -m1 '<title>'
+curl -sS -o /dev/null -w '%{http_code}\n' https://amyelectric.com/sitemap.xml
+curl -sS -o /dev/null -w '%{http_code}\n' https://amyelectric.com/report.json   # expect 404
+curl -sSI https://www.amyelectric.com/ | head -1                                # expect 301 to apex
 ```
 
-Do not delete or transfer Revitaldaycare resources as part of this setup.
+The Worker includes the shared `/api/contact` handler. Do not use an assets-only deployment, or form
+submissions will not be processed.
 
-## Direct deploy notes (2026-09-23, verified live)
+## Optional: connecting Workers Builds
 
-The local Wrangler login is currently `a.m.y.electricalservice@gmail.com`
-(account `a08528fe…`), not Revitaldaycare — the note above about the
-Revitaldaycare login is outdated. Direct deploys work from this login:
+Nothing is connected today. To get automatic deploys on push, the zone owner would connect the Worker
+to `main` in the Cloudflare Workers Builds settings with the deploy command
+`npx wrangler deploy --config wrangler.jsonc`, then confirm a push produces a deployment whose
+`source` is Git rather than `wrangler`.
 
-```bash
-wrangler deploy --dry-run   # validates worker bundle + asset list
-wrangler deploy             # publishes worker + assets, prints Version ID
-```
+That is a convenience, not a requirement — the direct `wrangler deploy` path is verified working.
 
-The 2026-09-23 deploy (worker `amy-electric-site`, version `4091f2a0`)
-was verified live via `/api/health`, `/.well-known/api-catalog`,
-`/.well-known/agent.json`, and page content. `gallery-pipeline/` and
-stray docs are excluded from uploads via `.assetsignore`.
+## Post-deploy: edge cache
 
-Mandatory post-deploy step: purge the edge HTML cache. Edge entries are
-served without `Accept` partitioning, so markdown/agent requests otherwise
-receive stale HTML (observed as `cf-cache-status: HIT` with no `Vary`
-header). The local OAuth token lacks the Cache Purge scope, so purging
-needs the dashboard (Caching → Purge Everything) or an API token with
-Zone Cache Purge + Zone Settings:Read. `worker.js` now emits
-`Vary: Accept` on HTML responses so future entries partition correctly.
+Edge HTML entries were historically served without `Accept` partitioning, so markdown/agent requests
+could receive stale HTML (`cf-cache-status: HIT` with no `Vary` header). `worker.js` now emits
+`Vary: Accept` on HTML responses, so entries partition correctly. The local OAuth token still lacks
+the Cache Purge scope, so if stale content is ever observed, purge from the dashboard
+(Caching → Purge Everything) or use an API token with Zone Cache Purge + Zone Settings:Read.
