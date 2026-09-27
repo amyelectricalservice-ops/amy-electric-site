@@ -1,0 +1,112 @@
+name: Deploy Production
+
+# Workers Builds is not connected to this repository, verified 2026-09-27: all 10
+# deployments on record have source "wrangler" and none from Git. This workflow
+# provides the automatic deploy instead. It requires two repository secrets,
+# which are deliberately not in the repo:
+#
+#   CLOUDFLARE_API_TOKEN   API token with Account > Workers Scripts > Edit
+#   CLOUDFLARE_ACCOUNT_ID  the account that owns the amyelectric.com zone
+#
+# The account id is taken from a secret rather than hardcoded, so no account id
+# is committed, matching the convention in DEPLOYMENT-AMY-ELECTRIC.md.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate before deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate structured data and sitemap
+        run: |
+          python3 scripts/schema-tool.py validate
+          python3 -c "
+          import xml.etree.ElementTree as ET, glob, sys
+          root = ET.parse('sitemap.xml').getroot()
+          sm = {e.text.strip() for e in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+          hu = set()
+          for f in glob.glob('*.html') + glob.glob('blog/*.html') + glob.glob('case-studies/*.html'):
+              if f == '404.html':
+                  continue
+              if 'noindex' in open(f, encoding='utf-8', errors='replace').read(4000):
+                  continue
+              c = f.replace('./', '').removesuffix('.html')
+              hu.add('https://amyelectric.com/' if c == 'index'
+                     else 'https://amyelectric.com/' + c.replace('index', '') if c.endswith('/index')
+                     else 'https://amyelectric.com/' + c)
+          if hu != sm:
+              print('sitemap mismatch:', hu ^ sm); sys.exit(1)
+          print('sitemap OK:', len(sm), 'urls')
+          "
+
+  deploy:
+    name: Deploy to Cloudflare Workers
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check required secrets are present
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=""
+          [ -z "$CLOUDFLARE_API_TOKEN" ] && missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -z "$CLOUDFLARE_ACCOUNT_ID" ] && missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error::Automatic deploy is not armed. Missing repository secret(s):$missing"
+            echo "Add them under Settings > Secrets and variables > Actions."
+            echo "Token needs the Account > Workers Scripts > Edit permission."
+            exit 1
+          fi
+
+      - name: Install wrangler
+        run: npm install -g wrangler@latest
+
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler whoami
+          wrangler deploy --config wrangler.jsonc
+
+      - name: Notify IndexNow
+        # Only after a successful deploy: telling crawlers about a failed or
+        # skipped deploy would be worse than staying silent.
+        if: success()
+        run: bash scripts/notify-indexnow.sh || echo "IndexNow notification failed; deploy still succeeded"
+
+      - name: Verify production responds
+        run: |
+          for path in / /city-arleta /panel-upgrade /blog/ /sitemap.xml; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 2 "https://amyelectric.com$path")
+            echo "$path -> $code"
+            [ "$code" = "200" ] || { echo "FAILED: $path returned $code"; exit 1; }
+          done
+          code=$(curl -sS -o /dev/null -w '%{http_code}' https://www.amyelectric.com/)
+          echo "www -> $code"
+          [ "$code" = "301" ] || { echo "FAILED: www redirect returned $code"; exit 1; }

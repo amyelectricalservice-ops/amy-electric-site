@@ -53,14 +53,20 @@ curl -sSI https://www.amyelectric.com/ | head -1                                
 The Worker includes the shared `/api/contact` handler. Do not use an assets-only deployment, or form
 submissions will not be processed.
 
-## Optional: connecting Workers Builds
+## Automatic deploys
 
-Nothing is connected today. To get automatic deploys on push, the zone owner would connect the Worker
-to `main` in the Cloudflare Workers Builds settings with the deploy command
-`npx wrangler deploy --config wrangler.jsonc`, then confirm a push produces a deployment whose
-`source` is Git rather than `wrangler`.
+`.github/workflows/deploy.yml` deploys on every push to `main`. It validates structured data and
+sitemap integrity first, then runs `wrangler deploy --config wrangler.jsonc`, notifies IndexNow, and
+smoke-tests production. It is inert until two repository secrets exist:
 
-That is a convenience, not a requirement — the direct `wrangler deploy` path is verified working.
+- `CLOUDFLARE_API_TOKEN` — an API token with **Account > Workers Scripts > Edit**
+- `CLOUDFLARE_ACCOUNT_ID` — the account owning the amyelectric.com zone
+
+Until both are set the deploy job fails at an explicit preflight step that names the missing secret,
+rather than failing obscurely inside wrangler.
+
+Cloudflare's own Workers Builds Git integration remains unconnected and is not required; if it is ever
+enabled, disable this workflow so the two do not both deploy on the same push.
 
 ## Post-deploy: edge cache
 

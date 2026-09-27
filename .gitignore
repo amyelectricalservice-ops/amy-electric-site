@@ -14,3 +14,4 @@ __pycache__/
 *.pyc
 gallery-pipeline/processed/
 gallery-pipeline/raw/
+node_modules/
