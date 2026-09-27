@@ -8,8 +8,10 @@ CREATE TABLE IF NOT EXISTS gallery_images (
   category TEXT NOT NULL,
   title TEXT NOT NULL,
   description TEXT,
+  location TEXT,
   width INTEGER DEFAULT 0,
   height INTEGER DEFAULT 0,
+  shoot_date TEXT,
   alt_text TEXT,
   featured INTEGER DEFAULT 0,
   display_order INTEGER DEFAULT 0,
@@ -36,9 +38,12 @@ CREATE INDEX IF NOT EXISTS idx_gallery_order ON gallery_images(display_order);
 INSERT OR IGNORE INTO gallery_categories (slug, name, display_order) VALUES
   ('ev-charger', 'EV Charger Installation', 1),
   ('panel-upgrade', 'Panel Upgrade', 2),
-  ('commercial', 'Commercial Electrical', 3),
-  ('lighting', 'Lighting Installation', 4),
+  ('lighting', 'Lighting Installation', 3),
+  ('safety', 'Safety & Code Compliance', 4),
   ('rewiring', 'Whole-Home Rewiring', 5),
-  ('repair', 'Electrical Repair', 6),
-  ('residential', 'Residential', 7),
-  ('emergency', 'Emergency Service', 8);
+  ('generator', 'Generator Installation', 6),
+  ('outlet', 'Outlet Installation', 7),
+  ('repair', 'Electrical Repair', 8),
+  ('inspection', 'Inspection & Assessment', 9),
+  ('switch', 'Switch Installation', 10),
+  ('residential', 'Residential', 11);

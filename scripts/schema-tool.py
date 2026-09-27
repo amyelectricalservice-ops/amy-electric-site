@@ -141,7 +141,10 @@ def cmd_validate():
         is_redirect = 'noindex' in html and 'http-equiv="refresh"' in html
 
         # ── Electrician / Service check ──
-        if fname.startswith("blog/") or is_redirect:
+        # Applies to blog posts too. It used to skip blog/, which let 6 posts
+        # ship with no business schema and one declare Electrician with no
+        # openingHoursSpecification without CI noticing.
+        if is_redirect:
             pass
         else:
             elecs = find_jsonld(html, "Electrician")
