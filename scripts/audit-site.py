@@ -40,6 +40,10 @@ def audit():
     for f in html_files:
         if f in not_pages:
             continue
+        # A noindex page is deliberately kept out of the sitemap, so its absence is
+        # correct. The deploy workflow skips these too; flagging them here contradicts CI.
+        if 'noindex' in open(f, encoding='utf-8', errors='replace').read(4000):
+            continue
         clean = f[:-5]
         if clean.endswith('/index'):
             clean_dir = clean[:-5] # e.g. blog/
