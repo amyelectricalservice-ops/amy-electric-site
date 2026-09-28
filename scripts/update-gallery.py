@@ -309,9 +309,26 @@ def main():
     print(f"Done — {total} photos.")
 
 
+IMAGE_NS = "http://www.google.com/schemas/sitemap-image/1.1"
+
+
 def update_sitemap(rows):
     sitemap_content = SITEMAP_FILE.read_text(encoding="utf-8")
     prefix = "ns0:" if "<ns0:urlset" in sitemap_content else ""
+
+    # The gallery entry emits <image:image> children, so the image namespace has to be
+    # declared on the root <urlset> or the document is not well-formed XML. Injecting the
+    # tags without it produced an unparseable sitemap; ensure the declaration exists first.
+    root_match = re.search(r"<urlset\b[^>]*>", sitemap_content)
+    if root_match is None:
+        print("WARNING: <urlset> root not found in sitemap.xml")
+        return
+    root_tag = root_match.group(0)
+    if "xmlns:image=" not in root_tag:
+        new_root = root_tag[:-1].rstrip() + f' xmlns:image="{IMAGE_NS}">'
+        sitemap_content = sitemap_content[:root_match.start()] + new_root + sitemap_content[root_match.end():]
+        print("Added missing xmlns:image declaration to <urlset>")
+
     image_prefix = "ns1:" if "xmlns:ns1=" in sitemap_content else "image:"
     image_tags = "".join(
         '<%simage><%sloc>https://amyelectric.com/img/gallery/%s-1200w.webp</%sloc></%simage>\n'
