@@ -51,3 +51,15 @@ audit/
 accessibility-audit/
 cmd/
 img/raw/
+
+# Internal docs and reports — never public. Deliberately NOT a blanket *.md glob:
+# .well-known/agent-skills/SKILL.md is intentionally served.
+seo-audit-report.html
+admin/
+amyelectric-website-audit.md
+audit-*.md
+AUDIT-REPORT.md
+auth.md
+BACKLINK-ACTION-PLAN.md
+GEO-ANALYSIS.md
+improvement-plan.md
