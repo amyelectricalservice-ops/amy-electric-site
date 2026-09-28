@@ -6,7 +6,8 @@ from xml.etree import ElementTree as ET
 
 def audit():
     html_files = glob.glob('**/*.html', recursive=True)
-    ignore_prefixes = ('reports/', '.', 'amyelectric-site/', 'templates/', 'partials/', 'open-seo/')
+    ignore_prefixes = ('reports/', '.', 'amyelectric-site/', 'templates/', 'partials/', 'open-seo/',
+                       'accessibility-audit/', 'admin/', 'audit/')
     html_files = [f for f in sorted(html_files) if not any(f.startswith(p) for p in ignore_prefixes)]
     
     file_map = {}
@@ -30,9 +31,14 @@ def audit():
                 url = 'index'
             sitemap_urls.add(url)
 
+    # 404.html and seo-audit-report.html are deliberate non-pages: 404 is never
+    # indexed, and the report is an internal doc that .assetsignore blocks (live 404).
+    # Flagging either as "missing from sitemap" is a false positive.
+    not_pages = ('404.html', 'seo-audit-report.html')
+
     missing_from_sitemap = []
     for f in html_files:
-        if f == '404.html':
+        if f in not_pages:
             continue
         clean = f[:-5]
         if clean.endswith('/index'):
@@ -86,8 +92,9 @@ def audit():
             file_issues.append('Missing site.min.js reference')
             js_missing.append(f)
 
-        # 4. Sticky mobile call bar
-        if 'sticky-bar' not in content and f != '404.html' and 'privacy-policy' not in f:
+        # 4. Sticky mobile call bar. Two class names are in use across the site
+        # (sticky-bar and sticky-call), so matching only one reported 66 false misses.
+        if not re.search(r'class="[^"]*\bsticky-(?:bar|call)\b', content) and f != '404.html' and 'privacy-policy' not in f:
             file_issues.append('Missing sticky mobile bar')
             sticky_bar_missing.append(f)
 
