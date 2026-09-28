@@ -51,6 +51,7 @@ audit/
 accessibility-audit/
 cmd/
 img/raw/
+db/
 
 # Internal docs and reports — never public. Deliberately NOT a blanket *.md glob:
 # .well-known/agent-skills/SKILL.md is intentionally served.
