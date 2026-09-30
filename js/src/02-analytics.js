@@ -4,21 +4,31 @@
 (function () {
   'use strict';
 
+  // Conversion events are logged server-side at /api/events (visible in
+  // Workers Logs) so they survive without any third-party tracker.
+  // sendBeacon with a plain string avoids a CORS preflight.
   function fireEvent(name, label, value) {
-    var payload = { event: name, label: label || '', value: value || 0 };
-
-    if (window.dataLayer && Array.isArray(window.dataLayer)) {
-      window.dataLayer.push(payload);
-      return;
-    }
-
-    if (window.gtag) {
-      window.gtag('event', name, { event_label: label || '', value: value || 0 });
-      return;
-    }
-
-    if (window.console) {
-      console.log('[AMY Analytics]', name, label || '', value || 0);
+    try {
+      var payload = JSON.stringify({
+        event: name,
+        label: String(label || '').slice(0, 200),
+        value: value || 0,
+        page: window.location.pathname.slice(0, 200),
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/api/events', payload);
+        return;
+      }
+      fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: payload,
+        keepalive: true,
+      }).catch(function () {});
+    } catch (err) {
+      if (window.console) {
+        console.log('[AMY Analytics]', name, label || '', value || 0);
+      }
     }
   }
 

@@ -30,21 +30,31 @@
 (function () {
   'use strict';
 
+  // Conversion events are logged server-side at /api/events (visible in
+  // Workers Logs) so they survive without any third-party tracker.
+  // sendBeacon with a plain string avoids a CORS preflight.
   function fireEvent(name, label, value) {
-    var payload = { event: name, label: label || '', value: value || 0 };
-
-    if (window.dataLayer && Array.isArray(window.dataLayer)) {
-      window.dataLayer.push(payload);
-      return;
-    }
-
-    if (window.gtag) {
-      window.gtag('event', name, { event_label: label || '', value: value || 0 });
-      return;
-    }
-
-    if (window.console) {
-      console.log('[AMY Analytics]', name, label || '', value || 0);
+    try {
+      var payload = JSON.stringify({
+        event: name,
+        label: String(label || '').slice(0, 200),
+        value: value || 0,
+        page: window.location.pathname.slice(0, 200),
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/api/events', payload);
+        return;
+      }
+      fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: payload,
+        keepalive: true,
+      }).catch(function () {});
+    } catch (err) {
+      if (window.console) {
+        console.log('[AMY Analytics]', name, label || '', value || 0);
+      }
     }
   }
 
@@ -91,25 +101,50 @@
     var form = document.getElementById(formId);
     if (!form) return;
 
+    // Seed the render timestamp for the server-side timing trap.
+    var ts = form.querySelector('input[name="_timestamp"]');
+    if (ts && !ts.value) ts.value = new Date().toISOString();
+
+    var errorBox = document.getElementById(formId + '-error');
+
+    function showError(message) {
+      if (errorBox) {
+        errorBox.textContent = message;
+        errorBox.style.display = 'block';
+      }
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (errorBox) errorBox.style.display = 'none';
       var btn = form.querySelector('.form-submit');
+      var originalText = btn.textContent;
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
+
+      function resetBtn() {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
 
       fetch('/api/contact', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form),
       })
-        .then(function (r) { return r.json(); })
-        .then(function (res) {
-          if (res.success) {
-            form.style.display = 'none';
-            document.getElementById(successId).style.display = 'block';
-          } else {
-            throw new Error(res.message);
-          }
+        .then(function (r) {
+          return r.json().then(function (res) {
+            if (res.success) {
+              form.style.display = 'none';
+              document.getElementById(successId).style.display = 'block';
+            } else if (r.status === 400) {
+              // Server-side validation failure: show inline, stay on page.
+              showError(res.message || 'Please check the highlighted fields and try again.');
+              resetBtn();
+            } else {
+              throw new Error(res.message);
+            }
+          });
         })
         .catch(function () {
           var data = Object.fromEntries(new FormData(form));

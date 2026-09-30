@@ -8,19 +8,49 @@ export async function handleContact(request, env, waitUntil) {
 
   try {
     const contentType = request.headers.get('Content-Type') || '';
-    const data = contentType.includes('application/json')
+    const raw = contentType.includes('application/json')
       ? await request.json()
       : Object.fromEntries(await request.formData());
 
-    if (data.website && data.website.trim() !== '') {
+    const str = (v) => (typeof v === 'string' ? v.trim() : '');
+
+    if (str(raw.website) !== '') {
       return successResponse();
     }
 
-    if (data._timestamp) {
-      const elapsed = Date.now() - new Date(data._timestamp).getTime();
-      if (elapsed < 3000) {
+    if (raw._timestamp) {
+      const elapsed = Date.now() - new Date(raw._timestamp).getTime();
+      if (Number.isFinite(elapsed) && elapsed < 3000) {
         return successResponse();
       }
+    }
+
+    // Allowlist + validate: unknown keys (file uploads, junk) are dropped.
+    const data = {
+      name: str(raw.name).slice(0, 100),
+      phone: str(raw.phone).slice(0, 25),
+      email: str(raw.email).slice(0, 254),
+      service: str(raw.service).slice(0, 50),
+      city: str(raw.city).slice(0, 100),
+      message: str(raw.message).slice(0, 5000),
+      request_type: str(raw.request_type).slice(0, 50),
+    };
+
+    if (data.name.length < 2) {
+      return badRequest('Please enter your name (at least 2 characters).');
+    }
+
+    const digits = data.phone.replace(/\D/g, '');
+    if (!/^[\d\s()+.-]{7,25}$/.test(data.phone) || digits.length < 7 || digits.length > 15) {
+      return badRequest('Please enter a valid phone number with at least 7 digits.');
+    }
+
+    if (data.email !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      return badRequest('Please enter a valid email address (or leave it blank).');
+    }
+
+    if (data.message !== '' && data.message.length < 5) {
+      return badRequest('Please describe your project in a few more words.');
     }
 
     data._timestamp = new Date().toISOString();
@@ -101,6 +131,13 @@ export async function handleContact(request, env, waitUntil) {
       }
     );
   }
+}
+
+function badRequest(message) {
+  return new Response(JSON.stringify({ success: false, message }), {
+    status: 400,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
 
 function successResponse() {

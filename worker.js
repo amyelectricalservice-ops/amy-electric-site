@@ -353,6 +353,15 @@ function contactApiSpec() {
   };
 }
 
+// Web Analytics beacon (RUM auto-install does not inject into Worker-served
+// responses, so the official snippet is appended to HTML here instead).
+const RUM_BEACON = '<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "f960270c37b54f689d72991f9503b718"}\'></script><!-- End Cloudflare Web Analytics -->';
+
+function injectBeacon(html) {
+  const i = html.lastIndexOf('</body>');
+  return i === -1 ? html : html.slice(0, i) + RUM_BEACON + html.slice(i);
+}
+
 function contactApiDocs() {
   return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
     + '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -391,6 +400,42 @@ export default {
 
     if (url.pathname === '/api/contact') {
       return handleContact(request, env, ctx.waitUntil.bind(ctx));
+    }
+
+    // Conversion events from site.min.js (sendBeacon, text/plain = no preflight).
+    // Logged to Workers Logs (console) for lead attribution; no PII is stored.
+    if (url.pathname === '/api/events') {
+      if (request.method !== 'POST') {
+        return new Response('Method not allowed', { status: 405 });
+      }
+      const allowEvents = new Set(['phone_click', 'cta_click', 'form_submit']);
+      try {
+        const text = await request.text();
+        const ev = JSON.parse(text);
+        const name = typeof ev.event === 'string' ? ev.event : '';
+        if (!allowEvents.has(name)) {
+          return new Response(JSON.stringify({ success: false, message: 'Unknown event' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+          });
+        }
+        const label = typeof ev.label === 'string' ? ev.label.slice(0, 200) : '';
+        const page = typeof ev.page === 'string' ? ev.page.slice(0, 200) : '';
+        console.log(JSON.stringify({
+          type: 'conversion_event', event: name, label, page,
+          ip: request.headers.get('CF-Connecting-IP') || '',
+          time: new Date().toISOString(),
+        }));
+      } catch {
+        // Malformed beacons are ignored; never break the page for tracking.
+      }
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Cache-Control': 'no-store',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
     }
 
     if (url.pathname === '/.well-known/openid-configuration') {
@@ -608,7 +653,8 @@ export default {
       headers.append('Link', '</img/hero-electrician-560x420.webp>; rel=preload; as=image; media="(min-width: 481px)"');
       headers.append('Link', '</img/hero-electrician-400.webp>; rel=preload; as=image; media="(max-width: 480px)"');
       headers.append('Vary', 'Accept');
-      return new Response(response.body, {
+      const html = await response.text();
+      return new Response(injectBeacon(html), {
         status: response.status,
         statusText: response.statusText,
         headers
@@ -620,7 +666,8 @@ export default {
       const headers = new Headers(response.headers);
       headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
-      return new Response(response.body, {
+      const html = await response.text();
+      return new Response(injectBeacon(html), {
         status: response.status,
         statusText: response.statusText,
         headers
