@@ -234,8 +234,9 @@ GALLERY_JS = r'''
         div.innerHTML = renderGalleryItem(d);
         frag.appendChild(div.firstElementChild);
       });
+      var added = Array.from(frag.children);
       grid.appendChild(frag);
-      attachClick(Array.from(frag.children));
+      attachClick(added);
       var newIdx = idx + batch.length;
       if (newIdx >= galleryData.length) {
         showMoreBtn.style.display = 'none';
@@ -287,6 +288,16 @@ def main():
 
     new_grid = '<div class="gallery-grid" id="gallery-grid">\n' + all_items_html + '\n  </div>\n' + show_more_html + '\n</section>'
     content = content[:grid_start] + new_grid + content[section_end + len('</section>'):]
+
+    # 2b. Replace the stale inline gallery IIFE (filter/modal only, no Show
+    # More support) with the current GALLERY_JS. Matched by its unique opener.
+    iife_pat = re.compile(
+        r'<script>\s*\(function\(\)\{\s*const grid = '
+        r'document\.getElementById\(\'gallery-grid\'\);.*?\}\)\(\);\s*</script>',
+        re.DOTALL,
+    )
+    content, n_iife = iife_pat.subn('<script>' + GALLERY_JS + '</script>', content)
+    print(f"  IIFE script blocks replaced: {n_iife}")
 
     # 3. Remove the gallery-specific inline <style> block (duplicate with 12-gallery.css)
     # content = re.sub(r'<style>\n?\.gallery-filters.*?</style>', '', content, flags=re.DOTALL)

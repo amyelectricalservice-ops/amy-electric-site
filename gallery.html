@@ -879,40 +879,45 @@ function renderGalleryItem(d) {
 
 <script>
 (function(){
-  const grid = document.getElementById('gallery-grid');
-  const items = Array.from(grid.querySelectorAll('.gallery-item'));
-  const chips = document.querySelectorAll('.filter-chip');
-  const modal = document.getElementById('gallery-modal');
-  const modalImg = document.getElementById('modal-image');
-  const modalCap = modal.querySelector('.modal-caption');
-  const modalClose = modal.querySelector('.modal-close');
-  const modalPrev = modal.querySelector('.modal-prev');
-  const modalNext = modal.querySelector('.modal-next');
-  const modalBackdrop = modal.querySelector('.modal-backdrop');
-  let currentIndex = -1;
+  var grid = document.getElementById('gallery-grid');
+  var chips = document.querySelectorAll('.filter-chip');
+  var modal = document.getElementById('gallery-modal');
+  var modalImg = document.getElementById('modal-image');
+  var modalCap = modal.querySelector('.modal-caption');
+  var modalClose = modal.querySelector('.modal-close');
+  var modalPrev = modal.querySelector('.modal-prev');
+  var modalNext = modal.querySelector('.modal-next');
+  var modalBackdrop = modal.querySelector('.modal-backdrop');
+  var currentIndex = -1;
+  var showMoreBtn = document.getElementById('show-more-btn');
+
+  function getItems() {
+    return Array.from(grid.querySelectorAll('.gallery-item'));
+  }
 
   function filterGallery(category) {
-    chips.forEach(c => c.classList.toggle('active', c.dataset.filter === category));
-    items.forEach(item => {
-      const match = category === 'all' || item.dataset.category === category;
+    chips.forEach(function(c) { c.classList.toggle('active', c.dataset.filter === category); });
+    var items = getItems();
+    items.forEach(function(item) {
+      var match = category === 'all' || item.dataset.category === category;
       item.classList.toggle('hidden', !match);
     });
   }
 
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => filterGallery(chip.dataset.filter));
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() { filterGallery(chip.dataset.filter); });
   });
 
   function openModal(index) {
-    const visible = items.filter(i => !i.classList.contains('hidden'));
-    if (index < 0 || index >= visible.length) return;
+    var items = getItems().filter(function(i) { return !i.classList.contains('hidden'); });
+    if (index < 0 || index >= items.length) return;
     currentIndex = index;
-    const item = visible[index];
-    const img = item.querySelector('img');
-    const h3 = item.querySelector('h3');
-    const loc = item.querySelector('.gallery-location');
-    const tag = item.querySelector('.gallery-tag');
-    const largeSrc = img.src.replace('-1200w.jpg', '-1200w.webp');
+    var item = items[index];
+    var img = item.querySelector('img');
+    var h3 = item.querySelector('h3');
+    var loc = item.querySelector('.gallery-location');
+    var tag = item.querySelector('.gallery-tag');
+    var largeSrc = img.src.replace('-1200w.jpg', '-1200w.webp');
     modalImg.src = largeSrc;
     modalImg.alt = img.alt;
     modalCap.innerHTML = (h3 ? h3.textContent : '') + '<br><span style="font-size:13px;opacity:.7;">' + (loc ? loc.textContent : '') + ' &middot; ' + (tag ? tag.textContent : '') + '</span>';
@@ -927,31 +932,57 @@ function renderGalleryItem(d) {
   }
 
   function navigate(direction) {
-    const visible = items.filter(i => !i.classList.contains('hidden'));
-    let idx = currentIndex + direction;
-    if (idx < 0) idx = visible.length - 1;
-    if (idx >= visible.length) idx = 0;
+    var items = getItems().filter(function(i) { return !i.classList.contains('hidden'); });
+    var idx = currentIndex + direction;
+    if (idx < 0) idx = items.length - 1;
+    if (idx >= items.length) idx = 0;
     openModal(idx);
   }
 
-  items.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      const visible = items.filter(it => !it.classList.contains('hidden'));
-      openModal(visible.indexOf(item));
+  function attachClick(items) {
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var visible = getItems().filter(function(i) { return !i.classList.contains('hidden'); });
+        openModal(visible.indexOf(item));
+      });
     });
-  });
+  }
+
+  attachClick(getItems());
 
   modalClose.addEventListener('click', closeModal);
   modalBackdrop.addEventListener('click', closeModal);
-  modalPrev.addEventListener('click', () => navigate(-1));
-  modalNext.addEventListener('click', () => navigate(1));
+  modalPrev.addEventListener('click', function() { navigate(-1); });
+  modalNext.addEventListener('click', function() { navigate(1); });
 
-  document.addEventListener('keydown', e => {
+  document.addEventListener('keydown', function(e) {
     if (modal.hasAttribute('hidden')) return;
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowLeft') navigate(-1);
     if (e.key === 'ArrowRight') navigate(1);
   });
+
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', function() {
+      var idx = parseInt(showMoreBtn.dataset.next, 10);
+      var batch = galleryData.slice(idx, idx + 36);
+      var frag = document.createDocumentFragment();
+      batch.forEach(function(d) {
+        var div = document.createElement('div');
+        div.innerHTML = renderGalleryItem(d);
+        frag.appendChild(div.firstElementChild);
+      });
+      var added = Array.from(frag.children);
+      grid.appendChild(frag);
+      attachClick(added);
+      var newIdx = idx + batch.length;
+      if (newIdx >= galleryData.length) {
+        showMoreBtn.style.display = 'none';
+      } else {
+        showMoreBtn.dataset.next = newIdx;
+      }
+    });
+  }
 })();
 </script>
 <div class="sticky-bar">
