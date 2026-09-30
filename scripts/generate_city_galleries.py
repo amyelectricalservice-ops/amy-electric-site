@@ -41,6 +41,26 @@ def read_manifest():
     with open(MANIFEST, newline="") as f:
         return list(csv.DictReader(f))
 
+ALT_TRIM = {
+    "Electrical work in unfinished wood-framed space — featuring electrical panel enclosure": "Panel enclosure in unfinished wood-framed space",
+    "Electrical work in unfinished wood-framed space — with panel and wiring detail": "Panel and wiring detail in unfinished wood framing",
+    "Electrical work in unfinished wood-framed space — with copper wiring and terminals visible": "Copper wiring and terminals in unfinished framing",
+    "Electrical work in unfinished wood-framed space — showing color-coded wiring and connections": "Color-coded wiring and connections in unfinished framing",
+    "Electrical system with metal enclosures — with conduit and raceway runs": "Conduit and raceway runs in metal enclosures",
+    "Electrical system with metal enclosures — with copper wiring and terminals visible": "Copper wiring and terminals in metal enclosures",
+    "Indoor electrical installation with metal components — with panel and wiring detail": "Indoor panel and wiring detail with metal components",
+}
+
+
+def alt_text(caption, city):
+    """Build SEO alt text capped at 125 chars."""
+    for long, short in ALT_TRIM.items():
+        if caption.startswith(long):
+            caption = short + caption[len(long):]
+            break
+    caption = re.sub(r"\s*\((work in progress|detailed installation view)\)", "", caption)
+    return re.sub(r"\s{2,}", " ", f"{caption} - AMY Electric {city}").strip()[:125]
+
 def slugify(text):
     return text.lower().replace(" ", "-").replace(".", "")
 
@@ -54,7 +74,7 @@ def make_item_html(row):
     year = row.get("year", "2025").strip() or "2025"
     caption = row.get("caption", "").strip() or "Electrical project by AMY Electric"
     slug = row["slug"].strip()
-    alt = f"{caption} - AMY Electric {city}"
+    alt = alt_text(caption, city)
     return f'''    <div class="gallery-item" data-category="{cat}" data-city="{city}" data-year="{year}">
       <picture>
         <source srcset="img/gallery/{slug}-400w.webp 400w, img/gallery/{slug}-800w.webp 800w, img/gallery/{slug}-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(33vw - 32px), 300px">

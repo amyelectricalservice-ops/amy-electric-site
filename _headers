@@ -8,15 +8,17 @@
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://amyelectric.com; connect-src 'self' https://api.mailchannels.net https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.mailchannels.net;
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
 
-# Cache static assets for 1 year (immutable)
+# Fixed-name bundles (style.min.css, site.min.js, woff2) change on rebuild, so
+# browsers must revalidate hourly while the edge caches for a year.
+# Docs reserve `immutable` for fingerprinted filenames only.
 /css/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, s-maxage=31536000
 
 /js/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, s-maxage=31536000
 
 /fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, s-maxage=31536000
 
 /img/*
   Cache-Control: public, max-age=31536000, immutable
@@ -37,3 +39,8 @@
 
 /llms.txt
   Cache-Control: public, max-age=86400
+
+# Keep workers.dev deployment URLs out of search indexes (apex is canonical).
+# Placeholder pattern per https://developers.cloudflare.com/workers/static-assets/headers/
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex

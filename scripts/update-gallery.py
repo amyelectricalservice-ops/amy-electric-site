@@ -12,6 +12,29 @@ SITEMAP_FILE = WEBSITE / "sitemap.xml"
 
 ITEMS_PER_PAGE = 36
 
+# Alt-text trims: keep alt within 10-125 chars. Captions keep full detail for
+# overlays/headings; alt drops parenthetical shoot notes and long prefixes.
+ALT_TRIM = {
+    "Electrical work in unfinished wood-framed space — featuring electrical panel enclosure": "Panel enclosure in unfinished wood-framed space",
+    "Electrical work in unfinished wood-framed space — with panel and wiring detail": "Panel and wiring detail in unfinished wood framing",
+    "Electrical work in unfinished wood-framed space — with copper wiring and terminals visible": "Copper wiring and terminals in unfinished framing",
+    "Electrical work in unfinished wood-framed space — showing color-coded wiring and connections": "Color-coded wiring and connections in unfinished framing",
+    "Electrical system with metal enclosures — with conduit and raceway runs": "Conduit and raceway runs in metal enclosures",
+    "Electrical system with metal enclosures — with copper wiring and terminals visible": "Copper wiring and terminals in metal enclosures",
+    "Indoor electrical installation with metal components — with panel and wiring detail": "Indoor panel and wiring detail with metal components",
+}
+
+
+def alt_text(caption, city):
+    """Build SEO alt text capped at 125 chars."""
+    for long, short in ALT_TRIM.items():
+        if caption.startswith(long):
+            caption = short + caption[len(long):]
+            break
+    caption = re.sub(r"\s*\((work in progress|detailed installation view)\)", "", caption)
+    alt = f"{caption} - AMY Electric {city}"
+    return re.sub(r"\s{2,}", " ", alt).strip()[:125]
+
 CATEGORY_LABELS = {
     "panel": ("Panel Upgrades", "rgba(245,166,35,.2)", "#f5a623"),
     "commercial": ("Commercial", "rgba(74,144,217,.2)", "#4a90d9"),
@@ -58,7 +81,7 @@ def make_item_data(row):
         "label": label,
         "bg": bg,
         "color": color,
-        "alt": f"{caption} - AMY Electric {city}",
+        "alt": alt_text(caption, city),
     }
 
 
@@ -73,7 +96,7 @@ function renderGalleryItem(d) {
   var h = '<div class="gallery-item" data-category="' + d.c + '" data-city="' + d.city + '" data-year="' + d.y + '">';
   h += '<picture><source srcset="img/gallery/' + d.s + '-400w.webp 400w, img/gallery/' + d.s + '-800w.webp 800w, img/gallery/' + d.s + '-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(33vw - 32px), 300px">';
   h += '<source srcset="img/gallery/' + d.s + '-1200w.jpg" type="image/jpeg">';
-  h += '<img src="img/gallery/' + d.s + '-1200w.jpg" alt="' + d.cap + ' - AMY Electric ' + d.city + '" width="1200" height="900" loading="lazy" decoding="async"></picture>';
+  h += '<img src="img/gallery/' + d.s + '-1200w.jpg" alt="' + (d.alt || d.cap) + '" width="1200" height="900" loading="lazy" decoding="async"></picture>';
   h += '<div class="gallery-overlay"><h3>' + d.cap + '</h3>';
   h += '<p class="gallery-location">' + d.city + ', CA &middot; ' + d.y + '</p>';
   h += '<span class="gallery-tag" style="background:' + d.bg + ';color:' + d.cl + '">' + d.lbl + '</span></div></div>';
@@ -106,6 +129,7 @@ def gallery_data_js(data):
             "s": d["slug"],
             "c": d["cat"],
             "cap": d["caption"],
+            "alt": alt_text(d["caption"], d["city"]),
             "city": d["city"],
             "y": d["year"],
             "lbl": d["label"],

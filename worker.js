@@ -604,6 +604,7 @@ export default {
       headers.append('Link', '</.well-known/openid-configuration>; rel="describedby"');
       headers.append('Link', '</.well-known/http-message-signatures-directory>; rel="api-catalog"');
       headers.append('Link', '</robots.txt>; rel="service-doc"');
+      headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
       return new Response(response.body, {
         status: response.status,
@@ -615,6 +616,7 @@ export default {
     const responseType = response.headers.get('Content-Type') || '';
     if (responseType.includes('text/html')) {
       const headers = new Headers(response.headers);
+      headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
       return new Response(response.body, {
         status: response.status,
