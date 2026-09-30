@@ -1,13 +1,15 @@
 (function () {
   'use strict';
 
+  // Seed render timestamps for the server-side timing trap on every form
+  // that carries the hidden field (handled or not).
+  document.querySelectorAll('input[name="_timestamp"]').forEach(function (ts) {
+    if (!ts.value) ts.value = new Date().toISOString();
+  });
+
   function handleForm(formId, successId) {
     var form = document.getElementById(formId);
     if (!form) return;
-
-    // Seed the render timestamp for the server-side timing trap.
-    var ts = form.querySelector('input[name="_timestamp"]');
-    if (ts && !ts.value) ts.value = new Date().toISOString();
 
     var errorBox = document.getElementById(formId + '-error');
 
@@ -65,6 +67,9 @@
 
   handleForm('quick-form', 'quick-form-success');
   handleForm('estimate-form', 'estimate-form-success');
+  // NOTE: qe-form is submitted by the legacy estimator engine
+  // (js/estimator.min.js), which builds its own FormData. Registering it
+  // here too would double-POST every estimator lead.
 
   // Open estimator when linked from other pages
   if (window.location.hash === '#estimator') {

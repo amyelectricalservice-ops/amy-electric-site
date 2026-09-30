@@ -1034,13 +1034,20 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
             <p style="margin-bottom: 20px;">Want the exact number? Enter your info below and we will confirm pricing.</p>
             <div id="qe-form-wrap">
               <form id="qe-form" class="qe-form">
+                <div style="position:absolute;left:-9000px;aria-hidden:true">
+                <label for="website3">Website</label>
+                <input type="text" id="website3" name="website" tabindex="-1" autocomplete="off">
+                </div>
                 <div class="qe-form-grid">
-                  <input type="text" id="qe-name" placeholder="Your name" required>
-                  <input type="tel" id="qe-phone" placeholder="Phone number" required>
-                  <input type="email" id="qe-email" placeholder="Email (optional)">
-                  <input type="text" id="qe-city" placeholder="Your city">
+                  <input type="text" id="qe-name" name="name" placeholder="Your name" required autocomplete="name" autocapitalize="words" maxlength="100">
+                  <input type="tel" id="qe-phone" name="phone" placeholder="Phone number" required autocomplete="tel" inputmode="tel" maxlength="25">
+                  <input type="email" id="qe-email" name="email" placeholder="Email (optional)" autocomplete="email" inputmode="email" maxlength="254">
+                  <input type="text" id="qe-city" name="city" placeholder="Your city" autocomplete="address-level2" autocapitalize="words" maxlength="100">
+                <input type="hidden" id="qe-context" name="message" value="">
+                <input type="hidden" name="_timestamp" value="">
                 </div>
                 <button type="submit" class="btn btn-gold form-submit" style="width:100%;">Get Exact Quote</button>
+                <div class="form-error" id="qe-form-error" style="display:none; color:red; margin-top:8px;" role="alert"></div>
               </form>
             </div>
             <div id="qe-form-success" style="display:none; padding:24px;">
