@@ -77,7 +77,7 @@ def make_item_html(row):
     alt = alt_text(caption, city)
     return f'''    <div class="gallery-item" data-category="{cat}" data-city="{city}" data-year="{year}">
       <picture>
-        <source srcset="img/gallery/{slug}-400w.webp 400w, img/gallery/{slug}-800w.webp 800w, img/gallery/{slug}-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(33vw - 32px), 300px">
+        <source srcset="img/gallery/{slug}-400w.webp 400w, img/gallery/{slug}-800w.webp 800w, img/gallery/{slug}-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(30vw - 32px), 300px">
         <source srcset="img/gallery/{slug}-1200w.jpg" type="image/jpeg">
         <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="lazy" decoding="async">
       </picture>
