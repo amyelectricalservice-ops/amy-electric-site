@@ -50,7 +50,7 @@ GALLERY_ITEM_TPL = '''    <div class="gallery-item" data-category="{cat}" data-c
       <picture>
         <source srcset="img/gallery/{slug}-400w.webp 400w, img/gallery/{slug}-800w.webp 800w, img/gallery/{slug}-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(30vw - 32px), 300px">
         <source srcset="img/gallery/{slug}-1200w.jpg" type="image/jpeg">
-        <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="lazy" decoding="async">
+        <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="{loading}"{fetch} decoding="async">
       </picture>
       <div class="gallery-overlay">
         <h3>{caption}</h3>
@@ -65,7 +65,9 @@ def read_manifest():
         return list(csv.DictReader(f))
 
 
-def make_item_data(row):
+def make_item_data(row, position=0):
+    """position is the 0-based index in the final grid; the first 6 static
+    items load eager (above the fold) and the very first gets fetchpriority."""
     cat = row.get("category", "other").strip() or "other"
     label, bg, color = CATEGORY_LABELS.get(cat, CATEGORY_LABELS["other"])
     city = row.get("city", "").strip() or "Los Angeles"
@@ -82,6 +84,8 @@ def make_item_data(row):
         "bg": bg,
         "color": color,
         "alt": alt_text(caption, city),
+        "loading": "eager" if position < 6 else "lazy",
+        "fetch": ' fetchpriority="high"' if position == 0 else "",
     }
 
 
@@ -254,7 +258,7 @@ def main():
     total = len(rows)
     print(f"Building gallery for {total} photos...")
 
-    data = [make_item_data(r) for r in rows]
+    data = [make_item_data(r, i) for i, r in enumerate(rows)]
 
     # First N items as static HTML
     head = data[:ITEMS_PER_PAGE]

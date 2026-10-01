@@ -67,7 +67,7 @@ def slugify(text):
 def get_city_photos(rows, city):
     return [r for r in rows if r.get("city", "").strip() == city]
 
-def make_item_html(row):
+def make_item_html(row, position=0):
     cat = row.get("category", "uncategorized").strip() or "uncategorized"
     label, bg, color = CATEGORY_LABELS.get(cat, CATEGORY_LABELS["uncategorized"])
     city = row.get("city", "Los Angeles").strip()
@@ -75,11 +75,13 @@ def make_item_html(row):
     caption = row.get("caption", "").strip() or "Electrical project by AMY Electric"
     slug = row["slug"].strip()
     alt = alt_text(caption, city)
+    loading = "eager" if position < 6 else "lazy"
+    fetch = ' fetchpriority="high"' if position == 0 else ""
     return f'''    <div class="gallery-item" data-category="{cat}" data-city="{city}" data-year="{year}">
       <picture>
         <source srcset="img/gallery/{slug}-400w.webp 400w, img/gallery/{slug}-800w.webp 800w, img/gallery/{slug}-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(30vw - 32px), 300px">
         <source srcset="img/gallery/{slug}-1200w.jpg" type="image/jpeg">
-        <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="lazy" decoding="async">
+        <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="{loading}"{fetch} decoding="async">
       </picture>
       <div class="gallery-overlay">
         <h3>{caption}</h3>
@@ -126,7 +128,7 @@ def generate_city_gallery(city, photos, template):
     filter_html = "  <div class=\"gallery-filters\">\n" + "\n".join(filter_chips) + "\n  </div>\n"
     
     # Gallery items HTML
-    items_html = "\n".join(make_item_html(r) for r in photos)
+    items_html = "\n".join(make_item_html(r, i) for i, r in enumerate(photos))
     
     # ItemList JSON-LD
     itemlist_json = make_itemlist_json(photos, city)
