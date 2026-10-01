@@ -16,3 +16,6 @@ gallery-pipeline/processed/
 gallery-pipeline/raw/
 node_modules/
 db/
+
+# lighthouse local output
+lh-out/
