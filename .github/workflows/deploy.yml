@@ -63,8 +63,12 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - uses: actions/setup-node@v4
         with:
@@ -87,6 +91,21 @@ jobs:
 
       - name: Install wrangler
         run: npm install -g wrangler@latest
+
+      - name: Refresh sitemap lastmod for changed pages
+        # Commits straight back with [skip ci] (skip-ci pushes start no new
+        # runs, so this cannot loop). The working tree keeps the update so
+        # the deploy below ships it. Never fails the deploy on push errors.
+        if: github.event_name != 'pull_request'
+        run: |
+          python3 scripts/refresh-sitemap-lastmod.py || echo "lastmod refresh skipped"
+          if ! git diff --quiet sitemap.xml; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            git commit -m "chore: refresh sitemap lastmod [skip ci]"
+            git push origin HEAD:main || echo "WARNING: lastmod push failed; deploying without it"
+          fi
 
       - name: Deploy
         env:

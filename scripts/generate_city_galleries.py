@@ -221,9 +221,10 @@ def generate_city_gallery(city, photos, template):
         f'<title>{city_title} Project Gallery | AMY Electric Los Angeles</title>',
         content
     )
+    gallery_desc = f"{city_title} project gallery: panel upgrades, EV chargers, rewiring & lighting by AMY Electric. Call (818) 302-5614."
     content = re.sub(
         r'<meta name="description" content="[^"]*">',
-        f'<meta name="description" content="View our gallery of {len(photos)} real electrical projects in {city_title}, CA. Panel upgrades, EV charger installs, rewiring, lighting & commercial work. Call (818) 302-5614.">',
+        f'<meta name="description" content="{gallery_desc}">',
         content
     )
     content = re.sub(
@@ -233,7 +234,7 @@ def generate_city_gallery(city, photos, template):
     )
     content = re.sub(
         r'<meta property="og:description" content="[^"]*">',
-        f'<meta property="og:description" content="View our gallery of {len(photos)} real electrical projects in {city_title}, CA. Panel upgrades, EV charger installations, commercial work, lighting, and new construction.">',
+        f'<meta property="og:description" content="{gallery_desc}">',
         content
     )
     content = re.sub(
@@ -258,7 +259,7 @@ def generate_city_gallery(city, photos, template):
     )
     content = re.sub(
         r'<meta name="twitter:description" content="[^"]*">',
-        f'<meta name="twitter:description" content="View our gallery of {len(photos)} real electrical projects in {city_title}, CA. Panel upgrades, EV charger installations, commercial work, lighting, and new construction.">',
+        f'<meta name="twitter:description" content="{gallery_desc}">',
         content
     )
     content = re.sub(
