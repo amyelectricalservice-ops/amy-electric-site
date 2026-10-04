@@ -11,3 +11,70 @@
 
 # Strip .html extension (301)
 /*.html  /:splat  301
+
+# Root-level blog slugs -> real /blog/ post (301).
+# Google crawled these as root URLs (they resolve from blog/index.html's
+# relative links when the /blog directory is requested without a trailing
+# slash). The posts only ever lived under /blog/. Every rule below was
+# verified: 404 at root, 200 at the target, and no root page shares the slug.
+# NOTE: /emergency-electrician-los-angeles is deliberately NOT listed — that
+# slug exists as a real root page (200) as well as a blog post.
+/adu-electrical-panel-requirements-la  /blog/adu-electrical-panel-requirements-la  301
+/best-time-schedule-electrical-work-los-angeles  /blog/best-time-schedule-electrical-work-los-angeles  301
+/breaker-keeps-tripping-causes  /blog/breaker-keeps-tripping-causes  301
+/breaker-keeps-tripping-guide  /blog/breaker-keeps-tripping-guide  301
+/california-electrical-code-changes-2026  /blog/california-electrical-code-changes-2026  301
+/ceiling-fan-installation-cost-la  /blog/ceiling-fan-installation-cost-la  301
+/ceiling-fan-installation-la  /blog/ceiling-fan-installation-la  301
+/commercial-electrical-la  /blog/commercial-electrical-la  301
+/complete-guide-electrical-panel-upgrades  /blog/complete-guide-electrical-panel-upgrades  301
+/complete-guide-ev-charger-installation  /blog/complete-guide-ev-charger-installation  301
+/dedicated-circuit-installation-cost  /blog/dedicated-circuit-installation-cost  301
+/electrical-contractor-vs-handyman-la  /blog/electrical-contractor-vs-handyman-la  301
+/electrical-fire-prevention  /blog/electrical-fire-prevention  301
+/electrical-inspection-cost-los-angeles  /blog/electrical-inspection-cost-los-angeles  301
+/electrical-inspection-what-to-expect  /blog/electrical-inspection-what-to-expect  301
+/electrical-panel-labeling-guide  /blog/electrical-panel-labeling-guide  301
+/electrical-permit-los-angeles  /blog/electrical-permit-los-angeles  301
+/electrical-safety-checklist-older-los-angeles-homes  /blog/electrical-safety-checklist-older-los-angeles-homes  301
+/electrical-safety-tips-homeowners-la  /blog/electrical-safety-tips-homeowners-la  301
+/emergency-electrical-repair-what-to-do  /blog/emergency-electrical-repair-what-to-do  301
+/ev-charger-installation-cost-la  /blog/ev-charger-installation-cost-la  301
+/ev-charger-installation-cost-los-angeles  /blog/ev-charger-installation-cost-los-angeles  301
+/ev-charger-installation-guide-la-homeowners  /blog/ev-charger-installation-guide-la-homeowners  301
+/ev-charger-levels-explained  /blog/ev-charger-levels-explained  301
+/ev-charging-benefits  /blog/ev-charging-benefits  301
+/ev-charging-los-angeles  /blog/ev-charging-los-angeles  301
+/ev-vs-gas-vehicle-cost-los-angeles  /blog/ev-vs-gas-vehicle-cost-los-angeles  301
+/generator-installation-cost-la  /blog/generator-installation-cost-la  301
+/generator-maintenance-tips  /blog/generator-maintenance-tips  301
+/gfci-afci-protection-la  /blog/gfci-afci-protection-la  301
+/how-to-choose-ev-charger  /blog/how-to-choose-ev-charger  301
+/how-to-tell-if-your-panel-needs-upgrading  /blog/how-to-tell-if-your-panel-needs-upgrading  301
+/is-your-home-ev-ready-los-angeles  /blog/is-your-home-ev-ready-los-angeles  301
+/knob-and-tube-wiring-replacement-guide  /blog/knob-and-tube-wiring-replacement-guide  301
+/la-electrical-code-requirements  /blog/la-electrical-code-requirements  301
+/la-electrical-safety-tips  /blog/la-electrical-safety-tips  301
+/ladwp-e-permit-guide  /blog/ladwp-e-permit-guide  301
+/ladwp-electrical-requirements-new-customers  /blog/ladwp-electrical-requirements-new-customers  301
+/ladwp-ev-charger-rebate-guide-2026  /blog/ladwp-ev-charger-rebate-guide-2026  301
+/outdoor-lighting-installation-la  /blog/outdoor-lighting-installation-la  301
+/panel-upgrade-cost-los-angeles  /blog/panel-upgrade-cost-los-angeles  301
+/panel-upgrade-timeline  /blog/panel-upgrade-timeline  301
+/panel-upgrade-vs-rewiring  /blog/panel-upgrade-vs-rewiring  301
+/partial-vs-whole-home-rewire  /blog/partial-vs-whole-home-rewire  301
+/power-outage-what-to-do  /blog/power-outage-what-to-do  301
+/rewire-without-opening-walls  /blog/rewire-without-opening-walls  301
+/signs-home-needs-rewiring  /blog/signs-home-needs-rewiring  301
+/smart-home-electrical-requirements  /blog/smart-home-electrical-requirements  301
+/smoke-co-detector-installation-la  /blog/smoke-co-detector-installation-la  301
+/surge-protector-vs-power-strip  /blog/surge-protector-vs-power-strip  301
+/sylvania-zinsco-panel-hazards-replacement  /blog/sylvania-zinsco-panel-hazards-replacement  301
+/tesla-wall-connector-vs-other-ev-chargers  /blog/tesla-wall-connector-vs-other-ev-chargers  301
+/what-is-evitp-certification  /blog/what-is-evitp-certification  301
+/whole-home-rewiring-cost-la  /blog/whole-home-rewiring-cost-la  301
+/whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-los-angeles  301
+/whole-home-rewiring-guide  /blog/whole-home-rewiring-guide  301
+
+# No /contact page exists; the site's contact path is the homepage estimate form.
+/contact  /#estimate  301
