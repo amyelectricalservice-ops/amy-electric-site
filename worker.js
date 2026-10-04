@@ -355,7 +355,11 @@ function contactApiSpec() {
 
 // Web Analytics beacon (RUM auto-install does not inject into Worker-served
 // responses, so the official snippet is appended to HTML here instead).
-const RUM_BEACON = '<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "f960270c37b54f689d72991f9503b718"}\'></script><!-- End Cloudflare Web Analytics -->';
+// "send.to" pins the beacon to the zone's own /cdn-cgi/rum endpoint: the
+// default cross-origin target (cloudflareinsights.com/cdn-cgi/rum) answers 404
+// and drops every event, which silently zeroed RUM from 2026-10-01 onward.
+// Same-origin ingest returns 204 and lands events (verified 2026-10-04).
+const RUM_BEACON = '<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "f960270c37b54f689d72991f9503b718", "send": {"to": "/cdn-cgi/rum"}}\'></script><!-- End Cloudflare Web Analytics -->';
 
 function injectBeacon(html) {
   const i = html.lastIndexOf('</body>');
