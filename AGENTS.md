@@ -39,7 +39,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **All pages share the same nav bar** and footer — when updating shared layout, update every `.html` file
 - **No framework** — vanilla HTML
 - **Images**: 5 original JPEGs in `img/`. 30 real project photos in `img/gallery/` (1200w WebP + 1200w JPEG + 400w WebP per photo). WebP conversion handled by Cloudflare Polish.
-- **Analytics**: Cloudflare Web Analytics — one-click enable in dashboard (Workers & Pages → project → Metrics → Enable). Free, privacy-first, auto-injects beacon. No client-side analytics code in `site.js`. The GA deferred loader was removed.
+- **Analytics**: Cloudflare Web Analytics (RUM). Site token `f960270c37b54f689d72991f9503b718`; the beacon is injected by `worker.js` (`RUM_BEACON`) because auto-install does not reach Worker-served HTML — not by `site.js`, which has no analytics code. **The config must keep `"send": {"to": "/cdn-cgi/rum"}`**: without it the beacon posts cross-origin to `cloudflareinsights.com/cdn-cgi/rum`, which answers 404 (no CORS header) and silently drops every event — that bug zeroed RUM from 10-01 to 10-04 while traffic looked normal. Same-origin `/cdn-cgi/rum` returns 204 and lands events; verify with `events.rumPageloadEvents` if in doubt. The GA deferred loader was removed.
 - **Contact forms**:
   - Homepage: Two-tier — `quick-form` (3 fields: name, phone, service) by default, `estimate-form` (7 fields) in expandable `<details>` toggle
   - POST to `/api/contact` (Cloudflare Pages Function) — no form service dependency
