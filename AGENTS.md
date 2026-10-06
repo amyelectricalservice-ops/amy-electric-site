@@ -34,7 +34,8 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## What to know
 
-- **Hosting**: Cloudflare Pages — enable Auto-Minify (HTML/CSS/JS) and Polish (WebP) in dashboard
+- **Hosting**: Cloudflare **Workers + Assets** (`wrangler deploy`, `run_worker_first: true`) — not Pages. Minify is off in the dashboard because `scripts/build-css.py` / `build-js.py` already ship minified output; Polish is lossy (WebP)
+- **HTML caching** (set by `HTML_CACHE_CONTROL` in `worker.js`): `public, max-age=300, s-maxage=60, stale-while-revalidate=600`. **Do not "fix" this back to `max-age=0, must-revalidate`.** The original audit added a SHA-256 `ETag` + `If-None-Match` → 304 path, and it works — but only on `workers.dev`: the zone edge **strips both `ETag` and `Content-Length` from Worker-built HTML** while leaving them on ASSETS responses (favicon/CSS/JS keep theirs). With no validator ever reaching the browser, `max-age=0, must-revalidate` meant a full ~21 KB HTML re-download on *every* repeat visit. The `max-age` + `stale-while-revalidate` pair is the validator-independent fix; `s-maxage=60` keeps the edge revalidating so a deploy never lingers. Verify with `curl -D - https://amyelectric.com/ | grep -i cache-control`.
 - **No dev server** — open HTML files directly in a browser to preview
 - **All pages share the same nav bar** and footer — when updating shared layout, update every `.html` file
 - **No framework** — vanilla HTML
@@ -42,7 +43,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **Analytics**: Cloudflare Web Analytics (RUM). Site token `f960270c37b54f689d72991f9503b718`; the beacon is injected by `worker.js` (`RUM_BEACON`) because auto-install does not reach Worker-served HTML — not by `site.js`, which has no analytics code. **The config must keep `"send": {"to": "/cdn-cgi/rum"}`**: without it the beacon posts cross-origin to `cloudflareinsights.com/cdn-cgi/rum`, which answers 404 (no CORS header) and silently drops every event — that bug zeroed RUM from 10-01 to 10-04 while traffic looked normal. Same-origin `/cdn-cgi/rum` returns 204 and lands events; verify with `events.rumPageloadEvents` if in doubt. The GA deferred loader was removed.
 - **Contact forms**:
   - Homepage: Two-tier — `quick-form` (3 fields: name, phone, service) by default, `estimate-form` (7 fields) in expandable `<details>` toggle
-  - POST to `/api/contact` (Cloudflare Pages Function) — no form service dependency
+  - POST to `/api/contact` — handled by `worker.js` → `contact-handler.js` (honeypot `website` field + `_timestamp` time-trap reject anything submitted in under 3s). `functions/` is leftover Pages Functions and is **not** deployed; `wrangler.jsonc` never references it
 - **Sticky call bar**: Mobile-only gold bar fixed to bottom on all 42 pages (hidden ≥768px)
 - **Photo pipeline**: Raw photos in `/home/amram/Pictures/Electric Work/` → `scripts/process-photos.py` + `scripts/photo-manifest.csv` → `img/gallery/`. Each photo outputs 1200w WebP + 1200w JPEG + 400w WebP. EXIF stripped, 4:3 crop, orientation fixed. To add new photos: edit manifest and run `python3 scripts/process-photos.py`.
 - **Privacy redactions**: `scripts/redact-photos.py` applies in-place edits to published photos. Supports Gaussian face blur (`blur_box`) and black-box text redaction (`blackout_box`). Run after `process-photos.py` for photos containing faces or identifiable text/numbers.
