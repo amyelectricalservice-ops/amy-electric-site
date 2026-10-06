@@ -160,8 +160,14 @@ jobs:
         # what the edge already stored. _headers gives /css/* and /js/* a
         # one-year edge TTL, so without this a changed style.min.css or
         # site.min.js keeps being served from cache long after the deploy that
-        # fixed it. Purging is the last step so the verification above always
-        # runs even if this needs a permission the token is missing.
+        # fixed it.
+        #
+        # Non-blocking on purpose: the token can read the zone but has no Cache
+        # Purge permission, and a pipeline that is red on every run trains
+        # people to ignore red — which would hide a real deploy failure. The
+        # permission gap is raised as a warning instead, so the run stays green
+        # for a deploy that actually worked.
+        continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
@@ -177,15 +183,17 @@ jobs:
             --data '{"purge_everything":true}' \
             "https://api.cloudflare.com/client/v4/zones/$zone_id/purge_cache")
           echo "$resp"
-          echo "$resp" | python3 -c "
+          if ! echo "$resp" | python3 -c "
           import json,sys
           data = json.load(sys.stdin)
           if not data.get('success'):
-            sys.exit('Cache purge failed. Give CLOUDFLARE_API_TOKEN the '
-                     'Zone > Cache Purge > Edit permission, or the edge keeps '
-                     'serving pre-deploy CSS/JS.')
+            msg = data.get('errors', [{}])[0].get('message', 'unknown error')
+            sys.exit('cache purge rejected: ' + msg)
           print('edge cache purged')
-          "
+          "; then
+            echo "::warning title=Edge cache not purged::CLOUDFLARE_API_TOKEN needs the Zone > Cache Purge > Edit permission. Until it has it, deploys that change /css/* or /js/* keep serving the old file from the edge for up to a year."
+            exit 0
+          fi
 
   preview:
     name: Preview deploy for pull requests
