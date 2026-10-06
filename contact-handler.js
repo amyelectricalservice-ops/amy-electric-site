@@ -56,8 +56,10 @@ export async function handleContact(request, env, waitUntil) {
     data._timestamp = new Date().toISOString();
     data._ip = request.headers.get('CF-Connecting-IP') || '';
 
-    // Turnstile Token Validation
-    const turnstileToken = data['cf-turnstile-response'] || data['g-recaptcha-response'];
+    // Turnstile token is read off the raw request: `data` is an allowlist
+    // object that never carries it, so reading it there made this check dead
+    // code (it silently passed no matter what was submitted).
+    const turnstileToken = str(raw['cf-turnstile-response']) || str(raw['g-recaptcha-response']);
     if (env.TURNSTILE_SECRET_KEY && turnstileToken) {
       const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',

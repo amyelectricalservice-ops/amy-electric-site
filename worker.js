@@ -366,6 +366,58 @@ function injectBeacon(html) {
   return i === -1 ? html : html.slice(0, i) + RUM_BEACON + html.slice(i);
 }
 
+// HTML is served with `max-age=0, must-revalidate` but the asset response
+// carries no validator of its own, so every repeat visit re-downloaded the
+// whole document (~21 KB brotli / ~101 KB raw). Hashing the final
+// (beacon-injected) body lets those visits revalidate with a ~300 B 304.
+async function htmlEtag(body) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
+  const hex = [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+  return '"' + hex + '"';
+}
+
+// Answer a matching If-None-Match with 304, otherwise null.
+function revalidated(request, headers) {
+  const inm = request.headers.get('If-None-Match');
+  const etag = headers.get('ETag');
+  if (!inm || !etag) return null;
+  const matched = inm.split(',').some((candidate) => {
+    const value = candidate.trim();
+    return value === '*' || value === etag || value.replace(/^W\//, '') === etag;
+  });
+  if (!matched) return null;
+  const h = new Headers();
+  for (const name of ['ETag', 'Cache-Control', 'Vary', 'Link']) {
+    const value = headers.get(name);
+    if (value) h.set(name, value);
+  }
+  return new Response(null, { status: 304, headers: h });
+}
+
+// Build an HTML response: inject the beacon, tag it with an ETag, and honour
+// conditional requests so repeat visits don't re-fetch the document.
+async function htmlResponse(request, response, headers) {
+  // Bodyless statuses (304 from the asset fetch, 204) must be passed through
+  // as-is: Response rejects a body on them.
+  if (response.status === 304 || response.status === 204 || response.status === 205) {
+    return response;
+  }
+  const html = await response.text();
+  const body = injectBeacon(html);
+  if (response.status === 200) {
+    headers.set('ETag', await htmlEtag(body));
+    const notModified = revalidated(request, headers);
+    if (notModified) return notModified;
+  }
+  return new Response(body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function contactApiDocs() {
   return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
     + '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -657,12 +709,7 @@ export default {
       headers.append('Link', '</img/hero-electrician-560x420.webp>; rel=preload; as=image; media="(min-width: 481px)"');
       headers.append('Link', '</img/hero-electrician-400.webp>; rel=preload; as=image; media="(max-width: 480px)"');
       headers.append('Vary', 'Accept');
-      const html = await response.text();
-      return new Response(injectBeacon(html), {
-        status: response.status,
-        statusText: response.statusText,
-        headers
-      });
+      return htmlResponse(request, response, headers);
     }
 
     const responseType = response.headers.get('Content-Type') || '';
@@ -670,12 +717,7 @@ export default {
       const headers = new Headers(response.headers);
       headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
-      const html = await response.text();
-      return new Response(injectBeacon(html), {
-        status: response.status,
-        statusText: response.statusText,
-        headers
-      });
+      return htmlResponse(request, response, headers);
     }
 
     return response;
