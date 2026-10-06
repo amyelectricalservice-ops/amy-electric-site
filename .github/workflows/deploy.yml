@@ -155,6 +155,38 @@ jobs:
             esac
           done
 
+      - name: Purge the edge cache
+        # Deploying only replaces the Worker and the assets; it does not evict
+        # what the edge already stored. _headers gives /css/* and /js/* a
+        # one-year edge TTL, so without this a changed style.min.css or
+        # site.min.js keeps being served from cache long after the deploy that
+        # fixed it. Purging is the last step so the verification above always
+        # runs even if this needs a permission the token is missing.
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          zone_id=$(curl -sS --retry 3 --retry-delay 2 \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones?name=amyelectric.com" \
+            | python3 -c "import json,sys; print(json.load(sys.stdin)['result'][0]['id'])")
+          echo "zone: $zone_id"
+          resp=$(curl -sS --retry 3 --retry-delay 2 -X POST \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/$zone_id/purge_cache")
+          echo "$resp"
+          echo "$resp" | python3 -c "
+          import json,sys
+          data = json.load(sys.stdin)
+          if not data.get('success'):
+            sys.exit('Cache purge failed. Give CLOUDFLARE_API_TOKEN the '
+                     'Zone > Cache Purge > Edit permission, or the edge keeps '
+                     'serving pre-deploy CSS/JS.')
+          print('edge cache purged')
+          "
+
   preview:
     name: Preview deploy for pull requests
     # Same-repo PRs only: fork PRs have no access to repository secrets.

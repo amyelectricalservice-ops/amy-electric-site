@@ -396,8 +396,22 @@ function revalidated(request, headers) {
   return new Response(null, { status: 304, headers: h });
 }
 
-// Build an HTML response: inject the beacon, tag it with an ETag, and honour
-// conditional requests so repeat visits don't re-fetch the document.
+// HTML caching policy for repeat visits.
+//
+// The asset layer serves HTML as `max-age=0, must-revalidate`, and the zone
+// edge strips both `ETag` and `Content-Length` from Worker-built HTML
+// responses (verified: the same Worker emits a correct ETag and answers 304 on
+// workers.dev, but amyelectric.com shows neither). With no reachable validator
+// that pattern forced a full ~21 KB HTML re-download on every single visit.
+//
+// So the browser gets a short fresh window, then paints instantly from cache
+// while revalidating in the background. `s-maxage` keeps the edge itself
+// revalidating every minute so a deploy never lingers, and the SWR window is
+// bounded rather than open-ended.
+const HTML_CACHE_CONTROL = 'public, max-age=300, s-maxage=60, stale-while-revalidate=600';
+
+// Build an HTML response: inject the beacon, apply the caching policy, and
+// honour conditional requests so repeat visits don't re-fetch the document.
 async function htmlResponse(request, response, headers) {
   // Bodyless statuses (304 from the asset fetch, 204) must be passed through
   // as-is: Response rejects a body on them.
@@ -407,6 +421,7 @@ async function htmlResponse(request, response, headers) {
   const html = await response.text();
   const body = injectBeacon(html);
   if (response.status === 200) {
+    headers.set('Cache-Control', HTML_CACHE_CONTROL);
     headers.set('ETag', await htmlEtag(body));
     const notModified = revalidated(request, headers);
     if (notModified) return notModified;
