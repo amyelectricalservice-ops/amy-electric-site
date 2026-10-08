@@ -311,6 +311,138 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   </div>
 </section>
 
+<section class="estimate-section" style="padding: 72px 24px;">
+  <div class="wrap" style="max-width: 760px;">
+    <div class="section-label">Get Started</div>
+    <h2>Request Service or an Estimate</h2>
+    <p>Tell us what you need and a licensed electrician will follow up with clear options and honest pricing — usually within a few hours.</p>
+
+    <form id="quick-form" class="estimate-form quick-form" action="/api/contact" method="POST" aria-label="Quick quote form">
+      <input type="hidden" name="_timestamp" value="">
+      <div style="position:absolute;left:-9000px;aria-hidden:true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="q-name">Name</label>
+          <input type="text" id="q-name" name="name" required aria-label="Your name" autocomplete="name" autocapitalize="words" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="q-phone">Phone</label>
+          <input type="tel" id="q-phone" name="phone" required aria-label="Your phone number" autocomplete="tel" inputmode="tel" maxlength="25">
+        </div>
+        <div class="form-group full">
+          <label for="q-service">What do you need?</label>
+          <select id="q-service" name="service" required aria-label="Type of service needed" aria-describedby="q-service-error">
+            <option value="">Select a service...</option>
+            <option value="ev-charger">EV Charger Installation</option>
+            <option value="panel-upgrade">200A Panel Upgrade</option>
+            <option value="electrical-repair">Electrical Repair</option>
+            <option value="commercial">Commercial Electrical</option>
+            <option value="lighting">Lighting Installation</option>
+            <option value="tesla-charger">Tesla Charger</option>
+            <option value="rewiring">Whole-Home Rewiring</option>
+            <option value="surge-protection">Surge Protection</option>
+            <option value="outlet-switch">Outlet &amp; Switch Installation</option>
+            <option value="ceiling-fan">Ceiling Fan Installation</option>
+            <option value="smoke-co">Smoke &amp; CO Detector Installation</option>
+            <option value="generator">Generator Transfer Switch</option>
+            <option value="dedicated-circuit">Dedicated Circuit</option>
+            <option value="smart-home">Smart Home Electrical</option>
+             <option value="safety-inspection">Electrical Safety Inspection</option>
+             <option value="licensed-electrician">Licensed Electrician</option>
+             <option value="other">Other / Not Sure</option>
+           </select>
+           <div id="q-service-error" class="form-error" style="display:none; color:red; margin-top:5px;" aria-live="polite">Please select a service.</div>
+         </div>
+       </div>
+       <button type="submit" class="btn btn-gold form-submit">Request Free Quote</button>
+      <div class="form-error" id="quick-form-error" style="display:none; color:red; margin-top:8px;" role="alert"></div>
+      <p class="form-divider">— or —</p>
+      <a href="#detailed-form" class="form-toggle" onclick="document.getElementById('detailed-form').open=true;">Need a detailed estimate? Click here →</a>
+      <p class="form-note">We typically respond within a few hours during business hours. For urgent issues, call <a href="tel:18183025614">(818) 302-5614</a>.</p>
+      <div class="form-success" id="quick-form-success">
+        <strong>Thank you!</strong> Your request has been sent. We'll get back to you shortly.
+      </div>
+    </form>
+
+    <details id="detailed-form" class="detailed-form-block mt-lg">
+      <summary style="cursor:pointer; color:var(--gold); font-weight:600; padding:14px 0;">📋 Detailed Estimate Form (4 additional fields)</summary>
+      <form id="estimate-form" class="estimate-form" action="/api/contact" method="POST" aria-label="Detailed estimate form" style="margin-top:16px;">
+        <input type="hidden" name="_timestamp" value="">
+        <div style="position:absolute;left:-9000px;aria-hidden:true">
+          <label for="website2">Website</label>
+          <input type="text" id="website2" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>What can we help you with?</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="request_type" value="service" required>
+                <span class="radio-text">I need a service (repair, install, or emergency work)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="request_type" value="estimate" required>
+                <span class="radio-text">I'd like a free estimate for a project</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required aria-label="Your name" autocomplete="name" autocapitalize="words" maxlength="100">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required aria-label="Your phone number" autocomplete="tel" inputmode="tel" maxlength="25">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required aria-label="Your email address" autocomplete="email" inputmode="email" maxlength="254">
+          </div>
+          <div class="form-group">
+            <label for="city">Service Area / City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Sherman Oaks" required aria-label="Your city or service area" autocomplete="address-level2" autocapitalize="words" maxlength="100">
+          </div>
+          <div class="form-group full">
+            <label for="service">Service Type</label>
+            <select id="service" name="service" required aria-label="Type of service needed">
+              <option value="">Select a service...</option>
+              <option value="ev-charger">EV Charger Installation</option>
+              <option value="panel-upgrade">200A Panel Upgrade</option>
+              <option value="electrical-repair">Electrical Repair</option>
+              <option value="commercial">Commercial Electrical</option>
+              <option value="lighting">Lighting Installation</option>
+              <option value="tesla-charger">Tesla Charger</option>
+              <option value="rewiring">Whole-Home Rewiring</option>
+              <option value="surge-protection">Surge Protection</option>
+              <option value="outlet-switch">Outlet &amp; Switch Installation</option>
+              <option value="ceiling-fan">Ceiling Fan Installation</option>
+              <option value="smoke-co">Smoke &amp; CO Detector Installation</option>
+              <option value="generator">Generator Transfer Switch</option>
+              <option value="dedicated-circuit">Dedicated Circuit</option>
+              <option value="smart-home">Smart Home Electrical</option>
+              <option value="safety-inspection">Electrical Safety Inspection</option>
+              <option value="licensed-electrician">Licensed Electrician</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" rows="4" placeholder="Describe what you need or any issues you're experiencing..." required aria-label="Project details or message"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold form-submit">Submit Detailed Request</button>
+        <div class="form-error" id="estimate-form-error" style="display:none; color:red; margin-top:8px;" role="alert"></div>
+        <div class="form-success" id="estimate-form-success" style="display:none;">
+          <strong>Thank you!</strong> Your detailed request has been sent. We'll get back to you shortly.
+        </div>
+      </form>
+    </details>
+  </div>
+</section>
+
 <section class="cta-band" id="estimate">
   <div class="wrap" style="max-width:var(--max)">
     <h2>Get Your Free Rewiring Estimate in West Los Angeles</h2>
