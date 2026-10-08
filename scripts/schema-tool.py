@@ -9,6 +9,7 @@ Usage:
   python3 scripts/schema-tool.py audit       # Full report
 """
 
+import html as htmlmod
 import json
 import os
 import re
@@ -112,6 +113,40 @@ def page_path(stem):
     return stem if stem != "index" else ""
 
 
+def _normalize_q(s):
+    """Entity-aware question normalization for schema<->visible comparison.
+
+    MUST unescape HTML entities before comparing: the 2026-09-25 phantom
+    count came from comparing "&#8217;" against "'". Strip accordion glyphs
+    (+▾▶…), curly apostrophes → straight, collapse whitespace, lowercase.
+    Compare on the first 50 chars (same as scripts/audit-faq-sync.py).
+    """
+    s = htmlmod.unescape(s)
+    s = re.sub(r"[+▾▶…]", "", s)
+    s = s.replace("\u2019", "'").replace("\u2018", "'")
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def _visible_faq_questions(html):
+    """Normalized visible <summary> questions from <details> FAQ disclosures.
+
+    Chunks by <details> first so a bare summary regex can't span block
+    boundaries (seen on 60 city pages + index with the estimate form).
+    Skips the estimate-form <details> (no faq-a answer div).
+    """
+    out = []
+    for chunk in re.findall(r"<details[^>]*>(.*?)</details>", html, re.DOTALL):
+        m = re.search(
+            r'<summary[^>]*>(.*?)</summary>\s*<div class="faq-a">',
+            chunk, re.DOTALL)
+        if not m:
+            continue
+        q = _normalize_q(re.sub(r"<[^>]+>", "", m.group(1)))
+        if len(q) > 10 and "?" in q:
+            out.append(q)
+    return out
+
+
 # ═══════════════════════════════════════════════════════════════════════
 #  VALIDATE
 # ═══════════════════════════════════════════════════════════════════════
@@ -128,6 +163,12 @@ def _walk_html():
         for fname in sorted(os.listdir(blog_dir)):
             if fname.endswith(".html"):
                 yield f"blog/{fname}", os.path.join(blog_dir, fname)
+    # Case-study pages
+    cs_dir = os.path.join(SITE_DIR, "case-studies")
+    if os.path.isdir(cs_dir):
+        for fname in sorted(os.listdir(cs_dir)):
+            if fname.endswith(".html"):
+                yield f"case-studies/{fname}", os.path.join(cs_dir, fname)
 
 
 def cmd_validate():
@@ -151,10 +192,9 @@ def cmd_validate():
                 issues.append(f"INVALID JSON-LD ({e}): {fname}")
 
         # ── Electrician / Service check ──
-        # Applies to blog posts too. It used to skip blog/, which let 6 posts
-        # ship with no business schema and one declare Electrician with no
-        # openingHoursSpecification without CI noticing.
-        if is_redirect:
+        # Applies to root + blog pages. case-studies/ are portfolio stubs
+        # that never carried business schema (pre-existing, out of scope).
+        if is_redirect or fname.startswith("case-studies/"):
             pass
         else:
             elecs = find_jsonld(html, "Electrician")
@@ -187,6 +227,33 @@ def cmd_validate():
         if os.path.basename(fname) in CITY_PAGES:
             if not jsonld_in_html(html, "WebSite"):
                 issues.append(f"MISSING WebSite schema: {fname}")
+
+        # ── FAQ sync checks (mirror scripts/audit-faq-sync.py) ──
+        # (a) junk glyph suffix on FAQPage names
+        for m in re.finditer(
+                r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>',
+                html, re.DOTALL):
+            try:
+                data = json.loads(m.group(1))
+            except json.JSONDecodeError:
+                continue  # already reported as INVALID JSON-LD above
+            if isinstance(data, dict) and data.get("@type") == "FAQPage":
+                for q in data.get("mainEntity", []):
+                    if re.search(r"[+▾▶]\s*$", q.get("name", "")):
+                        issues.append(
+                            f"JUNK_FAQ_NAME in {fname}: "
+                            f"'{q.get('name', '')}'")
+                declared = {_normalize_q(q.get("name", ""))[:50]
+                            for q in data.get("mainEntity", [])}
+                for vis in _visible_faq_questions(html):
+                    if vis[:50] not in declared:
+                        issues.append(
+                            f"UNMARKED_FAQ in {fname}: '{vis[:80]}'")
+                break
+
+        # (c) missing </head> before <body>
+        if re.search(r"<body", html) and "</head>" not in html:
+            issues.append(f"MISSING_HEAD_CLOSE: {fname}")
 
         # Check blog breadcrumb text
         if fname.startswith("blog/"):

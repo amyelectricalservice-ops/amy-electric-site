@@ -58,6 +58,7 @@ def audit():
     js_missing = []
     meta_desc_issues = []
     title_issues = []
+    head_close_missing = []
 
     for f in html_files:
         with open(f, 'r', encoding='utf-8') as fh:
@@ -102,6 +103,11 @@ def audit():
             file_issues.append('Missing sticky mobile bar')
             sticky_bar_missing.append(f)
 
+        # 5. Missing </head> before <body> (malformed head breaks crawlers).
+        if re.search(r'<body', content) and '</head>' not in content:
+            file_issues.append('Missing </head> before <body>')
+            head_close_missing.append(f)
+
         if file_issues:
             issues_by_file[f] = file_issues
 
@@ -112,6 +118,7 @@ def audit():
     print(f"Pages missing sticky mobile bar: {len(sticky_bar_missing)}")
     print(f"Pages with meta description issues: {len(meta_desc_issues)}")
     print(f"Pages with title tag issues: {len(title_issues)}")
+    print(f"Pages missing </head>: {len(head_close_missing)}")
 
     if missing_from_sitemap:
         print("\n[!] Missing from sitemap.xml:")
@@ -137,6 +144,11 @@ def audit():
         print(f"\n[!] Title Tag Issues ({len(title_issues)}):")
         for f, iss in title_issues:
             print(f"  - {f}: {iss}")
+
+    if head_close_missing:
+        print(f"\n[!] Missing </head> ({len(head_close_missing)}):")
+        for m in head_close_missing:
+            print(f"  - {m}")
 
 if __name__ == '__main__':
     audit()
