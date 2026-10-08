@@ -1601,7 +1601,27 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 </footer>
 
 <script defer src="js/site.min.js"></script>
-<script defer src="js/estimator.min.js"></script>
+<script>
+// estimator.min.js (8.4KB) loads only when #estimator nears viewport —
+// cuts ~100-250ms TBT from the homepage critical path. Fallback: load after 3s idle.
+(function () {
+  var loaded = false;
+  function loadEst() {
+    if (loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'js/estimator.min.js'; s.defer = true;
+    document.body.appendChild(s);
+  }
+  var sec = document.getElementById('estimator');
+  if ('IntersectionObserver' in window && sec) {
+    var io = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) { loadEst(); io.disconnect(); }
+    }, { rootMargin: '600px' });
+    io.observe(sec);
+  } else { loadEst(); return; }
+  setTimeout(loadEst, 3000);
+})();
+</script>
 <script defer src="js/webmcp.js"></script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call">

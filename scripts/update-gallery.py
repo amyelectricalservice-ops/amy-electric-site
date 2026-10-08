@@ -67,8 +67,9 @@ def read_manifest():
 
 
 def make_item_data(row, position=0):
-    """position is the 0-based index in the final grid; the first 6 static
-    items load eager (above the fold) and the very first gets fetchpriority."""
+    """position is the 0-based index in the final grid; only the very first
+    item loads eager (the LCP image, with fetchpriority). Images 2+ load
+    lazy: 5 eager gallery images ≈ 570 KB were delaying LCP (lab: 4.3 s)."""
     cat = row.get("category", "other").strip() or "other"
     label, bg, color = CATEGORY_LABELS.get(cat, CATEGORY_LABELS["other"])
     city = row.get("city", "").strip() or "Los Angeles"
@@ -85,7 +86,7 @@ def make_item_data(row, position=0):
         "bg": bg,
         "color": color,
         "alt": alt_text(caption, city),
-        "loading": "eager" if position < 6 else "lazy",
+        "loading": "eager" if position == 0 else "lazy",
         "fetch": ' fetchpriority="high"' if position == 0 else "",
     }
 
