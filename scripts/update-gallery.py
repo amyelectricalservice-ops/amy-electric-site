@@ -401,10 +401,9 @@ def update_sitemap(rows):
             '<%surl>\n'
             '<%sloc>https://amyelectric.com/gallery</%sloc>\n'
             '<%slastmod>%s</%slastmod>\n'
-            '<%spriority>0.7</%spriority>\n'
             f'{image_tags}'
             '</%surl>'
-            % (prefix, prefix, prefix, prefix, keep_lastmod, prefix, prefix, prefix, prefix)
+            % (prefix, prefix, prefix, prefix, keep_lastmod, prefix, prefix)
         )
         sitemap_content = sitemap_content.replace(match.group(0), new_gallery_entry)
         SITEMAP_FILE.write_text(sitemap_content, encoding="utf-8")

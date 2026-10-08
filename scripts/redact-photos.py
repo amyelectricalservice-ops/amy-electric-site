@@ -65,6 +65,16 @@ def main():
             im.save(OUT / f"{slug}-1200w.webp", "WEBP", quality=QUALITY, method=6)
             im.save(OUT / f"{slug}-1200w.jpg", "JPEG", quality=QUALITY, optimize=True)
 
+            # 800w intermediate (same settings as scripts/process-photos.py
+            # QUALITY_MID). Without this the 800w srcset candidate keeps the
+            # pre-redaction pixels.
+            if w > 800:
+                ratio800 = 800.0 / w
+                im_800 = im.resize((800, int(h * ratio800)), Image.LANCZOS)
+            else:
+                im_800 = im.copy()
+            im_800.save(OUT / f"{slug}-800w.webp", "WEBP", quality=72, method=6)
+
             # 400w thumbnail
             ratio = 400.0 / w
             thumb = im.resize((400, int(h * ratio)), Image.LANCZOS)

@@ -1,1 +1,48 @@
-{"review_date": "2026-10-06", "reviewer": "visual inspection of 1200w renditions", "rule": "AGENTS.md privacy rule: no visible street number/address, customer name, identifiable face (unless confirmed consenting team member), or LADWP account number.", "findings": [{"slug": "gallery-team-utility-lines", "verdict": "compliant", "detail": "Worker on ladder; face and torso covered by blur box. Redaction record exists in photo-redactions.json ([370,320,650,680])."}, {"slug": "gallery-commercial-parking-team", "verdict": "needs-owner-decision", "detail": "Three workers at panels. Three blur boxes applied (matches all 3 redaction records). The two left workers' faces are fully covered; the rightmost worker's face is visible in profile. If he is a consenting team member, no action needed; otherwise run scripts/redact-photos.py with an additional blur_box for the right-side face before the next gallery rebuild."}, {"slug": "gallery-lighting-commercial-install", "verdict": "compliant", "detail": "Two workers on ladder; both faces covered by blur boxes. Matches both redaction records."}, {"slug": "gallery-roughin-steel-stud", "verdict": "compliant", "detail": "Handwritten unit/street number on framing covered by black-box redaction. Matches the blackout_box record ([400,250,605,360])."}, {"slug": "gallery-team-worker-foundation", "verdict": "reviewed-clean", "detail": "Worker photographed from above/behind; only the back of the head is visible, no identifiable face. No redaction required. Presumed team member; owner to confirm."}, {"slug": "gallery-lifestyle-home-pool", "verdict": "reviewed-clean", "detail": "Luxury home pool and mountain view. No people, no visible address, name, or account number."}], "coverage_note": "6 of 310 photos visually reviewed (all 4 with redaction records plus the 2 other people-containing photos). The remaining 304 have no redaction record; per AGENTS.md each should be visually reviewed before being treated as cleared."}
+{
+  "review_date": "2026-10-08",
+  "reviewer": "visual inspection of 1200w renditions",
+  "rule": "AGENTS.md privacy rule: no visible street number/address, customer name, identifiable face (unless confirmed consenting team member), or LADWP account number.",
+  "findings": [
+    {
+      "slug": "gallery-team-utility-lines",
+      "verdict": "compliant",
+      "detail": "Worker on ladder; face and torso covered by blur box. Redaction record exists in photo-redactions.json ([370,320,650,680])."
+    },
+    {
+      "slug": "gallery-commercial-parking-team",
+      "verdict": "needs-owner-decision",
+      "detail": "Three workers at panels. Three blur boxes applied (matches all 3 redaction records). The two left workers' faces are fully covered; the rightmost worker's face is visible in profile. If he is a consenting team member, no action needed; otherwise run scripts/redact-photos.py with an additional blur_box for the right-side face before the next gallery rebuild."
+    },
+    {
+      "slug": "gallery-lighting-commercial-install",
+      "verdict": "compliant",
+      "detail": "Two workers on ladder; both faces covered by blur boxes. Matches both redaction records."
+    },
+    {
+      "slug": "gallery-roughin-steel-stud",
+      "verdict": "compliant",
+      "detail": "Handwritten unit/street number on framing covered by black-box redaction. Matches the blackout_box record ([400,250,605,360])."
+    },
+    {
+      "slug": "gallery-team-worker-foundation",
+      "verdict": "reviewed-clean",
+      "detail": "Worker photographed from above/behind; only the back of the head is visible, no identifiable face. No redaction required. Presumed team member; owner to confirm."
+    },
+    {
+      "slug": "gallery-lifestyle-home-pool",
+      "verdict": "reviewed-clean",
+      "detail": "Luxury home pool and mountain view. No people, no visible address, name, or account number."
+    },
+    {
+      "slug": "photo-20260113-01",
+      "verdict": "blurred-2026-10-08",
+      "detail": "Woman's face clearly identifiable (front-facing). Blur box [605,25,755,195] applied via redact-photos.py; verified unidentifiable after. Record added to photo-redactions.json."
+    },
+    {
+      "slug": "photo-20220106-03",
+      "verdict": "blurred-2026-10-08",
+      "detail": "Crane operator's side profile partially identifiable. First box missed the face edge (caught on zoomed review); widened to [365,525,495,610] and verified covered. Record added to photo-redactions.json."
+    }
+  ],
+  "coverage_note": "All 88 formerly-uncategorized photos visually reviewed via contact sheets during 2026-10-08 categorization (17 kept as genuinely-ambiguous 'other'; team-bucket faces checked at 600px: 8 clean backs/distance shots, 2 blurred above). Plus the 6 earlier reviews. Remaining 216 photos have no review record; per AGENTS.md each should be visually reviewed before being treated as cleared."
+}
