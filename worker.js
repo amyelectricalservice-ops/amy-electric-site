@@ -366,6 +366,50 @@ function injectBeacon(html) {
   return i === -1 ? html : html.slice(0, i) + RUM_BEACON + html.slice(i);
 }
 
+// Geo personalization for the landing page, driven by request.cf.city.
+//
+// Only the launch areas below ever trigger a rewrite, and the injected value
+// is always our own canonical string — never the raw cf.city input — so there
+// is no XSS surface even though cf data is edge-supplied. Matched responses
+// are personalized per visitor and MUST NOT be edge-cached: the edge cannot
+// Vary on cf.city, so they go out private/no-store while every non-matched
+// request keeps the shared HTML_CACHE_CONTROL policy.
+const GEO_TARGET_AREAS = ['Northridge', 'Winnetka', 'Canoga Park'];
+const GEO_NO_STORE = 'private, no-store';
+
+function matchTargetCity(raw) {
+  if (typeof raw !== 'string') return null;
+  const norm = raw.trim().toLowerCase();
+  for (const area of GEO_TARGET_AREAS) {
+    if (area.toLowerCase() === norm) return area;
+  }
+  return null;
+}
+
+// Canonical target-area city for this request, or null. Null covers local
+// dev (request.cf absent), empty/non-string cities, and non-target cities.
+function visitorCity(request) {
+  const cf = request && request.cf;
+  if (!cf || typeof cf.city !== 'string') return null;
+  return matchTargetCity(cf.city);
+}
+
+// Inject the city into the landing header attribute and expose it to the
+// frontend. `city` must be a matchTargetCity() return value, never raw input.
+function injectGeo(html, city) {
+  const config =
+    '<script>window.AMY_GEO=' +
+    JSON.stringify({ city: city, matched: true, areas: GEO_TARGET_AREAS }) +
+    ';</script>';
+  let out = html;
+  const hi = out.indexOf('<header');
+  if (hi !== -1) {
+    out = out.slice(0, hi) + '<header data-service-city="' + city + '"' + out.slice(hi + '<header'.length);
+  }
+  const bi = out.lastIndexOf('</body>');
+  return bi === -1 ? out + config : out.slice(0, bi) + config + out.slice(bi);
+}
+
 // HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
 // HTML_CACHE_CONTROL below), but the asset response carries no validator of
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
@@ -420,9 +464,28 @@ async function htmlResponse(request, response, headers) {
     return response;
   }
   const html = await response.text();
-  const body = injectBeacon(html);
+  const body0 = injectBeacon(html);
+  let body = body0;
+  let cache = HTML_CACHE_CONTROL;
+  // Geo personalization applies to the landing page only: a matched visitor
+  // city is injected into the header attribute plus window.AMY_GEO, and the
+  // response goes out uncacheable so one visitor's city never leaks to
+  // another via the shared edge cache.
+  let pathname = '';
+  try {
+    pathname = new URL(request.url).pathname;
+  } catch {
+    pathname = '';
+  }
+  if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
+    const city = visitorCity(request);
+    if (city) {
+      body = injectGeo(body0, city);
+      cache = GEO_NO_STORE;
+    }
+  }
   if (response.status === 200) {
-    headers.set('Cache-Control', HTML_CACHE_CONTROL);
+    headers.set('Cache-Control', cache);
     headers.set('ETag', await htmlEtag(body));
     const notModified = revalidated(request, headers);
     if (notModified) return notModified;
