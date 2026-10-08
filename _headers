@@ -29,7 +29,10 @@
 /favicon.ico
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML pages — short cache with revalidation
+# HTML pages — SUPERSEDED by worker.js HTML_CACHE_CONTROL
+# (public, max-age=300, s-maxage=60, stale-while-revalidate=600), which the
+# Worker sets on every HTML response and therefore wins over this block.
+# Kept as a fallback for non-Worker serves only; do NOT "fix" caching here.
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 

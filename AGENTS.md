@@ -12,19 +12,17 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## Current state
 
-- **76 HTML pages total**:
+- **312 production HTML pages** (per `scripts/audit-site.py`; 307 URLs in `sitemap.xml`, delta is deliberate noindex/404 exclusions):
   - Homepage: `index.html`
-  - **15 service pages** with FAQPage + BreadcrumbList + PriceRange schema
-  - **16 city pages** with FAQPage + BreadcrumbList + Electrician schema
-  - **32 geo service pages** (16 `ev-charger-installation-{city}.html` + 16 `panel-upgrade-{city}.html`) with FAQPage (7 Qs each) + BreadcrumbList + Electrician schema
-  - **2 comparison pages** with FAQPage + BreadcrumbList
-  - **5 emergency/info pages** with FAQPage + BreadcrumbList
-  - **33 blog pages** (31 posts + index + 2 new) with BlogPosting + FAQPage + BreadcrumbList
-  - **2 special pages**: `testimonials.html`, `gallery.html`
-  - **1 privacy policy**: `privacy-policy.html`
+  - 246 root-level + 61 `blog/` HTML files on disk
+  - **112 `city-*.html` files** (16 core cities + neighborhood pages) with FAQPage + BreadcrumbList + Electrician schema — note: 3 (`city-edith-norman`, `city-el-sobrante`, `city-health-campadre`) are deliberately `noindex` (commit `2255643`) and excluded from the sitemap
+  - **48 geo service pages** (24 `ev-charger-installation-{city}.html` + 24 `panel-upgrade-{city}.html`) with FAQPage (7 Qs each) + BreadcrumbList + Electrician schema
+  - 60 blog posts + index with BlogPosting + FAQPage + BreadcrumbList
+  - Special pages include `testimonials.html`, `gallery.html` (310 photos), `privacy-policy.html`, `service-areas.html`
+  - (Older revisions of this file said "76 pages / 16 city / 32 geo / 33 blog" — superseded by the counts above, verified 2026-10-08)
 - **4 service pages** have HowTo schema (panel-upgrade, ev-charger-installation, generator-transfer-switch, whole-home-rewiring)
-- **CSS** at `css/style.min.css` (production, 28KB) — source modules in `css/src/01-*.css` through `css/src/12-*.css`, built via `scripts/build-css.py`
-- **JS** at `js/site.min.js` (production, 2.6KB) — source modules in `js/src/01-*.js` through `js/src/03-*.js`, built via `scripts/build-js.py`
+- **CSS** at `css/style.min.css` (production, ~30KB) — source modules in `css/src/01-*.css` through `css/src/12-*.css`, built via `scripts/build-css.py`
+- **JS** at `js/site.min.js` (production, ~7.2KB) — source modules in `js/src/01-*.js` through `js/src/03-*.js`, built via `scripts/build-js.py` — plus `js/estimator.min.js` (~8.4KB) for the homepage quote estimator
 - **`favicon.svg`** — navy background with gold "AE" lightning bolt
 - **`robots.txt`** — allows /, explicitly allows 8 AI search crawlers, blocks 3 training crawlers, RSL link, Sitemap
 - **`_redirects`** — Cloudflare Pages HTTPS + www canonicalization
@@ -44,7 +42,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **Contact forms**:
   - Homepage: Two-tier — `quick-form` (3 fields: name, phone, service) by default, `estimate-form` (7 fields) in expandable `<details>` toggle
   - POST to `/api/contact` — handled by `worker.js` → `contact-handler.js` (honeypot `website` field + `_timestamp` time-trap reject anything submitted in under 3s). `functions/` is leftover Pages Functions and is **not** deployed; `wrangler.jsonc` never references it
-- **Sticky call bar**: Mobile-only gold bar fixed to bottom on all 42 pages (hidden ≥768px)
+- **Sticky call bar**: Mobile-only gold bar fixed to bottom on all production pages (hidden ≥768px; audit verifies 0 missing)
 - **Photo pipeline**: Raw photos in `/home/amram/Pictures/Electric Work/` → `scripts/process-photos.py` + `scripts/photo-manifest.csv` → `img/gallery/`. Each photo outputs 1200w WebP + 1200w JPEG + 400w WebP. EXIF stripped, 4:3 crop, orientation fixed. To add new photos: edit manifest and run `python3 scripts/process-photos.py`.
 - **Privacy redactions**: `scripts/redact-photos.py` applies in-place edits to published photos. Supports Gaussian face blur (`blur_box`) and black-box text redaction (`blackout_box`). Run after `process-photos.py` for photos containing faces or identifiable text/numbers.
 - **Custom crop per photo**: Add `custom_crop` column to `photo-manifest.csv` with source-pixel coordinates `x1,y1,x2,y2`. Used when a center 4:3 crop doesn't exclude privacy-sensitive content (e.g., meter face with account numbers). Example: `"0,0,3024,2268"` for a portrait photo cropped to top 56%.

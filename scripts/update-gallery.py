@@ -3,6 +3,7 @@
 import csv
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 WEBSITE = Path(__file__).parent.parent
@@ -277,8 +278,11 @@ def main():
     # Read current gallery.html and make replacements
     content = GALLERY_FILE.read_text(encoding="utf-8")
 
-    # 1. Remove the first inline <style> block (full site CSS, redundant with style.min.css)
-    content = re.sub(r'<style>.*?</style>', '', content, count=1, flags=re.DOTALL)
+    # 1. The inline <style> block is critical CSS for first paint and MUST be
+    # preserved. The bundle loads async (preload+onload swap), so without it
+    # the page paints unstyled until style.min.css arrives. An older revision
+    # of this step stripped the block as "redundant" and reintroduced the
+    # unstyled-first-paint bug; do not restore that behavior.
 
     # 2. Replace the gallery section content (from gallery-grid open to </section>)
     # This approach is idempotent — any existing items or show-more content are fully replaced.
@@ -325,10 +329,14 @@ def main():
         content
     )
 
-    # 5. Replace the ItemList JSON-LD — find old ItemList object by brace matching
+    # 5. Replace the ItemList JSON-LD — find old ItemList object by brace matching.
+    # The match tolerates whitespace around the colon: the fossil block in
+    # gallery.html used spaced JSON ("@type": "ItemList"), which the old
+    # exact-match lookup missed, silently leaving a stale 36-item list behind.
     new_itemlist_obj = itemlist_json(rows)
-    idx = content.find('"@type":"ItemList"')
-    if idx > -1:
+    itemlist_match = re.search(r'"@type"\s*:\s*"ItemList"', content)
+    if itemlist_match:
+        idx = itemlist_match.start()
         obj_start = content.rfind('{', 0, idx)
         depth = 1
         pos = obj_start + 1
@@ -339,6 +347,13 @@ def main():
                 depth -= 1
             pos += 1
         content = content[:obj_start] + new_itemlist_obj + content[pos:]
+        print(f"  ItemList JSON-LD replaced ({len(rows)} items)")
+    else:
+        print("  WARNING: no existing ItemList block found; appending a new one")
+        anchor = content.find('</script>')
+        if anchor > -1:
+            content = (content[:anchor] + '</script>\n<script type="application/ld+json">\n'
+                       + new_itemlist_obj + '\n</script>' + content[anchor + len('</script>'):])
 
     GALLERY_FILE.write_text(content, encoding="utf-8")
     print(f"Updated {GALLERY_FILE}")
@@ -374,21 +389,26 @@ def update_sitemap(rows):
         % (image_prefix, image_prefix, r["slug"], image_prefix, image_prefix)
         for r in rows
     )
-    new_gallery_entry = (
-        '<%surl>\n'
-        '<%sloc>https://amyelectric.com/gallery</%sloc>\n'
-        '<%slastmod>2026-06-19</%slastmod>\n'
-        '<%spriority>0.7</%spriority>\n'
-        f'{image_tags}'
-        '</%surl>'
-        % (prefix, prefix, prefix, prefix, prefix, prefix, prefix, prefix)
-    )
     pattern = rf'<{prefix}url>\s*<{prefix}loc>https://amyelectric\.com/gallery</{prefix}loc>.*?</{prefix}url>'
     match = re.search(pattern, sitemap_content, re.DOTALL)
     if match:
+        # Preserve the existing lastmod: the gallery page content rarely changes
+        # on regen (usually just the ItemList), and a hardcoded date once rewound
+        # lastmod by months. Only bump when the photo set itself changes.
+        old_lastmod = re.search(r'<lastmod>(.*?)</lastmod>', match.group(0))
+        keep_lastmod = old_lastmod.group(1) if old_lastmod else date.today().isoformat()
+        new_gallery_entry = (
+            '<%surl>\n'
+            '<%sloc>https://amyelectric.com/gallery</%sloc>\n'
+            '<%slastmod>%s</%slastmod>\n'
+            '<%spriority>0.7</%spriority>\n'
+            f'{image_tags}'
+            '</%surl>'
+            % (prefix, prefix, prefix, prefix, keep_lastmod, prefix, prefix, prefix, prefix)
+        )
         sitemap_content = sitemap_content.replace(match.group(0), new_gallery_entry)
         SITEMAP_FILE.write_text(sitemap_content, encoding="utf-8")
-        print(f"Updated {SITEMAP_FILE} with {len(rows)} image entries")
+        print(f"Updated {SITEMAP_FILE} with {len(rows)} image entries (lastmod kept at {keep_lastmod})")
     else:
         print("WARNING: gallery URL not found in sitemap.xml")
 

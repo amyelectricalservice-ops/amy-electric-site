@@ -366,10 +366,11 @@ function injectBeacon(html) {
   return i === -1 ? html : html.slice(0, i) + RUM_BEACON + html.slice(i);
 }
 
-// HTML is served with `max-age=0, must-revalidate` but the asset response
-// carries no validator of its own, so every repeat visit re-downloaded the
-// whole document (~21 KB brotli / ~101 KB raw). Hashing the final
-// (beacon-injected) body lets those visits revalidate with a ~300 B 304.
+// HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
+// HTML_CACHE_CONTROL below), but the asset response carries no validator of
+// its own, so every repeat visit re-downloaded the whole document (~21 KB
+// brotli / ~101 KB raw). Hashing the final (beacon-injected) body lets those
+// visits revalidate with a ~300 B 304.
 async function htmlEtag(body) {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
   const hex = [...new Uint8Array(digest)]
