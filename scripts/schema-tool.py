@@ -140,6 +140,16 @@ def cmd_validate():
         base_stem = os.path.splitext(os.path.basename(fname))[0]
         is_redirect = 'noindex' in html and 'http-equiv="refresh"' in html
 
+        # ── Unparseable JSON-LD ──
+        # find_jsonld() silently skips blocks that fail json.loads, so a
+        # malformed FAQPage used to vanish from every other check and still
+        # pass validation. Parse every block explicitly first.
+        for m in re.finditer(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', html, re.DOTALL):
+            try:
+                json.loads(m.group(1))
+            except json.JSONDecodeError as e:
+                issues.append(f"INVALID JSON-LD ({e}): {fname}")
+
         # ── Electrician / Service check ──
         # Applies to blog posts too. It used to skip blog/, which let 6 posts
         # ship with no business schema and one declare Electrician with no
