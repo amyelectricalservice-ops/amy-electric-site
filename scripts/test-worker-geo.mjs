@@ -15,10 +15,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 let src = readFileSync(join(root, 'worker.js'), 'utf8');
-src = src.replace(
-  "import { handleContact } from './contact-handler.js';",
-  'const handleContact = async () => new Response("stubbed", { status: 500 });'
-);
+// Strip module imports (sibling handlers change as other flows evolve; the
+// tests below never touch /api/contact or /api/lead) and stub both routes.
+src = src.replace(/^import .*$/gm, '');
+src += '\nconst handleLead = async () => new Response("stubbed", { status: 500 });'
+  + '\nconst handleContact = async () => new Response("stubbed", { status: 500 });';
 src = src.replace('export default', 'const __EXPORT_DEFAULT =');
 src += '\nthis.__T = { fetch: __EXPORT_DEFAULT.fetch, matchTargetCity, injectGeo, visitorCity, GEO_TARGET_AREAS, GEO_NO_STORE, HTML_CACHE_CONTROL };';
 

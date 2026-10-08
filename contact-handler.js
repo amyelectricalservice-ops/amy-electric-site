@@ -34,6 +34,7 @@ export async function handleContact(request, env, waitUntil) {
       city: str(raw.city).slice(0, 100),
       message: str(raw.message).slice(0, 5000),
       request_type: str(raw.request_type).slice(0, 50),
+      estimate: parseEstimate(str(raw.estimate).slice(0, 2000)),
     };
 
     if (data.name.length < 2) {
@@ -135,8 +136,30 @@ export async function handleContact(request, env, waitUntil) {
   }
 }
 
-function badRequest(message) {
-  return new Response(JSON.stringify({ success: false, message }), {
+// Optional indicative estimate attached by the quote forms (see
+// js/src/07-estimate-lead.js). Invalid payloads are dropped, never fatal:
+// a lead must never fail because of its estimate attachment.
+function parseEstimate(raw) {
+  if (!raw) return '';
+  try {
+    const e = JSON.parse(raw);
+    if (!e || typeof e !== 'object') return '';
+    const low = Number(e.rangeLow);
+    const high = Number(e.rangeHigh);
+    if (!Number.isFinite(low) || !Number.isFinite(high)) return '';
+    if (low < 0 || high < 0 || high > 10000000 || low > high) return '';
+    const service = typeof e.service === 'string' ? e.service.slice(0, 50) : '';
+    const assumptions = Array.isArray(e.assumptions)
+      ? e.assumptions.filter((a) => typeof a === 'string').map((a) => a.slice(0, 200)).slice(0, 8)
+      : [];
+    const permitNote = typeof e.permitNote === 'string' ? e.permitNote.slice(0, 200) : '';
+    return JSON.stringify({ service, rangeLow: low, rangeHigh: high, currency: 'USD', assumptions, permitNote });
+  } catch {
+    return '';
+  }
+}
+
+function badRequest(message) {  return new Response(JSON.stringify({ success: false, message }), {
     status: 400,
     headers: { 'Content-Type': 'application/json' },
   });
@@ -161,6 +184,16 @@ function formatLeadText(data) {
   if (data.city) lines.push(`City: ${data.city}`);
   if (data.message) lines.push(`Message:\n${data.message}`);
   if (data.request_type) lines.push(`Request Type: ${data.request_type}`);
+  if (data.estimate) {
+    try {
+      const e = JSON.parse(data.estimate);
+      lines.push(`Estimate: $${e.rangeLow}–$${e.rangeHigh} (${e.service || 'unspecified service'}; indicative, confirm on site)`);
+      if (e.assumptions && e.assumptions.length) lines.push(`Estimate basis: ${e.assumptions.join('; ')}`);
+      if (e.permitNote) lines.push(`Estimate permits: ${e.permitNote}`);
+    } catch {
+      lines.push('Estimate: (unparseable attachment dropped)');
+    }
+  }
   if (data._timestamp) lines.push(`Submitted: ${data._timestamp}`);
   return lines.join('\n') || 'No details provided.';
 }
