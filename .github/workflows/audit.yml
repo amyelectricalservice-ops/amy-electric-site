@@ -31,6 +31,12 @@ jobs:
           python3 scripts/build-js.py
           git diff --exit-code css/style.min.css js/site.min.js || (echo "Minified CSS/JS out of sync! Run scripts/build-css.py and scripts/build-js.py" && exit 1)
 
+      - name: Report Published Price Drift
+        # Informational only: pages quote prices by hand, so they drift from
+        # the estimate engine. Non-blocking on purpose — correcting copy is an
+        # owner decision, not a build failure. Run --strict locally to gate.
+        run: python3 scripts/audit-price-drift.py
+
       - name: Verify Sitemap Integrity
         run: |
           python3 -c "
