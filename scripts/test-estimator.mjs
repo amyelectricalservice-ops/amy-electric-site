@@ -114,3 +114,42 @@ describe('parity with the bundled engine data', () => {
     assert.deepEqual([p.low, p.high], [150, 400]);
   });
 });
+
+/* js/estimator.js is not loaded by any page — the homepage widget lazy-loads
+ * js/estimator.min.js, a separate bundle. Nothing rebuilds one from the other,
+ * so these assertions are what stops the shipped widget's price table from
+ * drifting away from the engine (the tesla 450-750 vs 500-1200 split this
+ * repo shipped for a while). */
+describe('parity with the shipped homepage widget (js/estimator.min.js)', () => {
+  const min = readFileSync(join(root, 'js/estimator.min.js'), 'utf8');
+  const widgetPrice = (key) => {
+    const m = min.match(new RegExp('"{0,1}' + key + '"{0,1}:\\{baseLow:(\\d+),baseHigh:(\\d+)\\}'));
+    assert.ok(m, 'price row for ' + key + ' in estimator.min.js');
+    return { low: Number(m[1]), high: Number(m[2]) };
+  };
+  const byId = (id) => DATA.SERVICES.find((s) => s.id === id);
+
+  it('charger rows match the engine', () => {
+    const tesla = widgetPrice('tesla-wall');
+    assert.deepEqual([tesla.low, tesla.high], [byId('ev-tesla-wall').baseLow, byId('ev-tesla-wall').baseHigh]);
+    const hardwired = widgetPrice('hardwired');
+    assert.deepEqual([hardwired.low, hardwired.high], [byId('ev-hardwired').baseLow, byId('ev-hardwired').baseHigh]);
+  });
+
+  it('NEMA row covers the engine range (widget uses the wider published scope)', () => {
+    // Outlet-only install is published at $350-$550 (ev-charger-installation)
+    // and the charger-circuit scope at $350-$900 (geo pages), so the widget's
+    // upper bound is legitimately higher — but never below the engine's.
+    const nema = widgetPrice('nema14-50');
+    assert.equal(nema.low, byId('ev-nema-1450').baseLow);
+    assert.ok(nema.high >= byId('ev-nema-1450').baseHigh, 'widget NEMA high ' + nema.high);
+  });
+
+  it('panel-upgrade branch matches the engine', () => {
+    assert.ok(min.includes('low:2500,high:4500'), 'widget panel range');
+    assert.deepEqual(
+      [byId('panel-200a-replacement').baseLow, byId('panel-200a-replacement').baseHigh],
+      [2500, 4500]
+    );
+  });
+});

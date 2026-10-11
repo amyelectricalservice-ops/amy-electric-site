@@ -5,7 +5,7 @@
  * the engine must surface them as exclusions, never price them at zero.
  *
  * RELATIONAL MAP — this file is the denormalized view of scripts/estimate-schema.sql:
- *   services(id PK, name, unit, base_low, base_high, permit_id FK NULL, source)
+ *   services(id PK, name, unit, base_low, base_high, permit_id FK NULL, permit_handling, source)
  *   materials(id PK, name, unit, unit_low NULL, unit_high NULL, status, source)
  *   adders(id PK, name, low, high, source)
  *   service_adders(service_id FK, adder_id FK)  -- the appliesTo arrays, normalized
@@ -18,21 +18,27 @@
 var AMY_ESTIMATE_DATA = (function () {
   'use strict';
 
+  // permitHandling is what the published range does with permit fees — it must
+  // NOT be inferred from permitId (which only points at a priced permit row):
+  //   'included'    base range already covers the permit (no permit line, no exclusion)
+  //   'separate'    permit row (permitId) is added as its own priced line
+  //   'unpublished' permit cost is not published for this scope: surfaced as an
+  //                 exclusion, never guessed
   var SERVICES = [
-    { id: 'panel-200a-replacement', name: '200A Panel Replacement', unit: 'job', baseLow: 2500, baseHigh: 4500, permitId: null, source: 'panel-upgrade.html, owner range decision 2026-10-08' },
-    { id: 'panel-main-service-upgrade', name: 'Main Service Upgrade', unit: 'job', baseLow: 3000, baseHigh: 6000, permitId: null, source: 'panel-upgrade.html' },
-    { id: 'panel-subpanel-add', name: 'Sub-Panel Add', unit: 'job', baseLow: 1200, baseHigh: 2500, permitId: null, source: 'panel-upgrade.html' },
-    { id: 'panel-100a-like-for-like', name: '100A Panel Replacement (like-for-like)', unit: 'job', baseLow: 1500, baseHigh: 2500, permitId: null, source: 'panel-100a-vs-200a.html' },
-    { id: 'ev-nema-1450', name: 'NEMA 14-50 Outlet Install', unit: 'job', baseLow: 350, baseHigh: 550, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-tesla-wall', name: 'Tesla Wall Connector Install', unit: 'job', baseLow: 450, baseHigh: 750, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-hardwired', name: 'Hardwired EVSE Install', unit: 'job', baseLow: 500, baseHigh: 900, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-fleet-station', name: 'Commercial EV Fleet Station', unit: 'station', baseLow: 1500, baseHigh: 6000, permitId: null, source: 'commercial-ev-fleet-charging.html' },
-    { id: 'lighting-per-light', name: 'Recessed Lighting', unit: 'light', baseLow: 125, baseHigh: 250, permitId: null, source: 'llms.txt' },
-    { id: 'rewiring-base', name: 'Whole-Home Rewiring', unit: 'job', baseLow: 8000, baseHigh: 18000, permitId: null, source: 'whole-home-rewiring.html, llms.txt' },
-    { id: 'rewiring-partial', name: 'Partial Rewiring / Remediation', unit: 'job', baseLow: 800, baseHigh: 3000, permitId: null, source: 'whole-home-rewiring.html' },
-    { id: 'rewiring-per-circuit', name: 'Rewire (per circuit)', unit: 'circuit', baseLow: 300, baseHigh: 600, permitId: null, source: 'whole-home-rewiring.html' },
-    { id: 'generator-transfer-switch', name: 'Automatic Transfer Switch Install', unit: 'job', baseLow: 800, baseHigh: 1500, permitId: null, source: 'generator-transfer-switch.html' },
-    { id: 'generator-manual-switch', name: 'Manual Transfer Switch Install', unit: 'job', baseLow: 400, baseHigh: 800, permitId: null, source: 'generator-transfer-switch.html' }
+    { id: 'panel-200a-replacement', name: '200A Panel Replacement', unit: 'job', baseLow: 2500, baseHigh: 4500, permitId: null, permitHandling: 'included', source: 'panel-upgrade.html ("including permits and inspection"), owner range decision 2026-10-08' },
+    { id: 'panel-main-service-upgrade', name: 'Main Service Upgrade', unit: 'job', baseLow: 3000, baseHigh: 6000, permitId: null, permitHandling: 'unpublished', source: 'panel-upgrade.html' },
+    { id: 'panel-subpanel-add', name: 'Sub-Panel Add', unit: 'job', baseLow: 1200, baseHigh: 2500, permitId: null, permitHandling: 'unpublished', source: 'panel-upgrade.html' },
+    { id: 'panel-100a-like-for-like', name: '100A Panel Replacement (like-for-like)', unit: 'job', baseLow: 1500, baseHigh: 2500, permitId: null, permitHandling: 'unpublished', source: 'panel-100a-vs-200a.html' },
+    { id: 'ev-nema-1450', name: 'NEMA 14-50 Outlet Install', unit: 'job', baseLow: 350, baseHigh: 550, permitId: 'permit-ev', permitHandling: 'separate', source: 'ev-charger-installation.html' },
+    { id: 'ev-tesla-wall', name: 'Tesla Wall Connector Install', unit: 'job', baseLow: 500, baseHigh: 1200, permitId: null, permitHandling: 'included', source: 'tesla-charger-installation.html ($500-$1,200 incl. 60A circuit, mounting, permit)' },
+    { id: 'ev-hardwired', name: 'Hardwired EVSE Install', unit: 'job', baseLow: 500, baseHigh: 900, permitId: 'permit-ev', permitHandling: 'separate', source: 'ev-charger-installation.html' },
+    { id: 'ev-fleet-station', name: 'Commercial EV Fleet Station', unit: 'station', baseLow: 1500, baseHigh: 6000, permitId: null, permitHandling: 'unpublished', source: 'commercial-ev-fleet-charging.html' },
+    { id: 'lighting-per-light', name: 'Recessed Lighting', unit: 'light', baseLow: 125, baseHigh: 250, permitId: null, permitHandling: 'unpublished', source: 'llms.txt' },
+    { id: 'rewiring-base', name: 'Whole-Home Rewiring', unit: 'job', baseLow: 8000, baseHigh: 18000, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html, llms.txt' },
+    { id: 'rewiring-partial', name: 'Partial Rewiring / Remediation', unit: 'job', baseLow: 800, baseHigh: 3000, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html' },
+    { id: 'rewiring-per-circuit', name: 'Rewire (per circuit)', unit: 'circuit', baseLow: 300, baseHigh: 600, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html' },
+    { id: 'generator-transfer-switch', name: 'Automatic Transfer Switch Install', unit: 'job', baseLow: 800, baseHigh: 1500, permitId: null, permitHandling: 'unpublished', source: 'generator-transfer-switch.html' },
+    { id: 'generator-manual-switch', name: 'Manual Transfer Switch Install', unit: 'job', baseLow: 400, baseHigh: 800, permitId: null, permitHandling: 'unpublished', source: 'generator-transfer-switch.html' }
   ];
 
   var SIZE_TIERS = [

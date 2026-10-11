@@ -13,7 +13,9 @@
  *     totalLow, totalHigh, credits: [...], exclusions: [...], notes: [...] }
  * Rules: unknown ids throw; qty < 1 throws; null-priced materials and
  * inapplicable adders land in `exclusions`, never in totals; credits are
- * informational and never subtracted.
+ * informational and never subtracted. Permit lines follow the service's
+ * `permitHandling` ('separate' adds a priced line, 'included' is already in
+ * the base range, 'unpublished' is an exclusion).
  */
 
 var AMY_ESTIMATE = (function () {
@@ -119,9 +121,16 @@ var AMY_ESTIMATE = (function () {
     }
 
     if (includePermit) {
-      if (svc.permitId) {
+      // Permit treatment comes from svc.permitHandling, never from permitId
+      // alone: permitId NULL means both "already inside the base range" (panel
+      // replacement) and "never published" (rewiring), and those must not be
+      // reported the same way.
+      var handling = svc.permitHandling || 'unpublished';
+      if (handling === 'separate' && svc.permitId) {
         var p = find('PERMITS', svc.permitId);
         lines.push({ kind: 'permit', id: p.id, name: p.name, qty: 1, unit: 'job', low: p.low, high: p.high });
+      } else if (handling === 'included') {
+        notes.push('Permit fees included in the base range.');
       } else {
         exclusions.push({ id: svc.id, name: 'Permit fees', reason: 'permit cost not published for this service; excluded from totals' });
       }

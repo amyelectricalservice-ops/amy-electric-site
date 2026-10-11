@@ -265,7 +265,7 @@
  * the engine must surface them as exclusions, never price them at zero.
  *
  * RELATIONAL MAP — this file is the denormalized view of scripts/estimate-schema.sql:
- *   services(id PK, name, unit, base_low, base_high, permit_id FK NULL, source)
+ *   services(id PK, name, unit, base_low, base_high, permit_id FK NULL, permit_handling, source)
  *   materials(id PK, name, unit, unit_low NULL, unit_high NULL, status, source)
  *   adders(id PK, name, low, high, source)
  *   service_adders(service_id FK, adder_id FK)  -- the appliesTo arrays, normalized
@@ -278,21 +278,27 @@
 var AMY_ESTIMATE_DATA = (function () {
   'use strict';
 
+  // permitHandling is what the published range does with permit fees — it must
+  // NOT be inferred from permitId (which only points at a priced permit row):
+  //   'included'    base range already covers the permit (no permit line, no exclusion)
+  //   'separate'    permit row (permitId) is added as its own priced line
+  //   'unpublished' permit cost is not published for this scope: surfaced as an
+  //                 exclusion, never guessed
   var SERVICES = [
-    { id: 'panel-200a-replacement', name: '200A Panel Replacement', unit: 'job', baseLow: 2500, baseHigh: 4500, permitId: null, source: 'panel-upgrade.html, owner range decision 2026-10-08' },
-    { id: 'panel-main-service-upgrade', name: 'Main Service Upgrade', unit: 'job', baseLow: 3000, baseHigh: 6000, permitId: null, source: 'panel-upgrade.html' },
-    { id: 'panel-subpanel-add', name: 'Sub-Panel Add', unit: 'job', baseLow: 1200, baseHigh: 2500, permitId: null, source: 'panel-upgrade.html' },
-    { id: 'panel-100a-like-for-like', name: '100A Panel Replacement (like-for-like)', unit: 'job', baseLow: 1500, baseHigh: 2500, permitId: null, source: 'panel-100a-vs-200a.html' },
-    { id: 'ev-nema-1450', name: 'NEMA 14-50 Outlet Install', unit: 'job', baseLow: 350, baseHigh: 550, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-tesla-wall', name: 'Tesla Wall Connector Install', unit: 'job', baseLow: 450, baseHigh: 750, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-hardwired', name: 'Hardwired EVSE Install', unit: 'job', baseLow: 500, baseHigh: 900, permitId: 'permit-ev', source: 'ev-charger-installation.html' },
-    { id: 'ev-fleet-station', name: 'Commercial EV Fleet Station', unit: 'station', baseLow: 1500, baseHigh: 6000, permitId: null, source: 'commercial-ev-fleet-charging.html' },
-    { id: 'lighting-per-light', name: 'Recessed Lighting', unit: 'light', baseLow: 125, baseHigh: 250, permitId: null, source: 'llms.txt' },
-    { id: 'rewiring-base', name: 'Whole-Home Rewiring', unit: 'job', baseLow: 8000, baseHigh: 18000, permitId: null, source: 'whole-home-rewiring.html, llms.txt' },
-    { id: 'rewiring-partial', name: 'Partial Rewiring / Remediation', unit: 'job', baseLow: 800, baseHigh: 3000, permitId: null, source: 'whole-home-rewiring.html' },
-    { id: 'rewiring-per-circuit', name: 'Rewire (per circuit)', unit: 'circuit', baseLow: 300, baseHigh: 600, permitId: null, source: 'whole-home-rewiring.html' },
-    { id: 'generator-transfer-switch', name: 'Automatic Transfer Switch Install', unit: 'job', baseLow: 800, baseHigh: 1500, permitId: null, source: 'generator-transfer-switch.html' },
-    { id: 'generator-manual-switch', name: 'Manual Transfer Switch Install', unit: 'job', baseLow: 400, baseHigh: 800, permitId: null, source: 'generator-transfer-switch.html' }
+    { id: 'panel-200a-replacement', name: '200A Panel Replacement', unit: 'job', baseLow: 2500, baseHigh: 4500, permitId: null, permitHandling: 'included', source: 'panel-upgrade.html ("including permits and inspection"), owner range decision 2026-10-08' },
+    { id: 'panel-main-service-upgrade', name: 'Main Service Upgrade', unit: 'job', baseLow: 3000, baseHigh: 6000, permitId: null, permitHandling: 'unpublished', source: 'panel-upgrade.html' },
+    { id: 'panel-subpanel-add', name: 'Sub-Panel Add', unit: 'job', baseLow: 1200, baseHigh: 2500, permitId: null, permitHandling: 'unpublished', source: 'panel-upgrade.html' },
+    { id: 'panel-100a-like-for-like', name: '100A Panel Replacement (like-for-like)', unit: 'job', baseLow: 1500, baseHigh: 2500, permitId: null, permitHandling: 'unpublished', source: 'panel-100a-vs-200a.html' },
+    { id: 'ev-nema-1450', name: 'NEMA 14-50 Outlet Install', unit: 'job', baseLow: 350, baseHigh: 550, permitId: 'permit-ev', permitHandling: 'separate', source: 'ev-charger-installation.html' },
+    { id: 'ev-tesla-wall', name: 'Tesla Wall Connector Install', unit: 'job', baseLow: 500, baseHigh: 1200, permitId: null, permitHandling: 'included', source: 'tesla-charger-installation.html ($500-$1,200 incl. 60A circuit, mounting, permit)' },
+    { id: 'ev-hardwired', name: 'Hardwired EVSE Install', unit: 'job', baseLow: 500, baseHigh: 900, permitId: 'permit-ev', permitHandling: 'separate', source: 'ev-charger-installation.html' },
+    { id: 'ev-fleet-station', name: 'Commercial EV Fleet Station', unit: 'station', baseLow: 1500, baseHigh: 6000, permitId: null, permitHandling: 'unpublished', source: 'commercial-ev-fleet-charging.html' },
+    { id: 'lighting-per-light', name: 'Recessed Lighting', unit: 'light', baseLow: 125, baseHigh: 250, permitId: null, permitHandling: 'unpublished', source: 'llms.txt' },
+    { id: 'rewiring-base', name: 'Whole-Home Rewiring', unit: 'job', baseLow: 8000, baseHigh: 18000, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html, llms.txt' },
+    { id: 'rewiring-partial', name: 'Partial Rewiring / Remediation', unit: 'job', baseLow: 800, baseHigh: 3000, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html' },
+    { id: 'rewiring-per-circuit', name: 'Rewire (per circuit)', unit: 'circuit', baseLow: 300, baseHigh: 600, permitId: null, permitHandling: 'unpublished', source: 'whole-home-rewiring.html' },
+    { id: 'generator-transfer-switch', name: 'Automatic Transfer Switch Install', unit: 'job', baseLow: 800, baseHigh: 1500, permitId: null, permitHandling: 'unpublished', source: 'generator-transfer-switch.html' },
+    { id: 'generator-manual-switch', name: 'Manual Transfer Switch Install', unit: 'job', baseLow: 400, baseHigh: 800, permitId: null, permitHandling: 'unpublished', source: 'generator-transfer-switch.html' }
   ];
 
   var SIZE_TIERS = [
@@ -354,7 +360,9 @@ var AMY_ESTIMATE_DATA = (function () {
  *     totalLow, totalHigh, credits: [...], exclusions: [...], notes: [...] }
  * Rules: unknown ids throw; qty < 1 throws; null-priced materials and
  * inapplicable adders land in `exclusions`, never in totals; credits are
- * informational and never subtracted.
+ * informational and never subtracted. Permit lines follow the service's
+ * `permitHandling` ('separate' adds a priced line, 'included' is already in
+ * the base range, 'unpublished' is an exclusion).
  */
 
 var AMY_ESTIMATE = (function () {
@@ -460,9 +468,16 @@ var AMY_ESTIMATE = (function () {
     }
 
     if (includePermit) {
-      if (svc.permitId) {
+      // Permit treatment comes from svc.permitHandling, never from permitId
+      // alone: permitId NULL means both "already inside the base range" (panel
+      // replacement) and "never published" (rewiring), and those must not be
+      // reported the same way.
+      var handling = svc.permitHandling || 'unpublished';
+      if (handling === 'separate' && svc.permitId) {
         var p = find('PERMITS', svc.permitId);
         lines.push({ kind: 'permit', id: p.id, name: p.name, qty: 1, unit: 'job', low: p.low, high: p.high });
+      } else if (handling === 'included') {
+        notes.push('Permit fees included in the base range.');
       } else {
         exclusions.push({ id: svc.id, name: 'Permit fees', reason: 'permit cost not published for this service; excluded from totals' });
       }
@@ -565,32 +580,45 @@ var AMY_ESTIMATE = (function () {
     return null;
   }
 
-  // EV span: min low to max high across the three charger subtypes, plus the
-  // published permit line. Charger type is confirmed on site.
+  // EV span: min low to max high across the three charger subtypes, permit
+  // handling included per subtype (Tesla's published range already covers its
+  // permit; NEMA/hardwired itemize one). Charger type is confirmed on site.
+  // Totals come from the engine so the span can never disagree with a single
+  // service's estimate.
   function evSpan(E) {
     var ids = ['ev-tesla-wall', 'ev-nema-1450', 'ev-hardwired'];
     var low = Infinity;
     var high = -Infinity;
     for (var i = 0; i < ids.length; i++) {
-      var s = E.getService(ids[i]);
-      if (s.baseLow < low) low = s.baseLow;
-      if (s.baseHigh > high) high = s.baseHigh;
+      var r = E.calcEstimate({ serviceId: ids[i], qty: 1, includePermit: true });
+      if (r.totalLow < low) low = r.totalLow;
+      if (r.totalHigh > high) high = r.totalHigh;
     }
-    var p = E.DATA.PERMITS[0];
-    return { low: low + p.low, high: high + p.high };
+    return { low: low, high: high };
   }
 
   function assumptionsFor(kind, serviceId) {
-    var a = ['200A service assumed', '~30ft run assumed'];
+    var a = [ASSUMED_AMPERAGE + ' service assumed', '~' + ASSUMED_DISTANCE_FT + 'ft run assumed'];
     if (kind === 'ev-span') a.push('charger type (Tesla/NEMA/hardwired) confirmed on site');
     if (serviceId === 'rewiring-base') a.push('home size confirmed on site; range tiered by sqft');
     if (serviceId === 'lighting-per-light') a.push('per-light rate; fixture count confirmed on site');
     return a;
   }
 
-  function permitNoteFor(serviceId) {
-    if (serviceId === 'panel-200a-replacement') return 'permit fees included in range';
-    if (serviceId === 'ev-span' || serviceId === 'ev-tesla-wall') return 'permit fees itemized above';
+  // Permit wording is derived from the data table so it can never contradict
+  // what calcEstimate actually did with the permit.
+  function permitNoteFor(E, spec) {
+    if (spec.kind === 'ev-span') return 'permit fees included in range';
+    var svc = E.getService(spec.serviceId);
+    if (svc.permitHandling === 'included') return 'permit fees included in range';
+    if (svc.permitHandling === 'separate' && svc.permitId) {
+      var rows = E.DATA.PERMITS;
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].id === svc.permitId) {
+          return 'permit fees added to range ($' + rows[i].low + '-$' + rows[i].high + ')';
+        }
+      }
+    }
     return 'permit fees confirmed on site';
   }
 
@@ -600,7 +628,6 @@ var AMY_ESTIMATE = (function () {
     if (!E) return null;
     var spec = specForService(serviceValue);
     if (!spec) return null;
-    var key = spec.kind === 'ev-span' ? 'ev-span' : spec.serviceId;
     var out;
     if (spec.kind === 'ev-span') {
       var span = evSpan(E);
@@ -614,8 +641,8 @@ var AMY_ESTIMATE = (function () {
       rangeLow: out.rangeLow,
       rangeHigh: out.rangeHigh,
       currency: 'USD',
-      assumptions: assumptionsFor(spec.kind, key === 'ev-span' ? 'ev-span' : spec.serviceId),
-      permitNote: permitNoteFor(key),
+      assumptions: assumptionsFor(spec.kind, spec.serviceId),
+      permitNote: permitNoteFor(E, spec),
       generatedBy: 'AMY_ESTIMATE v' + E.VERSION + ' (indicative; confirm on site)'
     };
   }
@@ -661,5 +688,57 @@ var AMY_ESTIMATE = (function () {
     module.exports = { specForService: specForService, buildLeadEstimate: buildLeadEstimate };
   } else if (typeof window !== 'undefined') {
     window.AMY_ESTIMATE_LEAD = { specForService: specForService, buildLeadEstimate: buildLeadEstimate };
+  }
+})();
+
+/* AMY Electric — geo personalization consumer (08-geo-personalize.js).
+ *
+ * worker.js personalizes the landing page for GEO_TARGET_AREAS visitors: it
+ * injects `data-service-city` on <header> and sets window.AMY_GEO, and marks
+ * the response private/no-store because the edge cannot Vary on cf.city.
+ * That cache opt-out only buys something if a visitor can actually see their
+ * city — this module is that consumer. Without it, matched visitors paid the
+ * no-store penalty for a byte-identical page.
+ *
+ * It rewrites the existing hero eyebrow in place (same node, same position)
+ * so there is no layout shift, and it no-ops everywhere else: pages without
+ * window.AMY_GEO — every page except / — are untouched.
+ *
+ * Timing: worker.js injects the config inline before </body>, which runs
+ * during parse, before deferred site.min.js and before DOMContentLoaded.
+ */
+(function () {
+  'use strict';
+
+  function cityOf() {
+    if (typeof window === 'undefined' || !window.AMY_GEO) return null;
+    var g = window.AMY_GEO;
+    if (!g.matched || typeof g.city !== 'string' || !g.city) return null;
+    return g.city;
+  }
+
+  function apply() {
+    var city = cityOf();
+    if (!city) return;
+    if (typeof document === 'undefined' || !document.querySelector) return;
+    var eyebrow = document.querySelector('.hero-eyebrow');
+    if (!eyebrow) return;
+    // Replace, never append: keeps the line one row tall (no CLS) and keeps
+    // "Los Angeles" available in the h1 / hero copy below it.
+    eyebrow.textContent = city + ' \u00b7 Residential & Commercial';
+  }
+
+  if (typeof document !== 'undefined' && document.addEventListener) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', apply);
+    } else {
+      apply();
+    }
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { apply: apply, cityOf: cityOf };
+  } else if (typeof window !== 'undefined') {
+    window.AMY_GEO_VISUAL = { apply: apply, cityOf: cityOf };
   }
 })();
