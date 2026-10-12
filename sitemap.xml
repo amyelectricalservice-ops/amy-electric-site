@@ -3,8 +3,13 @@
   <url>
     <loc>https://amyelectric.com/200-amp-panel-upgrade</loc>
     <lastmod>2026-10-08</lastmod>
-    <url><loc>https://amyelectric.com/get-quote.html</loc><lastmod>2026-10-08T00:00:00Z</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-</url>
+  </url>
+  <url>
+    <loc>https://amyelectric.com/get-quote.html</loc>
+    <lastmod>2026-10-08T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://amyelectric.com/about</loc>
     <lastmod>2026-10-08</lastmod>
