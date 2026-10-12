@@ -23,7 +23,7 @@
 
 | Service | Price Range | Duration | Key Requirements & Notes |
 |---|---|---|---|
-| **Level 2 EV Charger Install** | $350 – $900 | 2 – 4 hours | 50A/60A dedicated circuit, hardwired or NEMA 14-50 outlet. Eligible for LADWP $500 rebate & 30% Federal 30C tax credit. |
+| **Level 2 EV Charger Install** | $350 – $1,200 (Tesla $500–$1,200 incl. permit; NEMA 14-50 $350–$600; hardwired $500–$1,200) | 2 – 4 hours | 50A/60A dedicated circuit, hardwired or NEMA 14-50 outlet. Eligible for LADWP $1,000 rebate (+$500 income-qualified, +$250 meter) & 30% Federal 30C tax credit (up to $1,000). Panel-upgrade bundle saves $500–$1,200. |
 | **Panel Upgrade (100A to 200A)** | $2,500 – $4,500 | 4 – 8 hours | LADBS permit required, LADWP service pull coordination. Required for EV chargers, heat pumps, solar. |
 | **Federal Pacific / Zinsco Replacement** | $2,800 – $4,800 | 6 – 8 hours | Hazardous panel replacement. Recommended by fire departments & insurers. |
 | **Whole-Home Rewiring** | $8,000 – $18,000 | 3 – 7 days | Replaces unsafe knob-and-tube or ungrounded aluminum wiring in pre-1960 homes. |
@@ -41,13 +41,13 @@
 
 ### LADWP Utility Coordination
 - For 200A service upgrades, LADWP disconnect/reconnect (pulling service drops) is coordinated by AMY Electric.
-- Rebates: LADWP ChargeUp LA program provides residential rebates up to $500 for Level 2 charger installation.
+- Rebates: LADWP ChargeUp LA program provides residential rebates up to $1,000 for Level 2 charger installation, plus $500 for income-qualified Lifeline/EZ-SAVE customers and $250 for a dedicated EV meter. Pre-approval before installation is required.
 
 ---
 
-## 4. Full Coverage Area (16 Cities & 62+ ZIP Codes)
+## 4. Full Coverage Area (109 City & Neighborhood Pages)
 
-AMY Electric provides electrical services across the following Los Angeles municipalities and neighborhoods:
+AMY Electric provides electrical services across the following Los Angeles municipalities and neighborhoods. All City of Los Angeles neighborhoods are LADWP territory; Alhambra, Bellflower, Carson, and Santa Clarita are SCE territory.
 - Los Angeles (90001, 90012, 90024, 90028, etc.)
 - Sherman Oaks (91403, 91423)
 - Burbank (91501, 91502, 91504, 91505, 91506)
