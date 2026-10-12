@@ -3,6 +3,7 @@
 
 Usage:
   python3 scripts/audit-price-drift.py            # inventory, exit 0 always
+  python3 scripts/audit-price-drift.py --detail   # also print the sentence each price sits in
   python3 scripts/audit-price-drift.py --strict   # exit 1 if any flagged range exists
 
 The estimate engine (js/src/05-estimate-data.js) is the single source of truth
@@ -16,6 +17,12 @@ canonical range nor a documented alternative scope (see ALT_SCOPES): several
 services are legitimately published at two scopes, e.g. a NEMA 14-50 outlet
 alone ($350-$550) versus the same outlet as part of a charger circuit
 ($350-$900). Flagging those as errors would just cry wolf.
+
+Two more near-matches are reported as `skip` rather than flagged, because the
+figure next to the charger phrase is not that charger's own install price: a
+combo row ("Wall Connector + NEMA 14-50 (dual)", priced for both) and a rebate
+amount ("LADWP ChargeUp rebate paperwork ($1,000-$1,500 back)"). Both still
+print, with the reason, so an exclusion can be audited instead of trusted.
 
 Scope is deliberately limited to the three EV charger services. Panel and
 permit prices are excluded: "panel upgrade" appears in meta descriptions and
@@ -53,10 +60,21 @@ ALT_SCOPES = {
     # Outlet on its own vs. outlet as part of a whole charger circuit.
     "ev-nema-1450": {(350, 900): "outlet inside a full charger circuit, not the outlet alone"},
     "ev-tesla-wall": {},
-    "ev-hardwired": {},
+    # The same shared "NEMA 14-50 or hardwired station ... $350 to $900"
+    # sentence is published under both charger types, so both may cite it.
+    "ev-hardwired": {(350, 900): "station inside a shared NEMA-or-hardwired range, not the station alone"},
 }
 PERMIT_ALT = (150, 400)
 PERMIT_NOTE = "LADBS permit line printed beside the service"
+
+# A label cell that names two chargers in one range is a combo price, not
+# this service's own: "<td>Wall Connector + NEMA 14-50 (dual)</td>".
+BUNDLE = re.compile(r"\+|\bdual\b", re.I)
+# A rebate or incentive figure is money coming back, not an install price:
+# "LADWP ChargeUp rebate paperwork ($1,000-$1,500 back)". Matched against the
+# text ending at the price, so a permit or rebate line printed *after* a real
+# service price can never swallow it.
+REBATE = re.compile(r"(?:rebate|incentive|tax credit|chargeup)\b[^$]{0,40}$", re.I)
 
 # A price with no separator at all: "$350$550". Published verbatim to users
 # and to FAQ extraction, so it is reported rather than silently skipped.
@@ -118,9 +136,20 @@ def pages():
 
 
 def scan():
-    """{(service id, published low, published high): set(page names)}, plus glued prices."""
+    """Return (ranges, glued, excluded).
+
+    ranges    {(service id, published low, published high): {page name: context}}
+              — the sentence each price sits in, so a reviewer sees the scope
+              rather than a bare number.
+    glued     {service id: {page name: [verbatim broken prices]}}
+    excluded  {(service id, low, high, why): {page name: context}} — prices near a
+              charger phrase that are not that charger's own install price
+              (combo rows, rebate amounts). Reported so the exclusions are
+              auditable rather than silent.
+    """
     found = {}
     glued = {}
+    excluded = {}
     for path in pages():
         rel = os.path.relpath(path, ROOT)
         flat = htmlmod.unescape(re.sub(r"\s+", " ", open(path, encoding="utf-8", errors="replace").read()))
@@ -168,14 +197,28 @@ def scan():
                         lo, hi = to_int(p.group(1)), to_int(p.group(2))
                         if lo > hi:
                             lo, hi = hi, lo
-                        found.setdefault((sid, lo, hi), set()).add(rel)
-    return found, glued
+                        ctx = re.sub(r"\s+", " ", flat[max(0, m.start() - 60) : p.end() + 70])
+                        # Combo row: the label cell holds two charger names,
+                        # so this range prices both, not this one alone.
+                        cell = flat.rfind("<td", max(0, m.start() - 260), m.start())
+                        label = flat[cell : p.start()] if cell != -1 else flat[m.start() : p.start()]
+                        if BUNDLE.search(label) and BUNDLE.search(label.split(">", 1)[-1]):
+                            excluded.setdefault((sid, lo, hi, "combo row"), {})[rel] = ctx
+                            continue
+                        # "$1,000-$1,500 back" beside a rebate word is the
+                        # rebate, not what the install costs.
+                        if REBATE.search(flat[max(0, p.start() - 90) : p.start()]):
+                            excluded.setdefault((sid, lo, hi, "rebate/incentive amount"), {})[rel] = ctx
+                            continue
+                        found.setdefault((sid, lo, hi), {}).setdefault(rel, ctx)
+    return found, glued, excluded
 
 
 def main():
     strict = "--strict" in sys.argv[1:]
+    detail = "--detail" in sys.argv[1:]
     can = canonical()
-    found, glued = scan()
+    found, glued, excluded = scan()
     flagged = 0
     glued_total = 0
 
@@ -190,7 +233,7 @@ def main():
         if not rows:
             print("    (no published price found next to its phrase)")
         for _, plo, phi in rows:
-            pages_hit = sorted(found[(sid, plo, phi)])
+            pages_hit = found[(sid, plo, phi)]
             same = (plo, phi) == (lo, hi)
             alt = ALT_SCOPES.get(sid, {}).get((plo, phi))
             if not alt and (plo, phi) == PERMIT_ALT:
@@ -200,8 +243,10 @@ def main():
             mark = "  ok  " if same else ("  alt " if alt else "  DRIFT")
             note = f"  ({alt})" if alt else ("" if same else "  <-- differs from the engine")
             print(f"    {mark} ${plo:,}-${phi:,}{note}")
-            for pg in pages_hit[:4]:
+            for pg in sorted(pages_hit)[:4]:
                 print(f"            {pg}")
+                if detail:
+                    print(f"                ...{pages_hit[pg]}...")
             if len(pages_hit) > 4:
                 print(f"            ... +{len(pages_hit) - 4} more")
             if not same and not alt:
@@ -211,10 +256,19 @@ def main():
             glued_total += len(prices)
             print(f"    BROKEN {', '.join(prices)}  (no separator; shown verbatim to visitors)")
             print(f"            {pg}")
+        ex = sorted(k for k in excluded if k[0] == sid)
+        for _, elo, ehi, why in ex:
+            ex_pages = excluded[(sid, elo, ehi, why)]
+            print(f"    skip ${elo:,}-${ehi:,}  ({why}; not this service's own price)")
+            for pg in sorted(ex_pages)[:4]:
+                print(f"            {pg}")
+                if detail:
+                    print(f"                ...{ex_pages[pg]}...")
         print()
 
     print(f"Flagged page/range pairs: {flagged}")
     print(f"Glued prices (missing separator): {glued_total}")
+    print(f"Excluded near-matches (combo/rebate): {sum(len(v) for v in excluded.values())}")
     if strict and (flagged or glued_total):
         return 1
     return 0
