@@ -48,32 +48,45 @@
     return null;
   }
 
-  // EV span: min low to max high across the three charger subtypes, plus the
-  // published permit line. Charger type is confirmed on site.
+  // EV span: min low to max high across the three charger subtypes, permit
+  // handling included per subtype (Tesla's published range already covers its
+  // permit; NEMA/hardwired itemize one). Charger type is confirmed on site.
+  // Totals come from the engine so the span can never disagree with a single
+  // service's estimate.
   function evSpan(E) {
     var ids = ['ev-tesla-wall', 'ev-nema-1450', 'ev-hardwired'];
     var low = Infinity;
     var high = -Infinity;
     for (var i = 0; i < ids.length; i++) {
-      var s = E.getService(ids[i]);
-      if (s.baseLow < low) low = s.baseLow;
-      if (s.baseHigh > high) high = s.baseHigh;
+      var r = E.calcEstimate({ serviceId: ids[i], qty: 1, includePermit: true });
+      if (r.totalLow < low) low = r.totalLow;
+      if (r.totalHigh > high) high = r.totalHigh;
     }
-    var p = E.DATA.PERMITS[0];
-    return { low: low + p.low, high: high + p.high };
+    return { low: low, high: high };
   }
 
   function assumptionsFor(kind, serviceId) {
-    var a = ['200A service assumed', '~30ft run assumed'];
+    var a = [ASSUMED_AMPERAGE + ' service assumed', '~' + ASSUMED_DISTANCE_FT + 'ft run assumed'];
     if (kind === 'ev-span') a.push('charger type (Tesla/NEMA/hardwired) confirmed on site');
     if (serviceId === 'rewiring-base') a.push('home size confirmed on site; range tiered by sqft');
     if (serviceId === 'lighting-per-light') a.push('per-light rate; fixture count confirmed on site');
     return a;
   }
 
-  function permitNoteFor(serviceId) {
-    if (serviceId === 'panel-200a-replacement') return 'permit fees included in range';
-    if (serviceId === 'ev-span' || serviceId === 'ev-tesla-wall') return 'permit fees itemized above';
+  // Permit wording is derived from the data table so it can never contradict
+  // what calcEstimate actually did with the permit.
+  function permitNoteFor(E, spec) {
+    if (spec.kind === 'ev-span') return 'permit fees included in range';
+    var svc = E.getService(spec.serviceId);
+    if (svc.permitHandling === 'included') return 'permit fees included in range';
+    if (svc.permitHandling === 'separate' && svc.permitId) {
+      var rows = E.DATA.PERMITS;
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].id === svc.permitId) {
+          return 'permit fees added to range ($' + rows[i].low + '-$' + rows[i].high + ')';
+        }
+      }
+    }
     return 'permit fees confirmed on site';
   }
 
@@ -83,7 +96,6 @@
     if (!E) return null;
     var spec = specForService(serviceValue);
     if (!spec) return null;
-    var key = spec.kind === 'ev-span' ? 'ev-span' : spec.serviceId;
     var out;
     if (spec.kind === 'ev-span') {
       var span = evSpan(E);
@@ -97,8 +109,8 @@
       rangeLow: out.rangeLow,
       rangeHigh: out.rangeHigh,
       currency: 'USD',
-      assumptions: assumptionsFor(spec.kind, key === 'ev-span' ? 'ev-span' : spec.serviceId),
-      permitNote: permitNoteFor(key),
+      assumptions: assumptionsFor(spec.kind, spec.serviceId),
+      permitNote: permitNoteFor(E, spec),
       generatedBy: 'AMY_ESTIMATE v' + E.VERSION + ' (indicative; confirm on site)'
     };
   }

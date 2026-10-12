@@ -7,13 +7,15 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS estimate_services (
-  id        TEXT PRIMARY KEY,
-  name      TEXT NOT NULL,
-  unit      TEXT NOT NULL,
-  base_low  INTEGER NOT NULL,
-  base_high INTEGER NOT NULL,
-  permit_id TEXT REFERENCES estimate_permits(id),
-  source    TEXT NOT NULL
+  id              TEXT PRIMARY KEY,
+  name            TEXT NOT NULL,
+  unit            TEXT NOT NULL,
+  base_low        INTEGER NOT NULL,
+  base_high       INTEGER NOT NULL,
+  permit_id       TEXT REFERENCES estimate_permits(id),
+  permit_handling TEXT NOT NULL DEFAULT 'unpublished'
+                  CHECK (permit_handling IN ('included', 'separate', 'unpublished')),
+  source          TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS estimate_permits (
@@ -72,21 +74,21 @@ CREATE TABLE IF NOT EXISTS estimate_credits (
 INSERT OR REPLACE INTO estimate_permits (id, name, low, high, source) VALUES
   ('permit-ev', 'EV Charger Permit Fees', 150, 400, 'ev-charger-installation.html');
 
-INSERT OR REPLACE INTO estimate_services (id, name, unit, base_low, base_high, permit_id, source) VALUES
-  ('panel-200a-replacement', '200A Panel Replacement', 'job', 2500, 4500, NULL, 'panel-upgrade.html, owner range decision 2026-10-08'),
-  ('panel-main-service-upgrade', 'Main Service Upgrade', 'job', 3000, 6000, NULL, 'panel-upgrade.html'),
-  ('panel-subpanel-add', 'Sub-Panel Add', 'job', 1200, 2500, NULL, 'panel-upgrade.html'),
-  ('panel-100a-like-for-like', '100A Panel Replacement (like-for-like)', 'job', 1500, 2500, NULL, 'panel-100a-vs-200a.html'),
-  ('ev-nema-1450', 'NEMA 14-50 Outlet Install', 'job', 350, 550, 'permit-ev', 'ev-charger-installation.html'),
-  ('ev-tesla-wall', 'Tesla Wall Connector Install', 'job', 450, 750, 'permit-ev', 'ev-charger-installation.html'),
-  ('ev-hardwired', 'Hardwired EVSE Install', 'job', 500, 900, 'permit-ev', 'ev-charger-installation.html'),
-  ('ev-fleet-station', 'Commercial EV Fleet Station', 'station', 1500, 6000, NULL, 'commercial-ev-fleet-charging.html'),
-  ('lighting-per-light', 'Recessed Lighting', 'light', 125, 250, NULL, 'llms.txt'),
-  ('rewiring-base', 'Whole-Home Rewiring', 'job', 8000, 18000, NULL, 'whole-home-rewiring.html, llms.txt'),
-  ('rewiring-partial', 'Partial Rewiring / Remediation', 'job', 800, 3000, NULL, 'whole-home-rewiring.html'),
-  ('rewiring-per-circuit', 'Rewire (per circuit)', 'circuit', 300, 600, NULL, 'whole-home-rewiring.html'),
-  ('generator-transfer-switch', 'Automatic Transfer Switch Install', 'job', 800, 1500, NULL, 'generator-transfer-switch.html'),
-  ('generator-manual-switch', 'Manual Transfer Switch Install', 'job', 400, 800, NULL, 'generator-transfer-switch.html');
+INSERT OR REPLACE INTO estimate_services (id, name, unit, base_low, base_high, permit_id, permit_handling, source) VALUES
+  ('panel-200a-replacement', '200A Panel Replacement', 'job', 2500, 4500, NULL, 'included', 'panel-upgrade.html ("including permits and inspection"), owner range decision 2026-10-08'),
+  ('panel-main-service-upgrade', 'Main Service Upgrade', 'job', 3000, 6000, NULL, 'unpublished', 'panel-upgrade.html'),
+  ('panel-subpanel-add', 'Sub-Panel Add', 'job', 1200, 2500, NULL, 'unpublished', 'panel-upgrade.html'),
+  ('panel-100a-like-for-like', '100A Panel Replacement (like-for-like)', 'job', 1500, 2500, NULL, 'unpublished', 'panel-100a-vs-200a.html'),
+  ('ev-nema-1450', 'NEMA 14-50 Outlet Install', 'job', 350, 600, 'permit-ev', 'separate', 'ev-charger-installation.html; owner higher-price decision 2026-10-12'),
+  ('ev-tesla-wall', 'Tesla Wall Connector Install', 'job', 500, 1200, NULL, 'included', 'tesla-charger-installation.html ($500-$1,200 incl. 60A circuit, mounting, permit)'),
+  ('ev-hardwired', 'Hardwired EVSE Install', 'job', 500, 1200, 'permit-ev', 'separate', 'ev-charger-installation.html; owner higher-price decision 2026-10-12'),
+  ('ev-fleet-station', 'Commercial EV Fleet Station', 'station', 1500, 6000, NULL, 'unpublished', 'commercial-ev-fleet-charging.html'),
+  ('lighting-per-light', 'Recessed Lighting', 'light', 125, 250, NULL, 'unpublished', 'llms.txt'),
+  ('rewiring-base', 'Whole-Home Rewiring', 'job', 8000, 18000, NULL, 'unpublished', 'whole-home-rewiring.html, llms.txt'),
+  ('rewiring-partial', 'Partial Rewiring / Remediation', 'job', 800, 3000, NULL, 'unpublished', 'whole-home-rewiring.html'),
+  ('rewiring-per-circuit', 'Rewire (per circuit)', 'circuit', 300, 600, NULL, 'unpublished', 'whole-home-rewiring.html'),
+  ('generator-transfer-switch', 'Automatic Transfer Switch Install', 'job', 800, 1500, NULL, 'unpublished', 'generator-transfer-switch.html'),
+  ('generator-manual-switch', 'Manual Transfer Switch Install', 'job', 400, 800, NULL, 'unpublished', 'generator-transfer-switch.html');
 
 INSERT OR REPLACE INTO estimate_size_tiers (id, service_id, min_sqft, max_sqft, low, high, label, source) VALUES
   ('rewiring-small', 'rewiring-base', 0, 1200, 3000, 7000, 'Small home (1-2 BR, ~1,000 sq ft)', 'whole-home-rewiring.html'),

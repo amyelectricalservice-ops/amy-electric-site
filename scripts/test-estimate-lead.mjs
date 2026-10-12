@@ -38,7 +38,7 @@ describe('buildLeadEstimate', () => {
   it('ev-charger spans subtypes plus permit', () => {
     const p = L.buildLeadEstimate('ev-charger');
     assert.equal(p.rangeLow, 350 + 150);
-    assert.equal(p.rangeHigh, 900 + 400);
+    assert.equal(p.rangeHigh, 1200 + 400);
     assert.equal(p.currency, 'USD');
     assert.ok(p.assumptions.some((a) => a.includes('200A')));
     assert.ok(p.assumptions.some((a) => a.includes('30ft')));
@@ -49,14 +49,29 @@ describe('buildLeadEstimate', () => {
       [L.buildLeadEstimate('panel-upgrade').rangeLow, L.buildLeadEstimate('panel-upgrade').rangeHigh],
       [2500, 4500]
     );
+    // Matches the published Tesla page ($500-$1,200 incl. permit) and the
+    // homepage estimator widget, not the older EV-page-only range.
     assert.deepEqual(
       [L.buildLeadEstimate('tesla-charger').rangeLow, L.buildLeadEstimate('tesla-charger').rangeHigh],
-      [450 + 150, 750 + 400]
+      [500, 1200]
     );
+    assert.equal(L.buildLeadEstimate('tesla-charger').permitNote, 'permit fees included in range');
     assert.deepEqual(
       [L.buildLeadEstimate('generator').rangeLow, L.buildLeadEstimate('generator').rangeHigh],
       [800, 1500]
     );
+  });
+
+  it('permit notes never contradict the engine', () => {
+    // Panel: permit is inside the published range (panel-upgrade.html).
+    assert.equal(L.buildLeadEstimate('panel-upgrade').permitNote, 'permit fees included in range');
+    // Unpublished scopes say "confirmed on site", never "included".
+    for (const svc of ['rewiring', 'lighting', 'generator']) {
+      assert.equal(L.buildLeadEstimate(svc).permitNote, 'permit fees confirmed on site');
+    }
+    // The EV span always contains permit (added for NEMA/hardwired, built into
+    // Tesla), so its note reflects the total, not a missing line item.
+    assert.equal(L.buildLeadEstimate('ev-charger').permitNote, 'permit fees included in range');
   });
 
   it('unmapped services yield null (stale fields must be removed)', () => {

@@ -39,8 +39,8 @@
       '100A': { low: 1500, high: 2500, permitHandling: 'included', source: 'panel-100a-vs-200a.html like-for-like' }
     },
     'ev-charger': {
-      '200A': { low: 350, high: 900, permitHandling: 'separate', source: 'ev-charger-installation.html' },
-      '100A': { low: 350, high: 900, permitHandling: 'separate', source: 'ev-charger-installation.html' }
+      '200A': { low: 350, high: 1200, permitHandling: 'separate', source: 'ev-charger-installation.html union of subtypes; owner higher-price decision 2026-10-12' },
+      '100A': { low: 350, high: 1200, permitHandling: 'separate', source: 'ev-charger-installation.html union of subtypes; owner higher-price decision 2026-10-12' }
     },
     'subpanel-installation': {
       '200A': { low: 1200, high: 2500, permitHandling: 'unpublished', source: 'panel-upgrade.html sub-panel row' },

@@ -159,7 +159,8 @@ function parseEstimate(raw) {
   }
 }
 
-function badRequest(message) {  return new Response(JSON.stringify({ success: false, message }), {
+function badRequest(message) {
+  return new Response(JSON.stringify({ success: false, message }), {
     status: 400,
     headers: { 'Content-Type': 'application/json' },
   });

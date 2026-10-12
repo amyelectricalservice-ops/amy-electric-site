@@ -24,7 +24,24 @@ describe('engine math', () => {
     const r = ENG.calcEstimate({ serviceId: 'panel-200a-replacement' });
     assert.equal(r.totalLow, 2500);
     assert.equal(r.totalHigh, 4500);
-    assert.equal(r.exclusions.length, 1); // unpublished permit
+    // Permit is inside the published range, so it must not surface as an
+    // "unpublished permit" exclusion (the two used to be conflated).
+    assert.equal(r.exclusions.length, 0);
+    assert.ok(r.notes.some((n) => /Permit fees included/.test(n)));
+  });
+
+  it('permit handling drives lines vs exclusions per service', () => {
+    const separate = ENG.calcEstimate({ serviceId: 'ev-nema-1450' });
+    const permitLines = separate.lines.filter((l) => l.kind === 'permit');
+    assert.equal(permitLines.length, 1, 'separate permit adds one line');
+    assert.equal(permitLines[0].low, 150);
+    assert.equal(permitLines[0].high, 400);
+    assert.equal(separate.exclusions.length, 0);
+    assert.equal(separate.totalLow, 350 + 150);
+
+    const unpublished = ENG.calcEstimate({ serviceId: 'rewiring-base' });
+    assert.equal(unpublished.lines.filter((l) => l.kind === 'permit').length, 0);
+    assert.ok(unpublished.exclusions.some((e) => e.name === 'Permit fees'));
   });
 
   it('tesla + panel adder + permit', () => {
@@ -33,9 +50,12 @@ describe('engine math', () => {
       adderIds: ['adder-ev-panel-upgrade'],
       includePermit: true,
     });
-    assert.equal(r.totalLow, 450 + 2500 + 150);
-    assert.equal(r.totalHigh, 750 + 4500 + 400);
+    // Tesla's published $500-$1,200 already includes the permit: no permit
+    // line on top, and the total matches tesla-charger-installation.html.
+    assert.equal(r.totalLow, 500 + 2500);
+    assert.equal(r.totalHigh, 1200 + 4500);
     assert.equal(r.exclusions.length, 0);
+    assert.equal(r.lines.filter((l) => l.kind === 'permit').length, 0);
   });
 
   it('lighting qty 6', () => {
@@ -58,7 +78,7 @@ describe('engine math', () => {
       includePermit: false,
     });
     assert.equal(r.totalLow, 500 + 400);
-    assert.equal(r.totalHigh, 900 + 750);
+    assert.equal(r.totalHigh, 1200 + 750);
   });
 
   it('unknown ids throw; bad qty throws', () => {
@@ -112,6 +132,15 @@ describe('relational integrity (JS side)', () => {
     }
   });
 
+  it('permitHandling is a known value and consistent with permitId', () => {
+    const known = ['included', 'separate', 'unpublished'];
+    for (const s of DATA.SERVICES) {
+      assert.ok(known.includes(s.permitHandling), s.id + ': ' + s.permitHandling);
+      if (s.permitHandling === 'separate') assert.ok(s.permitId, s.id + ' needs a priced permit row');
+      if (s.permitHandling === 'included') assert.equal(s.permitId, null, s.id + ' permit is inside its range');
+    }
+  });
+
   it('every row carries a source or an explicit pending status', () => {
     for (const t of ['SERVICES', 'ADDERS', 'PERMITS', 'CREDITS', 'SIZE_TIERS']) {
       for (const r of DATA[t]) assert.ok(r.source, t + '.' + r.id);
@@ -155,7 +184,15 @@ describe('JS/SQL parity', () => {
   it('seed values match JS values', () => {
     for (const s of DATA.SERVICES) {
       assert.ok(sql.includes("('" + s.id + "', '" + s.name + "'"), s.id);
+      // Each service row must carry the same permit_handling as the JS table.
+      const row = sql.split('\n').find((l) => l.includes("('" + s.id + "',"));
+      assert.ok(row, s.id + ' seed row');
+      assert.ok(
+        row.includes("'" + s.permitHandling + "'"),
+        s.id + ' permit_handling ' + s.permitHandling + ' missing from SQL seed'
+      );
     }
     assert.ok(sql.includes('2500, 4500'), 'panel range in SQL');
+    assert.ok(sql.includes("'separate'"), 'permit_handling column seeded');
   });
 });
