@@ -26,7 +26,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - **`favicon.svg`** — navy background with gold "AE" lightning bolt
 - **`robots.txt`** — allows /, explicitly allows 8 AI search crawlers, blocks 3 training crawlers, RSL link, Sitemap
 - **`_redirects`** — Cloudflare Pages HTTPS + www canonicalization
-- **`sitemap.xml`** — all 76+ pages with `<lastmod>`, priorities (1.0 home, 0.9 high-value services, 0.8 services, 0.7 cities, 0.6 special/blog)
+- **`sitemap.xml`** — 307 URLs with `<lastmod>` (no `<priority>`/`<changefreq>` — Google ignores both). Deliberate exclusions: `404.html`, `seo-audit-report.html` (both `noindex`), 3 noindex cities. `index`/`blog/index`/`case-studies/index` map to directory URLs (`/`, `/blog/`, `/case-studies/`). Deploys bump `<lastmod>` only for changed pages via `scripts/refresh-sitemap-lastmod.py` (commits `[skip ci]` back to `main`)
 - **`gbp-posts-document.txt`** — 30 Google Business Profile post ideas
 - **`*~`** and **`.antigravitycli/`** are in `.gitignore`
 
@@ -62,18 +62,28 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## Weekly Audit Checklist
 
-Run these checks in Google Search Console and Google Analytics:
+Run these checks in Google Search Console and Cloudflare Web Analytics:
 
 1. **Search Console → Coverage**: Check for new 404 or 500 errors
 2. **Search Console → Sitemaps**: Verify sitemap submitted and fresh
 3. **Search Console → Performance**: Review top queries and CTR for service pages
-4. **GA4 → Realtime**: Verify tracking is firing (after GA4 activation)
-5. **GA4 → Events**: Check `phone_click`, `cta_click`, `form_submit` events
-6. **GA4 → Conversions**: Monitor form submission conversion rate
-7. **Manual spot-check**: Open 3 random service pages + 1 city page in browser
-8. **Schema validation**: https://search.google.com/test/rich-results test homepage
-9. **Mobile test**: Chrome DevTools mobile emulator on 3 pages
-10. **PageSpeed Insights**: Run https://pagespeed.web.dev/audit on homepage weekly
+4. **RUM (not GA4 — GA was removed)**: Cloudflare Web Analytics dashboard, spot-check beacon 204s if traffic looks off (see Analytics note above)
+5. **Contact funnel**: test `/api/contact` from homepage quick-form; check honeypot/time-trap still rejecting spam
+6. **Manual spot-check**: Open 3 random service pages + 1 city page in browser
+7. **Schema validation**: https://search.google.com/test/rich-results test homepage
+8. **Mobile test**: Chrome DevTools mobile emulator on 3 pages
+9. **PageSpeed Insights**: Run https://pagespeed.web.dev/audit on homepage weekly
+
+## Auditing with skills
+
+Repo-local skills (`.agents/skills/`): `competitive-landscape`, `competitor-analysis`, `keyword-clustering`, `keyword-research`, `link-prospecting`, `seo-coach`, `seo-project-setup`, `web-perf`. Global `~/.claude/skills/` adds the rest (`seo-audit`, `seo-page`, `seo-technical`, `seo-sitemap`, `seo-schema`, `seo-content`, `seo-local`, `seo-geo`, `seo-images`, …). Route by intent:
+
+- Market view across rivals → `competitive-landscape`; one-domain deep dive → `competitor-analysis`; new page plan → `seo-content-brief` (+ `keyword-clustering`); single-page check → `seo-page`; tech/crawl → `seo-technical`; sitemap → `seo-sitemap`; images → `seo-images`
+- **MCP caveat (verified): only the `cloudflare` MCP server is connected.** All OpenSEO data tools (`research_keywords`, `get_serp_results`, `get_domain_overview`, `get_ranked_keywords`, backlinks, local SERP) are unavailable, as is the Chrome DevTools MCP behind `web-perf`. Data-driven skills still work but degrade to `websearch`/`webfetch` fallback: directional only, no traffic/backlink estimates — always label results as such
+- Prefer the repo's own executable auditors over skill prose — they encode owner decisions CI enforces. Run in this order: `python3 scripts/schema-tool.py validate` → `python3 scripts/sync-faq-schema.py` (must report no drift for touched pages) → `python3 scripts/audit-price-drift.py --strict` (0 flagged; non-blocking in CI by design) → `python3 scripts/audit-site.py` (expect 312 pages, 0 issues) → `node --test scripts/test-estimate-*.mjs scripts/test-estimator.mjs` if JS/prices touched → `scripts/build-css.py` + `scripts/build-js.py` + `git diff --exit-code` on minified output if sources changed
+- Known guardrail gaps (do not trust a green report blindly): price-drift misses pages whose ranges sit near no service phrase (e.g. `ev-charger-vs-panel-upgrade.html` shipped `$350–$900` vs canonical `$350–$1,200` while reporting 0 — fixed 2026-10-12); misses CSS-grid comparison tables and prose that prices a charger without naming one
+- Utility correctness is a recurring content bug: only `$CITY is inside the City of Los Angeles$` pages may claim LADWP coordination (Alhambra/Bellflower/Carson/Santa Clarita are genuinely SCE — verified). `grep -rl 'coordinate with SCE' city-*.html` must return only those four
+- Live verification that works from CI/sandbox: `workers.dev` host (`https://amy-electric-site.a-m-y-electricalservice.workers.dev/...`) returns real status codes; `amyelectric.com` serves bot challenges to non-browser agents (expect 403, not failure)
 
 ## Performance Targets
 
