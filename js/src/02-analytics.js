@@ -62,7 +62,7 @@
   document.addEventListener('submit', function (event) {
     var form = event.target;
     if (!form || !form.id) return;
-    if (form.id === 'quick-form' || form.id === 'estimate-form') {
+    if (form.id === 'quick-form' || form.id === 'estimate-form' || form.id === 'lf-form') {
       fireEvent('form_submit', form.id, 1);
     }
   });
