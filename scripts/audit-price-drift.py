@@ -15,8 +15,26 @@ phrase, grouped, so a maintainer can decide which copy to correct.
 It never edits pages. A range is only *flagged* when it is neither the
 canonical range nor a documented alternative scope (see ALT_SCOPES): several
 services are legitimately published at two scopes, e.g. a NEMA 14-50 outlet
-alone ($350-$550) versus the same outlet as part of a charger circuit
+alone ($350-$600) versus the same outlet as part of a charger circuit
 ($350-$900). Flagging those as errors would just cry wolf.
+
+Prices are found by two independent passes, because one alone left a hole
+wide enough for ten below-canonical prices to ship while this script reported
+zero drift. The proximity pass takes the first range within 160 chars of a
+service phrase, stopping at a block or row boundary. The table pass reads the
+structure instead: a charger named in a <th> claims its column, and a charger
+named in a row's label cell claims that row's price — neither is reachable by
+distance, since the name and the value are rows or columns apart. The table
+pass matches a bare charger name (safe only inside a label cell, which cannot
+mean "Tesla owners"), so "Hardwired" is required to sit beside an EV word or
+it would price hardwired smoke/CO detectors as chargers.
+
+Both passes still miss two shapes, deliberately rather than by accident: a
+CSS-grid comparison table whose charger names are column headers with no
+<table> around them, and prose that prices a charger without naming one
+("a typical Level 2 installation costing $500-$900"). Those need a human
+sweep — `grep -oE '\$[0-9,]+( to |–|-)\$[0-9,]+'` over the EV pages and a
+glance at each, which is how the ten above were finally caught.
 
 Two more near-matches are reported as `skip` rather than flagged, because the
 figure next to the charger phrase is not that charger's own install price: a
@@ -51,6 +69,31 @@ PHRASES = {
     "ev-tesla-wall": ("Tesla Wall Connector",),
     "ev-hardwired": ("Hardwired EVSE", "hardwired station", "Hardwired Installation"),
 }
+
+# Structure-based attribution, for prices no proximity window can reach. A
+# feature table keeps a charger's name in a <th> or in a row's label cell and
+# prints its price a column or several rows away, so the 160-char window
+# around the phrase never sees it — which is how ten below-canonical prices
+# shipped while the proximity pass reported zero drift. A bare name is safe
+# here and only here: a cell that *is* the product label cannot mean "Tesla
+# owners" or "a hardwired connection", the way it can in prose.
+ROW = re.compile(r"<tr[^>]*>(.*?)</tr>", re.S)
+CELL = re.compile(r"(t[hd])[^>]*>(.*?)</\1>", re.S)
+LABEL_NAME = (
+    ("ev-nema-1450", re.compile(r"NEMA\s*14-50", re.I)),
+    ("ev-tesla-wall", re.compile(r"Tesla", re.I)),
+    # Bare "Hardwired" also labels hardwired smoke/CO detectors and other
+    # fixed devices, which are priced in the same tables — so it has to
+    # sit beside an EV word to mean the charger.
+    (
+        "ev-hardwired",
+        re.compile(
+            r"Hardwired[^A-Za-z]{0,20}"
+            r"(?:EVSE|EV\b|charger|station|installation|Wall Connector)",
+            re.I,
+        ),
+    ),
+)
 
 # Ranges that differ from canonical on purpose, per service. Keys are
 # (low, high) as published. Documented so the diff stays legible. The LADBS
@@ -151,6 +194,70 @@ def pages():
     )
 
 
+def exclude_reason(label, pre):
+    """Why a price printed beside a charger is not that charger's own — or None.
+
+    Shared by the proximity pass and the table pass so the two can never
+    disagree about a combo row or a rebate figure.
+    """
+    # Combo row: the label cell holds two charger names, so this range
+    # prices both, not this one alone.
+    if BUNDLE.search(label) and BUNDLE.search(label.split(">", 1)[-1]):
+        return "combo row"
+    # "$1,000-$1,500 back" beside a rebate word is the rebate, not what
+    # the install costs.
+    if REBATE.search(pre):
+        return "rebate/incentive amount"
+    return None
+
+
+def table_prices(flat):
+    """(service id, low, high, label, context) attributed by table structure.
+
+    Two shapes, both invisible to the phrase pass:
+      column  <th>Hardwired EVSE</th> ... <tr><td>Installation Cost</td>
+                  <td>$500-$1,200</td>
+              the header names the charger and the value sits in the same
+              column further down the table.
+      row     <td>Hardwired Charger Installation</td><td>$500-$1,200</td>
+              the label cell is the product.
+    """
+    out = []
+    for tbl in re.finditer(r"<table[^>]*>(.*?)</table>", flat, re.S):
+        cols = {}  # column index -> service id, learned from the header row
+        for row in ROW.finditer(tbl.group(1)):
+            cells = [m.groups() for m in CELL.finditer(row.group(1))]
+            if not cells:
+                continue
+            texts = [re.sub(r"<[^>]+>", "", t).strip() for _, t in cells]
+            if any(tag == "th" for tag, _ in cells):
+                # First name wins: "Tesla Wall Connector Gen 3 (hardwired)"
+                # is a Tesla product, not a hardwired-generic one.
+                for i, txt in enumerate(texts):
+                    for sid, rx in LABEL_NAME:
+                        if rx.search(txt):
+                            cols.setdefault(i, sid)
+                            break
+                continue
+            label = texts[0]
+            row_sid = next((s for s, rx in LABEL_NAME if rx.search(label)), None)
+            ctx = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " | ", row.group(1)))[:150]
+            for i, txt in enumerate(texts):
+                pm = PRICE.search(txt)
+                if not pm:
+                    continue
+                # Column header wins when both name something, otherwise a
+                # charger-named label cell prices every other cell in its row.
+                sid = cols.get(i) or (row_sid if i > 0 else None)
+                if not sid:
+                    continue
+                lo, hi = to_int(pm.group(1)), to_int(pm.group(2))
+                if lo > hi:
+                    lo, hi = hi, lo
+                out.append((sid, lo, hi, label, ctx))
+    return out
+
+
 def scan():
     """Return (ranges, glued, excluded).
 
@@ -218,15 +325,19 @@ def scan():
                         # so this range prices both, not this one alone.
                         cell = flat.rfind("<td", max(0, m.start() - 260), m.start())
                         label = flat[cell : p.start()] if cell != -1 else flat[m.start() : p.start()]
-                        if BUNDLE.search(label) and BUNDLE.search(label.split(">", 1)[-1]):
-                            excluded.setdefault((sid, lo, hi, "combo row"), {})[rel] = ctx
-                            continue
-                        # "$1,000-$1,500 back" beside a rebate word is the
-                        # rebate, not what the install costs.
-                        if REBATE.search(flat[max(0, p.start() - 90) : p.start()]):
-                            excluded.setdefault((sid, lo, hi, "rebate/incentive amount"), {})[rel] = ctx
+                        why = exclude_reason(label, flat[max(0, p.start() - 90) : p.start()])
+                        if why:
+                            excluded.setdefault((sid, lo, hi, why), {})[rel] = ctx
                             continue
                         found.setdefault((sid, lo, hi), {}).setdefault(rel, ctx)
+        # Prices the proximity pass cannot see: attribute them from the
+        # table's own structure instead.
+        for sid, lo, hi, label, ctx in table_prices(flat):
+            why = exclude_reason(label, label)
+            if why:
+                excluded.setdefault((sid, lo, hi, why), {})[rel] = ctx
+                continue
+            found.setdefault((sid, lo, hi), {}).setdefault(rel, ctx)
     return found, glued, excluded
 
 
