@@ -38,7 +38,7 @@ describe('buildLeadEstimate', () => {
   it('ev-charger spans subtypes plus permit', () => {
     const p = L.buildLeadEstimate('ev-charger');
     assert.equal(p.rangeLow, 350 + 150);
-    assert.equal(p.rangeHigh, 900 + 400);
+    assert.equal(p.rangeHigh, 1200 + 400);
     assert.equal(p.currency, 'USD');
     assert.ok(p.assumptions.some((a) => a.includes('200A')));
     assert.ok(p.assumptions.some((a) => a.includes('30ft')));

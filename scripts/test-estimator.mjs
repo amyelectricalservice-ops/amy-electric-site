@@ -54,7 +54,7 @@ describe('ev-charger', () => {
   it('base excludes permit; permit itemized; unit customer-supplied', () => {
     const r = E.estimateProject({ projectType: 'ev-charger', serviceAmperage: '200A', linearDistance: 20 });
     assert.equal(r.priceRange.low, 350 + 150);
-    assert.equal(r.priceRange.high, 900 + 400);
+    assert.equal(r.priceRange.high, 1200 + 400);
     assert.equal(r.labor.low, 350);
     const unit = r.materials.find((m) => m.item === 'Level 2 charger unit');
     assert.equal(unit.scope, 'customer-supplied');
@@ -137,7 +137,7 @@ describe('parity with the shipped homepage widget (js/estimator.min.js)', () => 
   });
 
   it('NEMA row covers the engine range (widget uses the wider published scope)', () => {
-    // Outlet-only install is published at $350-$550 (ev-charger-installation)
+    // Outlet-only install is published at $350-$600 (ev-charger-installation)
     // and the charger-circuit scope at $350-$900 (geo pages), so the widget's
     // upper bound is legitimately higher — but never below the engine's.
     const nema = widgetPrice('nema14-50');

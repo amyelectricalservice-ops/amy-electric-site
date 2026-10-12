@@ -58,11 +58,27 @@ PHRASES = {
 # phrase, so it is an accepted alternative for every EV service.
 ALT_SCOPES = {
     # Outlet on its own vs. outlet as part of a whole charger circuit.
-    "ev-nema-1450": {(350, 900): "outlet inside a full charger circuit, not the outlet alone"},
-    "ev-tesla-wall": {},
-    # The same shared "NEMA 14-50 or hardwired station ... $350 to $900"
-    # sentence is published under both charger types, so both may cite it.
-    "ev-hardwired": {(350, 900): "station inside a shared NEMA-or-hardwired range, not the station alone"},
+    "ev-nema-1450": {
+        (350, 900): "outlet inside a full charger circuit, not the outlet alone",
+        # blog/ev-charger-installation-cost-los-angeles.html itemises the
+        # dedicated circuit and the permit on their own rows, so its charger
+        # row is a component of the build, not the all-in install the engine
+        # quotes. The same table's Tesla row is excluded for the same reason.
+        (500, 1200): "cost-breakdown table that prices circuit and permit separately",
+        # One sentence covers both charger types: "a NEMA 14-50 or hardwired
+        # station in the standard $350 to $1,200 range" — the band spans both.
+        (350, 1200): "shared NEMA-or-hardwired sentence spanning both subtypes",
+    },
+    "ev-tesla-wall": {
+        # The cost-breakdown table above: its $1,200-$2,500 sits next to a
+        # separate circuit row, so it is not the engine's all-in $500-$1,200.
+        (1200, 2500): "cost-breakdown table that prices circuit and permit separately",
+    },
+    # The shared "NEMA 14-50 or hardwired station ... $350 to $1,200" sentence
+    # is published under both charger types, so both may cite it.
+    "ev-hardwired": {
+        (350, 1200): "shared NEMA-or-hardwired range spanning both subtypes",
+    },
 }
 PERMIT_ALT = (150, 400)
 PERMIT_NOTE = "LADBS permit line printed beside the service"

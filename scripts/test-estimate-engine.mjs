@@ -78,7 +78,7 @@ describe('engine math', () => {
       includePermit: false,
     });
     assert.equal(r.totalLow, 500 + 400);
-    assert.equal(r.totalHigh, 900 + 750);
+    assert.equal(r.totalHigh, 1200 + 750);
   });
 
   it('unknown ids throw; bad qty throws', () => {
