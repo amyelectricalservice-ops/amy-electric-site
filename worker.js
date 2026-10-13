@@ -1,3 +1,4 @@
+import { handleLead } from './lead-handler.js';
 import { handleContact } from './contact-handler.js';
 
 const oidcDiscovery = (clientId) => ({
@@ -291,7 +292,7 @@ function contactApiSpec() {
     openapi: '3.1.0',
     info: {
       title: 'AMY Electric Contact API',
-      version: '1.0.0',
+      version: '1.1.0',
       description: 'Submit estimate requests and service inquiries to AMY Electric, licensed C-10 electrical contractor (#981578) in Los Angeles. Backed by spam protection (honeypot, timing check, optional Turnstile).'
     },
     servers: [{ url: 'https://amyelectric.com' }],
@@ -335,6 +336,7 @@ function contactApiSpec() {
             city: { type: 'string', description: 'Service area city' },
             message: { type: 'string', description: 'Project details' },
             request_type: { type: 'string', description: 'Alternative to service for request classification' },
+            estimate: { type: 'string', description: 'Optional indicative-range JSON from the quote forms. Validated server-side; invalid payloads are dropped without failing the lead.' },
             website: { type: 'string', description: 'Honeypot anti-spam field. Leave empty.' },
             _timestamp: { type: 'string', description: 'Form render timestamp for timing checks' },
             'cf-turnstile-response': { type: 'string', description: 'Turnstile token when CAPTCHA is enabled' }
@@ -410,6 +412,25 @@ function injectGeo(html, city) {
   return bi === -1 ? out + config : out.slice(0, bi) + config + out.slice(bi);
 }
 
+/* Geo city string for the lead wizard headline (get-quote.html).
+ * Same request.cf.city source as the homepage branch above, but: any
+ * non-empty city passes through (wizard headline wants "Serving {City}",
+ * not just the three homepage targets). Non-matches resolve to null so the
+ * page falls back to its data-geo-city-default ("Los Angeles").
+ * Test parity: extend scripts/test-worker-geo.mjs with resolveGeoCity cases. */
+function resolveGeoCity(request) {
+  const cf = request && request.cf;
+  const city = cf && typeof cf.city === 'string' ? cf.city.trim() : '';
+  return city || null;
+}
+
+function injectGeoCity(html, city) {
+  if (typeof html !== 'string' || !html.includes('</body>')) return html;
+  const tag =
+    '<script>window.AMY_GEO_CITY=' + JSON.stringify(city) + ';</script>';
+  return html.replace('</body>', tag + '</body>');
+}
+
 // HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
 // HTML_CACHE_CONTROL below), but the asset response carries no validator of
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
@@ -477,7 +498,15 @@ async function htmlResponse(request, response, headers) {
   } catch {
     pathname = '';
   }
-  if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
+  if (response.status === 200 && pathname === '/get-quote.html') {
+    // Lead wizard headline: personalize for ANY cf.city (not just the 3
+    // homepage targets) and expose it via window.AMY_GEO_CITY.
+    const city = resolveGeoCity(request);
+    if (city) {
+      body = injectGeoCity(body0, city);
+      cache = GEO_NO_STORE;
+    }
+  } else if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
     const city = visitorCity(request);
     if (city) {
       body = injectGeo(body0, city);
@@ -511,7 +540,8 @@ function contactApiDocs() {
     + '<h2>POST /api/contact</h2>'
     + '<p>Accepts <code>application/json</code>, <code>application/x-www-form-urlencoded</code>, or '
     + '<code>multipart/form-data</code>. Fields: <code>name</code>, <code>phone</code>, <code>email</code>, '
-    + '<code>service</code>, <code>city</code>, <code>message</code>, <code>request_type</code>. '
+    + '<code>service</code>, <code>city</code>, <code>message</code>, <code>request_type</code>, plus optional '
+    + '<code>estimate</code> (indicative-range JSON attached by the quote forms; invalid payloads are dropped, never fatal). '
     + 'Leave the <code>website</code> honeypot field empty. Returns <code>{"success": true}</code> on acceptance; '
     + '<code>405</code> for non-POST methods. Prefer a human? Call <a href="tel:18183025614">(818) 302-5614</a>.</p>'
     + '<h2>GET /api/health</h2>'
@@ -535,6 +565,10 @@ export default {
 
     if (url.pathname === '/api/contact') {
       return handleContact(request, env, ctx.waitUntil.bind(ctx));
+    }
+
+    if (url.pathname === '/api/lead') {
+      return handleLead(request, env);
     }
 
     // Conversion events from site.min.js (sendBeacon, text/plain = no preflight).

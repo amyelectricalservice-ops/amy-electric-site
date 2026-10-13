@@ -1,0 +1,47 @@
+/* ── components (visual port of .qe-* system) ── */
+.lf-shell{max-width:42rem;margin:2.5rem auto 0;background:#122040;border:1px solid #1e3055;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.45);padding:1.5rem}
+.lf-step{display:none}
+.lf-step.lf-active{display:block;animation:lfFadeIn .35s ease}
+@keyframes lfFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.lf-dot{width:10px;height:10px;border-radius:9999px;background:#1e3055;transition:background .3s}
+.lf-dot.lf-active{background:#f5a623}
+.lf-card{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.5rem 1rem;background:#0b1628;border:2px solid #1e3055;border-radius:8px;cursor:pointer;transition:border-color .2s,background-color .2s,box-shadow .2s;color:#f4f1eb;text-align:center;font-family:inherit;width:100%}
+.lf-card:hover{border-color:#e8951a;background:rgba(245,166,35,.06)}
+.lf-card.lf-selected,.lf-card.lf-selected:hover{border-color:#f5a623;background:rgba(245,166,35,.1);box-shadow:0 0 0 1px #f5a623}
+.lf-card-pick{display:block;width:100%;padding:1rem;background:#0b1628;border:2px solid #1e3055;border-radius:8px;cursor:pointer;transition:border-color .2s,background-color .2s,box-shadow .2s;color:#f4f1eb;text-align:left;font-family:inherit}
+.lf-card-pick:hover{border-color:#e8951a;background:rgba(245,166,35,.06)}
+.lf-card-pick.lf-selected,.lf-card-pick.lf-selected:hover{border-color:#f5a623;background:rgba(245,166,35,.1);box-shadow:0 0 0 1px #f5a623}
+.lf-radio{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;background:#0b1628;border:2px solid #1e3055;border-radius:8px;cursor:pointer;font-size:.9375rem;color:#f4f1eb}
+.lf-radio:hover{border-color:#e8951a}
+.lf-radio:has(input:checked){border-color:#f5a623;background:rgba(245,166,35,.1);box-shadow:0 0 0 1px #f5a623}
+.lf-radio input{accent-color:#f5a623}
+.lf-label{display:block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#98a6b8;margin-bottom:.5rem}
+.lf-input{width:100%;padding:.75rem 1rem;background:#0b1628;color:#f4f1eb;border:1px solid #1e3055;border-radius:4px;font-family:"Source Serif 4",Georgia,serif;font-size:.9375rem}
+.lf-input:focus{outline:2px solid #f5a623;outline-offset:2px}
+.lf-btn{display:inline-block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.875rem 2rem;border-radius:4px;cursor:pointer;border:2px solid transparent;font-size:1rem;text-align:center}
+.lf-btn-gold{background:#f5a623;color:#0b1628}
+.lf-btn-gold:hover{background:#e8951a}
+.lf-btn-gold:disabled{opacity:.6;cursor:not-allowed}
+.lf-btn-outline{background:transparent;color:#f4f1eb;border-color:#1e3055}
+.lf-btn-outline:hover{border-color:#f5a623;color:#f5a623}
+.lf-price{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:2.625rem;font-weight:800;color:#f5a623;margin:1.25rem 0;line-height:1.1}
+.lf-error{display:none;color:#ff7b7b;background:rgba(255,60,60,.08);border:1px solid rgba(255,60,60,.4);border-radius:4px;padding:.75rem 1rem;font-size:.875rem;margin-top:1rem}
+.lf-error.lf-show{display:block}
+.lf-summary{border:2px solid #f5a623;background:rgba(245,166,35,.06)}
+.lf-breakdown{margin:1rem auto;max-width:25rem;text-align:left}
+.lf-breakdown li{display:flex;gap:.5rem;padding:.375rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.875rem;color:#98a6b8;list-style:none}
+.lf-trust{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:center;margin-top:1.75rem;font-size:.8125rem;color:#98a6b8}
+
+/* ── responsive (mirrors 10-responsive.css 600px breakpoint) ── */
+@media (min-width:640px){
+  .lf-sm-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lf-sm-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lf-sm-p-8{padding:2rem}
+}
+@media (max-width:639px){
+  .lf-radio-group{flex-direction:column}
+  .lf-price{font-size:2.125rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .lf-step.lf-active{animation:none}
+}
