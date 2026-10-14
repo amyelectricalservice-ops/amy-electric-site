@@ -6,6 +6,7 @@
 .opencode
 .copilot
 .wrangler
+.cloudflare
 .antigravitycli
 open-seo
 node_modules
@@ -26,10 +27,13 @@ plan.md
 wrangler.production.jsonc
 wrangler.jsonc
 package.json
+package-lock.json
 pnpm-lock.yaml
 *.py
 contact-handler.js
 worker.js
+cloudflare.config.ts
+wrangler.config.ts
 .gitignore
 gbp-posts-document.txt
 *.csv

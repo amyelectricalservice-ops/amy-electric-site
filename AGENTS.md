@@ -2,7 +2,7 @@
 
 ## Project
 
-Static HTML marketing site for an LA electrical contractor hosted on Cloudflare Workers + Assets. Pushes to `main` auto-deploy via `.github/workflows/deploy.yml` (schema/sitemap validation, then `wrangler deploy`); Workers Builds is **not** connected. Manual deploy also works with `wrangler deploy --config wrangler.jsonc`. No build system and no package manager, but GitHub Actions runs on every push to `main` (`.github/workflows/audit.yml`): JSON-LD validation via `scripts/schema-tool.py`, CSS/JS build reproducibility, and sitemap integrity.
+Static HTML marketing site for an LA electrical contractor hosted on Cloudflare Workers + Assets. Pushes to `main` auto-deploy via `.github/workflows/deploy.yml` (schema/sitemap validation, then `wrangler deploy`); Workers Builds is connected but non-deploying (green since the 2026-10-14 `open-seo` gitlink fix; empty build/deploy commands, workflow remains the deploy path). Manual deploy also works with `wrangler deploy --config wrangler.jsonc`. No site build step; a tooling-only root `package.json` (private, `cf`+`wrangler` devDeps) supports the `cf`-migrated config (`cloudflare.config.ts`, `wrangler.config.ts` — `wrangler.jsonc` still live). GitHub Actions runs on every push to `main` (`.github/workflows/audit.yml`): JSON-LD validation via `scripts/schema-tool.py`, CSS/JS build reproducibility, and sitemap integrity.
 
 - **Business name**: AMY Electric
 - **License**: C-10 #981578 (verify at [CSLB](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578)), EVITP #4051604
@@ -12,7 +12,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## Current state
 
-- **312 production HTML pages** (per `scripts/audit-site.py`; 307 URLs in `sitemap.xml`, delta is deliberate noindex/404 exclusions):
+- **313 production HTML pages** (per `scripts/audit-site.py`; 308 URLs in `sitemap.xml`, delta is deliberate noindex/404 exclusions):
   - Homepage: `index.html`
   - 246 root-level + 61 `blog/` HTML files on disk
   - **112 `city-*.html` files** (16 core cities + neighborhood pages) with FAQPage + BreadcrumbList + Electrician schema — note: 3 (`city-edith-norman`, `city-el-sobrante`, `city-health-campadre`) are deliberately `noindex` (commit `2255643`) and excluded from the sitemap
@@ -96,7 +96,7 @@ Achieved via: minified CSS/JS, lazy-loaded images, preload hints, HTTPS redirect
 
 ## Important Notes
 
-- **Deployment**: automatic on push to `main` via `.github/workflows/deploy.yml` (validates, then `wrangler deploy` with `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` repo secrets). Workers Builds is **not** connected. Manual deploy also works via `wrangler deploy --config wrangler.jsonc` against the zone-owning account (`a08528fe…`). The `_headers` file must use proper path-prefixed format for Workers + Assets (each block starts with a URL path like `/*` or `/css/*`). See `DEPLOYMENT-AMY-ELECTRIC.md`.
+- **Deployment**: automatic on push to `main` via `.github/workflows/deploy.yml` (validates, then `wrangler deploy` with `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` repo secrets). Workers Builds is connected but non-deploying (workflow remains the deploy path). Manual deploy also works via `wrangler deploy --config wrangler.jsonc` against the zone-owning account (`a08528fe…`). CLI rule: use the `cf` CLI for Cloudflare interactions unless the project has a Wrangler configuration file — this repo has `wrangler.jsonc`, so `wrangler` stays the deploy tool and `cf` is validation-only (`cf build`). The `_headers` file must use proper path-prefixed format for Workers + Assets (each block starts with a URL path like `/*` or `/css/*`). See `DEPLOYMENT-AMY-ELECTRIC.md`.
 - **IndexNow**: Key at `/16076f14-4d06-4581-b281-38a7a89804ca.txt`. Notify after each deploy by running `bash scripts/notify-indexnow.sh` or via `curl` to `https://api.indexnow.org/indexnow`.
 - **New files this session**: `blog/california-electrical-code-changes-2026.html`, `blog/ladwp-ev-charger-rebate-guide-2026.html`
 - **Gallery**: `gallery.html` (273KB, 309 photos) — first 36 items HTML, 273 JS-lazy via "Show More". Inline CSS → `css/src/12-gallery.css`. `scripts/update-gallery.py` is idempotent.

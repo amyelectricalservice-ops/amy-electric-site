@@ -1,8 +1,9 @@
 name: Deploy Production
 
-# Workers Builds is not connected to this repository, verified 2026-09-27: all 10
-# deployments on record have source "wrangler" and none from Git. This workflow
-# provides the automatic deploy instead. It requires two repository secrets,
+# Workers Builds is connected to this repository but non-deploying: since the
+# 2026-10-14 `open-seo` gitlink fix its runs are green with empty build/deploy
+# commands (before that they failed at clone time). This workflow provides the
+# automatic deploy instead. It requires two repository secrets,
 # which are deliberately not in the repo:
 #
 #   CLOUDFLARE_API_TOKEN   API token with Account > Workers Scripts > Edit

@@ -6,10 +6,12 @@
 - Live config: **`wrangler.jsonc`**
 - Account: `a08528fe46962a4d732de2d8d30eeef5` (`a.m.y.electricalservice@gmail.com`)
 - Deployed compatibility date: `2026-05-21`, flags `["nodejs_compat"]`
-- Deployments on record: 10, **all with `source: "wrangler"`, none from Git**
+- Deployments on record (checked 2026-09-27): 10, all with `source: "wrangler"`, none from Git.
+  Workers Builds connected later; since the 2026-10-14 `open-seo` gitlink fix its runs are
+  green but carry empty build/deploy commands, so the GitHub workflow below remains the deploy path.
 
-That last line is the important one: **pushing to `main` does not deploy this site.** Workers Builds
-has never run for this Worker, so every deploy has been a manual `wrangler deploy`. Earlier revisions
+That last line is the important one: **pushing to `main` deploys via the GitHub workflow, not via
+Workers Builds.** Earlier revisions
 of this file referred to a `amy-electric-site-production` Worker and to the Revitaldaycare account;
 neither is true of the site actually serving `amyelectric.com`, and both notes have been removed.
 
