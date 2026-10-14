@@ -8,7 +8,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 
 ## Current state
 
-- **313 production HTML pages** (`scripts/audit-site.py`); **308 URLs in `sitemap.xml`** (delta is deliberate noindex/404 exclusions: `404.html`, `seo-audit-report.html`, 3 noindex cities). No `<priority>`/`<changefreq>`. `index`/`blog/index`/`case-studies/index` map to directory URLs. Changed pages get `<lastmod>` bumps via `scripts/refresh-sitemap-lastmod.py` (commits `[skip ci]` back to `main` — expect rebase-before-push).
+- **314 production HTML pages** (`scripts/audit-site.py`); **309 URLs in `sitemap.xml`** (delta is deliberate noindex/404 exclusions: `404.html`, `seo-audit-report.html`, 3 noindex cities). No `<priority>`/`<changefreq>`. `index`/`blog/index`/`case-studies/index` map to directory URLs. Changed pages get `<lastmod>` bumps via `scripts/refresh-sitemap-lastmod.py` (commits `[skip ci]` back to `main` — expect rebase-before-push).
 - 112 `city-*.html` (16 core + neighborhoods; 3 deliberately `noindex`: `city-edith-norman`, `city-el-sobrante`, `city-health-campadre`), 48 geo service pages (24 EV + 24 panel), 60 blog posts, `testimonials.html`, `gallery.html` (310 photos), `privacy-policy.html`, `service-areas.html`.
 - **CSS**: source `css/src/01-*.css`–`12-*.css`, built via `scripts/build-css.py` → `css/style.min.css`. **JS**: source `js/src/01-*.js`–`08-*.js` via `scripts/build-js.py` → `js/site.min.js`. Never edit built files.
 - Estimate engine: `05-estimate-data.js` (canonical priced tables, mirrors `scripts/estimate-schema.sql` 1:1) + `06-estimate-engine.js` (`window.AMY_ESTIMATE.calcEstimate`) + `07-estimate-lead.js` (attaches indicative range to quote-form leads; `/api/contact` allowlists it, drops invalid without failing the lead). Permit handling is explicit per service (`included`/`separate`/`unpublished`) — never infer from `permitId`. `js/estimator.js` is standalone; `js/estimator.min.js` is the legacy EV bundle the homepage actually loads — parity between the three is asserted by `test-estimator.mjs`, no build step links them.
@@ -36,7 +36,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 
 ## Pre-push gate (in order)
 
-`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (313 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
+`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (314 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
 
 ## Skills
 
@@ -47,7 +47,7 @@ Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: ma
 - [ ] **GBP weekly posts** (highest ROI): `gbp-posting-calendar.md` — 30 Wednesdays from 2026-10-21, copy-paste from `gbp-posts-document.txt`. ~5 min/week, no agent needed.
 - [ ] **Hero photo**: replace "LA CITY ELECTRIC" shirt with a real AMY tech shot; agent swaps via photo pipeline when supplied.
 - [ ] **PageSpeed field check**: run pagespeed.web.dev on homepage, compare CrUX LCP/INP/CLS to targets (<2.5s / <200ms / <0.1 / 90+ mobile).
-- [ ] **Phase 3 — `/book` page (GHL calendar)**: scoped, own session — page + nav/sticky-bar placement + schema + Playwright funnel test. Reuses existing `GHL_WEBHOOK_URL` stack.
+- [ ] **Phase 3 — `/book` page (GHL calendar)**: page SHIPPED 2026-10-14 (`book.html` + sitemap, validated, fallback card converts via call/form). Still pending: (1) owner pastes GHL calendar embed URL → agent drops it into `#ghl-calendar` (replaces `GHL_CALENDAR_EMBED` slot); (2) repoint 112 "📅 Book Online" buttons (`index#estimator` → `book`) + add nav/sticky-bar placement; (3) Playwright funnel test on live calendar.
 - [ ] **`areaServed` unification**: blocked on owner-supplied per-city county/ZIP/Wikipedia data (112 pages currently in 3 valid shapes — don't unify by inventing data).
 - [ ] **Live form + RUM**: owner submits a real test lead; checks beacon in dashboard with a real browser. Agent won't fake-submit.
 - [ ] **Hygiene**: bump canonical `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
