@@ -7,7 +7,8 @@ from xml.etree import ElementTree as ET
 def audit():
     html_files = glob.glob('**/*.html', recursive=True)
     ignore_prefixes = ('reports/', '.', 'amyelectric-site/', 'templates/', 'partials/', 'open-seo/',
-                       'accessibility-audit/', 'admin/', 'audit/')
+                       'accessibility-audit/', 'admin/', 'audit/',
+                       'node_modules/', '.cloudflare/', '.wrangler/')
     html_files = [f for f in sorted(html_files) if not any(f.startswith(p) for p in ignore_prefixes)]
     
     file_map = {}

@@ -12,7 +12,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## Current state
 
-- **312 production HTML pages** (per `scripts/audit-site.py`; 307 URLs in `sitemap.xml`, delta is deliberate noindex/404 exclusions):
+- **313 production HTML pages** (per `scripts/audit-site.py`; 308 URLs in `sitemap.xml`, delta is deliberate noindex/404 exclusions):
   - Homepage: `index.html`
   - 246 root-level + 61 `blog/` HTML files on disk
   - **112 `city-*.html` files** (16 core cities + neighborhood pages) with FAQPage + BreadcrumbList + Electrician schema — note: 3 (`city-edith-norman`, `city-el-sobrante`, `city-health-campadre`) are deliberately `noindex` (commit `2255643`) and excluded from the sitemap
