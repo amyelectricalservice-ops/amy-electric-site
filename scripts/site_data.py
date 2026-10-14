@@ -47,6 +47,10 @@ BUSINESS = {
         ]
     },
     "aggregateRating": {"ratingValue": "4.9", "reviewCount": "87", "bestRating": "5", "worstRating": "1"},
+    # CANONICAL Google review count (2026-10-14: 87). When the GBP count
+    # changes, edit this ONE value, then sweep pages with:
+    #   grep -rl '"reviewCount' --include='*.html' . | xargs sed -i 's/"reviewCount": *"*[0-9]*"*/"reviewCount": "<NEW>"/'
+    # schema-tool.py validate fails on any page that disagrees with this.
     "sameAs": [
         "https://www.yelp.com/biz/amy-electric-los-angeles",
         "https://g.page/r/CVdK9ZAvNBrZEAI/review",

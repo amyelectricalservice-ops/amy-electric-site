@@ -50,7 +50,9 @@ img{{max-width:100%;display:block}}
 :focus-visible{{outline:2px solid var(--gold);outline-offset:2px}}
 @media(prefers-reduced-motion:reduce){{*,*::before,*::after{{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}}}
 .topbar{{background:var(--gold);color:var(--navy);font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.04em;padding:7px 24px;display:flex;justify-content:space-between;align-items:center}}
-.topbar a{{color:var(--navy)}}
+.topbar a{{color:var(--navy);white-space:nowrap;flex-shrink:0}}
+.topbar span{{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media(max-width:480px){{.topbar{{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}}.topbar span{{white-space:normal}}}}
 header{{background:var(--navy2);border-bottom:3px solid var(--mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}}
 .header-inner{{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto}}
 .logo{{display:flex;align-items:center;gap:12px;text-decoration:none}}

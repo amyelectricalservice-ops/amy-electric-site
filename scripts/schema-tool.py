@@ -212,6 +212,17 @@ def cmd_validate():
                 if 'hasCredential' not in data:
                     issues.append(f"INCOMPLETE Electrician (no credentials): {fname}")
 
+        # ── reviewCount canonical check ──
+        # BUSINESS["aggregateRating"]["reviewCount"] in site_data.py is the
+        # single source of truth. Any page disagreeing fails validation so
+        # a stale Google count can never silently ship on 300+ pages.
+        canonical_rc = str(BUSINESS["aggregateRating"]["reviewCount"])
+        for m in re.finditer(r'"reviewCount"\s*:\s*"(\d+)"?', html):
+            if m.group(1) != canonical_rc:
+                issues.append(
+                    f"REVIEWCOUNT_DRIFT in {fname}: '{m.group(1)}' "
+                    f"!= canonical '{canonical_rc}' (site_data.py)")
+
         # Check FAQPage
         if fname in ["testimonials.html", "gallery.html"]:
             if not jsonld_in_html(html, "FAQPage"):

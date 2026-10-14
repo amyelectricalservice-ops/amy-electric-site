@@ -59,6 +59,9 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 - Every page has JSON-LD (Electrician/Service/FAQPage/BlogPosting), Open Graph, Twitter Cards
 - All images have `loading="lazy"`, `decoding="async"`, and `alt` text
 - All pages have `<link rel="preload" as="style" href="css/style.min.css">`
+- `.topbar` responsive rule lives in **three places, keep in sync**: `css/src/02-header.css` (source), `css/style.min.css` (built), and inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/` marker) + `scripts/generate-city-pages.py` template. At ≤480px the topbar stacks (location line, phone line) and the phone link never wraps mid-number (verified 390px screenshot 2026-10-14).
+- `reviewCount` canonical is `BUSINESS["aggregateRating"]["reviewCount"]` in `scripts/site_data.py` (87 as of 2026-10-14; 333 occurrences site-wide, zero drift). `schema-tool.py validate` fails with `REVIEWCOUNT_DRIFT` on any mismatch — change the one value + run the sweep one-liner in the site_data.py comment. `gbp-posting-calendar.md` is the 30-week Wed posting checklist (2026-10-21→2027-05-12) sourced from `gbp-posts-document.txt`.
+- Gallery LCP is generator-pinned (`scripts/update-gallery.py`: position-0 image gets `loading="eager"` + `fetchpriority="high"` + `<link rel="preload" as="image">`); lab-Lighthouse 80% on gallery has zero flagged opportunities — the 261KB HTML shell (310-item ItemList) dominates, and production edge cache beats localhost-simulate, so no further trim without losing SEO value.
 
 ## Weekly Audit Checklist
 

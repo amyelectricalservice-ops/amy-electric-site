@@ -11,8 +11,13 @@
   justify-content: space-between;
   align-items: center;
 }
-.topbar a { color: var(--navy); }
+.topbar a { color: var(--navy); white-space: nowrap; flex-shrink: 0; }
 .topbar a:hover { text-decoration: underline; }
+.topbar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media(max-width:480px){
+  .topbar { flex-direction: column; gap: 2px; padding: 7px 16px; text-align: center; }
+  .topbar span { white-space: normal; }
+}
 
 /* ── HEADER / NAV ── */
 header {
