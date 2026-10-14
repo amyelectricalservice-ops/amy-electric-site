@@ -52,7 +52,7 @@ Static HTML marketing site for an LA electrical contractor hosted on Cloudflare 
 
 ## File conventions
 
-- All HTML files reference `css/style.min.css` and `js/site.min.js`
+- All HTML files reference `css/style.min.css` and `js/site.min.js`. `js/webmcp.js` (experimental AI-agent tools) loads via a conditional inline injector on 99 root pages only when `navigator.modelContext` exists — never a render-blocking `defer` tag (that cost 300ms lab TBT on the homepage; verified 88→98 perf via blocked-URL A/B 2026-10-14). Blog pages omit it.
 - Each service page: `<section class="page-hero">`, service grid, FAQ using `<details>`, FAQPage JSON-LD, CTA section
 - Each city page: Electrician JSON-LD with `areaServed` (City + DefinedRegion/postalCode), Local Knowledge section, FAQ
 - Phone number uses `tel:18183025614` throughout
