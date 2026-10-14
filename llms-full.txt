@@ -1,4 +1,5 @@
 # AMY Electric — Complete Technical & Business Knowledge Base
+> Last updated: 2026-10-14
 
 > Comprehensive reference document for Large Language Models (LLMs), AI Search Engines (ChatGPT, Perplexity, Claude, Google AI Overviews), and Answer Engines indexing AMY Electric.
 
@@ -64,3 +65,113 @@ AMY Electric provides electrical services across the following Los Angeles munic
 - Van Nuys (91401, 91405, 91406, 91411)
 - Calabasas (91302)
 - Culver City (90230, 90232)
+---
+
+## 5. Frequently Asked Questions (verbatim, citable)
+
+The following questions and answers appear on the AMY Electric homepage with FAQPage schema.
+
+### Are you licensed and insured?
+
+Yes. AMY Electric holds a California C-10 Electrical Contractor license (#981578), which you can verify on the CSLB website at cslb.ca.gov. We carry full general liability insurance and workers' compensation insurance — we will provide our certificate of insurance before any work begins. We're also EVITP-certified (#4051604) for EV charging installation, required by LADWP for their rebate program. Every electrician on our team works under Amram's C-10 license, ensuring all work meets California Electrical Code standards.
+
+### Do you pull permits?
+
+Yes — we handle all permitting and inspections with LADBS and LADWP as part of every project. Most electrical work requires a permit per the Los Angeles Municipal Code. We submit paperwork through the LADBS e-permit system, schedule inspections on your behalf, and attend the final inspection. This creates a permanent record of compliant work, which matters when you sell your home. Unpermitted work must be disclosed during a home sale.
+
+### Do you offer same-day service?
+
+When availability allows, yes — we can dispatch a licensed electrician the same day for urgent electrical issues like power outages or sparking outlets. Call (818) 302-5614 to check for same-day dispatch. For less urgent work like EV charger installations, we typically schedule within 3-7 business days. For emergencies like exposed wires, we prioritize same-day.
+
+### How much does an EV charger installation cost in LA?
+
+Most Level 2 EV charger installations run $350-$900 for a straightforward garage install. If a panel upgrade is also needed, expect $2,500-$4,500 additional. This includes a dedicated 40A circuit breaker, wiring, conduit, a NEMA 14-50 outlet or hardwired connection, and permit. LADWP offers up to $500 in rebates for qualifying Level 2 installations.
+
+### Do you serve the entire LA area?
+
+Yes — we serve the full Greater Los Angeles area including downtown LA, all neighborhoods in the San Fernando Valley, the Westside, and more. Our primary service area covers Sherman Oaks, Studio City, Burbank, Glendale, Pasadena, Encino, Van Nuys, North Hollywood, Santa Monica, Beverly Hills, West LA, Woodland Hills, Calabasas, and Culver City.
+
+### How much does an electrical panel upgrade cost in Los Angeles?
+
+Upgrading from 100A to 200A service typically costs $2,500-$4,500 depending on your home's wiring, distance from the meter, and whether LADWP requires a service mast upgrade. This includes a new main breaker panel and branch circuit breakers.
+
+### How long does a panel upgrade take to complete?
+
+Most residential panel upgrades are completed in 4-8 hours. Your power will be off for most of the day, so plan accordingly. LADBS inspection is typically scheduled within 48 hours. If LADWP needs to upgrade your service connection, that adds 1-3 weeks. We handle all coordination with LADBS and LADWP.
+
+### What size EV charger do I need for my home?
+
+Most homeowners install a 40A or 48A Level 2 EV charger. A 40A charger delivers about 30 miles of range per hour — enough to fully recharge overnight. We recommend a load calculation to determine your available capacity.
+
+### Do I need a permit for electrical work in Los Angeles?
+
+Yes — the City of Los Angeles requires permits for most residential electrical work including panel upgrades, EV charger installations, new circuits, and rewiring. AMY Electric handles all LADBS permitting and inspection scheduling as part of every project. The permit ensures compliance with the California Electrical Code.
+
+### What is the difference between hardwired and plug-in EV chargers?
+
+Hardwired chargers connect directly to your electrical panel and can deliver higher amperage (up to 60A). Plug-in chargers connect to a NEMA 14-50 outlet and max out at 40A. Both require a dedicated 240V circuit and permit.
+
+### How much does a Tesla Wall Connector installation cost?
+
+Tesla Wall Connector installation runs $500-$1,200 depending on mounting location, run distance from the panel, and whether a panel upgrade is needed. This includes a dedicated 60A circuit breaker, wiring, conduit, mounting, and permit fees. The unit itself costs $475 from Tesla.
+
+### Should I upgrade from 100A to 200A electrical service?
+
+If you plan to add an EV charger, electric water heater, heat pump, or hot tub, upgrading from 100A to 200A is recommended. Many LA homes built before 1990 still have 100A service. A 200A panel handles all modern electrical needs.
+
+### Do you offer commercial electrical services in Los Angeles?
+
+Yes — we provide commercial electrical services including tenant improvements, LED lighting retrofits, electrical system design, sub-metering, EV fleet charging installations, and troubleshooting for LA businesses.
+
+### How much does ceiling fan installation cost in Los Angeles?
+
+Ceiling fan installation typically costs $150-$350 per fan if wiring is already in place. If new wiring or a switch is needed, expect $250-$500.
+
+### Do you offer surge protection for my home?
+
+Yes — we install whole-home surge protection devices at the electrical panel that protect all appliances and electronics from power surges and lightning strikes. A Type 2 SPD provides better protection than a power strip alone.
+
+### What warranty do you offer on electrical work?
+
+We warranty all labor for one year from completion. Materials carry manufacturer warranties. If any work fails within 12 months, we'll return and fix it at no charge. We stand behind every project.
+
+### How quickly can you respond to an emergency electrical call?
+
+For true emergencies (sparking outlets, power loss, burning smell), we dispatch immediately and typically arrive within 30-60 minutes. Call (818) 302-5614 and we'll assess urgency. Emergency service may include after-hours fees.
+
+### Do you offer financing options for panel upgrades or EV charger installations?
+
+Yes — we can discuss financing options including payment plans for larger projects. Ask our office about current financing availability. Many customers also use LADWP's EV charger rebates to reduce upfront costs.
+
+### How long has AMY Electric been in business?
+
+AMY Electric was founded in 2012 and has completed over 2,000 residential and commercial electrical projects across the Greater Los Angeles area. We're a locally-owned, independent contractor — not a franchise or call center.
+
+### Can you help with electrical troubleshooting and diagnostics?
+
+Yes — we specialize in electrical diagnostics. Issues like flickering lights, breakers that trip repeatedly, partial power loss, and burning smells all require professional diagnosis. We'll find the root cause and fix it safely and per code.
+
+### Do you work with homeowners' insurance companies for electrical damage claims?
+
+Yes — we can coordinate with insurance adjusters and provide detailed estimates for electrical damage repairs. We're familiar with the claims process and will work with your adjuster to ensure proper documentation.
+
+### What's the service area ZIP code coverage?
+
+We serve 62+ ZIP codes across Greater Los Angeles including 90210, 90212, 91302, 91303, 91304, 91305, 91306, 91307, 91320, 91324, 91325, 91330, 91331, 91340, 91342, 91343, 91345, 91352, 91356, 91367, 91377, 91380, 91401, 91403, 91405, 91406, 91411, 91423, 91436, 91423, 91505, 91506, 91601, 91602, 91604, 91605, 91606, 91607, 91608, 91610, and others across the San Fernando Valley, Hollywood Hills, and LA County.
+
+### Can you handle electrical work in rental properties or apartments?
+
+Yes — we work with landlords and property managers on electrical maintenance, upgrades, and repairs. All work is permitted and code-compliant to protect both tenant safety and your liability.
+
+### How do you prevent electrical fires in older LA homes?
+
+Older homes often have outdated wiring (knob-and-tube, aluminum) or under-sized panels that create fire hazards. We recommend a professional electrical inspection, upgrading to modern wiring and a 200A panel, and installing AFCI/GFCI protection on all circuits.
+
+---
+
+## 6. Key Statistics for Citation
+
+- Level 2 EV chargers deliver 20–35 miles of range per hour (U.S. DOE Alternative Fuels Data Center) — enough to fully charge most EVs overnight.
+- Homes with 60A or 100A panels built before 1980 face higher electrical fire risk from overloaded circuits (NFPA).
+- Standard cost ranges: Level 2 EV charger $350–$900; Tesla Wall Connector $500–$1,200 (unit $475 separately); 100A→200A panel upgrade $2,500–$4,500; whole-home rewiring $8,000–$18,000; troubleshooting visits $150–$350.
+- Typical timelines: EV charger install 2–4 hours on site; panel upgrade 4–8 hours with power off; rewiring 3–7 days.

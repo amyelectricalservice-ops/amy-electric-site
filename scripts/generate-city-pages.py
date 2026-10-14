@@ -183,7 +183,7 @@ TEMPLATE_SCHEMA_BREADCRUMB = """
 <script type="application/ld+json">{{"https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amyelectric.com/"}}, {{"@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://amyelectric.com/city-los-angeles"}}, {{"@type": "ListItem", "position": 3, "name": "{city_name}", "item": "https://amyelectric.com/city-{slug}"}}]}}</script>"""
 
 TEMPLATE_SCHEMA_ELECTRICIAN = """
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/city-{slug}","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/city-{slug}","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor serving {city_name}, {state_abbr}. EV charger installation, panel upgrades, rewiring, and electrical repairs.","address":{{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"}},"geo":{{"latitude":34.22281,"longitude":-118.58241}},"foundingDate":"2012","founder":{{"@type":"Person","name":"AMY Electric Master Electrician","jobTitle":"Lead Master Electrician & Founder","description":"California C-10 Licensed Master Electrician with 15+ years experience in commercial & residential electrical engineering, EVITP certified.","worksFor":{{"@type":"Organization","name":"AMY Electric"}},"hasCredential":[{{"@type":"EducationalOccupationalCredential","name":"California C-10 Electrical Contractor License #981578","url":"https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578"}},{{"@type":"EducationalOccupationalCredential","name":"EVITP Certification #4051604"}}],"url":"https://amyelectric.com"}},"openingHoursSpecification":[{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"}},{{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}}],"aggregateRating":{{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"}},"hasCredential":[{{"name":"C-10 Electrical Contractor License #981578"}},{{"name":"EVITP Certification #4051604"}}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"],"areaServed":{{"@type":"AdministrativeArea","name":"{city_name}, {state_abbr}"}}}}</script>"""
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com/city-{slug}","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com/city-{slug}","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor serving {city_name}, {state_abbr}. EV charger installation, panel upgrades, rewiring, and electrical repairs.","address":{{"streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"}},"geo":{{"latitude":34.22281,"longitude":-118.58241}},"foundingDate":"2012","founder":{{"@type":"Person","name":"AMY Electric Master Electrician","jobTitle":"Lead Master Electrician & Founder","description":"California C-10 Licensed Master Electrician with 15+ years experience in commercial & residential electrical engineering, EVITP certified.","worksFor":{{"@type":"Organization","name":"AMY Electric"}},"hasCredential":[{{"@type":"EducationalOccupationalCredential","name":"California C-10 Electrical Contractor License #981578","url":"https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578"}},{{"@type":"EducationalOccupationalCredential","name":"EVITP Certification #4051604"}}],"url":"https://amyelectric.com"}},"openingHoursSpecification":[{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"}},{{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Office hours"}},{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency service dispatch"}}],"aggregateRating":{{"ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"}},"hasCredential":[{{"name":"C-10 Electrical Contractor License #981578"}},{{"name":"EVITP Certification #4051604"}}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9","https://www.facebook.com/people/Amy-Electric/100063766463600/"],"areaServed":{{"@type":"AdministrativeArea","name":"{city_name}, {state_abbr}"}}}}</script>"""
 
 TEMPLATE_BODY_HEADER = """
 </head>
@@ -256,7 +256,7 @@ TEMPLATE_SERVICES_SECTION = """
     <a href="panel-upgrade" class="card no-underline">
       <div class="card-icon">🔧</div>
       <h3>200A Panel Upgrades</h3>
-      <p>Service upgrades for {city_name} homes and businesses. LADWP-coordinated, permits included.</p>
+      <p>Service upgrades for {city_name} homes and businesses. {utility}-coordinated, permits included.</p>
       <span class="card-link">Learn More</span>
     </a>
     <a href="electrical-repair" class="card no-underline">
@@ -312,6 +312,11 @@ TEMPLATE_FOOTER = """
 </body>
 </html>"""
 
+
+# Verified utility territories: these cities are Southern California Edison
+# (SCE), everything else generated here defaults to LADWP. Keep in sync with
+# the SCE FAQ blocks hand-maintained on the four city pages below.
+SCE_CITIES = {"alhambra", "bellflower", "carson", "santa-clarita"}
 
 # Cities to add: slug, display name, state, local intro, nearby, local knowledge
 CITIES = [
@@ -570,7 +575,8 @@ def generate_city_page(city):
         city_name=name, state_abbr=state, slug=slug
     ))
     parts.append(TEMPLATE_SERVICES_SECTION.format(
-        city_name=name, local_intro=local_intro, nearby=nearby
+        city_name=name, local_intro=local_intro, nearby=nearby,
+        utility="SCE" if slug in SCE_CITIES else "LADWP"
     ))
     parts.append(TEMPLATE_LOCAL_KNOWLEDGE.format(
         city_name=name, local_knowledge=local_knowledge
