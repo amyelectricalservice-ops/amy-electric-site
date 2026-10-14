@@ -3,7 +3,7 @@ import { bindings, defineConfig, triggers } from "cf/config";
 export default defineConfig({
 	worker: {
 		name: "amy-electric-site",
-		compatibilityDate: "2026-05-21",
+		compatibilityDate: "2026-10-14",
 		compatibilityFlags: [
 			"nodejs_compat",
 		],
@@ -11,6 +11,9 @@ export default defineConfig({
 		workersDev: true,
 		observability: {
 			enabled: true,
+			logs: {
+				headSamplingRate: 1,
+			},
 		},
 		assets: {
 			htmlHandling: "auto-trailing-slash",
@@ -29,6 +32,7 @@ export default defineConfig({
 		],
 		env: {
 			ASSETS: bindings.assets(),
+			IMAGES: bindings.images(),
 		},
 	},
 });
