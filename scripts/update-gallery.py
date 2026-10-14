@@ -54,7 +54,7 @@ GALLERY_ITEM_TPL = '''    <div class="gallery-item" data-category="{cat}" data-c
         <img src="img/gallery/{slug}-1200w.jpg" alt="{alt}" width="1200" height="900" loading="{loading}"{fetch} decoding="async">
       </picture>
       <div class="gallery-overlay">
-        <h3>{caption}</h3>
+        <h3>{heading}</h3>
         <p class="gallery-location">{city}, CA &middot; {year}</p>
         <span class="gallery-tag" style="background:{bg};color:{color}">{label}</span>
       </div>
@@ -64,6 +64,13 @@ GALLERY_ITEM_TPL = '''    <div class="gallery-item" data-category="{cat}" data-c
 def read_manifest():
     with open(MANIFEST, newline="") as f:
         return list(csv.DictReader(f))
+
+
+def heading(caption):
+    """Short H3 for the gallery overlay: strip parenthetical shoot notes
+    (same trim as alt text) so 40 near-identical headings collapse to their
+    descriptive cores. Manifest keeps full detail as source of truth."""
+    return re.sub(r"\s*\((work in progress|detailed installation view)\)", "", caption).strip()
 
 
 def make_item_data(row, position=0):
@@ -80,6 +87,7 @@ def make_item_data(row, position=0):
         "slug": slug,
         "cat": cat,
         "caption": caption,
+        "heading": heading(caption),
         "city": city,
         "year": year,
         "label": label,
@@ -103,7 +111,7 @@ function renderGalleryItem(d) {
   h += '<picture><source srcset="img/gallery/' + d.s + '-400w.webp 400w, img/gallery/' + d.s + '-800w.webp 800w, img/gallery/' + d.s + '-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(50vw - 36px), (max-width: 1400px) calc(30vw - 32px), 300px">';
   h += '<source srcset="img/gallery/' + d.s + '-1200w.jpg" type="image/jpeg">';
   h += '<img src="img/gallery/' + d.s + '-1200w.jpg" alt="' + (d.alt || d.cap) + '" width="1200" height="900" loading="lazy" decoding="async"></picture>';
-  h += '<div class="gallery-overlay"><h3>' + d.cap + '</h3>';
+  h += '<div class="gallery-overlay"><h3>' + d.cap.replace(/\s*\((work in progress|detailed installation view)\)/, '') + '</h3>';
   h += '<p class="gallery-location">' + d.city + ', CA &middot; ' + d.y + '</p>';
   h += '<span class="gallery-tag" style="background:' + d.bg + ';color:' + d.cl + '">' + d.lbl + '</span></div></div>';
   return h;
@@ -121,10 +129,9 @@ def itemlist_json(rows):
         items.append(
             '{"@type":"ListItem","position":%d,"item":{"@type":"ImageObject",'
             '"contentUrl":"https://amyelectric.com/img/gallery/%s-1200w.webp",'
-            '"caption":"%s in %s, CA","name":"%s",'
-            '"uploadDate":"%s-01-01"}}' % (i, slug, caption, city, caption, year)
+            '"caption":"%s in %s, CA"}}' % (i, slug, caption, city)
         )
-    return '{"@context":"https://schema.org","@type":"ItemList","itemListElement":[\n' + ",\n".join(items) + "]}"
+    return '{"@context":"https://schema.org","@type":"ItemList","itemListElement":[' + ",".join(items) + "]}"
 
 
 def gallery_data_js(data):
