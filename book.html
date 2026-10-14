@@ -83,8 +83,9 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 .sticky-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 4px;min-height:60px;color:var(--navy);text-decoration:none;font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid rgba(11,22,40,.15)}
 .sticky-estimate{background:var(--navy);color:var(--gold)}
 @media(min-width:768px){.sticky-bar{display:none}}
-@media(max-width:767px){body{padding-bottom:68px}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}</style>
+@media(max-width:767px){body{padding-bottom:68px}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*book-widget*/.flatpickr-weekday{color:#f4f1eb!important}.flatpickr-day{color:#f4f1eb!important}.flatpickr-day.flatpickr-disabled,.flatpickr-day.prevMonthDay,.flatpickr-day.nextMonthDay{color:#b0b8c8!important}.flatpickr-day.selected{color:#20222c!important}.slot-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.slot-btn{padding:12px 20px;background:var(--navy);border:2px solid var(--mid);border-radius:8px;cursor:pointer;font-family:var(--cond);font-size:15px;font-weight:700;color:var(--white);transition:border-color .2s,background-color .2s}.slot-btn:hover{border-color:var(--gold2)}.slot-btn.selected{border-color:var(--gold);background:rgba(245,166,35,.1);box-shadow:0 0 0 1px var(--gold)}#book-calendar .flatpickr-calendar{margin:16px auto 0}.book-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}@media(max-width:800px){.book-cols{grid-template-columns:1fr}}#book-chosen{font-family:var(--cond);font-weight:700;color:var(--gold);margin-top:16px;min-height:24px}#book-form-error{display:none;background:rgba(224,80,80,.12);border:1px solid rgba(224,80,80,.4);border-radius:6px;padding:12px 16px;color:#e05050;margin-top:16px}#book-form-success{display:none;background:rgba(77,219,122,.12);border:1px solid rgba(77,219,122,.4);border-radius:6px;padding:24px;text-align:center;color:#4cdb7a;font-family:var(--cond);font-size:18px;font-weight:700;margin-top:24px}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="css/vendor/flatpickr-dark-4.6.13.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="preload" as="style" href="css/style.min.css">
 <link rel="stylesheet" href="css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
@@ -267,12 +268,69 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="section-label">Online Scheduling</div>
   <h2>Pick Your Time</h2>
   <p class="max-w-640">Choose a slot below. You will get an instant confirmation and a reminder text before the visit.</p>
-  <!-- GHL_CALENDAR_EMBED: paste the GoHighLevel calendar embed (iframe or script) inside the div below. Until then the call + form fallbacks underneath convert. -->
-  <div id="ghl-calendar" style="margin-top:24px; min-height:120px;">
+  <div id="book-widget" style="display:none; margin-top:24px;">
+    <div class="book-cols">
+      <div>
+        <div class="section-label">Step 1 — Pick a day</div>
+        <div id="book-calendar"></div>
+      </div>
+      <div>
+        <div class="section-label">Step 2 — Pick an arrival window</div>
+        <div id="book-slots" class="slot-grid" role="group" aria-label="Arrival windows"></div>
+        <p id="book-chosen">Pick a date, then choose an arrival window.</p>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:28px;">Step 3 — Your details</div>
+    <form id="book-form" action="/api/contact" method="POST" aria-label="Booking request form" style="max-width:560px;">
+      <input type="hidden" name="_timestamp" value="">
+      <input type="hidden" name="request_type" value="booking-request">
+      <input type="hidden" id="book-slot" name="message" value="">
+      <div style="position:absolute;left:-9000px;" aria-hidden="true">
+        <label for="book-website">Website</label>
+        <input type="text" id="book-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="book-name">Name</label>
+          <input type="text" id="book-name" name="name" required aria-label="Your name" autocomplete="name" autocapitalize="words" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="book-phone">Phone</label>
+          <input type="tel" id="book-phone" name="phone" required aria-label="Your phone number" autocomplete="tel" inputmode="tel" maxlength="25">
+        </div>
+        <div class="form-group full">
+          <label for="book-service">What do you need?</label>
+          <select id="book-service" name="service" required aria-label="Type of service needed">
+            <option value="">Select a service...</option>
+            <option value="ev-charger">EV Charger Installation</option>
+            <option value="panel-upgrade">200A Panel Upgrade</option>
+            <option value="electrical-repair">Electrical Repair</option>
+            <option value="commercial">Commercial Electrical</option>
+            <option value="lighting">Lighting Installation</option>
+            <option value="tesla-charger">Tesla Charger</option>
+            <option value="rewiring">Whole-Home Rewiring</option>
+            <option value="surge-protection">Surge Protection</option>
+            <option value="outlet-switch">Outlet &amp; Switch Installation</option>
+            <option value="ceiling-fan">Ceiling Fan Installation</option>
+            <option value="smoke-co">Smoke &amp; CO Detector Installation</option>
+            <option value="generator">Generator Transfer Switch</option>
+            <option value="dedicated-circuit">Dedicated Circuit</option>
+            <option value="smart-home">Smart Home Electrical</option>
+            <option value="safety-inspection">Electrical Safety Inspection</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold form-submit">Request This Slot</button>
+      <p class="form-note">A slot request — we confirm your visit by text, usually within a few hours. Need today? Call <a href="tel:18183025614">(818) 302-5614</a>.</p>
+      <div id="book-form-error" role="alert"></div>
+    </form>
+      <div id="book-form-success">Request received! We will text you shortly to confirm your visit. For anything urgent, call (818) 302-5614.</div>
+  </div>
+  <div id="book-fallback" style="margin-top:24px;">
     <div class="card" style="text-align:center; padding:36px 28px;">
       <div class="card-icon">📞</div>
-      <h3>Online Calendar Coming Right Up</h3>
-      <p>Our live calendar is being connected. Meanwhile, booking takes 60 seconds by phone or form — same priority, same free estimate.</p>
+      <h3>Prefer to Book by Phone?</h3>
+      <p>Booking takes 60 seconds by phone or form — same priority, same free estimate.</p>
       <div class="hero-ctas" style="justify-content:center;">
         <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
         <a href="#estimate" class="btn btn-outline">Request a Time by Form</a>
@@ -535,6 +593,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   </div>
 </footer>
 <script defer src="js/site.min.js"></script>
+<script defer src="js/vendor/flatpickr-4.6.13.min.js"></script>
+<script defer src="js/book.js"></script>
 <script>if(navigator.modelContext){var s=document.createElement("script");s.defer=true;s.src="js/webmcp.js";document.head.appendChild(s);}</script>
 <div class="sticky-bar">
   <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
