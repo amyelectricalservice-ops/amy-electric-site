@@ -3,9 +3,13 @@
   "name": "amy-electric-site",
   "main": "worker.js",
   "workers_dev": true,
-  "compatibility_date": "2026-05-21",
+  "compatibility_date": "2026-10-14",
+  "upload_source_maps": true,
   "observability": {
-    "enabled": true
+    "enabled": true,
+    "logs": {
+      "head_sampling_rate": 1
+    }
   },
   "routes": [
     { "pattern": "amyelectric.com/*", "zone_name": "amyelectric.com" },
@@ -17,6 +21,9 @@
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
     "run_worker_first": true
+  },
+  "images": {
+    "binding": "IMAGES"
   },
   "compatibility_flags": [
     "nodejs_compat"

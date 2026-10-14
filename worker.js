@@ -431,6 +431,143 @@ function injectGeoCity(html, city) {
   return html.replace('</body>', tag + '</body>');
 }
 
+// Image optimization: WebP negotiation + responsive widths.
+//
+// HTML already ships <picture> + srcset pointing at pre-generated
+// -400/-800w/-1200w .webp files, and Polish (lossy) covers the rest. This
+// Worker layer handles the requests that bypass markup:
+//   1. Accept negotiation — /img/*.jpg with `Accept: image/webp` (or avif,
+//      whose browsers all decode webp) serves the sibling .webp from ASSETS
+//      with no redirect, so the URL stays stable for the immutable cache.
+//   2. ?w= / ?width= — snaps to the nearest pre-generated width
+//      (400/800/1200) and serves that variant, webp-first when supported.
+//   3. Optional Cloudflare Images binding — when `IMAGES` is configured
+//      (wrangler.jsonc `images` binding), arbitrary widths transform
+//      on-demand via env.IMAGES with format:'auto', cached in caches.default
+//      so each size encodes once. Absent binding (current state) the static
+//      fallback above serves and nothing bills.
+// Served from self, so the CSP img-src needs no imagedelivery.net addition.
+const IMG_WIDTHS = [400, 800, 1200];
+const IMG_CACHE_CONTROL = 'public, max-age=31536000, immutable';
+
+function isImagePath(pathname) {
+  if (typeof pathname !== 'string' || !pathname.startsWith('/img/')) return false;
+  if (pathname.includes('..')) return false;
+  return /\.(jpe?g|png|webp)$/i.test(pathname);
+}
+
+function clientSupportsWebP(request) {
+  const accept = request.headers.get('Accept') || '';
+  return /image\/(webp|avif)/.test(accept);
+}
+
+function snapWidth(raw) {
+  const w = Number.parseInt(raw, 10);
+  if (!Number.isFinite(w)) return null;
+  const clamped = Math.min(1200, Math.max(100, w));
+  for (const step of IMG_WIDTHS) {
+    if (clamped <= step) return step;
+  }
+  return 1200;
+}
+
+// Candidate files for base+ext at a snapped width, webp-first when supported.
+// Covers the repo's mixed naming (-400 vs -400w): try `-800w` then `-800`.
+function variantCandidates(pathname, snapped, webp) {
+  const dot = pathname.lastIndexOf('.');
+  const base = pathname.slice(0, dot);
+  const ext = pathname.slice(dot);
+  const out = [];
+  if (webp) out.push(base + '-' + snapped + 'w.webp', base + '-' + snapped + '.webp');
+  out.push(base + '-' + snapped + 'w' + ext, base + '-' + snapped + ext);
+  return out;
+}
+
+async function tryAsset(env, urlString) {
+  const res = await env.ASSETS.fetch(new Request(urlString));
+  return res && res.ok ? res : null;
+}
+
+function imageHeaders(res, contentType) {
+  const h = new Headers(res.headers);
+  h.set('Cache-Control', IMG_CACHE_CONTROL);
+  h.set('Vary', 'Accept');
+  if (contentType) h.set('Content-Type', contentType);
+  return h;
+}
+
+// Returns a Response when the image can be optimized, else null so the
+// caller falls through to the normal ASSETS fetch (original file as-is).
+async function serveImage(request, env, ctx) {
+  let url;
+  try {
+    url = new URL(request.url);
+  } catch {
+    return null;
+  }
+  if (!isImagePath(url.pathname)) return null;
+
+  const webp = clientSupportsWebP(request);
+  const snapped = snapWidth(url.searchParams.get('w') ?? url.searchParams.get('width'));
+  const origin = url.origin + url.pathname;
+
+  // On-demand transform when the Images binding exists. Guard caches for
+  // runtimes (node --test) where caches.default is absent.
+  if (env && env.IMAGES && (snapped || webp)) {
+    try {
+      const cache = typeof caches !== 'undefined' ? caches.default : null;
+      if (cache) {
+        const hit = await cache.match(request);
+        if (hit) return hit;
+      }
+      const original = await env.ASSETS.fetch(new Request(origin));
+      if (original && original.ok) {
+        const transformed = await env.IMAGES
+          .input(await original.arrayBuffer())
+          .transform({ width: snapped || 800, fit: 'scale-down', format: 'auto', quality: 85, metadata: 'none' })
+          .output()
+          .response();
+        const res = new Response(transformed.body, {
+          status: 200,
+          headers: imageHeaders(transformed, transformed.headers.get('Content-Type')),
+        });
+        if (cache && ctx && typeof ctx.waitUntil === 'function') {
+          ctx.waitUntil(cache.put(request, res.clone()));
+        }
+        return res;
+      }
+    } catch {
+      // Fall through to the pre-generated static variants below.
+    }
+  }
+
+  if (snapped) {
+    for (const candidate of variantCandidates(url.pathname, snapped, webp)) {
+      const hit = await tryAsset(env, url.origin + candidate);
+      if (hit) {
+        return new Response(hit.body, {
+          status: 200,
+          headers: imageHeaders(hit, candidate.endsWith('.webp') ? 'image/webp' : hit.headers.get('Content-Type')),
+        });
+      }
+    }
+    return null;
+  }
+
+  if (webp && /\.(jpe?g|png)$/i.test(url.pathname)) {
+    const dot = url.pathname.lastIndexOf('.');
+    const candidate = url.pathname.slice(0, dot) + '.webp';
+    const hit = await tryAsset(env, url.origin + candidate);
+    if (hit) {
+      return new Response(hit.body, {
+        status: 200,
+        headers: imageHeaders(hit, 'image/webp'),
+      });
+    }
+  }
+  return null;
+}
+
 // HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
 // HTML_CACHE_CONTROL below), but the asset response carries no validator of
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
@@ -808,6 +945,18 @@ export default {
       }
 
       return htmlResponse;
+    }
+
+    // Image optimization (WebP negotiation + ?w= widths) runs before the
+    // static-asset fetch so /img/* can serve the best pre-generated variant
+    // (or an Images-binding transform). Null falls through to the original.
+    if (request.method === 'GET') {
+      try {
+        const imgRes = await serveImage(request, env, ctx);
+        if (imgRes) return imgRes;
+      } catch {
+        // Never break image delivery for an optimization failure.
+      }
     }
 
     const response = await env.ASSETS.fetch(request);
