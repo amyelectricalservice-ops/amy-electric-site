@@ -1,0 +1,10 @@
+{
+  "name": "amy-electric-site",
+  "private": true,
+  "type": "module",
+  "description": "AMY Electric static site on Cloudflare Workers + Assets. Tooling-only package (cf CLI + Wrangler) for the cf-migrated config; the site itself has no build step.",
+  "devDependencies": {
+    "cf": "^1.0.0-beta.16",
+    "wrangler": "^4.150.0"
+  }
+}
