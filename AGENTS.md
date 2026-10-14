@@ -2,7 +2,7 @@
 
 ## Project
 
-Static HTML marketing site for an LA electrical contractor hosted on Cloudflare Workers + Assets. Pushes to `main` auto-deploy via `.github/workflows/deploy.yml` (schema/sitemap validation, then `wrangler deploy`); Workers Builds is **not** connected. Manual deploy also works with `wrangler deploy --config wrangler.jsonc`. No build system and no package manager, but GitHub Actions runs on every push to `main` (`.github/workflows/audit.yml`): JSON-LD validation via `scripts/schema-tool.py`, CSS/JS build reproducibility, and sitemap integrity.
+Static HTML marketing site for an LA electrical contractor hosted on Cloudflare Workers + Assets. Pushes to `main` auto-deploy via `.github/workflows/deploy.yml` (schema/sitemap validation, then `wrangler deploy`); Workers Builds is connected but non-deploying (green since the 2026-10-14 `open-seo` gitlink fix; empty build/deploy commands, workflow remains the deploy path). Manual deploy also works with `wrangler deploy --config wrangler.jsonc`. No site build step; a tooling-only root `package.json` (private, `cf`+`wrangler` devDeps) supports the `cf`-migrated config (`cloudflare.config.ts`, `wrangler.config.ts` — `wrangler.jsonc` still live). GitHub Actions runs on every push to `main` (`.github/workflows/audit.yml`): JSON-LD validation via `scripts/schema-tool.py`, CSS/JS build reproducibility, and sitemap integrity.
 
 - **Business name**: AMY Electric
 - **License**: C-10 #981578 (verify at [CSLB](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=981578)), EVITP #4051604
