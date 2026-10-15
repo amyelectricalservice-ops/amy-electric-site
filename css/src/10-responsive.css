@@ -20,6 +20,7 @@
   }
   nav.open { display: flex; }
   nav a { width: 100%; }
+  nav.open .nav-book { display: block; color: var(--gold); }
   .hamburger { display: block; }
   .footer-grid { grid-template-columns: 1fr; }
   .trust-bar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }

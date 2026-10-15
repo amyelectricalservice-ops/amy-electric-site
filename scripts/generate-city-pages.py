@@ -64,6 +64,7 @@ nav{{display:flex;align-items:center;gap:4px;flex-wrap:wrap}}
 nav a{{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray);padding:8px 12px;border-radius:var(--radius);transition:color .18s,background .18s;text-decoration:none}}
 nav a:hover,nav a.active{{color:var(--gold);background:rgba(245,166,35,.1)}}
 .nav-cta{{background:var(--gold)!important;color:var(--navy)!important;padding:8px 16px!important;margin-left:8px}}
+.nav-book{{display:none}}
 .hamburger{{display:none;background:none;border:none;cursor:pointer;padding:8px}}
 .hamburger span{{display:block;width:24px;height:24px;background:var(--white);margin:5px 0;transition:.3s}}
 .btn{{display:inline-block;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .12s,box-shadow .18s;text-decoration:none}}
@@ -91,7 +92,7 @@ h2{{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-
 .page-hero h1{{font-family:var(--cond);font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:16px;color:var(--white)}}
 .page-hero p{{font-size:18px;color:rgba(244,241,235,.8);max-width:620px;margin-bottom:28px}}
 @media(max-width:900px){{.hero-inner{{grid-template-columns:1fr}}}}
-@media(max-width:680px){{header{{position:relative}}.header-inner{{flex-wrap:wrap;gap:12px}}nav{{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}}nav.open{{display:flex}}nav a{{width:100%}}.hamburger{{display:block}}}}
+@media(max-width:680px){{header{{position:relative}}.header-inner{{flex-wrap:wrap;gap:12px}}nav{{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}}nav.open{{display:flex}}nav a{{width:100%}}nav.open .nav-book{{display:block;color:var(--gold)}}.hamburger{{display:block}}}}
 .sticky-bar{{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,.2);background:var(--gold)}}
 .sticky-btn{{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 4px;min-height:60px;color:var(--navy);text-decoration:none;font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid rgba(11,22,40,.15)}}
 .sticky-estimate{{background:var(--navy);color:var(--gold)}}
@@ -213,6 +214,7 @@ TEMPLATE_BODY_HEADER = """
       <a href="testimonials">Reviews</a>
       <a href="gallery">Gallery</a>
     <a href="city-los-angeles" class="active">Service Areas</a>
+    <a href="book" class="nav-book">📅 Book Online</a>
     <a href="tel:18183025614" class="nav-cta">Call Now</a>
   </nav>
 </div></header>

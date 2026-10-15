@@ -78,6 +78,9 @@ nav a:hover, nav a.active { color: var(--gold); background: rgba(245,166,35,.1);
   margin-left: 8px;
 }
 .nav-cta:hover { background: var(--gold2) !important; }
+/* Book link: hamburger-menu only (mobile). Desktop already funnels via
+   112 in-content buttons + sticky bar; the desktop nav wraps 3 rows. */
+.nav-book { display: none; }
 
 /* hamburger */
 .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }

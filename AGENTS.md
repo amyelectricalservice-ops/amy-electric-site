@@ -27,6 +27,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 - **Images**: 310 gallery photos × 3 variants (1200w WebP + 1200w JPEG + 400w WebP) in `img/gallery/`; `worker.js serveImage()` negotiates WebP + `?w=` snapping (tests: `test-worker-images.mjs`, 15). IMAGES binding is fallback-only — zero billing path active. AVIF measured and parked (needs subscription or pre-generated variants).
 - **Gallery LCP is done**: position-0 image gets `eager` + `fetchpriority="high"` + preload via `scripts/update-gallery.py` (idempotent — regenerate, don't hand-edit). Lab 80% has zero flagged opportunities; don't trim ItemList JSON-LD (SEO value).
 - **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/` marker) + `generate-city-pages.py` template. Keep in sync; ≤480px stacks, phone link never wraps.
+- **`.nav-book` (hamburger-only "📅 Book Online", 305 pages) follows the same 3-place rule**: `css/src/02-header.css` + `css/src/10-responsive.css` (≤680px `nav.open` gate — desktop nav wraps 3 rows, never show it there), inline `/*nav-book*/` marker, `generate-city-pages.py` template. Anchor goes before `nav-cta` (`book` root, `../book` blog); 4 pages without a nav-cta anchor are out of scope.
 
 ## Content rules
 
