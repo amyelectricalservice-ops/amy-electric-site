@@ -1,5 +1,6 @@
 import { handleLead } from './lead-handler.js';
 import { handleContact } from './contact-handler.js';
+import { handleScheduled as handleGbpScheduled } from './gbp-agent.js';
 
 const oidcDiscovery = (clientId) => ({
   "issuer": "https://amyelectric.com",
@@ -983,5 +984,12 @@ export default {
     }
 
     return response;
+  },
+
+  // GBP auto-posting agent: cron fires daily (see wrangler.jsonc triggers);
+  // gbp-agent.js posts only on every-other-day calendar dates (stateless).
+  // Without GBP_* secrets configured this logs a skip and does nothing.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(handleGbpScheduled(env, new Date(event.scheduledTime)));
   },
 };
