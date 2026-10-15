@@ -1,0 +1,295 @@
+{
+ "20220106": {
+  "category": "new-construction",
+  "caption": "Precast underground electrical vault set in excavation beside new building (work in progress)",
+  "verdict": "keep"
+ },
+ "20220127": {
+  "verdict": "reject",
+  "note": "plumbing valves dominate; foot in frame"
+ },
+ "20220420": {
+  "category": "other",
+  "caption": "Grounding conductor and exothermic weld mold in excavated pit (work in progress)",
+  "verdict": "keep"
+ },
+ "20220506": {
+  "category": "new-construction",
+  "caption": "Underground conduit risers and vault box set in open trench (work in progress)",
+  "verdict": "keep"
+ },
+ "20220527": {
+  "category": "new-construction",
+  "caption": "Underground conduit run set in open trench with pull rope (work in progress)",
+  "verdict": "keep",
+  "note": "-01 dropped (no electrical subject: tape measure + rebar)"
+ },
+ "20220603": {
+  "category": "new-construction",
+  "caption": "Underground conduit stub-up set in formwork over gravel base (work in progress)",
+  "verdict": "keep"
+ },
+ "20220707": {
+  "verdict": "reject",
+  "note": "non-electrical concrete work; worker face visible"
+ },
+ "20220708": {
+  "verdict": "reject",
+  "note": "dirt, safety fence and shadow, no clear electrical scope"
+ },
+ "20220711": {
+  "category": "commercial",
+  "caption": "Eaton multi-meter bank set in opened exterior wall (work in progress)",
+  "verdict": "keep"
+ },
+ "20220722": {
+  "category": "new-construction",
+  "caption": "Conduit runs tied into rebar cage above block wall before pour (work in progress)",
+  "verdict": "keep"
+ },
+ "20220804": {
+  "category": "other",
+  "caption": "Coiled service cable and conductors staged in truck bed (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20220808": {
+  "verdict": "reject",
+  "note": "tangled existing wiring in dark cluttered basement, poor presentation"
+ },
+ "20220809": {
+  "category": "lighting",
+  "caption": "Hanging pendant lights over finished living area (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20220810": {
+  "category": "commercial",
+  "caption": "New conduit stub through block wall in parking garage (work in progress)",
+  "verdict": "keep"
+ },
+ "20220919": {
+  "category": "panel",
+  "caption": "New Siemens meter-main with wired breakers set in opened stucco (work in progress)",
+  "verdict": "keep"
+ },
+ "20220928": {
+  "verdict": "reject",
+  "note": "aged dusty breakers with hand-marked cover, poor presentation"
+ },
+ "20220929": {
+  "verdict": "reject",
+  "note": "concrete and site work dominate; minimal electrical"
+ },
+ "20230130": {
+  "category": "commercial",
+  "caption": "Multi-unit Siemens meter bank with main disconnect (detailed installation view)",
+  "verdict": "keep-partial",
+  "note": "DROPPED photo-20230130-01-v2 (=160020256.jpg): confirmed readable street address '12301 Magnolia' on disconnect label; kept -02/-03-v2"
+ },
+ "20230215": {
+  "category": "other",
+  "caption": "Exothermic weld firing on grounding conductors in trench (work in progress)",
+  "verdict": "keep"
+ },
+ "20230710": {
+  "category": "commercial",
+  "caption": "Padmount switchgear and service cabinets set at new apartment building (work in progress)",
+  "verdict": "keep"
+ },
+ "20230926": {
+  "category": "lighting",
+  "caption": "Landscape lights wired along house exterior near meter (work in progress)",
+  "verdict": "keep",
+  "note": "-01 dropped (non-electrical curb photo + visible house number 57)"
+ },
+ "20230929": {
+  "category": "other",
+  "caption": "In-wall cable splice with connector inside opened insulated cavity (work in progress)",
+  "verdict": "keep"
+ },
+ "20231010": {
+  "category": "panel",
+  "caption": "Siemens panel interior with breakers and surge device (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20231019": {
+  "category": "lighting",
+  "caption": "Exterior security lights mounted under eaves with ladders in place (work in progress)",
+  "verdict": "keep"
+ },
+ "20231110": {
+  "verdict": "reject",
+  "note": "equipment nameplate only; no visible install work"
+ },
+ "20240205": {
+  "category": "exterior",
+  "caption": "Surface-mounted conduit run between exterior boxes on stucco (work in progress)",
+  "verdict": "keep"
+ },
+ "20240322": {
+  "category": "new-construction",
+  "caption": "Ceiling joists with routed branch circuits during remodel rough-in (work in progress)",
+  "verdict": "keep"
+ },
+ "20240325": {
+  "category": "new-construction",
+  "caption": "Old wiring and junction box exposed in opened wall framing (work in progress)",
+  "verdict": "keep"
+ },
+ "20240504": {
+  "category": "panel",
+  "caption": "New meter socket with riser conduit mounted on stucco exterior (work in progress)",
+  "verdict": "keep",
+  "note": "-01 kept with bottom-band custom crop"
+ },
+ "20240630": {
+  "category": "lighting",
+  "caption": "New recessed ceiling lights in vaulted living room with fireplace (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20240710": {
+  "category": "new-construction",
+  "caption": "Branch circuits routed through open framing above stairwell remodel (work in progress)",
+  "verdict": "keep"
+ },
+ "20240919": {
+  "category": "exterior",
+  "caption": "Overhead service riser and meter equipment on brick exterior (work in progress)",
+  "verdict": "keep"
+ },
+ "20241210": {
+  "category": "commercial",
+  "caption": "Existing eight-meter bank with overhead wiring in enclosure (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20250508": {
+  "verdict": "reject",
+  "note": "layout tape marks with minimal electrical content"
+ },
+ "20250822": {
+  "verdict": "reject",
+  "note": "deteriorated open meter bank, before-condition only"
+ },
+ "20260111": {
+  "category": "lighting",
+  "caption": "Stair LED strip lighting being installed along steps (work in progress)",
+  "verdict": "keep"
+ },
+ "20220128": {
+  "category": "team",
+  "caption": "Technician wiring a panel beneath overhead conduit runs and meter equipment (work in progress)",
+  "verdict": "keep"
+ },
+ "20240305": {
+  "category": "other",
+  "caption": "Open device boxes with pulled conductors during interior wiring (work in progress)",
+  "verdict": "keep"
+ },
+ "20260202": {
+  "verdict": "keep-partial",
+  "note": "kept -01 (materials) + -02 (panel interior); dropped -03/-04 as near-duplicates",
+  "city": "Winnetka"
+ },
+ "20260203": {
+  "verdict": "keep",
+  "note": "all 4 kept; -03 meter face partially readable, verify",
+  "city": "Winnetka"
+ },
+ "20260209": {
+  "verdict": "keep",
+  "city": "Winnetka"
+ },
+ "20260212": {
+  "category": "commercial",
+  "caption": "Existing multi-meter bank with disconnects before service work (detailed installation view)",
+  "verdict": "keep",
+  "note": "-01 kept with corrected panel caption; -03 dropped (tape-measure doc shot)"
+ },
+ "20260306": {
+  "category": "other",
+  "caption": "Steam unit control wiring serviced in confined joist space (work in progress)",
+  "verdict": "keep",
+  "note": "-01 kept with corrected FPE panel caption; -02 dropped (handwritten name-like tag)"
+ },
+ "20260310": {
+  "category": "exterior",
+  "caption": "Outdoor disconnect and conduit run across concrete pad (work in progress)",
+  "verdict": "keep",
+  "note": "-01/-03 kept with corrected steam-unit captions"
+ },
+ "20260327": {
+  "verdict": "reject",
+  "note": "near-duplicate of photo-20260310-01"
+ },
+ "20260408": {
+  "category": "panel",
+  "caption": "New meter-main enclosure with underground conduit on stucco wall (work in progress)",
+  "verdict": "keep"
+ },
+ "20260415": {
+  "category": "commercial",
+  "caption": "Bank of breaker panels with EMT conduit runs in concrete utility room (work in progress)",
+  "verdict": "keep",
+  "note": "-02 kept with corrected grounding-busbar caption"
+ },
+ "20260423": {
+  "category": "commercial",
+  "caption": "Ceiling-mounted EV charger with conduit run in parking garage (detailed installation view)",
+  "verdict": "keep"
+ },
+ "20260429": {
+  "verdict": "reject",
+  "note": "plumbing and excavation dominate"
+ },
+ "20260611": {
+  "category": "commercial",
+  "caption": "Low-voltage and telecom control board with organized wiring runs (detailed installation view)",
+  "verdict": "keep",
+  "note": "-04 kept with corrected panelboard caption + custom crop"
+ },
+ "20260708": {
+  "verdict": "reject",
+  "note": "no visible electrical work"
+ },
+ "20260709": {
+  "verdict": "reject",
+  "note": "nameplate close-up only"
+ },
+ "20260724": {
+  "verdict": "reject",
+  "note": "remodel room dominates"
+ },
+ "20260727": {
+  "category": "exterior",
+  "caption": "Exterior conduit runs and junction boxes along stucco wall (work in progress)",
+  "verdict": "keep",
+  "note": "-01 kept with top-band custom crop"
+ },
+ "20260810": {
+  "category": "exterior",
+  "caption": "Tesla wall connector installed beside utility meter on stucco wall (detailed installation view)",
+  "verdict": "keep",
+  "note": "-04 dropped (weak/redundant, -01 Tesla connector kept)"
+ },
+ "20260821": {
+  "verdict": "reject",
+  "note": "aged rusted gear only"
+ },
+ "20260825": {
+  "category": "commercial",
+  "caption": "Multi-unit meter bank with disconnects and labeled meters (detailed installation view)",
+  "verdict": "keep",
+  "note": "-04 kept with corrected spec-label caption"
+ },
+ "20260903": {
+  "category": "new-construction",
+  "caption": "Recessed lighting and circuit rough-in across open ceiling framing (work in progress)",
+  "verdict": "keep",
+  "note": "-04 kept with top-band custom crop"
+ },
+ "20260904": {
+  "category": "panel",
+  "caption": "Meter and breaker panel with labeled circuits on stucco wall (detailed installation view)",
+  "verdict": "keep",
+  "note": "readable meter serial AND9-1684898, verify before publish"
+ }
+}
