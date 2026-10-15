@@ -47,7 +47,7 @@ Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: ma
 
 ## Remaining work (owner-sized; code side is shipped)
 
-- [ ] **GBP weekly posts** (highest ROI): `gbp-posting-calendar.md` — 30 Wednesdays from 2026-10-21, copy-paste from `gbp-posts-document.txt`. ~5 min/week, no agent needed.
+- [ ] **GBP posts, every other day** (highest ROI): `gbp-posting-calendar.md` — 30 posts, 2026-10-21→2026-12-18, copy-paste from `gbp-posts-document.txt`. ~5 min each, no agent needed.
 - [ ] **Hero photo**: replace "LA CITY ELECTRIC" shirt with a real AMY tech shot; agent swaps via photo pipeline when supplied.
 - [ ] **PageSpeed field check**: run pagespeed.web.dev on homepage, compare CrUX LCP/INP/CLS to targets (<2.5s / <200ms / <0.1 / 90+ mobile).
 - [ ] **Phase 3 — `/book` page**: SHIPPED 2026-10-14 with open-source booking (flatpickr 4.6.13 MIT date picker + `js/book.js` slot widget posting `request_type: booking-request` to `/api/contact`; slots are REQUESTS confirmed by text — no double-booking protection, never promise guaranteed booking). 112 "📅 Book Online" buttons repointed `index#estimator` → `book`; 203 sticky-bar Estimate buttons repointed (`index#estimate` → `book`, `../index#estimate` → `../book`; same-page `#estimate` anchors and `#estimator` widget links left alone). Possible follow-up: nav-menu + sticky-bar "Book" placement (visual call, held).
