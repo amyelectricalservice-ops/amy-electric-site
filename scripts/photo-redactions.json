@@ -64,5 +64,16 @@
       495,
       610
     ]
-  ]
+  ],
+  "gallery-meter-panel-solar": {
+    "action": "blackout",
+    "boxes": [
+      [
+        320,
+        0,
+        680,
+        300
+      ]
+    ]
+  }
 }

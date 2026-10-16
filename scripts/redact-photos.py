@@ -34,17 +34,26 @@ def main():
     import json
     with open(REDACTIONS_PATH) as f:
         raw = json.load(f)
-    redactions = {slug: [tuple(b) for b in boxes] for slug, boxes in raw.items()}
+    redactions = {}
+    for slug, entry in raw.items():
+        # New form: {"action": "blackout"|"blur", "boxes": [[x1,y1,x2,y2], ...]}.
+        # Legacy form: bare [[...], ...] list — action inferred as before.
+        if isinstance(entry, dict):
+            redactions[slug] = (entry.get('action', 'blur'),
+                                [tuple(b) for b in entry.get('boxes', [])])
+        else:
+            legacy_text = "steel-stud" in slug
+            redactions[slug] = ('blackout' if legacy_text else 'blur',
+                                [tuple(b) for b in entry])
 
-    for slug, boxes in redactions.items():
+    for slug, (action, boxes) in redactions.items():
         src_1200 = OUT / f"{slug}-1200w.jpg"
         if not src_1200.exists():
             print(f"SKIP: {src_1200} not found")
             continue
 
-        is_text = "steel-stud" in slug
-        action = "Redacting text" if is_text else "Blurring faces"
-        print(f"{action}: {slug}")
+        is_text = action == 'blackout'
+        print(f"{'Redacting text' if is_text else 'Blurring faces'}: {slug}")
 
         with Image.open(src_1200) as im:
             im = im.convert("RGB")
