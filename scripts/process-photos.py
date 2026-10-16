@@ -21,8 +21,8 @@ from pathlib import Path
 
 from PIL import Image, ImageOps
 
-SRC = Path("/home/amram/Pictures/Electric Work")
-OUT = Path("/home/amram/WEBSITE/img/gallery")
+SRC = Path(os.environ.get("PHOTOS_SRC", "/home/amram/Pictures/Electric Work"))
+OUT = Path(os.environ.get("GALLERY_OUT", Path(__file__).parent.parent / "img" / "gallery"))
 MANIFEST = Path(__file__).parent / "photo-manifest.csv"
 QUALITY = 75
 QUALITY_MID = 72
