@@ -72,8 +72,8 @@
   "verdict": "keep"
  },
  "20220928": {
-  "verdict": "reject",
-  "note": "aged dusty breakers with hand-marked cover, poor presentation"
+  "verdict": "keep",
+  "note": "UL cert serial only - clear as-is"
  },
  "20220929": {
   "verdict": "reject",
@@ -83,7 +83,7 @@
   "category": "commercial",
   "caption": "Multi-unit Siemens meter bank with main disconnect (detailed installation view)",
   "verdict": "keep-partial",
-  "note": "DROPPED photo-20230130-01-v2 (=160020256.jpg): confirmed readable street address '12301 Magnolia' on disconnect label; kept -02/-03-v2"
+  "note": "DROPPED photo-20230130-01-v2 (=160020256.jpg): confirmed readable street address '12301 Magnolia' on disconnect label; kept -02/-03-v2 | keep BUT re-flagged street address on label - VERIFY (was dropped before) | -01-v2 dropped again on re-import (same Magnolia label)"
  },
  "20230215": {
   "category": "other",
@@ -271,8 +271,8 @@
   "note": "-04 dropped (weak/redundant, -01 Tesla connector kept)"
  },
  "20260821": {
-  "verdict": "reject",
-  "note": "aged rusted gear only"
+  "verdict": "keep",
+  "note": "meter dials weathered/unreadable - clear as-is"
  },
  "20260825": {
   "category": "commercial",
@@ -291,5 +291,34 @@
   "caption": "Meter and breaker panel with labeled circuits on stucco wall (detailed installation view)",
   "verdict": "keep",
   "note": "readable meter serial AND9-1684898, verify before publish"
+ },
+ "20260424": {
+  "verdict": "keep-partial",
+  "note": "DROPPED -01 (towing sign w/ business name+phone); kept -02 (clean) + -03 (verified clean)"
+ },
+ "20250611": {
+  "verdict": "keep",
+  "note": "all 4 draft rows verified clean (no plates; flagged plate was in non-draft file)"
+ },
+ "20260325": {
+  "verdict": "reject",
+  "note": "DROPPED all rows: confirmed readable street address '5147-49 N. Bakman Ave, N. Hollywood CA' on switchgear label"
+ },
+ "20260422": {
+  "verdict": "keep-partial",
+  "note": "DROPPED -01 (handwritten name-like tag); kept -02 (verified clean wide shot)"
+ },
+ "promo-batch-20261015": {
+  "slugs": [
+   "photo-20260417-01",
+   "photo-20260622-01",
+   "photo-20260424-02",
+   "photo-20260701-01",
+   "photo-20260702-01",
+   "photo-20261002-01",
+   "photo-20260910-01",
+   "photo-20260630-01"
+  ],
+  "note": "3 EV chargers + 2 chandeliers + 3 200A panels; all crop-verified; no plates/addresses/serials (plate hunt negative, rears out of frame)"
  }
 }

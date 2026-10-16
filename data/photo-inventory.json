@@ -1,5 +1,5 @@
 {
- "total": 1928,
+ "total": 2067,
  "manifest_entries": 366,
  "records": [
   {
@@ -120,11 +120,7 @@
    "year": "2023",
    "bytes": 3928309,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231102-01"
+   "junk": false
   },
   {
    "path": "organized/20200407/IMG_20200407_101034_MP.jpg",
@@ -174,11 +170,7 @@
    "year": "2022",
    "bytes": 775790,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Glendale",
-   "slug": "gallery-panel-drywall-install"
+   "junk": false
   },
   {
    "path": "organized/20220819/PXL_20220819_195407519.MP.jpg",
@@ -208,11 +200,7 @@
    "year": "2023",
    "bytes": 3438287,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231004-01"
+   "junk": false
   },
   {
    "path": "organized/20231004/IMG_20231004_143011173.jpg",
@@ -222,11 +210,7 @@
    "year": "2023",
    "bytes": 3030940,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231004-02"
+   "junk": false
   },
   {
    "path": "organized/20231004/IMG_20231004_143005845.jpg",
@@ -236,11 +220,7 @@
    "year": "2023",
    "bytes": 3478964,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231004-03"
+   "junk": false
   },
   {
    "path": "organized/20250207/IMG_20250207_121034956.jpg",
@@ -250,11 +230,7 @@
    "year": "2025",
    "bytes": 1790739,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20250207-02"
+   "junk": false
   },
   {
    "path": "organized/20250207/IMG_20250207_121040869.jpg",
@@ -264,11 +240,7 @@
    "year": "2025",
    "bytes": 1887506,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20250207-01"
+   "junk": false
   },
   {
    "path": "organized/20240723/IMG_20240723_103540100_HDR.jpg",
@@ -278,11 +250,7 @@
    "year": "2024",
    "bytes": 2706723,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20240723-01"
+   "junk": false
   },
   {
    "path": "organized/20190828/IMG_20190828_135426703_HDR.jpg",
@@ -315,6 +283,56 @@
    "junk": false
   },
   {
+   "path": "organized/20260325/IMG_20260325_095052649.jpg",
+   "name": "IMG_20260325_095052649.jpg",
+   "folder": "20260325",
+   "date": "2026-03-25",
+   "year": "2026",
+   "bytes": 3103063,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260325/IMG_20260325_095100109.jpg",
+   "name": "IMG_20260325_095100109.jpg",
+   "folder": "20260325",
+   "date": "2026-03-25",
+   "year": "2026",
+   "bytes": 2834003,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260325/IMG_20260325_092726532.jpg",
+   "name": "IMG_20260325_092726532.jpg",
+   "folder": "20260325",
+   "date": "2026-03-25",
+   "year": "2026",
+   "bytes": 2476439,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260325/IMG_20260325_095042830.jpg",
+   "name": "IMG_20260325_095042830.jpg",
+   "folder": "20260325",
+   "date": "2026-03-25",
+   "year": "2026",
+   "bytes": 1888761,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260325/IMG_20260325_095040811.jpg",
+   "name": "IMG_20260325_095040811.jpg",
+   "folder": "20260325",
+   "date": "2026-03-25",
+   "year": "2026",
+   "bytes": 1873267,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20230103/PXL_20230103_160830153.jpg",
    "name": "PXL_20230103_160830153.jpg",
    "folder": "20230103",
@@ -322,11 +340,7 @@
    "year": "2023",
    "bytes": 1822465,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 with panel and wiring detail (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-switchgear-200a"
+   "junk": false
   },
   {
    "path": "organized/20230103/PXL_20230103_160837012.jpg",
@@ -336,11 +350,7 @@
    "year": "2023",
    "bytes": 1724500,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230103-01"
+   "junk": false
   },
   {
    "path": "organized/20200804/IMG_20200804_090903.jpg",
@@ -470,11 +480,7 @@
    "year": "2025",
    "bytes": 2826114,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250528-03"
+   "junk": false
   },
   {
    "path": "organized/20250528/IMG_20250528_080704386.jpg",
@@ -484,11 +490,7 @@
    "year": "2025",
    "bytes": 2863222,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Indoor electrical installation with metal components \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250528-02"
+   "junk": false
   },
   {
    "path": "organized/20250528/IMG_20250528_080712624.jpg",
@@ -498,11 +500,7 @@
    "year": "2025",
    "bytes": 3118998,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20250528-01"
+   "junk": false
   },
   {
    "path": "organized/20190520/IMG_20190520_124912109.jpg",
@@ -605,6 +603,16 @@
    "junk": false
   },
   {
+   "path": "organized/20260702/IMG_20260702_091931391.jpg",
+   "name": "IMG_20260702_091931391.jpg",
+   "folder": "20260702",
+   "date": "2026-07-02",
+   "year": "2026",
+   "bytes": 2248796,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20230929/IMG_20230929_112130560.jpg",
    "name": "IMG_20230929_112130560.jpg",
    "folder": "20230929",
@@ -612,11 +620,7 @@
    "year": "2023",
    "bytes": 3271958,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20230929-01"
+   "junk": false
   },
   {
    "path": "organized/20230929/IMG_20230929_112139766_HDR.jpg",
@@ -626,11 +630,7 @@
    "year": "2023",
    "bytes": 3672314,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230929-03"
+   "junk": false
   },
   {
    "path": "organized/20230929/IMG_20230929_103413075_HDR.jpg",
@@ -640,11 +640,7 @@
    "year": "2023",
    "bytes": 2440887,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20230929-04"
+   "junk": false
   },
   {
    "path": "organized/20230929/IMG_20230929_112126167.jpg",
@@ -654,11 +650,7 @@
    "year": "2023",
    "bytes": 3549578,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20230929-02"
+   "junk": false
   },
   {
    "path": "organized/20230929/IMG_20230929_103359936_HDR.jpg",
@@ -668,11 +660,7 @@
    "year": "2023",
    "bytes": 2308319,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "In-wall cable splice with connector inside opened insulated cavity (work in progress)",
-   "city": "",
-   "slug": "photo-20230929-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20171108/20171108_141117.jpg",
@@ -792,11 +780,7 @@
    "year": "2022",
    "bytes": 2898015,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220127-02"
+   "junk": false
   },
   {
    "path": "organized/20220127/PXL_20220127_223404302.jpg",
@@ -816,11 +800,7 @@
    "year": "2022",
    "bytes": 2395561,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220127-04"
+   "junk": false
   },
   {
    "path": "organized/20220127/PXL_20220127_223503154.jpg",
@@ -830,11 +810,7 @@
    "year": "2022",
    "bytes": 2833854,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220127-01"
+   "junk": false
   },
   {
    "path": "organized/20220127/PXL_20220127_223358531.jpg",
@@ -844,11 +820,7 @@
    "year": "2022",
    "bytes": 2740900,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220127-03"
+   "junk": false
   },
   {
    "path": "organized/20220127/PXL_20220127_182456344.jpg",
@@ -858,11 +830,7 @@
    "year": "2022",
    "bytes": 2729651,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Burbank",
-   "slug": "gallery-panel-meter-removal"
+   "junk": false
   },
   {
    "path": "organized/20220127/PXL_20220127_223444833.MP.jpg",
@@ -902,11 +870,7 @@
    "year": "2023",
    "bytes": 1779919,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-equipment-pipe-threader"
+   "junk": false
   },
   {
    "path": "organized/20250316/IMG_20250316_103137701_HDR.jpg",
@@ -916,11 +880,7 @@
    "year": "2025",
    "bytes": 3425487,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20250316-01"
+   "junk": false
   },
   {
    "path": "organized/20250316/IMG-20250316-WA0004.jpeg",
@@ -933,6 +893,76 @@
    "junk": true
   },
   {
+   "path": "organized/20260930/IMG_20260930_094255290.jpg",
+   "name": "IMG_20260930_094255290.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 2208112,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_135054928.jpg",
+   "name": "IMG_20260930_135054928.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 5088244,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_094525249_HDR.jpg",
+   "name": "IMG_20260930_094525249_HDR.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 2667889,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_135042937.jpg",
+   "name": "IMG_20260930_135042937.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 3112522,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_094241355_HDR.jpg",
+   "name": "IMG_20260930_094241355_HDR.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 3067665,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_135036828.jpg",
+   "name": "IMG_20260930_135036828.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 2241617,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260930/IMG_20260930_094544424.jpg",
+   "name": "IMG_20260930_094544424.jpg",
+   "folder": "20260930",
+   "date": "2026-09-30",
+   "year": "2026",
+   "bytes": 1880823,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20221108/PXL_20221108_161141773.jpg",
    "name": "PXL_20221108_161141773.jpg",
    "folder": "20221108",
@@ -940,11 +970,7 @@
    "year": "2022",
    "bytes": 1326598,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20221108-02"
+   "junk": false
   },
   {
    "path": "organized/20221108/PXL_20221108_162215677.MP.jpg",
@@ -964,11 +990,7 @@
    "year": "2022",
    "bytes": 1361787,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20221108-01"
+   "junk": false
   },
   {
    "path": "organized/20221108/PXL_20221108_162217425.MP.jpg",
@@ -988,11 +1010,7 @@
    "year": "2023",
    "bytes": 1811569,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230130-04"
+   "junk": false
   },
   {
    "path": "organized/20230130/PXL_20230130_160003939.jpg",
@@ -1002,11 +1020,7 @@
    "year": "2023",
    "bytes": 529487,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-panel-commercial-disconnect"
+   "junk": false
   },
   {
    "path": "organized/20230130/PXL_20230130_160033585.jpg",
@@ -1036,11 +1050,7 @@
    "year": "2023",
    "bytes": 2364139,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230130-02"
+   "junk": false
   },
   {
    "path": "organized/20230130/PXL_20230130_160107892.jpg",
@@ -1050,11 +1060,7 @@
    "year": "2023",
    "bytes": 1511561,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230130-01"
+   "junk": false
   },
   {
    "path": "organized/20230130/PXL_20230130_160008582.jpg",
@@ -1074,11 +1080,7 @@
    "year": "2023",
    "bytes": 1987564,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230130-03"
+   "junk": false
   },
   {
    "path": "organized/20201117/PXL_20201117_230715919.jpg",
@@ -1128,11 +1130,7 @@
    "year": "2025",
    "bytes": 2917804,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20251211-01"
+   "junk": false
   },
   {
    "path": "organized/20251211/IMG_20251211_134152187_HDR.jpg",
@@ -1142,11 +1140,7 @@
    "year": "2025",
    "bytes": 2236196,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20251211-04"
+   "junk": false
   },
   {
    "path": "organized/20251211/IMG_20251211_134203178.jpg",
@@ -1156,11 +1150,7 @@
    "year": "2025",
    "bytes": 3560428,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20251211-02"
+   "junk": false
   },
   {
    "path": "organized/20251211/IMG_20251211_134142505.jpg",
@@ -1170,11 +1160,7 @@
    "year": "2025",
    "bytes": 3629019,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20251211-03"
+   "junk": false
   },
   {
    "path": "organized/20200206/IMG_20200206_084325.jpg",
@@ -1384,11 +1370,7 @@
    "year": "2023",
    "bytes": 4026849,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20231019-01"
+   "junk": false
   },
   {
    "path": "organized/20231019/IMG_20231019_094603324.jpg",
@@ -1398,11 +1380,7 @@
    "year": "2023",
    "bytes": 3481232,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231019-03"
+   "junk": false
   },
   {
    "path": "organized/20231019/IMG_20231019_094606946.jpg",
@@ -1412,11 +1390,7 @@
    "year": "2023",
    "bytes": 3807592,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231019-02"
+   "junk": false
   },
   {
    "path": "organized/20231019/IMG_20231019_075227346.jpg",
@@ -1436,11 +1410,7 @@
    "year": "2023",
    "bytes": 3381416,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Exterior security lights mounted under eaves with ladders in place (work in progress)",
-   "city": "",
-   "slug": "photo-20231019-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20231019/IMG_20231019_075234444.jpg",
@@ -1450,11 +1420,7 @@
    "year": "2023",
    "bytes": 3086921,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop (work in progress)",
-   "city": "",
-   "slug": "photo-20231019-04"
+   "junk": false
   },
   {
    "path": "organized/20190528/IMG_20190528_130342996.jpg",
@@ -1484,11 +1450,7 @@
    "year": "2022",
    "bytes": 895222,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220920-02"
+   "junk": false
   },
   {
    "path": "organized/20220920/PXL_20220920_165139392.jpg",
@@ -1498,11 +1460,37 @@
    "year": "2022",
    "bytes": 1306088,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220920-01"
+   "junk": false
+  },
+  {
+   "path": "organized/20260605/IMG_20260605_112753602.jpg",
+   "name": "IMG_20260605_112753602.jpg",
+   "folder": "20260605",
+   "date": "2026-06-05",
+   "year": "2026",
+   "bytes": 5526564,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260605/IMG_20260605_112635852.jpg",
+   "name": "IMG_20260605_112635852.jpg",
+   "folder": "20260605",
+   "date": "2026-06-05",
+   "year": "2026",
+   "bytes": 5221871,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260605/IMG_20260605_141244029.jpg",
+   "name": "IMG_20260605_141244029.jpg",
+   "folder": "20260605",
+   "date": "2026-06-05",
+   "year": "2026",
+   "bytes": 1703932,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20231012/IMG_20231012_092724159_HDR.jpg",
@@ -1512,11 +1500,7 @@
    "year": "2023",
    "bytes": 2121982,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20231012-01"
+   "junk": false
   },
   {
    "path": "organized/20201218/PXL_20201218_175612137.jpg",
@@ -1596,11 +1580,7 @@
    "year": "2022",
    "bytes": 631675,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20221227-01"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_211711782.jpg",
@@ -1620,11 +1600,7 @@
    "year": "2022",
    "bytes": 1041204,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220711-03"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_215314908.jpg",
@@ -1634,11 +1610,7 @@
    "year": "2022",
    "bytes": 912073,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Eaton multi-meter bank set in opened exterior wall (work in progress)",
-   "city": "",
-   "slug": "photo-20220711-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_215312779.jpg",
@@ -1648,11 +1620,7 @@
    "year": "2022",
    "bytes": 1973320,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220711-01"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_215303301.MP.jpg",
@@ -1682,11 +1650,7 @@
    "year": "2022",
    "bytes": 1004072,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220711-04"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_215306882.jpg",
@@ -1696,11 +1660,7 @@
    "year": "2022",
    "bytes": 1164160,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220711-02"
+   "junk": false
   },
   {
    "path": "organized/20220711/PXL_20220711_215310410.MP.jpg",
@@ -1730,11 +1690,7 @@
    "year": "2025",
    "bytes": 2904600,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20250822-01"
+   "junk": false
   },
   {
    "path": "organized/20250822/IMG_20250822_110610330.jpg",
@@ -1744,11 +1700,7 @@
    "year": "2025",
    "bytes": 4167342,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20250822-04"
+   "junk": false
   },
   {
    "path": "organized/20250822/IMG_20250822_110605438.jpg",
@@ -1788,11 +1740,7 @@
    "year": "2025",
    "bytes": 2952656,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Indoor electrical installation with metal components \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20250822-02"
+   "junk": false
   },
   {
    "path": "organized/20250822/IMG_20250822_105752325.jpg",
@@ -1822,11 +1770,7 @@
    "year": "2025",
    "bytes": 3029660,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250822-03"
+   "junk": false
   },
   {
    "path": "organized/20250822/IMG_20250822_105745547.jpg",
@@ -1916,11 +1860,7 @@
    "year": "2022",
    "bytes": 2785807,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220527-04"
+   "junk": false
   },
   {
    "path": "organized/20220527/PXL_20220527_173649896.jpg",
@@ -1970,11 +1910,7 @@
    "year": "2022",
    "bytes": 2301486,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220527-02"
+   "junk": false
   },
   {
    "path": "organized/20220527/PXL_20220527_173647647.jpg",
@@ -2004,11 +1940,7 @@
    "year": "2022",
    "bytes": 3118022,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220527-01"
+   "junk": false
   },
   {
    "path": "organized/20220527/PXL_20220527_174456132.jpg",
@@ -2038,11 +1970,7 @@
    "year": "2022",
    "bytes": 2981813,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220527-03"
+   "junk": false
   },
   {
    "path": "organized/20220527/PXL_20220527_145909608.jpg",
@@ -2102,11 +2030,7 @@
    "year": "2022",
    "bytes": 760879,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220905-01"
+   "junk": false
   },
   {
    "path": "organized/20180131/IMG_20180131_094018235.jpg",
@@ -2189,6 +2113,16 @@
    "junk": false
   },
   {
+   "path": "organized/20260630/IMG_20260630_132649650.jpg",
+   "name": "IMG_20260630_132649650.jpg",
+   "folder": "20260630",
+   "date": "2026-06-30",
+   "year": "2026",
+   "bytes": 2797401,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20220919/PXL_20220919_213908655.jpg",
    "name": "PXL_20220919_213908655.jpg",
    "folder": "20220919",
@@ -2196,11 +2130,7 @@
    "year": "2022",
    "bytes": 2427003,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220919-02"
+   "junk": false
   },
   {
    "path": "organized/20220919/PXL_20220919_190733839.MP.jpg",
@@ -2220,11 +2150,7 @@
    "year": "2022",
    "bytes": 3044201,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220919-03"
+   "junk": false
   },
   {
    "path": "organized/20220919/PXL_20220919_190737801.jpg",
@@ -2234,11 +2160,7 @@
    "year": "2022",
    "bytes": 3205036,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New Siemens meter-main with wired breakers set in opened stucco (work in progress)",
-   "city": "",
-   "slug": "photo-20220919-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220919/PXL_20220919_150120802.MP.jpg",
@@ -2278,11 +2200,7 @@
    "year": "2022",
    "bytes": 3143513,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220919-01"
+   "junk": false
   },
   {
    "path": "organized/20220919/PXL_20220919_192349350.jpg",
@@ -2292,11 +2210,7 @@
    "year": "2022",
    "bytes": 3266149,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-panel-siemens-stucco"
+   "junk": false
   },
   {
    "path": "organized/20220919/PXL_20220919_192351037.jpg",
@@ -2306,11 +2220,7 @@
    "year": "2022",
    "bytes": 3201749,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220919-04"
+   "junk": false
   },
   {
    "path": "organized/20230706/PXL_20230706_153500604.jpg",
@@ -2320,11 +2230,7 @@
    "year": "2023",
    "bytes": 2305468,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Outdoor electrical work against sky and landscaping \u2014 with landscaping around equipment (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230706-03"
+   "junk": false
   },
   {
    "path": "organized/20230706/PXL_20230706_153455218.jpg",
@@ -2334,11 +2240,7 @@
    "year": "2023",
    "bytes": 2570511,
    "processed": true,
-   "junk": false,
-   "category": "lifestyle",
-   "caption": "Electrical system with metal enclosures \u2014 with conduit and raceway runs (detailed installation view)",
-   "city": "Hollywood Hills",
-   "slug": "gallery-lifestyle-home-pool"
+   "junk": false
   },
   {
    "path": "organized/20230706/PXL_20230706_153514059.jpg",
@@ -2348,11 +2250,7 @@
    "year": "2023",
    "bytes": 2202996,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Outdoor electrical work against sky and landscaping \u2014 with landscaping around equipment (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230706-02"
+   "junk": false
   },
   {
    "path": "organized/20230706/PXL_20230706_153531455.MP.jpg",
@@ -2372,11 +2270,7 @@
    "year": "2023",
    "bytes": 2895365,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Outdoor electrical work against sky and landscaping \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20230706-01"
+   "junk": false
   },
   {
    "path": "organized/20230906/PXL_20230906_184204411.jpg",
@@ -2386,11 +2280,7 @@
    "year": "2023",
    "bytes": 1482405,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230906-01"
+   "junk": false
   },
   {
    "path": "organized/20230906/PXL_20230906_184217273.jpg",
@@ -2400,11 +2290,7 @@
    "year": "2023",
    "bytes": 1465002,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230906-03"
+   "junk": false
   },
   {
    "path": "organized/20230906/PXL_20230906_184220119.jpg",
@@ -2414,11 +2300,7 @@
    "year": "2023",
    "bytes": 1475497,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230906-02"
+   "junk": false
   },
   {
    "path": "organized/20230906/PXL_20230906_184200892.jpg",
@@ -2428,11 +2310,7 @@
    "year": "2023",
    "bytes": 715281,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230906-04"
+   "junk": false
   },
   {
    "path": "organized/20251217/IMG_20251217_080042210.jpg",
@@ -2442,11 +2320,7 @@
    "year": "2025",
    "bytes": 3147820,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20251217-02"
+   "junk": false
   },
   {
    "path": "organized/20251217/IMG_20251217_080059365.jpg",
@@ -2456,11 +2330,7 @@
    "year": "2025",
    "bytes": 2534249,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20251217-01"
+   "junk": false
   },
   {
    "path": "organized/20251217/IMG_20251217_080035401.jpg",
@@ -2470,11 +2340,7 @@
    "year": "2025",
    "bytes": 3608214,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20251217-03"
+   "junk": false
   },
   {
    "path": "organized/20200110/IMG_20200110_091140.jpg",
@@ -2934,11 +2800,7 @@
    "year": "2022",
    "bytes": 3047517,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220708-01"
+   "junk": false
   },
   {
    "path": "organized/20220708/PXL_20220708_190522142.MP.jpg",
@@ -2958,11 +2820,7 @@
    "year": "2022",
    "bytes": 3753453,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220708-04"
+   "junk": false
   },
   {
    "path": "organized/20220708/PXL_20220708_141155846.jpg",
@@ -3102,11 +2960,7 @@
    "year": "2022",
    "bytes": 2972954,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220708-03"
+   "junk": false
   },
   {
    "path": "organized/20220708/PXL_20220708_235938059.MP.jpg",
@@ -3216,11 +3070,7 @@
    "year": "2022",
    "bytes": 3335698,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220708-02"
+   "junk": false
   },
   {
    "path": "organized/20220708/PXL_20220708_003116249.jpg",
@@ -3620,11 +3470,7 @@
    "year": "2025",
    "bytes": 3432892,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20250527-03"
+   "junk": false
   },
   {
    "path": "organized/20250527/IMG_20250527_115929447.jpg",
@@ -3634,11 +3480,7 @@
    "year": "2025",
    "bytes": 2892752,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20250527-01"
+   "junk": false
   },
   {
    "path": "organized/20250527/IMG_20250527_111653783.jpg",
@@ -3648,11 +3490,7 @@
    "year": "2025",
    "bytes": 2817276,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250527-02"
+   "junk": false
   },
   {
    "path": "organized/20250527/IMG_20250527_111623806_BURST000_COVER.jpg",
@@ -3682,11 +3520,7 @@
    "year": "2025",
    "bytes": 2747334,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20250527-04"
+   "junk": false
   },
   {
    "path": "organized/20220804/PXL_20220804_165534071.jpg",
@@ -3696,11 +3530,7 @@
    "year": "2022",
    "bytes": 1370489,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Coiled service cable and conductors staged in truck bed (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220804-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220804/PXL_20220804_210332620.jpg",
@@ -3730,11 +3560,7 @@
    "year": "2022",
    "bytes": 1830662,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220804-03"
+   "junk": false
   },
   {
    "path": "organized/20220804/IMG-20220804-WA0001.jpeg",
@@ -3874,11 +3700,7 @@
    "year": "2022",
    "bytes": 2158106,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220804-02"
+   "junk": false
   },
   {
    "path": "organized/20220804/PXL_20220804_170007437.jpg",
@@ -3908,11 +3730,7 @@
    "year": "2022",
    "bytes": 1647195,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220804-04"
+   "junk": false
   },
   {
    "path": "organized/20220804/PXL_20220804_211128368.MP.jpg",
@@ -3932,11 +3750,7 @@
    "year": "2022",
    "bytes": 2331868,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220804-01"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_160037409.jpg",
@@ -3966,11 +3780,7 @@
    "year": "2024",
    "bytes": 3895180,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Old wiring and junction box exposed in opened wall framing (work in progress)",
-   "city": "",
-   "slug": "photo-20240325-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_160122284.jpg",
@@ -4020,11 +3830,7 @@
    "year": "2024",
    "bytes": 3264014,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240325-04"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_084408495.jpg",
@@ -4044,11 +3850,7 @@
    "year": "2024",
    "bytes": 2777719,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240325-02"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_160050522.jpg",
@@ -4068,11 +3870,7 @@
    "year": "2024",
    "bytes": 3229657,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240325-01"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_160221773.jpg",
@@ -4082,11 +3880,7 @@
    "year": "2024",
    "bytes": 3327409,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240325-03"
+   "junk": false
   },
   {
    "path": "organized/20240325/IMG_20240325_160113368.jpg",
@@ -4159,6 +3953,46 @@
    "junk": false
   },
   {
+   "path": "organized/20261002/IMG_20261002_082402428.jpg",
+   "name": "IMG_20261002_082402428.jpg",
+   "folder": "20261002",
+   "date": "2026-10-02",
+   "year": "2026",
+   "bytes": 2164364,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261002/IMG_20261002_102705366.jpg",
+   "name": "IMG_20261002_102705366.jpg",
+   "folder": "20261002",
+   "date": "2026-10-02",
+   "year": "2026",
+   "bytes": 3231604,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261002/IMG_20261002_082953887.jpg",
+   "name": "IMG_20261002_082953887.jpg",
+   "folder": "20261002",
+   "date": "2026-10-02",
+   "year": "2026",
+   "bytes": 2908294,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261002/IMG_20261002_082405505.jpg",
+   "name": "IMG_20261002_082405505.jpg",
+   "folder": "20261002",
+   "date": "2026-10-02",
+   "year": "2026",
+   "bytes": 2184319,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20220616/PXL_20220616_212032710.jpg",
    "name": "PXL_20220616_212032710.jpg",
    "folder": "20220616",
@@ -4186,11 +4020,7 @@
    "year": "2022",
    "bytes": 512601,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20220616-01"
+   "junk": false
   },
   {
    "path": "organized/20220616/PXL_20220616_214311049.jpg",
@@ -4220,11 +4050,7 @@
    "year": "2023",
    "bytes": 4652249,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231010-03"
+   "junk": false
   },
   {
    "path": "organized/20231010/IMG_20231010_081530892_HDR.jpg",
@@ -4234,11 +4060,7 @@
    "year": "2023",
    "bytes": 4306264,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231010-04"
+   "junk": false
   },
   {
    "path": "organized/20231010/IMG_20231010_084317463_HDR.jpg",
@@ -4248,11 +4070,7 @@
    "year": "2023",
    "bytes": 4609798,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231010-01"
+   "junk": false
   },
   {
    "path": "organized/20231010/IMG_20231010_083636345_HDR.jpg",
@@ -4262,11 +4080,7 @@
    "year": "2023",
    "bytes": 3986914,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231010-02"
+   "junk": false
   },
   {
    "path": "organized/20231010/IMG_20231010_081517386_HDR.jpg",
@@ -4276,11 +4090,7 @@
    "year": "2023",
    "bytes": 3309216,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Siemens panel interior with breakers and surge device (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231010-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20201112/PXL_20201112_185645579.jpg",
@@ -4550,11 +4360,7 @@
    "year": "2020",
    "bytes": 2956808,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Encino",
-   "slug": "gallery-roughin-framing-conduit"
+   "junk": false
   },
   {
    "path": "organized/20201012/PXL_20201012_153703447.jpg",
@@ -4564,11 +4370,7 @@
    "year": "2020",
    "bytes": 2550389,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "Encino",
-   "slug": "gallery-roughin-worker-framing"
+   "junk": false
   },
   {
    "path": "organized/20190916/IMG_20190916_091509101_HDR.jpg",
@@ -4658,11 +4460,7 @@
    "year": "2022",
    "bytes": 1407819,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20221129-02"
+   "junk": false
   },
   {
    "path": "organized/20221129/PXL_20221129_163934791.jpg",
@@ -4672,11 +4470,7 @@
    "year": "2022",
    "bytes": 1279813,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20221129-03"
+   "junk": false
   },
   {
    "path": "organized/20221129/PXL_20221129_172625420.jpg",
@@ -4686,11 +4480,7 @@
    "year": "2022",
    "bytes": 1884271,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20221129-01"
+   "junk": false
   },
   {
    "path": "organized/20200923/MVIMG_20200923_121529.jpg",
@@ -4840,11 +4630,7 @@
    "year": "2022",
    "bytes": 3240880,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220506-02"
+   "junk": false
   },
   {
    "path": "organized/20220506/PXL_20220506_175025650.jpg",
@@ -4854,11 +4640,7 @@
    "year": "2022",
    "bytes": 2533813,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220506-01"
+   "junk": false
   },
   {
    "path": "organized/20220506/PXL_20220506_174936165.jpg",
@@ -4868,11 +4650,7 @@
    "year": "2022",
    "bytes": 3155494,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Underground conduit risers and vault box set in open trench (work in progress)",
-   "city": "",
-   "slug": "photo-20220506-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220506/PXL_20220506_175005017.jpg",
@@ -4882,11 +4660,7 @@
    "year": "2022",
    "bytes": 2670734,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220506-04"
+   "junk": false
   },
   {
    "path": "organized/20220506/PXL_20220506_174939064.jpg",
@@ -4916,11 +4690,7 @@
    "year": "2022",
    "bytes": 3024693,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical equipment in dimly lit area \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220506-03"
+   "junk": false
   },
   {
    "path": "organized/20220506/PXL_20220506_174954040.jpg",
@@ -4940,11 +4710,7 @@
    "year": "2023",
    "bytes": 3235346,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20231130-01"
+   "junk": false
   },
   {
    "path": "organized/20231130/IMG_20231130_085037324.jpg",
@@ -4954,11 +4720,7 @@
    "year": "2023",
    "bytes": 5082537,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20231130-02"
+   "junk": false
   },
   {
    "path": "organized/20180214/IMG_20180214_072712970_HDR.jpg",
@@ -5321,6 +5083,86 @@
    "junk": true
   },
   {
+   "path": "organized/20260909/IMG_20260909_081722043.jpg",
+   "name": "IMG_20260909_081722043.jpg",
+   "folder": "20260909",
+   "date": "2026-09-09",
+   "year": "2026",
+   "bytes": 2972911,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260909/IMG_20260909_081709841.jpg",
+   "name": "IMG_20260909_081709841.jpg",
+   "folder": "20260909",
+   "date": "2026-09-09",
+   "year": "2026",
+   "bytes": 3090273,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260909/IMG_20260909_081700957_HDR.jpg",
+   "name": "IMG_20260909_081700957_HDR.jpg",
+   "folder": "20260909",
+   "date": "2026-09-09",
+   "year": "2026",
+   "bytes": 2788439,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260914/IMG_20260914_130918088.jpg",
+   "name": "IMG_20260914_130918088.jpg",
+   "folder": "20260914",
+   "date": "2026-09-14",
+   "year": "2026",
+   "bytes": 4156984,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260914/IMG_20260914_081325351_HDR.jpg",
+   "name": "IMG_20260914_081325351_HDR.jpg",
+   "folder": "20260914",
+   "date": "2026-09-14",
+   "year": "2026",
+   "bytes": 3604700,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260914/IMG_20260914_130909714.jpg",
+   "name": "IMG_20260914_130909714.jpg",
+   "folder": "20260914",
+   "date": "2026-09-14",
+   "year": "2026",
+   "bytes": 4744415,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260914/IMG_20260914_081321096.jpg",
+   "name": "IMG_20260914_081321096.jpg",
+   "folder": "20260914",
+   "date": "2026-09-14",
+   "year": "2026",
+   "bytes": 3464315,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260914/IMG_20260914_081330586.jpg",
+   "name": "IMG_20260914_081330586.jpg",
+   "folder": "20260914",
+   "date": "2026-09-14",
+   "year": "2026",
+   "bytes": 3909247,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20240919/IMG_20240919_144911766.jpg",
    "name": "IMG_20240919_144911766.jpg",
    "folder": "20240919",
@@ -5328,11 +5170,7 @@
    "year": "2024",
    "bytes": 3633487,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240919-02"
+   "junk": false
   },
   {
    "path": "organized/20240919/IMG_20240919_144907960.jpg",
@@ -5342,11 +5180,7 @@
    "year": "2024",
    "bytes": 3711078,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240919-03"
+   "junk": false
   },
   {
    "path": "organized/20240919/IMG_20240919_083124744_HDR.jpg",
@@ -5366,11 +5200,7 @@
    "year": "2024",
    "bytes": 4301514,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240919-04"
+   "junk": false
   },
   {
    "path": "organized/20240919/IMG_20240919_083119277_HDR.jpg",
@@ -5380,11 +5210,7 @@
    "year": "2024",
    "bytes": 3671117,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Overhead service riser and meter equipment on brick exterior (work in progress)",
-   "city": "",
-   "slug": "photo-20240919-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20240919/IMG_20240919_145345281.jpg",
@@ -5394,11 +5220,7 @@
    "year": "2024",
    "bytes": 3532637,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240919-01"
+   "junk": false
   },
   {
    "path": "organized/20201021/PXL_20201021_185003620.jpg",
@@ -5508,11 +5330,7 @@
    "year": "2020",
    "bytes": 2880494,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Los Angeles",
-   "slug": "gallery-utility-crane"
+   "junk": false
   },
   {
    "path": "organized/20171207/20171207_074538.jpg",
@@ -5822,11 +5640,7 @@
    "year": "2022",
    "bytes": 1710501,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical equipment in dimly lit area \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220722-04"
+   "junk": false
   },
   {
    "path": "organized/20220722/PXL_20220722_204757444.jpg",
@@ -5866,11 +5680,7 @@
    "year": "2022",
    "bytes": 1266456,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220722-03"
+   "junk": false
   },
   {
    "path": "organized/20220722/PXL_20220722_204644610.jpg",
@@ -5900,11 +5710,7 @@
    "year": "2022",
    "bytes": 2462928,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220722-01"
+   "junk": false
   },
   {
    "path": "organized/20220722/PXL_20220722_204729910.jpg",
@@ -5914,11 +5720,7 @@
    "year": "2022",
    "bytes": 1304012,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220722-02"
+   "junk": false
   },
   {
    "path": "organized/20220722/PXL_20220722_204715670.jpg",
@@ -6008,11 +5810,7 @@
    "year": "2022",
    "bytes": 1314103,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Conduit runs tied into rebar cage above block wall before pour (work in progress)",
-   "city": "",
-   "slug": "photo-20220722-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220722/PXL_20220722_204825523.jpg",
@@ -6062,11 +5860,7 @@
    "year": "2024",
    "bytes": 1785218,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures (evenly lit workspace)",
-   "city": "",
-   "slug": "photo-20240630-04"
+   "junk": false
   },
   {
    "path": "organized/20240630/IMG_20240630_090846452_HDR.jpg",
@@ -6086,11 +5880,7 @@
    "year": "2024",
    "bytes": 2042724,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20240630-01"
+   "junk": false
   },
   {
    "path": "organized/20240630/IMG_20240630_100040865_HDR.jpg",
@@ -6100,11 +5890,7 @@
    "year": "2024",
    "bytes": 1921623,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20240630-03"
+   "junk": false
   },
   {
    "path": "organized/20240630/IMG_20240630_100020892_HDR.jpg",
@@ -6114,11 +5900,7 @@
    "year": "2024",
    "bytes": 2783751,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20240630-02"
+   "junk": false
   },
   {
    "path": "organized/20240630/IMG_20240630_090903129_HDR.jpg",
@@ -6128,11 +5910,7 @@
    "year": "2024",
    "bytes": 1757741,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "New recessed ceiling lights in vaulted living room with fireplace (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240630-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20240630/IMG_20240630_091000072_HDR.jpg",
@@ -6152,11 +5930,7 @@
    "year": "2023",
    "bytes": 2358020,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20230927-01"
+   "junk": false
   },
   {
    "path": "organized/20230927/IMG_20230927_141231562.jpg",
@@ -6166,11 +5940,7 @@
    "year": "2023",
    "bytes": 3101464,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230927-02"
+   "junk": false
   },
   {
    "path": "organized/20240618/IMG_20240618_100255962_HDR.jpg",
@@ -6180,11 +5950,7 @@
    "year": "2024",
    "bytes": 2997198,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240618-01"
+   "junk": false
   },
   {
    "path": "organized/20240618/IMG_20240618_100241442_HDR.jpg",
@@ -6194,11 +5960,7 @@
    "year": "2024",
    "bytes": 3290939,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240618-02"
+   "junk": false
   },
   {
    "path": "organized/20201026/PXL_20201026_205327826.jpg",
@@ -6208,11 +5970,7 @@
    "year": "2020",
    "bytes": 1094722,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Beverly Hills",
-   "slug": "gallery-lighting-kitchen-alt"
+   "junk": false
   },
   {
    "path": "organized/20201026/PXL_20201026_205323183.jpg",
@@ -6222,11 +5980,7 @@
    "year": "2020",
    "bytes": 1090889,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Beverly Hills",
-   "slug": "gallery-lighting-kitchen"
+   "junk": false
   },
   {
    "path": "organized/20201026/PXL_20201026_205325397.jpg",
@@ -6266,11 +6020,7 @@
    "year": "2021",
    "bytes": 2922624,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "North Hollywood",
-   "slug": "gallery-construction-apartment"
+   "junk": false
   },
   {
    "path": "organized/20210811/PXL_20210811_140741043.jpg",
@@ -6370,11 +6120,7 @@
    "year": "2021",
    "bytes": 2571870,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "Pasadena",
-   "slug": "gallery-team-worker-foundation"
+   "junk": false
   },
   {
    "path": "organized/20211102/PXL_20211102_213642865.jpg",
@@ -6397,6 +6143,366 @@
    "junk": false
   },
   {
+   "path": "organized/20260612/IMG_20260612_095701132.jpg",
+   "name": "IMG_20260612_095701132.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3162482,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083633124_HDR.jpg",
+   "name": "IMG_20260612_083633124_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2052129,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100145900.jpg",
+   "name": "IMG_20260612_100145900.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 5283248,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095608750.jpg",
+   "name": "IMG_20260612_095608750.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2142305,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095534882_HDR.jpg",
+   "name": "IMG_20260612_095534882_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2379815,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083649710.jpg",
+   "name": "IMG_20260612_083649710.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 1916950,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080453414.jpg",
+   "name": "IMG_20260612_080453414.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 5449631,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083607048.jpg",
+   "name": "IMG_20260612_083607048.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3016709,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095717179_HDR.jpg",
+   "name": "IMG_20260612_095717179_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 1847953,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080503593.jpg",
+   "name": "IMG_20260612_080503593.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 4332307,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095615039.jpg",
+   "name": "IMG_20260612_095615039.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3379852,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100326832_HDR.jpg",
+   "name": "IMG_20260612_100326832_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2318547,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083640839_HDR.jpg",
+   "name": "IMG_20260612_083640839_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2180351,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100155508.jpg",
+   "name": "IMG_20260612_100155508.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2373765,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095720523_HDR.jpg",
+   "name": "IMG_20260612_095720523_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2284472,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080509582_HDR.jpg",
+   "name": "IMG_20260612_080509582_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2002312,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080429871_HDR.jpg",
+   "name": "IMG_20260612_080429871_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2066776,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_071701914.jpg",
+   "name": "IMG_20260612_071701914.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3076577,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080512944.jpg",
+   "name": "IMG_20260612_080512944.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2861334,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083615586.jpg",
+   "name": "IMG_20260612_083615586.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2219268,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095731360.jpg",
+   "name": "IMG_20260612_095731360.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2034930,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100135125.jpg",
+   "name": "IMG_20260612_100135125.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 6235478,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080438616.jpg",
+   "name": "IMG_20260612_080438616.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2960135,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095656782.jpg",
+   "name": "IMG_20260612_095656782.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2884370,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100213689.jpg",
+   "name": "IMG_20260612_100213689.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3142426,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083659023.jpg",
+   "name": "IMG_20260612_083659023.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2700926,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_080516788.jpg",
+   "name": "IMG_20260612_080516788.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2805442,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095710507_HDR.jpg",
+   "name": "IMG_20260612_095710507_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2065995,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095632385_HDR.jpg",
+   "name": "IMG_20260612_095632385_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2432964,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095618995_HDR.jpg",
+   "name": "IMG_20260612_095618995_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2455397,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100215345.jpg",
+   "name": "IMG_20260612_100215345.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 3215869,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_083626527.jpg",
+   "name": "IMG_20260612_083626527.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2803870,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095543747_HDR.jpg",
+   "name": "IMG_20260612_095543747_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2653318,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100256758_HDR.jpg",
+   "name": "IMG_20260612_100256758_HDR.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2311216,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_100200988.jpg",
+   "name": "IMG_20260612_100200988.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2177536,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260612/IMG_20260612_095600891.jpg",
+   "name": "IMG_20260612_095600891.jpg",
+   "folder": "20260612",
+   "date": "2026-06-12",
+   "year": "2026",
+   "bytes": 2444557,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20220822/PXL_20220822_150005751.jpg",
    "name": "PXL_20220822_150005751.jpg",
    "folder": "20220822",
@@ -6404,11 +6510,7 @@
    "year": "2022",
    "bytes": 3101658,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220822-02"
+   "junk": false
   },
   {
    "path": "organized/20220822/PXL_20220822_150008583.jpg",
@@ -6418,11 +6520,7 @@
    "year": "2022",
    "bytes": 3356750,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220822-01"
+   "junk": false
   },
   {
    "path": "organized/20220822/PXL_20220822_150013513.MP.jpg",
@@ -6442,11 +6540,7 @@
    "year": "2022",
    "bytes": 673963,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20220712-02"
+   "junk": false
   },
   {
    "path": "organized/20220712/PXL_20220712_153145234.jpg",
@@ -6456,11 +6550,7 @@
    "year": "2022",
    "bytes": 652294,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20220712-01"
+   "junk": false
   },
   {
    "path": "organized/20220929/PXL_20220929_183636059.MP.jpg",
@@ -6530,11 +6620,7 @@
    "year": "2022",
    "bytes": 2841712,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220929-02"
+   "junk": false
   },
   {
    "path": "organized/20220929/PXL_20220929_181301569.jpg",
@@ -6554,11 +6640,7 @@
    "year": "2022",
    "bytes": 3164992,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220929-03"
+   "junk": false
   },
   {
    "path": "organized/20220929/PXL_20220929_181251818.jpg",
@@ -6578,11 +6660,7 @@
    "year": "2022",
    "bytes": 3173351,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220929-04"
+   "junk": false
   },
   {
    "path": "organized/20220929/IMG_20220929_111601_01.jpg",
@@ -6592,11 +6670,7 @@
    "year": "2022",
    "bytes": 2262629,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220929-01"
+   "junk": false
   },
   {
    "path": "organized/20240903/IMG_20240903_102357000.jpg",
@@ -6606,11 +6680,7 @@
    "year": "2024",
    "bytes": 3214256,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240903-02"
+   "junk": false
   },
   {
    "path": "organized/20240903/IMG_20240903_102359686.jpg",
@@ -6620,11 +6690,7 @@
    "year": "2024",
    "bytes": 3291496,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Indoor electrical installation with metal components \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240903-01"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_084116835_HDR.jpg",
@@ -6644,11 +6710,7 @@
    "year": "2024",
    "bytes": 2791898,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240322-03"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_084119760.jpg",
@@ -6658,11 +6720,7 @@
    "year": "2024",
    "bytes": 3641306,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20240322-01"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_083648662.jpg",
@@ -6672,11 +6730,7 @@
    "year": "2024",
    "bytes": 2671900,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240322-04"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_084113828.jpg",
@@ -6686,11 +6740,7 @@
    "year": "2024",
    "bytes": 3713753,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240322-02"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_083636652_HDR.jpg",
@@ -6710,11 +6760,7 @@
    "year": "2024",
    "bytes": 3104921,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Ceiling joists with routed branch circuits during remodel rough-in (work in progress)",
-   "city": "",
-   "slug": "photo-20240322-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20240322/IMG_20240322_083630917.jpg",
@@ -6794,11 +6840,7 @@
    "year": "2024",
    "bytes": 3432744,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20240805-02"
+   "junk": false
   },
   {
    "path": "organized/20240805/IMG_20240805_094907546_HDR.jpg",
@@ -6808,11 +6850,7 @@
    "year": "2024",
    "bytes": 3376925,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20240805-01"
+   "junk": false
   },
   {
    "path": "organized/20170919/20170919_143630.jpg",
@@ -7142,11 +7180,7 @@
    "year": "2023",
    "bytes": 3451131,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230926-01"
+   "junk": false
   },
   {
    "path": "organized/20230926/IMG_20230926_084611503.jpg",
@@ -7186,11 +7220,7 @@
    "year": "2023",
    "bytes": 3443295,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230926-02"
+   "junk": false
   },
   {
    "path": "organized/20230926/IMG_20230926_091617957.jpg",
@@ -7200,11 +7230,7 @@
    "year": "2023",
    "bytes": 3260279,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230926-03"
+   "junk": false
   },
   {
    "path": "organized/20230926/IMG_20230926_091615365.jpg",
@@ -7214,11 +7240,7 @@
    "year": "2023",
    "bytes": 3258878,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230926-04"
+   "junk": false
   },
   {
    "path": "organized/20230926/IMG_20230926_122711089_HDR.jpg",
@@ -7261,6 +7283,26 @@
    "junk": false
   },
   {
+   "path": "organized/20260211/IMG_20260211_100901588.jpg",
+   "name": "IMG_20260211_100901588.jpg",
+   "folder": "20260211",
+   "date": "2026-02-11",
+   "year": "2026",
+   "bytes": 3815053,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260211/IMG_20260211_092845620.jpg",
+   "name": "IMG_20260211_092845620.jpg",
+   "folder": "20260211",
+   "date": "2026-02-11",
+   "year": "2026",
+   "bytes": 4970687,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20220715/PXL_20220715_145757560.jpg",
    "name": "PXL_20220715_145757560.jpg",
    "folder": "20220715",
@@ -7268,11 +7310,7 @@
    "year": "2022",
    "bytes": 617463,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220715-04"
+   "junk": false
   },
   {
    "path": "organized/20220715/PXL_20220715_132515511.jpg",
@@ -7282,11 +7320,7 @@
    "year": "2022",
    "bytes": 2007023,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220715-01"
+   "junk": false
   },
   {
    "path": "organized/20220715/PXL_20220715_145755371.jpg",
@@ -7296,11 +7330,7 @@
    "year": "2022",
    "bytes": 1357294,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220715-03"
+   "junk": false
   },
   {
    "path": "organized/20220715/PXL_20220715_145801850.jpg",
@@ -7310,11 +7340,7 @@
    "year": "2022",
    "bytes": 1206703,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220715-02"
+   "junk": false
   },
   {
    "path": "organized/20240504/IMG_20240504_124529184.jpg",
@@ -7324,11 +7350,7 @@
    "year": "2024",
    "bytes": 3536947,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240504-01"
+   "junk": false
   },
   {
    "path": "organized/20240504/IMG_20240504_124505697.jpg",
@@ -7338,11 +7360,7 @@
    "year": "2024",
    "bytes": 5019201,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240504-04"
+   "junk": false
   },
   {
    "path": "organized/20240504/IMG_20240504_124513646.jpg",
@@ -7352,11 +7370,7 @@
    "year": "2024",
    "bytes": 3157324,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240504-03"
+   "junk": false
   },
   {
    "path": "organized/20240504/IMG_20240504_124510812_HDR.jpg",
@@ -7366,11 +7380,7 @@
    "year": "2024",
    "bytes": 3150662,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter socket with riser conduit mounted on stucco exterior (work in progress)",
-   "city": "",
-   "slug": "photo-20240504-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20240504/IMG_20240504_124525946.jpg",
@@ -7380,11 +7390,7 @@
    "year": "2024",
    "bytes": 3504005,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240504-02"
+   "junk": false
   },
   {
    "path": "organized/20221213/PXL_20221213_183848427.MP.jpg",
@@ -7404,11 +7410,7 @@
    "year": "2022",
    "bytes": 3513677,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-team-utility-lines"
+   "junk": false
   },
   {
    "path": "organized/20180821/IMG_20180821_101626746_HDR.jpg",
@@ -7417,6 +7419,106 @@
    "date": "2018-08-21",
    "year": "2018",
    "bytes": 1415132,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094514307_HDR.jpg",
+   "name": "IMG_20260622_094514307_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2849366,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_095056772_HDR.jpg",
+   "name": "IMG_20260622_095056772_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2904775,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094503664_HDR.jpg",
+   "name": "IMG_20260622_094503664_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2628211,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094525770.jpg",
+   "name": "IMG_20260622_094525770.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2428380,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094455086_HDR.jpg",
+   "name": "IMG_20260622_094455086_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2572046,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094510413_HDR.jpg",
+   "name": "IMG_20260622_094510413_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2481165,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_095046043.jpg",
+   "name": "IMG_20260622_095046043.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 3265534,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260622/IMG_20260622_094952244_HDR.jpg",
+   "name": "IMG_20260622_094952244_HDR.jpg",
+   "folder": "20260622",
+   "date": "2026-06-22",
+   "year": "2026",
+   "bytes": 2867028,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260616/IMG_20260616_075201388.jpg",
+   "name": "IMG_20260616_075201388.jpg",
+   "folder": "20260616",
+   "date": "2026-06-16",
+   "year": "2026",
+   "bytes": 2259398,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260616/IMG_20260616_075116209.jpg",
+   "name": "IMG_20260616_075116209.jpg",
+   "folder": "20260616",
+   "date": "2026-06-16",
+   "year": "2026",
+   "bytes": 2627811,
    "processed": false,
    "junk": false
   },
@@ -7738,11 +7840,7 @@
    "year": "2025",
    "bytes": 2270925,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20250913-01"
+   "junk": false
   },
   {
    "path": "organized/20250913/IMG_20250913_102757547_HDR.jpg",
@@ -7752,11 +7850,7 @@
    "year": "2025",
    "bytes": 2627482,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Indoor electrical installation with metal components \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20250913-03"
+   "junk": false
   },
   {
    "path": "organized/20250913/IMG_20250913_102751116_HDR.jpg",
@@ -7766,11 +7860,7 @@
    "year": "2025",
    "bytes": 2585680,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20250913-04"
+   "junk": false
   },
   {
    "path": "organized/20250913/IMG_20250913_102926843_HDR.jpg",
@@ -7780,11 +7870,7 @@
    "year": "2025",
    "bytes": 2434367,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20250913-02"
+   "junk": false
   },
   {
    "path": "organized/20171020/20171020_162612.jpg",
@@ -7914,11 +8000,7 @@
    "year": "2026",
    "bytes": 2987065,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20260112-02"
+   "junk": false
   },
   {
    "path": "organized/20260112/IMG_20260112_111146924.jpg",
@@ -7928,11 +8010,7 @@
    "year": "2026",
    "bytes": 2682211,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20260112-01"
+   "junk": false
   },
   {
    "path": "organized/20260112/IMG_20260112_111126897_HDR.jpg",
@@ -7942,11 +8020,7 @@
    "year": "2026",
    "bytes": 2277529,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area (work in progress)",
-   "city": "",
-   "slug": "photo-20260112-03"
+   "junk": false
   },
   {
    "path": "organized/20171109/20171109_093502.jpg",
@@ -7976,11 +8050,7 @@
    "year": "2024",
    "bytes": 3942850,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20240416-01"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_211314299.jpg",
@@ -7990,11 +8060,7 @@
    "year": "2022",
    "bytes": 912616,
    "processed": true,
-   "junk": false,
-   "category": "lifestyle",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220809-04"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_152234033.jpg",
@@ -8004,11 +8070,7 @@
    "year": "2022",
    "bytes": 1336800,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220809-02"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_163623113.MP.jpg",
@@ -8028,11 +8090,7 @@
    "year": "2022",
    "bytes": 1033057,
    "processed": true,
-   "junk": false,
-   "category": "lifestyle",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220809-03"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_182250573.jpg",
@@ -8042,11 +8100,7 @@
    "year": "2022",
    "bytes": 2872253,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220809-01"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_163627343.jpg",
@@ -8066,11 +8120,7 @@
    "year": "2022",
    "bytes": 549411,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Beverly Hills",
-   "slug": "gallery-lighting-chandelier"
+   "junk": false
   },
   {
    "path": "organized/20220809/PXL_20220809_211320099.jpg",
@@ -8080,11 +8130,7 @@
    "year": "2022",
    "bytes": 526743,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Hanging pendant lights over finished living area (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220809-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220617/PXL_20220617_212044006.jpg",
@@ -8094,11 +8140,7 @@
    "year": "2022",
    "bytes": 630005,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20220617-01"
+   "junk": false
   },
   {
    "path": "organized/20220617/PXL_20220617_212103981.MP.jpg",
@@ -8138,11 +8180,7 @@
    "year": "2022",
    "bytes": 516755,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220617-02"
+   "junk": false
   },
   {
    "path": "organized/20200717/IMG_20200717_125625.jpg",
@@ -8312,11 +8350,7 @@
    "year": "2020",
    "bytes": 1091325,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-panel-three-wire"
+   "junk": false
   },
   {
    "path": "organized/20201106/PXL_20201106_164036237.jpg",
@@ -8326,11 +8360,7 @@
    "year": "2020",
    "bytes": 2038293,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-meter-bank"
+   "junk": false
   },
   {
    "path": "organized/20200629/PANO_20200629_111159.vr.jpg",
@@ -8610,11 +8640,7 @@
    "year": "2022",
    "bytes": 1990760,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220707-02"
+   "junk": false
   },
   {
    "path": "organized/20220707/PXL_20220707_232532141.jpg",
@@ -8634,11 +8660,7 @@
    "year": "2022",
    "bytes": 1839269,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220707-04"
+   "junk": false
   },
   {
    "path": "organized/20220707/PXL_20220707_232544646.jpg",
@@ -8648,11 +8670,7 @@
    "year": "2022",
    "bytes": 1315750,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220707-03"
+   "junk": false
   },
   {
    "path": "organized/20220707/PXL_20220707_235720891.jpg",
@@ -8662,11 +8680,7 @@
    "year": "2022",
    "bytes": 2020482,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220707-01"
+   "junk": false
   },
   {
    "path": "organized/20220707/PXL_20220707_232547621.MP.jpg",
@@ -8687,6 +8701,26 @@
    "bytes": 2052263,
    "processed": false,
    "junk": true
+  },
+  {
+   "path": "organized/20261013/IMG_20261013_094723546.jpg",
+   "name": "IMG_20261013_094723546.jpg",
+   "folder": "20261013",
+   "date": "2026-10-13",
+   "year": "2026",
+   "bytes": 3512504,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261013/IMG_20261013_094718779.jpg",
+   "name": "IMG_20261013_094718779.jpg",
+   "folder": "20261013",
+   "date": "2026-10-13",
+   "year": "2026",
+   "bytes": 3467802,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20200106/IMG_20200106_084436.jpg",
@@ -8796,11 +8830,7 @@
    "year": "2022",
    "bytes": 3686573,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220928-03"
+   "junk": false
   },
   {
    "path": "organized/20220928/PXL_20220928_164814985.jpg",
@@ -8820,11 +8850,7 @@
    "year": "2022",
    "bytes": 3964757,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220928-02"
+   "junk": false
   },
   {
    "path": "organized/20220928/PXL_20220928_202059159.MP.jpg",
@@ -8854,11 +8880,7 @@
    "year": "2022",
    "bytes": 4070179,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220928-04"
+   "junk": false
   },
   {
    "path": "organized/20220928/PXL_20220928_164818234.jpg",
@@ -8888,11 +8910,7 @@
    "year": "2022",
    "bytes": 3963658,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220928-01"
+   "junk": false
   },
   {
    "path": "organized/20240425/IMG_20240425_134757482_HDR.jpg",
@@ -8902,11 +8920,7 @@
    "year": "2024",
    "bytes": 3461348,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240425-02"
+   "junk": false
   },
   {
    "path": "organized/20240425/IMG_20240425_134800775.jpg",
@@ -8916,11 +8930,7 @@
    "year": "2024",
    "bytes": 2875237,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20240425-01"
+   "junk": false
   },
   {
    "path": "organized/20231003/IMG_20231003_114441446.jpg",
@@ -8930,11 +8940,7 @@
    "year": "2023",
    "bytes": 2396882,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop (work in progress)",
-   "city": "",
-   "slug": "photo-20231003-01"
+   "junk": false
   },
   {
    "path": "organized/20231003/IMG_20231003_114437968.jpg",
@@ -8944,11 +8950,7 @@
    "year": "2023",
    "bytes": 5240686,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231003-02"
+   "junk": false
   },
   {
    "path": "organized/20240205/IMG_20240205_082938280_HDR.jpg",
@@ -8958,11 +8960,7 @@
    "year": "2024",
    "bytes": 4019868,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240205-04"
+   "junk": false
   },
   {
    "path": "organized/20240205/IMG_20240205_082927243.jpg",
@@ -8972,11 +8970,7 @@
    "year": "2024",
    "bytes": 4445658,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240205-02"
+   "junk": false
   },
   {
    "path": "organized/20240205/IMG_20240205_082919263.jpg",
@@ -8986,11 +8980,7 @@
    "year": "2024",
    "bytes": 3839252,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Brightly lit electrical installation \u2014 with panel and wiring detail (evenly lit workspace)",
-   "city": "",
-   "slug": "photo-20240205-03"
+   "junk": false
   },
   {
    "path": "organized/20240205/IMG_20240205_082930280.jpg",
@@ -9000,11 +8990,7 @@
    "year": "2024",
    "bytes": 4311968,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240205-01"
+   "junk": false
   },
   {
    "path": "organized/20240205/IMG_20240205_082922408_HDR.jpg",
@@ -9014,11 +9000,7 @@
    "year": "2024",
    "bytes": 2865220,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Surface-mounted conduit run between exterior boxes on stucco (work in progress)",
-   "city": "",
-   "slug": "photo-20240205-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20190430/IMG_20190430_081042879.jpg",
@@ -9058,11 +9040,7 @@
    "year": "2024",
    "bytes": 3789503,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20241211-01"
+   "junk": false
   },
   {
    "path": "organized/20241211/IMG_20241211_092345623_HDR~2.jpg",
@@ -9072,11 +9050,7 @@
    "year": "2024",
    "bytes": 705202,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241211-04"
+   "junk": false
   },
   {
    "path": "organized/20241211/IMG_20241211_101555826.jpg",
@@ -9086,11 +9060,7 @@
    "year": "2024",
    "bytes": 3937868,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20241211-02"
+   "junk": false
   },
   {
    "path": "organized/20241211/IMG_20241211_092345623_HDR.jpg",
@@ -9100,11 +9070,7 @@
    "year": "2024",
    "bytes": 2769928,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241211-03"
+   "junk": false
   },
   {
    "path": "organized/20240506/IMG_20240506_100541940_HDR.jpg",
@@ -9114,11 +9080,7 @@
    "year": "2024",
    "bytes": 3394577,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240506-01"
+   "junk": false
   },
   {
    "path": "organized/20220902/PXL_20220902_151842927.jpg",
@@ -9128,11 +9090,7 @@
    "year": "2022",
    "bytes": 504968,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220902-02"
+   "junk": false
   },
   {
    "path": "organized/20220902/PXL_20220902_153142644.jpg",
@@ -9162,11 +9120,7 @@
    "year": "2022",
    "bytes": 1112854,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Indoor electrical installation with metal components \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220902-01"
+   "junk": false
   },
   {
    "path": "organized/20230215/PXL_20230215_234345305.jpg",
@@ -9176,11 +9130,7 @@
    "year": "2023",
    "bytes": 3775902,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Exothermic weld firing on grounding conductors in trench (work in progress)",
-   "city": "",
-   "slug": "photo-20230215-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20230215/PXL_20230215_234359995.MP.jpg",
@@ -9210,11 +9160,7 @@
    "year": "2023",
    "bytes": 4059535,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230215-03"
+   "junk": false
   },
   {
    "path": "organized/20230215/PXL_20230215_234931722.jpg",
@@ -9224,11 +9170,7 @@
    "year": "2023",
    "bytes": 3511749,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230215-01"
+   "junk": false
   },
   {
    "path": "organized/20230215/PXL_20230215_234429681.jpg",
@@ -9248,11 +9190,7 @@
    "year": "2023",
    "bytes": 3290437,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20230215-02"
+   "junk": false
   },
   {
    "path": "organized/20230215/PXL_20230215_234437909.jpg",
@@ -9292,11 +9230,7 @@
    "year": "2023",
    "bytes": 3126835,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230215-04"
+   "junk": false
   },
   {
    "path": "organized/20220603/PXL_20220603_151709166.jpg",
@@ -9306,11 +9240,7 @@
    "year": "2022",
    "bytes": 2757471,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220603-04"
+   "junk": false
   },
   {
    "path": "organized/20220603/PXL_20220603_175020114.jpg",
@@ -9350,11 +9280,7 @@
    "year": "2022",
    "bytes": 1830764,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220603-02"
+   "junk": false
   },
   {
    "path": "organized/20220603/PXL_20220603_151929815.jpg",
@@ -9404,11 +9330,7 @@
    "year": "2022",
    "bytes": 2386158,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220603-03"
+   "junk": false
   },
   {
    "path": "organized/20220603/PXL_20220603_151654671.jpg",
@@ -9418,11 +9340,7 @@
    "year": "2022",
    "bytes": 1949481,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220603-01"
+   "junk": false
   },
   {
    "path": "organized/20220603/PXL_20220603_175027851.MP.jpg",
@@ -9452,11 +9370,7 @@
    "year": "2022",
    "bytes": 2146294,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Underground conduit stub-up set in formwork over gravel base (work in progress)",
-   "city": "",
-   "slug": "photo-20220603-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20190610/IMG_20190610_135415911.jpg",
@@ -9536,11 +9450,7 @@
    "year": "2023",
    "bytes": 1037814,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230725-02"
+   "junk": false
   },
   {
    "path": "organized/20230725/PXL_20230725_154141607.jpg",
@@ -9550,11 +9460,7 @@
    "year": "2023",
    "bytes": 1188877,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230725-01"
+   "junk": false
   },
   {
    "path": "organized/20191023/IMG_20191023_081702167.jpg",
@@ -9774,11 +9680,7 @@
    "year": "2023",
    "bytes": 2724607,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20230928-01"
+   "junk": false
   },
   {
    "path": "organized/20230928/IMG_20230928_090809028_HDR.jpg",
@@ -9788,11 +9690,7 @@
    "year": "2023",
    "bytes": 2736499,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20230928-03"
+   "junk": false
   },
   {
    "path": "organized/20230928/IMG_20230928_090820361_HDR.jpg",
@@ -9802,11 +9700,7 @@
    "year": "2023",
    "bytes": 2777271,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20230928-02"
+   "junk": false
   },
   {
    "path": "organized/20210804/PXL_20210804_202730794.jpg",
@@ -9856,11 +9750,7 @@
    "year": "2026",
    "bytes": 2681669,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Stair LED strip lighting being installed along steps (work in progress)",
-   "city": "",
-   "slug": "photo-20260111-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20260111/IMG_20260111_114406075_HDR.jpg",
@@ -9870,11 +9760,17 @@
    "year": "2026",
    "bytes": 3212564,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20260111-02"
+   "junk": false
+  },
+  {
+   "path": "organized/20260111/IMG-20260111-WA0040.jpg",
+   "name": "IMG-20260111-WA0040.jpg",
+   "folder": "20260111",
+   "date": "2026-01-11",
+   "year": "2026",
+   "bytes": 182259,
+   "processed": false,
+   "junk": true
   },
   {
    "path": "organized/20260111/IMG_20260111_110749461_HDR.jpg",
@@ -9884,11 +9780,7 @@
    "year": "2026",
    "bytes": 2488448,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20260111-04"
+   "junk": false
   },
   {
    "path": "organized/20260111/IMG_20260111_110753470_HDR.jpg",
@@ -9898,11 +9790,7 @@
    "year": "2026",
    "bytes": 2610139,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20260111-03"
+   "junk": false
   },
   {
    "path": "organized/20260111/IMG_20260111_110736211_HDR.jpg",
@@ -9922,11 +9810,7 @@
    "year": "2026",
    "bytes": 3334752,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20260111-01"
+   "junk": false
   },
   {
    "path": "organized/20190327/IMG_20190327_131213017.jpg",
@@ -10006,11 +9890,7 @@
    "year": "2024",
    "bytes": 3389334,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240625-02"
+   "junk": false
   },
   {
    "path": "organized/20240625/IMG_20240625_091021264.jpg",
@@ -10020,11 +9900,17 @@
    "year": "2024",
    "bytes": 3996057,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240625-01"
+   "junk": false
+  },
+  {
+   "path": "organized/20260701/IMG_20260701_145206086_HDR.jpg",
+   "name": "IMG_20260701_145206086_HDR.jpg",
+   "folder": "20260701",
+   "date": "2026-07-01",
+   "year": "2026",
+   "bytes": 2227212,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20220118/PXL_20220118_194826691.jpg",
@@ -10034,11 +9920,7 @@
    "year": "2022",
    "bytes": 2718934,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220118-01"
+   "junk": false
   },
   {
    "path": "organized/20220118/PXL_20220118_194848321.MP.jpg",
@@ -10058,11 +9940,7 @@
    "year": "2022",
    "bytes": 1876523,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220118-03"
+   "junk": false
   },
   {
    "path": "organized/20220118/PXL_20220118_194823936.jpg",
@@ -10072,11 +9950,7 @@
    "year": "2022",
    "bytes": 2819265,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220118-02"
+   "junk": false
   },
   {
    "path": "organized/20191024/IMG_20191024_105614284_HDR.jpg",
@@ -10256,11 +10130,7 @@
    "year": "2022",
    "bytes": 524551,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220201-01"
+   "junk": false
   },
   {
    "path": "organized/20220201/PXL_20220201_201034406.jpg",
@@ -10270,11 +10140,17 @@
    "year": "2022",
    "bytes": 1198776,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-lighting-commercial-install"
+   "junk": false
+  },
+  {
+   "path": "organized/20260415/IMG_20260415_091824291.jpg",
+   "name": "IMG_20260415_091824291.jpg",
+   "folder": "20260415",
+   "date": "2026-04-15",
+   "year": "2026",
+   "bytes": 923370,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20220420/PXL_20220420_165310172.jpg",
@@ -10284,11 +10160,7 @@
    "year": "2022",
    "bytes": 2810376,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220420-04"
+   "junk": false
   },
   {
    "path": "organized/20220420/PXL_20220420_172330049.jpg",
@@ -10298,11 +10170,7 @@
    "year": "2022",
    "bytes": 3121912,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220420-01"
+   "junk": false
   },
   {
    "path": "organized/20220420/PXL_20220420_165015886.MP.jpg",
@@ -10362,11 +10230,7 @@
    "year": "2022",
    "bytes": 3070383,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220420-02"
+   "junk": false
   },
   {
    "path": "organized/20220420/PXL_20220420_165004826.jpg",
@@ -10396,11 +10260,7 @@
    "year": "2022",
    "bytes": 3321200,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220420-03"
+   "junk": false
   },
   {
    "path": "organized/20220420/PXL_20220420_164942961.jpg",
@@ -10420,11 +10280,7 @@
    "year": "2022",
    "bytes": 3431837,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Grounding conductor and exothermic weld mold in excavated pit (work in progress)",
-   "city": "",
-   "slug": "photo-20220420-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20250906/IMG_20250906_121221600.jpg",
@@ -10434,11 +10290,7 @@
    "year": "2025",
    "bytes": 2858772,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250906-01"
+   "junk": false
   },
   {
    "path": "organized/20250906/IMG_20250906_121218395.jpg",
@@ -10448,11 +10300,7 @@
    "year": "2025",
    "bytes": 2629509,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250906-02"
+   "junk": false
   },
   {
    "path": "organized/20190110/IMG_20190110_100620712.jpg",
@@ -10492,11 +10340,7 @@
    "year": "2024",
    "bytes": 2375771,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20240619-02"
+   "junk": false
   },
   {
    "path": "organized/20240619/IMG_20240619_102949710_HDR.jpg",
@@ -10506,11 +10350,77 @@
    "year": "2024",
    "bytes": 3645995,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240619-01"
+   "junk": false
+  },
+  {
+   "path": "organized/20260417/IMG_20260417_084139506.jpg",
+   "name": "IMG_20260417_084139506.jpg",
+   "folder": "20260417",
+   "date": "2026-04-17",
+   "year": "2026",
+   "bytes": 5617098,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260417/IMG_20260417_090742164_HDR.jpg",
+   "name": "IMG_20260417_090742164_HDR.jpg",
+   "folder": "20260417",
+   "date": "2026-04-17",
+   "year": "2026",
+   "bytes": 2820750,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260417/IMG-20260417-WA0010.jpg",
+   "name": "IMG-20260417-WA0010.jpg",
+   "folder": "20260417",
+   "date": "2026-04-17",
+   "year": "2026",
+   "bytes": 1597758,
+   "processed": false,
+   "junk": true
+  },
+  {
+   "path": "organized/20260417/IMG_20260417_084207242_HDR.jpg",
+   "name": "IMG_20260417_084207242_HDR.jpg",
+   "folder": "20260417",
+   "date": "2026-04-17",
+   "year": "2026",
+   "bytes": 1852819,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260417/IMG_20260417_084133263_HDR.jpg",
+   "name": "IMG_20260417_084133263_HDR.jpg",
+   "folder": "20260417",
+   "date": "2026-04-17",
+   "year": "2026",
+   "bytes": 1683037,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260422/IMG_20260422_105555831_HDR.jpg",
+   "name": "IMG_20260422_105555831_HDR.jpg",
+   "folder": "20260422",
+   "date": "2026-04-22",
+   "year": "2026",
+   "bytes": 3263287,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260422/IMG_20260422_105601859_HDR.jpg",
+   "name": "IMG_20260422_105601859_HDR.jpg",
+   "folder": "20260422",
+   "date": "2026-04-22",
+   "year": "2026",
+   "bytes": 2502566,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20211216/PXL_20211216_181843272.jpg",
@@ -10683,6 +10593,256 @@
    "junk": false
   },
   {
+   "path": "organized/20260611/IMG_20260611_080511630.jpg",
+   "name": "IMG_20260611_080511630.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2603210,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094225603.jpg",
+   "name": "IMG_20260611_094225603.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 6234724,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_093944250.jpg",
+   "name": "IMG_20260611_093944250.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 1994935,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_093818626.jpg",
+   "name": "IMG_20260611_093818626.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2571413,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094516019.jpg",
+   "name": "IMG_20260611_094516019.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2829858,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094218005.jpg",
+   "name": "IMG_20260611_094218005.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 3044231,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_122743268_HDR.jpg",
+   "name": "IMG_20260611_122743268_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2550016,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_080055685.jpg",
+   "name": "IMG_20260611_080055685.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2325250,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094505789.jpg",
+   "name": "IMG_20260611_094505789.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2372804,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094210098.jpg",
+   "name": "IMG_20260611_094210098.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 1923757,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094016703.jpg",
+   "name": "IMG_20260611_094016703.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2945743,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094144630_HDR.jpg",
+   "name": "IMG_20260611_094144630_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2301003,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_122625656_HDR.jpg",
+   "name": "IMG_20260611_122625656_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2890985,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_093937248_HDR.jpg",
+   "name": "IMG_20260611_093937248_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 1948420,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_080045295.jpg",
+   "name": "IMG_20260611_080045295.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2593128,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094007829.jpg",
+   "name": "IMG_20260611_094007829.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2370450,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094152067_HDR.jpg",
+   "name": "IMG_20260611_094152067_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2325603,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_093813500.jpg",
+   "name": "IMG_20260611_093813500.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2554032,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_122801829_HDR.jpg",
+   "name": "IMG_20260611_122801829_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 3663418,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_094200572.jpg",
+   "name": "IMG_20260611_094200572.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 1587094,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_080320510_HDR.jpg",
+   "name": "IMG_20260611_080320510_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2886448,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_080337908_HDR.jpg",
+   "name": "IMG_20260611_080337908_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2158805,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_121615726_HDR.jpg",
+   "name": "IMG_20260611_121615726_HDR.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 3831256,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_080525543.jpg",
+   "name": "IMG_20260611_080525543.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2868668,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260611/IMG_20260611_093957637.jpg",
+   "name": "IMG_20260611_093957637.jpg",
+   "folder": "20260611",
+   "date": "2026-06-11",
+   "year": "2026",
+   "bytes": 2888269,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20190326/IMG_20190326_084335932.jpg",
    "name": "IMG_20190326_084335932.jpg",
    "folder": "20190326",
@@ -10840,11 +11000,7 @@
    "year": "2024",
    "bytes": 2817690,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20240710-04"
+   "junk": false
   },
   {
    "path": "organized/20240710/IMG_20240710_112003861.jpg",
@@ -10854,11 +11010,7 @@
    "year": "2024",
    "bytes": 2908065,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20240710-03"
+   "junk": false
   },
   {
    "path": "organized/20240710/IMG_20240710_112027399_HDR.jpg",
@@ -10878,11 +11030,7 @@
    "year": "2024",
    "bytes": 2606960,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240710-01"
+   "junk": false
   },
   {
    "path": "organized/20240710/IMG_20240710_112011058.jpg",
@@ -10892,11 +11040,7 @@
    "year": "2024",
    "bytes": 2886794,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical project work \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240710-02"
+   "junk": false
   },
   {
    "path": "organized/20240710/IMG_20240710_112038246_HDR.jpg",
@@ -10916,11 +11060,7 @@
    "year": "2024",
    "bytes": 2934329,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Branch circuits routed through open framing above stairwell remodel (work in progress)",
-   "city": "",
-   "slug": "photo-20240710-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20200414/IMG_20200414_110917.jpg",
@@ -11020,11 +11160,7 @@
    "year": "2025",
    "bytes": 2592068,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20250508-03"
+   "junk": false
   },
   {
    "path": "organized/20250508/IMG_20250508_112019063.jpg",
@@ -11034,11 +11170,7 @@
    "year": "2025",
    "bytes": 2666538,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20250508-02"
+   "junk": false
   },
   {
    "path": "organized/20250508/IMG_20250508_112025043_HDR.jpg",
@@ -11048,11 +11180,7 @@
    "year": "2025",
    "bytes": 3031993,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20250508-04"
+   "junk": false
   },
   {
    "path": "organized/20250508/IMG_20250508_093017543_HDR.jpg",
@@ -11082,11 +11210,7 @@
    "year": "2025",
    "bytes": 2208879,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20250508-01"
+   "junk": false
   },
   {
    "path": "organized/20250508/IMG_20250508_093012086_HDR.jpg",
@@ -11106,11 +11230,7 @@
    "year": "2026",
    "bytes": 2686337,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Exterior electrical installation with blue sky backdrop (work in progress)",
-   "city": "",
-   "slug": "photo-20260113-02"
+   "junk": false
   },
   {
    "path": "organized/20260113/IMG_20260113_134432554.jpg",
@@ -11120,11 +11240,27 @@
    "year": "2026",
    "bytes": 3026599,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260113-03"
+   "junk": false
+  },
+  {
+   "path": "organized/20260113/IMG_20260113_112454357.jpg",
+   "name": "IMG_20260113_112454357.jpg",
+   "folder": "20260113",
+   "date": "2026-01-13",
+   "year": "2026",
+   "bytes": 2903521,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260113/IMG_20260113_094213932.jpg",
+   "name": "IMG_20260113_094213932.jpg",
+   "folder": "20260113",
+   "date": "2026-01-13",
+   "year": "2026",
+   "bytes": 2604587,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20260113/IMG_20260113_134511994.jpg",
@@ -11134,11 +11270,7 @@
    "year": "2026",
    "bytes": 2757539,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20260113-01"
+   "junk": false
   },
   {
    "path": "organized/20200404/IMG_20200404_083605.jpg",
@@ -11228,11 +11360,7 @@
    "year": "2022",
    "bytes": 1773591,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220710-01"
+   "junk": false
   },
   {
    "path": "organized/20201019/PXL_20201019_204930229.jpg",
@@ -11292,11 +11420,7 @@
    "year": "2025",
    "bytes": 1735732,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Brightly lit electrical installation \u2014 on finished wall surface (evenly lit workspace)",
-   "city": "",
-   "slug": "photo-20251212-01"
+   "junk": false
   },
   {
    "path": "organized/20190912/IMG_20190912_114118152.jpg",
@@ -11336,11 +11460,7 @@
    "year": "2024",
    "bytes": 3408925,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240906-01"
+   "junk": false
   },
   {
    "path": "organized/20240906/IMG_20240906_105728393.jpg",
@@ -11350,11 +11470,7 @@
    "year": "2024",
    "bytes": 3204009,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20240906-02"
+   "junk": false
   },
   {
    "path": "organized/20190906/IMG_20190906_084532403.jpg",
@@ -11687,6 +11803,46 @@
    "junk": false
   },
   {
+   "path": "organized/20261010/IMG_20261010_111614584.jpg",
+   "name": "IMG_20261010_111614584.jpg",
+   "folder": "20261010",
+   "date": "2026-10-10",
+   "year": "2026",
+   "bytes": 3096550,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261010/IMG_20261010_111609031.jpg",
+   "name": "IMG_20261010_111609031.jpg",
+   "folder": "20261010",
+   "date": "2026-10-10",
+   "year": "2026",
+   "bytes": 2523252,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261010/IMG_20261010_092622566_HDR.jpg",
+   "name": "IMG_20261010_092622566_HDR.jpg",
+   "folder": "20261010",
+   "date": "2026-10-10",
+   "year": "2026",
+   "bytes": 2440238,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20261010/IMG_20261010_111620490.jpg",
+   "name": "IMG_20261010_111620490.jpg",
+   "folder": "20261010",
+   "date": "2026-10-10",
+   "year": "2026",
+   "bytes": 3056804,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20251215/IMG_20251215_133059854.jpg",
    "name": "IMG_20251215_133059854.jpg",
    "folder": "20251215",
@@ -11694,11 +11850,7 @@
    "year": "2025",
    "bytes": 2027231,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Brightly lit electrical installation (evenly lit workspace)",
-   "city": "",
-   "slug": "photo-20251215-01"
+   "junk": false
   },
   {
    "path": "organized/20251215/IMG_20251215_133054972.jpg",
@@ -11708,11 +11860,7 @@
    "year": "2025",
    "bytes": 2130029,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Brightly lit electrical installation \u2014 on finished wall surface (evenly lit workspace)",
-   "city": "",
-   "slug": "photo-20251215-02"
+   "junk": false
   },
   {
    "path": "organized/20240726/IMG_20240726_115846231.jpg",
@@ -11722,11 +11870,7 @@
    "year": "2024",
    "bytes": 2155078,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20240726-01"
+   "junk": false
   },
   {
    "path": "organized/20240726/IMG_20240726_115844074.jpg",
@@ -11736,11 +11880,7 @@
    "year": "2024",
    "bytes": 2211896,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20240726-02"
+   "junk": false
   },
   {
    "path": "organized/20240726/IMG_20240726_114644272.jpg",
@@ -11750,11 +11890,7 @@
    "year": "2024",
    "bytes": 2975659,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240726-03"
+   "junk": false
   },
   {
    "path": "organized/20240726/IMG_20240726_114654822_HDR.jpg",
@@ -11764,11 +11900,7 @@
    "year": "2024",
    "bytes": 2761856,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240726-04"
+   "junk": false
   },
   {
    "path": "organized/20241213/IMG_20241213_102604203_HDR.jpg",
@@ -11778,11 +11910,7 @@
    "year": "2024",
    "bytes": 2414689,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20241213-02"
+   "junk": false
   },
   {
    "path": "organized/20241213/IMG_20241213_102510174.jpg",
@@ -11792,11 +11920,7 @@
    "year": "2024",
    "bytes": 2558771,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241213-01"
+   "junk": false
   },
   {
    "path": "organized/20200225/IMG_20200225_104917.jpg",
@@ -12016,11 +12140,7 @@
    "year": "2022",
    "bytes": 675423,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Exterior electrical installation with blue sky backdrop (work in progress)",
-   "city": "",
-   "slug": "photo-20220304-01"
+   "junk": false
   },
   {
    "path": "organized/20220304/PXL_20220304_163111346.MP.jpg",
@@ -12031,6 +12151,36 @@
    "bytes": 4033199,
    "processed": false,
    "junk": true
+  },
+  {
+   "path": "organized/20260424/IMG_20260424_084108601.jpg",
+   "name": "IMG_20260424_084108601.jpg",
+   "folder": "20260424",
+   "date": "2026-04-24",
+   "year": "2026",
+   "bytes": 2810383,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260424/IMG_20260424_112432494.jpg",
+   "name": "IMG_20260424_112432494.jpg",
+   "folder": "20260424",
+   "date": "2026-04-24",
+   "year": "2026",
+   "bytes": 2946719,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260424/IMG_20260424_122148091.jpg",
+   "name": "IMG_20260424_122148091.jpg",
+   "folder": "20260424",
+   "date": "2026-04-24",
+   "year": "2026",
+   "bytes": 3776561,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20190917/IMG_20190917_071651250_HDR.jpg",
@@ -12229,6 +12379,36 @@
    "date": "2020-06-18",
    "year": "2020",
    "bytes": 976148,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260327/IMG_20260327_140901916_HDR.jpg",
+   "name": "IMG_20260327_140901916_HDR.jpg",
+   "folder": "20260327",
+   "date": "2026-03-27",
+   "year": "2026",
+   "bytes": 2835565,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260327/IMG_20260327_140907346_HDR.jpg",
+   "name": "IMG_20260327_140907346_HDR.jpg",
+   "folder": "20260327",
+   "date": "2026-03-27",
+   "year": "2026",
+   "bytes": 2284958,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260327/IMG_20260327_140940824.jpg",
+   "name": "IMG_20260327_140940824.jpg",
+   "folder": "20260327",
+   "date": "2026-03-27",
+   "year": "2026",
+   "bytes": 2780599,
    "processed": false,
    "junk": false
   },
@@ -12440,11 +12620,7 @@
    "year": "2022",
    "bytes": 1107879,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space (work in progress)",
-   "city": "",
-   "slug": "photo-20220602-03"
+   "junk": false
   },
   {
    "path": "organized/20220602/PXL_20220602_181004900.jpg",
@@ -12454,11 +12630,7 @@
    "year": "2022",
    "bytes": 602558,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220602-04"
+   "junk": false
   },
   {
    "path": "organized/20220602/PXL_20220602_181027530.jpg",
@@ -12468,11 +12640,7 @@
    "year": "2022",
    "bytes": 1919244,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220602-02"
+   "junk": false
   },
   {
    "path": "organized/20220602/PXL_20220602_181042728.MP.jpg",
@@ -12502,11 +12670,7 @@
    "year": "2022",
    "bytes": 2084532,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220602-01"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_192815005.jpg",
@@ -12526,11 +12690,7 @@
    "year": "2022",
    "bytes": 2860865,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220810-01"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_192937263.MP.jpg",
@@ -12560,11 +12720,7 @@
    "year": "2022",
    "bytes": 3727738,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220810-03"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_192840047.jpg",
@@ -12574,11 +12730,7 @@
    "year": "2022",
    "bytes": 2330390,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220810-04"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_151013183.jpg",
@@ -12598,11 +12750,7 @@
    "year": "2022",
    "bytes": 2018869,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220810-02"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_192945754.MP.jpg",
@@ -12632,11 +12780,7 @@
    "year": "2022",
    "bytes": 788195,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Studio City",
-   "slug": "gallery-commercial-parking-conduit"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_151125523.jpg",
@@ -12656,11 +12800,7 @@
    "year": "2022",
    "bytes": 1859087,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "New conduit stub through block wall in parking garage (work in progress)",
-   "city": "",
-   "slug": "photo-20220810-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220810/PXL_20220810_192847785.jpg",
@@ -12690,11 +12830,7 @@
    "year": "2022",
    "bytes": 1966519,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220808-01"
+   "junk": false
   },
   {
    "path": "organized/20220808/PXL_20220808_143625968.jpg",
@@ -12744,11 +12880,7 @@
    "year": "2022",
    "bytes": 1264970,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220808-03"
+   "junk": false
   },
   {
    "path": "organized/20220808/PXL_20220808_162037628.jpg",
@@ -12798,11 +12930,7 @@
    "year": "2022",
    "bytes": 1207778,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220808-04"
+   "junk": false
   },
   {
    "path": "organized/20220808/PXL_20220808_162027452.jpg",
@@ -12832,11 +12960,7 @@
    "year": "2022",
    "bytes": 1331677,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical equipment in dimly lit area \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220808-02"
+   "junk": false
   },
   {
    "path": "organized/20220808/PXL_20220808_162007030.jpg",
@@ -12906,11 +13030,7 @@
    "year": "2024",
    "bytes": 2296375,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "",
-   "slug": "photo-20240709-02"
+   "junk": false
   },
   {
    "path": "organized/20240709/IMG_20240709_131746688_HDR.jpg",
@@ -12920,11 +13040,7 @@
    "year": "2024",
    "bytes": 2411102,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240709-04"
+   "junk": false
   },
   {
    "path": "organized/20240709/IMG_20240709_131843507_HDR.jpg",
@@ -12934,11 +13050,7 @@
    "year": "2024",
    "bytes": 2888820,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240709-03"
+   "junk": false
   },
   {
    "path": "organized/20240709/IMG_20240709_131759724.jpg",
@@ -12948,11 +13060,7 @@
    "year": "2024",
    "bytes": 2467505,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20240709-01"
+   "junk": false
   },
   {
    "path": "organized/20201009/PXL_20201009_184849517.jpg",
@@ -13102,11 +13210,7 @@
    "year": "2021",
    "bytes": 2986691,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Sherman Oaks",
-   "slug": "gallery-roughin-foundation-pipe"
+   "junk": false
   },
   {
    "path": "organized/20210729/PXL_20210729_193805323.jpg",
@@ -13206,11 +13310,7 @@
    "year": "2023",
    "bytes": 987179,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-switchgear-clean"
+   "junk": false
   },
   {
    "path": "organized/20230126/PXL_20230126_172805787.jpg",
@@ -13610,11 +13710,7 @@
    "year": "2024",
    "bytes": 3551956,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical project work \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20241210-02"
+   "junk": false
   },
   {
    "path": "organized/20241210/IMG_20241210_101729076.jpg",
@@ -13624,11 +13720,7 @@
    "year": "2024",
    "bytes": 3412260,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 showing color-coded wiring and connections (detailed installation view)",
-   "city": "",
-   "slug": "photo-20241210-04"
+   "junk": false
   },
   {
    "path": "organized/20241210/IMG_20241210_101846224.jpg",
@@ -13638,11 +13730,7 @@
    "year": "2024",
    "bytes": 4351762,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20241210-01"
+   "junk": false
   },
   {
    "path": "organized/20241210/IMG_20241210_101719908.jpg",
@@ -13652,11 +13740,7 @@
    "year": "2024",
    "bytes": 3681128,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Existing eight-meter bank with overhead wiring in enclosure (detailed installation view)",
-   "city": "",
-   "slug": "photo-20241210-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20241210/IMG_20241210_101734816.jpg",
@@ -13666,11 +13750,7 @@
    "year": "2024",
    "bytes": 3382570,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241210-03"
+   "junk": false
   },
   {
    "path": "organized/20200622/IMG_20200622_095610.jpg",
@@ -13910,11 +13990,7 @@
    "year": "2021",
    "bytes": 2207344,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Indoor electrical installation with metal components \u2014 with panel and wiring detail (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-bus-duct"
+   "junk": false
   },
   {
    "path": "organized/20211005/PXL_20211005_145010394.jpg",
@@ -14004,11 +14080,7 @@
    "year": "2021",
    "bytes": 1453631,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-switchgear-tall"
+   "junk": false
   },
   {
    "path": "organized/20211005/PXL_20211005_204155595.jpg",
@@ -14088,11 +14160,7 @@
    "year": "2021",
    "bytes": 1825699,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-commercial-switchgear-angle"
+   "junk": false
   },
   {
    "path": "organized/20230104/PXL_20230104_182843022.MP.jpg",
@@ -14112,11 +14180,7 @@
    "year": "2023",
    "bytes": 1365620,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical equipment in dimly lit area \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230104-01"
+   "junk": false
   },
   {
    "path": "organized/20230104/PXL_20230104_182927916.jpg",
@@ -14126,11 +14190,7 @@
    "year": "2023",
    "bytes": 780985,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Electrical equipment in dimly lit area \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20230104-03"
+   "junk": false
   },
   {
    "path": "organized/20230104/PXL_20230104_182908743.MP.jpg",
@@ -14150,11 +14210,7 @@
    "year": "2023",
    "bytes": 1296513,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230104-02"
+   "junk": false
   },
   {
    "path": "organized/20230104/PXL_20230104_182845185.MP.jpg",
@@ -14174,11 +14230,7 @@
    "year": "2023",
    "bytes": 1804056,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "Studio City",
-   "slug": "gallery-commercial-parking-team"
+   "junk": false
   },
   {
    "path": "organized/20220709/PXL_20220709_000348533.MP.jpg",
@@ -14198,11 +14250,7 @@
    "year": "2022",
    "bytes": 2722473,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220709-03"
+   "junk": false
   },
   {
    "path": "organized/20220709/PXL_20220709_000402524.jpg",
@@ -14212,11 +14260,7 @@
    "year": "2022",
    "bytes": 2437904,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220709-01"
+   "junk": false
   },
   {
    "path": "organized/20220709/PXL_20220709_000356423.jpg",
@@ -14226,11 +14270,7 @@
    "year": "2022",
    "bytes": 3081554,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20220709-02"
+   "junk": false
   },
   {
    "path": "organized/20211011/PXL_20211011_164704614.jpg",
@@ -14380,11 +14420,7 @@
    "year": "2021",
    "bytes": 1362781,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "Los Angeles",
-   "slug": "gallery-roughin-steel-stud"
+   "junk": false
   },
   {
    "path": "organized/20211011/PXL_20211011_170958636.jpg",
@@ -14617,6 +14653,36 @@
    "junk": false
   },
   {
+   "path": "organized/20260910/IMG_20260910_082516008.jpg",
+   "name": "IMG_20260910_082516008.jpg",
+   "folder": "20260910",
+   "date": "2026-09-10",
+   "year": "2026",
+   "bytes": 2965154,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260910/IMG_20260910_082346886_HDR.jpg",
+   "name": "IMG_20260910_082346886_HDR.jpg",
+   "folder": "20260910",
+   "date": "2026-09-10",
+   "year": "2026",
+   "bytes": 2090145,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260910/IMG_20260910_082336541.jpg",
+   "name": "IMG_20260910_082336541.jpg",
+   "folder": "20260910",
+   "date": "2026-09-10",
+   "year": "2026",
+   "bytes": 2641053,
+   "processed": false,
+   "junk": false
+  },
+  {
    "path": "organized/20200109/IMG_20200109_091041.jpg",
    "name": "IMG_20200109_091041.jpg",
    "folder": "20200109",
@@ -14754,11 +14820,7 @@
    "year": "2023",
    "bytes": 2577417,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Exterior electrical installation with blue sky backdrop (work in progress)",
-   "city": "",
-   "slug": "photo-20231017-01"
+   "junk": false
   },
   {
    "path": "organized/20250430/IMG_20250430_093230146_HDR.jpg",
@@ -14768,11 +14830,7 @@
    "year": "2025",
    "bytes": 2441363,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Indoor electrical installation with metal components (work in progress)",
-   "city": "",
-   "slug": "photo-20250430-04"
+   "junk": false
   },
   {
    "path": "organized/20250430/IMG_20250430_093238009.jpg",
@@ -14782,11 +14840,7 @@
    "year": "2025",
    "bytes": 2489678,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Indoor electrical installation with metal components (work in progress)",
-   "city": "",
-   "slug": "photo-20250430-02"
+   "junk": false
   },
   {
    "path": "organized/20250430/IMG_20250430_093240134.jpg",
@@ -14796,11 +14850,7 @@
    "year": "2025",
    "bytes": 2746913,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Indoor electrical installation with metal components \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250430-01"
+   "junk": false
   },
   {
    "path": "organized/20250430/IMG_20250430_093242745_HDR.jpg",
@@ -14810,11 +14860,7 @@
    "year": "2025",
    "bytes": 2485267,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20250430-03"
+   "junk": false
   },
   {
    "path": "organized/20220106/PXL_20220106_173240824.jpg",
@@ -14824,11 +14870,7 @@
    "year": "2022",
    "bytes": 1284737,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Indoor electrical installation with metal components \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220106-04"
+   "junk": false
   },
   {
    "path": "organized/20220106/PXL_20220106_170935361.MP.jpg",
@@ -14858,11 +14900,7 @@
    "year": "2022",
    "bytes": 2896143,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220106-01"
+   "junk": false
   },
   {
    "path": "organized/20220106/PXL_20220106_173242868.jpg",
@@ -14872,11 +14910,7 @@
    "year": "2022",
    "bytes": 1088043,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Precast underground electrical vault set in excavation beside new building (work in progress)",
-   "city": "",
-   "slug": "photo-20220106-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20220106/PXL_20220106_170949275.jpg",
@@ -14886,11 +14920,7 @@
    "year": "2022",
    "bytes": 1732467,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 showing color-coded wiring and connections (work in progress)",
-   "city": "",
-   "slug": "photo-20220106-03"
+   "junk": false
   },
   {
    "path": "organized/20220106/PXL_20220106_170926676.MP.jpg",
@@ -14910,11 +14940,7 @@
    "year": "2022",
    "bytes": 1923950,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20220106-02"
+   "junk": false
   },
   {
    "path": "organized/20200124/IMG_20200124_114732.jpg",
@@ -15064,11 +15090,7 @@
    "year": "2022",
    "bytes": 610215,
    "processed": true,
-   "junk": false,
-   "category": "lighting",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20220507-01"
+   "junk": false
   },
   {
    "path": "organized/20241216/IMG_20241216_181749278_HDR.jpg",
@@ -15078,11 +15100,7 @@
    "year": "2024",
    "bytes": 2068664,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241216-02"
+   "junk": false
   },
   {
    "path": "organized/20241216/IMG_20241216_181759367_HDR.jpg",
@@ -15092,11 +15110,97 @@
    "year": "2024",
    "bytes": 2060213,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with copper wiring and terminals visible (work in progress)",
-   "city": "",
-   "slug": "photo-20241216-01"
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_075124227.jpg",
+   "name": "IMG_20250611_075124227.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 4276851,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_074829641.jpg",
+   "name": "IMG_20250611_074829641.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 4680675,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_074759225.jpg",
+   "name": "IMG_20250611_074759225.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 4490584,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_074836637.jpg",
+   "name": "IMG_20250611_074836637.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3188964,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_074848821_HDR.jpg",
+   "name": "IMG_20250611_074848821_HDR.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3664324,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_081853632.jpg",
+   "name": "IMG_20250611_081853632.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3500346,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_081857922.jpg",
+   "name": "IMG_20250611_081857922.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3608634,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_081905290.jpg",
+   "name": "IMG_20250611_081905290.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3633680,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20250611/IMG_20250611_074852879.jpg",
+   "name": "IMG_20250611_074852879.jpg",
+   "folder": "20250611",
+   "date": "2025-06-11",
+   "year": "2025",
+   "bytes": 3766023,
+   "processed": false,
+   "junk": false
   },
   {
    "path": "organized/20220828/PXL_20220828_161543284.jpg",
@@ -15106,11 +15210,7 @@
    "year": "2022",
    "bytes": 1195309,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (work in progress)",
-   "city": "Sherman Oaks",
-   "slug": "gallery-panel-subpanel-labeled"
+   "junk": false
   },
   {
    "path": "organized/20220828/PXL_20220828_161553337.jpg",
@@ -15120,11 +15220,7 @@
    "year": "2022",
    "bytes": 2625590,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "Sherman Oaks",
-   "slug": "gallery-panel-dual-meter"
+   "junk": false
   },
   {
    "path": "organized/20170619/20170619_132903.jpg",
@@ -16034,11 +16130,7 @@
    "year": "2023",
    "bytes": 564432,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Interior electrical work (work in progress)",
-   "city": "",
-   "slug": "photo-20230710-04"
+   "junk": false
   },
   {
    "path": "organized/20230710/PXL_20230710_173333612.jpg",
@@ -16048,11 +16140,7 @@
    "year": "2023",
    "bytes": 575182,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "",
-   "slug": "photo-20230710-03"
+   "junk": false
   },
   {
    "path": "organized/20230710/PXL_20230710_173328037.jpg",
@@ -16062,11 +16150,7 @@
    "year": "2023",
    "bytes": 547954,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Padmount switchgear and service cabinets set at new apartment building (work in progress)",
-   "city": "",
-   "slug": "photo-20230710-01-v2"
+   "junk": false
   },
   {
    "path": "organized/20230710/PXL_20230710_173251253.jpg",
@@ -16076,11 +16160,7 @@
    "year": "2023",
    "bytes": 1031166,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230710-02"
+   "junk": false
   },
   {
    "path": "organized/20230710/PXL_20230710_173255678.jpg",
@@ -16090,11 +16170,7 @@
    "year": "2023",
    "bytes": 1093949,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Exterior electrical installation with blue sky backdrop \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20230710-01"
+   "junk": false
   },
   {
    "path": "organized/20230710/PXL_20230710_173242120.jpg",
@@ -16104,11 +16180,7 @@
    "year": "2023",
    "bytes": 577253,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Electrical system with metal enclosures \u2014 featuring electrical panel enclosure (work in progress)",
-   "city": "Santa Monica",
-   "slug": "gallery-exterior-spanish-apartment"
+   "junk": false
   },
   {
    "path": "organized/20231110/IMG_20231110_074053981.jpg",
@@ -16118,11 +16190,7 @@
    "year": "2023",
    "bytes": 4876334,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231110-03"
+   "junk": false
   },
   {
    "path": "organized/20231110/IMG_20231110_074101681.jpg",
@@ -16132,11 +16200,7 @@
    "year": "2023",
    "bytes": 3243275,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20231110-02"
+   "junk": false
   },
   {
    "path": "organized/20231110/IMG_20231110_074049761.jpg",
@@ -16146,11 +16210,7 @@
    "year": "2023",
    "bytes": 4925184,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231110-04"
+   "junk": false
   },
   {
    "path": "organized/20231110/IMG_20231110_075744344_HDR.jpg",
@@ -16170,11 +16230,7 @@
    "year": "2023",
    "bytes": 4105219,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical system with metal enclosures \u2014 with panel and wiring detail (work in progress)",
-   "city": "",
-   "slug": "photo-20231110-01"
+   "junk": false
   },
   {
    "path": "organized/20221101/PXL_20221101_160754393.jpg",
@@ -16184,11 +16240,7 @@
    "year": "2022",
    "bytes": 2505157,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20221101-01"
+   "junk": false
   },
   {
    "path": "organized/20221101/PXL_20221101_160752237.jpg",
@@ -16198,11 +16250,7 @@
    "year": "2022",
    "bytes": 2454302,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Electrical work in unfinished wood-framed space \u2014 with panel and wiring detail (detailed installation view)",
-   "city": "",
-   "slug": "photo-20221101-02"
+   "junk": false
   },
   {
    "path": "organized/unknown_date/QVZjN09ZSThwNXE4ZE5ERg.jpeg",
@@ -16351,6 +16399,16 @@
    "date": "unknown",
    "year": "unknown",
    "bytes": 303620,
+   "processed": false,
+   "junk": false
+  },
+  {
+   "path": "organized/20260212/IMG_20260212_101815080.jpg",
+   "name": "IMG_20260212_101815080.jpg",
+   "folder": "20260212",
+   "date": "2026-02-12",
+   "year": "2026",
+   "bytes": 2109890,
    "processed": false,
    "junk": false
   },
@@ -16762,11 +16820,7 @@
    "year": "2026",
    "bytes": 3514038,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Bank of breaker panels with EMT conduit runs in concrete utility room (work in progress)",
-   "city": "",
-   "slug": "photo-20260415-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG-20220401-WA0000.jpg",
@@ -16816,11 +16870,7 @@
    "year": "2026",
    "bytes": 5399713,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Tesla wall connector installed beside utility meter on stucco wall (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260810-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260821_122726213.jpg",
@@ -16850,11 +16900,7 @@
    "year": "2026",
    "bytes": 4001562,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main with overhead riser set in opened stucco wall (work in progress)",
-   "city": "",
-   "slug": "photo-20260212-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_084505159.jpg",
@@ -17284,11 +17330,7 @@
    "year": "2026",
    "bytes": 3948460,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main enclosure with underground conduit on stucco wall (work in progress)",
-   "city": "",
-   "slug": "photo-20260408-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260810_092346624.jpg",
@@ -17528,11 +17570,7 @@
    "year": "2026",
    "bytes": 3380819,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Aging multi-meter bank with FPE main disconnect during service evaluation (work in progress)",
-   "city": "",
-   "slug": "photo-20260306-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG-20230607-WA0001.jpg",
@@ -17772,11 +17810,7 @@
    "year": "2026",
    "bytes": 2274423,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Steam generator control wiring with contactor and transformer (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260310-03"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260709_101929766_HDR.jpg",
@@ -17816,11 +17850,7 @@
    "year": "2026",
    "bytes": 2073172,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Ceiling-mounted EV charger with conduit run in parking garage (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260423-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_123824574.jpg",
@@ -17870,11 +17900,7 @@
    "year": "2026",
    "bytes": 3808302,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main enclosure with underground conduit on stucco wall (work in progress)",
-   "city": "",
-   "slug": "photo-20260408-02"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_093423603.jpg",
@@ -18024,11 +18050,7 @@
    "year": "2026",
    "bytes": 4455245,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Exterior conduit runs and junction boxes along stucco wall (work in progress)",
-   "city": "",
-   "slug": "photo-20260727-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260825_080707081.jpg",
@@ -18808,11 +18830,7 @@
    "year": "2026",
    "bytes": 2260069,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Grounding busbar with bonded conductors in concrete utility room (work in progress)",
-   "city": "",
-   "slug": "photo-20260415-02"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_121820932.jpg",
@@ -19062,11 +19080,7 @@
    "year": "2024",
    "bytes": 1700016,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Open device boxes with pulled conductors during interior wiring (work in progress)",
-   "city": "",
-   "slug": "photo-20240305-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_121746588_HDR.jpg",
@@ -19296,11 +19310,7 @@
    "year": "2026",
    "bytes": 2584651,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Steam generator control unit being wired in confined space (work in progress)",
-   "city": "",
-   "slug": "photo-20260310-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_120252031.jpg",
@@ -19340,11 +19350,7 @@
    "year": "2022",
    "bytes": 1800025,
    "processed": true,
-   "junk": false,
-   "category": "team",
-   "caption": "Technician wiring a panel beneath overhead conduit runs and meter equipment (work in progress)",
-   "city": "",
-   "slug": "photo-20220128-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_103342888_HDR.jpg",
@@ -19474,11 +19480,7 @@
    "year": "2026",
    "bytes": 2608716,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Exterior conduit runs and junction boxes along stucco wall (work in progress)",
-   "city": "",
-   "slug": "photo-20260727-04"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260825_080918494.jpg",
@@ -19598,11 +19600,7 @@
    "year": "2026",
    "bytes": 5769734,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Multi-unit meter bank with disconnects and labeled meters (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260825-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260709_102323430.jpg",
@@ -19802,11 +19800,7 @@
    "year": "2026",
    "bytes": 6592914,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Low-voltage and telecom control board with organized wiring runs (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260611-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_120238582.jpg",
@@ -19926,11 +19920,7 @@
    "year": "2026",
    "bytes": 4084331,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Recessed lighting and circuit rough-in across open ceiling framing (work in progress)",
-   "city": "",
-   "slug": "photo-20260903-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_115925586.jpg",
@@ -19950,11 +19940,7 @@
    "year": "2026",
    "bytes": 3294578,
    "processed": true,
-   "junk": false,
-   "category": "new-construction",
-   "caption": "Recessed lighting and circuit rough-in across open ceiling framing (work in progress)",
-   "city": "",
-   "slug": "photo-20260903-04"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260709_095606541.jpg",
@@ -20254,11 +20240,7 @@
    "year": "2026",
    "bytes": 3539904,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Meter and breaker panel with labeled circuits on stucco wall (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260904-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_084629710.jpg",
@@ -20288,11 +20270,7 @@
    "year": "2026",
    "bytes": 3734236,
    "processed": true,
-   "junk": false,
-   "category": "commercial",
-   "caption": "Open panelboard with circuit breakers in concrete utility room (work in progress)",
-   "city": "",
-   "slug": "photo-20260611-04"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260708_093728129.jpg",
@@ -20362,11 +20340,7 @@
    "year": "2026",
    "bytes": 3183130,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New load center specification label with ratings and wiring diagram (detailed installation view)",
-   "city": "",
-   "slug": "photo-20260825-04"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Electric Work/IMG_20260709_101809632.jpg",
@@ -20516,11 +20490,7 @@
    "year": "2026",
    "bytes": 3780629,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main with emergency disconnect set in opened stucco in Winnetka",
-   "city": "Winnetka",
-   "slug": "gallery-winnetka-meter-main"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260203_081520870_HDR.jpg",
@@ -20530,11 +20500,7 @@
    "year": "2026",
    "bytes": 3281382,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New 200A meter-main installed in exterior wall during Winnetka panel upgrade",
-   "city": "Winnetka",
-   "slug": "gallery-winnetka-panel-wide"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260202_082119428.jpg",
@@ -20554,11 +20520,7 @@
    "year": "2026",
    "bytes": 4715953,
    "processed": true,
-   "junk": false,
-   "category": "other",
-   "caption": "Service upgrade materials staged on patio including riser and cable (work in progress)",
-   "city": "Winnetka",
-   "slug": "photo-20260202-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260202_084810762.jpg",
@@ -20568,11 +20530,7 @@
    "year": "2026",
    "bytes": 4257012,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Existing Siemens panel interior with wired breakers before upgrade (detailed installation view)",
-   "city": "Winnetka",
-   "slug": "photo-20260202-02"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260203_081607731_HDR.jpg",
@@ -20582,11 +20540,7 @@
    "year": "2026",
    "bytes": 3443602,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Meter-main close-up with meter and emergency disconnect labeling (detailed installation view)",
-   "city": "Winnetka",
-   "slug": "photo-20260203-03"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260202_082744482.jpg",
@@ -20626,11 +20580,7 @@
    "year": "2026",
    "bytes": 3733182,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main set in opened stucco with overhead service drop (work in progress)",
-   "city": "Winnetka",
-   "slug": "photo-20260203-01"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260203_081621916_HDR.jpg",
@@ -20650,11 +20600,7 @@
    "year": "2026",
    "bytes": 3430148,
    "processed": true,
-   "junk": false,
-   "category": "exterior",
-   "caption": "Overhead service drop and mast above new meter-main installation (work in progress)",
-   "city": "Winnetka",
-   "slug": "photo-20260203-04"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260202_084806773.jpg",
@@ -20684,11 +20630,7 @@
    "year": "2026",
    "bytes": 3590954,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New panel interior with wired breakers during Winnetka service upgrade",
-   "city": "Winnetka",
-   "slug": "gallery-winnetka-panel-wired"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260202_082109672.jpg",
@@ -20698,11 +20640,7 @@
    "year": "2026",
    "bytes": 3453484,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "Original meter and subpanel with overhead service drop before panel upgrade in Winnetka",
-   "city": "Winnetka",
-   "slug": "gallery-winnetka-panel-before"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260203_081549782_HDR.jpg",
@@ -20712,11 +20650,7 @@
    "year": "2026",
    "bytes": 3501210,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main secured to framing in opened stucco wall (work in progress)",
-   "city": "Winnetka",
-   "slug": "photo-20260203-02"
+   "junk": false
   },
   {
    "path": "/home/amram/Pictures/Photos-website/Upgrade Electrical Panel Winnetka/IMG_20260203_152336118_HDR.jpg",
@@ -20736,11 +20670,7 @@
    "year": "2026",
    "bytes": 3151747,
    "processed": true,
-   "junk": false,
-   "category": "panel",
-   "caption": "New meter-main with cover open showing wired breakers (detailed installation view)",
-   "city": "Winnetka",
-   "slug": "photo-20260209-01"
+   "junk": false
   }
  ]
 }
