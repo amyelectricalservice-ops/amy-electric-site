@@ -9,6 +9,12 @@
 # pointing at /reviews; this rule consolidates ranking signals.
 /testimonials  /reviews  301
 
+# Retired emergency aliases -> canonical emergency page (301).
+# Both pages keep their canonical tag pointing at
+# /emergency-electrician-los-angeles; this rule consolidates ranking signals.
+/emergency-electrician  /emergency-electrician-los-angeles  301
+/emergency-electrical  /emergency-electrician-los-angeles  301
+
 # Directory index paths (301). The assets config would otherwise answer these
 # with a 307; a canonical redirect should be a 301.
 /blog  /blog/  301
