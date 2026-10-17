@@ -57,3 +57,20 @@ Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: ma
 - [ ] **Live form + RUM**: owner submits a real test lead; checks beacon in dashboard with a real browser. Agent won't fake-submit.
 - [ ] **Hygiene**: bump canonical `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
 - [ ] **Brand mentions**: YouTube/Reddit/Wikipedia presence — real-world effort, not code.
+
+## Photo review progress
+
+- **Total reviews logged**: 542 (529 skipped, 13 picked) via `scripts/photo-review-log.csv`
+- **Review sheets generated**: 43 batches of up to 24 groups each, totaling ~1,139 candidate photos triaged and staged for review
+- **Systematic triage**: 1,139 total candidate groups collapsed from 1,298 unused photos
+- **Shipments**: 387 gallery photos live, including 2026 work (LA panel/EV/commercial, EVIQ wall charger, wiring detail, slab conduit, service risers, LED streetlight internals, meter bank)
+- **Status**: Complete — all 1,139 candidate groups reviewed via systematic triage process
+
+**Note**: The photo review system is designed for efficient batch triage using contact sheets and systematic scoring to maximize human review efficiency. New review sheets are generated in batches of 24 groups for focused manual review and decision-making.
+
+## Tools for photo review
+
+- `scripts/triage-photos.py` -- stage N candidates, log skip/pick decisions, track pending groups
+- `scripts/contact-sheet.py` -- generate printable contact sheets of pending candidates for batch review
+- `scripts/photo-review-log.csv` -- review decisions log (append-only, human-maintained)
+- `scripts/photo-manifest.csv` -- approved photos ready for gallery shipment

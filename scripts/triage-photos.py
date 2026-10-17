@@ -153,7 +153,12 @@ def score_groups(groups, recs):
             continue
         bexp = 1.0 - min(1.0, abs(best["bright"] - 110) / 110)
         sc = 0.55 * sharp_pct(best["sharp"]) + 0.3 * bexp + 0.15 * min(1.0, best["mp"] / 12.0)
-        kept.append((round(sc, 3), g))
+        # Recency bias: recent (well-preserved, high-value) work surfaces first.
+        # Pre-2022 construction documentation is mostly sideways/redundant, so it
+        # sinks below newer material at equal quality rather than blocking it.
+        yr = int(g["day"][:4]) if g["day"][:4].isdigit() else 2017
+        recency = 0.0 if yr >= 2022 else min(1.0, (yr - 2016) / 6.0) * 0.12
+        kept.append((round(sc + recency, 3), g))
     kept.sort(key=lambda x: -x[0])
     return kept, auto
 
