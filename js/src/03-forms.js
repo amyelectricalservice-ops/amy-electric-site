@@ -53,14 +53,11 @@
           });
         })
         .catch(function () {
-          var data = Object.fromEntries(new FormData(form));
-          var body = '';
-          for (var k in data) {
-            if (data.hasOwnProperty(k)) body += k + ': ' + data[k] + '\n';
-          }
-          window.location.href = 'mailto:info@amyelectric.com?subject=AMY%20Electric%20-%20' + encodeURIComponent(data.name || 'New Lead') + '&body=' + encodeURIComponent(body);
-          form.style.display = 'none';
-          document.getElementById(successId).style.display = 'block';
+          // Network or server failure: the lead never reached /api/contact.
+          // Never pretend it sent — show an honest error and leave the form
+          // visible so the visitor can retry or use the phone/email fallback.
+          showError("Couldn't send — please try again, or email info@amyelectric.com or call (818) 302-5614.");
+          resetBtn();
         });
     });
   }

@@ -39,13 +39,27 @@ jobs:
 
       - name: Verify Sitemap Integrity
         run: |
-          python3 -c "
+          python3 <<'EOF'
           import xml.etree.ElementTree as ET
-          import glob, sys
+          import glob, re, sys
 
           tree = ET.parse('sitemap.xml')
           root = tree.getroot()
-          sitemap_urls = {elem.text.strip() for elem in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+          ns = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
+          sitemap_urls = {elem.text.strip().replace('https://amyelectric.com/', '') or 'index'
+                          for elem in root.findall('.//' + ns + 'loc')}
+
+          def canon_path(f):
+              try:
+                  with open(f, encoding='utf-8', errors='replace') as fh:
+                      head = fh.read(8000)
+              except OSError:
+                  return None
+              m = re.search(r'<link rel="canonical" href="https://amyelectric\.com([^"]*)"', head)
+              if not m:
+                  return None
+              p = m.group(1) or '/'
+              return p.rstrip('/') or '/'
 
           html_files = glob.glob('*.html') + glob.glob('blog/*.html') + glob.glob('case-studies/*.html')
           html_urls = set()
@@ -56,18 +70,47 @@ jobs:
                   head = fh.read(4000)
               if 'noindex' in head:
                   continue
-              clean = f.replace('./', '').removesuffix('.html')
+              # canonical-elsewhere pages are aliases whose real canonical target is
+              # the sitemap entry; they must not carry their own sitemap URL.
+              clean = f.removesuffix('.html')
+              own_path = '/' if clean == 'index' else '/' + clean
+              if canon_path(f) is not None and canon_path(f) != own_path:
+                  continue
               if clean == 'index':
-                  url = 'https://amyelectric.com/'
+                  url = 'index'
               elif clean.endswith('/index'):
-                  url = 'https://amyelectric.com/' + clean.replace('index', '') 
+                  url = clean.replace('/index', '/')
               else:
-                  url = 'https://amyelectric.com/' + clean
+                  url = clean
               html_urls.add(url)
 
+          errors = []
           missing_in_sitemap = html_urls - sitemap_urls
           if missing_in_sitemap:
-              print(f'Error: Missing URLs in sitemap ({len(missing_in_sitemap)}): {missing_in_sitemap}')
+              errors.append('Missing URLs in sitemap (%d): %s' % (len(missing_in_sitemap),
+                                                                  sorted(missing_in_sitemap)))
+
+          # Reverse assertion: every sitemap URL must map to a real, self-canonical
+          # HTML file. A non-canonical sitemap entry undermines consolidation.
+          html_set = set(html_files)
+          for url in sorted(sitemap_urls):
+              if url == 'index':
+                  candidate = 'index.html'
+              elif url.endswith('/'):
+                  candidate = url + 'index.html'
+              else:
+                  candidate = url + '.html'
+              if candidate not in html_set:
+                  errors.append('Sitemap URL has no HTML file: %s' % url)
+                  continue
+              cp = canon_path(candidate)
+              expected = '/' if url == 'index' else '/' + url.rstrip('/')
+              if cp is None or cp != expected:
+                  errors.append('Sitemap URL not self-canonical: %s (canonical=%s)' % (url, cp))
+
+          if errors:
+              for e in errors:
+                  print('Error:', e)
               sys.exit(1)
           print('Sitemap integrity check passed!')
-          "
+          EOF

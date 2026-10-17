@@ -2,6 +2,7 @@ import glob
 import os
 import re
 import json
+import sys
 from xml.etree import ElementTree as ET
 
 def audit():
@@ -32,6 +33,20 @@ def audit():
                 url = 'index'
             sitemap_urls.add(url)
 
+    def canon_path(f):
+        """Canonical URL path of an HTML file (e.g. '/emergency-electrician-los-angeles'),
+        or None when the page has no rel=canonical."""
+        try:
+            with open(f, encoding='utf-8', errors='replace') as fh:
+                head = fh.read(8000)
+        except OSError:
+            return None
+        m = re.search(r'<link rel="canonical" href="https://amyelectric\.com([^"]*)"', head)
+        if not m:
+            return None
+        p = m.group(1) or '/'
+        return p.rstrip('/') or '/'
+
     # 404.html and seo-audit-report.html are deliberate non-pages: 404 is never
     # indexed, and the report is an internal doc that .assetsignore blocks (live 404).
     # Flagging either as "missing from sitemap" is a false positive.
@@ -45,7 +60,13 @@ def audit():
         # correct. The deploy workflow skips these too; flagging them here contradicts CI.
         if 'noindex' in open(f, encoding='utf-8', errors='replace').read(4000):
             continue
+        # A canonical-elsewhere page is an alias whose real canonical target is the
+        # sitemap entry (e.g. /emergency-electrician -> /emergency-electrician-los-angeles);
+        # it must not carry its own sitemap URL, so its absence is correct.
         clean = f[:-5]
+        own_path = '/' if clean == 'index' else '/' + clean
+        if canon_path(f) is not None and canon_path(f) != own_path:
+            continue
         if clean.endswith('/index'):
             clean_dir = clean[:-5] # e.g. blog/
         else:
@@ -53,6 +74,26 @@ def audit():
             
         if clean not in sitemap_urls and clean_dir not in sitemap_urls and (clean_dir.rstrip('/') + '/') not in sitemap_urls:
             missing_from_sitemap.append((f, clean))
+
+    # Reverse assertion: every sitemap URL must point at a real, self-canonical HTML
+    # file. A sitemap entry whose page canonicalizes elsewhere (or 301s, or is missing)
+    # publishes a non-canonical URL and undermines consolidation.
+    sitemap_not_self_canonical = []
+    html_set = set(html_files)
+    for url in sorted(sitemap_urls):
+        if url == 'index':
+            candidate = 'index.html'
+        elif url.endswith('/'):
+            candidate = url + 'index.html'
+        else:
+            candidate = url + '.html'
+        if candidate not in html_set:
+            sitemap_not_self_canonical.append((url, 'no HTML file'))
+            continue
+        cp = canon_path(candidate)
+        expected = '/' if url == 'index' else '/' + url.rstrip('/')
+        if cp is None or cp != expected:
+            sitemap_not_self_canonical.append((url, 'canonical %s != %s' % (cp, expected)))
 
     issues_by_file = {}
     sticky_bar_missing = []
@@ -115,6 +156,7 @@ def audit():
     print(f"=== AUDIT REPORT ===")
     print(f"Total production HTML pages: {len(html_files)}")
     print(f"Pages missing from sitemap: {len(missing_from_sitemap)}")
+    print(f"Sitemap URLs not self-canonical: {len(sitemap_not_self_canonical)}")
     print(f"Pages missing site.min.js: {len(js_missing)}")
     print(f"Pages missing sticky mobile bar: {len(sticky_bar_missing)}")
     print(f"Pages with meta description issues: {len(meta_desc_issues)}")
@@ -125,6 +167,11 @@ def audit():
         print("\n[!] Missing from sitemap.xml:")
         for f, clean in missing_from_sitemap:
             print(f"  - {f} ({clean})")
+
+    if sitemap_not_self_canonical:
+        print("\n[!] Sitemap URLs not self-canonical (remove from sitemap.xml):")
+        for url, why in sitemap_not_self_canonical:
+            print(f"  - {url} ({why})")
 
     if js_missing:
         print(f"\n[!] Missing site.min.js ({len(js_missing)}):")
@@ -150,6 +197,13 @@ def audit():
         print(f"\n[!] Missing </head> ({len(head_close_missing)}):")
         for m in head_close_missing:
             print(f"  - {m}")
+
+    any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
+                  sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing)
+    if any_issues:
+        print("\nAUDIT FAILED — fix the issues above before deploying.")
+        sys.exit(1)
+    print("\nAUDIT OK — 0 issues.")
 
 if __name__ == '__main__':
     audit()
