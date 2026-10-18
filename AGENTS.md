@@ -9,7 +9,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 ## Current state
 
 - **314 production HTML pages** (`scripts/audit-site.py`); **306 URLs in `sitemap.xml`** (delta is deliberate noindex/404 exclusions: `404.html`, `seo-audit-report.html`, 3 noindex cities, plus 3 retired redirect-source pages: `emergency-electrical`, `emergency-electrician`, `testimonials`). No `<priority>`/`<changefreq>`. `index`/`blog/index`/`case-studies/index` map to directory URLs. Changed pages get `<lastmod>` bumps via `scripts/refresh-sitemap-lastmod.py` (commits `[skip ci]` back to `main` — expect rebase-before-push).
-- 112 `city-*.html` (16 core + neighborhoods; 3 deliberately `noindex`: `city-edith-norman`, `city-el-sobrante`, `city-health-campadre`), 48 geo service pages (24 EV + 24 panel), 60 blog posts, `testimonials.html`, `gallery.html` (387 photos), `privacy-policy.html`, `service-areas.html`.
+- 112 `city-*.html` (16 core + neighborhoods; 3 deliberately `noindex`: `city-edith-norman`, `city-el-sobrante`, `city-health-campadre`), 64 geo service pages (24 EV + 24 panel + 16 rewiring), 60 blog posts, `testimonials.html`, `gallery.html` (387 photos), `privacy-policy.html`, `service-areas.html`.
 - **CSS**: source `css/src/01-*.css`–`12-*.css`, built via `scripts/build-css.py` → `css/style.min.css`. **JS**: source `js/src/01-*.js`–`08-*.js` via `scripts/build-js.py` → `js/site.min.js`. Never edit built files.
 - Estimate engine: `05-estimate-data.js` (canonical priced tables, mirrors `scripts/estimate-schema.sql` 1:1) + `06-estimate-engine.js` (`window.AMY_ESTIMATE.calcEstimate`) + `07-estimate-lead.js` (attaches indicative range to quote-form leads; `/api/contact` allowlists it, drops invalid without failing the lead). Permit handling is explicit per service (`included`/`separate`/`unpublished`) — never infer from `permitId`. `js/estimator.js` is standalone; `js/estimator.min.js` is the legacy EV bundle the homepage actually loads — parity between the three is asserted by `test-estimator.mjs`, no build step links them.
 - Booking widget (`book.html` only): open-source flatpickr 4.6.13 (MIT, (c) 2017 Gregory Petrosyan) vendored version-pinned at `js/vendor/flatpickr-4.6.13.min.js` + `css/vendor/flatpickr-dark-4.6.13.css` — never hand-edit vendored files (contrast/a11y overrides live in book.html `/*book-widget*/` CSS). `js/book.js` is standalone (pure slot rules: Sun closed, weekday 4 windows 8–4, Sat 2 windows 8–12, min tomorrow, max +60d; `window.AMY_BOOK`, tested by `test-book.mjs`). flatpickr-on-a-div needs `appendTo` or the calendar lands at body level.
@@ -45,6 +45,8 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 ## Skills
 
 Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: market view → `competitive-landscape`; one domain → `competitor-analysis`; new page → `seo-content-brief`; single page → `seo-page`; tech/crawl → `seo-technical`; sitemap → `seo-sitemap`; images → `seo-images`. Only the `cloudflare` MCP server is connected — all SEO data tools degrade to `websearch`/`webfetch` (directional only, label as such). Prefer repo auditors over skill prose.
+
+Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates the five SEO workflows (context → keywords → mapping → competitor → links) into `seo-workspace/`. Note the config uses the legacy `permission:` map — this opencode build (`1.18.33`) silently ignores the V2 `permissions:` list.
 
 ## Remaining work (owner-sized; code side is shipped)
 

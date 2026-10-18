@@ -1,5 +1,13 @@
 # AMY Electric — Keyword Clustering & Page Mapping Strategy
 
+> **⚠️ Historical — superseded 2026-10-18.** The master mapping now lives in
+> [`clusters.md`](clusters.md); the keyword-level detail lives in [`opportunities.md`](opportunities.md).
+> Keep this file for the narrative rationale, but **do not cite its numbers**: it reports 1,011
+> analysed queries and cluster impression totals that no longer reconcile with the GSC export
+> (which contains 1,000 queries / 13,374 query impressions), and several target pages it names
+> have since changed state (`emergency-electrical` and `emergency-electrician` are now `noindex`
+> redirect aliases). Verified figures: see `reports/context-status.md`.
+
 ## Executive Summary
 - **Total Search Clusters**: 7 core clusters
 - **Analyzed Queries**: 1,011 queries from Search Console
