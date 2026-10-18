@@ -11,10 +11,11 @@
       "head_sampling_rate": 1
     }
   },
-  "routes": [
-    { "pattern": "amyelectric.com/*", "zone_name": "amyelectric.com" },
-    { "pattern": "www.amyelectric.com/*", "zone_name": "amyelectric.com" }
-  ],
+  // No zone routes on purpose: the `amyelectric.com` routes belong to the
+  // `amy-electric-seo` edge wrapper (see seo-worker/wrangler.jsonc), which
+  // proxies to this Worker via the ORIGIN service binding. Declaring the routes
+  // here would take them back from the wrapper on the next deploy. This Worker
+  // is reached only through that binding (and its workers.dev subdomain).
   "assets": {
     "directory": ".",
     "binding": "ASSETS",

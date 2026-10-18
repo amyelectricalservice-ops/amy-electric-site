@@ -1,4 +1,4 @@
-import { bindings, defineConfig, triggers } from "cf/config";
+import { bindings, defineConfig } from "cf/config";
 
 export default defineConfig({
 	worker: {
@@ -20,16 +20,9 @@ export default defineConfig({
 			notFoundHandling: "404-page",
 			runWorkerFirst: true,
 		},
-		triggers: [
-			triggers.fetch({
-				pattern: "amyelectric.com/*",
-				zone: "amyelectric.com",
-			}),
-			triggers.fetch({
-				pattern: "www.amyelectric.com/*",
-				zone: "amyelectric.com",
-			}),
-		],
+		// No fetch triggers: the amyelectric.com zone routes belong to the
+		// amy-electric-seo edge wrapper (see seo-worker/wrangler.jsonc). This
+		// Worker is reached through that wrapper's ORIGIN service binding.
 		env: {
 			ASSETS: bindings.assets(),
 			IMAGES: bindings.images(),

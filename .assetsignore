@@ -32,6 +32,7 @@ pnpm-lock.yaml
 *.py
 contact-handler.js
 worker.js
+seo-worker/
 cloudflare.config.ts
 wrangler.config.ts
 .gitignore

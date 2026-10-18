@@ -1,40 +1,49 @@
 # AMY Electric production deployment
 
-## Verified state (checked 2026-09-27 against the Cloudflare API)
+## Verified state (checked 2026-10-18 against the Cloudflare API)
 
-- Live Worker: **`amy-electric-site`**
-- Live config: **`wrangler.jsonc`**
+Production is two Workers, not one:
+
+- **Edge wrapper Worker: `amy-electric-seo`** — config `seo-worker/wrangler.jsonc`. It owns every
+  `amyelectric.com` zone route (`amyelectric.com/*` plus 11 sub-patterns) and proxies to the origin
+  through an `ORIGIN` service binding. `workers_dev` is off.
+- **Origin Worker: `amy-electric-site`** — config `wrangler.jsonc`. The site/assets/API Worker. It
+  declares **no** zone routes; it is reached only through the wrapper's service binding (and its
+  workers.dev subdomain).
 - Account: `a08528fe46962a4d732de2d8d30eeef5` (`a.m.y.electricalservice@gmail.com`)
-- Deployed compatibility date: `2026-05-21`, flags `["nodejs_compat"]`
-- Deployments on record (checked 2026-09-27): 10, all with `source: "wrangler"`, none from Git.
-  Workers Builds connected later; since the 2026-10-14 `open-seo` gitlink fix its runs are
-  green but carry empty build/deploy commands, so the GitHub workflow below remains the deploy path.
+- Origin deployed compatibility date: `2026-10-14`, flags `["nodejs_compat"]`
 
-That last line is the important one: **pushing to `main` deploys via the GitHub workflow, not via
-Workers Builds.** Earlier revisions
-of this file referred to a `amy-electric-site-production` Worker and to the Revitaldaycare account;
-neither is true of the site actually serving `amyelectric.com`, and both notes have been removed.
+The `amy-electric-seo` wrapper was originally deployed out-of-band (via the Cloudflare API, not from
+this repository) and is now committed under `seo-worker/` so the layer is version-controlled.
+
+Earlier revisions of this file described a single Worker serving `amyelectric.com`, and a
+`amy-electric-site-production` Worker in the Revitaldaycare account; neither is true today.
 
 ## Production boundary
 
 - GitHub repository: `amyelectricalservice-ops/amy-electric-site`
-- Production Worker: `amy-electric-site`
 - Production hostname: `amyelectric.com` (plus the `www` redirect)
-- Wrangler configuration: `wrangler.jsonc`
+- Route owner: **`amy-electric-seo`** — `amyelectric.com/*` and its sub-patterns
+- Origin Worker: **`amy-electric-site`**
+- Wrangler configurations: `seo-worker/wrangler.jsonc` (wrapper), `wrangler.jsonc` (origin)
 - Public assets are filtered by `.assetsignore`
 
-`wrangler.jsonc` intentionally has no `account_id`, so the account comes from the authenticated
-login rather than being committed.
+Neither config commits an `account_id`, so the account comes from the authenticated login rather
+than being committed.
 
-`wrangler.production.jsonc` is retained as a hardened alternative. It is now equivalent to
-`wrangler.jsonc` for `main`, `compatibility_date`, `compatibility_flags`, `observability`, `assets`
-and host coverage, but it targets a different Worker name and sets `workers_dev: false`. It is not
-what serves production today. Adopting it would require creating that Worker and moving the
-`amyelectric.com` custom domain onto it.
+`wrangler.production.jsonc` is retained as a hardened alternative for the origin Worker but is
+unused: it targets a different Worker name (`amy-electric-site-production`) and claims the
+`amyelectric.com` custom domain plus `www.amyelectric.com/*`, which now belong to the wrapper.
+Adopting it would require moving those routes off `amy-electric-seo` first.
 
 ## Deploying
 
 ```bash
+# edge wrapper (route owner)
+wrangler deploy --dry-run --config seo-worker/wrangler.jsonc   # validates the bundle
+wrangler deploy --config seo-worker/wrangler.jsonc             # publishes, prints Version ID
+
+# origin site Worker
 wrangler deploy --dry-run --config wrangler.jsonc   # validates bundle + asset list
 wrangler deploy --config wrangler.jsonc            # publishes, prints Version ID
 ```
@@ -57,12 +66,16 @@ submissions will not be processed.
 
 ## Automatic deploys
 
-`.github/workflows/deploy.yml` deploys on every push to `main`. It validates structured data and
-sitemap integrity first, then runs `wrangler deploy --config wrangler.jsonc`, notifies IndexNow, and
-smoke-tests production. It is inert until two repository secrets exist:
+`.github/workflows/deploy.yml` deploys the **origin** Worker on every push to `main`. It validates
+structured data and sitemap integrity first, then runs `wrangler deploy --config wrangler.jsonc`,
+notifies IndexNow, and smoke-tests production. It is inert until two repository secrets exist:
 
 - `CLOUDFLARE_API_TOKEN` — an API token with **Account > Workers Scripts > Edit**
 - `CLOUDFLARE_ACCOUNT_ID` — the account owning the amyelectric.com zone
+
+The workflow does not deploy the `amy-electric-seo` wrapper; deploy that one manually (see above).
+Because the origin declares no zone routes, a push to `main` can no longer take the
+`amyelectric.com` routes back from the wrapper.
 
 Until both are set the deploy job fails at an explicit preflight step that names the missing secret,
 rather than failing obscurely inside wrangler.
