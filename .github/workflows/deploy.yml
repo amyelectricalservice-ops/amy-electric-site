@@ -37,6 +37,16 @@ jobs:
         with:
           python-version: '3.11'
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test the Worker
+        # The retired `amy-electric-seo` wrapper was the only thing with a
+        # pre-deploy test gate; the site Worker's tests are the ones that matter
+        # now, so they run here before this deploy.
+        run: node --test scripts/test-*.mjs
+
       - name: Validate structured data and sitemap
         run: |
           python3 scripts/schema-tool.py validate

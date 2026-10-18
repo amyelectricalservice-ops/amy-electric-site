@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """Audit the committed Worker routing against the live Cloudflare zone.
 
-The site is served by two Workers, and which of them owns the `amyelectric.com`
-zone routes is the thing that silently drifted before (the `amy-electric-seo`
-edge wrapper was deployed out-of-band, so nothing in git said it existed). This
-script asserts that the repo and the zone still agree:
+`amy-electric-site` is the only Worker that serves amyelectric.com, and it is
+reached through the single `amyelectric.com/*` zone route declared in
+`wrangler.jsonc`. An `amy-electric-seo` edge wrapper used to own that route
+table, and because it had been deployed out-of-band nothing in git said it
+existed — which is exactly how git and Cloudflare drifted apart before. This
+script asserts they agree:
 
-    seo-worker/wrangler.jsonc   the wrapper   -- must own its declared routes
-    wrangler.jsonc              the origin    -- must own no zone routes
+    wrangler.jsonc   the site Worker -- must own exactly its declared routes
 
-Exits non-zero on a real mismatch so CI fails when git and Cloudflare disagree.
-Pass --warn-only to report a mismatch without failing: the workflow uses that on
-pushes and pull requests, where the sync job is about to reconcile the zone from
-git anyway, and reserves the hard failure for the weekly scheduled run, which is
-the one that catches drift nobody meant to introduce.
+and that no other Worker owns a route on the zone. It exits non-zero on a real
+mismatch so CI fails when git and Cloudflare disagree. Pass --warn-only to
+report a mismatch without failing: the workflow uses that on pushes and pull
+requests, where the deploy that follows reconciles the zone from git anyway, and
+reserves the hard failure for the weekly scheduled run, which is the one that
+catches drift nobody meant to introduce.
 
 A missing API permission is reported as a warning instead of a failure, matching
 the deploy pipeline's stance that a run red for reasons the repo cannot fix
@@ -31,8 +33,7 @@ import urllib.request
 
 ZONE = "amyelectric.com"
 API = "https://api.cloudflare.com/client/v4"
-WRAPPER_CONFIG = "seo-worker/wrangler.jsonc"
-ORIGIN_CONFIG = "wrangler.jsonc"
+CONFIG = "wrangler.jsonc"
 
 
 class PermissionGap(Exception):
@@ -75,8 +76,7 @@ def declared(config_path):
 
 def main(argv):
     warn_only = "--warn-only" in argv
-    wrapper_name, wrapper_routes = declared(WRAPPER_CONFIG)
-    origin_name, origin_routes = declared(ORIGIN_CONFIG)
+    name, declared_routes = declared(CONFIG)
 
     try:
         zone_id = api_get("/zones?name=" + ZONE)[0]["id"]
@@ -92,26 +92,20 @@ def main(argv):
         live.setdefault(route.get("script") or "(unattached)", set()).add(route["pattern"])
 
     problems = []
-    for label, name, declared_routes in (
-        ("wrapper", wrapper_name, wrapper_routes),
-        ("origin", origin_name, origin_routes),
-    ):
-        expected = declared_routes if label == "wrapper" else set()
-        actual = live.get(name, set())
-        if actual != expected:
-            problems.append(
-                "%s %s: %d declared, %d live -- only in git: %s; only in Cloudflare: %s"
-                % (label, name, len(expected), len(actual),
-                   sorted(expected - actual), sorted(actual - expected)))
+    actual = live.get(name, set())
+    if actual != declared_routes:
+        problems.append(
+            "%s: %d declared, %d live -- only in git: %s; only in Cloudflare: %s"
+            % (name, len(declared_routes), len(actual),
+               sorted(declared_routes - actual), sorted(actual - declared_routes)))
     for script, patterns in sorted(live.items()):
-        if script not in (wrapper_name, origin_name):
+        if script != name:
             problems.append("unexpected Worker %s owns %s" % (script, sorted(patterns)))
 
     print("Declared in git:")
-    print("  %s (%d):" % (wrapper_name, len(wrapper_routes)))
-    for pattern in sorted(wrapper_routes):
+    print("  %s (%d):" % (name, len(declared_routes)))
+    for pattern in sorted(declared_routes):
         print("    %s" % pattern)
-    print("  %s (origin, expected 0): %d" % (origin_name, len(origin_routes)))
     print("Live on %s:" % ZONE)
     for script, patterns in sorted(live.items()):
         print("  %s (%d):" % (script, len(patterns)))
@@ -122,13 +116,13 @@ def main(argv):
         for problem in problems:
             print(("::warning::" if warn_only else "::error::") + problem)
         if warn_only:
-            print("drift (warn-only): git and Cloudflare disagree; the sync job "
-                  "reconciles this on a push to main.")
+            print("drift (warn-only): git and Cloudflare disagree; the deploy that "
+                  "follows reconciles this on a push to main.")
             return 0
         print("DRIFT: git and Cloudflare disagree (see above).")
         return 1
 
-    print("OK: git and Cloudflare agree on %d route(s)." % len(wrapper_routes))
+    print("OK: git and Cloudflare agree on %d route(s)." % len(declared_routes))
     return 0
 
 

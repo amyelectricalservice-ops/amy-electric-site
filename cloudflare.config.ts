@@ -20,9 +20,9 @@ export default defineConfig({
 			notFoundHandling: "404-page",
 			runWorkerFirst: true,
 		},
-		// No fetch triggers: the amyelectric.com zone routes belong to the
-		// amy-electric-seo edge wrapper (see seo-worker/wrangler.jsonc). This
-		// Worker is reached through that wrapper's ORIGIN service binding.
+		// The zone route (`amyelectric.com/*`) is declared in wrangler.jsonc, the
+		// live config. This mirror is validation-only and does not express zone
+		// routes; keep the two files in step by hand.
 		env: {
 			ASSETS: bindings.assets(),
 			IMAGES: bindings.images(),

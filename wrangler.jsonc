@@ -11,11 +11,16 @@
       "head_sampling_rate": 1
     }
   },
-  // No zone routes on purpose: the `amyelectric.com` routes belong to the
-  // `amy-electric-seo` edge wrapper (see seo-worker/wrangler.jsonc), which
-  // proxies to this Worker via the ORIGIN service binding. Declaring the routes
-  // here would take them back from the wrapper on the next deploy. This Worker
-  // is reached only through that binding (and its workers.dev subdomain).
+  // This Worker serves amyelectric.com directly. The route used to belong to the
+  // `amy-electric-seo` edge wrapper, which sat in front of this Worker and
+  // proxied here through an ORIGIN service binding; that wrapper was retired on
+  // 2026-10-18 and this Worker took the route over. The zone also carried 11
+  // redundant sub-patterns (/faq, /sitemap.xml, /robots.txt, /llms.txt and the
+  // service prefixes), each of which already resolved to the same Worker; they
+  // were removed with it.
+  "routes": [
+    { "pattern": "amyelectric.com/*", "zone_name": "amyelectric.com" }
+  ],
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
