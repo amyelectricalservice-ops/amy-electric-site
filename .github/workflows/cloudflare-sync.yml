@@ -1,0 +1,162 @@
+name: Cloudflare Config Sync
+
+# Keeps the Cloudflare account's Worker routing in step with what git says, and
+# closes the one gap the main deploy pipeline leaves.
+#
+# `.github/workflows/deploy.yml` deploys the origin Worker (`amy-electric-site`)
+# from `wrangler.jsonc`. It never touched the `amy-electric-seo` edge wrapper
+# (seo-worker/), which fronts the site on every `amyelectric.com` route — that
+# Worker was deployed out-of-band via the API and nothing in the repo described
+# it. When git and the zone disagree about which Worker owns those routes,
+# production silently changes hands. This workflow is what notices and fixes it.
+#
+# Two jobs:
+#   audit  compares the routes declared in the repo with the zone's live route
+#          table (scripts/audit-cloudflare-routes.py). Runs on every trigger; a
+#          mismatch is fatal only on the scheduled run, since on a push the sync
+#          job below is what corrects it.
+#   sync   deploys the wrapper from `seo-worker/wrangler.jsonc` so the committed
+#          config is authoritative, then re-audits. Push to main and manual
+#          dispatch only — never a pull request.
+#
+# Requires the same two repository secrets as deploy.yml, which are deliberately
+# not in the repo:
+#
+#   CLOUDFLARE_API_TOKEN   Account > Workers Scripts > Edit
+#                          (Zone > Workers Routes > Read is needed to audit the
+#                          route table; without it the audit warns and skips)
+#   CLOUDFLARE_ACCOUNT_ID  the account that owns the amyelectric.com zone
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'seo-worker/**'
+      - 'wrangler.jsonc'
+      - 'cloudflare.config.ts'
+      - 'scripts/audit-cloudflare-routes.py'
+      - '.github/workflows/cloudflare-sync.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'seo-worker/**'
+      - 'wrangler.jsonc'
+      - 'cloudflare.config.ts'
+      - 'scripts/audit-cloudflare-routes.py'
+      - '.github/workflows/cloudflare-sync.yml'
+  schedule:
+    # Weekly drift check: catches changes made in the dashboard that never
+    # reached git. Monday 14:00 UTC.
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-config-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit git config against live Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check required secrets are present
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Route audit is not armed. Missing repository secret: CLOUDFLARE_API_TOKEN"
+            echo "Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Compare declared routes with the zone's live routes
+        # Only the scheduled run treats a mismatch as fatal. On a push the sync
+        # job below is about to make the zone match git, and on a pull request
+        # the mismatch is the change under review — failing there would block
+        # the very commit that reconciles it.
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          STRICT: ${{ github.event_name == 'schedule' }}
+        run: |
+          if [ "$STRICT" = "true" ]; then
+            python3 scripts/audit-cloudflare-routes.py
+          else
+            python3 scripts/audit-cloudflare-routes.py --warn-only
+          fi
+
+  sync:
+    name: Deploy the edge wrapper
+    needs: audit
+    # Push to main and manual runs reconcile the zone; a pull request only
+    # audits, and a scheduled run only reports.
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check required secrets are present
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=""
+          [ -z "$CLOUDFLARE_API_TOKEN" ] && missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -z "$CLOUDFLARE_ACCOUNT_ID" ] && missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error::Wrapper deploy is not armed. Missing repository secret(s):$missing"
+            echo "Add them under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Install wrangler
+        run: npm install -g wrangler@latest
+
+      - name: Deploy the wrapper
+        # The wrapper is the only Worker that declares zone routes now, so this
+        # deploy is what re-asserts the `amyelectric.com` route table from git.
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler whoami
+          wrangler deploy --config seo-worker/wrangler.jsonc
+
+      - name: Verify git and Cloudflare now agree
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 scripts/audit-cloudflare-routes.py
+
+      - name: Verify the public domain still serves
+        # A route table can be right while the wrapper is broken. Bot Fight Mode
+        # challenges GitHub's runner IPs on amyelectric.com, so a 403 is the edge
+        # answering, not a fault; only a 5xx or a dead connection is real.
+        run: |
+          for path in / /sitemap.xml /robots.txt; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 2 \
+              -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36' \
+              "https://amyelectric.com$path" || echo 000)
+            echo "$path -> $code"
+            case "$code" in
+              200) ;;
+              403) echo "  edge served a bot challenge (Bot Fight Mode) - expected from CI" ;;
+              *) echo "::warning::$path returned $code after the wrapper deploy" ;;
+            esac
+          done

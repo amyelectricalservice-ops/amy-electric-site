@@ -66,22 +66,25 @@ submissions will not be processed.
 
 ## Automatic deploys
 
-`.github/workflows/deploy.yml` deploys the **origin** Worker on every push to `main`. It validates
-structured data and sitemap integrity first, then runs `wrangler deploy --config wrangler.jsonc`,
-notifies IndexNow, and smoke-tests production. It is inert until two repository secrets exist:
+Two workflows share two repository secrets, which are deliberately not in the repo:
 
 - `CLOUDFLARE_API_TOKEN` — an API token with **Account > Workers Scripts > Edit**
-- `CLOUDFLARE_ACCOUNT_ID` — the account owning the amyelectric.com zone
+- `CLOUDFLARE_ACCOUNT_ID` — the account that owns the amyelectric.com zone
 
-The workflow does not deploy the `amy-electric-seo` wrapper; deploy that one manually (see above).
-Because the origin declares no zone routes, a push to `main` can no longer take the
-`amyelectric.com` routes back from the wrapper.
+- `.github/workflows/deploy.yml` deploys the **origin** Worker (`wrangler.jsonc`) on every push to
+  `main`, notifies IndexNow, and smoke-tests production.
+- `.github/workflows/cloudflare-sync.yml` owns the **edge wrapper**. It compares the committed route
+  table with the live zone (`scripts/audit-cloudflare-routes.py`) and, on a push to `main` or a
+  manual run, deploys `seo-worker/wrangler.jsonc` to re-assert the `amyelectric.com` routes. A
+  weekly schedule runs the audit alone, so a route changed in the dashboard without reaching git is
+  reported instead of silently standing.
 
-Until both are set the deploy job fails at an explicit preflight step that names the missing secret,
-rather than failing obscurely inside wrangler.
+Both are inert until the secrets exist: each job fails at an explicit preflight step that names the
+missing secret, rather than failing obscurely inside wrangler. And because the origin now declares no
+zone routes, a push to `main` can no longer take the `amyelectric.com` routes back from the wrapper.
 
 Cloudflare's own Workers Builds Git integration remains unconnected and is not required; if it is ever
-enabled, disable this workflow so the two do not both deploy on the same push.
+enabled, disable the matching workflow so they do not both deploy on the same push.
 
 ## Post-deploy: edge cache
 
