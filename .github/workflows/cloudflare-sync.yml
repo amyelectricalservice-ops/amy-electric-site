@@ -14,7 +14,8 @@ name: Cloudflare Config Sync
 #   audit  compares the routes declared in the repo with the zone's live route
 #          table (scripts/audit-cloudflare-routes.py). Runs on every trigger; a
 #          mismatch is fatal only on the scheduled run, since on a push the sync
-#          job below is what corrects it.
+#          job below is what corrects it. It also runs the wrapper's routing
+#          tests (scripts/test-seo-wrapper.mjs), which gate the sync job.
 #   sync   deploys the wrapper from `seo-worker/wrangler.jsonc` so the committed
 #          config is authoritative, then re-audits. Push to main and manual
 #          dispatch only — never a pull request.
@@ -35,6 +36,7 @@ on:
       - 'wrangler.jsonc'
       - 'cloudflare.config.ts'
       - 'scripts/audit-cloudflare-routes.py'
+      - 'scripts/test-seo-wrapper.mjs'
       - '.github/workflows/cloudflare-sync.yml'
   pull_request:
     branches: [ main ]
@@ -43,6 +45,7 @@ on:
       - 'wrangler.jsonc'
       - 'cloudflare.config.ts'
       - 'scripts/audit-cloudflare-routes.py'
+      - 'scripts/test-seo-wrapper.mjs'
       - '.github/workflows/cloudflare-sync.yml'
   schedule:
     # Weekly drift check: catches changes made in the dashboard that never
@@ -67,6 +70,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test the edge wrapper
+        # The wrapper is published by the sync job below, which needs this job,
+        # so a failing routing test here keeps a broken wrapper out of
+        # production. Stubbed ORIGIN: no network, no secrets.
+        run: node --test scripts/test-seo-wrapper.mjs
 
       - name: Check required secrets are present
         env:
