@@ -18,79 +18,40 @@ var html='<!DOCTYPE html><html lang="en"><head>'+head+'</head><body><header clas
 return html;
 }
 
-function robots(){return new Response("User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /a2a\nDisallow: /openapi.json\nDisallow: /.well-known/\n\nSitemap: "+B.url+"/sitemap.xml\n",{headers:{"Content-Type":"text/plain;charset=utf-8"}})}
-function sitemap(){var u=[B.url+"/",B.url+"/faq",B.url+"/get-quote.html"];SVCS.forEach(function(s){u.push(B.url+"/"+s.s)});CITIES.forEach(function(c){u.push(B.url+"/electrician-"+c.s);SVCS.forEach(function(s){u.push(B.url+"/"+s.s+"-"+c.s)})});var x='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';u.forEach(function(l){x+='  <url><loc>'+l+'</loc><changefreq>monthly</changefreq></url>\n'});x+="</urlset>";return new Response(x,{headers:{"Content-Type":"application/xml;charset=utf-8"}})}
-function llms(){var t="# AMY Electric\n\n> Licensed C-10 electrical contractor serving Los Angeles, CA. EVITP certified for EV charger installation.\n\nAMY Electric is a licensed electrical contractor (C-10 #981578, EVITP #4051604) serving Los Angeles. Services include EV charger installation, panel upgrades, home rewiring, electrical troubleshooting, lighting installation, and inspections.\n\n## Services\n";SVCS.forEach(function(s){t+="- "+s.n+": "+B.url+"/"+s.s+"\n"});t+="\n## Key Pages\n- Home: "+B.url+"/\n- FAQ: "+B.url+"/faq\n- Get a Quote: "+B.url+"/get-quote.html\n\n## Service Areas\n"+CITIES.map(function(c){return c.n}).join(", ")+"\n\n## Contact\nPhone: (818) 302-5614\nHours: Mon-Sat 7am-7pm\nLicense: C-10 #981578, EVITP #4051604\n\n## AI Agent\nThis site implements the A2A protocol at "+B.url+"/a2a\nAgent card: "+B.url+"/.well-known/agent.json\n";return new Response(t,{headers:{"Content-Type":"text/plain;charset=utf-8"}})}
 function faqPg(){var b=FAQS.map(function(f){return"<h3>"+f.q+"</h3><p>"+f.a+"</p>"}).join("");return new Response(pg({t:"FAQ | AMY Electric | Los Angeles Electrician",d:"Frequently asked questions about EV charger installation, panel upgrades, permits, rebates, pricing, and service areas in Los Angeles.",can:B.url+"/faq",ld:[lbS(),fqS(FAQS)],h1:"Frequently Asked Questions",body:b,bc:[{name:"Home",url:"/"},{name:"FAQ",url:"/faq"}]}),{headers:{"Content-Type":"text/html;charset=utf-8"}})}
 function cityPg(c){var b="<p>Looking for a licensed electrician in <strong>"+c.n+"</strong>? AMY Electric is a C-10 licensed electrical contractor ("+B.license+") serving "+c.n+" and all of Los Angeles County. We offer EV charger installation, panel upgrades, rewiring, troubleshooting, and lighting installation with same-day service.</p><h3>Electrical Services in "+c.n+'</h3><ul><li><strong>EV Charger Installation</strong> \u2014 Tesla Wall Connector, ChargePoint, Level 2, NEMA 14-50 (EVITP certified)</li><li><strong>Panel Upgrades</strong> \u2014 100A to 200A service upgrades, subpanels, Zinsco/FPE replacement</li><li><strong>Home Rewiring</strong> \u2014 Knob &amp; tube replacement, aluminum wire remediation, whole-house rewiring</li><li><strong>Troubleshooting &amp; Repair</strong> \u2014 Breaker tripping, flickering lights, dead outlets, short circuits</li><li><strong>Lighting Installation</strong> \u2014 Recessed lights, LED retrofits, outdoor landscape lighting</li><li><strong>Electrical Inspection</strong> \u2014 Safety audits, pre-purchase inspections, code compliance</li></ul><h3>Why '+c.n+' Residents Choose AMY Electric</h3><ul><li>Licensed C-10 contractor (#981578) \u2014 all work permitted &amp; inspected</li><li>EVITP certified (#4051604) for EV charger installation</li><li>Same-day troubleshooting available</li><li>LADWP &amp; 30C federal rebate assistance for EV chargers</li><li>Serving '+c.n+" ("+c.z+") and surrounding neighborhoods</li></ul><h3>Our Services in "+c.n+'</h3><div class="service-grid">'+SVCS.map(function(s){return'<a href="/'+s.s+'-'+c.s+'">'+s.n+'</a>'}).join("")+'</div><h3>Also Serving Nearby</h3><div class="city-grid">'+CITIES.filter(function(x){return x.s!==c.s}).slice(0,16).map(function(x){return'<a href="/electrician-'+x.s+'">'+x.n+"</a>"}).join("")+"</div>";return new Response(pg({t:"Electrician "+c.n+" CA | EV Charger, Panel Upgrade | AMY Electric",d:"Licensed electrician in "+c.n+", CA. EV charger installation, panel upgrades, rewiring, troubleshooting, lighting. C-10 licensed, EVITP certified. Same-day service. Call "+B.phone+".",can:B.url+"/electrician-"+c.s,ld:[lbS(),svS(SVCS[0],c.n),bcS([{name:"Home",url:"/"},{name:"Service Areas",url:"/electrician-los-angeles"},{name:c.n,url:"/electrician-"+c.s}])],h1:"Electrician in "+c.n+", CA",body:b,bc:[{name:"Home",url:"/"},{name:"Service Areas",url:"/electrician-los-angeles"},{name:c.n,url:"/electrician-"+c.s}]}),{headers:{"Content-Type":"text/html;charset=utf-8"}})}
 function svcPg(s){var b="<p>"+s.d+"</p>"+s.b+"<h3>Service Areas</h3><div class=\"city-grid\">"+CITIES.map(function(c){return"<a href=\"/"+s.s+"-"+c.s+"\">"+c.n+"</a>"}).join("")+"</div>";return new Response(pg({t:s.t,d:s.d,can:B.url+"/"+s.s,ld:[lbS(),svS(s,"Los Angeles"),fqS(FAQS.slice(0,3)),bcS([{name:"Home",url:"/"},{name:s.n,url:"/"+s.s}])],h1:s.h,body:b,bc:[{name:"Home",url:"/"},{name:s.n,url:"/"+s.s}]}),{headers:{"Content-Type":"text/html;charset=utf-8"}})}
 function svcCityPg(s,c){var b="<p>"+B.name+" provides professional <strong>"+s.n.toLowerCase()+"</strong> in <strong>"+c.n+"</strong>, CA ("+c.z+"). Licensed C-10 contractor with EVITP certification.</p>"+s.b+"<h3>Serving "+c.n+' &amp; Nearby</h3><div class="city-grid">'+CITIES.filter(function(x){return x.s!==c.s}).slice(0,12).map(function(x){return'<a href="/electrician-'+x.s+'">'+x.n+"</a>"}).join("")+"</div>";return new Response(pg({t:s.n+" "+c.n+" CA | AMY Electric",d:s.n+" in "+c.n+", CA. "+s.d+" Call "+B.phone+".",can:B.url+"/"+s.s+"-"+c.s,ld:[lbS(),svS(s,c.n),bcS([{name:"Home",url:"/"},{name:s.n,url:"/"+s.s},{name:c.n,url:"/"+s.s+"-"+c.s}])],h1:s.n+" in "+c.n+", CA",body:b,bc:[{name:"Home",url:"/"},{name:s.n,url:"/"+s.s},{name:c.n,url:"/"+s.s+"-"+c.s}]}),{headers:{"Content-Type":"text/html;charset=utf-8"}})}
 function areasPg(){var b="<p>"+B.name+" is a licensed C-10 electrical contractor serving all of Los Angeles. We provide EV charger installation, panel upgrades, rewiring, troubleshooting, lighting, and inspections across "+CITIES.length+'+ neighborhoods.</p><h3>Cities We Serve</h3><div class="city-grid">'+CITIES.map(function(c){return'<a href="/electrician-'+c.s+'">'+c.n+"</a>"}).join("")+'</div><h3>Our Services</h3><div class="service-grid">'+SVCS.map(function(s){return'<a href="/'+s.s+'">'+s.n+"</a>"}).join("")+"</div>";return new Response(pg({t:"Service Areas | Los Angeles Electrician | AMY Electric",d:"AMY Electric serves all of Los Angeles including Sherman Oaks, Burbank, Glendale, Pasadena, Santa Monica, Beverly Hills, and more. Licensed C-10 electrician.",can:B.url+"/electrician-los-angeles",ld:[lbS(),bcS([{name:"Home",url:"/"},{name:"Service Areas",url:"/electrician-los-angeles"}])],h1:"Service Areas \u2014 Los Angeles Electrician",body:b,bc:[{name:"Home",url:"/"},{name:"Service Areas",url:"/electrician-los-angeles"}]}),{headers:{"Content-Type":"text/html;charset=utf-8"}})}
 
-function injectSeo(html, url) {
-  var path = new URL(url).pathname;
-  var title = "AMY Electric | Los Angeles Electrician | EV Charger, Panel Upgrade & Rewiring";
-  var desc = B.desc;
-  var ld = [lbS()];
-  if (path === "/" || path === "/index.html") { ld.push(fqS(FAQS.slice(0, 5))); }
-  var ldStr = ld.map(function(s) { return '<scr'+'ipt type="application/ld+json">'+JSON.stringify(s)+'</scr'+'ipt>'; }).join('\n');
-  var tags = '<meta name="description" content="'+desc+'"><link rel="canonical" href="'+B.url+path+'"><meta name="geo.region" content="US-CA"><meta name="geo.placement" content="Los Angeles, California"><meta name="geo.position" content="34.0522;-118.2437"><meta name="ICBM" content="34.0522,-118.2437"><meta property="og:type" content="website"><meta property="og:title" content="'+title+'"><meta property="og:description" content="'+desc+'"><meta property="og:url" content="'+B.url+path+'"><meta property="og:image" content="'+B.url+'/img/hero-electrician-560x420.webp"><meta property="og:site_name" content="'+B.name+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+title+'"><meta name="twitter:description" content="'+desc+'">'+ldStr;
-  // Replace existing title
-  html = html.replace(/<title>[^<]*<\/title>/i, '<title>'+title+'</title>');
-  // Inject before </head>
-  if (html.indexOf('</head>') !== -1) {
-    html = html.replace('</head>', tags + '</head>');
-  } else if (html.indexOf('<head>') !== -1) {
-    html = html.replace('<head>', '<head>' + tags);
+function generatedPage(path) {
+  // Pages this wrapper can synthesise, reached only when the site Worker has
+  // nothing at the path -- see fetch() below. /robots.txt, /sitemap.xml and
+  // /llms.txt are deliberately absent: the site owns those files, and a
+  // generated sitemap would silently omit hundreds of real pages.
+  if (path === "/faq") return faqPg();
+  if (path === "/electrician-los-angeles") return areasPg();
+  var cm = path.match(/^\/electrician-([a-z-]+)$/);
+  if (cm) { var c = CITIES.find(function(x){return x.s===cm[1]}); if (c) return cityPg(c); }
+  var sm = SVCS.find(function(s){return s.s===path.replace(/^\//,"")});
+  if (sm) return svcPg(sm);
+  for (var i=0;i<SVCS.length;i++) {
+    var sc = path.match(new RegExp("^/"+SVCS[i].s+"-([a-z-]+)$"));
+    if (sc) { var c2 = CITIES.find(function(x){return x.s===sc[1]}); if (c2) return svcCityPg(SVCS[i],c2); }
   }
-  // Fix img tags: add alt text and loading=lazy
-  html = html.replace(/<img((?![^>]*\salt=)[^>]*)\s*src="([^"]*)"/gi, function(match, attrs, src) {
-    // Generate alt from filename
-    var fname = src.split('/').pop().split('.')[0].replace(/[-_]/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase()});
-    var alt = fname || B.name + " electrical work in Los Angeles";
-    if (alt.length > 100) alt = alt.substring(0, 100);
-    // Add loading=lazy if not present
-    var loading = attrs.indexOf('loading=') === -1 ? ' loading="lazy"' : '';
-    return '<img'+attrs+loading+' alt="'+alt+'" src="'+src+'"';
-  });
-  // Fix img tags with src before other attrs
-  html = html.replace(/<img\s+src="([^"]*)"((?![^>]*\salt=)[^>]*)\s*\/?>/gi, function(match, src, attrs) {
-    var fname = src.split('/').pop().split('.')[0].replace(/[-_]/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase()});
-    var alt = fname || B.name + " electrical work in Los Angeles";
-    if (alt.length > 100) alt = alt.substring(0, 100);
-    var loading = attrs.indexOf('loading=') === -1 ? ' loading="lazy"' : '';
-    return '<img src="'+src+'"'+loading+' alt="'+alt+'"'+attrs+'>';
-  });
-  // Add lang attribute to html if missing
-  html = html.replace(/<html(?![^>]*\slang=)([^>]*)>/i, '<html lang="en"$1>');
-  return html;
+  return null;
 }
 
 export default {
   async fetch(request, env) {
     var url = new URL(request.url);
     var path = url.pathname;
-    
-    // SEO routes
-    if (path === "/robots.txt") return robots();
-    if (path === "/sitemap.xml") return sitemap();
-    if (path === "/llms.txt") return llms();
-    if (path === "/faq") return faqPg();
-    if (path === "/electrician-los-angeles") return areasPg();
-    var cm = path.match(/^\/electrician-([a-z-]+)$/);
-    if (cm) { var c = CITIES.find(function(x){return x.s===cm[1]}); if (c) return cityPg(c); }
-    var sm = SVCS.find(function(s){return s.s===path.replace(/^\//,"")});
-    if (sm) return svcPg(sm);
-    for (var i=0;i<SVCS.length;i++) {
-      var sc = path.match(new RegExp("^/"+SVCS[i].s+"-([a-z-]+)$"));
-      if (sc) { var c2 = CITIES.find(function(x){return x.s===sc[1]}); if (c2) return svcCityPg(SVCS[i],c2); }
-    }
-    
-    // Proxy to origin with SEO injection
+
+    // amy-electric-site owns the content and is the source of truth, so ask it
+    // first: a real page must always win over anything synthesised here.
     var resp = await env.ORIGIN.fetch(request);
-    var ct = resp.headers.get("Content-Type") || "";
-    
-    // Fix CORS on API responses
+
+    // CORS on API responses
     if (path.indexOf("/api/") === 0) {
       var newHeaders = new Headers(resp.headers);
       newHeaders.set("Access-Control-Allow-Origin", B.url);
@@ -98,14 +59,20 @@ export default {
       newHeaders.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
       return new Response(resp.body, { status: resp.status, headers: newHeaders });
     }
-    
-    // Inject SEO tags into HTML
-    if (ct.indexOf("text/html") !== -1) {
-      var html = await resp.text();
-      html = injectSeo(html, request.url);
-      return new Response(html, { status: resp.status, headers: resp.headers });
+
+    // Fill a gap only where the site leaves one. An earlier revision generated
+    // these paths unconditionally, which shadowed real pages the site owns
+    // (/ev-charger-installation, /panel-upgrade, /lighting-installation,
+    // /electrician-<city>, /sitemap.xml, /robots.txt, /llms.txt) and replaced
+    // the site's own sitemap with a much smaller one.
+    if (resp.status === 404) {
+      var generated = generatedPage(path);
+      if (generated) return generated;
     }
-    
+
+    // Everything else passes through untouched. The earlier revision also
+    // rewrote every HTML page's <title> to one identical string and appended a
+    // second canonical/description/OG set; that is gone too.
     return resp;
   }
 };
