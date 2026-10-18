@@ -6,8 +6,9 @@ Production is two Workers, not one:
 
 - **Edge wrapper Worker: `amy-electric-seo`** — config `seo-worker/wrangler.jsonc`. It owns every
   `amyelectric.com` zone route (`amyelectric.com/*` plus 11 sub-patterns) and proxies to the origin
-  through an `ORIGIN` service binding. It is proxy-first: the origin's page always wins, and the
-  wrapper only synthesises a page (or nothing) when the origin answers 404. `workers_dev` is off.
+  through an `ORIGIN` service binding. It generates nothing: every response — page, sitemap,
+  robots.txt, llms.txt or 404 — comes from the origin and is passed through unchanged. `workers_dev`
+  is off.
 - **Origin Worker: `amy-electric-site`** — config `wrangler.jsonc`. The site/assets/API Worker. It
   declares **no** zone routes; it is reached only through the wrapper's service binding (and its
   workers.dev subdomain).

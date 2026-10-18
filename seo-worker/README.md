@@ -2,7 +2,8 @@
 
 This Worker sits in front of `amy-electric-site` on production. Requests to
 `amyelectric.com/*` hit this Worker, which forwards them to the origin Worker
-and only steps in when the origin has no page at that path.
+unchanged. `amy-electric-site` owns every page, sitemap and file; this wrapper
+generates nothing.
 
 - **Route owner:** every `amyelectric.com` zone route (see `wrangler.jsonc`).
 - **Origin:** `amy-electric-site`, reached through the `ORIGIN` service binding.
@@ -25,28 +26,30 @@ so deploying it cannot take the routes back from this wrapper.
 
 ## Behaviour
 
-`amy-electric-site` owns the content and is the source of truth, so every
-request is proxied to it first. **A real page always wins.** The wrapper
-synthesises a page only when the origin answers `404` for a path it knows how to
-build: `/faq`, `/electrician-<city>`, `/<service>` and `/<service>-<city>`. Any
-other 404 is passed through untouched, and the origin's HTML is returned
-verbatim — the wrapper does not rewrite it.
+`amy-electric-site` owns the content and is the source of truth. Every request
+is proxied to it, and its response — including a 404 — is returned as-is; the
+HTML is never rewritten. The wrapper's only addition is the CORS headers
+cross-origin callers need on `/api/` responses.
 
-`sitemap.xml`, `robots.txt` and `llms.txt` are **never** generated here; the
-site owns those files and serves them itself.
+It generates nothing of its own. `sitemap.xml`, `robots.txt`, `llms.txt` and
+every page come from the site, and a path the site does not have gets the site's
+own 404 page.
 
-An earlier revision broke both of those rules and this was the production bug it
-caused:
+An earlier revision did the opposite, and this was the production bug it caused:
 
-- it generated its own `sitemap.xml` (233 URLs), `robots.txt` and `llms.txt`,
-  shadowing the site's static files — so the site's 306-URL sitemap never
-  reached crawlers;
-- it generated its own `/ev-charger-installation`, `/panel-upgrade`,
+- it answered its own `sitemap.xml` (233 URLs), `robots.txt` and `llms.txt`
+  before contacting the origin, shadowing the site's static files — so the
+  site's 306-URL sitemap never reached crawlers;
+- it answered its own `/ev-charger-installation`, `/panel-upgrade`,
   `/lighting-installation`, `/electrician-<city>` and `/<service>-<city>` pages
-  over the site's real ones; and
+  over the site's real ones;
 - it rewrote every proxied HTML page's `<title>` to one identical string and
   appended a second canonical/description/OG set, so ~300 pages shared a title
-  and carried duplicate canonical tags.
+  and carried duplicate canonical tags; and
+- the ~200 pages only it had (`/faq`, `/rewiring`, `/troubleshooting`,
+  `/electrical-inspection`, 27 city pages, the service-city pairs the site
+  lacks) were linked from nowhere and listed in no sitemap. Those paths now 404.
 
 Behaviour is covered by `scripts/test-seo-wrapper.mjs` (`node --test
-scripts/test-seo-wrapper.mjs`).
+scripts/test-seo-wrapper.mjs`), which `cloudflare-sync.yml` runs before it
+publishes this Worker.

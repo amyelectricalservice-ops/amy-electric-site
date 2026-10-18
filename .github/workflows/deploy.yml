@@ -62,6 +62,9 @@ jobs:
   deploy:
     name: Deploy to Cloudflare Workers
     needs: validate
+    # Production only. A pull request runs `validate` and, in the `preview` job
+    # below, uploads a version — it must never publish to production.
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: production
     permissions:

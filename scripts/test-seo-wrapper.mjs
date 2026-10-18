@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /* Tests for seo-worker/worker.js -- the edge wrapper in front of
- * amy-electric-site. The site Worker owns the content; this wrapper may only
- * fill gaps, never shadow a real page.
+ * amy-electric-site. The site Worker owns every page, sitemap and file; this
+ * wrapper only forwards. It must never generate a page or rewrite the HTML.
  *
- * These guard the two regressions the first deployed build caused:
+ * These guard the regressions a first deployed build caused:
  *   1. it generated /sitemap.xml, /robots.txt and /llms.txt itself, so the
  *      site's 306-URL sitemap never reached crawlers, and it generated its own
  *      /ev-charger-installation, /panel-upgrade, /lighting-installation,
@@ -51,7 +51,7 @@ function stubOrigin(body, missing = []) {
 
 const get = (path, env) => wrapper.fetch(new Request('https://amyelectric.com' + path), env);
 
-describe('seo-wrapper: the site wins over generated pages', () => {
+describe('seo-wrapper: it forwards, the site decides', () => {
   it('passes a real page through untouched', async () => {
     const resp = await get('/about', { ORIGIN: stubOrigin(REAL_PAGE) });
     const body = await resp.text();
@@ -77,44 +77,43 @@ describe('seo-wrapper: the site wins over generated pages', () => {
     assert.equal(await resp.text(), sitemap);
   });
 
-  it('never invents a sitemap, robots.txt or llms.txt', async () => {
+  it('never synthesises a sitemap, robots.txt or llms.txt', async () => {
     for (const path of ['/sitemap.xml', '/robots.txt', '/llms.txt']) {
       const resp = await get(path, { ORIGIN: stubOrigin(REAL_PAGE, [path]) });
       assert.equal(resp.status, 404, path + ' was synthesised');
     }
   });
 
-  it('does not shadow the site\'s /ev-charger-installation or /panel-upgrade', async () => {
-    for (const path of ['/ev-charger-installation', '/panel-upgrade', '/lighting-installation']) {
+  it('does not shadow the site\'s service and city pages', async () => {
+    const paths = [
+      '/ev-charger-installation', '/panel-upgrade', '/lighting-installation',
+      '/electrician-pasadena', '/ev-charger-installation-sherman-oaks',
+      '/panel-upgrade-burbank',
+    ];
+    for (const path of paths) {
       const body = await (await get(path, { ORIGIN: stubOrigin(REAL_PAGE) })).text();
       assert.match(body, /<title>About AMY Electric/, path + ' was shadowed');
     }
   });
 
-  it('does not shadow a real /electrician-<city> page', async () => {
-    const body = await (await get('/electrician-pasadena', { ORIGIN: stubOrigin(REAL_PAGE) })).text();
-    assert.match(body, /<title>About AMY Electric/);
+  it('does not generate the pages only the old build had', async () => {
+    // Nothing links these and no sitemap listed them; they now fall through to
+    // the site, which 404s them with its own 404 page.
+    const paths = [
+      '/faq', '/rewiring', '/troubleshooting', '/electrical-inspection',
+      '/electrician-sherman-oaks', '/panel-upgrade-northridge',
+    ];
+    for (const path of paths) {
+      const resp = await get(path, { ORIGIN: stubOrigin(REAL_PAGE, [path]) });
+      assert.equal(resp.status, 404, path + ' was generated');
+    }
   });
 
-  it('generates a page only when the site has none (404 fallback)', async () => {
-    const resp = await get('/faq', { ORIGIN: stubOrigin(REAL_PAGE, ['/faq']) });
-    const body = await resp.text();
-    assert.equal(resp.status, 200);
-    assert.match(body, /<title>FAQ \| AMY Electric/);
-    assert.doesNotMatch(body, /Page not found/);
-  });
-
-  it('generates the orphan city pages nothing links to', async () => {
-    const path = '/electrician-sherman-oaks';
-    const resp = await get(path, { ORIGIN: stubOrigin(REAL_PAGE, [path]) });
-    assert.equal(resp.status, 200);
-    assert.match(await resp.text(), /Electrician Sherman Oaks CA/);
-  });
-
-  it('leaves a genuine 404 alone', async () => {
+  it('leaves the site\'s 404 alone', async () => {
     const path = '/no-such-page-xyz';
     const resp = await get(path, { ORIGIN: stubOrigin(REAL_PAGE, [path]) });
     assert.equal(resp.status, 404);
+    assert.match(await resp.text(), /Page not found/);
   });
 
   it('keeps the CORS headers on API responses', async () => {
