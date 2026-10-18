@@ -711,6 +711,26 @@ export default {
       return handleLead(request, env);
     }
 
+    // Health check endpoint for monitoring
+    if (url.pathname === '/api/health') {
+      return new Response(JSON.stringify({
+        ok: true,
+        version: '1.0.0',
+        timestamp: new Date().toISOString(),
+        bindings: {
+          db: !!env.DB,
+          confirmed_db: !!env.CONFIRMED_DB,
+          bucket: !!env.BUCKET,
+          estimates: !!env.ESTIMATES,
+          ai: !!env.AI,
+          images: !!env.IMAGES,
+          assets: !!env.ASSETS,
+        },
+      }), {
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+      });
+    }
+
     // Merged photo API routes (from amy-electric-photos + amy-electric-portfolio)
     if (url.pathname.startsWith('/api/photos') || url.pathname === '/api/dates' ||
         url.pathname === '/api/map' || url.pathname.startsWith('/api/photo') ||

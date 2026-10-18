@@ -15,6 +15,9 @@ function json(data, status = 200, extra = {}) {
   });
 }
 
+// Cache-Control for read-only photo metadata endpoints (5 min edge cache)
+const PHOTO_CACHE = { 'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=600' };
+
 export async function handlePhotoRequest(request, env) {
   const url = new URL(request.url);
   const path = url.pathname;
@@ -38,13 +41,13 @@ export async function handlePhotoRequest(request, env) {
     query += ' ORDER BY date DESC LIMIT ? OFFSET ?';
     params.push(limit, offset);
     const results = await env.DB.prepare(query).bind(...params).all();
-    return json({ photos: results.results, total: results.meta?.total_count });
+    return json({ photos: results.results, total: results.meta?.total_count }, 200, PHOTO_CACHE);
   }
 
   // /api/photos/count
   if (path === '/api/photos/count') {
     const results = await env.DB.prepare('SELECT COUNT(*) as count FROM photos').first();
-    return json({ count: results?.count || 0 });
+    return json({ count: results?.count || 0 }, 200, PHOTO_CACHE);
   }
 
   // /api/dates
@@ -52,7 +55,7 @@ export async function handlePhotoRequest(request, env) {
     const results = await env.DB.prepare(
       'SELECT date, COUNT(*) as count FROM photos GROUP BY date ORDER BY date DESC'
     ).all();
-    return json({ dates: results.results });
+    return json({ dates: results.results }, 200, PHOTO_CACHE);
   }
 
   // /api/photo
@@ -79,7 +82,7 @@ export async function handlePhotoRequest(request, env) {
       const finalLon = match[8] === 'W' ? -lon : lon;
       return { id: p.id, filename: p.filename, date: p.date, lat: finalLat, lon: finalLon, description: p.description };
     }).filter(Boolean);
-    return json({ points });
+    return json({ points }, 200, PHOTO_CACHE);
   }
 
   // /api/photo/file
