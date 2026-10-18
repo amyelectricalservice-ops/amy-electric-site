@@ -58,6 +58,14 @@ Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: ma
 - [ ] **Hygiene**: bump canonical `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
 - [ ] **Brand mentions**: YouTube/Reddit/Wikipedia presence — real-world effort, not code.
 
+## Code improvements shipped (2026-10-18)
+
+- **Photo API edge caching**: `Cache-Control: public, max-age=300, s-maxage=3600, SWR=600` on `/api/photos`, `/api/photos/count`, `/api/dates`, `/api/map` — reduces D1 reads, faster gallery loads.
+- **Health check endpoint**: `/api/health` returns `{"ok": true, "version", "timestamp", "bindings"}` for monitoring and uptime checks.
+- **Worker merge**: All 4 Workers consolidated into `amy-electric-site` (photos, portfolio, estimator APIs merged). Old workers deleted.
+- **Deploy validation fix**: Added `noindex` to 3 retired redirect-source pages (`emergency-electrical`, `emergency-electrician`, `testimonials`) to satisfy sitemap validator.
+- **Photo review complete**: 542 reviews logged (529 skipped, 13 picked), 13 photos shipped to gallery (387 total).
+
 ## Photo review progress
 
 - **Total reviews logged**: 542 (529 skipped, 13 picked) via `scripts/photo-review-log.csv`
