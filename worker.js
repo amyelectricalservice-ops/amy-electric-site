@@ -1,6 +1,8 @@
 import { handleLead } from './lead-handler.js';
 import { handleContact } from './contact-handler.js';
 import { handleScheduled as handleGbpScheduled } from './gbp-agent.js';
+import { handlePhotoRequest } from './photo-handler.js';
+import { handleEstimatorRequest } from './estimator-handler.js';
 
 const oidcDiscovery = (clientId) => ({
   "issuer": "https://amyelectric.com",
@@ -707,6 +709,18 @@ export default {
 
     if (url.pathname === '/api/lead') {
       return handleLead(request, env);
+    }
+
+    // Merged photo API routes (from amy-electric-photos + amy-electric-portfolio)
+    if (url.pathname.startsWith('/api/photos') || url.pathname === '/api/dates' ||
+        url.pathname === '/api/map' || url.pathname.startsWith('/api/photo') ||
+        url.pathname === '/api/upload') {
+      return handlePhotoRequest(request, env);
+    }
+
+    // Merged estimator routes (from amy-electric-estimator)
+    if (url.pathname.startsWith('/estimator')) {
+      return handleEstimatorRequest(request, env, ctx);
     }
 
     // Conversion events from site.min.js (sendBeacon, text/plain = no preflight).

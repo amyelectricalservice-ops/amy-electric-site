@@ -25,6 +25,31 @@
   "images": {
     "binding": "IMAGES"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "amy-electric-photos-db",
+      "database_id": "78716702-1940-44e1-acb1-0d669bf6484b"
+    },
+    {
+      "binding": "CONFIRMED_DB",
+      "database_name": "amy-electric-confirmed-db",
+      "database_id": "6c52230d-3c8b-44d5-b1b5-118c57e0ab89"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "estimates"
+    },
+    {
+      "binding": "ESTIMATES",
+      "bucket_name": "estimates"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  },
   "compatibility_flags": [
     "nodejs_compat"
   ],
