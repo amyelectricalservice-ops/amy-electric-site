@@ -732,9 +732,10 @@ export default {
     }
 
     // Merged photo API routes (from amy-electric-photos + amy-electric-portfolio)
-    if (url.pathname.startsWith('/api/photos') || url.pathname === '/api/dates' ||
-        url.pathname === '/api/map' || url.pathname.startsWith('/api/photo') ||
-        url.pathname === '/api/upload') {
+    if (url.pathname === '/api/photos' || url.pathname.startsWith('/api/photos/') ||
+        url.pathname === '/api/photos/count' || url.pathname === '/api/dates' ||
+        url.pathname === '/api/map' || url.pathname === '/api/photo' ||
+        url.pathname.startsWith('/api/photo/') || url.pathname === '/api/upload') {
       return handlePhotoRequest(request, env);
     }
 

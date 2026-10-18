@@ -9,7 +9,6 @@ export async function handleEstimatorRequest(request, env, ctx) {
   // Prefix estimator routes to avoid conflicts with main site
   // The estimator originally served at /, /download, /extract, /calculate
   // We map: /estimator -> /, /estimator/download -> /download, etc.
-  // But for backward compat, also handle the original paths.
 
   // Rewrite the URL to the estimator's expected paths
   let estimatorPath = path;
@@ -22,5 +21,8 @@ export async function handleEstimatorRequest(request, env, ctx) {
   newUrl.pathname = estimatorPath;
   const newRequest = new Request(newUrl.toString(), request);
 
-  return estimatorBundle.fetch(newRequest, env, ctx);
+  // Ensure ctx is available (provide a minimal shim if missing)
+  const safeCtx = ctx || { waitUntil: () => {} };
+
+  return estimatorBundle.fetch(newRequest, env, safeCtx);
 }
