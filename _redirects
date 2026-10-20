@@ -4,6 +4,12 @@
 /blog/how-to-choose-electrician-los-angeles  /blog/choosing-electrician-la  301
 /blog/signs-you-need-electrical-panel-upgrade  /blog/panel-upgrade-signs  301
 
+# Cannibalizing duplicate titles -> canonical page (301).
+# Consolidates split authority from near-identical title tags.
+/blog/ev-charger-installation-cost-la  /blog/ev-charger-installation-cost-los-angeles  301
+/blog/whole-home-rewiring-cost-la  /blog/whole-home-rewiring-cost-los-angeles  301
+/blog/breaker-keeps-tripping-guide  /blog/breaker-keeps-tripping-causes  301
+
 # Duplicate review intent -> canonical reviews page (301).
 # testimonials.html stays published (still linked in nav) with a canonical tag
 # pointing at /reviews; this rule consolidates ranking signals.

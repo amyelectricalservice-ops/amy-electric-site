@@ -251,16 +251,22 @@ TEMPLATE_SERVICES_SECTION = """
   <p class="max-w-640">{local_intro}</p>
 
   <div class="card-grid mt-lg">
-    <a href="ev-charger-installation" class="card no-underline">
+    <a href="{ev_link}" class="card no-underline">
       <div class="card-icon">🔌</div>
       <h3>EV Charger Installation</h3>
       <p>Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EV brands. EVITP-certified, permits handled.</p>
       <span class="card-link">Learn More</span>
     </a>
-    <a href="panel-upgrade" class="card no-underline">
+    <a href="{panel_link}" class="card no-underline">
       <div class="card-icon">🔧</div>
       <h3>200A Panel Upgrades</h3>
       <p>Service upgrades for {city_name} homes and businesses. {utility}-coordinated, permits included.</p>
+      <span class="card-link">Learn More</span>
+    </a>
+    <a href="{rewiring_link}" class="card no-underline">
+      <div class="card-icon">🏠</div>
+      <h3>Whole-Home Rewiring</h3>
+      <p>Knob-and-tube, aluminum wiring, and full-home rewiring for {city_name} properties. Permits handled.</p>
       <span class="card-link">Learn More</span>
     </a>
     <a href="electrical-repair" class="card no-underline">
@@ -563,6 +569,12 @@ def generate_city_page(city):
     local_intro = city["local_intro"]
     local_knowledge = city["local_knowledge"]
 
+    # Geo-specific service page links — link to city-specific page when it exists,
+    # otherwise fall back to the root service page.
+    ev_link = f"ev-charger-installation-{slug}" if os.path.exists(f"ev-charger-installation-{slug}.html") else "ev-charger-installation"
+    panel_link = f"panel-upgrade-{slug}" if os.path.exists(f"panel-upgrade-{slug}.html") else "panel-upgrade"
+    rewiring_link = f"whole-home-rewiring-{slug}" if os.path.exists(f"whole-home-rewiring-{slug}.html") else "whole-home-rewiring"
+
     parts = []
     parts.append(TEMPLATE_HEAD.format(
         city_name=name, state_abbr=state, slug=slug
@@ -580,7 +592,8 @@ def generate_city_page(city):
     ))
     parts.append(TEMPLATE_SERVICES_SECTION.format(
         city_name=name, local_intro=local_intro, nearby=nearby,
-        utility="SCE" if slug in SCE_CITIES else "LADWP"
+        utility="SCE" if slug in SCE_CITIES else "LADWP",
+        ev_link=ev_link, panel_link=panel_link, rewiring_link=rewiring_link
     ))
     parts.append(TEMPLATE_LOCAL_KNOWLEDGE.format(
         city_name=name, local_knowledge=local_knowledge
