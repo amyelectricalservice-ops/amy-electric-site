@@ -1,0 +1,88 @@
+name: Cloudflare Route Audit
+
+# Keeps the Cloudflare zone's Worker routing in step with what git says.
+#
+# `amy-electric-site` is the only Worker serving amyelectric.com: it declares the
+# single `amyelectric.com/*` route in `wrangler.jsonc`, so the ordinary deploy
+# (`deploy.yml`) publishes the route table with the code. What that cannot catch
+# is a change made in the dashboard, which never reaches git — and routing is
+# exactly what drifted here before, when an out-of-band `amy-electric-seo`
+# wrapper owned every route and nothing in the repo said it existed. This audit
+# is what notices.
+#
+# A mismatch is fatal only on the scheduled run. On a push the deploy that
+# follows reconciles the zone from git, and on a pull request the drift is the
+# change under review, so failing there would block the very commit that fixes
+# it.
+#
+# Requires the same repository secret as deploy.yml, deliberately not in the repo:
+#
+#   CLOUDFLARE_API_TOKEN   Zone > Workers Routes > Read is what the audit needs.
+#                          Without the secret the audit cannot run at all and
+#                          says so; with it but without the permission, it warns
+#                          and skips rather than going red for something the
+#                          repo cannot fix.
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'wrangler.jsonc'
+      - 'cloudflare.config.ts'
+      - 'scripts/audit-cloudflare-routes.py'
+      - '.github/workflows/cloudflare-routes.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'wrangler.jsonc'
+      - 'cloudflare.config.ts'
+      - 'scripts/audit-cloudflare-routes.py'
+      - '.github/workflows/cloudflare-routes.yml'
+  schedule:
+    # Weekly drift check: catches changes made in the dashboard that never
+    # reached git. Monday 14:00 UTC.
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-route-audit
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit git config against live Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check the audit secret is present
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Route audit is not armed. Missing repository secret: CLOUDFLARE_API_TOKEN"
+            echo "Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Compare declared routes with the zone's live routes
+        # Only the scheduled run treats a mismatch as fatal. On a push the deploy
+        # that follows is about to make the zone match git, and on a pull request
+        # the mismatch is the change under review — failing there would block the
+        # very commit that reconciles it.
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          STRICT: ${{ github.event_name == 'schedule' }}
+        run: |
+          if [ "$STRICT" = "true" ]; then
+            python3 scripts/audit-cloudflare-routes.py
+          else
+            python3 scripts/audit-cloudflare-routes.py --warn-only
+          fi

@@ -1,4 +1,4 @@
-import { bindings, defineConfig, triggers } from "cf/config";
+import { bindings, defineConfig } from "cf/config";
 
 export default defineConfig({
 	worker: {
@@ -20,16 +20,9 @@ export default defineConfig({
 			notFoundHandling: "404-page",
 			runWorkerFirst: true,
 		},
-		triggers: [
-			triggers.fetch({
-				pattern: "amyelectric.com/*",
-				zone: "amyelectric.com",
-			}),
-			triggers.fetch({
-				pattern: "www.amyelectric.com/*",
-				zone: "amyelectric.com",
-			}),
-		],
+		// The zone route (`amyelectric.com/*`) is declared in wrangler.jsonc, the
+		// live config. This mirror is validation-only and does not express zone
+		// routes; keep the two files in step by hand.
 		env: {
 			ASSETS: bindings.assets(),
 			IMAGES: bindings.images(),

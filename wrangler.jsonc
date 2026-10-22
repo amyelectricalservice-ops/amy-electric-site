@@ -11,9 +11,15 @@
       "head_sampling_rate": 1
     }
   },
+  // This Worker serves amyelectric.com directly. The route used to belong to the
+  // `amy-electric-seo` edge wrapper, which sat in front of this Worker and
+  // proxied here through an ORIGIN service binding; that wrapper was retired on
+  // 2026-10-18 and this Worker took the route over. The zone also carried 11
+  // redundant sub-patterns (/faq, /sitemap.xml, /robots.txt, /llms.txt and the
+  // service prefixes), each of which already resolved to the same Worker; they
+  // were removed with it.
   "routes": [
-    { "pattern": "amyelectric.com/*", "zone_name": "amyelectric.com" },
-    { "pattern": "www.amyelectric.com/*", "zone_name": "amyelectric.com" }
+    { "pattern": "amyelectric.com/*", "zone_name": "amyelectric.com" }
   ],
   "assets": {
     "directory": ".",
