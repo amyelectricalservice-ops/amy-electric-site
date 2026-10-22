@@ -373,13 +373,37 @@ function injectBeacon(html) {
 
 // Geo personalization for the landing page, driven by request.cf.city.
 //
-// Only the launch areas below ever trigger a rewrite, and the injected value
+// Only the allow-listed areas below ever trigger a rewrite, and the injected value
 // is always our own canonical string — never the raw cf.city input — so there
 // is no XSS surface even though cf data is edge-supplied. Matched responses
 // are personalized per visitor and MUST NOT be edge-cached: the edge cannot
 // Vary on cf.city, so they go out private/no-store while every non-matched
 // request keeps the shared HTML_CACHE_CONTROL policy.
-const GEO_TARGET_AREAS = ['Northridge', 'Winnetka', 'Canoga Park'];
+// All 20 are City of Los Angeles neighborhoods, each with its own /city-*
+// page, so a matched visitor's personalized landing page names a place we
+// demonstrably serve (and LADWP is a truthful utility claim on all of them).
+const GEO_TARGET_AREAS = [
+  // Launch areas (existing since 2026-10).
+  'Northridge', 'Winnetka', 'Canoga Park',
+  // San Fernando Valley + adjacent LA-city service targets (alphabetical).
+  'Arleta',
+  'Chatsworth',
+  'Encino',
+  'Granada Hills',
+  'Mission Hills',
+  'North Hills',
+  'North Hollywood',
+  'Porter Ranch',
+  'Reseda',
+  'Sherman Oaks',
+  'Studio City',
+  'Sun Valley',
+  'Sylmar',
+  'Tarzana',
+  'Van Nuys',
+  'West Hills',
+  'Woodland Hills',
+];
 const GEO_NO_STORE = 'private, no-store';
 
 function matchTargetCity(raw) {
@@ -892,12 +916,6 @@ export default {
 
     if (url.pathname === '/a2a') {
       return a2aHandler(request);
-    }
-
-    if (url.pathname === '/api/health') {
-      return new Response(JSON.stringify({ ok: true, service: 'amy-electric-site', time: new Date().toISOString() }), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
-      });
     }
 
     if (url.pathname === '/openapi.json') {

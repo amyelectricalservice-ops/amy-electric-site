@@ -20,7 +20,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 ## Gotchas (read before touching)
 
 - **HTML cache**: `worker.js` sends `public, max-age=300, s-maxage=60, stale-while-revalidate=600`. Do NOT "fix" back to `max-age=0, must-revalidate` — the zone edge strips `ETag`/`Content-Length` from Worker HTML (ASSETS responses keep theirs), so without max-age every repeat visit re-downloads full HTML.
-- **Geo personalization**: `/` + `/index.html` only; on `request.cf.city` match the response goes `private, no-store` (edge can't Vary on `cf.city`). Consumer `js/src/08-geo-personalize.js` must ship with any worker change. Tests: `test-worker-geo.mjs` (12) + `test-geo-personalize.mjs` (4).
+- **Geo personalization**: `/` + `/index.html` only; on `request.cf.city` match the response goes `private, no-store` (edge can't Vary on `cf.city`). Target list = `GEO_TARGET_AREAS` in `worker.js` (20 LA-city neighborhoods; expand the list AND `scripts/test-worker-geo.mjs`, which asserts length 20). Consumer `js/src/08-geo-personalize.js` must ship with any worker change. Tests: `test-worker-geo.mjs` (12) + `test-geo-personalize.mjs` (4).
 - **RUM**: beacon injected by `worker.js`, endpoint must stay `"send": {"to": "/cdn-cgi/rum"}`. Never diagnose RUM from `workers.dev` (no `cdn-cgi` pipeline → 404 by design) or curl (404s on non-beacon POSTs) — both are artifacts, not outages. Verify with a real browser on apex or dashboard `events.rumPageloadEvents`.
 - **Live checks**: use the `workers.dev` host (real status codes); apex serves bot challenges to agents (expect 403). `.html` URLs 301 to extensionless — curl needs `-L`.
 - **`functions/` is dead** (Pages leftover, never referenced). Sibling Workers (`amy-electric-estimator`, `-photos`, `-portfolio`) are out of scope — do not touch.
@@ -29,6 +29,8 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 - **Rocket Loader is OFF** (zone setting, disabled 2026-10-15 via `cf`): it rewrites script execution order and threatens the flatpickr booking widget + estimate engine; the site ships its own defer/idle-load strategy. Do not re-enable. Other zone settings verified same day: Polish lossy, minify off (bundles pre-minified), Brotli on, HTTP/2+3 on, Early Hints on, Speed Brain on, Smart Tiered Cache on, Mirage off, SSL strict, HSTS via `_headers`.
 - **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/` marker) + `generate-city-pages.py` template. Keep in sync; ≤480px stacks, phone link never wraps.
 - **`.nav-book` (hamburger-only "📅 Book Online", 305 pages) follows the same 3-place rule**: `css/src/02-header.css` + `css/src/10-responsive.css` (≤680px `nav.open` gate — desktop nav wraps 3 rows, never show it there), inline `/*nav-book*/` marker, `generate-city-pages.py` template. Anchor goes before `nav-cta` (`book` root, `../book` blog); 4 pages without a nav-cta anchor are out of scope.
+- **Mobile touch targets (44×44px, ≤767px)**: header/footer/breadcrumb/tel links, gallery filter chips, `h3 a` and `.mt-lg a` are sized in `css/src/10-responsive.css` under "MOBILE TOUCH TARGETS". Same 3-place rule as `.topbar`: `scripts/sync-mobile-touch-css.py` mirrors the block (idempotent, keyed on the `/*touch-targets*/` marker) into the inlined critical CSS of the 161 pages that carry one — without it the topbar/breadcrumb resize after first paint and cost CLS — and `generate-city-pages.py` holds a copy. Links that flow inline inside a sentence are deliberately left as text (WCAG 2.5.8 inline exception): do NOT add rules for `p a` / `.faq-a a` / prose links. Mobile footer grows ~340px as a result; that is the accepted trade.
+- **Quote form radio group**: `<label id="request-type-label">` + `<div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">` on 238 pages (`scripts/fix-radiogroup-labels.py`). Never re-add `<label for="request_type">` — no element in the site has that id, so it names nothing and renders a duplicate visible label.
 
 ## Content rules
 
@@ -59,6 +61,14 @@ Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates th
 - [ ] **Live form + RUM**: owner submits a real test lead; checks beacon in dashboard with a real browser. Agent won't fake-submit.
 - [ ] **Hygiene**: bump canonical `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
 - [ ] **Brand mentions**: YouTube/Reddit/Wikipedia presence — real-world effort, not code.
+
+## Code improvements shipped (2026-10-21)
+
+- **Geo landing deliver 3 → 20 areas**: `GEO_TARGET_AREAS` in `worker.js` now covers 20 City-of-LA neighborhoods (all with /city-* pages, all LADWP territory); matched `/` responses stay `private, no-store`. Tests data-driven over the list. Consumer `08-geo-personalize.js` untouched (reads `window.AMY_GEO`, no hardcoded list).
+- **`/api/health` dedup**: removed the unreachable second handler (`{ok, service, time}` shape) that sat after the richer bindings-aware one; one handler remains (line ~739).
+- **HowTo JSON-LD on 9 more service pages** via `scripts/add-howto-schema.py` (idempotent, mirrors the visible `.step`/h3-grid text exactly): tesla-charger-installation, ceiling-fan-installation, dedicated-circuits, electrical-safety-inspections, outlet-switch-installation, smart-home-electrical, smoke-co-detector-installation, 200-amp-panel-upgrade, subpanel-installation. FAQPage + BreadcrumbList were already on all service pages. NB: Google withdrew FAQ rich results for non-gov/health sites (2023-08) and removed HowTo rich results entirely (2023-09) — these blocks still help Bing + AI answer engines parse content.
+- Fixed malformed process heading on `outlet-switch-installation.html` (`Outlet & Switch` was glued onto the How-It-Works H2).
+- Verified zone-level Cache Rules for CSS/JS/fonts are NOT needed: `run_worker_first: true` means assets are served through the Worker and zone Cache Rules can't match them; `_headers` already pins the right policy (verified live on workers.dev: `max-age=3600, s-maxage=31536000` + ETag on bundles, `immutable` fonts, `cf-cache-status: HIT`).
 
 ## Code improvements shipped (2026-10-18)
 

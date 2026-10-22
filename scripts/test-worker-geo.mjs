@@ -55,13 +55,23 @@ function stubEnv(html) {
 }
 
 describe('matchTargetCity', () => {
-  it('matches the three launch areas case-insensitively', () => {
-    assert.equal(T.matchTargetCity('Northridge'), 'Northridge');
-    assert.equal(T.matchTargetCity('winnetka'), 'Winnetka');
-    assert.equal(T.matchTargetCity('  CANOGA PARK '), 'Canoga Park');
+  it('matches every allow-listed area case-insensitively (20 LA-city targets)', () => {
+    assert.equal(T.GEO_TARGET_AREAS.length, 20, 'exactly 20 target areas');
+    assert.equal(new Set(T.GEO_TARGET_AREAS).size, 20, 'no duplicate entries');
+    for (const area of T.GEO_TARGET_AREAS) {
+      assert.equal(T.matchTargetCity(area), area, 'exact ' + area);
+      assert.equal(T.matchTargetCity(area.toLowerCase()), area, 'lowercase ' + area);
+      assert.equal(T.matchTargetCity('  ' + area.toUpperCase() + ' '), area, 'padded ' + area);
+    }
   });
   it('rejects everything else, including injection attempts', () => {
+    // NB: 'Los Angeles' and the surrounding independent cities (Burbank,
+    // Glendale, Pasadena) stay untargeted — the allowlist is LA-city
+    // neighborhoods only, matching the geo hero's "City · Residential &
+    // Commercial" promise.
     assert.equal(T.matchTargetCity('Los Angeles'), null);
+    assert.equal(T.matchTargetCity('Burbank'), null);
+    assert.equal(T.matchTargetCity('Glendale'), null);
     assert.equal(T.matchTargetCity(''), null);
     assert.equal(T.matchTargetCity('   '), null);
     assert.equal(T.matchTargetCity('Northridge<script>alert(1)</script>'), null);
@@ -79,6 +89,8 @@ describe('visitorCity', () => {
   });
   it('passes cf.city through the allowlist', () => {
     assert.equal(T.visitorCity(stubReq('/', 'Winnetka')), 'Winnetka');
+    assert.equal(T.visitorCity(stubReq('/', 'van nuys')), 'Van Nuys');
+    assert.equal(T.visitorCity(stubReq('/', 'granada hills')), 'Granada Hills');
     assert.equal(T.visitorCity(stubReq('/', 'Burbank')), null);
   });
 });
@@ -88,7 +100,7 @@ describe('injectGeo', () => {
     const out = T.injectGeo(MIN_HTML, 'Northridge');
     assert.ok(out.includes('<header data-service-city="Northridge">'), 'header attribute');
     assert.ok(out.includes('window.AMY_GEO={"city":"Northridge","matched":true'), 'config object');
-    assert.ok(out.includes('"areas":["Northridge","Winnetka","Canoga Park"]'), 'areas list');
+    assert.ok(out.includes('"areas":' + JSON.stringify(T.GEO_TARGET_AREAS)), 'areas list');
   });
   it('still injects the config when no <header> tag exists', () => {
     const out = T.injectGeo('<html><body><p>x</p></body></html>', 'Canoga Park');
