@@ -5,9 +5,10 @@
 /blog/signs-you-need-electrical-panel-upgrade  /blog/panel-upgrade-signs  301
 
 # Cannibalizing duplicate titles -> canonical page (301).
-# Consolidates split authority from near-identical title tags.
-/blog/ev-charger-installation-cost-la  /blog/ev-charger-installation-cost-los-angeles  301
-/blog/whole-home-rewiring-cost-la  /blog/whole-home-rewiring-cost-los-angeles  301
+# Keeps the `-la` version (517 / 74 GSC impressions) and redirects the weaker
+# `-los-angeles` duplicates (0 impressions) to it.
+/blog/ev-charger-installation-cost-los-angeles  /blog/ev-charger-installation-cost-la  301
+/blog/whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-la  301
 /blog/breaker-keeps-tripping-guide  /blog/breaker-keeps-tripping-causes  301
 
 # Duplicate review intent -> canonical reviews page (301).
