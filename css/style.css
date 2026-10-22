@@ -850,6 +850,9 @@ footer {
 .sticky-btn:last-child { border-right: none; }
 .sticky-btn:hover { background: rgba(255,255,255,.1); text-decoration: none; }
 .sticky-icon { font-size: 22px; line-height: 1; }
+.sticky-call { background: #27ae60; color: #ffffff; }
+.sticky-call:hover { background: #219653; color: #ffffff; }
+.sticky-call .sticky-label { color: #ffffff; }
 .sticky-estimate { background: #0b1628; color: #f5a623; }
 .sticky-estimate:hover { background: #122040; }
 .sticky-estimate .sticky-label { color: #f5a623; }
