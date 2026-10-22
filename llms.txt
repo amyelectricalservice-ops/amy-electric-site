@@ -1,5 +1,5 @@
 # AMY Electric — Los Angeles Licensed Electrician
-> Last updated: 2026-10-14
+> Last updated: 2026-10-21
 
 > AMY Electric is a licensed C-10 electrical contractor (#981578) serving Greater Los Angeles since 2012. EVITP-certified (#4051604) for EV charger installation. Based in Winnetka, CA. Phone: (818) 302-5614.
 
@@ -29,6 +29,7 @@
 - [Comparison: Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in): Pros and cons of each EV charger type.
 - [Federal Pacific / Zinsco Panel Replacement](/federal-pacific-zinsco-panel-replacement): Recalled-panel replacement with priority scheduling and insurer/escrow paperwork.
 - [LADWP EV Charger Rebate Guide 2026](/blog/ladwp-ev-charger-rebate-guide-2026): Step-by-step pre-approval walkthrough for the $1,000 rebate.
+- [Fuse Box Replacement Cost Los Angeles](/blog/fuse-box-replacement-cost-los-angeles): Published 2026 pricing to replace a fuse box with a breaker panel, LADBS permit path, and the EV-charger prerequisite.
 
 ## Service Areas
 
