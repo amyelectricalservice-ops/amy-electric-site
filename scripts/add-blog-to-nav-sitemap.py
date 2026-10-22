@@ -40,7 +40,8 @@ def page_meta(path):
     h1 = re.search(r"<h1[^>]*>(.*?)</h1>", doc, re.S)
     title = re.search(r"<title>(.*?)</title>", doc)
     desc = re.search(r'<meta name="description" content="([^"]+)"', doc)
-    card_title = htmllib.unescape(re.sub(r"<[^>]+>", "", h1.group(1)).strip()) \
+    card_title_input = re.sub(r"<br[^>]*>", " ", h1.group(1)) if h1 else None
+    card_title = htmllib.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", card_title_input)).strip()) \
         if h1 else htmllib.unescape(title.group(1))
     meta_desc = htmllib.unescape(desc.group(1)) if desc else ""
     snippet = (meta_desc[:147] + "...") if len(meta_desc) > 150 else meta_desc
