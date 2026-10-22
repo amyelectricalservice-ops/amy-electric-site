@@ -406,13 +406,12 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Pre-computed lookup map for O(1) case-insensitive target area matching.
+const GEO_TARGET_LOOKUP = new Map(GEO_TARGET_AREAS.map(area => [area.toLowerCase(), area]));
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
-  const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_LOOKUP.get(raw.trim().toLowerCase()) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
