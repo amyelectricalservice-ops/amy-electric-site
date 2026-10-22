@@ -36,3 +36,33 @@
   .qe-radio-group { flex-direction: column; }
   .qe-price { font-size: 34px; }
 }
+
+/* ── MOBILE TOUCH TARGETS (WCAG 2.5.5 / 2.5.8) ──
+   Real controls get a 44x44px minimum footprint on phones. Links that sit
+   inline in a sentence or paragraph are exempt from 2.5.8 and are left as
+   flowing text — do NOT add rules for `p a` / prose links here.
+   Mirrored into the inlined critical CSS via scripts/sync-mobile-touch-css.py. */
+@media (max-width: 767px) {
+  .topbar a,
+  .breadcrumb a,
+  nav.open a,
+  .footer-col a,
+  .footer-contact a,
+  .form-note a,
+  .mt-lg a,
+  .gallery-cities a,
+  h3 a,
+  button.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .topbar { padding: 4px 16px; }
+  .topbar a { justify-content: center; }
+  .breadcrumb a { padding: 0 6px; }
+  .gallery-cities a { padding: 0 6px; }
+  .footer-col li { margin-bottom: 0; }
+  .footer-contact a { display: flex; }
+  .hamburger { width: 44px; height: 44px; padding: 0; justify-content: center; }
+}

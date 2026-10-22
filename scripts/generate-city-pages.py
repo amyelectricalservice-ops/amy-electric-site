@@ -97,7 +97,8 @@ h2{{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-
 .sticky-btn{{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 4px;min-height:60px;color:var(--navy);text-decoration:none;font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid rgba(11,22,40,.15)}}
 .sticky-estimate{{background:var(--navy);color:var(--gold)}}
 @media(min-width:768px){{.sticky-bar{{display:none}}}}
-@media(max-width:767px){{body{{padding-bottom:68px}}}}</style>
+@media(max-width:767px){{body{{padding-bottom:68px}}}}
+/*touch-targets*/@media (max-width:767px){{.topbar a, .breadcrumb a, nav.open a, .footer-col a, .footer-contact a, .form-note a, .mt-lg a, .gallery-cities a, h3 a, button.filter-chip{{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}}.topbar{{padding:4px 16px;}}.topbar a{{justify-content:center;}}.breadcrumb a{{padding:0 6px;}}.gallery-cities a{{padding:0 6px;}}.footer-col li{{margin-bottom:0;}}.footer-contact a{{display:flex;}}.hamburger{{width:44px;height:44px;padding:0;justify-content:center;}}}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="preload" as="style" href="css/style.min.css">
 <link rel="stylesheet" href="css/style.min.css"></noscript>

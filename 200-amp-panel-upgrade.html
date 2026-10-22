@@ -82,7 +82,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 .sticky-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 4px;min-height:60px;color:var(--navy);text-decoration:none;font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid rgba(11,22,40,.15)}
 .sticky-estimate{background:var(--navy);color:var(--gold)}
 @media(min-width:768px){.sticky-bar{display:none}}
-@media(max-width:767px){body{padding-bottom:68px}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
+@media(max-width:767px){body{padding-bottom:68px}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*touch-targets*/@media (max-width:767px){.topbar a, .breadcrumb a, nav.open a, .footer-col a, .footer-contact a, .form-note a, .mt-lg a, .gallery-cities a, h3 a, button.filter-chip{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}.topbar{padding:4px 16px;}.topbar a{justify-content:center;}.breadcrumb a{padding:0 6px;}.gallery-cities a{padding:0 6px;}.footer-col li{margin-bottom:0;}.footer-contact a{display:flex;}.hamburger{width:44px;height:44px;padding:0;justify-content:center;}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
 <link rel="preload" as="style" href="css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="preload" as="style" href="css/style.min.css">
 <link rel="stylesheet" href="css/style.min.css"></noscript>
@@ -201,6 +201,39 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How a 200 Amp Panel Upgrade Works in Los Angeles",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Load Calculation",
+      "text": "We perform a NEC Article 220 load calculation to confirm you need 200 amps. Some homes can add capacity without a full upgrade."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Permits",
+      "text": "We pull the electrical permit with LADBS. This includes the service entrance, panel, and grounding work."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Shut Down & Swap",
+      "text": "We coordinate with LADWP for service disconnect, remove the old panel, install the new 200A panel, and reconnect."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Inspection & Power-On",
+      "text": "LADBS inspects the installation. Once approved, we coordinate with LADWP to restore service."
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -404,8 +437,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         </div>
         <div class="form-grid">
           <div class="form-group full">
-            <label>What can we help you with?</label>
-            <div class="radio-group">
+            <label id="request-type-label">What can we help you with?</label>
+            <div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">
               <label class="radio-label">
                 <input type="radio" name="request_type" value="service" required>
                 <span class="radio-text">I need a service (repair, install, or emergency work)</span>

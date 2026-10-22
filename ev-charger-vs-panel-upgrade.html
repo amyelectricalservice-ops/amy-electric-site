@@ -95,7 +95,7 @@ details[open] .faq-chevron{transform:rotate(180deg)}
 .badge .dot{width:7px;height:7px;background:#4cdb7a;border-radius:50%}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 @media(max-width:768px){.compare-grid{grid-template-columns:1fr}.nav{display:none}.hamburger{display:block}}
-@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
+@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*touch-targets*/@media (max-width:767px){.topbar a, .breadcrumb a, nav.open a, .footer-col a, .footer-contact a, .form-note a, .mt-lg a, .gallery-cities a, h3 a, button.filter-chip{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}.topbar{padding:4px 16px;}.topbar a{justify-content:center;}.breadcrumb a{padding:0 6px;}.gallery-cities a{padding:0 6px;}.footer-col li{margin-bottom:0;}.footer-contact a{display:flex;}.hamburger{width:44px;height:44px;padding:0;justify-content:center;}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -563,8 +563,8 @@ details[open] .faq-chevron{transform:rotate(180deg)}
         </div>
         <div class="form-grid">
           <div class="form-group full">
-            <label>What can we help you with?</label>
-            <div class="radio-group">
+            <label id="request-type-label">What can we help you with?</label>
+            <div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">
               <label class="radio-label">
                 <input type="radio" name="request_type" value="service" required>
                 <span class="radio-text">I need a service (repair, install, or emergency work)</span>

@@ -34,6 +34,7 @@ type PageMetrics struct {
 	BrokenImages     int      `json:"broken_images"`
 	ImagesWithoutAlt int      `json:"images_without_alt"`
 	SmallTapTargets  int      `json:"small_tap_targets"`
+	InlineLinkExempt int      `json:"inline_link_targets_exempt"`
 	UnlabeledInputs  int      `json:"unlabeled_inputs"`
 	ConsoleErrors    []string `json:"console_errors"`
 	NetworkErrors    []string `json:"network_errors"`
@@ -58,7 +59,7 @@ pages_to_test = [
     ("/ev-charger-installation", "Service: EV Charger"),
     ("/emergency-electrician-los-angeles", "Service: Emergency"),
     ("/whole-home-rewiring", "Service: Rewiring"),
-    ("/commercial-electrician", "Service: Commercial"),
+    ("/commercial-electrical", "Service: Commercial"),
     ("/city-sherman-oaks", "City: Sherman Oaks"),
     ("/city-studio-city", "City: Studio City"),
     ("/city-beverly-hills", "City: Beverly Hills"),
@@ -168,7 +169,7 @@ def audit_page(page, url_path, device_name, is_mobile):
 
     # 3. Sticky Call Bar check
     sticky_check = page.evaluate("""() => {
-        const bar = document.querySelector('.sticky-call-bar, .sticky-cta-bar, .call-bar');
+        const bar = document.querySelector('.sticky-bar, .sticky-call-bar, .sticky-cta-bar, .call-bar');
         if (!bar) return { exists: false, visible: false };
         const style = window.getComputedStyle(bar);
         const isVisible = style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
@@ -276,12 +277,32 @@ def audit_page(page, url_path, device_name, is_mobile):
         tap_target_audit = page.evaluate("""() => {
             const clickables = Array.from(document.querySelectorAll('a, button, input[type="submit"], input[type="button"], summary'));
             let small = 0;
+            let inlineExempt = 0;
             let smallExamples = [];
             clickables.forEach(el => {
                 const rect = el.getBoundingClientRect();
                 // Check visible elements
                 if (rect.width > 0 && rect.height > 0 && (rect.width < 40 || rect.height < 40)) {
-                    // Ignore inline links inside paragraphs
+                    // WCAG 2.5.8 exception: a target that flows inline inside a
+                    // sentence or block of text is exempt. That is an <a> laid
+                    // out inline (display:inline) inside a text container (a
+                    // paragraph, list item, table cell, prose or FAQ answer)
+                    // with text siblings around it. Standalone UI links, list
+                    // links with no surrounding copy, buttons and breadcrumbs
+                    // are NOT exempt.
+                    if (el.tagName === 'A' && getComputedStyle(el).display === 'inline') {
+                        const host = el.parentElement;
+                        const TEXT_HOSTS = ['P', 'LI', 'TD', 'DD', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
+                        const TEXT_CLASS = /(^|\\s)(prose|faq-a|desc|answer|hero-desc)(\\s|$)/;
+                        const inTextHost = host && (TEXT_HOSTS.indexOf(host.tagName) !== -1 || TEXT_CLASS.test(host.className || ''));
+                        let siblingText = 0;
+                        if (inTextHost) {
+                            for (const node of host.childNodes) {
+                                if (node.nodeType === 3) siblingText += node.textContent.replace(/\\s/g, '').length;
+                            }
+                        }
+                        if (inTextHost && siblingText > 0) { inlineExempt++; return; }
+                    }
                     small++;
                     const text = (el.innerText || el.getAttribute('aria-label') || el.className || 'button').slice(0, 20).trim();
                     smallExamples.push(text + " (" + Math.round(rect.width) + "x" + Math.round(rect.height) + "px)");
@@ -289,17 +310,20 @@ def audit_page(page, url_path, device_name, is_mobile):
             });
             return {
                 smallTargets: small,
+                inlineExempt: inlineExempt,
                 examples: smallExamples.slice(0, 5)
             };
         }""")
 
         if tap_target_audit.get("smallTargets", 0) > 2:
+            exempt = tap_target_audit.get("inlineExempt", 0)
+            exempt_note = f" ({exempt} inline text links exempt per WCAG 2.5.8)" if exempt else ""
             results["issues"].append({
                 "page": url_path,
                 "device": device_name,
                 "category": "accessibility",
                 "severity": "warning",
-                "message": f"{tap_target_audit['smallTargets']} touch targets under 40x40px: {', '.join(tap_target_audit.get('examples', []))}"
+                "message": f"{tap_target_audit['smallTargets']} touch targets under 40x40px{exempt_note}: {', '.join(tap_target_audit.get('examples', []))}"
             })
 
     # 7. DOM Size
@@ -337,6 +361,7 @@ def audit_page(page, url_path, device_name, is_mobile):
         "broken_images": img_audit["broken"],
         "images_without_alt": img_audit["missingAlt"],
         "small_tap_targets": tap_target_audit.get("smallTargets", 0),
+        "inline_link_targets_exempt": tap_target_audit.get("inlineExempt", 0),
         "unlabeled_inputs": form_audit["unlabeled"],
         "console_errors": console_errors,
         "network_errors": network_errors,
@@ -520,7 +545,7 @@ func main() {
 
 	// Page by Page Performance & DOM table
 	report.WriteString("## 📈 Page Performance & Structure Summary\n\n")
-	report.WriteString("| Page | Device | Load Time | DOM Nodes | H1 Count | Sticky Bar | Issues |\n|---|---|---|---|---|---|---|\n")
+	report.WriteString("| Page | Device | Load Time | DOM Nodes | H1 Count | Sticky Bar | Small Tap Targets | Inline Links Exempt | Issues |\n|---|---|---|---|---|---|---|---|---|\n")
 
 	sort.Slice(audit.Metrics, func(i, j int) bool {
 		if audit.Metrics[i].URL == audit.Metrics[j].URL {
@@ -538,9 +563,13 @@ func main() {
 				stickyStatus = "❌ Missing"
 			}
 		}
+		tapStatus := "N/A"
+		if m.Device == "Mobile" {
+			tapStatus = fmt.Sprintf("%d", m.SmallTapTargets)
+		}
 		issuesCount := len(m.ConsoleErrors) + len(m.NetworkErrors)
-		report.WriteString(fmt.Sprintf("| `%s` | %s | %dms | %d | %d | %s | %d |\n",
-			m.URL, m.Device, m.LoadTimeMs, m.DOMNodes, m.H1Count, stickyStatus, issuesCount))
+		report.WriteString(fmt.Sprintf("| `%s` | %s | %dms | %d | %d | %s | %s | %d | %d |\n",
+			m.URL, m.Device, m.LoadTimeMs, m.DOMNodes, m.H1Count, stickyStatus, tapStatus, m.InlineLinkExempt, issuesCount))
 	}
 
 	// Action Plan
@@ -548,7 +577,7 @@ func main() {
 	report.WriteString("Based on the Playwright live browser inspection, here is the prioritized roadmap:\n\n")
 	report.WriteString("### Priority 1: Accessibility & Form Polish (High Impact)\n")
 	report.WriteString("1. **Explicit Form Labels**: Ensure all `<input>` elements in both Quick Form and Estimate Form have explicit `<label for=\"...\">` bindings or `aria-label` attributes to ensure WCAG 2.1 AA compliance.\n")
-	report.WriteString("2. **Mobile Tap Target Padding**: Ensure button and summary touch targets meet the minimum 44x44px tap zone on mobile viewports for seamless thumbs-friendly navigation.\n\n")
+	report.WriteString("2. **Mobile Tap Targets (shipped 2026-10-19)**: header, footer, breadcrumb and tel links plus gallery filter chips carry a 44x44px minimum zone at <=767px (`css/src/10-responsive.css`, mirrored into the inlined critical CSS). Links that flow inline in a sentence stay as text per the WCAG 2.5.8 exception, and are reported separately above.\n\n")
 
 	report.WriteString("### Priority 2: Visual & CRO Consistency\n")
 	report.WriteString("1. **Sticky Call Bar Mobile Parity**: Verify that every landing page, geo page, and blog post displays the gold sticky call bar on mobile screens.\n")
