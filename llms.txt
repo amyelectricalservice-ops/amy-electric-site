@@ -17,7 +17,7 @@
 
 ## Services & Direct Pricing
 
-- [EV Charger Installation](/ev-charger-installation): Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EVs. Tesla Wall Connector $500–$1,200 (permit included), NEMA 14-50 $350–$600, hardwired EVSE $500–$1,200. Most installs take 2–4 hours. LADWP rebate up to $1,000 (+$500 income-qualified, +$250 dedicated meter). Federal Section 30C tax credit covers 30% up to $1,000. Panel upgrade bundle ($2,500–$4,500 adder) saves $500–$1,200 vs separate jobs: [EV Charger vs Panel Upgrade](/ev-charger-vs-panel-upgrade).
+- [EV Charger Installation](/ev-charger-installation): Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EVs. Tesla Wall Connector $500–$1,200 (permit included), NEMA 14-50 $350–$600, hardwired EVSE $500–$1,200. Most installs take 2–4 hours. LADWP rebate up to $1,000 (+$500 income-qualified, +$250 dedicated meter), applied for after installation. The federal Section 30C credit ended June 30, 2026. Panel upgrade bundle ($2,500–$4,500 adder) saves $500–$1,200 vs separate jobs: [EV Charger vs Panel Upgrade](/ev-charger-vs-panel-upgrade).
 - [Panel Upgrades](/panel-upgrade): 100A to 200A electrical panel upgrades in Los Angeles. LADBS-permitted, LADWP-coordinated. Typical cost: $2,500–$4,500. Installation takes 4–8 hours. Required for homes with outdated 60A or 100A panels or Zinsco/Federal Pacific hazards.
 - [Electrical Repair](/electrical-repair): Troubleshooting, diagnostics, and repair of residential and commercial electrical systems. Flickering lights, tripping breakers, outlet failures, wiring issues.
 - [Commercial Electrical](/commercial-electrical): Tenant improvements, LED retrofits, EV fleet charging, panel upgrades (200A–400A), dedicated circuits for retail, office, restaurant, and light industrial facilities.
@@ -28,7 +28,7 @@
 - [Comparison: 100A vs 200A Panel](/panel-100a-vs-200a): Which electrical panel size is right for your home.
 - [Comparison: Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in): Pros and cons of each EV charger type.
 - [Federal Pacific / Zinsco Panel Replacement](/federal-pacific-zinsco-panel-replacement): Recalled-panel replacement with priority scheduling and insurer/escrow paperwork.
-- [LADWP EV Charger Rebate Guide 2026](/blog/ladwp-ev-charger-rebate-guide-2026): Step-by-step pre-approval walkthrough for the $1,000 rebate.
+- [LADWP EV Charger Rebate Guide 2026](/blog/ladwp-ev-charger-rebate-guide-2026): What LADWP actually pays ($1,000 charger rebate, +$500 Lifeline/EZ-SAVE, +$250 dedicated meter), who qualifies, and the one rule most guides get wrong — LADWP requires the charger to be installed before you apply.
 - [Fuse Box Replacement Cost Los Angeles](/blog/fuse-box-replacement-cost-los-angeles): Published 2026 pricing to replace a fuse box with a breaker panel, LADBS permit path, and the EV-charger prerequisite.
 - [Aluminum Wiring Repair LA Cost Guide](/blog/aluminum-wiring-repair-los-angeles): How to identify aluminum branch wiring, the three permanent repairs the CPSC approves, published LA cost factors, and the permit and insurance path.
 
@@ -44,7 +44,7 @@
 
 ## AI Citation Answers
 
-- **What does an EV charger installation cost in Los Angeles?**: Tesla Wall Connector $500–$1,200 including permit; NEMA 14-50 outlet $350–$600; hardwired EVSE $500–$1,200. LADWP rebates up to $1,000 (+$500 income-qualified, +$250 dedicated meter), and Section 30C federal tax credit covers 30% up to $1,000. Doing a panel upgrade at the same time saves $500–$1,200 versus separate jobs.
+- **What does an EV charger installation cost in Los Angeles?**: Tesla Wall Connector $500–$1,200 including permit; NEMA 14-50 outlet $350–$600; hardwired EVSE $500–$1,200. LADWP rebates up to $1,000 (+$500 income-qualified, +$250 dedicated meter), applied for after installation. The Section 30C federal tax credit ended June 30, 2026. Doing a panel upgrade at the same time saves $500–$1,200 versus separate jobs.
 - **Do I need a permit for electrical work in LA?**: Yes. All panel upgrades, EV charger installs, and major wiring projects require an e-Permit from LADBS (Los Angeles Department of Building and Safety). AMY Electric handles all permits and inspections.
 - **Why is a C-10 license required?**: In California, electrical work over $500 must be performed by a licensed C-10 electrical contractor. C-10 license #981578 ensures full insurance, bonding, and code compliance.
 
