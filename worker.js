@@ -640,6 +640,65 @@ function revalidated(request, headers) {
 // bounded rather than open-ended.
 const HTML_CACHE_CONTROL = 'public, max-age=300, s-maxage=60, stale-while-revalidate=600';
 
+const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "name": "AMY Electric",
+  "image": "https://amyelectric.com/img/hero-electrician-560x420.webp",
+  "@id": "https://amyelectric.com/#electrician",
+  "url": "https://amyelectric.com",
+  "telephone": "+1-818-302-5614",
+  "email": "info@amyelectric.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "20628 Londelius St",
+    "addressLocality": "Winnetka",
+    "addressRegion": "CA",
+    "postalCode": "91306",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.2251,
+    "longitude": -118.5714
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.cslb.ca.gov/",
+    "https://evitp.org/"
+  ],
+  "license": "California C-10 Electrical Contractor License #981578",
+  "areaServed": [
+    "Los Angeles", "Sherman Oaks", "Burbank", "Glendale", "Pasadena", "Studio City", "North Hollywood", "Hollywood", "Beverly Hills", "Santa Monica", "Woodland Hills", "Van Nuys", "Calabasas", "Culver City"
+  ]
+}
+</script>`;
+
+function injectSchema(html) {
+  if (!html.includes('Electrician') && !html.includes('LocalBusiness')) {
+    const hi = html.indexOf('</head>');
+    if (hi !== -1) {
+      return html.slice(0, hi) + '\n' + DEFAULT_ELECTRICIAN_SCHEMA + '\n' + html.slice(hi);
+    }
+  }
+  return html;
+}
+
 // Build an HTML response: inject the beacon, apply the caching policy, and
 // honour conditional requests so repeat visits don't re-fetch the document.
 async function htmlResponse(request, response, headers) {
@@ -649,8 +708,9 @@ async function htmlResponse(request, response, headers) {
     return response;
   }
   const html = await response.text();
-  const body0 = injectBeacon(html);
-  let body = body0;
+  const body0 = injectSchema(html);
+  const body1 = injectBeacon(body0);
+  let body = body1;
   let cache = HTML_CACHE_CONTROL;
   // Geo personalization applies to the landing page only: a matched visitor
   // city is injected into the header attribute plus window.AMY_GEO, and the
@@ -667,13 +727,13 @@ async function htmlResponse(request, response, headers) {
     // homepage targets) and expose it via window.AMY_GEO_CITY.
     const city = resolveGeoCity(request);
     if (city) {
-      body = injectGeoCity(body0, city);
+      body = injectGeoCity(body1, city);
       cache = GEO_NO_STORE;
     }
   } else if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
     const city = visitorCity(request);
     if (city) {
-      body = injectGeo(body0, city);
+      body = injectGeo(body1, city);
       cache = GEO_NO_STORE;
     }
   }
@@ -951,6 +1011,20 @@ export default {
       });
     }
 
+    if (url.pathname === '/llms.txt' || url.pathname === '/llms-full.txt') {
+      const assetRes = await env.ASSETS.fetch(request);
+      if (assetRes.ok) {
+        const body = await assetRes.text();
+        return new Response(body, {
+          headers: {
+            'Content-Type': 'text/markdown; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+      }
+    }
+
     const accept = request.headers.get('Accept') || '';
     if (accept.includes('text/markdown')) {
       const markdownPaths = {
@@ -1017,6 +1091,8 @@ export default {
 
     if (url.pathname === '/' || url.pathname === '/index.html') {
       const headers = new Headers(response.headers);
+      headers.append('Link', '</llms.txt>; rel="ai-context"');
+      headers.append('Link', '</llms-full.txt>; rel="ai-description"');
       headers.append('Link', '</.well-known/mcp/server-card.json>; rel="service-desc"');
       headers.append('Link', '</.well-known/openid-configuration>; rel="describedby"');
       headers.append('Link', '</.well-known/http-message-signatures-directory>; rel="api-catalog"');
@@ -1031,6 +1107,8 @@ export default {
     const responseType = response.headers.get('Content-Type') || '';
     if (responseType.includes('text/html')) {
       const headers = new Headers(response.headers);
+      headers.append('Link', '</llms.txt>; rel="ai-context"');
+      headers.append('Link', '</llms-full.txt>; rel="ai-description"');
       headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
       return htmlResponse(request, response, headers);

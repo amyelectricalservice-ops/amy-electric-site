@@ -9,6 +9,9 @@
     "enabled": true,
     "logs": {
       "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true
     }
   },
   // This Worker serves amyelectric.com directly. The route used to belong to the
