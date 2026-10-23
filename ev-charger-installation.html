@@ -315,7 +315,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         "name": "Are there rebates for EV charger installation in LA?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. LADWP offers up to $500 for residential customers. CALeVIP provides additional incentives for qualifying installations. The federal Section 30C tax credit covers 30% of equipment cost. We can help you identify what you qualify for."
+          "text": "For LADWP territory, LADWP's Residential EV Charger Rebate pays up to $1,000 toward a qualifying Level 2 charger and its installation, plus $500 for Lifeline or EZ-SAVE customers and a flat $250 for a dedicated EV TOU meter. LADWP requires the charger to be installed before you apply. The federal Section 30C credit ended June 30, 2026. CALeVIP funds publicly available charging, not home chargers."
         }
       },
       {
@@ -339,7 +339,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         "name": "How much does EV charger installation cost in Los Angeles?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits: NEMA 14-50 outlet $350–$600, Tesla Wall Connector $500–$1,200, hardwired EVSE $500–$1,200. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade."
+          "text": "Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits: NEMA 14-50 outlet $350–$600, Tesla Wall Connector $500–$1,200, hardwired EVSE $500–$1,200. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade. On the incentive side, LADWP pays up to $1,000 toward a qualifying charger and install, applied for after the work is complete. The federal 30C credit ended June 30, 2026 and is no longer available."
         }
       },
       {
@@ -347,7 +347,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         "name": "Tesla Wall Connector or another brand — which should I choose?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We install both. The Gen 3 Tesla Wall Connector delivers maximum charging speeds on a dedicated 60A circuit. We also install ChargePoint Home Flex, Rivian Home Charger, JuiceBox, Emporia, and any hardwired EVSE, plus the Tesla Universal Wall Connector for mixed Tesla and J1772 households."
+          "text": "We install both. The Gen 3 Tesla Wall Connector delivers maximum charging speeds on a dedicated 60A circuit. We also install ChargePoint Home Flex, Rivian Home Charger, JuiceBox, Emporia, and any hardwired EVSE, plus the Tesla Universal Wall Connector for mixed Tesla and J1772 households. We recommend based on your vehicle, panel capacity, and whether you need power sharing."
         }
       },
       {
@@ -355,7 +355,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         "name": "Should I get a NEMA 14-50 outlet or a hardwired charger?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A NEMA 14-50 is a universal Level 2 outlet compatible with any EV using an included adapter or portable EVSE ($350–$600 installed). A hardwired EVSE ($500–$1,200) mounts permanently and supports higher amperage. We help you choose during the free on-site evaluation."
+          "text": "A NEMA 14-50 is a universal Level 2 outlet compatible with any EV using an included adapter or portable EVSE ($350–$600 installed) — flexible if you change vehicles. A hardwired EVSE ($500–$1,200) mounts permanently and supports higher amperage. We help you choose during the free on-site evaluation."
         }
       },
       {
@@ -383,14 +383,15 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "How EV Charger Installation Works in Los Angeles",
-  "description": "Licensed installation of a Level 2 EV charger: load calculation, LADWP rebate pre-approval, permit, dedicated circuit, inspection.",
+  "description": "Licensed installation of a Level 2 EV charger: load calculation, written estimate, LADBS permit, dedicated circuit, inspection.",
   "totalTime": "P14D",
   "estimatedCost": {"@type": "MonetaryAmount", "currency": "USD", "value": "350-1200"},
   "step": [
-    {"@type": "HowToStep", "position": 1, "name": "Load calculation", "text": "A licensed electrician calculates your panel's spare capacity to size the 40-60A dedicated circuit and confirm whether a panel upgrade is needed."},
-    {"@type": "HowToStep", "position": 2, "name": "LADWP rebate pre-approval", "text": "Submit the LADWP rebate application before any work begins; approval covers up to $1,000 plus $500 income-qualified and $250 for a dedicated meter."},
-    {"@type": "HowToStep", "position": 3, "name": "Permit and installation", "text": "The electrician pulls the LADBS permit, runs the dedicated circuit, and mounts the charger. Typical on-site time is 2-4 hours."},
-    {"@type": "HowToStep", "position": 4, "name": "Inspection and final paperwork", "text": "LADBS inspects the installation. The signed permit and itemized invoice support the LADWP rebate claim and the federal 30C tax credit."}
+    {"@type": "HowToStep", "position": 1, "name": "Free on-site evaluation", "text": "We assess panel capacity, existing 240V availability, wall condition, and distance from the panel, then determine whether existing service is adequate or a panel upgrade is needed."},
+    {"@type": "HowToStep", "position": 2, "name": "Quote and scheduling", "text": "You receive a written estimate breaking down charger unit cost if needed, installation labor, permitting fees, and any electrical upgrades."},
+    {"@type": "HowToStep", "position": 3, "name": "Permit submission", "text": "We handle the LADBS permit application, electrical plans, and utility coordination."},
+    {"@type": "HowToStep", "position": 4, "name": "Installation", "text": "We run the 240V circuit from the breaker panel to the charger location, mount and connect the charger, install weatherproof covers, and perform continuity, resistance, and voltage drop tests to NEC Article 625."},
+    {"@type": "HowToStep", "position": 5, "name": "Final inspection and sign-off", "text": "The inspector verifies the installation. We coordinate scheduling and attend. Once approved you receive the signed permit and itemized paid invoice that the LADWP rebate application requires."}
   ]
 }
 </script>
@@ -455,7 +456,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <span class="badge"><span class="dot"></span> EVITP Certified #4051604</span>
       <span class="badge"><span class="dot"></span> C-10 Licensed #981578</span>
       <span class="badge"><span class="dot"></span> NEMA $350–$600 · Hardwired $500–$1,200</span>
-      <span class="badge"><span class="dot"></span> LADWP Rebate Approved</span>
+      <span class="badge"><span class="dot"></span> LADWP Rebate Eligible</span>
     </div>
       <div id="quick-answer" style="background:rgba(245,166,35,.08); border-left:4px solid var(--gold); padding:16px 20px; margin-bottom:20px; border-radius:0 var(--radius) var(--radius) 0; font-size:15px; line-height:1.65;">
     <strong style="font-family:var(--cond); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px;">At a Glance</strong>
@@ -493,7 +494,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 </div></section>
 
     <div class="trust-item"><span class="trust-icon">📋</span> Permits &amp; Inspections Handled</div>
-    <div class="trust-item"><span class="trust-icon">💰</span> LADWP &amp; CALeVIP Rebate Help</div>
+    <div class="trust-item"><span class="trust-icon">💰</span> LADWP Rebate Paperwork Help</div>
     <div class="trust-item"><span class="trust-icon">🕐</span> On-Site Work Often 2–4 Hours</div>
   </div>
 </div>
@@ -512,7 +513,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="expert-quote" style="background:rgba(245,166,35,.06); border-left:4px solid var(--gold); padding:20px 24px; margin:24px 0; border-radius:0 var(--radius) var(--radius) 0;">
     <p style="font-size:16px; line-height:1.7; color:var(--white); margin:0;">"According to Amy, founder of AMY Electric and Licensed C-10 electrical contractor with 15+ years of experience: 'We always start with a load calculation before recommending any EV charger installation. Many homeowners don't realize their existing 200A panel can handle a 50A circuit without an upgrade — but we need to verify that with actual data, not assumptions.'"</p>
   </div>
-        <p>AMY Electric is an <strong>EVITP-certified contractor (#4051604)</strong> — trained specifically in EV infrastructure, from load calculations and circuit sizing to LADWP interconnection requirements. We've installed over 200 Level 2 chargers across Greater Los Angeles since 2012.</p>
+        <p>AMY Electric is an <strong>EVITP-certified contractor (#4051604)</strong> — trained specifically in EV infrastructure, from load calculations and circuit sizing to LADWP interconnection requirements. Every install is permitted through LADBS and documented for the LADWP rebate application.</p>
 
         <h2>What EV Charger Installation Services Do We Offer in Los Angeles?</h2>
         <div class="card-grid" style="margin-top: 20px;">
@@ -581,13 +582,13 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         </div>
 
         <h2>What Rebates and Incentives Are Available for EV Charger Installation in Los Angeles?</h2>
-        <div class="alert-info">💡 Some customers may qualify for LADWP, CALeVIP, or federal incentives. Eligibility, amounts, and program availability vary; verify current requirements before relying on an incentive.</div>
+        <div class="alert-info">💡 LADWP pays up to $1,000 toward a qualifying Level 2 charger and its installation, and requires the charger to be already installed before you apply. The federal Section 30C credit ended June 30, 2026. Verify current program terms with LADWP before you buy equipment.</div>
         <ul>
-          <li><strong>LADWP Residential EV Charger Rebate</strong> — Up to $500 for qualifying LADWP customers installing a Level 2 charger. <a href="https://www.ladwp.com/saving-energy/commercial-service-programs/electric-vehicle-incentive-program" target="_blank" rel="noopener">LADWP EV Program →</a></li>
-          <li><strong>CALeVIP</strong> — California Electric Vehicle Infrastructure Project offers rebates for charger hardware and installation at qualifying sites. <a href="https://www.calvip.org/" target="_blank" rel="noopener">CALeVIP.org →</a></li>
-          <li><strong>Federal Tax Credit (Section 30C)</strong> — 30% of the cost of EV charging equipment (up to $1,000 for residential, more for commercial). <a href="https://www.irs.gov/credits-deditions/alternative-fuel-vehicle-refueling-property-credit" target="_blank" rel="noopener">IRS Section 30C →</a></li>
+          <li><strong>LADWP Residential EV Charger Rebate</strong> — Up to $1,000 toward a qualifying Level 2 charger and its installation, plus $500 for Lifeline or EZ-SAVE customers and a flat $250 for a dedicated EV TOU meter. Apply after the charger is installed, within 12 months of purchase. <a href="https://www.ladwp.com/residential-services/programs-and-rebates-residential/electric-vehicles/residential-ev-charger-rebate-program" target="_blank" rel="noopener">LADWP Residential EV Charger Rebate →</a></li>
+          <li><strong>CALeVIP</strong> — Funds publicly available EV charging for property owners, contractors, businesses, and tribes. It does not cover a charger in a single-family garage. <a href="https://calevip.org/" target="_blank" rel="noopener">CALeVIP.org →</a></li>
+          <li><strong>Federal Section 30C credit</strong> — Expired. The IRS does not allow the credit for property placed in service after June 30, 2026. Qualifying installs before that date used Form 8911. <a href="https://www.irs.gov/credits-deductions/alternative-fuel-vehicle-refueling-property-credit" target="_blank" rel="noopener">IRS Section 30C →</a></li>
         </ul>
-        <p>As a CALeVIP-listed contractor, AMY Electric can help you identify and apply for applicable programs.</p>
+        <p>We pull the LADBS permit, pass the inspection, and hand you an itemized paid invoice and nameplate photos in the form LADWP's rebate application requires.</p>
 
         <h3>What Codes and Standards Apply?</h3>
         <p>All EV charger installations comply with the following:</p>
@@ -685,7 +686,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       </details>
       <details class="faq-item">
         <summary class="faq-q">Are there rebates for EV charger installation in LA? <span class="faq-chevron">▾</span></summary>
-        <div class="faq-a">Yes. LADWP offers up to $500 for residential customers. CALeVIP provides additional incentives for qualifying installations. The federal Section 30C tax credit covers 30% of equipment cost. We can help you identify what you qualify for.</div>
+        <div class="faq-a">For LADWP territory, LADWP's Residential EV Charger Rebate pays up to $1,000 toward a qualifying Level 2 charger and its installation, plus $500 for Lifeline or EZ-SAVE customers and a flat $250 for a dedicated EV TOU meter. LADWP requires the charger to be installed before you apply. The federal Section 30C credit ended June 30, 2026. CALeVIP funds publicly available charging, not home chargers.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Do you install chargers in apartments or condos? <span class="faq-chevron">▾</span></summary>
@@ -697,7 +698,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       </details>
       <details class="faq-item">
         <summary class="faq-q">How much does EV charger installation cost in Los Angeles? <span class="faq-chevron">▾</span></summary>
-        <div class="faq-a">Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits: NEMA 14-50 outlet $350–$600, Tesla Wall Connector $500–$1,200, hardwired EVSE $500–$1,200. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade. LADWP rebates up to $500 and the 30 percent federal credit up to $1,000 apply to qualifying installs.</div>
+        <div class="faq-a">Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits: NEMA 14-50 outlet $350–$600, Tesla Wall Connector $500–$1,200, hardwired EVSE $500–$1,200. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade. On the incentive side, LADWP pays up to $1,000 toward a qualifying charger and install, applied for after the work is complete. The federal 30C credit ended June 30, 2026 and is no longer available.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Tesla Wall Connector or another brand — which should I choose? <span class="faq-chevron">▾</span></summary>
@@ -705,7 +706,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       </details>
       <details class="faq-item">
         <summary class="faq-q">Should I get a NEMA 14-50 outlet or a hardwired charger? <span class="faq-chevron">▾</span></summary>
-        <div class="faq-a">A NEMA 14-50 is a universal Level 2 outlet compatible with any EV using an included adapter or portable EVSE ($350–$600 installed) — flexible if you change vehicles. A hardwired EVSE ($500–$1,200) mounts permanently, supports higher amperage, and is required for some rebate programs. We help you choose during the free on-site evaluation.</div>
+        <div class="faq-a">A NEMA 14-50 is a universal Level 2 outlet compatible with any EV using an included adapter or portable EVSE ($350–$600 installed) — flexible if you change vehicles. A hardwired EVSE ($500–$1,200) mounts permanently and supports higher amperage. We help you choose during the free on-site evaluation.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Do you install commercial or workplace EV charging? <span class="faq-chevron">▾</span></summary>
@@ -764,7 +765,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   </div>
 </div>
 
-<section style="padding: 64px 24px;"><div class="wrap text-center"><div class="section-label">Pricing</div><h2>Typical Pricing: Electric Vehicle Chargers</h2><p class="max-w-640">Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade. LADWP rebates up to $500 and the 30 percent federal credit up to $1,000 apply to qualifying installs. From our projects: 200+ EV charger installations completed since 2012 · From our projects: 4.9 average from 87 verified reviews · licensed C-10 #981578, EVITP-certified #4051604 · serving Greater Los Angeles since 2012 · written itemized estimates on every job.</p></div></section>
+<section style="padding: 64px 24px;"><div class="wrap text-center"><div class="section-label">Pricing</div><h2>Typical Pricing: Electric Vehicle Chargers</h2><p class="max-w-640">Level 2 installations typically run $350 to $900 including the dedicated circuit and commissioning, plus $150 to $400 in permits. Where the panel lacks capacity, add $2,500 to $4,500 for a service upgrade. LADWP pays up to $1,000 toward a qualifying charger and its installation, applied for after the work is complete. The federal 30C credit ended June 30, 2026. 4.9 average from 87 verified reviews · licensed C-10 #981578, EVITP-certified #4051604 · serving Greater Los Angeles since 2012 · written itemized estimates on every job.</p></div></section>
 
 <section style="padding: 64px 24px;"><div class="wrap text-center"><div class="section-label">Recent Work</div><h2>Recent EV Charger Work</h2><div class="testi-grid"><div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"AMY Electric upgraded our Pasadena home from a 100A to 200A panel to accommodate our home addition and EV charger. They coordinated with LADWP, handled all permits, and the inspection passed without issues. Professional service from start to finish."</p><div class="testi-name">Amanda S.</div><div class="testi-loc">Pasadena, CA</div></div></div><p class="max-w-640" style="margin: 24px auto 0;">Our warranty: one year on all labor plus manufacturer warranties on materials. If anything we installed fails within 12 months, we return and fix it at no charge.</p></div></section>
 
