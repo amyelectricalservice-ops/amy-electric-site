@@ -2,96 +2,91 @@
 
 ## Project
 
-Static HTML marketing site (vanilla, no framework, no site build step) for an LA electrical contractor, hosted on Cloudflare **Workers + Assets** (`run_worker_first: true`) — not Pages. Production is **one Worker**, `amy-electric-site`, which declares the single `amyelectric.com/*` zone route in `wrangler.jsonc` and serves the domain directly. An `amy-electric-seo` edge wrapper used to front it and own the zone routes; it was retired on 2026-10-18 (see the routes bullet below). Push to `main` auto-deploys the Worker via `.github/workflows/deploy.yml` (validates, tests, then `wrangler deploy`); `.github/workflows/cloudflare-routes.yml` audits the committed route table against the live zone weekly and on route-config changes; Workers Builds is connected but non-deploying. Manual: `wrangler deploy --config wrangler.jsonc`. Root `package.json` is tooling-only (`cf`+`wrangler` devDeps); `wrangler.jsonc` is the live config, `cloudflare.config.ts` mirrors it, `cf build` is validation-only. CI on every push (`audit.yml`): JSON-LD validation, CSS/JS reproducibility, sitemap integrity.
+Static HTML marketing site (vanilla, no framework, no site build step) for an LA electrical contractor, hosted on Cloudflare **Workers + Assets** (`run_worker_first: true`) — not Pages. Production is **one Worker**, `amy-electric-site`, which declares the single `amyelectric.com/*` zone route in `wrangler.jsonc`. Push to `main` auto-deploys via `.github/workflows/deploy.yml`; manual is `wrangler deploy --config wrangler.jsonc`. Root `package.json` is tooling-only (`cf` + `wrangler`).
 
 - **Business**: AMY Electric · C-10 #981578 · EVITP #4051604 · (818) 302-5614 · info@amyelectric.com · Greater Los Angeles
 
-## Current state
+## Current state (verified 2026-10-23)
 
-- **315 production HTML pages** (`scripts/audit-site.py`); **307 URLs in `sitemap.xml`** (delta is deliberate noindex/404 exclusions: `404.html`, `seo-audit-report.html`, 3 noindex cities, plus 3 retired redirect-source pages: `emergency-electrical`, `emergency-electrician`, `testimonials`). No `<priority>`/`<changefreq>`. `index`/`blog/index`/`case-studies/index` map to directory URLs. Changed pages get `<lastmod>` bumps via `scripts/refresh-sitemap-lastmod.py` (commits `[skip ci]` back to `main` — expect rebase-before-push).
-- 112 `city-*.html` (16 core + neighborhoods; 3 deliberately `noindex`: `city-edith-norman`, `city-el-sobrante`, `city-health-campadre`), 64 geo service pages (24 EV + 24 panel + 16 rewiring), 61 blog posts, `testimonials.html`, `gallery.html` (387 photos), `privacy-policy.html`, `service-areas.html`.
-- **CSS**: source `css/src/01-*.css`–`12-*.css`, built via `scripts/build-css.py` → `css/style.min.css`. **JS**: source `js/src/01-*.js`–`08-*.js` via `scripts/build-js.py` → `js/site.min.js`. Never edit built files.
-- Estimate engine: `05-estimate-data.js` (canonical priced tables, mirrors `scripts/estimate-schema.sql` 1:1) + `06-estimate-engine.js` (`window.AMY_ESTIMATE.calcEstimate`) + `07-estimate-lead.js` (attaches indicative range to quote-form leads; `/api/contact` allowlists it, drops invalid without failing the lead). Permit handling is explicit per service (`included`/`separate`/`unpublished`) — never infer from `permitId`. `js/estimator.js` is standalone; `js/estimator.min.js` is the legacy EV bundle the homepage actually loads — parity between the three is asserted by `test-estimator.mjs`, no build step links them.
-- Booking widget (`book.html` only): open-source flatpickr 4.6.13 (MIT, (c) 2017 Gregory Petrosyan) vendored version-pinned at `js/vendor/flatpickr-4.6.13.min.js` + `css/vendor/flatpickr-dark-4.6.13.css` — never hand-edit vendored files (contrast/a11y overrides live in book.html `/*book-widget*/` CSS). `js/book.js` is standalone (pure slot rules: Sun closed, weekday 4 windows 8–4, Sat 2 windows 8–12, min tomorrow, max +60d; `window.AMY_BOOK`, tested by `test-book.mjs`). flatpickr-on-a-div needs `appendTo` or the calendar lands at body level.
-- Root `package.json` is `"type": "module"`: standalone browser scripts CANNOT be `require()`d in tests (returns `{}`) — load via `vm` sandbox with `{module:{exports:{}}}` (see `test-estimator.mjs` `loadStandalone`), and JSON-round-trip any cross-realm arrays before strict `deepEqual`.
-- `js/webmcp.js` loads via conditional inline injector on 99 root pages only when `navigator.modelContext` exists — never a render-blocking `defer` tag (cost 300ms lab TBT; verified 88→98 perf 2026-10-14). Blog pages omit it.
-- `testimonials.html` stays published but canonicals to `/reviews`, with a `/testimonials → /reviews` 301 in `_redirects`. All 929 old `testimonials` hrefs repointed 2026-10-14.
+- **315 production pages**, **307 sitemap URLs**, 0 audit issues, schema valid, 0 price-drift flags.
+  - Sitemap delta is deliberate: `404.html`, `seo-audit-report.html`, 3 noindex cities, 3 retired redirect sources.
+- **112** `city-*.html` (3 deliberately `noindex`: edith-norman, el-sobrante, health-campadre); **64** geo service pages (24 EV + 24 panel + 16 rewiring); **62** blog HTML files; **387** gallery photos × 4 variants = 1548 files in `img/gallery/`.
+- **CSS**: `css/src/01..12-*.css` → `scripts/build-css.py` → `css/style.min.css`. **JS**: `js/src/01..08-*.js` → `scripts/build-js.py` → `js/site.min.js`. Never edit built files.
+- **Estimate engine**: `05-estimate-data.js` (mirrors `scripts/estimate-schema.sql`) + `06-estimate-engine.js` + `07-estimate-lead.js`. Permit handling is explicit per service (`included`/`separate`/`unpublished`) — never infer from `permitId`. `js/estimator.min.js` is the legacy EV bundle the homepage loads; parity asserted by `test-estimator.mjs`.
+- **Booking** (`book.html` only): vendored flatpickr 4.6.13 in `js/vendor/` + `css/vendor/`; `js/book.js` slot rules (Sun closed, weekday 8–4, Sat 8–12, min tomorrow, max +60d). flatpickr-on-a-div needs `appendTo`.
+- **Root `package.json` is `"type": "module"`**: standalone browser scripts cannot be `require()`d (returns `{}`) — load via `vm` sandbox (see `test-estimator.mjs` `loadStandalone`) and JSON-round-trip cross-realm arrays before `deepEqual`.
+
+## Known factual-consistency debt (fix before adding content)
+
+`AMY Electric Website SEO Audit and Improvement Plan.md` (owner, 2026-10-22) documents conflicts that are **still live**. Verified against the tree on 2026-10-23:
+
+| Debt | Evidence |
+| --- | --- |
+| Federal 30C credit still presented as current | 256 `30C`/`2032` matches across ~20 pages, incl. `ev-charger-installation.html`, `tesla-charger-installation.html`, `blog/ev-charger-installation-cost-la.html`, `blog/ladwp-ev-charger-rebate-guide-2026.html` |
+| LADWP rebate amount contradicts across pages | `$500 in rebate` (34), `$1,000 — with local utility rebate` (32), `$1,000 base rebate`, `$200` |
+| Duplicate blog slugs compete | `blog/ev-charger-installation-cost-la.html` + `-cost-los-angeles.html`; `blog/whole-home-rewiring-cost-la.html` + `-cost-los-angeles.html` |
+| Internal links point at `/index`, canonical is `/` | 186 `href="/index"` |
+| `service-areas.html` template bug | literal `%d` in "All %d Service Areas" |
+| Three testimonial sets disagree on names/cities | homepage, `reviews.html`, `testimonials.html` |
+
+Rules that follow from this:
+- **Do not propagate any of these numbers into new content.** A new page must not repeat an unverified rebate, 30C, experience-years, or project-count figure.
+- The audit's *external* facts (LADWP amount, 30C end date, workers'-comp status) came from search-result excerpts, not fetched pages. Fetched verification is required before citing any of them.
+- `reviewCount` stays **87** (canonical in `scripts/site_data.py`, 336 occurrences). Bumping it is owner-supplied only.
+- Experience, project counts, insurance wording, and the founder name (Amy/"her" vs Amram/"he") need an owner decision, not an agent guess.
 
 ## Gotchas (read before touching)
 
-- **HTML cache**: `worker.js` sends `public, max-age=300, s-maxage=60, stale-while-revalidate=600`. Do NOT "fix" back to `max-age=0, must-revalidate` — the zone edge strips `ETag`/`Content-Length` from Worker HTML (ASSETS responses keep theirs), so without max-age every repeat visit re-downloads full HTML.
-- **Geo personalization**: `/` + `/index.html` only; on `request.cf.city` match the response goes `private, no-store` (edge can't Vary on `cf.city`). Target list = `GEO_TARGET_AREAS` in `worker.js` (20 LA-city neighborhoods; expand the list AND `scripts/test-worker-geo.mjs`, which asserts length 20). Consumer `js/src/08-geo-personalize.js` must ship with any worker change. Tests: `test-worker-geo.mjs` (12) + `test-geo-personalize.mjs` (4).
-- **RUM**: beacon injected by `worker.js`, endpoint must stay `"send": {"to": "/cdn-cgi/rum"}`. Never diagnose RUM from `workers.dev` (no `cdn-cgi` pipeline → 404 by design) or curl (404s on non-beacon POSTs) — both are artifacts, not outages. Verify with a real browser on apex or dashboard `events.rumPageloadEvents`.
-- **Live checks**: use the `workers.dev` host (real status codes); apex serves bot challenges to agents (expect 403). `.html` URLs 301 to extensionless — curl needs `-L`.
-- **`functions/` is dead** (Pages leftover, never referenced). Sibling Workers (`amy-electric-estimator`, `-photos`, `-portfolio`) are out of scope — do not touch.
-- **Zone routes belong to the site Worker**: `amy-electric-site` declares the single `amyelectric.com/*` route in `wrangler.jsonc` and serves the domain directly. An `amy-electric-seo` edge wrapper used to own that route table (deployed out-of-band, recovered into `seo-worker/`, then retired on 2026-10-18 once it was found to be shadowing the site's own pages) — if you see it again, it is not supposed to exist. Check agreement with `python3 scripts/audit-cloudflare-routes.py`; `.github/workflows/cloudflare-routes.yml` runs that weekly and on route-config changes.
-- **Images**: 366 gallery photos (310 + 56 Google Photos exports, 2026-10-15) × 4 variants (1200w WebP + 1200w JPEG + 800w WebP + 400w WebP) in `img/gallery/`; `worker.js serveImage()` negotiates WebP + `?w=` snapping (tests: `test-worker-images.mjs`, 15). IMAGES binding is fallback-only — zero billing path active. AVIF measured and parked (needs subscription or pre-generated variants).
-- **Gallery LCP is done**: position-0 image gets `eager` + `fetchpriority="high"` + preload via `scripts/update-gallery.py` (idempotent — regenerate, don't hand-edit). Lab 80% has zero flagged opportunities; don't trim ItemList JSON-LD (SEO value).
-- **Rocket Loader is OFF** (zone setting, disabled 2026-10-15 via `cf`): it rewrites script execution order and threatens the flatpickr booking widget + estimate engine; the site ships its own defer/idle-load strategy. Do not re-enable. Other zone settings verified same day: Polish lossy, minify off (bundles pre-minified), Brotli on, HTTP/2+3 on, Early Hints on, Speed Brain on, Smart Tiered Cache on, Mirage off, SSL strict, HSTS via `_headers`.
-- **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/` marker) + `generate-city-pages.py` template. Keep in sync; ≤480px stacks, phone link never wraps.
-- **`.nav-book` (hamburger-only "📅 Book Online", 305 pages) follows the same 3-place rule**: `css/src/02-header.css` + `css/src/10-responsive.css` (≤680px `nav.open` gate — desktop nav wraps 3 rows, never show it there), inline `/*nav-book*/` marker, `generate-city-pages.py` template. Anchor goes before `nav-cta` (`book` root, `../book` blog); 4 pages without a nav-cta anchor are out of scope.
-- **Mobile touch targets (44×44px, ≤767px)**: header/footer/breadcrumb/tel links, gallery filter chips, `h3 a` and `.mt-lg a` are sized in `css/src/10-responsive.css` under "MOBILE TOUCH TARGETS". Same 3-place rule as `.topbar`: `scripts/sync-mobile-touch-css.py` mirrors the block (idempotent, keyed on the `/*touch-targets*/` marker) into the inlined critical CSS of the 161 pages that carry one — without it the topbar/breadcrumb resize after first paint and cost CLS — and `generate-city-pages.py` holds a copy. Links that flow inline inside a sentence are deliberately left as text (WCAG 2.5.8 inline exception): do NOT add rules for `p a` / `.faq-a a` / prose links. Mobile footer grows ~340px as a result; that is the accepted trade.
-- **Quote form radio group**: `<label id="request-type-label">` + `<div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">` on 238 pages (`scripts/fix-radiogroup-labels.py`). Never re-add `<label for="request_type">` — no element in the site has that id, so it names nothing and renders a duplicate visible label.
+- **HTML cache**: `worker.js` sends `public, max-age=300, s-maxage=60, stale-while-revalidate=600`. Do NOT "fix" to `max-age=0` — the zone edge strips `ETag`/`Content-Length` from Worker HTML, so repeat visits would re-download full HTML.
+- **Geo personalization**: `/` + `/index.html` only; on `request.cf.city` match the response goes `private, no-store`. Target list = `GEO_TARGET_AREAS` in `worker.js` (20 LA neighborhoods; expand list AND `scripts/test-worker-geo.mjs`, which asserts length 20). Consumer `js/src/08-geo-personalize.js` must ship with any worker change.
+- **RUM**: beacon injected by `worker.js`, endpoint must stay `"send": {"to": "/cdn-cgi/rum"}`. Never diagnose from `workers.dev` (no `cdn-cgi` pipeline → 404 by design) or curl. Verify with a real browser on apex, or dashboard `events.rumPageloadEvents`.
+- **Live checks**: use the `workers.dev` host (real status codes); apex serves bot challenges (expect 403). `.html` URLs 301 to extensionless — curl needs `-L`.
+- **`functions/` is dead** (Pages leftover). Sibling Workers (`amy-electric-estimator`, `-photos`, `-portfolio`) are out of scope.
+- **Zone routes belong to the site Worker.** An `amy-electric-seo` wrapper was retired 2026-10-18; if it reappears it is wrong. Check with `python3 scripts/audit-cloudflare-routes.py`.
+- **Images**: `worker.js serveImage()` negotiates WebP + `?w=` snapping (tests: `test-worker-images.mjs`). IMAGES binding is fallback-only. AVIF measured and parked.
+- **Gallery LCP**: position-0 image gets `eager` + `fetchpriority="high"` + preload via `scripts/update-gallery.py` (idempotent — regenerate, don't hand-edit). Don't trim ItemList JSON-LD.
+- **Rocket Loader is OFF** (zone setting) — it rewrites script order and threatens flatpickr + the estimate engine. Don't re-enable. Also: Polish lossy, minify off, Brotli on, HTTP/2+3, Early Hints, Speed Brain, Smart Tiered Cache, Mirage off, SSL strict, HSTS via `_headers`.
+- **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/`) + `scripts/generate-city-pages.py`.
+- **`.nav-book` follows the same 3-place rule** (`/*nav-book*/` marker); anchor before `nav-cta`. Only show ≤680px inside `nav.open` — desktop nav wraps 3 rows.
+- **Mobile touch targets (44×44, ≤767px)**: sized in `css/src/10-responsive.css`; `scripts/sync-mobile-touch-css.py` mirrors the `/*touch-targets*/` block into inline critical CSS. Prose links are deliberately excluded (WCAG 2.5.8 inline exception) — do NOT add `p a` / `.faq-a a` rules.
+- **Quote form radio group**: `<label id="request-type-label">` + `role="radiogroup" aria-labelledby` on 238 pages (`scripts/fix-radiogroup-labels.py`). Never re-add `<label for="request_type">` — that id does not exist.
 
 ## Content rules
 
 - Shared nav/footer: update every `.html` file. Phone as `tel:18183025614`. Every page: JSON-LD, OG, Twitter Cards. Images: `loading="lazy"`, `decoding="async"`, `alt`, dimensions.
-- `reviewCount` canonical = `BUSINESS["aggregateRating"]["reviewCount"]` in `scripts/site_data.py` (87 as of 2026-10-14; 333 occurrences, zero drift). Validator fails with `REVIEWCOUNT_DRIFT` on mismatch; sweep one-liner is in the site_data.py comment.
-- Price canonicals (leads are quoted from these): NEMA $350–$600, Tesla $500–$1,200, hardwired $500–$1,200. `audit-price-drift.py` is non-blocking by design; `--strict` to gate. Blind spots needing human sweeps: CSS-grid comparison tables, prose pricing a charger without naming one, ranges near no service phrase.
-- Utility correctness: only City-of-LA pages may claim LADWP; Alhambra/Bellflower/Carson/Santa Clarita are SCE (`SCE_CITIES` in `generate-city-pages.py`). `grep -rl 'coordinate with SCE' city-*.html` must return only those four.
-- Photos: raw in `/home/amram/Pictures/Electric Work/` → `process-photos.py` + manifest → `img/gallery/` (`SRC`/`OUT` are repo-relative, overridable via `PHOTOS_SRC`/`GALLERY_OUT`, so worktree runs stay in-worktree); `redact-photos.py` after (face blur / text blackout). Privacy rule: crop/blur/redact street numbers, names, faces (unless consenting team), LADWP account numbers — check equipment labels, meter faces, stickers, notes.
+- **Price canonicals only**: NEMA $350–$600, Tesla $500–$1,200, hardwired $500–$1,200. `audit-price-drift.py` is non-blocking by design; `--strict` gates. Blind spots needing human sweeps: CSS-grid comparison tables, prose pricing a charger without naming one, ranges near "no service".
+- **Utility correctness**: only City-of-LA pages may claim LADWP; Alhambra, Bellflower, Carson, Santa Clarita are SCE (`SCE_CITIES` in `scripts/generate-city-pages.py`). `grep -rl 'coordinate with SCE' city-*.html` must return only those four.
+- **Photos**: raw in `/home/amram/Pictures/Electric Work/` → `scripts/process-photos.py` → `img/gallery/` (`PHOTOS_SRC`/`GALLERY_OUT` override, worktree-safe); then `scripts/redact-photos.py`. Blur/crop street numbers, names, faces (unless consenting team), LADWP account numbers.
+- **Blog conventions**: scaffold from 2–3 current posts; title ≤60 chars; FAQPage JSON-LD only for visible on-page pairs (exact text); BreadcrumbList per existing posts; HowTo only where visible step content exists.
 
 ## Pre-push gate (in order)
 
-`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (315 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
+1. `python3 scripts/schema-tool.py validate`
+2. `python3 scripts/audit-price-drift.py --strict`
+3. `python3 scripts/audit-site.py` (expect 315 pages, 0 issues)
+4. `node --test scripts/test-*.mjs` (only if JS/prices/worker touched)
+5. Rebuild CSS/JS + `git diff --exit-code` on minified output (only when CSS/JS sources changed)
+6. `npx wrangler deploy --dry-run`
 
-## Skills
+Never run `scripts/sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). After push: rebase over `[skip ci]` lastmod commits, watch Deploy green, spot-check on `workers.dev`, `bash scripts/notify-indexnow.sh` if the workflow didn't.
 
-Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: market view → `competitive-landscape`; one domain → `competitor-analysis`; new page → `seo-content-brief`; single page → `seo-page`; tech/crawl → `seo-technical`; sitemap → `seo-sitemap`; images → `seo-images`. Only the `cloudflare` MCP server is connected — all SEO data tools degrade to `websearch`/`webfetch` (directional only, label as such). Prefer repo auditors over skill prose.
+## Agents & skills
 
-Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates the five SEO workflows (context → keywords → mapping → competitor → links) into `seo-workspace/`. Note the config uses the legacy `permission:` map — this opencode build (`1.18.33`) silently ignores the V2 `permissions:` list.
+- **`.opencode/agents/amramseo.md`** — the AMY content writer/publisher (Amram). Publishes static HTML on `content/*` branches with PRs; scope is explainer blogs, cost guides, owner-supplied case studies, and AMY_ESTIMATE docs. Its `permission:` block asks before `git push` and `wrangler deploy`.
+- **`.opencode/agents/seo.md`** — SEO orchestrator (`seo`, mode `all`) writing into `seo-workspace/`. Uses the legacy `permission:` map; this opencode build (1.18.33) silently ignores the V2 `permissions:` list — a new agent with only `permissions:` gets no gating.
+- Only the `cloudflare` MCP server is connected. All SEO data tools degrade to `websearch`/`webfetch` — label output `[directional: web]`. Prefer repo auditors over skill prose.
+- Skill routing: market view → `competitive-landscape`; one domain → `competitor-analysis`; new page → `seo-content-brief`; single page → `seo-page`; tech/crawl → `seo-technical`; sitemap → `seo-sitemap`; images → `seo-images`; prose cleanup → `deslop`.
 
-## Remaining work (owner-sized; code side is shipped)
+## Remaining work (owner-sized)
 
-- [ ] **GBP posts, every other day** (highest ROI): `gbp-posting-calendar.md` — 30 posts, 2026-10-21→2026-12-18, copy-paste from `gbp-posts-document.txt`. ~5 min each, no agent needed.
-- [ ] **GBP auto-posting agent**: CODE SHIPPED 2026-10-14 (`gbp-agent.js` + daily 16:00 UTC cron + `GBP-AGENT.md`). PENDING OWNER: Google Cloud OAuth credentials + location ID as Worker secrets (5 `wrangler secret put`s), dry-run, go live. Until then the calendar stays manual.
-- [ ] **Hero photo**: replace "LA CITY ELECTRIC" shirt with a real AMY tech shot; agent swaps via photo pipeline when supplied.
-- [ ] **PageSpeed field check**: run pagespeed.web.dev on homepage, compare CrUX LCP/INP/CLS to targets (<2.5s / <200ms / <0.1 / 90+ mobile).
-- [ ] **Phase 3 — `/book` page**: SHIPPED 2026-10-14 with open-source booking (flatpickr 4.6.13 MIT date picker + `js/book.js` slot widget posting `request_type: booking-request` to `/api/contact`; slots are REQUESTS confirmed by text — no double-booking protection, never promise guaranteed booking). 112 "📅 Book Online" buttons repointed `index#estimator` → `book`; 203 sticky-bar Estimate buttons repointed (`index#estimate` → `book`, `../index#estimate` → `../book`; same-page `#estimate` anchors and `#estimator` widget links left alone). Possible follow-up: nav-menu + sticky-bar "Book" placement (visual call, held).
-- [ ] **`areaServed` unification**: blocked on owner-supplied per-city county/ZIP/Wikipedia data (112 pages currently in 3 valid shapes — don't unify by inventing data).
-- [ ] **Live form + RUM**: owner submits a real test lead; checks beacon in dashboard with a real browser. Agent won't fake-submit.
-- [ ] **Hygiene**: bump canonical `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
-- [ ] **Brand mentions**: YouTube/Reddit/Wikipedia presence — real-world effort, not code.
-
-## Code improvements shipped (2026-10-21)
-
-- **Geo landing deliver 3 → 20 areas**: `GEO_TARGET_AREAS` in `worker.js` now covers 20 City-of-LA neighborhoods (all with /city-* pages, all LADWP territory); matched `/` responses stay `private, no-store`. Tests data-driven over the list. Consumer `08-geo-personalize.js` untouched (reads `window.AMY_GEO`, no hardcoded list).
-- **`/api/health` dedup**: removed the unreachable second handler (`{ok, service, time}` shape) that sat after the richer bindings-aware one; one handler remains (line ~739).
-- **HowTo JSON-LD on 9 more service pages** via `scripts/add-howto-schema.py` (idempotent, mirrors the visible `.step`/h3-grid text exactly): tesla-charger-installation, ceiling-fan-installation, dedicated-circuits, electrical-safety-inspections, outlet-switch-installation, smart-home-electrical, smoke-co-detector-installation, 200-amp-panel-upgrade, subpanel-installation. FAQPage + BreadcrumbList were already on all service pages. NB: Google withdrew FAQ rich results for non-gov/health sites (2023-08) and removed HowTo rich results entirely (2023-09) — these blocks still help Bing + AI answer engines parse content.
-- Fixed malformed process heading on `outlet-switch-installation.html` (`Outlet & Switch` was glued onto the How-It-Works H2).
-- Verified zone-level Cache Rules for CSS/JS/fonts are NOT needed: `run_worker_first: true` means assets are served through the Worker and zone Cache Rules can't match them; `_headers` already pins the right policy (verified live on workers.dev: `max-age=3600, s-maxage=31536000` + ETag on bundles, `immutable` fonts, `cf-cache-status: HIT`).
-
-## Code improvements shipped (2026-10-18)
-
-- **Photo API edge caching**: `Cache-Control: public, max-age=300, s-maxage=3600, SWR=600` on `/api/photos`, `/api/photos/count`, `/api/dates`, `/api/map` — reduces D1 reads, faster gallery loads.
-- **Health check endpoint**: `/api/health` returns `{"ok": true, "version", "timestamp", "bindings"}` for monitoring and uptime checks.
-- **Worker merge**: All 4 Workers consolidated into `amy-electric-site` (photos, portfolio, estimator APIs merged). Old workers deleted.
-- **Deploy validation fix**: Added `noindex` to 3 retired redirect-source pages (`emergency-electrical`, `emergency-electrician`, `testimonials`) to satisfy sitemap validator.
-- **Photo review complete**: 542 reviews logged (529 skipped, 13 picked), 13 photos shipped to gallery (387 total).
-
-## Photo review progress
-
-- **Total reviews logged**: 542 (529 skipped, 13 picked) via `scripts/photo-review-log.csv`
-- **Review sheets generated**: 43 batches of up to 24 groups each, totaling ~1,139 candidate photos triaged and staged for review
-- **Systematic triage**: 1,139 total candidate groups collapsed from 1,298 unused photos
-- **Shipments**: 387 gallery photos live, including 2026 work (LA panel/EV/commercial, EVIQ wall charger, wiring detail, slab conduit, service risers, LED streetlight internals, meter bank)
-- **Status**: Complete — all 1,139 candidate groups reviewed via systematic triage process
-
-**Note**: The photo review system is designed for efficient batch triage using contact sheets and systematic scoring to maximize human review efficiency. New review sheets are generated in batches of 24 groups for focused manual review and decision-making.
-
-## Tools for photo review
-
-- `scripts/triage-photos.py` -- stage N candidates, log skip/pick decisions, track pending groups
-- `scripts/contact-sheet.py` -- generate printable contact sheets of pending candidates for batch review
-- `scripts/photo-review-log.csv` -- review decisions log (append-only, human-maintained)
-- `scripts/photo-manifest.csv` -- approved photos ready for gallery shipment
+- [ ] **Fix the factual debt above** — highest impact: 30C removal, one LADWP rebate figure (fetched), one testimonial set, `/index` → `/`, one Reviews URL, one emergency URL, `%d` fix.
+- [ ] **Merge duplicate blog slugs** (EV cost, rewiring cost) with 301s in `_redirects`.
+- [ ] **GBP posts, every other day**: `gbp-posting-calendar.md` (30 posts, 2026-10-21→12-18) from `gbp-posts-document.txt`. ~5 min each, no agent needed.
+- [ ] **GBP auto-posting agent**: code shipped (`gbp-agent.js` + 16:00 UTC cron + `GBP-AGENT.md`). PENDING OWNER: Google OAuth credentials + location ID as Worker secrets (5 `wrangler secret put`s), dry-run, go live.
+- [ ] **Hero photo**: replace the "LA CITY ELECTRIC" shirt with a real AMY tech shot (owner-supplied, via photo pipeline).
+- [ ] **Case studies**: all four are illustrative; replace with real projects + photos, permission first.
+- [ ] **PageSpeed field check**: pagespeed.web.dev on homepage vs CrUX targets (<2.5s LCP / <200ms INP / <0.1 CLS / 90+ mobile).
+- [ ] **`areaServed` unification**: blocked on owner-supplied per-city county/ZIP data (112 pages in 3 valid shapes — don't invent data).
+- [ ] **Live form + RUM**: owner submits a real test lead; checks beacon in a real browser. Agent won't fake-submit.
+- [ ] **Yelp/CALeVIP/GBP cleanup**: address spelling, service area, hours, review count.
+- [ ] **Hygiene**: bump `reviewCount` as Google reviews grow; human sweep of EV pages for prose/grid prices.
