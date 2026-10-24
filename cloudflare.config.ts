@@ -18,7 +18,7 @@ export default defineConfig({
 		assets: {
 			htmlHandling: "auto-trailing-slash",
 			notFoundHandling: "404-page",
-			runWorkerFirst: true,
+			runWorkerFirst: ["/*", "!/css/*", "!/js/*", "!/fonts/*"],
 		},
 		// The zone route (`amyelectric.com/*`) is declared in wrangler.jsonc, the
 		// live config. This mirror is validation-only and does not express zone
