@@ -406,13 +406,13 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Pre-built Map for O(1) case-insensitive geo target area lookup.
+// Avoids iterating GEO_TARGET_AREAS array and allocating lowercase strings per request.
+const GEO_TARGET_MAP = new Map(GEO_TARGET_AREAS.map((a) => [a.toLowerCase(), a]));
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
-  const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_MAP.get(raw.trim().toLowerCase()) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
@@ -477,15 +477,18 @@ function injectGeoCity(html, city) {
 const IMG_WIDTHS = [400, 800, 1200];
 const IMG_CACHE_CONTROL = 'public, max-age=31536000, immutable';
 
+const IMAGE_PATH_REGEX = /\.(jpe?g|png|webp)$/i;
+const WEBP_ACCEPT_REGEX = /image\/(webp|avif)/;
+
 function isImagePath(pathname) {
   if (typeof pathname !== 'string' || !pathname.startsWith('/img/')) return false;
   if (pathname.includes('..')) return false;
-  return /\.(jpe?g|png|webp)$/i.test(pathname);
+  return IMAGE_PATH_REGEX.test(pathname);
 }
 
 function clientSupportsWebP(request) {
   const accept = request.headers.get('Accept') || '';
-  return /image\/(webp|avif)/.test(accept);
+  return WEBP_ACCEPT_REGEX.test(accept);
 }
 
 function snapWidth(raw) {
@@ -595,16 +598,22 @@ async function serveImage(request, env, ctx) {
   return null;
 }
 
+// Reusable TextEncoder and byte-to-hex lookup table to avoid object allocations per HTML request.
+const TEXT_ENCODER = new TextEncoder();
+const HEX_TABLE = Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
+
 // HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
 // HTML_CACHE_CONTROL below), but the asset response carries no validator of
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
 // brotli / ~101 KB raw). Hashing the final (beacon-injected) body lets those
 // visits revalidate with a ~300 B 304.
 async function htmlEtag(body) {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
-  const hex = [...new Uint8Array(digest)]
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  const digest = await crypto.subtle.digest('SHA-256', TEXT_ENCODER.encode(body));
+  const bytes = new Uint8Array(digest);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += HEX_TABLE[bytes[i]];
+  }
   return '"' + hex + '"';
 }
 
