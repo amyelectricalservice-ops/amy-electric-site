@@ -88,6 +88,21 @@ geo service pages.** Each city page should link its own city's EV, panel and rew
 where one exists, and the geo service pages should link back to the city page. This is a templated
 change to `generate-city-pages.py`, not 112 manual edits.
 
+## New clusters proposed 2026-10-24 (content gaps vs competitors + GSC)
+
+Mapped from `seo-workspace/keywords/opportunities.md` Table C. All target pages are *proposed*
+unless they already exist. Briefs live in `seo-workspace/content/`.
+
+| # | Cluster | Primary keyword | Secondary | Intent | Target page | Priority | GSC impressions |
+| :-- | :--- | :--- | :--- | :--- | :--- | :---: | ---: |
+| 12 | **Panel-brand hazard — Federal Pacific** | `federal pacific panel replacement los angeles` | `fpe stab-lok panel replacement cost` | Commercial / research | *proposed* `blog/federal-pacific-panel-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 13 | **Panel-brand hazard — Pushmatic** | `pushmatic panel replacement los angeles` | `bulldog pushmatic panel upgrade cost` | Commercial / research | *proposed* `blog/pushmatic-panel-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 14 | **Knob-and-tube cost** | `knob and tube wiring replacement cost los angeles` | `k&t rewiring cost per square foot` | Commercial / research | *proposed* `blog/knob-and-tube-wiring-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 15 | **Non-Tesla EV (per-make)** | `non-tesla ev charger installation los angeles` | `level 2 charger installation los angeles`, `rivian home charger installation` | Transactional | `/ev-charger-installation` (enhance) + *proposed* blog | **P2** | unknown |
+| 16 | **Recessed lighting cost** | `recessed lighting installation cost los angeles` | `recessed lighting cost per can los angeles` | Commercial / research | `/recessed-lighting-installation` + *proposed* blog | **P0** | 47 (pos 21.5) |
+| 17 | **Thin-post deepening** | `electrical inspection cost los angeles`, `outdoor lighting installation cost los angeles`, `adu electrical cost los angeles`, `generator installation cost los angeles` | Mixed | Mixed | existing thin blogs (deepen) | **P2** | 0–low |
+| 18 | **Commercial EV charging ROI** | `commercial ev charging installation cost los angeles` | `workplace ev charging cost`, `commercial ev fleet charging roi` | B2B commercial | `/commercial-ev-fleet-charging` (enhance) + *proposed* blog | **P2** | 175 (pos 77.1) |
+
 ## Sources
 
 - `[gsc: seo-workspace/gsc/amyelectric.com-Performance-on-Search-2026-09-05/Queries.csv]` — all impression/position figures

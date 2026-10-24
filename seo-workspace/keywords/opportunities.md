@@ -188,6 +188,26 @@ from live web fetches of the pages that currently hold these topics, **not** con
 `ev charger installation renovation cost` (position 222 — spam-adjacent SERP), or any term in the
 non-local table above.
 
+## Table C — New content opportunities (proposed pages/posts, 2026-10-24)
+
+Proposed during the 2026-10-24 pipeline run. Every row maps to an **existing** page unless marked
+*proposed*; new pages are listed in `seo-workspace/content/*-brief.md`. Volume figures are
+`[directional: web]` (SERP observation) or `unknown` where no source exists — no keyword API is
+reachable (OpenSEO MCP DataForSEO backend returns HTTP 401).
+
+| # | Target keyword (primary) | Secondary keywords | Intent | Volume Signal | Priority | Target landing URL | Source |
+| :-- | :--- | :--- | :--- | :--- | :---: | :--- | :--- |
+| 1 | `federal pacific panel replacement los angeles` | `fpe stab-lok panel replacement cost`, `federal pacific panel fire hazard` | Commercial / research | unknown (competitor page exists: theelectricconnection.com) | **P1** | *proposed* `blog/federal-pacific-panel-replacement-cost-los-angeles.html` | `[directional: web]` |
+| 2 | `pushmatic panel replacement los angeles` | `bulldog pushmatic panel upgrade cost`, `pushmatic panel replacement` | Commercial / research | unknown (competitor content: shaffercon.com, theelectricconnection.com) | **P1** | *proposed* `blog/pushmatic-panel-replacement-cost-los-angeles.html` | `[directional: web]` |
+| 3 | `knob and tube wiring replacement cost los angeles` | `knob and tube removal cost`, `k&t rewiring cost per square foot` | Commercial / research | unknown (Angi $12k–$36.6k range, 2026) | **P1** | *proposed* `blog/knob-and-tube-wiring-replacement-cost-los-angeles.html` | `[directional: web]` |
+| 4 | `non-tesla ev charger installation los angeles` | `level 2 charger installation los angeles`, `ford f-150 lightning charger install`, `rivian home charger installation` | Transactional | unknown (competitor per-make pages: theelectricconnection.com) | **P2** | `/ev-charger-installation` (enhance) + *proposed* blog | `[directional: web]` |
+| 5 | `recessed lighting installation cost los angeles` | `recessed lighting cost per can los angeles`, `led recessed lighting installation` | Commercial / research | 47 impr, pos 21.5 (GSC) | **P0** | `/recessed-lighting-installation` + *proposed* blog | `[gsc: Queries.csv]` |
+| 6 | `electrical inspection cost los angeles` | `home electrical inspection cost`, `ladbs electrical inspection` | Informational / authority | 0–low (existing blog 716 words) | **P2** | `/blog/electrical-inspection-cost-los-angeles` (deepen) | `[repo: *.html]` |
+| 7 | `outdoor lighting installation cost los angeles` | `landscape lighting installation cost`, `led outdoor lighting los angeles` | Commercial / research | 0–low (existing blog 786 words) | **P2** | `/blog/outdoor-lighting-installation-la` (deepen) | `[repo: *.html]` |
+| 8 | `adu electrical cost los angeles` | `adu subpanel cost`, `adu electrical panel upgrade cost` | Commercial / research | 0 captured demand (existing blog 465 words) | **P2** | `/blog/adu-electrical-panel-requirements-la` (deepen) | `[repo: *.html]` |
+| 9 | `generator installation cost los angeles` | `standby generator installation cost`, `generator transfer switch cost` | Commercial / research | 0–low (existing blog 628 words) | **P2** | `/blog/generator-installation-cost-la` (deepen) | `[repo: *.html]` |
+| 10 | `commercial ev charging installation cost los angeles` | `workplace ev charging cost`, `commercial ev fleet charging roi` | B2B commercial | 175 impr, pos 77.1 (`commercial electrician los angeles`) | **P2** | `/commercial-ev-fleet-charging` (enhance) + *proposed* blog | `[gsc: Queries.csv]` |
+
 ## Sources
 
 - `[gsc: seo-workspace/gsc/amyelectric.com-Performance-on-Search-2026-09-05/Queries.csv]` — 1,000 queries, impressions/clicks/CTR/position

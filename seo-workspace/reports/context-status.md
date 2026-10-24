@@ -1,6 +1,6 @@
 # Context Status — AMY Electric SEO Workspace
 
-**Date:** 2026-10-18 · **Workflow:** 1 (project context / `seo-project-setup`)
+**Date:** 2026-10-24 · **Workflow:** 1 (project context / `seo-project-setup`) — refreshed 2026-10-24
 **Best action:** nothing to set up — the workspace and the MCP project both exist. The one thing
 blocking *live* SEO data is a broken DataForSEO credential in the local OpenSEO server
 (`HTTP 401`). Fix that and every keyword/SERP/backlink workflow stops being directional.
@@ -12,7 +12,7 @@ blocking *live* SEO data is a broken DataForSEO credential in the local OpenSEO 
 | Step | Status | Notes | Next action |
 | :--- | :--- | :--- | :--- |
 | 1. Working folder | ✅ Done | `seo-workspace/` with `gsc/ keywords/ competitors/ content/ outreach/ reports/` | none |
-| 2. Website scope | ✅ Done | amyelectric.com, Greater LA; 314 pages; en/Los Angeles (US) market `2840` | none |
+| 2. Website scope | ✅ Done | amyelectric.com, Greater LA; 315 pages; 307 sitemap URLs; en/Los Angeles (US) market `2840` | none |
 | 3. Goals | ✅ Done | Local leads + content improvement; refined to "convert existing impressions to clicks/calls" | none |
 | 4. Positioning | ✅ Done | C-10 + EVITP, LA-focused, EV/panel/rewiring/emergency, estimator, 387-photo gallery | none |
 | 5. OpenSEO MCP check | ⚠️ **Reachable, not usable** | Server v0.0.12 live at `127.0.0.1:4151`; project `amyelectric.com` (`d6aa8126-ec55-49a7-90cd-fe030ccb6326`) exists; **DataForSEO returns HTTP 401**; GSC + GA4 not connected; project memory empty | Owner: repair DataForSEO credentials in the local OpenSEO self-host config |
@@ -60,8 +60,8 @@ number.** Where a metric would have come from DataForSEO, it says `unknown`.
 
 | Asset | Count | Evidence |
 | :--- | ---: | :--- |
-| Production HTML pages | 314 | `[repo: AGENTS.md]` |
-| URLs in `sitemap.xml` | 306 | `[repo: sitemap.xml]`, `grep -c '<loc>'` |
+| Production HTML pages | 315 | `[repo: scripts/audit-site.py]` (2026-10-24) |
+| URLs in `sitemap.xml` | 307 | `[repo: sitemap.xml]`, `grep -c '<loc>'` (2026-10-24) |
 | `city-*.html` | 112 | `ls city-*.html \| wc -l` |
 | Geo EV service pages | 24 | `ls ev-charger-installation-*.html \| wc -l` |
 | Geo panel service pages | 24 | `ls panel-upgrade-*.html \| wc -l` |

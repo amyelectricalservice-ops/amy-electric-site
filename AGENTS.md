@@ -14,7 +14,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 - Estimate engine: `05-estimate-data.js` (canonical priced tables, mirrors `scripts/estimate-schema.sql` 1:1) + `06-estimate-engine.js` (`window.AMY_ESTIMATE.calcEstimate`) + `07-estimate-lead.js` (attaches indicative range to quote-form leads; `/api/contact` allowlists it, drops invalid without failing the lead). Permit handling is explicit per service (`included`/`separate`/`unpublished`) — never infer from `permitId`. `js/estimator.js` is standalone; `js/estimator.min.js` is the legacy EV bundle the homepage actually loads — parity between the three is asserted by `test-estimator.mjs`, no build step links them.
 - Booking widget (`book.html` only): open-source flatpickr 4.6.13 (MIT, (c) 2017 Gregory Petrosyan) vendored version-pinned at `js/vendor/flatpickr-4.6.13.min.js` + `css/vendor/flatpickr-dark-4.6.13.css` — never hand-edit vendored files (contrast/a11y overrides live in book.html `/*book-widget*/` CSS). `js/book.js` is standalone (pure slot rules: Sun closed, weekday 4 windows 8–4, Sat 2 windows 8–12, min tomorrow, max +60d; `window.AMY_BOOK`, tested by `test-book.mjs`). flatpickr-on-a-div needs `appendTo` or the calendar lands at body level.
 - Root `package.json` is `"type": "module"`: standalone browser scripts CANNOT be `require()`d in tests (returns `{}`) — load via `vm` sandbox with `{module:{exports:{}}}` (see `test-estimator.mjs` `loadStandalone`), and JSON-round-trip any cross-realm arrays before strict `deepEqual`.
-- `js/webmcp.js` loads via conditional inline injector on 99 root pages only when `navigator.modelContext` exists — never a render-blocking `defer` tag (cost 300ms lab TBT; verified 88→98 perf 2026-10-14). Blog pages omit it.
+- `js/webmcp.js` loads via conditional inline injector on 100 root pages only when `navigator.modelContext` exists — never a render-blocking `defer` tag (cost 300ms lab TBT; verified 88→98 perf 2026-10-14). Blog pages omit it.
 - `testimonials.html` stays published but canonicals to `/reviews`, with a `/testimonials → /reviews` 301 in `_redirects`. All 929 old `testimonials` hrefs repointed 2026-10-14.
 
 ## Gotchas (read before touching)
@@ -28,15 +28,16 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 - **Images**: 366 gallery photos (310 + 56 Google Photos exports, 2026-10-15) × 4 variants (1200w WebP + 1200w JPEG + 800w WebP + 400w WebP) in `img/gallery/`; `worker.js serveImage()` negotiates WebP + `?w=` snapping (tests: `test-worker-images.mjs`, 15). IMAGES binding is fallback-only — zero billing path active. AVIF measured and parked (needs subscription or pre-generated variants).
 - **Gallery LCP is done**: position-0 image gets `eager` + `fetchpriority="high"` + preload via `scripts/update-gallery.py` (idempotent — regenerate, don't hand-edit). Lab 80% has zero flagged opportunities; don't trim ItemList JSON-LD (SEO value).
 - **Rocket Loader is OFF** (zone setting, disabled 2026-10-15 via `cf`): it rewrites script execution order and threatens the flatpickr booking widget + estimate engine; the site ships its own defer/idle-load strategy. Do not re-enable. Other zone settings verified same day: Polish lossy, minify off (bundles pre-minified), Brotli on, HTTP/2+3 on, Early Hints on, Speed Brain on, Smart Tiered Cache on, Mirage off, SSL strict, HSTS via `_headers`.
-- **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 161 HTML files (`/*topbar-responsive-fix*/` marker) + `generate-city-pages.py` template. Keep in sync; ≤480px stacks, phone link never wraps.
-- **`.nav-book` (hamburger-only "📅 Book Online", 305 pages) follows the same 3-place rule**: `css/src/02-header.css` + `css/src/10-responsive.css` (≤680px `nav.open` gate — desktop nav wraps 3 rows, never show it there), inline `/*nav-book*/` marker, `generate-city-pages.py` template. Anchor goes before `nav-cta` (`book` root, `../book` blog); 4 pages without a nav-cta anchor are out of scope.
+- **Edge schema + AI context (worker.js, 2026-10-22)**: `injectSchema()` injects a default `Electrician` JSON-LD block into any HTML response lacking `Electrician`/`LocalBusiness` text — don't double-inject by adding schema to pages that already have it. `/llms.txt` + `/llms-full.txt` are served from ASSETS with CORS. All HTML responses get `Link: </llms.txt>; rel="ai-context"` and `</llms-full.txt>; rel="ai-description"` headers. Tracing enabled in `wrangler.jsonc` observability. API catalog at `/.well-known/api-catalog`.
+- **`.topbar` lives in 3 places**: `css/src/02-header.css`, built `style.min.css`, inline critical `<style>` in 162 HTML files (`/*topbar-responsive-fix*/` marker) + `generate-city-pages.py` template. Keep in sync; ≤480px stacks, phone link never wraps.
+- **`.nav-book` (hamburger-only "📅 Book Online", 303 pages) follows the same 3-place rule**: `css/src/02-header.css` + `css/src/10-responsive.css` (≤680px `nav.open` gate — desktop nav wraps 3 rows, never show it there), inline `/*nav-book*/` marker, `generate-city-pages.py` template. Anchor goes before `nav-cta` (`book` root, `../book` blog); 4 pages without a nav-cta anchor are out of scope.
 - **Mobile touch targets (44×44px, ≤767px)**: header/footer/breadcrumb/tel links, gallery filter chips, `h3 a` and `.mt-lg a` are sized in `css/src/10-responsive.css` under "MOBILE TOUCH TARGETS". Same 3-place rule as `.topbar`: `scripts/sync-mobile-touch-css.py` mirrors the block (idempotent, keyed on the `/*touch-targets*/` marker) into the inlined critical CSS of the 161 pages that carry one — without it the topbar/breadcrumb resize after first paint and cost CLS — and `generate-city-pages.py` holds a copy. Links that flow inline inside a sentence are deliberately left as text (WCAG 2.5.8 inline exception): do NOT add rules for `p a` / `.faq-a a` / prose links. Mobile footer grows ~340px as a result; that is the accepted trade.
 - **Quote form radio group**: `<label id="request-type-label">` + `<div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">` on 238 pages (`scripts/fix-radiogroup-labels.py`). Never re-add `<label for="request_type">` — no element in the site has that id, so it names nothing and renders a duplicate visible label.
 
 ## Content rules
 
 - Shared nav/footer: update every `.html` file. Phone as `tel:18183025614`. Every page: JSON-LD, OG, Twitter Cards. Images: `loading="lazy"`, `decoding="async"`, `alt`, dimensions.
-- `reviewCount` canonical = `BUSINESS["aggregateRating"]["reviewCount"]` in `scripts/site_data.py` (87 as of 2026-10-14; 333 occurrences, zero drift). Validator fails with `REVIEWCOUNT_DRIFT` on mismatch; sweep one-liner is in the site_data.py comment.
+- `reviewCount` canonical = `BUSINESS["aggregateRating"]["reviewCount"]` in `scripts/site_data.py` (87 as of 2026-10-14; 336 occurrences, zero drift). Validator fails with `REVIEWCOUNT_DRIFT` on mismatch; sweep one-liner is in the site_data.py comment.
 - Price canonicals (leads are quoted from these): NEMA $350–$600, Tesla $500–$1,200, hardwired $500–$1,200. `audit-price-drift.py` is non-blocking by design; `--strict` to gate. Blind spots needing human sweeps: CSS-grid comparison tables, prose pricing a charger without naming one, ranges near no service phrase.
 - Utility correctness: only City-of-LA pages may claim LADWP; Alhambra/Bellflower/Carson/Santa Clarita are SCE (`SCE_CITIES` in `generate-city-pages.py`). `grep -rl 'coordinate with SCE' city-*.html` must return only those four.
 - Photos: raw in `/home/amram/Pictures/Electric Work/` → `process-photos.py` + manifest → `img/gallery/` (`SRC`/`OUT` are repo-relative, overridable via `PHOTOS_SRC`/`GALLERY_OUT`, so worktree runs stay in-worktree); `redact-photos.py` after (face blur / text blackout). Privacy rule: crop/blur/redact street numbers, names, faces (unless consenting team), LADWP account numbers — check equipment labels, meter faces, stickers, notes.
@@ -79,19 +80,4 @@ Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates th
 - **Deploy validation fix**: Added `noindex` to 3 retired redirect-source pages (`emergency-electrical`, `emergency-electrician`, `testimonials`) to satisfy sitemap validator.
 - **Photo review complete**: 542 reviews logged (529 skipped, 13 picked), 13 photos shipped to gallery (387 total).
 
-## Photo review progress
-
-- **Total reviews logged**: 542 (529 skipped, 13 picked) via `scripts/photo-review-log.csv`
-- **Review sheets generated**: 43 batches of up to 24 groups each, totaling ~1,139 candidate photos triaged and staged for review
-- **Systematic triage**: 1,139 total candidate groups collapsed from 1,298 unused photos
-- **Shipments**: 387 gallery photos live, including 2026 work (LA panel/EV/commercial, EVIQ wall charger, wiring detail, slab conduit, service risers, LED streetlight internals, meter bank)
-- **Status**: Complete — all 1,139 candidate groups reviewed via systematic triage process
-
-**Note**: The photo review system is designed for efficient batch triage using contact sheets and systematic scoring to maximize human review efficiency. New review sheets are generated in batches of 24 groups for focused manual review and decision-making.
-
-## Tools for photo review
-
-- `scripts/triage-photos.py` -- stage N candidates, log skip/pick decisions, track pending groups
-- `scripts/contact-sheet.py` -- generate printable contact sheets of pending candidates for batch review
-- `scripts/photo-review-log.csv` -- review decisions log (append-only, human-maintained)
-- `scripts/photo-manifest.csv` -- approved photos ready for gallery shipment
+_(Photo review complete: 387 gallery photos shipped; pipeline details in Content rules → Photos. Scripts: `scripts/triage-photos.py`, `scripts/contact-sheet.py`, logs in `scripts/photo-review-log.csv`.)_

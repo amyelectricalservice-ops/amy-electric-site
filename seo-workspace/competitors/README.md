@@ -56,6 +56,21 @@ certification **#4051604** and is absent from the directory that exists to showc
 `info@evitp.org`. See [`911electrics.com.md`](911electrics.com.md) and
 [`../outreach/prospects.md`](../outreach/prospects.md).
 
+## Refresh notes — 2026-10-24
+
+Web-search verification (directional) of the primary target `theelectricconnection.com` confirms three
+content angles they already own that AMY does not yet have a dedicated page for:
+
+1. **Federal Pacific panel replacement cost** — `theelectricconnection.com/whats-the-cost-to-replace-federal-pacific-electric-panel/` (cost-focused page exists). AMY has a combined FPE+Zinsco page but no cost-focused post. → brief: `content/federal-pacific-panel-replacement-cost-los-angeles-brief.md`.
+2. **Knob and tube wiring** — `theelectricconnection.com/knob-and-tube-wiring/` (dedicated page). AMY has a general guide but no cost-focused post. → brief: `content/knob-and-tube-wiring-replacement-cost-los-angeles-brief.md`.
+3. **Pushmatic panels** — mentioned on their `/panel-upgrades/` page (no dedicated cost page). AMY has no Pushmatic page. → brief: `content/pushmatic-panel-replacement-cost-los-angeles-brief.md`.
+
+Additional competitor observation (directional): `shaffercon.com` publishes a Pushmatic upgrade guide with a $1,500–$3,000 LA range; `monkeywrenchplumbers.com` and `voltaelectricinc.com` publish FPE content. None are credentialed LA electrical contractors with an estimator or 387-photo gallery — AMY's differentiator.
+
+**Per-make EV pages:** `theelectricconnection.com` runs per-manufacturer EV pages (Tesla, Ford, Nissan, Porsche, Hyundai, Mitsubishi). AMY has Tesla only. → brief: `content/non-tesla-ev-charger-installation-los-angeles-brief.md` (single hub post first; split per-make if demand appears).
+
+**P0 striking-distance opportunity:** `recessed lighting installation los angeles` (47 GSC impressions, pos 21.5) currently maps to `index.html` in the GSC report even though `/recessed-lighting-installation` exists. → brief: `content/recessed-lighting-installation-cost-los-angeles-brief.md` plus deepen the service page.
+
 ## Conventions
 
 - Filename = the competitor's domain (or a clear slug where the domain is uncertain).
