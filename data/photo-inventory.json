@@ -1,6 +1,6 @@
 {
  "total": 2067,
- "manifest_entries": 366,
+ "manifest_entries": 387,
  "records": [
   {
    "path": "organized/20200521/IMG_20200521_085952.jpg",
@@ -609,7 +609,7 @@
    "date": "2026-07-02",
    "year": "2026",
    "bytes": 2248796,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -2119,7 +2119,7 @@
    "date": "2026-06-30",
    "year": "2026",
    "bytes": 2797401,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -3969,7 +3969,7 @@
    "date": "2026-10-02",
    "year": "2026",
    "bytes": 3231604,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -7489,7 +7489,7 @@
    "date": "2026-06-22",
    "year": "2026",
    "bytes": 3265534,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -9909,7 +9909,7 @@
    "date": "2026-07-01",
    "year": "2026",
    "bytes": 2227212,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -10359,7 +10359,7 @@
    "date": "2026-04-17",
    "year": "2026",
    "bytes": 5617098,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -12169,7 +12169,7 @@
    "date": "2026-04-24",
    "year": "2026",
    "bytes": 2946719,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
@@ -14659,7 +14659,7 @@
    "date": "2026-09-10",
    "year": "2026",
    "bytes": 2965154,
-   "processed": false,
+   "processed": true,
    "junk": false
   },
   {
