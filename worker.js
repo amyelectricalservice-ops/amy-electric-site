@@ -406,13 +406,26 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Precomputed lookup Map for O(1) case-insensitive city matching per request,
+// avoiding linear array scans and string lowercasing inside request handling loops.
+const GEO_TARGET_MAP = new Map(
+  GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area])
+);
+
+// Precomputed config script tags for every target city, avoiding JSON.stringify
+// overhead on every personalized landing page request.
+const GEO_CONFIG_SCRIPTS = new Map(
+  GEO_TARGET_AREAS.map((city) => [
+    city,
+    '<script>window.AMY_GEO=' +
+      JSON.stringify({ city, matched: true, areas: GEO_TARGET_AREAS }) +
+      ';</script>',
+  ])
+);
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
-  const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_MAP.get(raw.trim().toLowerCase()) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
@@ -426,10 +439,7 @@ function visitorCity(request) {
 // Inject the city into the landing header attribute and expose it to the
 // frontend. `city` must be a matchTargetCity() return value, never raw input.
 function injectGeo(html, city) {
-  const config =
-    '<script>window.AMY_GEO=' +
-    JSON.stringify({ city: city, matched: true, areas: GEO_TARGET_AREAS }) +
-    ';</script>';
+  const config = GEO_CONFIG_SCRIPTS.get(city) || '';
   let out = html;
   const hi = out.indexOf('<header');
   if (hi !== -1) {
