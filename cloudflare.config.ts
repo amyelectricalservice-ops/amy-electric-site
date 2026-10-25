@@ -11,8 +11,14 @@ export default defineConfig({
 		workersDev: true,
 		observability: {
 			enabled: true,
+			headSamplingRate: 1,
+			redactQueryString: true,
 			logs: {
 				headSamplingRate: 1,
+			},
+			traces: {
+				enabled: true,
+				headSamplingRate: 0.1,
 			},
 		},
 		assets: {
