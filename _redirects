@@ -13,6 +13,22 @@
 
 /blog/generator-installation-cost-los-angeles  /blog/generator-installation-cost-la  301
 
+/blog/electrical-safety-tips-homeowners-la  /blog/la-electrical-safety-tips  301
+/blog/dedicated-circuit-installation-cost-los-angeles  /blog/dedicated-circuit-installation-cost  301
+/blog/ceiling-fan-installation-cost-los-angeles  /blog/ceiling-fan-installation-cost-la  301
+
+/whole-home-rewiring-los-angeles  /whole-home-rewiring  301
+/tesla-charger-installation-los-angeles  /tesla-charger-installation  301
+/lighting-installation-los-angeles  /lighting-installation  301
+/ev-charger-installation-los-angeles  /ev-charger-installation  301
+/commercial-electrical-los-angeles  /commercial-electrical  301
+/panel-upgrade-los-angeles  /panel-upgrade  301
+/electrician-burbank  /city-burbank  301
+/electrician-glendale  /city-glendale  301
+/electrician-los-angeles  /city-los-angeles  301
+/electrician-pasadena  /city-pasadena  301
+/electrician-woodland-hills  /city-woodland-hills  301
+
 # Duplicate review intent -> canonical reviews page (301).
 # testimonials.html stays published (still linked in nav) with a canonical tag
 # pointing at /reviews; this rule consolidates ranking signals.
@@ -57,7 +73,7 @@
 /electrical-panel-labeling-guide  /blog/electrical-panel-labeling-guide  301
 /electrical-permit-los-angeles  /blog/electrical-permit-los-angeles  301
 /electrical-safety-checklist-older-los-angeles-homes  /blog/electrical-safety-checklist-older-los-angeles-homes  301
-/electrical-safety-tips-homeowners-la  /blog/electrical-safety-tips-homeowners-la  301
+/electrical-safety-tips-homeowners-la  /blog/la-electrical-safety-tips  301
 /emergency-electrical-repair-what-to-do  /blog/emergency-electrical-repair-what-to-do  301
 /ev-charger-installation-cost-la  /blog/ev-charger-installation-cost-la  301
 /ev-charger-installation-cost-los-angeles  /blog/ev-charger-installation-cost-la  301
