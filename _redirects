@@ -11,6 +11,8 @@
 /blog/whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-la  301
 /blog/breaker-keeps-tripping-guide  /blog/breaker-keeps-tripping-causes  301
 
+/blog/generator-installation-cost-los-angeles  /blog/generator-installation-cost-la  301
+
 # Duplicate review intent -> canonical reviews page (301).
 # testimonials.html stays published (still linked in nav) with a canonical tag
 # pointing at /reviews; this rule consolidates ranking signals.
@@ -58,7 +60,7 @@
 /electrical-safety-tips-homeowners-la  /blog/electrical-safety-tips-homeowners-la  301
 /emergency-electrical-repair-what-to-do  /blog/emergency-electrical-repair-what-to-do  301
 /ev-charger-installation-cost-la  /blog/ev-charger-installation-cost-la  301
-/ev-charger-installation-cost-los-angeles  /blog/ev-charger-installation-cost-los-angeles  301
+/ev-charger-installation-cost-los-angeles  /blog/ev-charger-installation-cost-la  301
 /ev-charger-installation-guide-la-homeowners  /blog/ev-charger-installation-guide-la-homeowners  301
 /ev-charger-levels-explained  /blog/ev-charger-levels-explained  301
 /ev-charging-benefits  /blog/ev-charging-benefits  301
@@ -91,7 +93,7 @@
 /tesla-wall-connector-vs-other-ev-chargers  /blog/tesla-wall-connector-vs-other-ev-chargers  301
 /what-is-evitp-certification  /blog/what-is-evitp-certification  301
 /whole-home-rewiring-cost-la  /blog/whole-home-rewiring-cost-la  301
-/whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-los-angeles  301
+/whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-la  301
 /whole-home-rewiring-guide  /blog/whole-home-rewiring-guide  301
 
 # No /contact page exists; the site's contact path is the homepage estimate form.
