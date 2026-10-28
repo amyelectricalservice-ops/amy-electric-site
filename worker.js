@@ -404,15 +404,17 @@ const GEO_TARGET_AREAS = [
   'West Hills',
   'Woodland Hills',
 ];
+
+// Bolt Optimization: Pre-built Map for O(1) city lookup instead of O(N) array iteration per request.
+const GEO_TARGET_AREAS_MAP = new Map(
+  GEO_TARGET_AREAS.map(area => [area.toLowerCase(), area])
+);
+
 const GEO_NO_STORE = 'private, no-store';
 
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
-  const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_AREAS_MAP.get(raw.trim().toLowerCase()) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
