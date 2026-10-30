@@ -111,6 +111,7 @@ ALT_SCOPES = {
         # One sentence covers both charger types: "a NEMA 14-50 or hardwired
         # station in the standard $350 to $1,200 range" — the band spans both.
         (350, 1200): "shared NEMA-or-hardwired sentence spanning both subtypes",
+        (800, 1500): "full install including outlet, charger, and labor",
     },
     "ev-tesla-wall": {
         # The cost-breakdown table above: its $1,200-$2,500 sits next to a
