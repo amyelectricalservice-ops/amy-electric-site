@@ -1,0 +1,3 @@
+## 2026-10-24 - Pre-computed Map & Hex Lookup in Cloudflare Worker
+**Learning:** Request hot-paths in `worker.js` (such as `matchTargetCity` for geo personalization and `htmlEtag` for SHA-256 ETag revalidation) can incur repetitive string allocations and array spreads when called on every request. Pre-computing a `Map` for case-insensitive city lookups and a 256-element `HEX_LOOKUP` array eliminates O(N) linear scans and per-byte closures/string allocations per response.
+**Action:** Pre-compute static lookup maps and lookup tables at module scope in Worker scripts rather than allocating in request handlers.
