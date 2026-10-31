@@ -1,0 +1,3 @@
+## 2026-10-28 - O(1) Map Lookup for Edge Geo Personalization Matching
+**Learning:** In Cloudflare Worker edge request handling (e.g. `worker.js`), `matchTargetCity` is invoked on requests to `/` and `/index.html`. Replacing linear $O(N)$ array iteration and string lowercasing with a module-scoped pre-constructed `Map` (`GEO_TARGET_AREAS_MAP`) optimizes canonical city lookup to $O(1)$ constant time with zero allocation per request.
+**Action:** Use pre-constructed `Map` or `Set` lookups at the top module scope in Workers for static allowlists/target lists rather than array `.find()` or `for..of` iterations.
