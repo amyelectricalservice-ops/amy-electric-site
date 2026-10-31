@@ -1,0 +1,3 @@
+## 2026-10-21 - Pre-computed Map lookups in Cloudflare Worker request paths
+**Learning:** Cloudflare Workers instantiate module-level constants once at worker startup. Function calls in request handlers like `matchTargetCity` or HTML personalizers (`injectGeo`) executed per-request $O(N)$ string iterations and repeated `JSON.stringify` calls. Pre-building module-level `Map` lookup tables for edge geo-routing avoids string allocations and CPU work on hot worker request paths.
+**Action:** Pre-compute static lookup maps and serialized template tags at top-level module scope for any worker request-handling utility.
