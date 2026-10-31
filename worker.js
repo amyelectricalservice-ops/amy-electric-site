@@ -406,13 +406,15 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Pre-computed lookup map for O(1) case-insensitive city matching.
+// Avoids iterating over GEO_TARGET_AREAS and allocating lowercase strings on every request.
+const GEO_TARGET_MAP = new Map(
+  GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area])
+);
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
-  const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_MAP.get(raw.trim().toLowerCase()) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
@@ -595,6 +597,12 @@ async function serveImage(request, env, ctx) {
   return null;
 }
 
+// Pre-computed 256-element byte-to-hex lookup array for ETag formatting.
+// Eliminates array spread, closure allocations, and toString(16)/padStart calls per byte on every HTML response.
+const HEX_LOOKUP = Array.from({ length: 256 }, (_, i) =>
+  i.toString(16).padStart(2, '0')
+);
+
 // HTML was served with `max-age=0, must-revalidate` (now short-fresh + SWR via
 // HTML_CACHE_CONTROL below), but the asset response carries no validator of
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
@@ -602,9 +610,11 @@ async function serveImage(request, env, ctx) {
 // visits revalidate with a ~300 B 304.
 async function htmlEtag(body) {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
-  const hex = [...new Uint8Array(digest)]
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  const bytes = new Uint8Array(digest);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += HEX_LOOKUP[bytes[i]];
+  }
   return '"' + hex + '"';
 }
 
