@@ -1,5 +1,5 @@
 # AMY Electric — Complete Technical & Business Knowledge Base
-> Last updated: 2026-10-14
+> Last updated: 2026-10-31
 
 > Comprehensive reference document for Large Language Models (LLMs), AI Search Engines (ChatGPT, Perplexity, Claude, Google AI Overviews), and Answer Engines indexing AMY Electric.
 

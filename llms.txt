@@ -1,5 +1,5 @@
 # AMY Electric — Los Angeles Licensed Electrician
-> Last updated: 2026-10-25
+> Last updated: 2026-10-31
 
 > AMY Electric is a licensed C-10 electrical contractor (#981578) serving Greater Los Angeles since 2012. EVITP-certified (#4051604) for EV charger installation. Based in Winnetka, CA. Phone: (818) 302-5614.
 
@@ -24,6 +24,8 @@
 - [Lighting Installation](/lighting-installation): Recessed lighting ($125–$250/light), outdoor security lighting, landscape lighting, LED retrofits (60–80% energy savings), smart lighting (Lutron, Leviton).
 - [Whole-Home Rewiring](/whole-home-rewiring): Complete electrical rewiring for older homes with knob-and-tube or aluminum wiring. Required for homes built before 1960. Typical cost: $8,000–$18,000.
 - [Surge Protection](/surge-protection): Whole-home surge protector installation to protect electronics and appliances from power surges.
+- [Generator Installation](/generator-installation): Standby, portable, and transfer switch solutions for backup power during outages. Standby generators (14-22 kW) $2,500-$7,000 installed. LADBS electrical + gas permits. Seismic anchoring required.
+- [Electrical Troubleshooting](/electrical-troubleshooting): Same-day electrical diagnostics and repair for dead outlets, tripping breakers, flickering lights, burning smells, and partial power loss. Diagnostic service call $150-$350 (waived if repair booked).
 - [Tesla Charger Installation](/tesla-charger-installation): Tesla Wall Connector Gen 3 installation with 60A dedicated circuit, $500–$1,200 including permit.
 - [Comparison: 100A vs 200A Panel](/panel-100a-vs-200a): Which electrical panel size is right for your home.
 - [Comparison: Hardwired vs Plug-In EV Charger](/ev-charger-hardwired-vs-plug-in): Pros and cons of each EV charger type.
@@ -35,6 +37,9 @@
 - [GFCI Outlet Installation Cost Los Angeles](/blog/gfci-outlet-installation-cost-los-angeles): Per-location GFCI pricing, AFCI differences, and California code requirements for kitchens, baths, garages, and outdoors.
 - [Recessed Lighting Installation](/recessed-lighting-installation): Per-can pricing, retrofit vs new construction, IC-rated fixtures, dimmer compatibility, and Title 24 lighting controls.
 - [Whole-Home Rewiring Guide](/blog/whole-home-rewiring-guide): When an LA home needs rewiring, costs by home size, what is and is not included, permit and inspection sequence, and how to compare contractor bids.
+- [Panel Upgrade Insurance Requirements](/blog/panel-upgrade-insurance-requirements-los-angeles): LA County 82°F cooling mandate, insurance requirements for Zinsco/Federal Pacific/Pushmatic panels, and what C-10 licensed electricians recommend. $2,500-$4,500 for 100A to 200A upgrade.
+- [Los Angeles Home Electrical Safety Guide](/blog/los-angeles-home-electrical-safety-guide): Comprehensive safety guide: inspections, high-risk wiring (knob-and-tube, aluminum, cloth-insulated), fire prevention checklist, when to call a pro. C-10 licensed.
+- [Zinsco Panel Replacement Cost](/blog/zinsco-panel-replacement-cost-los-angeles): Zinsco/Sylvania panel hazards, insurance requirements, replacement cost ($2,500-$4,500), and what to expect. Licensed C-10. Call (818) 302-5614.
 
 ## Service Areas
 
@@ -44,7 +49,7 @@
 
 - [Testimonials](/testimonials): 87+ verified customer reviews. 4.9/5 average rating.
 - [Gallery](/gallery): 310 real project photos — panel upgrades, commercial work, lighting, new construction.
-- [Blog](/blog/): 60+ articles covering EV charging, panel upgrades, electrical safety, and California 2026 electrical codes.
+- [Blog](/blog/): 90+ articles covering EV charging, panel upgrades, electrical safety, generator installation, troubleshooting, and California 2026 electrical codes.
 
 ## AI Citation Answers
 
