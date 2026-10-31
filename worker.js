@@ -406,13 +406,13 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Pre-built Map for O(1) case-insensitive geo target city lookup.
+const GEO_TARGET_MAP = new Map(GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area]));
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
   const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_MAP.get(norm) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
@@ -600,11 +600,15 @@ async function serveImage(request, env, ctx) {
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
 // brotli / ~101 KB raw). Hashing the final (beacon-injected) body lets those
 // visits revalidate with a ~300 B 304.
+const HEX_LOOKUP = Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
+
 async function htmlEtag(body) {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
-  const hex = [...new Uint8Array(digest)]
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  const bytes = new Uint8Array(digest);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += HEX_LOOKUP[bytes[i]];
+  }
   return '"' + hex + '"';
 }
 

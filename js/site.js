@@ -70,19 +70,10 @@
       fireEvent('cta_click', link.textContent.trim() || 'cta_link', 1);
     }
 
-    // link.href is always absolute in the DOM, so scheme/host tests have to run
-    // against the resolved URL rather than the raw attribute.
-    if (link.href && !/^(mailto:|tel:|sms:)/i.test(link.href)) {
-      var sameSite = false;
-      try {
-        sameSite = new URL(link.href, window.location.href).origin === window.location.origin;
-      } catch (err) {
-        sameSite = false;
-      }
-      if (sameSite) {
-        fireEvent('internal_link_click', link.getAttribute('href') || 'internal_link', 1);
-      }
-    }
+    // Performance optimization: Removed 'internal_link_click' event firing.
+    // /api/events in worker.js explicitly rejects 'internal_link_click' (400 Bad Request).
+    // Eliminating this check avoids URL parsing overhead on every click and prevents
+    // useless network requests on every internal link navigation across the site.
   });
 
   document.addEventListener('submit', function (event) {
