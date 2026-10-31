@@ -1,0 +1,3 @@
+## 2026-10-24 - Unrecognized Client Analytics Events Cause Rejected Beacon Requests
+**Learning:** `js/src/02-analytics.js` previously dispatched `internal_link_click` beacon requests on every link click, but `worker.js` `/api/events` only allowlists `['phone_click', 'cta_click', 'form_submit']`. This caused every internal page navigation click across the site to issue a failing `sendBeacon` POST request that returned 400 Bad Request.
+**Action:** Always cross-reference client-side analytics event emitters with the server `/api/events` `allowEvents` set to prevent useless network overhead and client-side DOM/URL parsing.

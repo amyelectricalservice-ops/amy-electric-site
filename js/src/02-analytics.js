@@ -32,30 +32,21 @@
     }
   }
 
+  // Optimization: Only track actionable conversion events (phone_click, cta_click).
+  // Unrecognized events like internal_link_click are rejected with 400 by /api/events,
+  // causing useless network requests on every navigation click and DOM URL parsing overhead.
   document.addEventListener('click', function (event) {
     var link = event.target.closest && event.target.closest('a');
     if (!link) return;
 
     if (link.href && /^tel:/.test(link.href)) {
       fireEvent('phone_click', 'phone_link', 1);
+      return;
     }
 
     if (link.href && /estimate|contact|quote/i.test(link.href)) {
       fireEvent('cta_click', link.textContent.trim() || 'cta_link', 1);
-    }
-
-    // link.href is always absolute in the DOM, so scheme/host tests have to run
-    // against the resolved URL rather than the raw attribute.
-    if (link.href && !/^(mailto:|tel:|sms:)/i.test(link.href)) {
-      var sameSite = false;
-      try {
-        sameSite = new URL(link.href, window.location.href).origin === window.location.origin;
-      } catch (err) {
-        sameSite = false;
-      }
-      if (sameSite) {
-        fireEvent('internal_link_click', link.getAttribute('href') || 'internal_link', 1);
-      }
+      return;
     }
   });
 
