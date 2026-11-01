@@ -26,72 +26,15 @@
     "opens": "07:00",
     "closes": "17:00"
   },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Los Angeles"
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
     },
-    {
-      "@type": "City",
-      "name": "Burbank"
-    },
-    {
-      "@type": "City",
-      "name": "Sherman Oaks"
-    },
-    {
-      "@type": "City",
-      "name": "Glendale"
-    },
-    {
-      "@type": "City",
-      "name": "Pasadena"
-    },
-    {
-      "@type": "City",
-      "name": "Studio City"
-    },
-    {
-      "@type": "City",
-      "name": "North Hollywood"
-    },
-    {
-      "@type": "City",
-      "name": "Santa Monica"
-    },
-    {
-      "@type": "City",
-      "name": "Encino"
-    },
-    {
-      "@type": "City",
-      "name": "Beverly Hills"
-    },
-    {
-      "@type": "City",
-      "name": "West LA"
-    },
-    {
-      "@type": "City",
-      "name": "Hollywood"
-    },
-    {
-      "@type": "City",
-      "name": "Van Nuys"
-    },
-    {
-      "@type": "City",
-      "name": "Woodland Hills"
-    },
-    {
-      "@type": "City",
-      "name": "Calabasas"
-    },
-    {
-      "@type": "City",
-      "name": "Culver City"
-    }
-  ],
+    "geoRadius": "40233.6"
+  },
   "currenciesAccepted": "USD",
   "creditCardAccepted": "Visa, Mastercard, American Express",
   "@id": "https://amyelectric.com/#electrician",
@@ -205,7 +148,15 @@
     "@type": "Electrician",
     "name": "AMY Electric",
     "telephone": "+1-818-302-5614",
-    "areaServed": "https://schema.org/City/Los Angeles",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
+    },
     "@id": "https://amyelectric.com/#electrician",
     "url": "https://amyelectric.com",
     "geo": {

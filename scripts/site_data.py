@@ -24,6 +24,7 @@ BUSINESS = {
         "addressCountry": "US"
     },
     "geo": {"latitude": 34.22281, "longitude": -118.58241},
+    "areaServed": {"@type": "GeoCircle", "geoMidpoint": {"@type": "GeoCoordinates", "latitude": 34.22281, "longitude": -118.58241}, "geoRadius": "40233.6"},
     "image": "https://amyelectric.com/img/hero-electrician.jpg",
     "logo": "https://amyelectric.com/img/og-home.jpg",
     "foundingDate": "2012",

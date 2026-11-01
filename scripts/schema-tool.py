@@ -220,6 +220,9 @@ def cmd_validate():
                     issues.append(f"ELECTRICIAN_GEO_DRIFT in {fname}: {geo.get('latitude')},{geo.get('longitude')} != 34.22281,-118.58241")
                 if 'aggregateRating' not in data:
                     issues.append(f"INCOMPLETE Electrician (no aggregateRating): {fname}")
+                asv = data.get('areaServed')
+                if not (isinstance(asv, dict) and asv.get('@type') == 'GeoCircle' and asv.get('geoRadius') == '40233.6'):
+                    issues.append(f"AREASERVED_DRIFT in {fname}: expected 25mi GeoCircle (40233.6m)")
 
         # ── reviewCount canonical check ──
         # BUSINESS["aggregateRating"]["reviewCount"] in site_data.py is the

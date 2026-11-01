@@ -700,11 +700,15 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "license": "California C-10 Electrical Contractor License #981578",
-  "areaServed": [
-    "Los Angeles", "Sherman Oaks", "Burbank", "Glendale", "Pasadena", "Studio City",
-    "North Hollywood", "Hollywood", "Beverly Hills", "Santa Monica", "Woodland Hills",
-    "Van Nuys", "Calabasas", "Culver City"
-  ]
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
+  }
 }
 </script>`;
 

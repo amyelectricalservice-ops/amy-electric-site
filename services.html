@@ -175,24 +175,15 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://g.page/r/CVdK9ZAvNBrZEAI/review",
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
   ],
-  "areaServed": [
-    "Los Angeles",
-    "Glendale",
-    "Burbank",
-    "Pasadena",
-    "Hollywood",
-    "Sherman Oaks",
-    "Encino",
-    "Studio City",
-    "Van Nuys",
-    "Woodland Hills",
-    "Calabasas",
-    "Beverly Hills",
-    "Santa Monica",
-    "North Hollywood",
-    "West LA",
-    "Culver City"
-  ],
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
+  },
   "openingHours": "Mo-Fr 07:00-17:00"
 }
 </script>

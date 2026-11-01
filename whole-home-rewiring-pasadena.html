@@ -109,28 +109,15 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       "postalCode": "91306",
       "addressCountry": "US"
     },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Los Angeles",
-        "sameAs": "https://en.wikipedia.org/wiki/Los_Angeles"
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
       },
-      {
-        "@type": "City",
-        "name": "Glendale",
-        "sameAs": "https://en.wikipedia.org/wiki/Glendale,_California"
-      },
-      {
-        "@type": "City",
-        "name": "Burbank",
-        "sameAs": "https://en.wikipedia.org/wiki/Burbank,_California"
-      },
-      {
-        "@type": "City",
-        "name": "Pasadena",
-        "sameAs": "https://en.wikipedia.org/wiki/Pasadena,_California"
-      }
-    ],
+      "geoRadius": "40233.6"
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -311,12 +298,13 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
   ],
   "areaServed": {
-    "@type": "City",
-    "name": "Pasadena",
-    "containedInPlace": {
-      "@type": "AdministrativeArea",
-      "name": "Los Angeles County, CA"
-    }
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
