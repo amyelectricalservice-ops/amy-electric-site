@@ -98,10 +98,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/panel-100a-vs-200a",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/panel-100a-vs-200a",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -219,7 +219,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "Panel Upgrade","name": "What's the Difference Between 100A and 200A Panels? Comparison",
+  "serviceType": "Panel Upgrade",
+  "name": "What's the Difference Between 100A and 200A Panels? Comparison",
   "description": "Compare 100 amp vs 200 amp electrical panels for Los Angeles homes. Understand capacity, installation costs, when to upgrade, and current code requirements.",
   "provider": {
     "@type": "LocalBusiness",
@@ -229,35 +230,109 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "image": "https://amyelectric.com/img/panel-upgrade.jpg",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 34.2001,
-      "longitude": -118.5723
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "@id": "https://amyelectric.com/#electrician",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
     }
   },
   "areaServed": [
-    {"@type": "City", "name": "Los Angeles"},
-    {"@type": "City", "name": "Sherman Oaks"},
-    {"@type": "City", "name": "Burbank"},
-    {"@type": "City", "name": "Glendale"},
-    {"@type": "City", "name": "Pasadena"},
-    {"@type": "City", "name": "Santa Monica"},
-    {"@type": "City", "name": "Beverly Hills"},
-    {"@type": "City", "name": "Studio City"},
-    {"@type": "City", "name": "North Hollywood"},
-    {"@type": "City", "name": "Hollywood"},
-    {"@type": "City", "name": "West LA"},
-    {"@type": "City", "name": "Encino"},
-    {"@type": "City", "name": "Van Nuys"},
-    {"@type": "City", "name": "Woodland Hills"},
-    {"@type": "City", "name": "Calabasas"},
-    {"@type": "City", "name": "Culver City"}
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "West LA"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Panel Upgrade Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "200A Panel Replacement"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Main Service Upgrade"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "100A Panel Upgrade"}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "200A Panel Replacement"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Main Service Upgrade"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "100A Panel Upgrade"
+        }
+      }
     ]
   }
 }

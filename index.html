@@ -90,7 +90,308 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 <!-- Preload hints for performance -->
 
 <!-- LocalBusiness JSON-LD Schema -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://amyelectric.com","name":"AMY Electric","image":"https://amyelectric.com/img/hero-electrician.jpg","url":"https://amyelectric.com","telephone":"+1-818-302-5614","email":"info@amyelectric.com","description":"Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.","address":{"@type":"PostalAddress","streetAddress":"20628 Londelius St","addressLocality":"Winnetka","addressRegion":"CA","postalCode":"91306","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":34.22281,"longitude":-118.58241},"foundingDate":"2012","founder":{"@type":"Person","name":"Amram","description":"Licensed C-10 electrical contractor with 15+ years of experience in residential and commercial electrical work"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"17:00","description":"Office hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"14:00","description":"Saturday hours"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59","description":"24/7 emergency dispatch"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"87","bestRating":"5","worstRating":"1"},"hasCredential":[{"@type":"EducationalOccupationalCredential","credentialCategory":"license","name":"California C-10 Electrical Contractor License","identifier":"981578"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"EVITP Certification","identifier":"4051604"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/amy-electric-los-angeles","https://g.page/r/CVdK9ZAvNBrZEAI/review","https://maps.app.goo.gl/WTNSkHRUgULPBHpc9","https://www.facebook.com/people/Amy-Electric/100063766463600/"],"areaServed":[{"@type":"City","name":"Los Angeles"},{"@type":"City","name":"Sherman Oaks"},{"@type":"City","name":"Studio City"},{"@type":"City","name":"Burbank"},{"@type":"City","name":"Glendale"},{"@type":"City","name":"Pasadena"},{"@type":"City","name":"Encino"},{"@type":"City","name":"North Hollywood"},{"@type":"City","name":"Hollywood"},{"@type":"City","name":"Beverly Hills"},{"@type":"City","name":"West Los Angeles"},{"@type":"City","name":"Santa Monica"},{"@type":"City","name":"Van Nuys"},{"@type":"City","name":"Woodland Hills"},{"@type":"City","name":"Calabasas"},{"@type":"City","name":"Culver City"},{"@type":"AdministrativeArea","name":"San Fernando Valley"}],"logo":"https://amyelectric.com/img/og-home.jpg","hasOfferCatalog":{"@type":"OfferCatalog","name":"Electrical Services","itemListElement":[{"@type":"Service","name":"EV Charger Installation","description":"Professional Level 2 EV charging station installation for residential and commercial properties in Los Angeles"},{"@type":"Service","name":"Main Panel Upgrades","description":"100A to 200A and 400A electrical panel upgrades and relocations"},{"@type":"Service","name":"Electrical Repairs","description":"Troubleshooting, diagnostics, and repair of residential and commercial electrical systems"},{"@type":"Service","name":"Commercial Electrical","description":"Tenant improvements, LED retrofits, EV fleet charging, and service upgrades for commercial properties"},{"@type":"Service","name":"Lighting Installation","description":"Indoor, outdoor, recessed, landscape, and smart lighting installation"},{"@type":"Service","name":"Whole-Home Rewiring","description":"Complete rewiring for older homes with outdated knob-and-tube or aluminum wiring"},{"@type":"Service","name":"Surge Protection","description":"Whole-home surge protector installation to safeguard electronics and appliances"},{"@type":"Service","name":"Outlet & Switch Installation","description":"GFCI, AFCI, USB, smart outlets and switches for kitchens, bathrooms, and outdoor"},{"@type":"Service","name":"Ceiling Fan Installation","description":"Professional ceiling fan installation, replacement, and electrical box upgrades"},{"@type":"Service","name":"Smoke & CO Detector Installation","description":"Hardwired smoke and carbon monoxide detector installation to meet California code"},{"@type":"Service","name":"Generator Transfer Switch","description":"Manual and automatic transfer switch installation for backup generators"},{"@type":"Service","name":"Dedicated Circuits","description":"New dedicated circuits for high-draw appliances, EV chargers, and home offices"},{"@type":"Service","name":"Smart Home Electrical","description":"Smart switches, smart panels, smart thermostats, and home automation wiring"},{"@type":"Service","name":"Electrical Safety Inspections","description":"Comprehensive electrical safety inspections for home buyers, sellers, and homeowners"}]},"knowsAbout":["EV Charger Installation","Panel Upgrades","Electrical Repair","Commercial Electrical","Whole-Home Rewiring","Lighting Installation","Surge Protection","Outlet and Switch Installation","Ceiling Fan Installation","Smoke and CO Detector Installation","Generator Transfer Switch","Dedicated Circuits","Smart Home Electrical","Electrical Safety Inspections","Licensed Electrician Los Angeles"],"review":[{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"AMY Electric installed our Tesla Wall Connector in one afternoon. Super clean work, they handled the permit, and the price was exactly what they quoted. Highly recommend.","author":{"@type":"Person","name":"David R."},"datePublished":"2026-05-15"},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Our old 100A panel was a disaster. They did a full 200A upgrade, coordinated with LADWP, and passed inspection on the first try. Professional from start to finish.","author":{"@type":"Person","name":"Maria T."},"datePublished":"2024-01-20"},{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Fast, honest, and affordable.","author":{"@type":"Person","name":"James K."},"datePublished":"2026-05-25"}]}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "@id": "https://amyelectric.com/#electrician",
+  "name": "AMY Electric",
+  "image": "https://amyelectric.com/img/hero-electrician.jpg",
+  "url": "https://amyelectric.com",
+  "telephone": "+1-818-302-5614",
+  "email": "info@amyelectric.com",
+  "description": "Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "20628 Londelius St",
+    "addressLocality": "Winnetka",
+    "addressRegion": "CA",
+    "postalCode": "91306",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.22281,
+    "longitude": -118.58241
+  },
+  "foundingDate": "2012",
+  "founder": {
+    "@type": "Person",
+    "name": "Amram",
+    "description": "Licensed C-10 electrical contractor with 15+ years of experience in residential and commercial electrical work"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "07:00",
+      "closes": "17:00",
+      "description": "Office hours"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00",
+      "description": "Saturday hours"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59",
+      "description": "24/7 emergency dispatch"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "87",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "California C-10 Electrical Contractor License",
+      "identifier": "981578"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "EVITP Certification",
+      "identifier": "4051604"
+    }
+  ],
+  "priceRange": "$$",
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+    "https://www.facebook.com/people/Amy-Electric/100063766463600/"
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
+  ],
+  "logo": "https://amyelectric.com/img/og-home.jpg",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Electrical Services",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "name": "EV Charger Installation",
+        "description": "Professional Level 2 EV charging station installation for residential and commercial properties in Los Angeles"
+      },
+      {
+        "@type": "Service",
+        "name": "Main Panel Upgrades",
+        "description": "100A to 200A and 400A electrical panel upgrades and relocations"
+      },
+      {
+        "@type": "Service",
+        "name": "Electrical Repairs",
+        "description": "Troubleshooting, diagnostics, and repair of residential and commercial electrical systems"
+      },
+      {
+        "@type": "Service",
+        "name": "Commercial Electrical",
+        "description": "Tenant improvements, LED retrofits, EV fleet charging, and service upgrades for commercial properties"
+      },
+      {
+        "@type": "Service",
+        "name": "Lighting Installation",
+        "description": "Indoor, outdoor, recessed, landscape, and smart lighting installation"
+      },
+      {
+        "@type": "Service",
+        "name": "Whole-Home Rewiring",
+        "description": "Complete rewiring for older homes with outdated knob-and-tube or aluminum wiring"
+      },
+      {
+        "@type": "Service",
+        "name": "Surge Protection",
+        "description": "Whole-home surge protector installation to safeguard electronics and appliances"
+      },
+      {
+        "@type": "Service",
+        "name": "Outlet & Switch Installation",
+        "description": "GFCI, AFCI, USB, smart outlets and switches for kitchens, bathrooms, and outdoor"
+      },
+      {
+        "@type": "Service",
+        "name": "Ceiling Fan Installation",
+        "description": "Professional ceiling fan installation, replacement, and electrical box upgrades"
+      },
+      {
+        "@type": "Service",
+        "name": "Smoke & CO Detector Installation",
+        "description": "Hardwired smoke and carbon monoxide detector installation to meet California code"
+      },
+      {
+        "@type": "Service",
+        "name": "Generator Transfer Switch",
+        "description": "Manual and automatic transfer switch installation for backup generators"
+      },
+      {
+        "@type": "Service",
+        "name": "Dedicated Circuits",
+        "description": "New dedicated circuits for high-draw appliances, EV chargers, and home offices"
+      },
+      {
+        "@type": "Service",
+        "name": "Smart Home Electrical",
+        "description": "Smart switches, smart panels, smart thermostats, and home automation wiring"
+      },
+      {
+        "@type": "Service",
+        "name": "Electrical Safety Inspections",
+        "description": "Comprehensive electrical safety inspections for home buyers, sellers, and homeowners"
+      }
+    ]
+  },
+  "knowsAbout": [
+    "EV Charger Installation",
+    "Panel Upgrades",
+    "Electrical Repair",
+    "Commercial Electrical",
+    "Whole-Home Rewiring",
+    "Lighting Installation",
+    "Surge Protection",
+    "Outlet and Switch Installation",
+    "Ceiling Fan Installation",
+    "Smoke and CO Detector Installation",
+    "Generator Transfer Switch",
+    "Dedicated Circuits",
+    "Smart Home Electrical",
+    "Electrical Safety Inspections",
+    "Licensed Electrician Los Angeles"
+  ],
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "AMY Electric installed our Tesla Wall Connector in one afternoon. Super clean work, they handled the permit, and the price was exactly what they quoted. Highly recommend.",
+      "author": {
+        "@type": "Person",
+        "name": "David R."
+      },
+      "datePublished": "2026-05-15"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "Our old 100A panel was a disaster. They did a full 200A upgrade, coordinated with LADWP, and passed inspection on the first try. Professional from start to finish.",
+      "author": {
+        "@type": "Person",
+        "name": "Maria T."
+      },
+      "datePublished": "2024-01-20"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Fast, honest, and affordable.",
+      "author": {
+        "@type": "Person",
+        "name": "James K."
+      },
+      "datePublished": "2026-05-25"
+    }
+  ]
+}
+</script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://amyelectric.com/"}]}</script>
 
@@ -405,6 +706,9 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 <section class="estimate-section" id="estimator" style="padding: 72px 24px; background: var(--navy2);">
   <div class="wrap text-center" style="max-width: 760px;">
     <div class="section-label">Quick Quote</div>
+    <div class="rebate-banner" role="status" style="margin: 0 auto 16px; max-width: 560px; padding: 10px 16px; background: rgba(201,168,76,.12); border: 1px solid var(--gold); border-radius: 8px; color: var(--white); font-size: 14px; line-height: 1.4;">
+      ⚡ <strong>LADWP rebate:</strong> up to $1,000 back on a qualifying Level 2 home charger install. We handle the paperwork.
+    </div>
     <h2>See Your Price Instantly</h2>
     <p>Answer a few quick questions and we will give you a price range with no surprises.</p>
 

@@ -652,9 +652,9 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "name": "AMY Electric",
-  "image": "https://amyelectric.com/img/hero-electrician-560x420.webp",
   "@id": "https://amyelectric.com/#electrician",
+  "name": "AMY Electric",
+  "image": "https://amyelectric.com/img/hero-electrician.jpg",
   "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
@@ -669,8 +669,15 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 34.2251,
-    "longitude": -118.5714
+    "latitude": 34.22281,
+    "longitude": -118.58241
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "87",
+    "bestRating": "5",
+    "worstRating": "1"
   },
   "openingHoursSpecification": [
     {
@@ -687,12 +694,16 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
     }
   ],
   "sameAs": [
-    "https://www.cslb.ca.gov/",
-    "https://evitp.org/"
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+    "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "license": "California C-10 Electrical Contractor License #981578",
   "areaServed": [
-    "Los Angeles", "Sherman Oaks", "Burbank", "Glendale", "Pasadena", "Studio City", "North Hollywood", "Hollywood", "Beverly Hills", "Santa Monica", "Woodland Hills", "Van Nuys", "Calabasas", "Culver City"
+    "Los Angeles", "Sherman Oaks", "Burbank", "Glendale", "Pasadena", "Studio City",
+    "North Hollywood", "Hollywood", "Beverly Hills", "Santa Monica", "Woodland Hills",
+    "Van Nuys", "Calabasas", "Culver City"
   ]
 }
 </script>`;

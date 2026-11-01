@@ -211,6 +211,15 @@ def cmd_validate():
                     issues.append(f"INCOMPLETE Electrician (no hours): {fname}")
                 if 'hasCredential' not in data:
                     issues.append(f"INCOMPLETE Electrician (no credentials): {fname}")
+                if data.get('@id') != 'https://amyelectric.com/#electrician':
+                    issues.append(f"ELECTRICIAN_ID_DRIFT in {fname}: '{data.get('@id')}' != 'https://amyelectric.com/#electrician'")
+                if data.get('url') != 'https://amyelectric.com':
+                    issues.append(f"ELECTRICIAN_URL_DRIFT in {fname}: '{data.get('url')}' != 'https://amyelectric.com'")
+                geo = data.get('geo', {})
+                if geo.get('latitude') != 34.22281 or geo.get('longitude') != -118.58241:
+                    issues.append(f"ELECTRICIAN_GEO_DRIFT in {fname}: {geo.get('latitude')},{geo.get('longitude')} != 34.22281,-118.58241")
+                if 'aggregateRating' not in data:
+                    issues.append(f"INCOMPLETE Electrician (no aggregateRating): {fname}")
 
         # ── reviewCount canonical check ──
         # BUSINESS["aggregateRating"]["reviewCount"] in site_data.py is the

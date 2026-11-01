@@ -13,10 +13,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/city-inglewood",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/city-inglewood",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -28,8 +28,9 @@
     "addressCountry": "US"
   },
   "geo": {
-    "latitude": 33.9617,
-    "longitude": -118.3531
+    "@type": "GeoCoordinates",
+    "latitude": 34.22281,
+    "longitude": -118.58241
   },
   "foundingDate": "2012",
   "founder": {
@@ -77,7 +78,15 @@
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
       "opens": "00:00",
       "closes": "23:59",
       "description": "24/7 emergency service dispatch"
@@ -116,7 +125,7 @@
     }
   }
 }
-  </script>
+</script>
 
 <script type="application/ld+json">
 {
