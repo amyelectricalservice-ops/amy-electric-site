@@ -63,4 +63,15 @@ describe('merged worker route dispatch', () => {
     assert.ok(!isHealthRoute('/api/healthz'));
     assert.ok(!isHealthRoute('/health'));
   });
+
+  it('validates allowed conversion events for /api/events', () => {
+    const ALLOWED = new Set(['phone_click', 'cta_click', 'form_submit']);
+    assert.equal(ALLOWED.size, 3);
+    assert.ok(ALLOWED.has('phone_click'));
+    assert.ok(ALLOWED.has('cta_click'));
+    assert.ok(ALLOWED.has('form_submit'));
+    assert.ok(!ALLOWED.has('internal_link_click'));
+    assert.ok(!ALLOWED.has('unknown_event'));
+    assert.ok(!ALLOWED.has(''));
+  });
 });
