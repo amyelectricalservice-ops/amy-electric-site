@@ -754,6 +754,10 @@ async function htmlResponse(request, response, headers) {
   });
 }
 
+// Allowed conversion event names accepted by /api/events.
+// Hoisted to module scope to avoid re-allocating a Set on every beacon POST.
+const ALLOWED_CONVERSION_EVENTS = new Set(['phone_click', 'cta_click', 'form_submit']);
+
 function contactApiDocs() {
   return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
     + '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -838,12 +842,11 @@ export default {
       if (request.method !== 'POST') {
         return new Response('Method not allowed', { status: 405 });
       }
-      const allowEvents = new Set(['phone_click', 'cta_click', 'form_submit']);
       try {
         const text = await request.text();
         const ev = JSON.parse(text);
         const name = typeof ev.event === 'string' ? ev.event : '';
-        if (!allowEvents.has(name)) {
+        if (!ALLOWED_CONVERSION_EVENTS.has(name)) {
           return new Response(JSON.stringify({ success: false, message: 'Unknown event' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
