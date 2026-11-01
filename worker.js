@@ -406,6 +406,10 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Allowed conversion event names accepted by /api/events.
+// Hoisted to module scope to avoid re-allocating a Set on every beacon POST.
+const ALLOWED_CONVERSION_EVENTS = new Set(['phone_click', 'cta_click', 'form_submit']);
+
 // Pre-built Map for O(1) case-insensitive geo target city lookup.
 const GEO_TARGET_MAP = new Map(GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area]));
 
@@ -838,12 +842,11 @@ export default {
       if (request.method !== 'POST') {
         return new Response('Method not allowed', { status: 405 });
       }
-      const allowEvents = new Set(['phone_click', 'cta_click', 'form_submit']);
       try {
         const text = await request.text();
         const ev = JSON.parse(text);
         const name = typeof ev.event === 'string' ? ev.event : '';
-        if (!allowEvents.has(name)) {
+        if (!ALLOWED_CONVERSION_EVENTS.has(name)) {
           return new Response(JSON.stringify({ success: false, message: 'Unknown event' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
