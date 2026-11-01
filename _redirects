@@ -117,3 +117,6 @@
 
 # Duplicate insurance post -> canonical (301).
 /blog/panel-upgrade-insurance-requirements-los-angeles  /blog/panel-upgrade-insurance-mandate-los-angeles  301
+
+# Duplicate panel-upgrade signs post -> canonical (301).
+/blog/how-to-tell-if-your-panel-needs-upgrading  /blog/panel-upgrade-signs  301
