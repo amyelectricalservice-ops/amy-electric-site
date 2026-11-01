@@ -112,8 +112,6 @@
 /whole-home-rewiring-cost-los-angeles  /blog/whole-home-rewiring-cost-la  301
 /whole-home-rewiring-guide  /blog/whole-home-rewiring-guide  301
 
-# No /contact page exists; the site's contact path is the homepage estimate form.
-/contact  /#estimate  301
 
 # Duplicate insurance post -> canonical (301).
 /blog/panel-upgrade-insurance-requirements-los-angeles  /blog/panel-upgrade-insurance-mandate-los-angeles  301
