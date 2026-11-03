@@ -1,4 +1,12 @@
 /* ── RESPONSIVE ── */
+/* Tablet: the seven-link bar plus the CTA needs ~790px. Drop the CTA (the
+   topbar still carries the phone number) and tighten the link padding so the
+   nav holds one row instead of wrapping to two. Below 680px the hamburger
+   menu takes over and the CTA comes back inside it. */
+@media (min-width: 681px) and (max-width: 1100px) {
+  nav a, .nav-more > summary { font-size: 14px; padding: 7px 9px; }
+  .nav-cta { display: none !important; }
+}
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
   /* The hero photo used to be display:none here, which left every screen under
@@ -24,6 +32,22 @@
   }
   nav.open { display: flex; }
   nav a { width: 100%; }
+  /* The "More" panel becomes an inline disclosure inside the stacked menu —
+     no absolute positioning, no shadow, just an indented list. */
+  nav .nav-more { width: 100%; }
+  nav .nav-more > summary { width: 100%; }
+  .nav-more-panel {
+    position: static;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 2px 0 2px 14px;
+    margin: 2px 0 8px;
+    border: 0;
+    border-left: 2px solid rgba(245,166,35,.4);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .nav-more-panel a { padding: 6px 0; }
   nav.open .nav-book { display: block; color: var(--gold); }
   .hamburger { display: block; }
   .footer-grid { grid-template-columns: 1fr; }
