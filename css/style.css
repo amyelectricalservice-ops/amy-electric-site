@@ -79,7 +79,9 @@
 
 :root {
   --navy:    #0b1628;
+  --navy1:   #0b1628; /* alias of --navy: inline page backgrounds reference --navy1 */
   --navy2:   #122040;
+  --navy3:   #22406e; /* raised surface — founder/bylines avatar disc (1.55:1 on --navy2) */
   --gold:    #f5a623;
   --gold2:   #e8951a;
   --white:   #f4f1eb;
@@ -452,6 +454,24 @@ nav a:hover, nav a.active { color: var(--gold); background: rgba(245,166,35,.1);
 }
 .trust-icon { color: var(--gold); font-size: 20px; }
 
+/* ── CREDENTIAL BAND (gold) ──
+   Six claims. Was a 4-column auto-fit grid, so row 2 held 2 items and left
+   two-thirds of the band empty; on phones it stacked to one column (987px of
+   solid yellow). Now 3x2 on desktop, 2x3 on phones. */
+.trust-band {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  padding: 56px 24px;
+}
+.trust-band-grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px;
+  text-align: center;
+}
+.trust-band-grid .tb-icon { font-size: 32px; line-height: 1; margin-bottom: 8px; }
+.trust-band-grid h3 { font-family: var(--cond); font-weight: 800; font-size: 16px; color: var(--navy); margin: 0 0 4px; }
+.trust-band-grid p { color: var(--navy); opacity: .85; margin: 0; font-size: 13px; }
+.trust-band-grid a { color: var(--navy); text-decoration: underline; }
+
 /* ── FLOATING DESKTOP TRUST BADGE (CRO) ── */
 .floating-trust-badge {
   position: fixed;
@@ -603,6 +623,20 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .testi-name { font-family: var(--cond); font-size: 15px; font-weight: 700; color: var(--white); }
 .testi-loc  { font-size: 13px; color: var(--gray); }
 
+/* ── REVIEW CARDS (homepage social proof) ──
+   4 cards in 4 columns, so the row is always full — the previous
+   auto-fit/minmax(300px) layout dropped the 4th card onto its own row. */
+.review-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+.review-card {
+  background: rgba(245,166,35,.1);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.review-card .stars { margin-bottom: 12px; font-size: 16px; letter-spacing: 1px; }
+.review-card p { font-size: 15px; line-height: 1.7; margin: 0 0 16px; color: rgba(244,241,235,.9); }
+.review-card cite { font-family: var(--cond); font-weight: 700; font-size: 14px; font-style: normal; color: var(--white); }
+
 /* ── CITY GRID ── */
 .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
 .city-card {
@@ -744,7 +778,7 @@ footer {
 }
 .footer-grid {
   max-width: var(--max); margin: 0 auto;
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 32px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
@@ -857,10 +891,14 @@ footer {
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-img { display: none; }
+  /* The hero photo used to be display:none here, which left every screen under
+     900px with no photography at all. It now drops below the CTAs instead. */
+  .hero-img { aspect-ratio: 16 / 10; margin-top: 32px; }
   .why-grid { grid-template-columns: 1fr; }
   .why-img { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .review-grid { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .form-group.full { grid-column: 1; }
 }
@@ -880,6 +918,9 @@ footer {
   .hamburger { display: block; }
   .footer-grid { grid-template-columns: 1fr; }
   .trust-bar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .trust-band { padding: 40px 20px; }
+  .trust-band-grid { grid-template-columns: 1fr 1fr; gap: 24px 14px; }
+  .trust-band-grid .tb-icon { font-size: 26px; }
   section { padding: 48px 24px; }
 }
 @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
@@ -891,6 +932,7 @@ footer {
   .qe-form-grid { grid-template-columns: 1fr; }
   .qe-radio-group { flex-direction: column; }
   .qe-price { font-size: 34px; }
+  .review-grid { grid-template-columns: 1fr; }
 }
 
 /* ── MOBILE TOUCH TARGETS (WCAG 2.5.5 / 2.5.8) ──
