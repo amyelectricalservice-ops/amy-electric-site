@@ -82,6 +82,66 @@ nav a:hover, nav a.active { color: var(--gold); background: rgba(245,166,35,.1);
    112 in-content buttons + sticky bar; the desktop nav wraps 3 rows. */
 .nav-book { display: none; }
 
+/* ── "MORE" DROPDOWN ──
+   The header used to carry 24–31 links and wrapped to three rows at 1140px.
+   Seven primary links now sit in the bar and the long tail moved behind this
+   panel. <details>/<summary> gives keyboard + screen-reader toggling for free
+   (no JS), so the menu still works if the bundle fails to load. */
+.nav-more { position: relative; }
+.nav-more > summary {
+  display: flex; align-items: center; gap: 6px;
+  list-style: none; cursor: pointer;
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  transition: color .18s, background .18s;
+  white-space: nowrap;
+}
+.nav-more > summary::-webkit-details-marker { display: none; }
+.nav-more > summary::after { content: '\25BE'; font-size: 10px; line-height: 1; margin-top: 2px; }
+.nav-more > summary:hover,
+.nav-more[open] > summary { color: var(--gold); background: rgba(245,166,35,.1); }
+
+.nav-more-panel {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  z-index: 130;
+  display: grid; grid-template-columns: auto auto; gap: 0 28px;
+  padding: 18px 20px;
+  background: var(--navy2);
+  border: 1px solid rgba(255,255,255,.12);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.nav-more-col { display: flex; flex-direction: column; }
+.nav-more-label {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 12px 0 6px;
+}
+.nav-more-col > .nav-more-label:first-child { padding-top: 0; }
+.nav-more-panel a {
+  display: block;
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(244,241,235,.82);
+  padding: 5px 0;
+  white-space: nowrap;
+  border-radius: 0;
+}
+.nav-more-panel a:hover { color: var(--gold); background: none; }
+
 /* hamburger */
 .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: .3s; }

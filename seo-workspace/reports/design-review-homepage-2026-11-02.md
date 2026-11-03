@@ -31,7 +31,7 @@ Two content decisions taken while doing it:
 - The lower "Electrical Guides & Tips" block was **32 cards containing 3 duplicate pairs** (`la-electrical-safety-tips`, `smart-home-electrical-upgrades`, `panel-upgrade-signs` each linked twice). It was replaced by the curated 6-card block from the top of the page, moved to the bottom — so the page now opens hero → services instead of hero → blog, and the 3×2 grid kills the orphan row.
 - The 4-card testimonial block absorbed the position of the 3-card one (proof right after "Why AMY Electric"), keeping the gold-left-border treatment, the Google rating line, and both CTAs. Its `auto-fit/minmax(300px)` grid is now `repeat(4,1fr)` → 2-up ≤900px → 1-up ≤600px.
 
-Not touched (still open): nav IA, emoji icons, hero copy length, section-header alignment, project-profile empty panels, `.trust-bar` strip wrapping 5+1 at 1440, footer heading styles (three 20px white headings vs one 13px grey uppercase one).
+Not touched (still open): emoji icons (hero badges, trust band, guides grid), section-header alignment, project-profile empty panels, `.trust-bar` strip wrapping 5+1 at 1440, footer heading styles (three 20px white headings vs one 13px grey uppercase one). Nav IA and hero copy shipped in tier two (2026-11-03).
 
 ---
 
@@ -160,6 +160,16 @@ Three cards stack at ~330px each. The step indicator (`SERVICE / CHARGER / SETUP
 
 ---
 
-## Captures
+## Shipped 2026-11-03 (tier two)
+
+| Fix | Before | After |
+|---|---|---|
+| Nav IA | 29 distinct header menus across 348 pages, 4–31 links each; 24+ on the homepage wrapping to 3 rows at 1440px | One canonical 7-link bar (`Services · EV Chargers · Panel Upgrades · Repairs · Service Areas · Reviews · Blog`) + a `More ▾` mega-menu (3 groups, 15 links). Single row at every width ≥900px. Synced to all 347 pages with `scripts/sync-nav.py` (idempotent, `--check` gate). |
+| Project profiles | 4 emoji (🔌 ⚡ 🔧 💡) at 48px on a navy gradient — reads as placeholder | Real gallery photos (EV charger, 200A panel, wiring detail, commercial lighting) at 4:3 with `object-fit: cover`. "Illustrative profile" disclaimer retained. |
+| Hero copy | 3-line H1 + 60-word paragraph (2 sentences of prices/permits) | 2-line H1; 28-word paragraph focused on value prop. Price specifics live in the badges + estimator. |
+
+Also: `js/src/01-nav.js` now closes the `More` panel on outside click / Escape and highlights the active link correctly (including extensionless + `blog/` URLs). Nav CSS lives in `css/src/02-header.css` (`.nav-more`, `.nav-more-panel`, `.nav-more-col`, `.nav-more-label`) + responsive rules in `css/src/10-responsive.css`.
+
+Still open after tier two: section-header alignment, `.trust-bar` strip wrapping 5+1 at 1440px, footer heading style inconsistency, emoji icons elsewhere (hero badges, trust band, guides grid), project-profile empty panels.
 
 Session screenshots (desktop 1296/1440, iPhone 13 390) were taken against the live `workers.dev` host and reviewed section by section: hero, guides, services, why, testimonials, estimator, quote form, FAQ, profiles, reviews, trust bar, founder, guides-2, footer, plus the open mobile menu. Key measurements are quoted inline above so the report stands without the images.
