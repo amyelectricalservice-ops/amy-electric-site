@@ -4,6 +4,7 @@
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import worker from '../worker.js';
 
 // Route matching logic extracted from worker.js fetch handler
 function isPhotoRoute(pathname) {
@@ -74,6 +75,43 @@ describe('merged worker route dispatch', () => {
       assert.ok(!ALLOWED.has('internal_link_click'));
       assert.ok(!ALLOWED.has('unknown_event'));
       assert.ok(!ALLOWED.has(''));
+    });
+  });
+
+  describe('static discovery endpoints', () => {
+    it('serves pre-serialized openapi.json accurately', async () => {
+      const res = await worker.fetch(new Request('https://amyelectric.com/openapi.json'), {}, { waitUntil: () => {} });
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get('Content-Type'), 'application/json; charset=utf-8');
+      assert.equal(res.headers.get('Cache-Control'), 'public, max-age=3600');
+      const body = await res.json();
+      assert.equal(body.openapi, '3.1.0');
+      assert.equal(body.info.title, 'AMY Electric Contact API');
+    });
+
+    it('serves pre-serialized agent card accurately', async () => {
+      const res = await worker.fetch(new Request('https://amyelectric.com/.well-known/agent.json'), {}, { waitUntil: () => {} });
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get('Content-Type'), 'application/json; charset=utf-8');
+      const body = await res.json();
+      assert.equal(body.name, 'AMY Electric Estimator');
+    });
+
+    it('serves pre-computed contact API docs accurately', async () => {
+      const res = await worker.fetch(new Request('https://amyelectric.com/api/docs'), {}, { waitUntil: () => {} });
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get('Content-Type'), 'text/html; charset=utf-8');
+      const body = await res.text();
+      assert.ok(body.includes('<h1>AMY Electric Contact API</h1>'));
+    });
+
+    it('serves pre-serialized api-catalog accurately', async () => {
+      const res = await worker.fetch(new Request('https://amyelectric.com/.well-known/api-catalog'), {}, { waitUntil: () => {} });
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get('Content-Type'), 'application/linkset+json');
+      const body = await res.json();
+      assert.ok(Array.isArray(body.linkset));
+      assert.equal(body.linkset[0].anchor, 'https://amyelectric.com/api/contact');
     });
   });
 });
