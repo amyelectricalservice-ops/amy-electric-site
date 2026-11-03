@@ -143,6 +143,9 @@ function a2aAgentCard() {
   };
 }
 
+// Pre-serialized at module scope to avoid re-allocating and JSON.stringifying on every request.
+const A2A_AGENT_CARD_JSON = JSON.stringify(a2aAgentCard(), null, 2);
+
 function a2aAnswer(text) {
   const t = text.toLowerCase();
   const has = (...words) => words.some(w => t.includes(w));
@@ -357,6 +360,9 @@ function contactApiSpec() {
     }
   };
 }
+
+// Pre-serialized at module scope to avoid re-generating the OpenAPI spec object and JSON string per request.
+const CONTACT_API_SPEC_JSON = JSON.stringify(contactApiSpec(), null, 2);
 
 // Web Analytics beacon (RUM auto-install does not inject into Worker-served
 // responses, so the official snippet is appended to HTML here instead).
@@ -773,28 +779,48 @@ async function htmlResponse(request, response, headers) {
   });
 }
 
+// Pre-computed HTML docs string at module scope.
+const CONTACT_API_DOCS_HTML = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+  + '<meta name="viewport" content="width=device-width, initial-scale=1">'
+  + '<title>Contact API Docs | AMY Electric</title>'
+  + '<meta name="description" content="Documentation for the AMY Electric contact and estimate request API.">'
+  + '</head><body><main>'
+  + '<h1>AMY Electric Contact API</h1>'
+  + '<p>Submit estimate requests and service inquiries to our licensed C-10 electrical team (#981578). '
+  + 'Machine-readable description: <a href="/openapi.json">openapi.json</a>. '
+  + 'Discovery catalog: <a href="/.well-known/api-catalog">api-catalog</a>. '
+  + 'Health: <a href="/api/health">api/health</a>.</p>'
+  + '<h2>POST /api/contact</h2>'
+  + '<p>Accepts <code>application/json</code>, <code>application/x-www-form-urlencoded</code>, or '
+  + '<code>multipart/form-data</code>. Fields: <code>name</code>, <code>phone</code>, <code>email</code>, '
+  + '<code>service</code>, <code>city</code>, <code>message</code>, <code>request_type</code>, plus optional '
+  + '<code>estimate</code> (indicative-range JSON attached by the quote forms; invalid payloads are dropped, never fatal). '
+  + 'Leave the <code>website</code> honeypot field empty. Returns <code>{"success": true}</code> on acceptance; '
+  + '<code>405</code> for non-POST methods. Prefer a human? Call <a href="tel:18183025614">(818) 302-5614</a>.</p>'
+  + '<h2>GET /api/health</h2>'
+  + '<p>Returns <code>{"ok": true}</code> when the service is operating normally.</p>'
+  + '</main></body></html>';
+
 function contactApiDocs() {
-  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
-    + '<meta name="viewport" content="width=device-width, initial-scale=1">'
-    + '<title>Contact API Docs | AMY Electric</title>'
-    + '<meta name="description" content="Documentation for the AMY Electric contact and estimate request API.">'
-    + '</head><body><main>'
-    + '<h1>AMY Electric Contact API</h1>'
-    + '<p>Submit estimate requests and service inquiries to our licensed C-10 electrical team (#981578). '
-    + 'Machine-readable description: <a href="/openapi.json">openapi.json</a>. '
-    + 'Discovery catalog: <a href="/.well-known/api-catalog">api-catalog</a>. '
-    + 'Health: <a href="/api/health">api/health</a>.</p>'
-    + '<h2>POST /api/contact</h2>'
-    + '<p>Accepts <code>application/json</code>, <code>application/x-www-form-urlencoded</code>, or '
-    + '<code>multipart/form-data</code>. Fields: <code>name</code>, <code>phone</code>, <code>email</code>, '
-    + '<code>service</code>, <code>city</code>, <code>message</code>, <code>request_type</code>, plus optional '
-    + '<code>estimate</code> (indicative-range JSON attached by the quote forms; invalid payloads are dropped, never fatal). '
-    + 'Leave the <code>website</code> honeypot field empty. Returns <code>{"success": true}</code> on acceptance; '
-    + '<code>405</code> for non-POST methods. Prefer a human? Call <a href="tel:18183025614">(818) 302-5614</a>.</p>'
-    + '<h2>GET /api/health</h2>'
-    + '<p>Returns <code>{"ok": true}</code> when the service is operating normally.</p>'
-    + '</main></body></html>';
+  return CONTACT_API_DOCS_HTML;
 }
+
+// Pre-serialized API catalog at module scope.
+const API_CATALOG_JSON = JSON.stringify({
+  linkset: [
+    {
+      anchor: 'https://amyelectric.com/api/contact',
+      'service-desc': [{ href: 'https://amyelectric.com/openapi.json' }],
+      'service-doc': [{ href: 'https://amyelectric.com/api/docs' }],
+      status: [{ href: 'https://amyelectric.com/api/health' }]
+    },
+    {
+      anchor: 'https://amyelectric.com/api/health',
+      'service-desc': [{ href: 'https://amyelectric.com/openapi.json' }],
+      'service-doc': [{ href: 'https://amyelectric.com/api/docs' }]
+    }
+  ]
+}, null, 2);
 
 export default {
   async fetch(request, env, ctx) {
@@ -991,7 +1017,7 @@ export default {
     }
 
     if ((url.pathname === '/.well-known/agent.json' || url.pathname === '/.well-known/agent-card.json') && request.method === 'GET') {
-      return new Response(JSON.stringify(a2aAgentCard(), null, 2), {
+      return new Response(A2A_AGENT_CARD_JSON, {
         headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=3600' }
       });
     }
@@ -1001,34 +1027,19 @@ export default {
     }
 
     if (url.pathname === '/openapi.json') {
-      return new Response(JSON.stringify(contactApiSpec(), null, 2), {
+      return new Response(CONTACT_API_SPEC_JSON, {
         headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=3600' }
       });
     }
 
     if (url.pathname === '/api/docs') {
-      return new Response(contactApiDocs(), {
+      return new Response(CONTACT_API_DOCS_HTML, {
         headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=3600' }
       });
     }
 
     if (url.pathname === '/.well-known/api-catalog') {
-      const catalog = {
-        linkset: [
-          {
-            anchor: 'https://amyelectric.com/api/contact',
-            'service-desc': [{ href: 'https://amyelectric.com/openapi.json' }],
-            'service-doc': [{ href: 'https://amyelectric.com/api/docs' }],
-            status: [{ href: 'https://amyelectric.com/api/health' }]
-          },
-          {
-            anchor: 'https://amyelectric.com/api/health',
-            'service-desc': [{ href: 'https://amyelectric.com/openapi.json' }],
-            'service-doc': [{ href: 'https://amyelectric.com/api/docs' }]
-          }
-        ]
-      };
-      return new Response(JSON.stringify(catalog, null, 2), {
+      return new Response(API_CATALOG_JSON, {
         headers: { 'Content-Type': 'application/linkset+json', 'Cache-Control': 'public, max-age=3600' }
       });
     }
