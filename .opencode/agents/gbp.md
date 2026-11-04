@@ -4,7 +4,8 @@ description: >-
   auto-posting pipeline: dry-run testing, going live, monitoring posts,
   updating post content/rotation, and troubleshooting the gbp-agent.js
   Worker cron. Use for any GBP posting task (setup, dry-run, go-live,
-  post updates, monitoring).
+  post updates, monitoring). Uses `workers-best-practices` for Worker code,
+  `cf-cli` for Cloudflare CLI tasks, and `wrangler` for deploy commands.
 mode: all
 permission:
   bash:

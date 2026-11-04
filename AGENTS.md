@@ -44,13 +44,49 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 
 ## Pre-push gate (in order)
 
-`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (342 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
+`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (342 pages, 0 issues) → `audit-skills.py` (skill refs resolve, mirror is symlinks, lock matches) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
 
 ## Skills
 
-Repo-local `.agents/skills/`, global `~/.claude/skills/` for the rest. Route: market view → `competitive-landscape`; one domain → `competitor-analysis`; new page → `seo-content-brief`; single page → `seo-page`; tech/crawl → `seo-technical`; sitemap → `seo-sitemap`; images → `seo-images`. Only the `cloudflare` MCP server is connected — all SEO data tools degrade to `websearch`/`webfetch` (directional only, label as such). Prefer repo auditors over skill prose.
+Repo-local `.agents/skills/` (vendored, hash-pinned in `skills-lock.json`) + global `~/.claude/skills/` for the rest. `.claude/skills/` mirrors the repo tree via symlinks (see `scripts/audit-skills.py`). Validate skill wiring with `python3 scripts/audit-skills.py` before changing SEO/Cloudflare workflows.
 
-Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates the five SEO workflows (context → keywords → mapping → competitor → links) into `seo-workspace/`. Note the config uses the legacy `permission:` map — this opencode build (`1.18.33`) silently ignores the V2 `permissions:` list.
+| Task | Skill | Scope | Notes |
+|---|---|---|---|
+| Project context | `seo-project-setup` | repo | |
+| Market view | `competitive-landscape` | repo | Prefer over one-off competitor pulls. |
+| One domain | `competitor-analysis` | repo | |
+| Keywords | `keyword-research` | repo | GSC CSVs are the only real quantitative source. |
+| Cluster→page map | `keyword-clustering` | repo | Map to existing URLs first. |
+| New page brief | `seo-content-brief` | repo | Generated from global copy; vendored 2026-11-03. |
+| Single page review | `seo-page` | repo | |
+| Tech / crawl | `seo-technical` | repo | |
+| Sitemap | `seo-sitemap` | repo | |
+| Images | `seo-images` | repo | |
+| Audit | `seo-audit` | repo | One-page plain-language report. |
+| Local / GBP | `seo-local` | repo | Distinct from the `gbp` agent. |
+| AI / GEO visibility | `seo-geo` | repo | AI Overviews, Perplexity, ChatGPT. |
+| Schema | `seo-schema` | repo | JSON-LD validation. |
+| Content quality | `seo-content` | repo | E-E-A-T, thin-content. |
+| Programmatic | `seo-programmatic` | repo | Template/thin-page safeguards. |
+| Hreflang / i18n | `seo-hreflang` | repo | |
+| Drift / regression | `seo-drift` | repo | Baseline SEO elements. |
+| Competitor pages | `seo-competitor-pages` | repo | "X vs Y" / alternatives. |
+| Topic clusters | `seo-cluster` | repo | SERP-overlap clustering. |
+| Link prospects | `link-prospecting` | repo | |
+| Web performance | `web-perf` | repo | Core Web Vitals, Lighthouse. |
+| Coach mode | `seo-coach` | repo | Friendly walkthroughs. |
+| Worker code review | `workers-best-practices` | repo | Prefer when writing/reviewing Workers. |
+| Worker profiling | `workers-profiling` | repo | CPU/memory on deployed Workers. |
+| Cloudflare discovery | `cloudflare` | repo | Product/architecture selection. |
+| Cloudflare CLI | `cf-cli` | repo | `cf` for new projects / API commands. |
+| Wrangler CLI | `wrangler` | repo | Use only with `wrangler.jsonc` present. |
+| Turnstile | `turnstile-spin` | repo | Bot verification. |
+
+**Degradation (MCP reality check):** Only the `cloudflare` MCP server is connected — OpenSEO/DataForSEO are usually unavailable. When a skill assumes those tools, degrade in this order and label sources: 1) GSC CSVs in `seo-workspace/gsc/` `[gsc: file]`, 2) `websearch`/`webfetch` `[directional: web]`, 3) repo facts `[repo: path]`. Never report a number from a tool you did not call; write `unknown` if unsourced. Prefer repo auditors (`scripts/audit-*.py`, `schema-tool.py`) over skill prose.
+
+Discover new skills with the `find-skills` global skill. Never hand-edit a vendored skill's content — re-vendor and update `skills-lock.json`.
+
+Project SEO agent: `.opencode/agents/seo.md` (`seo`, mode `all`) orchestrates the five SEO workflows (context → keywords → mapping → competitor → links) into `seo-workspace/`. Other agents: `.opencode/agents/gbp.md` (`gbp`, GBP posting), `.opencode/agents/geo-linking.md` (`geo-linking`, internal linking for 64 geo service pages), `.opencode/agents/web-perf.md` (`web-perf`, performance audits). Note the config uses the legacy `permission:` map — this opencode build (`1.18.33`) silently ignores the V2 `permissions:` list.
 
 ## Remaining work (owner-sized; code side is shipped)
 

@@ -4,7 +4,8 @@ description: >-
   between 64 geo service pages (ev-charger, panel-upgrade, whole-home-rewiring
   × city) and their corresponding city pages. Handles breadcrumb city links,
   contextual in-body links, and link audit. Use for any geo service page
-  linking task.
+  linking task. Uses `seo-programmatic` for template safeguards and
+  `seo-sitemap` when link changes affect sitemap integrity.
 mode: all
 permission:
   bash:
