@@ -9,13 +9,15 @@
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
 
 # Fixed-name bundles (style.min.css, site.min.js, woff2) change on rebuild, so
-# browsers must revalidate hourly while the edge caches for a year.
-# Docs reserve `immutable` for fingerprinted filenames only.
+# browsers AND the edge must revalidate hourly. A fixed name + year-long edge
+# TTL serves the old bundle long after the deploy that fixed it (the edge
+# cannot be purged — CLOUDFLARE_API_TOKEN lacks Zone > Cache Purge > Edit), so
+# s-maxage=3600. Docs reserve `immutable` for fingerprinted filenames only.
 /css/*
-  Cache-Control: public, max-age=3600, s-maxage=31536000
+  Cache-Control: public, max-age=3600, s-maxage=3600
 
 /js/*
-  Cache-Control: public, max-age=3600, s-maxage=31536000
+  Cache-Control: public, max-age=3600, s-maxage=3600
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
