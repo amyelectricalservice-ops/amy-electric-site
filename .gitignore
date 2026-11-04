@@ -22,3 +22,5 @@ db/
 lh-out/
 # Lighthouse audit snapshots — 234MB of regenerable JSON, stay local
 audit/lighthouse/
+# local lighthouse runs
+audit/lighthouse/lh-*.json
