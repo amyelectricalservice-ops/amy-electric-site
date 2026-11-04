@@ -24,3 +24,7 @@ lh-out/
 audit/lighthouse/
 # local lighthouse runs
 audit/lighthouse/lh-*.json
+
+# local dev server
+.server_pid
+.server.log
