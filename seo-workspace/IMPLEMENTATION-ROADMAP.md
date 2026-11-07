@@ -5,9 +5,9 @@
 
 | # | Task | Scope | Owner | Status |
 |---|------|-------|-------|--------|
-| 2.1 | Consolidate 3 duplicate-title pairs | `blog/ev-charger-installation-cost-la` → `-los-angeles`, `whole-home-rewiring-cost-la` → `-los-angeles`, `breaker-keeps-tripping-causes` ↔ `-guide` — 301 + canonical to survivor, update sitemap | agent | TODO |
+| 2.1 | Consolidate 3 duplicate-title pairs | _redirects + canonical to -los-angeles (450 hrefs), breaker already consolidated | agent | ✅ shipped 8f826869 |
 | 2.2 | Deepen 6 thin posts (<800 words) to 1,500+ | generator cost, outdoor lighting, dedicated circuit, electrical inspection ×2, smart-home requirements — each + gallery photo proof | agent | TODO |
-| 2.3 | Templated internal linking | `scripts/generate-city-pages.py` — every `city-*.html` links its EV/panel/rewiring city variant + backlink; gallery linked from service pages | agent | TODO |
+| 2.3 | Templated internal linking | generate-city-pages.py conditional geo cards + gallery card; avg inbound 1.7 → 3.06 | agent | ✅ shipped 8f826869 |
 | 2.4 | Titles/meta + CTR on emergency & rewiring clusters | Rewrite emergency & whole-home-rewiring titles/meta per briefs `seo-workspace/content/emergency-electrician-brief.md` + `whole-home-rewiring-brief.md` | agent | TODO |
 | 2.5 | GBP + citations | Claim/optimize GBP (NAP, hours, WhatsApp), Yelp/Apple/Bing, update `sameAs` in schema | owner | BLOCKED — needs Google account |
 | 2.6 | Fresh GSC + DataForSEO creds | Re-export GSC 3mo → `seo-workspace/gsc/`, fix OpenSEO 401 | owner | BLOCKED |
