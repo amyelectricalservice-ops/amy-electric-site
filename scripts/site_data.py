@@ -52,10 +52,12 @@ BUSINESS = {
     # changes, edit this ONE value, then sweep pages with:
     #   grep -rl '"reviewCount' --include='*.html' . | xargs sed -i 's/"reviewCount": *"*[0-9]*"*/"reviewCount": "<NEW>"/'
     # schema-tool.py validate fails on any page that disagrees with this.
+    "hasMap": "https://maps.app.goo.gl/nzyuaFkAMGZdbbuj6",
     "sameAs": [
         "https://www.yelp.com/biz/amy-electric-los-angeles",
         "https://g.page/r/CVdK9ZAvNBrZEAI/review",
-        "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
+        "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+        "https://maps.app.goo.gl/nzyuaFkAMGZdbbuj6"
     ],
     "openingHours": [
         {"days": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:00", "desc": "Office hours"},
@@ -197,6 +199,7 @@ def make_electrician(path="", city_name=None):
         "aggregateRating": BUSINESS["aggregateRating"],
         "hasCredential": BUSINESS["credentials"],
         "priceRange": BUSINESS["priceRange"],
+        "hasMap": BUSINESS["hasMap"],
         "sameAs": BUSINESS["sameAs"]
     }
     if city_name:
