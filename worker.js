@@ -605,9 +605,12 @@ async function serveImage(request, env, ctx) {
 // brotli / ~101 KB raw). Hashing the final (beacon-injected) body lets those
 // visits revalidate with a ~300 B 304.
 const HEX_LOOKUP = Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
+// Performance optimization: Hoist TextEncoder to module scope to avoid re-allocating
+// a new instance on every HTML response across all ~340+ pages in the Worker isolate.
+const HTML_TEXT_ENCODER = new TextEncoder();
 
 async function htmlEtag(body) {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
+  const digest = await crypto.subtle.digest('SHA-256', HTML_TEXT_ENCODER.encode(body));
   const bytes = new Uint8Array(digest);
   let hex = '';
   for (let i = 0; i < bytes.length; i++) {
