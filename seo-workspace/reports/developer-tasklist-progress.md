@@ -1,6 +1,6 @@
 # AMY Electric developer task list — progress by task ID
 
-Branch: `feat/lead-gen-phase1` · Staging: `https://amy-electric-site-staging.a-m-y-electricalservice.workers.dev`
+Branch: `feat/espocrm` (EspoCRM) / `feat/lead-gen-phase1` (original platform) · Staging: `https://amy-electric-site-staging.a-m-y-electricalservice.workers.dev`
 Last updated: 2026-11-12
 
 Legend:
@@ -30,16 +30,16 @@ Legend:
 
 | ID | Status | What was actually done / evidence |
 |---|---|---|
-| AE-011 | **CODE** | `crm-handler.js` implements HubSpot contacts/deals/tasks/associations with de-dupe search and graceful fallback. Needs `HUBSPOT_TOKEN` (private app) to run. |
-| AE-012 | **CODE** | Pipeline/stage IDs are configurable (`HUBSPOT_PIPELINE_RESIDENTIAL`, `_COMMERCIAL`, `HUBSPOT_STAGE_*`), defaulting to the account's default pipeline. |
-| AE-013 | **CODE** | On each accepted lead: contact (or found contact) → deal → task → associations. Legacy `CRM_WEBHOOK_URL` still works as a second path. |
+| AE-011 | **DONE** | **EspoCRM** (FOSS, GPLv3) integrated: `crm-espocrm.js` + `scripts/espocrm-sync.mjs` create Contact → Lead → Task (+ Opportunity for commercial). Tested against the running instance. HubSpot remains an optional fallback. |
+| AE-012 | **DONE** | Residential and commercial leads are separated by `segment`; commercial also creates an EspoCRM Opportunity at stage *Prospecting*, residential stays a Lead. |
+| AE-013 | **DONE** | Every accepted lead creates/reuses a Contact, creates a Lead, and creates a follow-up Task (idempotent by parent+name). Tested end-to-end. |
 | AE-014 | **DONE** | `leads` table stores project type, city, phone, email, source page, referrer, all UTMs, gclid/fbclid, IP hash, user agent. Verified on staging. |
 | AE-015 | **DONE** | Deterministic 0–100 score with reasons (urgency, segment, service weight, completeness, paid click, local area code). Tested; staging commercial lead scored 68. |
-| AE-016 | **CODE** | HubSpot task creation + daily overdue digest. Email currently depends on the existing MailChannels/Email binding path; until a send channel is verified, the admin desk is the guaranteed notification surface. |
-| AE-017 | **CODE** | HubSpot task per lead (emergency +15 min, same-day +2 h, otherwise next day) and a daily cron digest of overdue leads. |
+| AE-016 | **CODE** | New-lead visibility comes from EspoCRM (task assigned to the configured user) plus the daily overdue digest. EspoCRM's own email notifications need its outbound mail configured; the admin desk is the guaranteed fallback. |
+| AE-017 | **DONE** | Task per lead in EspoCRM with due date (emergency +15 min, same-day +2 h, otherwise next day), High priority for emergency. Daily overdue digest still runs. |
 | AE-018 | **DONE** | 30-day de-dupe on normalised phone then email; duplicate is stored for attribution, flagged `duplicate_of`, and no second deal is created. Tested twice locally. |
 | AE-019 | **DONE** | Private R2 bucket `amy-electric-leads`; no public URL; downloads require the admin token. Uploads validated and hashed. |
-| AE-020 | **CODE** | Tested from desktop and mobile viewports locally + staging. CRM-specific desktop/mobile validation waits on `HUBSPOT_TOKEN`. |
+| AE-020 | **DONE** | Forms tested desktop + mobile (local, staging, production); EspoCRM ingestion tested from the real lead pipeline. |
 
 ## SEO and Google marketing
 
@@ -100,7 +100,7 @@ Legend:
 
 ## Outstanding owner actions (in order)
 
-1. **HubSpot**: create a private app with `crm.objects.contacts` (read/write), `crm.objects.deals` (read/write), `crm.objects.tasks` (write); then `npx wrangler secret put HUBSPOT_TOKEN`. Create the residential/commercial pipelines and set the four pipeline/stage secrets if they are not the default pipeline.
+1. **EspoCRM**: confirm the `amy-site` user role and the assigned user in `~/.amy-electric/espocrm.env`; install the 5-minute cron for `scripts/espocrm-sync.mjs`; configure EspoCRM outbound email if you want notification emails (HubSpot is no longer required).
 2. **GA4 + Ads + Search Console**: create the GA4 property, then set `GA4_ID`, `GADS_ID`, `GADS_CONVERSION_LABEL`, `GSC_VERIFICATION` as Worker secrets. Update the two conversion actions in Google Ads to match `lead_accepted` and `phone_click`.
 3. **Email notifications**: confirm whether Cloudflare Email Routing / a send binding is available for `info@amyelectric.com`; otherwise set `LEAD_NOTIFY_WEBHOOK` to a Slack/Zapier endpoint so overdue-lead digests are delivered.
 4. **Launch the four Ads campaigns** from the spec after the conversion tags show as recording.

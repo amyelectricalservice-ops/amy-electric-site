@@ -379,11 +379,25 @@ export async function handleAdminApi(request, env) {
     if (!DB(env)) return json({ success: true, leads: [] });
     const limit = Math.min(200, Math.max(1, Number(url.searchParams.get('limit')) || 50));
     const status = url.searchParams.get('status') || '';
-    const sql = status
-      ? `SELECT * FROM leads WHERE status = ? ORDER BY created_at DESC LIMIT ?`
-      : `SELECT * FROM leads ORDER BY created_at DESC LIMIT ?`;
-    const stmt = DB(env).prepare(sql);
-    const rows = status ? await stmt.bind(status, limit).all() : await stmt.bind(limit).all();
+    const crm = url.searchParams.get('crm') || '';
+    let rows;
+    if (crm === 'pending') {
+      // Anything not yet delivered to the CRM, oldest first so the local
+      // EspoCRM agent drains the backlog in order.
+      rows = await DB(env).prepare(
+        `SELECT * FROM leads
+          WHERE crm_status IN ('pending','failed','skipped') AND duplicate_of = ''
+          ORDER BY created_at ASC LIMIT ?`
+      ).bind(limit).all();
+    } else if (status) {
+      rows = await DB(env).prepare(
+        `SELECT * FROM leads WHERE status = ? ORDER BY created_at DESC LIMIT ?`
+      ).bind(status, limit).all();
+    } else {
+      rows = await DB(env).prepare(
+        `SELECT * FROM leads ORDER BY created_at DESC LIMIT ?`
+      ).bind(limit).all();
+    }
     return json({ success: true, leads: (rows && rows.results) || [] });
   }
 
@@ -421,6 +435,23 @@ export async function handleAdminApi(request, env) {
     if (!sets.length) return json({ success: false, message: 'Nothing to update' }, 400);
     sets.push('updated_at = ?'); vals.push(new Date().toISOString());
     await DB(env).prepare(`UPDATE leads SET ${sets.join(', ')} WHERE id = ?`).bind(...vals, id).run();
+    return json({ success: true });
+  }
+
+  if (path.startsWith('/api/admin/lead/') && path.endsWith('/crm') && request.method === 'POST') {
+    if (!DB(env)) return json({ success: false, message: 'No database' }, 503);
+    const id = path.slice('/api/admin/lead/'.length, -'/crm'.length);
+    let b = {};
+    try { b = await request.json(); } catch { b = {}; }
+    const status = ['synced', 'failed', 'skipped', 'pending'].includes(b.status) ? b.status : 'failed';
+    await markCrm(env, id, {
+      status,
+      contactId: typeof b.contact_id === 'string' ? b.contact_id : '',
+      dealId: typeof b.deal_id === 'string' ? b.deal_id : '',
+      taskId: typeof b.task_id === 'string' ? b.task_id : '',
+      error: typeof b.error === 'string' ? b.error : '',
+      provider: typeof b.provider === 'string' ? b.provider : 'espocrm',
+    });
     return json({ success: true });
   }
 
