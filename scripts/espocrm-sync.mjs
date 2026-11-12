@@ -100,7 +100,7 @@ async function drain() {
       await admin(`/api/admin/lead/${encodeURIComponent(lead.id)}/crm`, {
         method: 'POST',
         body: JSON.stringify({
-          status: 'synced',
+          crm_status: 'synced',
           provider: 'espocrm',
           contact_id: result.contactId || '',
           deal_id: result.opportunityId || '',
@@ -114,7 +114,7 @@ async function drain() {
       const error = `${result.reason || 'error'}${result.detail ? `: ${JSON.stringify(result.detail).slice(0, 200)}` : ''}`;
       await admin(`/api/admin/lead/${encodeURIComponent(lead.id)}/crm`, {
         method: 'POST',
-        body: JSON.stringify({ status: 'failed', provider: 'espocrm', error }),
+        body: JSON.stringify({ crm_status: 'failed', provider: 'espocrm', error }),
       }).catch(() => {});
       console.error('failed', label, '→', error);
     }

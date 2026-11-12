@@ -421,16 +421,19 @@ export async function handleAdminApi(request, env) {
     });
   }
 
-  if (path.startsWith('/api/admin/lead/') && request.method === 'POST') {
+  if (path.startsWith('/api/admin/lead/') && !path.endsWith('/crm') && request.method === 'POST') {
     if (!DB(env)) return json({ success: false, message: 'No database' }, 503);
     const id = path.slice('/api/admin/lead/'.length);
     let body = {};
     try { body = await request.json(); } catch { body = {}; }
     const allowed = ['status', 'owner', 'follow_up_at'];
+    const pipelineStatuses = new Set(['new', 'contacted', 'qualified', 'quoted', 'won', 'lost', 'duplicate']);
     const sets = [];
     const vals = [];
     for (const k of allowed) {
-      if (typeof body[k] === 'string') { sets.push(`${k} = ?`); vals.push(body[k].slice(0, 200)); }
+      if (typeof body[k] !== 'string') continue;
+      if (k === 'status' && !pipelineStatuses.has(body[k])) continue;
+      sets.push(`${k} = ?`); vals.push(body[k].slice(0, 200));
     }
     if (!sets.length) return json({ success: false, message: 'Nothing to update' }, 400);
     sets.push('updated_at = ?'); vals.push(new Date().toISOString());
@@ -443,7 +446,8 @@ export async function handleAdminApi(request, env) {
     const id = path.slice('/api/admin/lead/'.length, -'/crm'.length);
     let b = {};
     try { b = await request.json(); } catch { b = {}; }
-    const status = ['synced', 'failed', 'skipped', 'pending'].includes(b.status) ? b.status : 'failed';
+    const requested = b.crm_status || b.status;
+    const status = ['synced', 'failed', 'skipped', 'pending'].includes(requested) ? requested : 'failed';
     await markCrm(env, id, {
       status,
       contactId: typeof b.contact_id === 'string' ? b.contact_id : '',

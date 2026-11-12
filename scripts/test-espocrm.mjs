@@ -132,6 +132,13 @@ describe('syncLeadToEspo', () => {
     assert.equal(opp.contactId, 'contact_1');
   });
 
+  it('uses amount 0 when a commercial lead has no estimate yet', async () => {
+    const res = await syncLeadToEspo(ENV, { ...baseLead, segment: 'commercial', estimate_json: '' });
+    assert.equal(res.ok, true);
+    const opp = calls.find((c) => c.url.endsWith('/Opportunity')).body;
+    assert.equal(opp.amount, 0);
+  });
+
   it('does not create an Opportunity for residential leads', async () => {
     const res = await syncLeadToEspo(ENV, baseLead);
     assert.equal(res.ok, true);
