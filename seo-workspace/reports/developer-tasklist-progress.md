@@ -11,6 +11,34 @@ Legend:
 
 ---
 
+## FOSS CRM — EspoCRM (replaces HubSpot)
+
+**Chosen:** EspoCRM 10 (GPLv3) at `http://localhost:8081` — it was already
+running and healthy; Twenty was restarting. The edge Worker cannot reach a LAN
+address, so delivery uses a local agent instead of an inbound API.
+
+- `crm-espocrm.js` — Contact (email/phone dedupe) → Lead (status New, source
+  Web Site, score/segment/UTM in the description) → Task (parent = Lead, due by
+  urgency) and an Opportunity for commercial leads (stage Prospecting, amount =
+  estimate midpoint or 0). Phones are normalised to E.164, which EspoCRM
+  requires; retries reuse Contact, Lead and Task.
+- `scripts/espocrm-sync.mjs` — drains `GET /api/admin/leads?crm=pending`,
+  writes to EspoCRM, then marks `POST /api/admin/lead/:id/crm` with the remote
+  ids. Flags: `--dry-run`, `--limit`, `--loop`, `--site`.
+- **Automation installed:** cron every 5 minutes from a stable checkout at
+  `~/.amy-electric/repo` (detached `origin/main`), logging to
+  `~/.amy-electric/sync.log`.
+- **Credentials:** `~/.amy-electric/espocrm.env` (mode 600) with a dedicated
+  non-admin user `amy-site` and the `Website Lead Intake` role (Contact, Lead,
+  Account, Opportunity, Task, Note). The user's email is
+  `info@amyelectric.com` so EspoCRM notifications reach the business once
+  outbound mail is configured.
+- **Verified:** production lead → D1 → agent → EspoCRM (Contact + Lead + Task +
+  Opportunity) → D1 `crm_status=synced` with contact/deal/task ids; test rows
+  removed afterwards.
+
+---
+
 ## Website and conversion
 
 | ID | Status | What was actually done / evidence |
@@ -77,7 +105,7 @@ Legend:
 | AE-040 | **DONE** | Commercial detection (keywords + service) drives segment, score weight and pipeline selection. Tested. |
 | AE-041 | **BLOCKED** | "Estimate Pro" is not defined anywhere in the repo and no API/account details were supplied. Need endpoints/auth before wiring. |
 | AE-042 | **DONE** | `draftEstimate()` produces a range + lines + assumptions from the submitted project; `POST /api/admin/draft-estimate` tested (panel lead → $2,500–$4,500 + permit line). |
-| AE-043 | **CODE** | Follow-up timestamps stored per lead, HubSpot task created, daily cron digest. Delivery channel needs `HUBSPOT_TOKEN` or `LEAD_NOTIFY_WEBHOOK`. |
+| AE-043 | **DONE** | EspoCRM Task per lead with due date (emergency +15 min, same-day +2 h, otherwise next day), idempotent on retry; daily overdue digest still runs. |
 | AE-044 | **DONE** | `/admin` (token or Basic auth) shows 30-day totals, commercial/emergency counts, avg score, won, and the latest 40 leads. 401 without token, 200 with token (local + staging). |
 | AE-045 | **CODE** | `jobs` table + `POST /api/admin/jobs` + revenue in the report. No owner UI for data entry yet (API + CSV only). |
 | AE-046 | **DONE** | `GET /api/admin/report?days=7` returns the weekly marketing report; the Monday cron sends the same shape. Tested locally. |
