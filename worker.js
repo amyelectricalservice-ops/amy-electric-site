@@ -1,6 +1,8 @@
 import { handleLead } from './lead-handler.js';
-import { handleContact } from './contact-handler.js';
+import { handleContactEnriched } from './contact-enrich.js';
+import { handleLeadFiles, handleAdminApi, handleAdminPage } from './crm-handler.js';
 import { handleScheduled as handleGbpScheduled } from './gbp-agent.js';
+import { runLeadCron } from './crm-cron.js';
 import { handlePhotoRequest } from './photo-handler.js';
 import { handleEstimatorRequest } from './estimator-handler.js';
 
@@ -408,7 +410,7 @@ const GEO_NO_STORE = 'private, no-store';
 
 // Allowed conversion event names accepted by /api/events.
 // Hoisted to module scope to avoid re-allocating a Set on every beacon POST.
-const ALLOWED_CONVERSION_EVENTS = new Set(['phone_click', 'cta_click', 'form_submit']);
+const ALLOWED_CONVERSION_EVENTS = new Set(['phone_click', 'cta_click', 'form_submit', 'lead_accepted']);
 
 // Pre-built Map for O(1) case-insensitive geo target city lookup.
 const GEO_TARGET_MAP = new Map(GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area]));
@@ -722,9 +724,51 @@ function injectSchema(html) {
   return html;
 }
 
+// Google Analytics 4, Google Ads conversions and Search Console verification.
+// Configured with Worker secrets so no measurement ID is committed to the repo
+// and every static page gets the tag without a 342-file edit:
+//   wrangler secret put GA4_ID                    # G-XXXXXXXXXX
+//   wrangler secret put GADS_ID                   # AW-XXXXXXXXXX
+//   wrangler secret put GADS_CONVERSION_LABEL     # e.g. abcDEFghi
+//   wrangler secret put GSC_VERIFICATION          # google-site-verification token
+function safeTag(value) {
+  return /^[A-Za-z0-9_-]{4,64}$/.test(String(value || '')) ? String(value) : '';
+}
+
+function analyticsSnippet(env) {
+  if (!env) return '';
+  const ga4 = safeTag(env.GA4_ID);
+  const ads = safeTag(env.GADS_ID);
+  const label = safeTag(env.GADS_CONVERSION_LABEL);
+  const gsc = safeTag(env.GSC_VERIFICATION);
+  if (!ga4 && !ads && !gsc) return '';
+
+  let out = '';
+  if (gsc) out += `<meta name="google-site-verification" content="${gsc}">\n`;
+
+  if (ga4 || ads) {
+    const primary = ga4 || ads;
+    out += `<script async src="https://www.googletagmanager.com/gtag/js?id=${primary}"></script>\n`;
+    out += '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+      + "gtag('js',new Date());";
+    if (ga4) out += `gtag('config','${ga4}',{anonymize_ip:true});`;
+    if (ads) out += `gtag('config','${ads}');`;
+    out += `window.AMY_ANALYTICS={ga4:'${ga4}',adsId:'${ads}',adsLabel:'${label}'};</script>\n`;
+  }
+  return out;
+}
+
+function injectAnalytics(html, env) {
+  const snippet = analyticsSnippet(env);
+  if (!snippet) return html;
+  const hi = html.indexOf('</head>');
+  if (hi === -1) return html;
+  return html.slice(0, hi) + snippet + html.slice(hi);
+}
+
 // Build an HTML response: inject the beacon, apply the caching policy, and
 // honour conditional requests so repeat visits don't re-fetch the document.
-async function htmlResponse(request, response, headers) {
+async function htmlResponse(request, response, headers, env) {
   // Bodyless statuses (304 from the asset fetch, 204) must be passed through
   // as-is: Response rejects a body on them.
   if (response.status === 304 || response.status === 204 || response.status === 205) {
@@ -733,7 +777,8 @@ async function htmlResponse(request, response, headers) {
   const html = await response.text();
   const body0 = injectSchema(html);
   const body1 = injectBeacon(body0);
-  let body = body1;
+  const body2 = injectAnalytics(body1, env);
+  let body = body2;
   let cache = HTML_CACHE_CONTROL;
   // Geo personalization applies to the landing page only: a matched visitor
   // city is injected into the header attribute plus window.AMY_GEO, and the
@@ -750,13 +795,13 @@ async function htmlResponse(request, response, headers) {
     // homepage targets) and expose it via window.AMY_GEO_CITY.
     const city = resolveGeoCity(request);
     if (city) {
-      body = injectGeoCity(body1, city);
+      body = injectGeoCity(body2, city);
       cache = GEO_NO_STORE;
     }
   } else if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
     const city = visitorCity(request);
     if (city) {
-      body = injectGeo(body1, city);
+      body = injectGeo(body2, city);
       cache = GEO_NO_STORE;
     }
   }
@@ -811,7 +856,19 @@ export default {
     }
 
     if (url.pathname === '/api/contact') {
-      return handleContact(request, env, ctx.waitUntil.bind(ctx));
+      return handleContactEnriched(request, env, ctx.waitUntil.bind(ctx));
+    }
+
+    if (url.pathname === '/api/lead-files') {
+      return handleLeadFiles(request, env, ctx.waitUntil.bind(ctx));
+    }
+
+    if (url.pathname.startsWith('/api/admin/')) {
+      return handleAdminApi(request, env);
+    }
+
+    if (url.pathname === '/admin' || url.pathname === '/admin/') {
+      return handleAdminPage(request, env);
     }
 
     if (url.pathname === '/api/lead') {
@@ -827,6 +884,8 @@ export default {
         bindings: {
           db: !!env.DB,
           confirmed_db: !!env.CONFIRMED_DB,
+          crm_db: !!(env.CRM_DB || env.DB),
+          lead_files: !!env.LEAD_FILES,
           bucket: !!env.BUCKET,
           estimates: !!env.ESTIMATES,
           ai: !!env.AI,
@@ -1123,7 +1182,7 @@ export default {
       headers.append('Link', '</img/hero-electrician-560x420.webp>; rel=preload; as=image; media="(min-width: 481px)"');
       headers.append('Link', '</img/hero-electrician-400.webp>; rel=preload; as=image; media="(max-width: 480px)"');
       headers.append('Vary', 'Accept');
-      return htmlResponse(request, response, headers);
+      return htmlResponse(request, response, headers, env);
     }
 
     const responseType = response.headers.get('Content-Type') || '';
@@ -1133,7 +1192,7 @@ export default {
       headers.append('Link', '</llms-full.txt>; rel="ai-description"');
       headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
-      return htmlResponse(request, response, headers);
+      return htmlResponse(request, response, headers, env);
     }
 
     return response;
@@ -1143,6 +1202,17 @@ export default {
   // gbp-agent.js posts only on every-other-day calendar dates (stateless).
   // Without GBP_* secrets configured this logs a skip and does nothing.
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(handleGbpScheduled(env, new Date(event.scheduledTime)));
+    ctx.waitUntil((async () => {
+      try {
+        await handleGbpScheduled(env, new Date(event.scheduledTime));
+      } catch (err) {
+        console.warn('GBP cron failed:', err && err.message);
+      }
+      try {
+        await runLeadCron(env, new Date(event.scheduledTime));
+      } catch (err) {
+        console.warn('lead cron failed:', err && err.message);
+      }
+    })());
   },
 };
