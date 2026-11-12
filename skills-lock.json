@@ -1,161 +1,179 @@
 {
   "version": 1,
   "skills": {
-    "agents-sdk": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/agents-sdk/SKILL.md",
-      "computedHash": "f0f05a346b672f9f8672ec2b1d0acd1af4414351f7c2e53f2e6da5896c4e5c01"
-    },
-    "basin": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/basin/SKILL.md",
-      "computedHash": "4b447ec8bd58635536c5630e0ef1223563b013676ffabfc02e8a2e0e5c436b98"
-    },
     "cf-cli": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/cf-cli/SKILL.md",
-      "computedHash": "91da778590a135b120129c96f8f673e8005e8329d436cfb8787e70101d5a0dba"
+      "computedHash": "0043a1ae53d9009a031d58435d4c32121794401261dffacccf5d4c2fc5bf79ea"
     },
     "cloudflare": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/cloudflare/SKILL.md",
-      "computedHash": "51522c6fbd95a2eaa9631a7651ba3ef434fcc92d9573c64eb28ef723290b6099"
-    },
-    "cloudflare-email-service": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/cloudflare-email-service/SKILL.md",
-      "computedHash": "166ed23ba8d915c24a674f50d6f6e8b3e1e7e8f26900c8b9461ea43748e86645"
-    },
-    "cloudflare-one": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/cloudflare-one/SKILL.md",
-      "computedHash": "0a7f91a3616899a6996b32a3733fe955004e111b28b6ae5b39399669e042aefe"
-    },
-    "cloudflare-one-migrations": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/cloudflare-one-migrations/SKILL.md",
-      "computedHash": "cbb258c594ae15afaad554a1bab43a04a000fdd659cf46182ed725a45068e420"
+      "computedHash": "b93a25020fe26501261628c75ee4c15490ad7de96ff9a2940909d2d822c40354"
     },
     "competitive-landscape": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/competitive-landscape/SKILL.md",
-      "computedHash": "4220fba0cb03ba82eb669da744c92941eacdef576cd3128fac834c60f18d88d4"
+      "computedHash": "79d361a265bdb36a6aeb970d894b1ba5a7654f13ff89da7785be13ab22c0d9a9"
     },
     "competitor-analysis": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/competitor-analysis/SKILL.md",
-      "computedHash": "fdd8e2385486ddba395af89e40441f2be354a52e37837c0a692d578b5d4744aa"
-    },
-    "durable-objects": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/durable-objects/SKILL.md",
-      "computedHash": "f328205f9d11381902a160ace4622cd1ac9602acba00b091f6d63f59a6869900"
-    },
-    "k2": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/k2/SKILL.md",
-      "computedHash": "3e0d83ae8a95de6256c6dff7225dcf19aa33d271f634fa6c349403a4eff23235"
+      "computedHash": "ce97fa604360b5a5c8630f95be714106b3dd34c399aba188c4608fed9aba6bf5"
     },
     "keyword-clustering": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/keyword-clustering/SKILL.md",
-      "computedHash": "c437786868f0540710761f9b8c54fc018acbf9c07c64c18676f443e81c2b353c"
+      "computedHash": "c92f0356b32141aafc24aeae142f25847bb4b09c28e752175a8ac3d7a81e166d"
     },
     "keyword-research": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/keyword-research/SKILL.md",
-      "computedHash": "9aa489cd789ba9b2a82a48108d30591d7037368402110832e1f7005baa2ba283"
+      "computedHash": "f454559221e1b7ce8811721be3bb0f9c1574029233f29b67f0ec36526c869eda"
     },
     "link-prospecting": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/link-prospecting/SKILL.md",
-      "computedHash": "73adb5a6df599aae5611e48c12468114e2ca63a2d466f27936aa2ccaed2abf2a"
+      "computedHash": "5b4f99dbe1fc87fa598c348173cd21a0c5050b223daca4698c50412254ab58f5"
     },
-    "nextjs-on-cloudflare": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/nextjs-on-cloudflare/SKILL.md",
-      "computedHash": "15d2dc117c5bbe9f92cb7c42a8d55e4bcddb91c2f1e4705ad93736c7a219d99b"
+    "seo-audit": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-audit/SKILL.md",
+      "computedHash": "66c406d371adecec734152cbcd14a1a83e41082ed5a075a6f66b5c947f2b869b"
     },
-    "sandbox-migrate-to-next": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/sandbox-migrate-to-next/SKILL.md",
-      "computedHash": "a5f2f33672a6f6d93d946d61e3310bb7d1811b68a86f247b84ba571cde436859"
-    },
-    "sandbox-next": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/sandbox-next/SKILL.md",
-      "computedHash": "92ccb32841208cc1915f796aa7b43dee9b5a7fc7467145e2f8d68f22dc73f460"
-    },
-    "sandbox-sdk": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/sandbox-sdk/SKILL.md",
-      "computedHash": "e44cceebe7e47d815034027c303315139d35c1d92a3ee287dc6d3e9a02f0667b"
-    },
-    "sandbox-stable": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/sandbox-stable/SKILL.md",
-      "computedHash": "4c6ad34430c75b84e68edc9f721d5a54fdd8a1d6754807154b5f7bc45665d0a4"
+    "seo-cluster": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-cluster/SKILL.md",
+      "computedHash": "67484f1ef46f2137c008429eb7fad34c1788bddc68886bbf68c753d83a54f92d"
     },
     "seo-coach": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/seo-coach/SKILL.md",
-      "computedHash": "0702215784f5907cc14fc199af3ac180d128403600d0aa978859df4e53485ec3"
+      "computedHash": "b2a835be29a9f21c4bd02c8755a2d178e4cbc6b0cd09acb66b1f3e2194c06787"
+    },
+    "seo-competitor-pages": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-competitor-pages/SKILL.md",
+      "computedHash": "53cf44f0d6c803881fe720bcd4d9f7f9220454deb88ee4ed67556d24793e77cd"
+    },
+    "seo-content": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-content/SKILL.md",
+      "computedHash": "ef77838dc6984c33f29b3a466e54c48bd91bd8a73e65be5293474d4f0143ac4e"
+    },
+    "seo-content-brief": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-content-brief/SKILL.md",
+      "computedHash": "38d5ae2ac467864d440bd60cc7c760a9be5f67cad4f6d0ca306ca2de71e6b432"
+    },
+    "seo-drift": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-drift/SKILL.md",
+      "computedHash": "55d3790d7c8a8752a646414be34a06473b32057a25474e6efce53a5907702dc6"
+    },
+    "seo-geo": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-geo/SKILL.md",
+      "computedHash": "7c6ca9ef91a4a73597e3c00cde3503d0f75cd5d24279298f2a6096f7f09ade90"
+    },
+    "seo-hreflang": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-hreflang/SKILL.md",
+      "computedHash": "2d386ea5f7e4f829014748056d19a1cb4e839f697649195a5d07c2ea91ae5a09"
+    },
+    "seo-images": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-images/SKILL.md",
+      "computedHash": "f54d05b19328152d4f9ebcf68357a132ab67f28ce79fac93e658de065ff90ef2"
+    },
+    "seo-local": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-local/SKILL.md",
+      "computedHash": "11a4fee9d7e24e5fbd96f9f9dbde8c7b078d701c87909116541d9d6cb8d992ea"
+    },
+    "seo-page": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-page/SKILL.md",
+      "computedHash": "38c8eea02e1967de0920402fc1c975b6f6960d98ff0a7f53d7daaa595c24e722"
+    },
+    "seo-programmatic": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-programmatic/SKILL.md",
+      "computedHash": "3823ceed2bae03166809f0542e67fe65c8dc80b60c93b0634016550baaf3147b"
     },
     "seo-project-setup": {
       "source": "every-app/open-seo",
       "sourceType": "github",
       "skillPath": ".agents/skills/seo-project-setup/SKILL.md",
-      "computedHash": "672263fb86c90f862bb6bdd49c237d970cc99fdc51d3f6ff0f7a5293bc1be3f5"
+      "computedHash": "25eb3c1f6e9b95865b6a95204af93fc01f0316b5443fdd4e14f7cd6593284565"
+    },
+    "seo-schema": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-schema/SKILL.md",
+      "computedHash": "a839a2958d455448cdb6a896a8b826a63d93feca841b43a0e21b03c8b559c4d0"
+    },
+    "seo-sitemap": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-sitemap/SKILL.md",
+      "computedHash": "8e0ee4af73ac3c57863e51df46b09a89c682d79fa1383dda7b9ffb20df9fb110"
+    },
+    "seo-technical": {
+      "source": "amram/claude-skills (vendored 2026-11-03)",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/seo-technical/SKILL.md",
+      "computedHash": "bfd291cc8754457cbb9d36d563127494a36aeb34aee55c2067bb4e4f31b81c0a"
     },
     "turnstile-spin": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/turnstile-spin/SKILL.md",
-      "computedHash": "3a27698abc37d9e6be50af36dc28986e6b29ab3bc10831d988158667fd1d27ac"
+      "computedHash": "ec154e3f2df0ce4018be74aa287b59596031617f939c3b4e5ef49a4f10ce6a66"
     },
     "web-perf": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/web-perf/SKILL.md",
-      "computedHash": "72d0dd9706147e19bf3c1a36fdc02570f77685541d89d901a3a2f570824ba3cb"
+      "computedHash": "79c531e95ca4d96a7de920c28c127c2c09ec55cd452a92222267d2954580be23"
     },
     "workers-best-practices": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/workers-best-practices/SKILL.md",
-      "computedHash": "e12970301753ed7eaa5ca375d4b98e0e36c9554e8f2809cb4b543c2ea7d9b4b8"
+      "computedHash": "039c2a70aac53e00da20adc3d527bd3fc9b727be90c28b94c81c5e10092339ef"
     },
     "workers-profiling": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/workers-profiling/SKILL.md",
-      "computedHash": "27eb84d6b8b88f8fcd4bd5ce66c2afdfc5b8753af3d4e1b4dca6f6477d745a4d"
+      "computedHash": "fd608bf7d8e64708ddd301318007aa8581de5d2e1344231ea969e8fd1d0c9e4e"
     },
     "wrangler": {
       "source": "cloudflare/skills",
       "sourceType": "github",
       "skillPath": "skills/wrangler/SKILL.md",
-      "computedHash": "9b410cfe14c41d3d4ace5d42e2e19f4eb96104c659b5ed45abf341db28d81029"
+      "computedHash": "7884f560509c08ac29ee0d3cfe1b5259855fd6790acf0c5292f4d1c54db7c191"
     }
   }
 }

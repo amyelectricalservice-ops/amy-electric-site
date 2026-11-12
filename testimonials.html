@@ -93,10 +93,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/reviews",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/reviews",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -198,8 +198,13 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
@@ -279,31 +284,43 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav></div></header>
 <main id="main-content">
 <div class="page-hero"><div class="wrap">
@@ -478,8 +495,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -508,7 +524,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>

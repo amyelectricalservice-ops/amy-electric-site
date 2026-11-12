@@ -13,10 +13,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/city-inglewood",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/city-inglewood",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -28,8 +28,9 @@
     "addressCountry": "US"
   },
   "geo": {
-    "latitude": 33.9617,
-    "longitude": -118.3531
+    "@type": "GeoCoordinates",
+    "latitude": 34.22281,
+    "longitude": -118.58241
   },
   "foundingDate": "2012",
   "founder": {
@@ -77,7 +78,15 @@
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
       "opens": "00:00",
       "closes": "23:59",
       "description": "24/7 emergency service dispatch"
@@ -108,15 +117,16 @@
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "City",
-    "name": "Inglewood",
-    "containedInPlace": {
-      "@type": "AdministrativeArea",
-      "name": "Los Angeles County, CA"
-    }
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
-  </script>
+</script>
 
 <script type="application/ld+json">
 {
@@ -190,12 +200,55 @@
   ]
 }
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://amyelectric.com/"},{"@type":"ListItem","position":2,"name":"Service Areas","item":"https://amyelectric.com/city-los-angeles"},{"@type":"ListItem","position":3,"name":"Inglewood","item":"https://amyelectric.com/city-inglewood"}]}</script></head><body><a href="#main-content" class="skip-link">Skip to main content</a>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://amyelectric.com/"},{"@type":"ListItem","position":2,"name":"Service Areas","item":"https://amyelectric.com/city-los-angeles"},{"@type":"ListItem","position":3,"name":"Inglewood","item":"https://amyelectric.com/city-inglewood"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Electrician in Inglewood, CA | AMY Electric", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
+</head><body><a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar"><span>📍 Greater Los Angeles · C-10 #981578 · EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav><a href="index">Home</a><a href="ev-charger-installation">EV Chargers</a><a href="panel-upgrade">Panel Upgrades</a><a href="electrical-repair">Repairs</a><a href="commercial-electrical">Commercial</a><a href="lighting-installation">Lighting</a><a href="whole-home-rewiring">Rewiring</a><a href="city-los-angeles">Service Areas</a><a href="emergency-electrician-los-angeles">Emergency</a><a href="reviews">Reviews</a>      <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a></nav></div></header>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
+      <a href="ev-charger-installation">EV Chargers</a>
+      <a href="panel-upgrade">Panel Upgrades</a>
+      <a href="electrical-repair">Repairs</a>
+      <a href="service-areas">Service Areas</a>
+      <a href="reviews">Reviews</a>
+      <a href="blog/">Blog</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
+    </nav></div></header>
 <main id="main-content"><section class="page-hero"><div class="wrap"><div class="breadcrumb"><a href="index">Home</a> › <a href="city-los-angeles">Service Areas</a> › Inglewood</div><h1>Electrician in Inglewood, CA</h1><p>Inglewood's changing neighborhoods include older residences, renovations, and busy commercial corridors. AMY Electric provides organized electrical planning for repairs, upgrades, lighting, and future-ready capacity.</p><div class="hero-ctas"><a class="btn btn-gold" href="tel:18183025614">Call (818) 302-5614</a><a class="btn btn-outline" href="index#estimate">Request an Estimate</a></div></div></section>
-<section class="section-pad"><div class="wrap"><div class="section-label">Local electrical services</div><h2>Electrical Help for Inglewood Homes and Businesses</h2><p>Inglewood's changing neighborhoods include older residences, renovations, and busy commercial corridors. AMY Electric provides organized electrical planning for repairs, upgrades, lighting, and future-ready capacity. A site visit lets us separate an urgent safety issue from a capacity concern and build a scope that fits the property.</p><div class="card-grid"><a class="card" href="electrical-repair"><h3>Electrical Repairs</h3><p>Trace outages, hot devices, nuisance trips, damaged wiring, and other problems safely.</p></a><a class="card" href="panel-upgrade-inglewood"><h3>Panel Upgrades</h3><p>Review service capacity for remodels, heat pumps, appliances, and EV charging.</p></a><a class="card" href="ev-charger-installation-inglewood"><h3>EV Charger Installation</h3><p>Plan a dedicated, properly protected charging circuit for your parking setup.</p></a><a class="card" href="whole-home-rewiring"><h3>Rewiring &amp; Safety</h3><p>Assess aging conductors, grounding, outlets, and protective devices.</p></a></div></div></section>
+<section class="section-pad"><div class="wrap"><div class="section-label">Local electrical services</div><h2>Electrical Help for Inglewood Homes and Businesses</h2><p>Inglewood's changing neighborhoods include older residences, renovations, and busy commercial corridors. AMY Electric provides organized electrical planning for repairs, upgrades, lighting, and future-ready capacity. A site visit lets us separate an urgent safety issue from a capacity concern and build a scope that fits the property.</p><div class="card-grid"><a class="card" href="electrical-repair"><h3>Electrical Repairs</h3><p>Trace outages, hot devices, nuisance trips, damaged wiring, and other problems safely.</p></a><a class="card" href="panel-upgrade-inglewood"><h3>Panel Upgrades</h3><p>Review service capacity for remodels, heat pumps, appliances, and EV charging.</p></a><a class="card" href="ev-charger-installation-inglewood"><h3>EV Charger Installation</h3><p>Plan a dedicated, properly protected charging circuit for your parking setup.</p></a><a class="card" href="whole-home-rewiring"><h3>Rewiring &amp; Safety</h3><p>Assess aging conductors, grounding, outlets, and protective devices.</p></a></div>    <a href="gallery" class="card no-underline">
+      <div class="card-icon">📸</div>
+      <h3>Project Gallery</h3>
+      <p>See completed electrical work in Inglewood — browse our gallery of panel upgrades, EV chargers, and rewiring projects.</p>
+      <span class="card-link">View Gallery</span>
+    </a>
+</div></section>
 <section class="section-navy"><div class="wrap"><div class="section-label">Neighborhood-aware planning</div><h2>Electrical Work That Fits Inglewood</h2><p>Inglewood features 1940s-1970s homes, some newer developments, and commercial areas. The city has a revitalizing downtown and major entertainment venues. Key thoroughfares include Florence Avenue, Inglewood Avenue, Prairie Avenue, Centinela Avenue, Manchester Boulevard. SoFi Stadium, the YouTube Theater, the Kia Forum, and the nearby LA Rams and Chargers facilities. The city is experiencing rapid development. Many Inglewood homes have 100A panels that need upgrading. Major developments require modern electrical infrastructure.</p><ul><li>Clear scope and written estimate before work</li><li>Code-conscious installation and appropriate permits</li><li>Options for immediate repair and future expansion</li><li>Respectful work areas and straightforward communication</li></ul></div></section>
 <section class="section-pad"><div class="wrap"><div class="section-label">Frequently asked questions</div><h2>Inglewood Electrical FAQ</h2><div class="faq-list"><details class="faq-item"><summary class="faq-q">What electrical services do you offer in Inglewood?</summary><div class="faq-a">AMY Electric provides electrical repairs, panel upgrades, EV charger installation, lighting, dedicated circuits, rewiring assessments, and commercial electrical work in Inglewood.</div></details><details class="faq-item"><summary class="faq-q">Can you install an EV charger in Inglewood?</summary><div class="faq-a">Yes. We evaluate the panel, route, parking location, and charger requirements before installing a permitted Level 2 EV charging circuit in Inglewood.</div></details><details class="faq-item"><summary class="faq-q">Do you provide panel upgrades in Inglewood?</summary><div class="faq-a">Yes. We inspect the existing service, calculate expected loads, and explain repair, subpanel, or main-panel options for Inglewood properties.</div></details><details class="faq-item"><summary class="faq-q">Are you licensed to work in Inglewood?</summary><div class="faq-a">AMY Electric is a California C-10 licensed electrical contractor (#981578) and EVITP-certified (#4051604).</div></details><details class="faq-item"><summary class="faq-q">How do I request an estimate?</summary><div class="faq-a">Call (818) 302-5614 or use the estimate form to share your address, property type, and project goals.</div></details>
     <details class="faq-item"><summary class="faq-q">Do you handle Inglewood's commercial electrical? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — we provide commercial electrical services to Inglewood businesses, including tenant improvements, panel upgrades, EV fleet charging, and lighting retrofits.</div></details>

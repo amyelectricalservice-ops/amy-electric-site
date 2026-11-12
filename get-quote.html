@@ -10,7 +10,10 @@
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "priceRange": "$$",
-  "hasCredential": ["C-10 #981578", "EVITP #4051604"],
+  "hasCredential": [
+    "C-10 #981578",
+    "EVITP #4051604"
+  ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
@@ -23,26 +26,31 @@
     "opens": "07:00",
     "closes": "17:00"
   },
-  "areaServed": [
-    {"@type": "City", "name": "Los Angeles"},
-    {"@type": "City", "name": "Burbank"},
-    {"@type": "City", "name": "Sherman Oaks"},
-    {"@type": "City", "name": "Glendale"},
-    {"@type": "City", "name": "Pasadena"},
-    {"@type": "City", "name": "Studio City"},
-    {"@type": "City", "name": "North Hollywood"},
-    {"@type": "City", "name": "Santa Monica"},
-    {"@type": "City", "name": "Encino"},
-    {"@type": "City", "name": "Beverly Hills"},
-    {"@type": "City", "name": "West LA"},
-    {"@type": "City", "name": "Hollywood"},
-    {"@type": "City", "name": "Van Nuys"},
-    {"@type": "City", "name": "Woodland Hills"},
-    {"@type": "City", "name": "Calabasas"},
-    {"@type": "City", "name": "Culver City"}
-  ],
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
+  },
   "currenciesAccepted": "USD",
-  "creditCardAccepted": "Visa, Mastercard, American Express"
+  "creditCardAccepted": "Visa, Mastercard, American Express",
+  "@id": "https://amyelectric.com/#electrician",
+  "url": "https://amyelectric.com",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.22281,
+    "longitude": -118.58241
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "87",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
 }
 </script>
 
@@ -140,25 +148,95 @@
     "@type": "Electrician",
     "name": "AMY Electric",
     "telephone": "+1-818-302-5614",
-    "areaServed": "https://schema.org/City/Los Angeles"
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
+    },
+    "@id": "https://amyelectric.com/#electrician",
+    "url": "https://amyelectric.com",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
   },
   "areaServed": [
-    {"@type": "City", "name": "Los Angeles"},
-    {"@type": "City", "name": "Burbank"},
-    {"@type": "City", "name": "Sherman Oaks"},
-    {"@type": "City", "name": "Glendale"},
-    {"@type": "City", "name": "Pasadena"},
-    {"@type": "City", "name": "Studio City"},
-    {"@type": "City", "name": "North Hollywood"},
-    {"@type": "City", "name": "Santa Monica"},
-    {"@type": "City", "name": "Encino"},
-    {"@type": "City", "name": "Beverly Hills"},
-    {"@type": "City", "name": "West LA"},
-    {"@type": "City", "name": "Hollywood"},
-    {"@type": "City", "name": "Van Nuys"},
-    {"@type": "City", "name": "Woodland Hills"},
-    {"@type": "City", "name": "Calabasas"},
-    {"@type": "City", "name": "Culver City"}
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West LA"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    }
   ],
   "offers": {
     "@type": "Offer",
@@ -322,6 +400,7 @@
 </style>
 
 <link rel="stylesheet" href="css/lead-form.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Project Estimate &amp; Free Quote — AMY Electric", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
 </head>
 <body>
 <div class="topbar">
@@ -341,13 +420,43 @@
         <span class="logo-sub">Los Angeles Electricians</span>
       </div>
     </div>
-    <nav>
-      <a href="index">Home</a>
-      <a href="/services">Services</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
+      <a href="ev-charger-installation">EV Chargers</a>
+      <a href="panel-upgrade">Panel Upgrades</a>
+      <a href="electrical-repair">Repairs</a>
       <a href="service-areas">Service Areas</a>
-      <a href="index#estimate">Contact</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="get-quote" class="nav-cta">Get a Quote</a>
+      <a href="reviews">Reviews</a>
+      <a href="blog/">Blog</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav>
   </div>
 </header>

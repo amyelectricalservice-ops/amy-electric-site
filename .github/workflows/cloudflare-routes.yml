@@ -39,9 +39,10 @@ on:
       - 'scripts/audit-cloudflare-routes.py'
       - '.github/workflows/cloudflare-routes.yml'
   schedule:
-    # Weekly drift check: catches changes made in the dashboard that never
-    # reached git. Monday 14:00 UTC.
-    - cron: '0 14 * * 1'
+    # Daily drift check: catches changes made in the dashboard that never
+    # reached git. 14:00 UTC. (Route ownership is the single-Worker invariant;
+    # a dashboard-created route used to shadow /sitemap.xml for 3 days.)
+    - cron: '0 14 * * *'
   workflow_dispatch:
 
 concurrency:

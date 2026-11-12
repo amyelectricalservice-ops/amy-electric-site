@@ -11,14 +11,20 @@ export default defineConfig({
 		workersDev: true,
 		observability: {
 			enabled: true,
+			headSamplingRate: 1,
+			redactQueryString: true,
 			logs: {
 				headSamplingRate: 1,
+			},
+			traces: {
+				enabled: true,
+				headSamplingRate: 0.1,
 			},
 		},
 		assets: {
 			htmlHandling: "auto-trailing-slash",
 			notFoundHandling: "404-page",
-			runWorkerFirst: true,
+			runWorkerFirst: ["/*", "!/css/*", "!/js/*", "!/fonts/*"],
 		},
 		// The zone route (`amyelectric.com/*`) is declared in wrangler.jsonc, the
 		// live config. This mirror is validation-only and does not express zone

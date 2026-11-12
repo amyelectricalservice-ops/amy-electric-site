@@ -96,10 +96,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/smart-home-electrical",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/smart-home-electrical",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -201,14 +201,138 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Smart Home Electrical", "name": "Smart Home Electrical Los Angeles", "description": "Smart home electrical upgrades including smart switches, dimmers, outlets, lighting controls, and panels.","provider": {"@type": "LocalBusiness", "name": "AMY Electric", "telephone": "+1-818-302-5614", "url": "https://amyelectric.com"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "City", "name": "Sherman Oaks"}, {"@type": "City", "name": "Burbank"}, {"@type": "City", "name": "Glendale"}, {"@type": "City", "name": "Pasadena"}, {"@type": "City", "name": "Studio City"}, {"@type": "City", "name": "North Hollywood"}, {"@type": "City", "name": "Hollywood"}, {"@type": "City", "name": "Beverly Hills"}, {"@type": "City", "name": "West Los Angeles"}, {"@type": "City", "name": "Encino"}, {"@type": "City", "name": "Santa Monica"}, {"@type": "City", "name": "Woodland Hills"}, {"@type": "City", "name": "Van Nuys"}, {"@type": "City", "name": "Calabasas"}, {"@type": "City", "name": "Culver City"}, {"@type": "AdministrativeArea", "name": "San Fernando Valley"}], "offers": {"@type": "Offer", "priceSpecification": {"@type": "PriceSpecification", "priceCurrency": "USD", "price": "$250 - $1,500", "description": "Smart home electrical device installation and setup"}}, "sameAs": ["https://www.yelp.com/biz/amy-electric-los-angeles", "https://g.page/r/CVdK9ZAvNBrZEAI/review", "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Smart Home Electrical",
+  "name": "Smart Home Electrical Los Angeles",
+  "description": "Smart home electrical upgrades including smart switches, dimmers, outlets, lighting controls, and panels.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AMY Electric",
+    "telephone": "+1-818-302-5614",
+    "url": "https://amyelectric.com",
+    "@id": "https://amyelectric.com/#electrician",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "price": "$250 - $1,500",
+      "description": "Smart home electrical device installation and setup"
+    }
+  },
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
-  ]}</script>
+  ]
+}
+</script>
 
 <script type="application/ld+json">
 {
@@ -222,75 +346,49 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How Smart Home Electrical Installation Works in Los Angeles",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Consultation & Needs Assessment",
-      "text": "We discuss your smart home goals, evaluate your existing wiring, and identify which devices need neutral wires or special considerations."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Neutral Wire Availability Check",
-      "text": "Many smart switches require a neutral wire in the junction box. We check your wiring and run neutrals if needed (may require accessing attic or crawlspace)."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Permit & Planning",
-      "text": "Most smart device installations don't require permits. New circuits, panel work, or low-voltage wiring do — we handle all permitting."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Power Off & Safe Work",
-      "text": "We shut off power at the panel, verify it's dead, and work using insulated tools and PPE."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Wiring & Installation",
-      "text": "Run new wiring, install devices with proper connections, and configure for app/voice control. We label everything clearly."
-    }
-  ]
-}
-</script>
+
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav></div></header>
 <main id="main-content">
 <div class="page-hero"><div class="wrap">
@@ -373,20 +471,20 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="section-label">Related Services</div>
   <h2>Also Consider</h2>
   <div class="related-grid">
-    <a href="lighting-installation" class="related-card"><div class="rc-icon">💡</div><strong>Lighting Installation</span></div></a>
-    <a href="outlet-switch-installation" class="related-card"><div class="rc-icon">🔌</div><strong>Outlet &amp; Switch Installation</span></div></a>
-    <a href="dedicated-circuits" class="related-card"><div class="rc-icon">🔌</div><strong>Dedicated Circuits</span></div></a>
+    <a href="lighting-installation" class="related-card"><div class="rc-icon">💡</div><strong>Lighting Installation</strong></div></a>
+    <a href="outlet-switch-installation" class="related-card"><div class="rc-icon">🔌</div><strong>Outlet &amp; Switch Installation</strong></div></a>
+    <a href="dedicated-circuits" class="related-card"><div class="rc-icon">🔌</div><strong>Dedicated Circuits</strong></div></a>
   </div>
 </div></section>
 <section class="section-navy"><div class="wrap text-center">
   <div class="section-label">FAQ</div><h2>Smart Home Electrical FAQ</h2>
   <div class="faq-list text-left">
-    <details class="faq-item"><summary class="faq-q">Do smart switches need a neutral wire? <span class="faq-chevron">▾</span></summary><div class="faq-a">Most smart switches require a neutral wire at the switch box to power their wireless communication modules — Wi-Fi, Bluetooth, or Zigbee/Thread radios — when the light is off. Standard mechanical switches simply open or close the circuit to control the light, so they do not need a neutral wire. Smart switches need constant power for their electronics even when the light is off, and the neutral wire provides the return path for this small but continuous current. Some smart switch brands like Lutron Caseta offer models that do not require a neutral wire by using a different engineering approach (a small bypass capacitor or power-siphoning design), but these are the exception rather than the rule. If your Los Angeles home was built before the 1980s, your switch boxes likely do not have neutral wires, and installing most smart switches will require running new wiring. We can evaluate your existing wiring during a free on-site consultation and recommend compatible smart switches.</div></div>
-    <details class="faq-item"><summary class="faq-q">Can I install smart home devices myself? <span class="faq-chevron">▾</span></summary><div class="faq-a">Many smart home devices — such as smart plugs, smart bulbs, hub-based systems, and battery-powered sensors — are designed for simple DIY installation and can be set up in minutes without any electrical work. However, installing smart switches, smart dimmers, hardwired smart thermostats, smart doorbells, smart locks, or motorized blinds that replace existing wired components requires working with electrical wiring and may involve the same safety considerations as any electrical installation. The most common complication is the neutral wire requirement mentioned above — you will need to open the switch box, identify the wires correctly, and potentially work in a confined box with limited space. Smart switches are also physically larger than standard switches and may not fit in older or smaller switch boxes. If you are comfortable with basic electrical work and have neutral wires at your switch locations, you may be able to install some smart devices. For anything complex, professional installation is recommended.</div></div>
-    <details class="faq-item"><summary class="faq-q">How do I know if my home has neutral wires at switch locations? <span class="faq-chevron">▾</span></summary><div class="faq-a">The only reliable way to determine whether your switch boxes have neutral wires is to turn off the power, remove a switch plate, and visually inspect the wiring inside the box. Standard switch wiring typically includes a hot wire (usually black, bringing power to the switch), a load wire (usually black or red, going to the light fixture), and a ground wire (bare copper or green). A neutral wire is typically white and will be capped off with a wire nut or connected to other neutral wires in the box. In homes built before the 1980s, switch boxes often contain only the hot and load wires with no neutral present because the neutral was run directly to the light fixture instead. Homes built after the mid-1980s are more likely to have neutrals at switch boxes because codes began requiring them for future smart home compatibility. If you open a switch box and see only three wires (two black or one black and one red, plus a ground), you likely do not have a neutral available.</div></div>
-    <details class="faq-item"><summary class="faq-q">Do smart home devices need to be on a dedicated circuit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Most individual smart home devices do not require dedicated circuits because their power draw is minimal — a smart switch draws only about 1 to 2 watts of standby power, and a smart plug draws similarly negligible amounts. However, whole-home automation systems, centrally wired smart home hubs, motorized blinds with multiple motors, multi-room audio systems, and security systems with multiple sensors and cameras may benefit from dedicated circuits to isolate them from other loads and prevent nuisance tripping. In practice, smart switches and smart plugs can be installed on the same general-purpose lighting and receptacle circuits that already exist in your home, as long as the total load on those circuits does not exceed 80% of the breaker rating (1,440 watts for a 15-amp circuit or 1,920 watts for a 20-amp circuit). If you are adding multiple high-power smart devices like automated blinds or whole-home audio amplifiers, we can evaluate whether a dedicated circuit is needed during your consultation.</div></div>
-    <details class="faq-item"><summary class="faq-q">What happens if I lose internet or power? <span class="faq-chevron">▾</span></summary><div class="faq-a">This is one of the most common concerns about smart home devices, and the answer depends on the type of device. Smart switches and smart dimmers — including Lutron Caseta, Leviton Decora Smart, and Kasa — are designed to work as standard mechanical switches even when Wi-Fi or internet is unavailable. The physical paddle switch continues to control the light normally, and any programmed schedules or automations simply will not run until connectivity is restored. Smart plugs work the same way — outlets remain powered, and any connected devices can be controlled manually. Voice control through Amazon Alexa or Google Assistant requires an active internet connection. Smart thermostats typically operate on their programmed schedule without internet but lose remote access. For power outages, battery-powered smart devices like doorbells and sensors continue to function normally, while hardwired devices lose power with the rest of your home and resume normal operation when power is restored.</div></div>
-    <details class="faq-item"><summary class="faq-q">How long does smart home electrical installation take? <span class="faq-chevron">▾</span></summary><div class="faq-a">The installation time for smart home electrical work depends entirely on the scope of the project. Installing a few smart switches or dimmers typically takes 30 to 60 minutes per device, including wiring, fitting the larger smart switch into the box, and configuring the app. A comprehensive smart home installation involving 10 to 20 smart switches, a smart thermostat, smart doorbell, motorized blinds, and whole-home Wi-Fi setup typically takes 1 to 3 days depending on the complexity of the wiring and any neutral wire challenges. Full Lutron RadioRA 3 or similar professional-grade lighting control system installations with programming and scene configuration take 2 to 5 days for a typical Los Angeles home. We provide a detailed time estimate during your free on-site consultation based on the specific devices you want to install and your home's existing wiring conditions.</div></div>
+    <details class="faq-item"><summary class="faq-q">Do smart switches need a neutral wire? <span class="faq-chevron">▾</span></summary><div class="faq-a">Most smart switches require a neutral wire at the switch box to power their wireless communication modules — Wi-Fi, Bluetooth, or Zigbee/Thread radios — when the light is off. Standard mechanical switches simply open or close the circuit to control the light, so they do not need a neutral wire. Smart switches need constant power for their electronics even when the light is off, and the neutral wire provides the return path for this small but continuous current. Some smart switch brands like Lutron Caseta offer models that do not require a neutral wire by using a different engineering approach (a small bypass capacitor or power-siphoning design), but these are the exception rather than the rule. If your Los Angeles home was built before the 1980s, your switch boxes likely do not have neutral wires, and installing most smart switches will require running new wiring. We can evaluate your existing wiring during a free on-site consultation and recommend compatible smart switches.</div></details>
+    <details class="faq-item"><summary class="faq-q">Can I install smart home devices myself? <span class="faq-chevron">▾</span></summary><div class="faq-a">Many smart home devices — such as smart plugs, smart bulbs, hub-based systems, and battery-powered sensors — are designed for simple DIY installation and can be set up in minutes without any electrical work. However, installing smart switches, smart dimmers, hardwired smart thermostats, smart doorbells, smart locks, or motorized blinds that replace existing wired components requires working with electrical wiring and may involve the same safety considerations as any electrical installation. The most common complication is the neutral wire requirement mentioned above — you will need to open the switch box, identify the wires correctly, and potentially work in a confined box with limited space. Smart switches are also physically larger than standard switches and may not fit in older or smaller switch boxes. If you are comfortable with basic electrical work and have neutral wires at your switch locations, you may be able to install some smart devices. For anything complex, professional installation is recommended.</div></details>
+    <details class="faq-item"><summary class="faq-q">How do I know if my home has neutral wires at switch locations? <span class="faq-chevron">▾</span></summary><div class="faq-a">The only reliable way to determine whether your switch boxes have neutral wires is to turn off the power, remove a switch plate, and visually inspect the wiring inside the box. Standard switch wiring typically includes a hot wire (usually black, bringing power to the switch), a load wire (usually black or red, going to the light fixture), and a ground wire (bare copper or green). A neutral wire is typically white and will be capped off with a wire nut or connected to other neutral wires in the box. In homes built before the 1980s, switch boxes often contain only the hot and load wires with no neutral present because the neutral was run directly to the light fixture instead. Homes built after the mid-1980s are more likely to have neutrals at switch boxes because codes began requiring them for future smart home compatibility. If you open a switch box and see only three wires (two black or one black and one red, plus a ground), you likely do not have a neutral available.</div></details>
+    <details class="faq-item"><summary class="faq-q">Do smart home devices need to be on a dedicated circuit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Most individual smart home devices do not require dedicated circuits because their power draw is minimal — a smart switch draws only about 1 to 2 watts of standby power, and a smart plug draws similarly negligible amounts. However, whole-home automation systems, centrally wired smart home hubs, motorized blinds with multiple motors, multi-room audio systems, and security systems with multiple sensors and cameras may benefit from dedicated circuits to isolate them from other loads and prevent nuisance tripping. In practice, smart switches and smart plugs can be installed on the same general-purpose lighting and receptacle circuits that already exist in your home, as long as the total load on those circuits does not exceed 80% of the breaker rating (1,440 watts for a 15-amp circuit or 1,920 watts for a 20-amp circuit). If you are adding multiple high-power smart devices like automated blinds or whole-home audio amplifiers, we can evaluate whether a dedicated circuit is needed during your consultation.</div></details>
+    <details class="faq-item"><summary class="faq-q">What happens if I lose internet or power? <span class="faq-chevron">▾</span></summary><div class="faq-a">This is one of the most common concerns about smart home devices, and the answer depends on the type of device. Smart switches and smart dimmers — including Lutron Caseta, Leviton Decora Smart, and Kasa — are designed to work as standard mechanical switches even when Wi-Fi or internet is unavailable. The physical paddle switch continues to control the light normally, and any programmed schedules or automations simply will not run until connectivity is restored. Smart plugs work the same way — outlets remain powered, and any connected devices can be controlled manually. Voice control through Amazon Alexa or Google Assistant requires an active internet connection. Smart thermostats typically operate on their programmed schedule without internet but lose remote access. For power outages, battery-powered smart devices like doorbells and sensors continue to function normally, while hardwired devices lose power with the rest of your home and resume normal operation when power is restored.</div></details>
+    <details class="faq-item"><summary class="faq-q">How long does smart home electrical installation take? <span class="faq-chevron">▾</span></summary><div class="faq-a">The installation time for smart home electrical work depends entirely on the scope of the project. Installing a few smart switches or dimmers typically takes 30 to 60 minutes per device, including wiring, fitting the larger smart switch into the box, and configuring the app. A comprehensive smart home installation involving 10 to 20 smart switches, a smart thermostat, smart doorbell, motorized blinds, and whole-home Wi-Fi setup typically takes 1 to 3 days depending on the complexity of the wiring and any neutral wire challenges. Full Lutron RadioRA 3 or similar professional-grade lighting control system installations with programming and scene configuration take 2 to 5 days for a typical Los Angeles home. We provide a detailed time estimate during your free on-site consultation based on the specific devices you want to install and your home's existing wiring conditions.</div></details>
   </div>
 </div></section>
 <div class="cta-band"><div class="wrap">
@@ -630,8 +728,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -660,7 +757,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>

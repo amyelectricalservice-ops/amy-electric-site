@@ -80,10 +80,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/service-areas",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/service-areas",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor serving Greater Los Angeles with coverage in 16 cities and 62+ ZIP codes.",
@@ -165,72 +165,15 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://g.page/r/CVdK9ZAvNBrZEAI/review",
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
   ],
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Los Angeles"
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
     },
-    {
-      "@type": "City",
-      "name": "Sherman Oaks"
-    },
-    {
-      "@type": "City",
-      "name": "Studio City"
-    },
-    {
-      "@type": "City",
-      "name": "Burbank"
-    },
-    {
-      "@type": "City",
-      "name": "Glendale"
-    },
-    {
-      "@type": "City",
-      "name": "Pasadena"
-    },
-    {
-      "@type": "City",
-      "name": "Encino"
-    },
-    {
-      "@type": "City",
-      "name": "North Hollywood"
-    },
-    {
-      "@type": "City",
-      "name": "Hollywood"
-    },
-    {
-      "@type": "City",
-      "name": "Beverly Hills"
-    },
-    {
-      "@type": "City",
-      "name": "West Los Angeles"
-    },
-    {
-      "@type": "City",
-      "name": "Santa Monica"
-    },
-    {
-      "@type": "City",
-      "name": "Van Nuys"
-    },
-    {
-      "@type": "City",
-      "name": "Woodland Hills"
-    },
-    {
-      "@type": "City",
-      "name": "Calabasas"
-    },
-    {
-      "@type": "City",
-      "name": "Culver City"
-    }
-  ]
+    "geoRadius": "40233.6"
+  }
 }
 </script>
 
@@ -286,6 +229,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 }
 </script>
 
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Service Areas & Coverage Map | AMY Electric Los Angeles", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -303,14 +247,43 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         <span class="logo-sub">Los Angeles Electrician</span>
       </div>
     </a>
-    <nav>
-      <a href="/">Home</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
-      <a href="panel-upgrade">Panel Upgrade</a>
+      <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="service-areas" class="active">Service Areas</a>
-      <a href="emergency-electrician-los-angeles">Emergency</a><a href="reviews">Reviews</a>      <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call</a>
+      <a href="service-areas">Service Areas</a>
+      <a href="reviews">Reviews</a>
+      <a href="blog/">Blog</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav>
     <button class="hamburger" id="hamburger">
       <span></span>

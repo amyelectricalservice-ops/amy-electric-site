@@ -15,12 +15,39 @@
     });
   }
 
+  // "More" dropdown: <details>/<summary> gives keyboard toggling for free,
+  // but we still close it when the user clicks elsewhere or presses Escape.
+  var more = document.querySelector('.nav-more');
+  if (more) {
+    document.addEventListener('click', function (e) {
+      if (more.hasAttribute('open') && !more.contains(e.target)) {
+        more.removeAttribute('open');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && more.hasAttribute('open')) {
+        more.removeAttribute('open');
+      }
+    });
+  }
+
+  // Highlight the link that matches the current page.
   var links = document.querySelectorAll('nav a');
-  var cur = window.location.pathname.split('/').pop() || 'index.html';
+  var parts = window.location.pathname.split('/').filter(Boolean);
+  var cur = parts.length ? parts[parts.length - 1] : 'index';
+  if (cur === 'index.html' || cur === 'index') {
+    if (parts.length > 1) cur = parts[parts.length - 2];
+    else cur = 'index';
+  }
+  cur = cur.replace(/\.html$/, '');
   links.forEach(function (l) {
-    if (l.getAttribute('href') === cur || l.getAttribute('href') === './' + cur) {
-      l.classList.add('active');
-    }
+    var href = l.getAttribute('href');
+    if (!href || href.indexOf('tel:') === 0) return;
+    var segs = href.split('/').filter(Boolean);
+    var clean = segs.length ? segs[segs.length - 1] : '';
+    clean = clean.replace(/\.html$/, '');
+    if (clean === '') clean = segs.length > 1 ? segs[segs.length - 2] : 'index';
+    if (clean === cur) l.classList.add('active');
   });
 })();
 
@@ -70,19 +97,10 @@
       fireEvent('cta_click', link.textContent.trim() || 'cta_link', 1);
     }
 
-    // link.href is always absolute in the DOM, so scheme/host tests have to run
-    // against the resolved URL rather than the raw attribute.
-    if (link.href && !/^(mailto:|tel:|sms:)/i.test(link.href)) {
-      var sameSite = false;
-      try {
-        sameSite = new URL(link.href, window.location.href).origin === window.location.origin;
-      } catch (err) {
-        sameSite = false;
-      }
-      if (sameSite) {
-        fireEvent('internal_link_click', link.getAttribute('href') || 'internal_link', 1);
-      }
-    }
+    // Performance optimization: Removed 'internal_link_click' event firing.
+    // /api/events in worker.js explicitly rejects 'internal_link_click' (400 Bad Request).
+    // Eliminating this check avoids URL parsing overhead on every click and prevents
+    // useless network requests on every internal link navigation across the site.
   });
 
   document.addEventListener('submit', function (event) {

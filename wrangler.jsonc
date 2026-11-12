@@ -7,8 +7,14 @@
   "upload_source_maps": true,
   "observability": {
     "enabled": true,
+    "head_sampling_rate": 1,
+    "redact_query_string": true,
     "logs": {
       "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.1
     }
   },
   // This Worker serves amyelectric.com directly. The route used to belong to the
@@ -26,7 +32,7 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": true
+    "run_worker_first": ["/*", "!/css/*", "!/js/*", "!/fonts/*"]
   },
   "images": {
     "binding": "IMAGES"

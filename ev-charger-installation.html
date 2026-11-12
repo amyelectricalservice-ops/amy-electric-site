@@ -96,10 +96,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/ev-charger-installation",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/ev-charger-installation",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -186,8 +186,13 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   },
   "speakable": {
     "@type": "SpeakableSpecification",
@@ -204,7 +209,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   "@type": "Service",
   "serviceType": "EV Charger Installation",
   "name": "EV Charger Installation Los Angeles",
-  "description": "Professional Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EVs. EVITP-certified installation with permits and inspection handled.","provider": {
+  "description": "Professional Level 2 EV charger installation for Tesla, Rivian, ChargePoint, and all EVs. EVITP-certified installation with permits and inspection handled.",
+  "provider": {
     "@type": "LocalBusiness",
     "name": "AMY Electric",
     "telephone": "+1-818-302-5614",
@@ -212,8 +218,25 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "image": "https://amyelectric.com/img/ev-charger.jpg",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 34.2001,
-      "longitude": -118.5723
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "@id": "https://amyelectric.com/#electrician",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     }
   },
   "areaServed": [
@@ -378,22 +401,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How EV Charger Installation Works in Los Angeles",
-  "description": "Licensed installation of a Level 2 EV charger: load calculation, LADWP rebate pre-approval, permit, dedicated circuit, inspection.",
-  "totalTime": "P14D",
-  "estimatedCost": {"@type": "MonetaryAmount", "currency": "USD", "value": "350-1200"},
-  "step": [
-    {"@type": "HowToStep", "position": 1, "name": "Load calculation", "text": "A licensed electrician calculates your panel's spare capacity to size the 40-60A dedicated circuit and confirm whether a panel upgrade is needed."},
-    {"@type": "HowToStep", "position": 2, "name": "LADWP rebate pre-approval", "text": "Submit the LADWP rebate application before any work begins; approval covers up to $1,000 plus $500 income-qualified and $250 for a dedicated meter."},
-    {"@type": "HowToStep", "position": 3, "name": "Permit and installation", "text": "The electrician pulls the LADBS permit, runs the dedicated circuit, and mounts the charger. Typical on-site time is 2-4 hours."},
-    {"@type": "HowToStep", "position": 4, "name": "Inspection and final paperwork", "text": "LADBS inspects the installation. The signed permit and itemized invoice support the LADWP rebate claim and the federal 30C tax credit."}
-  ]
-}
-</script>
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amyelectric.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://amyelectric.com/#services"}, {"@type": "ListItem", "position": 3, "name": "EV Charger Installation", "item": "https://amyelectric.com/ev-charger-installation"}]}</script>
 
 </head>
@@ -415,31 +423,43 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       </div>
     </a>
     <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    <nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
-      <a href="ev-charger-installation" class="active">EV Chargers</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
+      <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav>
   </div>
 </header>
@@ -455,11 +475,11 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <span class="badge"><span class="dot"></span> EVITP Certified #4051604</span>
       <span class="badge"><span class="dot"></span> C-10 Licensed #981578</span>
       <span class="badge"><span class="dot"></span> NEMA $350–$600 · Hardwired $500–$1,200</span>
-      <span class="badge"><span class="dot"></span> LADWP Rebate Approved</span>
+      <span class="badge"><span class="dot"></span> LADWP Rebate Approved — up to $500 back</span>
     </div>
       <div id="quick-answer" style="background:rgba(245,166,35,.08); border-left:4px solid var(--gold); padding:16px 20px; margin-bottom:20px; border-radius:0 var(--radius) var(--radius) 0; font-size:15px; line-height:1.65;">
     <strong style="font-family:var(--cond); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px;">At a Glance</strong>
-    EV charger installation costs depend on the charger, panel capacity, wiring distance, and site access. According to the U.S. Department of Energy's Alternative Fuels Data Center, Level 2 chargers deliver 20–35 miles of range per hour — enough to fully charge most electric vehicles overnight. The on-site installation often takes 2–4 hours, but the full project timeline can be longer because permit approval, utility coordination, and inspection scheduling vary.
+    EV charger installation costs depend on the charger, <a href="blog/panel-upgrade-cost-los-angeles">panel capacity</a>, wiring distance, and site access. According to the U.S. Department of Energy's Alternative Fuels Data Center, Level 2 chargers deliver 20–35 miles of range per hour — enough to fully charge most electric vehicles overnight. The on-site installation often takes 2–4 hours, but the full project timeline can be longer because permit approval, utility coordination, and inspection scheduling vary.
   </div>
     <div class="ctas">
       <a href="tel:18183025614" class="btn btn-gold">☎ Call (818) 302-5614</a>
@@ -492,11 +512,11 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <!-- Prose -->
       <div class="prose">
         <div class="section-label">Level 2 EV Charging</div>
-        <h2>What Is Level 2 EV Charger Installation?</h2>
+        <h2>Level 2 EV Charging, Explained</h2>
         <p><strong>Level 2 EV charger installation</strong> is the process of connecting a 240-volt charging station to your home's electrical panel via a dedicated circuit. A Level 2 charger delivers 20–35 miles of range per hour — enough to fully charge most electric vehicles overnight. This is the standard installation type for Tesla Wall Connectors, ChargePoint Home Flex, Rivian Home Charger, and all other residential Level 2 EVSE units.</p>
         <p>Unlike a standard 120V outlet (Level 1), which adds only 4–5 miles of range per hour, Level 2 charging uses a dedicated 40–60 amp circuit on 240V power. Installation requires a licensed electrician, an electrical permit from LADBS (or your local jurisdiction), and coordination with LADWP if a service upgrade is needed.</p>
   <div class="expert-quote" style="background:rgba(245,166,35,.06); border-left:4px solid var(--gold); padding:20px 24px; margin:24px 0; border-radius:0 var(--radius) var(--radius) 0;">
-    <p style="font-size:16px; line-height:1.7; color:var(--white); margin:0;">"According to Amy, founder of AMY Electric and Licensed C-10 electrical contractor with 15+ years of experience: 'We always start with a load calculation before recommending any EV charger installation. Many homeowners don't realize their existing 200A panel can handle a 50A circuit without an upgrade — but we need to verify that with actual data, not assumptions.'"</p>
+    <p style="font-size:16px; line-height:1.7; color:var(--white); margin:0;">"According to Amram Edry, founder of AMY Electric and Licensed C-10 electrical contractor with 15+ years of experience: 'We always start with a load calculation before recommending any EV charger installation. Many homeowners don't realize their existing 200A panel can handle a 50A circuit without an upgrade — but we need to verify that with actual data, not assumptions.'"</p>
   </div>
         <p>AMY Electric is an <strong>EVITP-certified contractor (#4051604)</strong> — trained specifically in EV infrastructure, from load calculations and circuit sizing to LADWP interconnection requirements. We've installed over 200 Level 2 chargers across Greater Los Angeles since 2012.</p>
 
@@ -534,7 +554,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
           </div>
         </div>
 
-        <h2 style="margin-top: 48px;">How Does the EV Charger Installation Process Work?</h2>
+        <h2 style="margin-top: 48px;">Our EV Charger Installation Process</h2>
         <div class="steps">
           <div class="step">
             <div class="step-num">1</div>
@@ -655,6 +675,69 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   </div>
 </section>
 
+<section style="padding:56px 24px;background:var(--navy)">
+  <div class="wrap" style="max-width:var(--max)">
+    <div class="section-label">Common Scopes</div>
+    <h2>Common EV Charger Installation Scopes in Los Angeles</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:32px 0">
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">⚡ Level 2 (240V) Home Charger</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">Dedicated 40A or 50A circuit from the panel to a wall-mounted Level 2 charger. Covers most daily driving needs in 4–8 hours overnight.</p>
+      </div>
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">🚗 Tesla Wall Connector</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">Tesla Wall Connector installation with hardwired 60A circuit. Includes load management setup and Tesla app pairing.</p>
+      </div>
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">🔌 Plug-In (NEMA 14-50) Outlet</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">Dedicated NEMA 14-50 receptacle for portable chargers. Lower cost, flexible, and code-compliant with GFCI protection.</p>
+      </div>
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">🏢 Commercial / Multi-Unit</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">Multi-stall charging for apartments, offices, and retail. Includes load management, billing, and ADA compliance.</p>
+      </div>
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">🔋 Panel Upgrade + Charger</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">When panel capacity is insufficient, we upgrade the main panel and install the charger in one coordinated project.</p>
+      </div>
+      <div style="background:var(--navy2);border:1px solid var(--mid);border-radius:var(--radius);padding:24px">
+        <h3 style="font-family:var(--cond);font-size:20px;color:var(--gold);margin-bottom:8px">☀️ Solar + EV Integration</h3>
+        <p style="color:rgba(244,241,235,.8);font-size:15px">Smart charging that syncs with solar production and time-of-use rates. Reduces grid draw and electricity costs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:56px 24px;background:var(--navy2);border-top:1px solid var(--mid);border-bottom:1px solid var(--mid)">
+  <div class="wrap" style="max-width:var(--max)">
+    <div class="section-label">Wiring &amp; Infrastructure</div>
+    <h2>Wiring and Infrastructure for EV Charger Installation</h2>
+    <ul style="color:rgba(244,241,235,.85);font-size:16px;line-height:1.8;max-width:720px">
+      <li><strong style="color:var(--white)">240V dedicated circuit:</strong> A dedicated 40A or 50A circuit runs from the breaker panel to the charger location. No shared circuits.</li>
+      <li><strong style="color:var(--white)">Panel capacity:</strong> A load calculation confirms whether your existing panel can support the new circuit. Many homes need a panel upgrade first.</li>
+      <li><strong style="color:var(--white)">Wire gauge:</strong> 6 AWG copper for 50A circuits, 8 AWG for 40A. Conduit protects wiring in exposed runs.</li>
+      <li><strong style="color:var(--white)">GFCI protection:</strong> Required by NEC for outdoor and garage installations. Built into most chargers or added at the breaker.</li>
+      <li><strong style="color:var(--white)">Disconnect switch:</strong> A visible disconnect is required within sight of the charger per NEC 625.18.</li>
+      <li><strong style="color:var(--white)">Future-proofing:</strong> We install conduit and extra capacity for future charger upgrades or a second EV.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding:56px 24px;background:var(--navy)">
+  <div class="wrap" style="max-width:var(--max)">
+    <div class="section-label">Permits &amp; Code</div>
+    <h2>Permits and Code for EV Charger Installation in LA</h2>
+    <ul style="color:rgba(244,241,235,.85);font-size:16px;line-height:1.8;max-width:720px">
+      <li><strong style="color:var(--white)">Permit required.</strong> All EV charger installations require an LADBS electrical permit and inspection.</li>
+      <li><strong style="color:var(--white)">Permit fees included.</strong> LADBS fees are included in our all-in quotes.</li>
+      <li><strong style="color:var(--white)">NEC Article 625.</strong> All installations comply with NEC 625 and California Electrical Code requirements.</li>
+      <li><strong style="color:var(--white)">EVITP-certified.</strong> AMY Electric is EVITP-certified (#4051604) — required by many utilities and rebate programs.</li>
+      <li><strong style="color:var(--white)">Certificate of Completion.</strong> Required for warranty claims, rebates, and future home sales.</li>
+    </ul>
+    <p style="font-size:14px;color:var(--gray);margin-top:12px">Los Angeles uses LADBS for electrical permitting. Never hire a contractor who suggests skipping the permit.</p>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section style="background: var(--navy2); padding: 72px 24px;">
   <div class="wrap text-center">
@@ -712,7 +795,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <h2>EV Charger Installation by City</h2>
     <p style="max-width:600px; margin:0 auto 32px;">We provide ev charger installation across all of Greater Los Angeles. Select your city for location-specific information:</p>
     <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
-      <a href="ev-charger-installation-los-angeles" class="related-card" style="flex:1 1 180px; min-width:160px;"><strong>Los Angeles</strong><span style="font-size:12px;color:var(--gray);">Free estimate</span></a>
+      <a href="ev-charger-installation" class="related-card" style="flex:1 1 180px; min-width:160px;"><strong>Los Angeles</strong><span style="font-size:12px;color:var(--gray);">Free estimate</span></a>
       <a href="ev-charger-installation-sherman-oaks" class="related-card" style="flex:1 1 180px; min-width:160px;"><strong>Sherman Oaks</strong><span style="font-size:12px;color:var(--gray);">Free estimate</span></a>
       <a href="ev-charger-installation-studio-city" class="related-card" style="flex:1 1 180px; min-width:160px;"><strong>Studio City</strong><span style="font-size:12px;color:var(--gray);">Free estimate</span></a>
       <a href="ev-charger-installation-burbank" class="related-card" style="flex:1 1 180px; min-width:160px;"><strong>Burbank</strong><span style="font-size:12px;color:var(--gray);">Free estimate</span></a>
@@ -901,6 +984,17 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   </div>
 </section>
 
+<section class="related-guides" aria-label="Related guides">
+  <div class="wrap">
+    <h2>Related guides</h2>
+    <ul>
+    <li><a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost LA [2026]</a></li>
+    <li><a href="blog/ev-charger-levels-explained">EV Charger Levels Explained</a></li>
+    <li><a href="blog/ev-vs-gas-vehicle-cost-los-angeles">EV vs Gas Vehicle Cost in Los Angeles</a></li>
+    <li><a href="blog/tesla-wall-connector-vs-other-ev-chargers">Tesla Wall Connector vs Other EV Chargers</a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <section style="padding:56px 24px;background:var(--navy2);border-top:1px solid var(--mid)">
@@ -982,8 +1076,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -1012,7 +1105,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>

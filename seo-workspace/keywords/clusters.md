@@ -88,6 +88,21 @@ geo service pages.** Each city page should link its own city's EV, panel and rew
 where one exists, and the geo service pages should link back to the city page. This is a templated
 change to `generate-city-pages.py`, not 112 manual edits.
 
+## New clusters proposed 2026-10-24 (content gaps vs competitors + GSC)
+
+Mapped from `seo-workspace/keywords/opportunities.md` Table C. All target pages are *proposed*
+unless they already exist. Briefs live in `seo-workspace/content/`.
+
+| # | Cluster | Primary keyword | Secondary | Intent | Target page | Priority | GSC impressions |
+| :-- | :--- | :--- | :--- | :--- | :--- | :---: | ---: |
+| 12 | **Panel-brand hazard — Federal Pacific** | `federal pacific panel replacement los angeles` | `fpe stab-lok panel replacement cost` | Commercial / research | *proposed* `blog/federal-pacific-panel-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 13 | **Panel-brand hazard — Pushmatic** | `pushmatic panel replacement los angeles` | `bulldog pushmatic panel upgrade cost` | Commercial / research | *proposed* `blog/pushmatic-panel-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 14 | **Knob-and-tube cost** | `knob and tube wiring replacement cost los angeles` | `k&t rewiring cost per square foot` | Commercial / research | *proposed* `blog/knob-and-tube-wiring-replacement-cost-los-angeles.html` | **P1** | unknown |
+| 15 | **Non-Tesla EV (per-make)** | `non-tesla ev charger installation los angeles` | `level 2 charger installation los angeles`, `rivian home charger installation` | Transactional | `/ev-charger-installation` (enhance) + *proposed* blog | **P2** | unknown |
+| 16 | **Recessed lighting cost** | `recessed lighting installation cost los angeles` | `recessed lighting cost per can los angeles` | Commercial / research | `/recessed-lighting-installation` + *proposed* blog | **P0** | 47 (pos 21.5) |
+| 17 | **Thin-post deepening** | `electrical inspection cost los angeles`, `outdoor lighting installation cost los angeles`, `adu electrical cost los angeles`, `generator installation cost los angeles` | Mixed | Mixed | existing thin blogs (deepen) | **P2** | 0–low |
+| 18 | **Commercial EV charging ROI** | `commercial ev charging installation cost los angeles` | `workplace ev charging cost`, `commercial ev fleet charging roi` | B2B commercial | `/commercial-ev-fleet-charging` (enhance) + *proposed* blog | **P2** | 175 (pos 77.1) |
+
 ## Sources
 
 - `[gsc: seo-workspace/gsc/amyelectric.com-Performance-on-Search-2026-09-05/Queries.csv]` — all impression/position figures
@@ -97,3 +112,57 @@ change to `generate-city-pages.py`, not 112 manual edits.
 - `[repo: _redirects]`, `[repo: emergency-electrician.html]` — emergency consolidation shipped
 - `[openseo: get_serp_results → DataForSEO HTTP 401]` — SERP-overlap validation unavailable; clusters are mapped on GSC intent + page evidence, not SERP overlap
 - `[directional: web]` — competitor page-structure observations
+
+---
+
+## New clusters proposed 2026-10-24 (deep scan) — briefs in `seo-workspace/content/`
+
+All target pages are *proposed* unless they already exist. Brief filename in the last column.
+
+| # | Cluster | Primary keyword | Secondary | Intent | Target page | Priority | GSC impressions | Brief |
+| :-- | :--- | :--- | :--- | :--- | :--- | :---: | ---: | :--- |
+| 19 | **Smart home electrical** | `smart home electrical cost los angeles` | smart panel, dedicated circuits, surge | Commercial / research | *proposed* blog + deepen `/smart-home-electrical` | **P0** | 25 (pos 16.0) | `smart-home-electrical-cost-los-angeles-brief.md` |
+| 20 | **Electrical safety inspection** | `electrical safety inspection cost los angeles` | home electrical inspection cost, ladbs | Informational / authority | *proposed* blog + deepen `/electrical-safety-inspections` | **P1** | 70 (pos 25.8) | `electrical-safety-inspection-cost-los-angeles-brief.md` |
+| 21 | **Generator installation** | `generator installation los angeles` | standby generator installation cost | Commercial / research | *proposed* blog + new `/generator-installation` | **P1** | 133 (pos 82.3) | `generator-installation-los-angeles-brief.md` |
+| 22 | **Outdoor / landscape lighting** | `outdoor landscape lighting installation cost los angeles` | landscape lighting installation cost | Commercial / research | *proposed* blog + deepen `/lighting-installation-los-angeles` | **P2** | 0 captured | `outdoor-landscape-lighting-installation-los-angeles-brief.md` |
+| 23 | **Dedicated circuit cost** | `dedicated circuit installation cost los angeles` | cost to install a dedicated circuit | Commercial / research | *proposed* blog + deepen `/dedicated-circuits` | **P1** | 27 (pos 25.8) | `dedicated-circuit-installation-cost-los-angeles-brief.md` |
+| 24 | **Cloth-insulated wiring** | `cloth insulated wiring replacement los angeles` | cloth wiring hazards | Commercial / research | *proposed* blog | **P2** | 0 captured | `cloth-wiring-replacement-los-angeles-brief.md` |
+| 25 | **Grounding / ungrounded** | `grounding ungrounded wiring upgrade los angeles` | two-prong to three-prong outlet | Commercial / research | *proposed* blog | **P2** | 0 captured | `grounding-ungrounded-wiring-upgrade-los-angeles-brief.md` |
+| 26 | **Residential remodel electrical** | `residential remodel renovation electrical los angeles` | electrician for remodel | B2B / commercial | *proposed* blog + new service page | **P2** | 5–27 | `residential-remodel-renovation-electrical-los-angeles-brief.md` |
+| 27 | **GFCI outlet installation** | `gfci outlet installation los angeles` | gfci outlet cost | Commercial / research | *proposed* blog + deepen `/outlet-switch-installation` | **P1** | 55 (aggregate) | `gfci-outlet-installation-los-angeles-brief.md` |
+| 28 | **Electrical troubleshooting** | `electrical troubleshooting diagnostics los angeles` | electrical diagnostic cost | Urgent / commercial | *proposed* blog + new `/electrical-troubleshooting` | **P1** | 123 (pos 38.7) | `electrical-troubleshooting-diagnostics-los-angeles-brief.md` |
+| 29 | **Two-prong to three-prong** | `two-prong to three-prong outlet upgrade los angeles` | ungrounded outlet upgrade | Commercial / research | *proposed* blog | **P2** | 0 captured | `two-prong-to-three-prong-outlet-upgrade-los-angeles-brief.md` |
+| 30 | **Video doorbell** | `video doorbell installation los angeles` | ring doorbell installation cost | Transactional | *proposed* blog | **P2** | 0 captured | `video-doorbell-installation-los-angeles-brief.md` |
+| 31 | **Warehouse / commercial lighting** | `warehouse commercial lighting installation los angeles` | commercial led retrofit cost | B2B commercial | *proposed* blog + enhance `/commercial-electrical` | **P2** | 175 (pos 77.1) | `warehouse-commercial-lighting-installation-los-angeles-brief.md` |
+| 32 | **Battery storage / electrification** | `home battery storage electrification los angeles` | home battery backup cost | Commercial / research | *proposed* (owner decision) | **P3** | 0 captured | `battery-storage-electrification-hub-los-angeles-brief.md` |
+| 33 | **Home automation electrical** | `home automation electrical los angeles` | home automation wiring cost | Commercial / research | deepen `/home-automation-electrical` | **P2** | 0 captured | `home-automation-electrical-deepening-los-angeles-brief.md` |
+| 34 | **Tenant improvement electrical** | `tenant improvement electrical los angeles` | ti electrical cost | B2B commercial | deepen `/tenant-improvement-electrical` | **P2** | 0 captured | `tenant-improvement-electrical-deepening-los-angeles-brief.md` |
+| 35 | **Ceiling fan cost** | `ceiling fan installation cost los angeles` | ceiling fan install cost | Commercial / research | *proposed* blog + deepen `/ceiling-fan-installation` | **P1** | 60 (pos 39.4) | `ceiling-fan-installation-cost-los-angeles-brief.md` |
+| 36 | **Whole-home surge protection** | `whole-home surge protection cost los angeles` | surge protector installation cost | Commercial / research | *proposed* blog + deepen `/surge-protection` | **P1** | 29 (pos 22.3) | `surge-protection-installation-cost-los-angeles-brief.md` |
+| 37 | **Under-cabinet lighting** | `under-cabinet lighting installation cost los angeles` | under cabinet led lighting cost | Commercial / research | *proposed* blog | **P2** | 0 captured | `under-cabinet-lighting-installation-los-angeles-brief.md` |
+| 38 | **Commercial code compliance** | `commercial electrical code compliance los angeles` | code compliance inspection cost | B2B commercial | *proposed* blog + enhance `/commercial-electrical` | **P2** | 15 (pos 39.5) | `electrical-code-compliance-los-angeles-brief.md` |
+| 39 | **Electrical permit cost (deepen)** | `electrical permit cost los angeles` | ladbs permit fees | Informational / authority | deepen `/electrical-permit-cost-los-angeles` | **P1** | 481 bucket | `electrical-permit-cost-los-angeles-deepening-brief.md` |
+| 40 | **ADU electrical (deepen)** | `adu electrical requirements los angeles` | adu subpanel cost | Commercial / research | deepen `/adu-electrical` + blog | **P2** | 0 captured | `adu-electrical-deepening-los-angeles-brief.md` |
+| 41 | **Smoke/CO detector cost** | `smoke co detector installation cost los angeles` | hardwired smoke detector cost | Commercial / research | *proposed* blog + deepen `/smoke-co-detector-installation` | **P2** | 0 captured | `smoke-co-detector-installation-cost-los-angeles-brief.md` |
+| 42 | **Panel upgrade (insurance/mandate)** | `panel upgrade cost los angeles` | la county cooling mandate | Commercial / research | *proposed* blog + enhance `/panel-upgrade` | **P1** | 136 (pos 62.9) | `panel-upgrade-cost-los-angeles-deepening-brief.md` |
+| 43 | **Whole-home rewiring cost** | `whole home rewiring cost los angeles` | how to tell if need rewire | Commercial / research | *proposed* blog + enhance `/whole-home-rewiring` | **P1** | 499 (pos 23.2) | `whole-home-rewiring-cost-los-angeles-deepening-brief.md` |
+| 44 | **Aluminum wiring (enhance)** | `aluminum wiring repair cost los angeles` | repair vs replace | Commercial / research | enhance shipped post | **P2** | 0 captured | `aluminum-wiring-repair-cost-los-angeles-deepening-brief.md` |
+| 45 | **Fuse box (enhance)** | `fuse box replacement cost los angeles` | fuse box vs breaker panel | Commercial / research | enhance shipped post | **P2** | 0 captured | `fuse-box-replacement-cost-los-angeles-deepening-brief.md` |
+| 46 | **EV charger cost (consolidate)** | `ev charger installation cost los angeles` | ladwp chargeup rebate | Commercial / research | consolidate `-la`/`-los-angeles` + deepen | **P1** | 30 (pos 22.4) | `ev-charger-installation-cost-los-angeles-deepening-brief.md` |
+| 47 | **Electrical repair cost** | `electrical repair cost los angeles` | dead outlet cost | Urgent / commercial | *proposed* blog + deepen `/electrical-repair` | **P1** | 123 (pos 38.7) | `electrical-repair-cost-los-angeles-deepening-brief.md` |
+| 48 | **Knob-and-tube (enhance)** | `knob and tube wiring replacement cost los angeles` | knob and tube removal cost | Commercial / research | enhance shipped post | **P2** | 0 captured | `knob-and-tube-wiring-replacement-cost-los-angeles-deepening-brief.md` |
+
+### Cannibalization / consolidation reminders
+
+- `/blog/ev-charger-installation-cost-la` and `/blog/ev-charger-installation-cost-los-angeles` — identical titles; consolidate (301 weaker → stronger).
+- `/blog/whole-home-rewiring-cost-la` and `/blog/whole-home-rewiring-cost-los-angeles` — near-identical titles; consolidate.
+- `/blog/breaker-keeps-tripping-causes` and `/blog/breaker-keeps-tripping-guide` — near-identical titles; consolidate.
+- `/blog/adu-electrical-panel-requirements-la` (465 words) and `/adu-electrical` (988 words) — merge or deepen both.
+- `/blog/generator-installation-cost-la` (628 words), `/blog/outdoor-lighting-installation-la` (794 words), `/blog/dedicated-circuit-installation-cost.html` (770 words), `/blog/electrical-inspection-cost-los-angeles` (724 words), `/blog/electrical-inspection-what-to-expect` (595 words), `/blog/smart-home-electrical-requirements` (628 words) — all below the 1,500-word blog floor; deepen or merge.
+
+### Sources
+
+- `[gsc: seo-workspace/gsc/amyelectric.com-Performance-on-Search-2026-09-05/Queries.csv]` — all impression/position figures
+- `[repo: *.html word counts]` — thin page inventory
+- `[directional: web]` — theelectricconnection.com, 911electrics.com, dpgcontractors.com, brydenelectrical.com service lists
+- `[repo: scripts/site_data.py]` — reviewCount 87

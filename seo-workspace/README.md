@@ -5,7 +5,7 @@
 > biggest cluster (`whole home rewiring`, 2,727 impressions) sitting at position 41. Fix *authority
 > and CTR* on the ~8 URLs that already rank, not content depth.
 
-Last refreshed: 2026-10-18 (workflow 1 — project context; see `reports/context-status.md`).
+Last refreshed: 2026-10-24 (full SEO pipeline re-run — context, keywords, clusters, competitors, links; see `reports/content-review-2026-10-24.md`).
 
 ## Website
 

@@ -24,6 +24,7 @@ BUSINESS = {
         "addressCountry": "US"
     },
     "geo": {"latitude": 34.22281, "longitude": -118.58241},
+    "areaServed": {"@type": "GeoCircle", "geoMidpoint": {"@type": "GeoCoordinates", "latitude": 34.22281, "longitude": -118.58241}, "geoRadius": "40233.6"},
     "image": "https://amyelectric.com/img/hero-electrician.jpg",
     "logo": "https://amyelectric.com/img/og-home.jpg",
     "foundingDate": "2012",
@@ -51,10 +52,12 @@ BUSINESS = {
     # changes, edit this ONE value, then sweep pages with:
     #   grep -rl '"reviewCount' --include='*.html' . | xargs sed -i 's/"reviewCount": *"*[0-9]*"*/"reviewCount": "<NEW>"/'
     # schema-tool.py validate fails on any page that disagrees with this.
+    "hasMap": "https://maps.app.goo.gl/nzyuaFkAMGZdbbuj6",
     "sameAs": [
         "https://www.yelp.com/biz/amy-electric-los-angeles",
         "https://g.page/r/CVdK9ZAvNBrZEAI/review",
-        "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
+        "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+        "https://maps.app.goo.gl/nzyuaFkAMGZdbbuj6"
     ],
     "openingHours": [
         {"days": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:00", "desc": "Office hours"},
@@ -196,6 +199,7 @@ def make_electrician(path="", city_name=None):
         "aggregateRating": BUSINESS["aggregateRating"],
         "hasCredential": BUSINESS["credentials"],
         "priceRange": BUSINESS["priceRange"],
+        "hasMap": BUSINESS["hasMap"],
         "sameAs": BUSINESS["sameAs"]
     }
     if city_name:

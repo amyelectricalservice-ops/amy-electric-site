@@ -40,7 +40,9 @@
 
 :root {
   --navy:    #0b1628;
+  --navy1:   #0b1628; /* alias of --navy: inline page backgrounds reference --navy1 */
   --navy2:   #122040;
+  --navy3:   #22406e; /* raised surface — founder/bylines avatar disc (1.55:1 on --navy2) */
   --gold:    #f5a623;
   --gold2:   #e8951a;
   --white:   #f4f1eb;

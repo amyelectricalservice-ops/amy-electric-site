@@ -20,6 +20,24 @@
 }
 .trust-icon { color: var(--gold); font-size: 20px; }
 
+/* ── CREDENTIAL BAND (gold) ──
+   Six claims. Was a 4-column auto-fit grid, so row 2 held 2 items and left
+   two-thirds of the band empty; on phones it stacked to one column (987px of
+   solid yellow). Now 3x2 on desktop, 2x3 on phones. */
+.trust-band {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  padding: 56px 24px;
+}
+.trust-band-grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px;
+  text-align: center;
+}
+.trust-band-grid .tb-icon { font-size: 32px; line-height: 1; margin-bottom: 8px; }
+.trust-band-grid h3 { font-family: var(--cond); font-weight: 800; font-size: 16px; color: var(--navy); margin: 0 0 4px; }
+.trust-band-grid p { color: var(--navy); opacity: .85; margin: 0; font-size: 13px; }
+.trust-band-grid a { color: var(--navy); text-decoration: underline; }
+
 /* ── FLOATING DESKTOP TRUST BADGE (CRO) ── */
 .floating-trust-badge {
   position: fixed;
@@ -170,6 +188,20 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .testi-text { font-size: 16px; font-style: italic; color: rgba(244,241,235,.85); margin-bottom: 18px; }
 .testi-name { font-family: var(--cond); font-size: 15px; font-weight: 700; color: var(--white); }
 .testi-loc  { font-size: 13px; color: var(--gray); }
+
+/* ── REVIEW CARDS (homepage social proof) ──
+   4 cards in 4 columns, so the row is always full — the previous
+   auto-fit/minmax(300px) layout dropped the 4th card onto its own row. */
+.review-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+.review-card {
+  background: rgba(245,166,35,.1);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.review-card .stars { margin-bottom: 12px; font-size: 16px; letter-spacing: 1px; }
+.review-card p { font-size: 15px; line-height: 1.7; margin: 0 0 16px; color: rgba(244,241,235,.9); }
+.review-card cite { font-family: var(--cond); font-weight: 700; font-size: 14px; font-style: normal; color: var(--white); }
 
 /* ── CITY GRID ── */
 .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }

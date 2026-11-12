@@ -96,10 +96,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/dedicated-circuits",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/dedicated-circuits",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -201,14 +201,138 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Dedicated Circuit Installation", "name": "Dedicated Circuit Installation Los Angeles", "description": "Install dedicated circuits for appliances, EV chargers, AC units, and home office equipment.","provider": {"@type": "LocalBusiness", "name": "AMY Electric", "telephone": "+1-818-302-5614", "url": "https://amyelectric.com"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "City", "name": "Sherman Oaks"}, {"@type": "City", "name": "Burbank"}, {"@type": "City", "name": "Glendale"}, {"@type": "City", "name": "Pasadena"}, {"@type": "City", "name": "Studio City"}, {"@type": "City", "name": "North Hollywood"}, {"@type": "City", "name": "Hollywood"}, {"@type": "City", "name": "Beverly Hills"}, {"@type": "City", "name": "West Los Angeles"}, {"@type": "City", "name": "Encino"}, {"@type": "City", "name": "Santa Monica"}, {"@type": "City", "name": "Woodland Hills"}, {"@type": "City", "name": "Van Nuys"}, {"@type": "City", "name": "Calabasas"}, {"@type": "City", "name": "Culver City"}, {"@type": "AdministrativeArea", "name": "San Fernando Valley"}], "offers": {"@type": "Offer", "priceSpecification": {"@type": "PriceSpecification", "priceCurrency": "USD", "price": "$300 - $800", "description": "Dedicated circuit installation for appliances and equipment"}}, "sameAs": ["https://www.yelp.com/biz/amy-electric-los-angeles", "https://g.page/r/CVdK9ZAvNBrZEAI/review", "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Dedicated Circuit Installation",
+  "name": "Dedicated Circuit Installation Los Angeles",
+  "description": "Install dedicated circuits for appliances, EV chargers, AC units, and home office equipment.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AMY Electric",
+    "telephone": "+1-818-302-5614",
+    "url": "https://amyelectric.com",
+    "@id": "https://amyelectric.com/#electrician",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "price": "$300 - $800",
+      "description": "Dedicated circuit installation for appliances and equipment"
+    }
+  },
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
-  ]}</script>
+  ]
+}
+</script>
 
 <script type="application/ld+json">
 {
@@ -222,75 +346,49 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How Dedicated Circuit Installation Works in Los Angeles",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Assessment & Load Calculation",
-      "text": "We evaluate your electrical panel, identify available capacity, and calculate the load for your new circuit. We recommend the correct breaker size and wire gauge."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Permit & Planning",
-      "text": "We file for the electrical permit with LADBS. Most dedicated circuits require a permit for safety and code compliance."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Power Off & Safe Work",
-      "text": "We shut off power at the panel, verify it's dead, and work using insulated tools and PPE."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Wiring & Installation",
-      "text": "Run new wiring from panel to outlet location. Install proper receptacle, breaker, and conduit as needed. Secure all connections."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Testing & Walkthrough",
-      "text": "We test the circuit for proper voltage, polarity, and grounding. Show you the new breaker and label it before we leave."
-    }
-  ]
-}
-</script>
+
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav></div></header>
 <main id="main-content">
 <div class="page-hero"><div class="wrap">
@@ -372,19 +470,19 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="section-label">Related Services</div>
   <h2>Also Consider</h2>
   <div class="related-grid">
-    <a href="panel-upgrade" class="related-card"><div class="rc-icon">🔧</div><strong>Panel Upgrade</span></div></a>
-    <a href="surge-protection" class="related-card"><div class="rc-icon">⚡</div><strong>Surge Protection</span></div></a>
-    <a href="generator-transfer-switch" class="related-card"><div class="rc-icon">🔌</div><strong>Generator Transfer Switch</span></div></a>
+    <a href="panel-upgrade" class="related-card"><div class="rc-icon">🔧</div><strong>Panel Upgrade</strong></div></a>
+    <a href="surge-protection" class="related-card"><div class="rc-icon">⚡</div><strong>Surge Protection</strong></div></a>
+    <a href="generator-transfer-switch" class="related-card"><div class="rc-icon">🔌</div><strong>Generator Transfer Switch</strong></div></a>
   </div>
 </div></section>
 <section class="section-navy"><div class="wrap text-center">
   <div class="section-label">FAQ</div><h2>Dedicated Circuit FAQ</h2>
   <div class="faq-list text-left">
-    <details class="faq-item"><summary class="faq-q">Do I need a permit for a dedicated circuit in Los Angeles? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — installing a new dedicated circuit in Los Angeles requires a permit through the local building department, regardless of whether it is for a major appliance like a refrigerator, washing machine, or EV charger, or for a smaller dedicated circuit for a home office or entertainment system. Any new wiring that adds a circuit to your electrical panel requires a permit because it involves installing new cable or conduit from the panel to the outlet location, adding or replacing a breaker in the panel, and making connections that must be verified by a building inspector. The permit fee for a dedicated circuit typically ranges from $50 to $150 depending on your specific city within Los Angeles County. AMY Electric handles all permitting for every dedicated circuit installation we perform. The rough-in and final inspections that come with the permit provide important verification that the circuit is sized correctly for its intended load and that all connections are safe and code-compliant.</div></div>
-    <details class="faq-item"><summary class="faq-q">Can I install a dedicated circuit myself? <span class="faq-chevron">▾</span></summary><div class="faq-a">While California law allows homeowners to perform electrical work on their own single-family dwelling through an owner-builder permit, there are significant practical and safety reasons to hire a licensed electrician for dedicated circuit installation. Installing a dedicated circuit requires pulling cable or conduit from the panel to the outlet location — often through attics, crawlspaces, or finished walls — making proper connections at both the breaker and the outlet, correctly sizing the wire gauge for the breaker amperage and the length of the run (voltage drop calculations), and ensuring the new circuit does not overload the panel's total capacity. Mistakes in any of these areas can create fire hazards that may not be immediately detectable. Additionally, dedicated circuit work requires permits and inspections, and if your work fails inspection, you are responsible for diagnosing and fixing the problem yourself. Most homeowners find that the relatively modest cost of professional installation is well worth the safety and peace of mind.</div></div>
-    <details class="faq-item"><summary class="faq-q">How do I know if my panel has capacity for a new circuit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Determining whether your panel has capacity for a new dedicated circuit requires two separate checks: physical space in the panel and electrical load capacity. First, check if your panel has an open breaker slot — if all slots are filled with breakers, you may need a tandem breaker (which fits two circuits in one slot) or a subpanel to add capacity. More importantly, your panel's total electrical load must be calculated per National Electrical Code Article 220 to ensure the new circuit will not overload the main service. This calculation involves adding up the existing loads (lighting, appliances, HVAC, etc.) plus the new circuit's expected load (typically 1,440 to 1,920 watts for a 15- or 20-amp dedicated circuit) and verifying the total does not exceed 80% of your main breaker rating. A licensed electrician can perform this load calculation quickly and determine whether a panel upgrade is needed before installing your new circuit.</div></div>
-    <details class="faq-item"><summary class="faq-q">What's the difference between a 240V outlet and a 120V outlet? <span class="faq-chevron">▾</span></summary><div class="faq-a">The primary difference between 240V and 120V circuits is the voltage delivered and the applications they serve. A standard 120V outlet — the typical three-prong outlet found throughout most Los Angeles homes — uses one hot wire and one neutral wire and supplies up to 1,920 watts for 15-amp circuits or 2,400 watts for 20-amp circuits, making it suitable for lighting, electronics, small appliances, and general-purpose receptacles. A 240V outlet uses two hot wires (each carrying 120V out of phase) and delivers significantly more power — up to 4,800 watts for a 20-amp circuit, 7,200 watts for a 30-amp circuit, or 12,000 watts for a 50-amp circuit. 240V circuits are required for major appliances including EV chargers, electric ranges and ovens, central air conditioning units, electric water heaters, clothes dryers, and welders. 240V outlets have a distinct configuration with different plug shapes to prevent accidental connection to 120V equipment.</div></div>
-    <details class="faq-item"><summary class="faq-q">How long does dedicated circuit installation take? <span class="faq-chevron">▾</span></summary><div class="faq-a">A straightforward dedicated circuit installation where the panel is easily accessible and the wiring run is through an open attic or crawlspace with minimal obstructions typically takes 2 to 4 hours. Installations requiring wiring through finished walls — which involves cutting access holes, fishing cable, and patching drywall — take 3 to 6 hours depending on the complexity of the wall construction and the distance from the panel to the outlet location. Longer wiring runs exceeding 75 feet require larger wire gauges to compensate for voltage drop, which adds time for more challenging cable pulls. Installations that require a subpanel, conduit work, or trenching for outdoor locations can take 4 to 8 hours or more. We always provide a specific time estimate during your free on-site evaluation based on the actual conditions of your home.</div></div>
+    <details class="faq-item"><summary class="faq-q">Do I need a permit for a dedicated circuit in Los Angeles? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — installing a new dedicated circuit in Los Angeles requires a permit through the local building department, regardless of whether it is for a major appliance like a refrigerator, washing machine, or EV charger, or for a smaller dedicated circuit for a home office or entertainment system. Any new wiring that adds a circuit to your electrical panel requires a permit because it involves installing new cable or conduit from the panel to the outlet location, adding or replacing a breaker in the panel, and making connections that must be verified by a building inspector. The permit fee for a dedicated circuit typically ranges from $50 to $150 depending on your specific city within Los Angeles County. AMY Electric handles all permitting for every dedicated circuit installation we perform. The rough-in and final inspections that come with the permit provide important verification that the circuit is sized correctly for its intended load and that all connections are safe and code-compliant.</div></details>
+    <details class="faq-item"><summary class="faq-q">Can I install a dedicated circuit myself? <span class="faq-chevron">▾</span></summary><div class="faq-a">While California law allows homeowners to perform electrical work on their own single-family dwelling through an owner-builder permit, there are significant practical and safety reasons to hire a licensed electrician for dedicated circuit installation. Installing a dedicated circuit requires pulling cable or conduit from the panel to the outlet location — often through attics, crawlspaces, or finished walls — making proper connections at both the breaker and the outlet, correctly sizing the wire gauge for the breaker amperage and the length of the run (voltage drop calculations), and ensuring the new circuit does not overload the panel's total capacity. Mistakes in any of these areas can create fire hazards that may not be immediately detectable. Additionally, dedicated circuit work requires permits and inspections, and if your work fails inspection, you are responsible for diagnosing and fixing the problem yourself. Most homeowners find that the relatively modest cost of professional installation is well worth the safety and peace of mind.</div></details>
+    <details class="faq-item"><summary class="faq-q">How do I know if my panel has capacity for a new circuit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Determining whether your panel has capacity for a new dedicated circuit requires two separate checks: physical space in the panel and electrical load capacity. First, check if your panel has an open breaker slot — if all slots are filled with breakers, you may need a tandem breaker (which fits two circuits in one slot) or a subpanel to add capacity. More importantly, your panel's total electrical load must be calculated per National Electrical Code Article 220 to ensure the new circuit will not overload the main service. This calculation involves adding up the existing loads (lighting, appliances, HVAC, etc.) plus the new circuit's expected load (typically 1,440 to 1,920 watts for a 15- or 20-amp dedicated circuit) and verifying the total does not exceed 80% of your main breaker rating. A licensed electrician can perform this load calculation quickly and determine whether a panel upgrade is needed before installing your new circuit.</div></details>
+    <details class="faq-item"><summary class="faq-q">What's the difference between a 240V outlet and a 120V outlet? <span class="faq-chevron">▾</span></summary><div class="faq-a">The primary difference between 240V and 120V circuits is the voltage delivered and the applications they serve. A standard 120V outlet — the typical three-prong outlet found throughout most Los Angeles homes — uses one hot wire and one neutral wire and supplies up to 1,920 watts for 15-amp circuits or 2,400 watts for 20-amp circuits, making it suitable for lighting, electronics, small appliances, and general-purpose receptacles. A 240V outlet uses two hot wires (each carrying 120V out of phase) and delivers significantly more power — up to 4,800 watts for a 20-amp circuit, 7,200 watts for a 30-amp circuit, or 12,000 watts for a 50-amp circuit. 240V circuits are required for major appliances including EV chargers, electric ranges and ovens, central air conditioning units, electric water heaters, clothes dryers, and welders. 240V outlets have a distinct configuration with different plug shapes to prevent accidental connection to 120V equipment.</div></details>
+    <details class="faq-item"><summary class="faq-q">How long does dedicated circuit installation take? <span class="faq-chevron">▾</span></summary><div class="faq-a">A straightforward dedicated circuit installation where the panel is easily accessible and the wiring run is through an open attic or crawlspace with minimal obstructions typically takes 2 to 4 hours. Installations requiring wiring through finished walls — which involves cutting access holes, fishing cable, and patching drywall — take 3 to 6 hours depending on the complexity of the wall construction and the distance from the panel to the outlet location. Longer wiring runs exceeding 75 feet require larger wire gauges to compensate for voltage drop, which adds time for more challenging cable pulls. Installations that require a subpanel, conduit work, or trenching for outdoor locations can take 4 to 8 hours or more. We always provide a specific time estimate during your free on-site evaluation based on the actual conditions of your home.</div></details>
   </div>
 </div></section>
 <div class="cta-band"><div class="wrap">
@@ -618,8 +716,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -648,7 +745,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>

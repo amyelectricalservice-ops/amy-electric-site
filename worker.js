@@ -406,13 +406,17 @@ const GEO_TARGET_AREAS = [
 ];
 const GEO_NO_STORE = 'private, no-store';
 
+// Allowed conversion event names accepted by /api/events.
+// Hoisted to module scope to avoid re-allocating a Set on every beacon POST.
+const ALLOWED_CONVERSION_EVENTS = new Set(['phone_click', 'cta_click', 'form_submit']);
+
+// Pre-built Map for O(1) case-insensitive geo target city lookup.
+const GEO_TARGET_MAP = new Map(GEO_TARGET_AREAS.map((area) => [area.toLowerCase(), area]));
+
 function matchTargetCity(raw) {
   if (typeof raw !== 'string') return null;
   const norm = raw.trim().toLowerCase();
-  for (const area of GEO_TARGET_AREAS) {
-    if (area.toLowerCase() === norm) return area;
-  }
-  return null;
+  return GEO_TARGET_MAP.get(norm) || null;
 }
 
 // Canonical target-area city for this request, or null. Null covers local
@@ -600,11 +604,15 @@ async function serveImage(request, env, ctx) {
 // its own, so every repeat visit re-downloaded the whole document (~21 KB
 // brotli / ~101 KB raw). Hashing the final (beacon-injected) body lets those
 // visits revalidate with a ~300 B 304.
+const HEX_LOOKUP = Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
+
 async function htmlEtag(body) {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
-  const hex = [...new Uint8Array(digest)]
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  const bytes = new Uint8Array(digest);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += HEX_LOOKUP[bytes[i]];
+  }
   return '"' + hex + '"';
 }
 
@@ -640,6 +648,80 @@ function revalidated(request, headers) {
 // bounded rather than open-ended.
 const HTML_CACHE_CONTROL = 'public, max-age=300, s-maxage=60, stale-while-revalidate=600';
 
+const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "@id": "https://amyelectric.com/#electrician",
+  "name": "AMY Electric",
+  "image": "https://amyelectric.com/img/hero-electrician.jpg",
+  "url": "https://amyelectric.com",
+  "telephone": "+1-818-302-5614",
+  "email": "info@amyelectric.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "20628 Londelius St",
+    "addressLocality": "Winnetka",
+    "addressRegion": "CA",
+    "postalCode": "91306",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.22281,
+    "longitude": -118.58241
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "87",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+    "https://www.facebook.com/people/Amy-Electric/100063766463600/"
+  ],
+  "license": "California C-10 Electrical Contractor License #981578",
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
+  }
+}
+</script>`;
+
+function injectSchema(html) {
+  if (!html.includes('Electrician') && !html.includes('LocalBusiness')) {
+    const hi = html.indexOf('</head>');
+    if (hi !== -1) {
+      return html.slice(0, hi) + '\n' + DEFAULT_ELECTRICIAN_SCHEMA + '\n' + html.slice(hi);
+    }
+  }
+  return html;
+}
+
 // Build an HTML response: inject the beacon, apply the caching policy, and
 // honour conditional requests so repeat visits don't re-fetch the document.
 async function htmlResponse(request, response, headers) {
@@ -649,8 +731,9 @@ async function htmlResponse(request, response, headers) {
     return response;
   }
   const html = await response.text();
-  const body0 = injectBeacon(html);
-  let body = body0;
+  const body0 = injectSchema(html);
+  const body1 = injectBeacon(body0);
+  let body = body1;
   let cache = HTML_CACHE_CONTROL;
   // Geo personalization applies to the landing page only: a matched visitor
   // city is injected into the header attribute plus window.AMY_GEO, and the
@@ -667,13 +750,13 @@ async function htmlResponse(request, response, headers) {
     // homepage targets) and expose it via window.AMY_GEO_CITY.
     const city = resolveGeoCity(request);
     if (city) {
-      body = injectGeoCity(body0, city);
+      body = injectGeoCity(body1, city);
       cache = GEO_NO_STORE;
     }
   } else if (response.status === 200 && (pathname === '/' || pathname === '/index.html')) {
     const city = visitorCity(request);
     if (city) {
-      body = injectGeo(body0, city);
+      body = injectGeo(body1, city);
       cache = GEO_NO_STORE;
     }
   }
@@ -774,12 +857,11 @@ export default {
       if (request.method !== 'POST') {
         return new Response('Method not allowed', { status: 405 });
       }
-      const allowEvents = new Set(['phone_click', 'cta_click', 'form_submit']);
       try {
         const text = await request.text();
         const ev = JSON.parse(text);
         const name = typeof ev.event === 'string' ? ev.event : '';
-        if (!allowEvents.has(name)) {
+        if (!ALLOWED_CONVERSION_EVENTS.has(name)) {
           return new Response(JSON.stringify({ success: false, message: 'Unknown event' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
@@ -951,6 +1033,20 @@ export default {
       });
     }
 
+    if (url.pathname === '/llms.txt' || url.pathname === '/llms-full.txt') {
+      const assetRes = await env.ASSETS.fetch(request);
+      if (assetRes.ok) {
+        const body = await assetRes.text();
+        return new Response(body, {
+          headers: {
+            'Content-Type': 'text/markdown; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+      }
+    }
+
     const accept = request.headers.get('Accept') || '';
     if (accept.includes('text/markdown')) {
       const markdownPaths = {
@@ -1017,6 +1113,8 @@ export default {
 
     if (url.pathname === '/' || url.pathname === '/index.html') {
       const headers = new Headers(response.headers);
+      headers.append('Link', '</llms.txt>; rel="ai-context"');
+      headers.append('Link', '</llms-full.txt>; rel="ai-description"');
       headers.append('Link', '</.well-known/mcp/server-card.json>; rel="service-desc"');
       headers.append('Link', '</.well-known/openid-configuration>; rel="describedby"');
       headers.append('Link', '</.well-known/http-message-signatures-directory>; rel="api-catalog"');
@@ -1031,6 +1129,8 @@ export default {
     const responseType = response.headers.get('Content-Type') || '';
     if (responseType.includes('text/html')) {
       const headers = new Headers(response.headers);
+      headers.append('Link', '</llms.txt>; rel="ai-context"');
+      headers.append('Link', '</llms-full.txt>; rel="ai-description"');
       headers.append('Link', '</css/style.min.css>; rel=preload; as=style');
       headers.append('Vary', 'Accept');
       return htmlResponse(request, response, headers);

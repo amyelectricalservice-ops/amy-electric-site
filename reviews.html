@@ -106,10 +106,10 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/reviews",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/reviews",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Customer reviews and testimonials for AMY Electric, a licensed C-10 electrical contractor in Los Angeles.",
@@ -178,7 +178,73 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
     "bestRating": "5",
     "worstRating": "1"
   },
-  "review": [{"@type":"Review","author":{"@type":"Person","name":"Sarah M., Sherman Oaks"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"AMY Electric installed a Tesla Wall Connector at our home in Sherman Oaks. Amram was punctual, professional, and explained everything clearly. The installation was clean — you can't even see the conduit. He handled the permit and LADWP rebate paperwork too. Highly recommend for anyone needing an EV charger in LA."},{"@type":"Review","author":{"@type":"Person","name":"David & Lisa K., Burbank"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"We needed a 200-amp panel upgrade for our older home in Burbank. AMY Electric gave us a fair quote, pulled the permit, and completed the work in one day. The electricians were respectful of our home and cleaned up perfectly. Our insurance company was impressed with the documentation. Great experience from start to finish."},{"@type":"Review","author":{"@type":"Person","name":"Maria T., Glendale"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"After a power surge fried several outlets in our Glendale home, AMY Electric came out the same day. They found the issue quickly — a damaged main breaker — and replaced it on the spot. They also installed a whole-home surge protector to prevent future damage. Fast, honest, and affordable. Won't call anyone else."},{"@type":"Review","author":{"@type":"Person","name":"James K., Pasadena"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Fast, honest, and affordable. They even showed me the issue on video before fixing it. That kind of transparency builds trust."},{"@type":"Review","author":{"@type":"Person","name":"Jennifer & Mark R., Studio City"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"AMY Electric rewired our 1940s home in Studio City. The old knob-and-tube wiring was a fire hazard. The crew was professional, kept the workspace clean, and finished ahead of schedule. The new panel and wiring give us peace of mind. Worth every penny for the safety of our family."}],
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah M., Sherman Oaks"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "AMY Electric installed a Tesla Wall Connector at our home in Sherman Oaks. Amram was punctual, professional, and explained everything clearly. The installation was clean — you can't even see the conduit. He handled the permit and LADWP rebate paperwork too. Highly recommend for anyone needing an EV charger in LA."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "David & Lisa K., Burbank"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "We needed a 200-amp panel upgrade for our older home in Burbank. AMY Electric gave us a fair quote, pulled the permit, and completed the work in one day. The electricians were respectful of our home and cleaned up perfectly. Our insurance company was impressed with the documentation. Great experience from start to finish."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Maria T., Glendale"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "After a power surge fried several outlets in our Glendale home, AMY Electric came out the same day. They found the issue quickly — a damaged main breaker — and replaced it on the spot. They also installed a whole-home surge protector to prevent future damage. Fast, honest, and affordable. Won't call anyone else."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "James K., Pasadena"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Quick, transparent, and fairly priced. They even showed me the issue on video before fixing it. That kind of transparency builds trust."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer & Mark R., Studio City"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "AMY Electric rewired our 1940s home in Studio City. The old knob-and-tube wiring was a fire hazard. The crew was professional, kept the workspace clean, and finished ahead of schedule. The new panel and wiring give us peace of mind. Worth every penny for the safety of our family."
+    }
+  ],
   "hasCredential": [
     {
       "name": "C-10 Electrical Contractor License #981578"
@@ -195,8 +261,13 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
@@ -247,6 +318,7 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
 </script>
 
 
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Customer Reviews &amp; Testimonials | AMY Electric", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
 </head>
 <body>
 
@@ -269,29 +341,43 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
     <button class="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
-    <nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
-      <a href="reviews" class="active">Reviews</a>
-      <a href="gallery">Gallery</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
-      <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
       <a href="service-areas">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <a href="reviews">Reviews</a>
+      <a href="blog/">Blog</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav>
   </div>
 </header>
@@ -344,7 +430,7 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
 
   <div class="review-card">
     <div class="review-stars">★★★★★</div>
-    <p class="review-text">"We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Fast, honest, and affordable. They even showed me the issue on video before fixing it. That kind of transparency builds trust."</p>
+    <p class="review-text">"We had flickering lights and a tripping breaker nobody could figure out. AMY Electric diagnosed it in 20 minutes — a loose connection in the panel. Quick, transparent, and fairly priced. They even showed me the issue on video before fixing it. That kind of transparency builds trust."</p>
     <div class="review-author">— James K., Pasadena</div>
     <span class="review-service">Electrical Repair</span>
   </div>
@@ -601,8 +687,7 @@ footer{background:var(--navy2);border-top:3px solid var(--mid);padding:56px 24px
       <h3>Company</h3>
       <ul>
         <li><a href="about">About Us</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
         <li><a href="blog/">Blog</a></li>
         <li><a href="emergency-electrician-los-angeles">Emergency Service</a></li>
         <li><a href="service-areas">All Service Areas</a></li>

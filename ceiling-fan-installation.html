@@ -95,10 +95,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/ceiling-fan-installation",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/ceiling-fan-installation",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -200,8 +200,13 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   },
   "speakable": {
     "@type": "SpeakableSpecification",
@@ -212,84 +217,172 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   }
 }
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Ceiling Fan Installation", "name": "Ceiling Fan Installation Los Angeles", "description": "Professional ceiling fan installation with proper mounting, balancing, and wiring for energy-efficient cooling.","provider": {"@type": "LocalBusiness", "name": "AMY Electric", "telephone": "+1-818-302-5614", "url": "https://amyelectric.com"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "City", "name": "Sherman Oaks"}, {"@type": "City", "name": "Burbank"}, {"@type": "City", "name": "Glendale"}, {"@type": "City", "name": "Pasadena"}, {"@type": "City", "name": "Studio City"}, {"@type": "City", "name": "North Hollywood"}, {"@type": "City", "name": "Hollywood"}, {"@type": "City", "name": "Beverly Hills"}, {"@type": "City", "name": "West Los Angeles"}, {"@type": "City", "name": "Encino"}, {"@type": "City", "name": "Santa Monica"}, {"@type": "City", "name": "Woodland Hills"}, {"@type": "City", "name": "Van Nuys"}, {"@type": "City", "name": "Calabasas"}, {"@type": "City", "name": "Culver City"}, {"@type": "AdministrativeArea", "name": "San Fernando Valley"}], "offers": {"@type": "Offer", "priceSpecification": {"@type": "PriceSpecification", "priceCurrency": "USD", "price": "$150 - $500", "description": "Ceiling fan installation with wiring and balancing"}}, "sameAs": ["https://www.yelp.com/biz/amy-electric-los-angeles", "https://g.page/r/CVdK9ZAvNBrZEAI/review", "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
-    "https://www.facebook.com/people/Amy-Electric/100063766463600/"
-  ]}</script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How Ceiling Fan Installation Works in Los Angeles",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Assessment & Quote",
-      "text": "Tell us about the room, ceiling height, and fan type desired. We check joist location and provide a firm quote."
+  "@type": "Service",
+  "serviceType": "Ceiling Fan Installation",
+  "name": "Ceiling Fan Installation Los Angeles",
+  "description": "Professional ceiling fan installation with proper mounting, balancing, and wiring for energy-efficient cooling.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AMY Electric",
+    "telephone": "+1-818-302-5614",
+    "url": "https://amyelectric.com",
+    "@id": "https://amyelectric.com/#electrician",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
     },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Support Boxing (if needed)",
-      "text": "If no existing fan box, we install a fan-rated brace between joists to safely support the fan's weight and torque."
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
     },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Wiring & Mounting",
-      "text": "Run new wiring or connect to existing circuit. Securely mount the fan bracket and hang the fan assembly."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Blade Installation & Balancing",
-      "text": "Attach blades, install light kit (if applicable), and balance the fan to eliminate wobble and noise."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Testing & Walkthrough",
-      "text": "Test all speeds, light kit, and any smart features. Show you operation and cleanup before we leave."
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "price": "$150 - $500",
+      "description": "Ceiling fan installation with wiring and balancing"
+    }
+  },
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+    "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ]
 }
 </script>
+
+
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav></div></header>
 <main id="main-content">
 <div class="page-hero"><div class="wrap">
@@ -315,7 +408,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 <section class="section-pad"><div class="wrap">
   <div class="section-label">What Ceiling Fan Installation Services Do We Offer?</div>
   <h2>What Ceiling Fan Installation Services Do We Offer in Los Angeles?</h2>
-  <div class="expert-quote" style="background:rgba(245,166,35,.06); border-left:4px solid var(--gold); padding:20px 24px; margin:24px 0; border-radius:0 var(--radius) var(--radius) 0;"><p style="font-size:16px; line-height:1.7; color:var(--white); margin:0;">"According to Amy, founder of AMY Electric and Licensed C-10 electrical contractor with 15+ years of experience: 'A ceiling fan is one of the few home improvements that pays for itself. The Department of Energy says ceiling fans can make a room feel 4°F cooler, letting you raise your thermostat setting by 4°F without sacrificing comfort. In LA's climate, that translates to real savings on summer AC bills — especially on 100°+ valley days.'"</p></div>
+  <div class="expert-quote" style="background:rgba(245,166,35,.06); border-left:4px solid var(--gold); padding:20px 24px; margin:24px 0; border-radius:0 var(--radius) var(--radius) 0;"><p style="font-size:16px; line-height:1.7; color:var(--white); margin:0;">"According to Amram Edry, founder of AMY Electric and Licensed C-10 electrical contractor with 15+ years of experience: 'A ceiling fan is one of the few home improvements that pays for itself. The Department of Energy says ceiling fans can make a room feel 4°F cooler, letting you raise your thermostat setting by 4°F without sacrificing comfort. In LA's climate, that translates to real savings on summer AC bills — especially on 100°+ valley days.'"</p></div>
   <p class="max-w-640">From bedroom comfort to patio cooling, AMY Electric installs ceiling fans to manufacturer specifications and LA electrical code. We ensure proper support boxing, secure mounting, and balanced operation.</p>
   <div class="card-grid mt-lg">
     <div class="card"><div class="card-icon">🏠</div><h3>Indoor Ceiling Fans</h3><p>Standard installation for bedrooms, living rooms, dining areas, and offices. Includes proper junction box and secure mounting to joists.</p></div>
@@ -637,8 +730,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -672,7 +764,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>

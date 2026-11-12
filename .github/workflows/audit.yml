@@ -25,6 +25,9 @@ jobs:
         run: |
           python3 scripts/schema-tool.py validate
 
+      - name: Audit Skill Wiring
+        run: python3 scripts/audit-skills.py
+
       - name: Verify CSS & JS Production Builds
         run: |
           python3 scripts/build-css.py

@@ -32,7 +32,6 @@
 <link rel="stylesheet" href="css/style.min.css">
 <!-- Schema: Electrician + FAQPage + BreadcrumbList -->
 <script type="application/ld+json">
-
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
@@ -50,16 +49,18 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 34.08,
-    "longitude": -118.45
+    "latitude": 34.22281,
+    "longitude": -118.58241
   },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Bel Air",
-      "sameAs": "https://en.wikipedia.org/wiki/Bel Air,_California"
-    }
-  ],
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -75,7 +76,15 @@
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
       "opens": "00:00",
       "closes": "23:59",
       "description": "24/7 emergency service dispatch"
@@ -151,9 +160,10 @@
       }
     ],
     "url": "https://amyelectric.com"
-  }
+  },
+  "@id": "https://amyelectric.com/#electrician"
 }
-  </script>
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -253,6 +263,7 @@
   ]
 }
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Electrician in Bel Air, CA | Panel Upgrades | AMY Electric", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -269,15 +280,44 @@
         <span class="logo-sub">Los Angeles Electrical Contractor</span>
       </div>
     </a>
-    <nav aria-label="Main navigation">
-      <a href="/">Home</a>
-      <a href="/services">Services</a>
-      <a href="/service-areas">Service Areas</a>
-      <a href="/about">About</a>
-      <a href="/blog/">Blog</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="/#estimate" class="nav-cta">Free Estimate</a>
-    <a href="emergency-electrician-los-angeles">Emergency</a><a href="reviews">Reviews</a></nav>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
+      <a href="ev-charger-installation">EV Chargers</a>
+      <a href="panel-upgrade">Panel Upgrades</a>
+      <a href="electrical-repair">Repairs</a>
+      <a href="service-areas">Service Areas</a>
+      <a href="reviews">Reviews</a>
+      <a href="blog/">Blog</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
+    </nav>
   </div>
 </header>
 
@@ -319,7 +359,13 @@
         <p>Install a manual or automatic transfer switch to safely connect your generator during power outages.</p>
         <a href="/generator-transfer-switch">Learn More →</a>
       </div>
-    </div>
+        <a href="gallery" class="card no-underline">
+      <div class="card-icon">📸</div>
+      <h3>Project Gallery</h3>
+      <p>See completed electrical work in Bel Air — browse our gallery of panel upgrades, EV chargers, and rewiring projects.</p>
+      <span class="card-link">View Gallery</span>
+    </a>
+</div>
   </div>
 </section>
 

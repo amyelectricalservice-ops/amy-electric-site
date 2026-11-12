@@ -151,6 +151,19 @@ jobs:
           done
           exit $fail
 
+      - name: Verify sitemap content (not a 5-URL shadow)
+        run: |
+          locs=$(curl -sS --retry 3 --retry-delay 2 \
+            "https://amy-electric-site.a-m-y-electricalservice.workers.dev/sitemap.xml" \
+            | grep -o '<loc>' | wc -l)
+          echo "sitemap <loc> count: $locs"
+          [ "$locs" -ge 300 ] || { echo "FAILED: sitemap has $locs <loc> (expected >=300)"; exit 1; }
+
+      - name: Audit Worker route ownership (single-Worker invariant)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 scripts/audit-cloudflare-routes.py
+
       - name: Verify the public domain is reachable
         # Separate concern: the Worker is proven above, this only reports edge state.
         # Bot Fight Mode answers runner IPs with a 403 Managed Challenge, which means

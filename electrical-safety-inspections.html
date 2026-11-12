@@ -96,10 +96,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/electrical-safety-inspections",
+  "@id": "https://amyelectric.com/#electrician",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com/electrical-safety-inspections",
+  "url": "https://amyelectric.com",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles. Specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -201,14 +201,138 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Greater Los Angeles Area, CA"
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "geoRadius": "40233.6"
   }
 }
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Electrical Safety Inspection", "name": "Electrical Safety Inspection Los Angeles", "description": "Comprehensive electrical safety inspections for pre-purchase evaluations, older homes, and commercial properties.","provider": {"@type": "LocalBusiness", "name": "AMY Electric", "telephone": "+1-818-302-5614", "url": "https://amyelectric.com"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "City", "name": "Sherman Oaks"}, {"@type": "City", "name": "Burbank"}, {"@type": "City", "name": "Glendale"}, {"@type": "City", "name": "Pasadena"}, {"@type": "City", "name": "Studio City"}, {"@type": "City", "name": "North Hollywood"}, {"@type": "City", "name": "Hollywood"}, {"@type": "City", "name": "Beverly Hills"}, {"@type": "City", "name": "West Los Angeles"}, {"@type": "City", "name": "Encino"}, {"@type": "City", "name": "Santa Monica"}, {"@type": "City", "name": "Woodland Hills"}, {"@type": "City", "name": "Van Nuys"}, {"@type": "City", "name": "Calabasas"}, {"@type": "City", "name": "Culver City"}, {"@type": "AdministrativeArea", "name": "San Fernando Valley"}], "offers": {"@type": "Offer", "priceSpecification": {"@type": "PriceSpecification", "priceCurrency": "USD", "price": "$200 - $500", "description": "Comprehensive electrical safety inspection"}}, "sameAs": ["https://www.yelp.com/biz/amy-electric-los-angeles", "https://g.page/r/CVdK9ZAvNBrZEAI/review", "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Electrical Safety Inspection",
+  "name": "Electrical Safety Inspection Los Angeles",
+  "description": "Comprehensive electrical safety inspections for pre-purchase evaluations, older homes, and commercial properties.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AMY Electric",
+    "telephone": "+1-818-302-5614",
+    "url": "https://amyelectric.com",
+    "@id": "https://amyelectric.com/#electrician",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.22281,
+      "longitude": -118.58241
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "87",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Sherman Oaks"
+    },
+    {
+      "@type": "City",
+      "name": "Burbank"
+    },
+    {
+      "@type": "City",
+      "name": "Glendale"
+    },
+    {
+      "@type": "City",
+      "name": "Pasadena"
+    },
+    {
+      "@type": "City",
+      "name": "Studio City"
+    },
+    {
+      "@type": "City",
+      "name": "North Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Hollywood"
+    },
+    {
+      "@type": "City",
+      "name": "Beverly Hills"
+    },
+    {
+      "@type": "City",
+      "name": "West Los Angeles"
+    },
+    {
+      "@type": "City",
+      "name": "Encino"
+    },
+    {
+      "@type": "City",
+      "name": "Santa Monica"
+    },
+    {
+      "@type": "City",
+      "name": "Woodland Hills"
+    },
+    {
+      "@type": "City",
+      "name": "Van Nuys"
+    },
+    {
+      "@type": "City",
+      "name": "Calabasas"
+    },
+    {
+      "@type": "City",
+      "name": "Culver City"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Fernando Valley"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "price": "$200 - $500",
+      "description": "Comprehensive electrical safety inspection"
+    }
+  },
+  "sameAs": [
+    "https://www.yelp.com/biz/amy-electric-los-angeles",
+    "https://g.page/r/CVdK9ZAvNBrZEAI/review",
+    "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
-  ]}</script>
+  ]
+}
+</script>
 
 <script type="application/ld+json">
 {
@@ -222,75 +346,49 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How an Electrical Safety Inspection Works in Los Angeles",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Pre-Inspection Consultation",
-      "text": "We discuss your concerns, the age of your home, and any specific issues you've noticed (flickering lights, warm outlets, etc.)."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "On-Site Evaluation (1-2 Hours)",
-      "text": "We systematically inspect your electrical system: panel, wiring, outlets, switches, lighting, and accessible areas."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Testing & Measurements",
-      "text": "We use calibrated testers to measure voltage, check polarity, test GFCI/AFCI function, and verify grounding throughout your home."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Report Generation & Review",
-      "text": "We compile our findings into a clear, prioritized report with photos, code references, and recommended actions."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Walkthrough & Explanation",
-      "text": "We walk you through our findings, explain any safety concerns, and answer your questions before we leave."
-    }
-  ]
-}
-</script>
+
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="topbar"><span>📍 Los Angeles, CA &nbsp;·&nbsp; C-10 #981578 &nbsp;·&nbsp; EVITP #4051604</span><a href="tel:18183025614">☎ (818) 302-5614</a></div>
-<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button><nav>
-      <a href="/services">Services</a>
-      <a href="index">Home</a>
+<header><div class="header-inner"><a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a><button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>    <nav class="main-nav" aria-label="Main navigation">
+      <a href="services">Services</a>
       <a href="ev-charger-installation">EV Chargers</a>
       <a href="panel-upgrade">Panel Upgrades</a>
       <a href="electrical-repair">Repairs</a>
-      <a href="commercial-electrical">Commercial</a>
-      <a href="lighting-installation">Lighting</a>
-      <a href="tesla-charger-installation">Tesla Charger</a>
-      <a href="whole-home-rewiring">Rewiring</a>
-      <a href="surge-protection">Surge Protection</a>
+      <a href="service-areas">Service Areas</a>
       <a href="reviews">Reviews</a>
-      <a href="gallery">Gallery</a>
-
-      <a href="emergency-electrician-los-angeles">Emergency</a>
-      <a href="ev-charger-vs-panel-upgrade">EV Charger vs Panel</a>
-      <a href="ev-charger-hardwired-vs-plug-in">Hardwired vs Plug-In</a>
       <a href="blog/">Blog</a>
-      <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-      <a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a>
-      <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Cost</a>
-      <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-      <a href="city-los-angeles">Service Areas</a>
-            <a href="book" class="nav-book">📅 Book Online</a>
-<a href="tel:18183025614" class="nav-cta">Call Now</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          <div class="nav-more-col">
+            <div class="nav-more-label">Services</div>
+            <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
+            <a href="lighting-installation">Lighting</a>
+            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
+            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
+            <a href="surge-protection">Surge Protection</a>
+            <a href="tesla-charger-installation">Tesla Charger</a>
+          </div>
+          <div class="nav-more-col">
+            <div class="nav-more-label">Areas & Company</div>
+            <a href="city-los-angeles">Los Angeles</a>
+            <a href="gallery">Project Gallery</a>
+            <a href="about">About Amram</a>
+            <a href="get-quote">Get a Quote</a>
+            <div class="nav-more-label">Popular Guides</div>
+            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
+            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
+            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
+            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
+          </div>
+        </div>
+      </details>
+      <a href="book" class="nav-book">📅 Book Online</a>
+      <a href="tel:18183025614" class="nav-cta">Call Now</a>
     </nav></div></header>
 <main id="main-content">
 <div class="page-hero"><div class="wrap">
@@ -366,19 +464,19 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="section-label">Related Services</div>
   <h2>Also Consider</h2>
   <div class="related-grid">
-    <a href="panel-upgrade" class="related-card"><div class="rc-icon">🔧</div><strong>Panel Upgrade</span></div></a>
-    <a href="whole-home-rewiring" class="related-card"><div class="rc-icon">🏠</div><strong>Whole-Home Rewiring</span></div></a>
-    <a href="outlet-switch-installation" class="related-card"><div class="rc-icon">🔌</div><strong>Outlet &amp; Switch Installation</span></div></a>
+    <a href="panel-upgrade" class="related-card"><div class="rc-icon">🔧</div><strong>Panel Upgrade</strong></div></a>
+    <a href="whole-home-rewiring" class="related-card"><div class="rc-icon">🏠</div><strong>Whole-Home Rewiring</strong></div></a>
+    <a href="outlet-switch-installation" class="related-card"><div class="rc-icon">🔌</div><strong>Outlet &amp; Switch Installation</strong></div></a>
   </div>
 </div></section>
 <section class="section-navy"><div class="wrap text-center">
   <div class="section-label">FAQ</div><h2>Electrical Safety Inspection FAQ</h2>
   <div class="faq-list text-left">
-    <details class="faq-item"><summary class="faq-q">Do I need an electrical safety inspection if my home seems fine? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — many serious electrical problems develop gradually over time without obvious warning signs, which is why regular preventive inspections are recommended even when everything appears to be working normally. Hidden issues that can exist in a seemingly fine home include loose connections at the panel or outlets that can generate heat and eventually fail, deteriorating wire insulation in older homes, corroded connections from moisture or pest activity, improperly installed DIY work from previous owners, overloaded circuits that are functioning at or near their maximum capacity without tripping, and outdated wiring methods like knob-and-tube or early aluminum wiring that may not meet modern safety standards. The National Fire Protection Association recommends a home electrical safety inspection at least every 10 years for existing homes, and more frequently for homes over 40 years old. We recommend an inspection if you have recently purchased an older Los Angeles home, before starting a major renovation, or if your home has knob-and-tube or aluminum wiring.</div></div>
-    <details class="faq-item"><summary class="faq-q">How often should I get an electrical safety inspection? <span class="faq-chevron">▾</span></summary><div class="faq-a">The recommended frequency for electrical safety inspections depends on the age and condition of your home. For most Los Angeles homes, a professional electrical inspection every 5 to 10 years is adequate if the home is less than 40 years old and has no known issues or history of electrical problems. Homes over 40 years old should be inspected more frequently — every 3 to 5 years — because wiring insulation degrades over time and older electrical systems may not meet modern safety standards. An inspection is also recommended before purchasing a home, before starting a major renovation that will add significant electrical load, after any significant electrical event like a lightning strike or power surge, and in homes with known risk factors such as aluminum wiring, knob-and-tube wiring, Federal Pacific or Zinsco panels, or a history of DIY electrical modifications. We help Los Angeles homeowners determine the right inspection schedule for their specific home's age and condition.</div></div>
-    <details class="faq-item"><summary class="faq-q">What does an electrical safety inspection cover? <span class="faq-chevron">▾</span></summary><div class="faq-a">A comprehensive electrical safety inspection covers every major component of your home's electrical system. We begin at the service entrance, inspecting the meter socket, service mast, weatherhead, and main service conductors for damage, corrosion, and proper clearances. At the panel, we check all breaker connections for tightness, look for signs of overheating or arcing, verify proper bonding and grounding, and ensure all circuits are correctly labeled. We then test a representative sample of outlets, switches, and light fixtures throughout the home for proper polarity, grounding, and GFCI/AFCI protection where required. We inspect visible wiring in the attic and crawlspace for signs of rodent damage, insulation deterioration, and proper support. We also test smoke and CO detectors, check bathroom and kitchen GFCI protection, and inspect outdoor outlets and lighting for weather resistance. After the inspection, we provide a detailed written report with any issues found and prioritized recommendations.</div></div>
-    <details class="faq-item"><summary class="faq-q">Is an electrical safety inspection the same as a permit inspection? <span class="faq-chevron">▾</span></summary><div class="faq-a">No — an electrical safety inspection and a permit inspection serve different purposes, though both involve a licensed professional evaluating your electrical system. A permit inspection is performed by the local building department (LADBS in the City of Los Angeles) to verify that recently completed electrical work meets code requirements and is safe for use — this is a pass-or-fail inspection focused on a specific permitted project. An electrical safety inspection, on the other hand, is a comprehensive evaluation of your existing electrical system by a licensed electrician, not a building inspector, covering all components regardless of whether any recent work has been performed. The safety inspection identifies problems proactively before they cause failures, while a permit inspection is reactive and confirms work already completed. They complement each other — a safety inspection before a renovation helps identify issues that should be addressed as part of the permitted work.</div></div>
-    <details class="faq-item"><summary class="faq-q">How long does an electrical safety inspection take? <span class="faq-chevron">▾</span></summary><div class="faq-a">A standard residential electrical safety inspection for most single-family Los Angeles homes takes approximately 1 to 2 hours, depending on the size and complexity of the home and the number of outlets, switches, and fixtures that need to be tested. Smaller condominiums or apartments may take 45 minutes to 1 hour, while larger homes over 3,000 square feet, homes with multiple subpanels, or properties with known electrical issues may take 2 to 3 hours for a thorough evaluation. During the inspection, we systematically work through the home from the service entrance to every room, testing outlets, switches, and fixtures along the way. We provide the detailed written report and prioritized recommendations at the conclusion of the inspection, along with a no-obligation quote for any recommended repairs or upgrades.</div></div>
+    <details class="faq-item"><summary class="faq-q">Do I need an electrical safety inspection if my home seems fine? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — many serious electrical problems develop gradually over time without obvious warning signs, which is why regular preventive inspections are recommended even when everything appears to be working normally. Hidden issues that can exist in a seemingly fine home include loose connections at the panel or outlets that can generate heat and eventually fail, deteriorating wire insulation in older homes, corroded connections from moisture or pest activity, improperly installed DIY work from previous owners, overloaded circuits that are functioning at or near their maximum capacity without tripping, and outdated wiring methods like knob-and-tube or early aluminum wiring that may not meet modern safety standards. The National Fire Protection Association recommends a home electrical safety inspection at least every 10 years for existing homes, and more frequently for homes over 40 years old. We recommend an inspection if you have recently purchased an older Los Angeles home, before starting a major renovation, or if your home has knob-and-tube or aluminum wiring.</div></details>
+    <details class="faq-item"><summary class="faq-q">How often should I get an electrical safety inspection? <span class="faq-chevron">▾</span></summary><div class="faq-a">The recommended frequency for electrical safety inspections depends on the age and condition of your home. For most Los Angeles homes, a professional electrical inspection every 5 to 10 years is adequate if the home is less than 40 years old and has no known issues or history of electrical problems. Homes over 40 years old should be inspected more frequently — every 3 to 5 years — because wiring insulation degrades over time and older electrical systems may not meet modern safety standards. An inspection is also recommended before purchasing a home, before starting a major renovation that will add significant electrical load, after any significant electrical event like a lightning strike or power surge, and in homes with known risk factors such as aluminum wiring, knob-and-tube wiring, Federal Pacific or Zinsco panels, or a history of DIY electrical modifications. We help Los Angeles homeowners determine the right inspection schedule for their specific home's age and condition.</div></details>
+    <details class="faq-item"><summary class="faq-q">What does an electrical safety inspection cover? <span class="faq-chevron">▾</span></summary><div class="faq-a">A comprehensive electrical safety inspection covers every major component of your home's electrical system. We begin at the service entrance, inspecting the meter socket, service mast, weatherhead, and main service conductors for damage, corrosion, and proper clearances. At the panel, we check all breaker connections for tightness, look for signs of overheating or arcing, verify proper bonding and grounding, and ensure all circuits are correctly labeled. We then test a representative sample of outlets, switches, and light fixtures throughout the home for proper polarity, grounding, and GFCI/AFCI protection where required. We inspect visible wiring in the attic and crawlspace for signs of rodent damage, insulation deterioration, and proper support. We also test smoke and CO detectors, check bathroom and kitchen GFCI protection, and inspect outdoor outlets and lighting for weather resistance. After the inspection, we provide a detailed written report with any issues found and prioritized recommendations.</div></details>
+    <details class="faq-item"><summary class="faq-q">Is an electrical safety inspection the same as a permit inspection? <span class="faq-chevron">▾</span></summary><div class="faq-a">No — an electrical safety inspection and a permit inspection serve different purposes, though both involve a licensed professional evaluating your electrical system. A permit inspection is performed by the local building department (LADBS in the City of Los Angeles) to verify that recently completed electrical work meets code requirements and is safe for use — this is a pass-or-fail inspection focused on a specific permitted project. An electrical safety inspection, on the other hand, is a comprehensive evaluation of your existing electrical system by a licensed electrician, not a building inspector, covering all components regardless of whether any recent work has been performed. The safety inspection identifies problems proactively before they cause failures, while a permit inspection is reactive and confirms work already completed. They complement each other — a safety inspection before a renovation helps identify issues that should be addressed as part of the permitted work.</div></details>
+    <details class="faq-item"><summary class="faq-q">How long does an electrical safety inspection take? <span class="faq-chevron">▾</span></summary><div class="faq-a">A standard residential electrical safety inspection for most single-family Los Angeles homes takes approximately 1 to 2 hours, depending on the size and complexity of the home and the number of outlets, switches, and fixtures that need to be tested. Smaller condominiums or apartments may take 45 minutes to 1 hour, while larger homes over 3,000 square feet, homes with multiple subpanels, or properties with known electrical issues may take 2 to 3 hours for a thorough evaluation. During the inspection, we systematically work through the home from the service entrance to every room, testing outlets, switches, and fixtures along the way. We provide the detailed written report and prioritized recommendations at the conclusion of the inspection, along with a no-obligation quote for any recommended repairs or upgrades.</div></details>
   </div>
 </div></section>
 <div class="cta-band"><div class="wrap">
@@ -540,6 +638,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <h2>Helpful Articles &amp; Guides</h2>
     <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:24px">
       <a href="blog/electrical-inspection-what-to-expect" class="related-card flex-card"><strong>What to Expect at an Inspection</strong><span class="sub-text">Step by step</span></a>
+      <a href="blog/electrical-inspection-cost-los-angeles" class="related-card flex-card"><strong>Inspection Cost in Los Angeles</strong><span class="sub-text">2026 pricing by type</span></a>
       <a href="blog/electrical-fire-prevention" class="related-card flex-card"><strong>Electrical Fire Prevention</strong><span class="sub-text">Protect your home</span></a>
       <a href="blog/power-outage-what-to-do" class="related-card flex-card"><strong>Power Outage: What to Do</strong><span class="sub-text">Safety steps</span></a>
       <a href="blog/la-electrical-safety-tips" class="related-card flex-card"><strong>LA Electrical Safety Tips</strong><span class="sub-text">Homeowner checklist</span></a>
@@ -614,8 +713,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
       <ul>
         <li><a href="about">About Us</a></li>
         <li><a href="reviews">Reviews</a></li>
-        <li><a href="reviews">Customer Reviews</a></li>
-        <li><a href="gallery">Gallery</a></li>
+                <li><a href="gallery">Gallery</a></li>
       <li><a href="blog/">Blog</a></li>
       <li><a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a></li>
       <li><a href="blog/whole-home-rewiring-cost-los-angeles">Rewiring Cost</a></li>
@@ -644,7 +742,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <span class="sticky-icon" aria-hidden="true">📞</span>
     <span class="sticky-label">Call Now</span>
   </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text" aria-label="Text Message — AMY Electric">
+  <a href="sms:+18183025614" class="sticky-btn sticky-text">
     <span class="sticky-icon" aria-hidden="true">💬</span>
     <span class="sticky-label">Text Message</span>
   </a>
