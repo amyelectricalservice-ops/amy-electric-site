@@ -6,9 +6,8 @@ Generates descriptive captions based on brightness, color, edges, and texture.
 
 import csv
 import os
-import re
 import numpy as np
-from PIL import Image, ImageFilter, ImageStat
+from PIL import Image, ImageFilter
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(SCRIPT_DIR)

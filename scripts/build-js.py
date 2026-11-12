@@ -7,7 +7,9 @@ and writes the result to js/site.js (human-readable) and
 js/site.min.js (minified for production).
 """
 
-import os, re, glob
+import os
+import re
+import glob
 
 SRC_DIR = os.path.join(os.path.dirname(__file__), '..', 'js', 'src')
 OUT_DEV = os.path.join(os.path.dirname(__file__), '..', 'js', 'site.js')

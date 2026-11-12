@@ -17,7 +17,10 @@ image, fix category/caption/city, then append to scripts/photo-manifest.csv and 
   python3 scripts/update-gallery.py
 """
 from pathlib import Path
-import re, csv, json, sqlite3
+import re
+import csv
+import json
+import sqlite3
 from collections import defaultdict, Counter
 
 ORG = Path("/home/amram/Pictures/Electric Work/organized")

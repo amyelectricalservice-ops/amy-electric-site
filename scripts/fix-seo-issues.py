@@ -8,8 +8,6 @@ Fix all 5 SEO issues:
 5. Boost blog priorities
 """
 
-import json
-import os
 import re
 from pathlib import Path
 
@@ -306,9 +304,9 @@ def fix_city_pages():
         updated += 1
     
     print(f"  Updated {updated} city pages")
-    print(f"  - Unique meta descriptions")
-    print(f"  - Correct geo coordinates (no more all-Winnetka)")
-    print(f"  - Nearby Cities internal links")
+    print("  - Unique meta descriptions")
+    print("  - Correct geo coordinates (no more all-Winnetka)")
+    print("  - Nearby Cities internal links")
 
 
 def main():

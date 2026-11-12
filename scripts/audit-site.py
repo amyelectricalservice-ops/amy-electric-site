@@ -1,7 +1,6 @@
 import glob
 import os
 import re
-import json
 import sys
 from xml.etree import ElementTree as ET
 
@@ -152,7 +151,7 @@ def audit():
         if file_issues:
             issues_by_file[f] = file_issues
 
-    print(f"=== AUDIT REPORT ===")
+    print("=== AUDIT REPORT ===")
     print(f"Total production HTML pages: {len(html_files)}")
     print(f"Pages missing from sitemap: {len(missing_from_sitemap)}")
     print(f"Sitemap URLs not self-canonical: {len(sitemap_not_self_canonical)}")

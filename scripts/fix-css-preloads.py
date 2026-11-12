@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Ensure all HTML files have CSS preload links."""
-import glob, re, os
+import glob
+import os
 
 html_files = sorted(
     glob.glob('/home/amram/WEBSITE/*.html') +

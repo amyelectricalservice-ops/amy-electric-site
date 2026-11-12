@@ -7,7 +7,6 @@ import argparse
 import urllib.request
 import urllib.error
 import os
-from typing import Optional
 
 
 BING_API_KEY = os.environ.get("BING_WEBMASTER_API_KEY", "")

@@ -6,7 +6,7 @@ import json
 import argparse
 import urllib.request
 import urllib.error
-from typing import List, Optional
+from typing import List
 
 
 INDEXNOW_KEY = "16076f14-4d06-4581-b281-38a7a89804ca"

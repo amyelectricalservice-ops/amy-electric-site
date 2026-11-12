@@ -16,7 +16,6 @@ For each entry:
 
 import csv
 import os
-import sys
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -60,10 +59,6 @@ def center_crop_4_3(im, custom=None):
 def process_one(row):
     source = row["source_file"].strip()
     slug = row["slug"].strip()
-    category = row["category"].strip()
-    caption = row["caption"].strip()
-    city = row.get("city", "").strip()
-    year = row.get("year", "").strip()
     custom_crop = (row.get("custom_crop") or "").strip()
 
     src_path = SRC / source

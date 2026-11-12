@@ -8,7 +8,6 @@ Updates sitemap.xml with image:image entries.
 """
 
 import re
-import os
 from pathlib import Path
 
 WEBSITE = Path(__file__).parent.parent
@@ -265,7 +264,7 @@ def update_sitemap():
         print(f"  UPDATED sitemap.xml with {len(slugs_and_years)} image entries")
         return True
     else:
-        print(f"  WARNING: gallery URL not found in sitemap.xml")
+        print("  WARNING: gallery URL not found in sitemap.xml")
         return False
 
 

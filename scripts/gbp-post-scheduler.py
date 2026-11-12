@@ -125,8 +125,8 @@ def main():
     post = next((p for p in posts if p["index"] == idx), posts[(idx - 1) % len(posts)])
     start_of_week = today - timedelta(days=today.weekday())
     print_post(post, scheduled_date=start_of_week)
-    print(f"📋 To post this week: copy the text above to your Google Business Profile.")
-    print(f"   https://business.google.com/posts")
+    print("📋 To post this week: copy the text above to your Google Business Profile.")
+    print("   https://business.google.com/posts")
     print()
 
 

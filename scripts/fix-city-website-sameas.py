@@ -1,4 +1,5 @@
-import os, glob
+import os
+import glob
 
 root = "/home/amram/WEBSITE"
 sameas = '''  "sameAs": [

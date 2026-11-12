@@ -11,7 +11,10 @@ Fixes:
 7. Fix empty BreadcrumbList URLs on gallery/privacy-policy
 """
 
-import re, json, os, glob
+import re
+import json
+import os
+import glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

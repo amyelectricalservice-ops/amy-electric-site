@@ -7,7 +7,9 @@ and writes the result to css/style.css (human-readable) and
 css/style.min.css (minified for production).
 """
 
-import os, re, glob
+import os
+import re
+import glob
 
 SRC_DIR = os.path.join(os.path.dirname(__file__), '..', 'css', 'src')
 OUT_DEV = os.path.join(os.path.dirname(__file__), '..', 'css', 'style.css')

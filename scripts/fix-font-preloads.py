@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Ensure all self-hosted fonts are preloaded across all HTML pages."""
-import glob, re
+import glob
+import re
 
 FONT_FILES = (
     'BarlowCondensed-600.woff2',

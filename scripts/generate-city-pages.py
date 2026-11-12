@@ -2,7 +2,6 @@
 """Generate city pages for all cities within 25 miles of Winnetka 91306."""
 
 import os
-import re
 
 # Reference template (city-burbank.html structure)
 TEMPLATE_HEAD = """<!DOCTYPE html>

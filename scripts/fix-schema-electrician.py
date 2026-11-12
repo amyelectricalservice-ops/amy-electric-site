@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Replace @type Electrician with LocalBusiness in all JSON-LD blocks."""
-import re, glob, os
+import re
+import glob
+import os
 
 # Find all HTML files
 html_files = sorted(
