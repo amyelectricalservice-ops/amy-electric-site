@@ -20,11 +20,13 @@ function baseUrl(env) {
 }
 
 function authHeaders(env) {
-  if (env && env.ESPOCRM_API_KEY) return { 'X-Api-Key': env.ESPOCRM_API_KEY };
+  // Basic is the reliable path on EspoCRM 10 (the per-user apiKey field is
+  // read-only via the API). Prefer explicit credentials when both exist.
   const user = (env && env.ESPOCRM_USERNAME) || '';
   const pass = (env && env.ESPOCRM_PASSWORD) || '';
-  if (!user) return {};
-  return { Authorization: `Basic ${btoa(`${user}:${pass}`)}` };
+  if (user) return { Authorization: `Basic ${btoa(`${user}:${pass}`)}` };
+  if (env && env.ESPOCRM_API_KEY) return { 'X-Api-Key': env.ESPOCRM_API_KEY };
+  return {};
 }
 
 export function espocrmConfigured(env) {
@@ -228,7 +230,8 @@ export async function syncLeadToEspo(env, lead) {
         body: JSON.stringify({
           name: `Commercial — ${lead.service || 'electrical'} — ${lead.name || 'website lead'}`,
           stage: 'Prospecting',
-          amount: amount || undefined,
+          // EspoCRM requires amount; 0 means "not yet priced".
+          amount: amount == null ? 0 : amount,
           amountCurrency: 'USD',
           closeDate: close.toISOString().slice(0, 10),
           contactId,
@@ -236,7 +239,11 @@ export async function syncLeadToEspo(env, lead) {
           description: leadDescription(lead),
         }),
       });
-      if (opp.ok) opportunityId = opp.body.id;
+      if (opp.ok) {
+        opportunityId = opp.body.id;
+      } else {
+        console.warn('EspoCRM opportunity failed:', opp.status, JSON.stringify(opp.body).slice(0, 200));
+      }
     }
 
     return { ok: true, contactId, leadId, opportunityId, taskId };
