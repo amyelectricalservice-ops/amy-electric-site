@@ -99,6 +99,7 @@ def audit():
     meta_desc_issues = []
     title_issues = []
     head_close_missing = []
+    picture_structure_issues = []
 
     for f in html_files:
         with open(f, 'r', encoding='utf-8') as fh:
@@ -148,6 +149,28 @@ def audit():
             file_issues.append('Missing </head> before <body>')
             head_close_missing.append(f)
 
+        # 6. Picture/source structural integrity. Stray <source> outside
+        # <picture> (or unbalanced tags) silently breaks WebP negotiation and
+        # was the root cause of the photo-grid corruption fixed 2026-11-12.
+        picture_open = content.count('<picture>')
+        picture_close = content.count('</picture>')
+        sources_total = len(re.findall(r'<source\b', content, re.I))
+        sources_inside = 0
+        for block in re.findall(r'<picture\b.*?</picture>', content, re.S | re.I):
+            sources_inside += len(re.findall(r'<source\b', block, re.I))
+        stray_sources = sources_total - sources_inside
+        if picture_open != picture_close or stray_sources > 0:
+            msg = 'Picture/source markup broken (open=%d close=%d stray_sources=%d)' % (picture_open, picture_close, stray_sources)
+            file_issues.append(msg)
+            picture_structure_issues.append((f, msg))
+
+        # 7. No <section> nested directly inside .trust-bar-inner.
+        m = re.search(r'<div class="trust-bar">\s*<div class="trust-bar-inner">(.*?)</div>\s*</div>', content, re.S)
+        if m and '<section' in m.group(1):
+            msg = 'Section nested inside trust-bar-inner'
+            file_issues.append(msg)
+            picture_structure_issues.append((f, msg))
+
         if file_issues:
             issues_by_file[f] = file_issues
 
@@ -160,6 +183,7 @@ def audit():
     print(f"Pages with meta description issues: {len(meta_desc_issues)}")
     print(f"Pages with title tag issues: {len(title_issues)}")
     print(f"Pages missing </head>: {len(head_close_missing)}")
+    print(f"Pages with picture/source markup issues: {len(picture_structure_issues)}")
 
     if missing_from_sitemap:
         print("\n[!] Missing from sitemap.xml:")
@@ -195,6 +219,11 @@ def audit():
         print(f"\n[!] Missing </head> ({len(head_close_missing)}):")
         for m in head_close_missing:
             print(f"  - {m}")
+
+    if picture_structure_issues:
+        print(f"\n[!] Picture/source markup issues ({len(picture_structure_issues)}):")
+        for f, iss in picture_structure_issues:
+            print(f"  - {f}: {iss}")
 
     any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
                   sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing)
