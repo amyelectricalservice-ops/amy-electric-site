@@ -136,7 +136,7 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
     "@type": "Person",
     "name": "AMY Electric Master Electrician",
     "jobTitle": "Lead Master Electrician & Founder",
-    "description": "California C-10 Licensed Master Electrician with 15+ years experience in commercial & residential electrical engineering, EVITP certified.",
+    "description": "California C-10 Licensed Master Electrician with over a decade of experience in commercial & residential electrical engineering, EVITP certified.",
     "worksFor": {
       "@type": "Organization",
       "name": "AMY Electric"
@@ -369,17 +369,22 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
     <div class="about-card">
       <div class="stat">🏅</div>
       <h3>License</h3>
-      <p>C-10 #981578 (verify at cslb.ca.gov)<br>EVITP #4051604</p>
+      <p>C-10 #981578 — active on CSLB<br><a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx" rel="noopener" target="_blank">Verify the license yourself</a><br>EVITP #4051604</p>
     </div>
+  </div>
+  <div style="margin-top:28px;padding:20px 24px;background:rgba(245,166,35,.06);border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;max-width:760px;">
+    <h3 style="margin-bottom:8px;">Credentials you can verify</h3>
+    <p style="margin:0 0 8px;">We checked our own record with the Contractors State License Board on 12 November 2026:</p>
+    <ul style="margin:0;padding-left:20px;line-height:1.8;">
+      <li><strong>C-10 Electrical</strong>, license #981578 — <strong>current and active</strong></li>
+      <li>Issued 2 March 2013 · expires 31 March 2027</li>
+      <li>Contractor's bond filed with CSLB ($25,000, American Contractors Indemnity Company)</li>
+      <li>EVITP certification #4051604</li>
+    </ul>
+    <p style="margin:10px 0 0;font-size:14px;color:var(--gray);">License status can change — always confirm at cslb.ca.gov before hiring any contractor. For property managers, HOAs and escrow we can provide a certificate of insurance on request.</p>
   </div>
   <p style="margin-top:24px;max-width:640px;">For sparking outlets, smoking panels, exposed wires, or water near electricity — call (818) 302-5614 now. We prioritize emergency dispatch and typically arrive within 30–60 minutes.</p>
 </section>
-
-<section class="section-pad"><div class="wrap" style="max-width:760px;">
-  <div class="section-label">Request Service</div>
-  <h2>Request Service or an Estimate</h2>
-  <p>Keep the existing Quick Quote form component here.</p>
-</div></section>
 
 <section class="estimate-section" id="estimate" style="padding: 72px 24px;">
   <div class="wrap" style="max-width: 760px;">
@@ -425,6 +430,15 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
              <option value="other">Other / Not Sure</option>
            </select>
            <div id="q-service-error" class="form-error" style="display:none; color:red; margin-top:5px;" aria-live="polite">Please select a service.</div>
+         </div>
+         <div class="form-group full">
+           <fieldset class="upload-field" data-upload-field>
+             <legend>Photos or plans <span class="upload-optional">(optional)</span></legend>
+             <input type="file" id="q-files" name="uploads" data-upload-input accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" multiple aria-describedby="q-files-help">
+             <p id="q-files-help" class="upload-help">Up to 5 files, 10 MB each. JPG, PNG, WebP, HEIC or PDF — photos of the panel, outlet, or a plan set help us quote accurately.</p>
+             <p class="upload-error" data-upload-error role="alert"></p>
+             <ul class="upload-list" data-upload-list aria-live="polite"></ul>
+           </fieldset>
          </div>
        </div>
        <button type="submit" class="btn btn-gold form-submit">Request Free Quote</button>
@@ -501,6 +515,15 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
           <div class="form-group full">
             <label for="message">Project Details</label>
             <textarea id="message" name="message" rows="4" placeholder="Describe what you need or any issues you're experiencing..." required aria-label="Project details or message"></textarea>
+          </div>
+          <div class="form-group full">
+            <fieldset class="upload-field" data-upload-field>
+              <legend>Project photos or PDF plans <span class="upload-optional">(optional)</span></legend>
+              <input type="file" id="files" name="uploads" data-upload-input accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" multiple aria-describedby="files-help">
+              <p id="files-help" class="upload-help">Up to 5 files, 10 MB each. Photos of the panel, meter, or job site and PDF plan sets are welcome. Files are stored privately and only shared with the AMY Electric team.</p>
+              <p class="upload-error" data-upload-error role="alert"></p>
+              <ul class="upload-list" data-upload-list aria-live="polite"></ul>
+            </fieldset>
           </div>
         </div>
         <button type="submit" class="btn btn-gold form-submit">Submit Detailed Request</button>
