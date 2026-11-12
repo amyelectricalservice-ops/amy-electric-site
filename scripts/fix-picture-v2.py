@@ -41,7 +41,7 @@ def process_html_files():
             content = f.read()
         
         # Check if file has nested picture elements
-        if '<picture>\s*<picture>' not in content and not re.search(r'<picture>\s*<picture>', content):
+        if not re.search(r'<picture>\s*<picture>', content):
             continue
             
         # Fix

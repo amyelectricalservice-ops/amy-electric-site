@@ -1,8 +1,6 @@
 import glob
 import os
 import re
-import json
-from xml.etree import ElementTree as ET
 
 def apply_fixes():
     # 1. Title Tag Fixes
@@ -173,11 +171,11 @@ def apply_fixes():
             else:
                 priority = '0.8'
                 
-        sitemap_lines.append(f'  <url>')
+        sitemap_lines.append('  <url>')
         sitemap_lines.append(f'    <loc>{url}</loc>')
-        sitemap_lines.append(f'    <lastmod>2026-09-04</lastmod>')
+        sitemap_lines.append('    <lastmod>2026-09-04</lastmod>')
         sitemap_lines.append(f'    <priority>{priority}</priority>')
-        sitemap_lines.append(f'  </url>')
+        sitemap_lines.append('  </url>')
         
     sitemap_lines.append('</urlset>')
     

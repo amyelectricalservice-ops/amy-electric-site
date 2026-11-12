@@ -71,7 +71,7 @@ def main():
     # 400w WebP
     size_400 = sum(f.stat().st_size for f in GALLERY.glob("*-400w.webp"))
 
-    print(f"Summary:")
+    print("Summary:")
     print(f"  400w WebP: {size_400//1024} KiB ({count_800} files, avg {size_400//count_800//1024 if count_800 else 0} KiB)")
     print(f"  800w WebP: {size_800//1024} KiB ({count_800} files, avg {size_800//count_800//1024 if count_800 else 0} KiB)")
     print(f"  1200w WebP: {size_1200//1024} KiB ({len(files)} files, avg {size_1200//len(files)//1024 if files else 0} KiB)")

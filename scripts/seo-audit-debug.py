@@ -127,7 +127,7 @@ def seo_audit():
             if clean_h.endswith('.html') and clean_h != 'privacy-policy.html':
                 internal_link_html_ext.append((f, href))
 
-    print(f"\n--- DEEP SEO AUDIT RESULTS ---")
+    print("\n--- DEEP SEO AUDIT RESULTS ---")
     print(f"Missing from sitemap: {len(sitemap_missing)}")
     print(f"Canonical URL issues: {len(canonical_issues)}")
     print(f"OpenGraph meta issues: {len(og_issues)}")

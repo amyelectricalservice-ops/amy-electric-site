@@ -22,8 +22,59 @@
 <link rel="preload" as="font" href="../fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="../fonts/SourceSerif4-400.woff2" crossorigin>
 <link rel="preload" as="font" href="../fonts/SourceSerif4-400italic.woff2" crossorigin>
-<link rel="preload" as="style" href="../css/style.min.css">
-<link rel="stylesheet" href="../css/style.min.css">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--navy);color:var(--white);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.hero-img{border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.45);aspect-ratio:4/3;background:#1e3055;display:flex;align-items:center;justify-content:center}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:0 0 var(--radius) var(--radius);font-family:var(--cond);font-weight:700;z-index:9999;text-decoration:none}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.topbar{background:var(--gold);color:var(--navy);font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.04em;padding:7px 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--navy)}
+header{background:var(--navy2);border-bottom:3px solid var(--mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);font-family:var(--cond);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);flex-shrink:0}
+.logo-text{font-family:var(--cond)}
+.logo-name{font-size:22px;font-weight:800;color:var(--white);letter-spacing:.02em;display:block}
+.logo-sub{font-size:11px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;display:block}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray);padding:8px 12px;border-radius:var(--radius);transition:color .18s,background .18s;text-decoration:none}
+nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:8px 16px!important;margin-left:8px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:24px;height:24px;background:var(--white);margin:5px 0;transition:.3s}
+.btn{display:inline-block;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .12s,box-shadow .18s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(245,166,35,.35)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4)}
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0d1e3a 60%,#091420 100%);padding:80px 24px 72px;position:relative;overflow:hidden}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:var(--cond);font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;color:var(--white);margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-desc{font-size:18px;color:rgba(244,241,235,.8);margin-bottom:32px;max-width:500px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:5px 14px;font-family:var(--cond);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--white)}
+.badge .dot{width:7px;height:7px;background:#4cdb7a;border-radius:50%}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.page-hero{background:linear-gradient(135deg,var(--navy2) 0%,#091420 100%);padding:56px 24px 48px;border-bottom:3px solid var(--mid)}
+.breadcrumb{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:14px}
+.breadcrumb a{color:var(--gray)}
+.page-hero h1{font-family:var(--cond);font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:16px;color:var(--white)}
+.page-hero p{font-size:18px;color:rgba(244,241,235,.8);max-width:620px;margin-bottom:28px}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*touch-targets*/@media (max-width:767px){.topbar a, .breadcrumb a, nav.open a, .footer-col a, .footer-contact a, .form-note a, .mt-lg a, .gallery-cities a, h3 a, button.filter-chip{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}.topbar{padding:4px 16px;}.topbar a{justify-content:center;}.breadcrumb a{padding:0 6px;}.gallery-cities a{padding:0 6px;}.footer-col li{margin-bottom:0;}.footer-contact a{display:flex;}.hamburger{width:44px;height:44px;padding:0;justify-content:center;}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
+<link rel="preload" as="style" href="../css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="preload" as="style" href="../css/style.min.css">
+<link rel="stylesheet" href="../css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "EV Charger Installation Cost in Los Angeles: Complete Pricing Guide [2026]", "description": "Complete guide to EV charger installation costs in Los Angeles. Level 2, Tesla Wall Connector, NEMA 14-50 pricing and panel upgrade considerations.", "image": "https://amyelectric.com/img/ev-charger.jpg", "datePublished": "2026-09-12", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Amram Edry", "description": "California C-10 licensed electrical contractor with 15+ years of experience", "url": "https://amyelectric.com"}, "publisher": {"@type": "Organization", "name": "AMY Electric", "logo": {"@type": "ImageObject", "url": "https://amyelectric.com/img/ev-charger.jpg"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://amyelectric.com/blog/ev-charger-installation-cost-los-angeles"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does EV charger installation cost in Los Angeles?", "acceptedAnswer": {"@type": "Answer", "text": "A Level 2 installation in Los Angeles typically totals $800 to $2,500 for equipment plus labor, with a NEMA 14-50 outlet alone running $500 to $1,200. If your panel lacks capacity, budget another $2,500 to $4,500 for a 100A to 200A upgrade plus $150 to $400 in permit fees. The spread comes from distance between panel and charger, trenching or stucco repair, and whether the service needs upsizing. Incentives compress the net substantially: LADWP rebates up to $500 and the 30 percent federal credit up to $1,000 can bring a straightforward project under $500 out of pocket. Always get an itemized written estimate after an on-site load calculation rather than a phone ballpark."}}, {"@type": "Question", "name": "What is the difference between Level 1 and Level 2 EV charging?", "acceptedAnswer": {"@type": "Answer", "text": "Level 1 uses an ordinary 120V household outlet and adds only 3 to 5 miles of range per hour, meaning a 60 kWh battery needs several days to fill — workable for very short commutes, impractical for daily driving. Level 2 uses a 240V dedicated circuit and adds 25 to 37 miles per hour, so the same battery fills overnight in six to ten hours. That 6-to-8x speed difference is why nearly every Los Angeles EV household installs Level 2: cars charge while you sleep on cheaper overnight rates instead of hunting public stations. A NEMA 14-50 outlet is the budget entry at $500 to $1,200 installed, while hardwired stations add smart scheduling and higher amperage."}}, {"@type": "Question", "name": "Do I need a panel upgrade for an EV charger?", "acceptedAnswer": {"@type": "Answer", "text": "Not always, and only a load calculation gives the real answer. A 200A panel with open breaker slots and genuine spare capacity can usually absorb a 40A or 50A Level 2 circuit with no upgrade. Homes on 100A service, older panels near their limit, or properties adding air conditioning alongside the charger typically need the $2,500 to $4,500 upgrade first. Middle paths exist: load management devices that pause charging during peak household demand, or a subpanel when the main panel is full but the service has headroom. An electrician should show you the actual load math — panel rating, existing loads, charger draw — before recommending either direction. Call (818) 302-5614 for that calculation."}}, {"@type": "Question", "name": "Are there rebates for EV charger installation in Los Angeles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, from multiple directions, though amounts shift by program and year. LADWP offers rebates for Level 2 residential installations, Southern California Edison runs parallel programs in its territory, and the federal tax credit under the Inflation Reduction Act can cover a significant share of equipment plus installation. Qualification universally requires licensed C-10 installation, an electrical permit, and a passed inspection — which is exactly our standard process. Pre-approval rules vary, so engage your contractor before buying equipment: starting work early is the most common way homeowners disqualify themselves. We prepare the full documentation packet — contract, permit, inspection record, equipment details — as part of every job."}}, {"@type": "Question", "name": "How long does EV charger installation take?", "acceptedAnswer": {"@type": "Answer", "text": "A straightforward Level 2 charger or NEMA 14-50 outlet takes two to four hours on site when the panel has capacity: mount, run the dedicated circuit, terminate, commission in the vehicle app, and clean up. Add a panel upgrade and the project becomes a separate four to eight hour power-off day. Permitting through LADBS typically adds one to two weeks before work starts, which we handle including inspection scheduling. From signed estimate to passed inspection, most homeowners charge at home within two to three weeks. Emergency timelines do not really apply to charger installs, but we typically schedule estimates within days — call (818) 302-5614."}}]}</script>
@@ -197,7 +248,7 @@
 <section class="section-navy"><div class="wrap">
   <div class="section-label">Cost Factors</div>
   <h2>EV Charger Installation Cost Breakdown</h2>
-  <table class="price-table" style="max-width:560px; margin-top:16px;">
+  <div class="table-scroll"><table class="price-table" style="max-width:560px; margin-top:16px;">
     <thead><tr><th>Item</th><th>Typical Range</th></tr></thead>
     <tbody>
       <tr><td>Level 2 Charger + Installation</td><td class="price">$800 – $2,500</td></tr>
@@ -208,7 +259,7 @@
       <tr><td>Trenching for Detached Garage</td><td class="price">$500 – $2,000</td></tr>
       <tr><td>Permit & Inspection Fees</td><td class="price">$100 – $300</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p style="font-size:14px; color:var(--gray); margin-top:12px;">Charger cost is separate unless supplied by your electrician. Free estimate provided to determine your exact needs.</p>
 </div></section>
 <section class="section-navy"><div class="wrap text-center">
@@ -264,7 +315,7 @@
   <div class="section-label">Timeline</div>
   <h2>How Long Does EV Charger Installation Take?</h2>
   <div style="max-width:760px; margin:0 auto; text-align:left;">
-<table class="price-table" style="max-width:560px; margin-top:16px;">
+<div class="table-scroll"><table class="price-table" style="max-width:560px; margin-top:16px;">
   <thead><tr><th>Scenario</th><th>Typical Timeline</th></tr></thead>
   <tbody>
     <tr><td>NEMA 14-50 Outlet (panel has capacity)</td><td>2–3 hours</td></tr>
@@ -272,7 +323,7 @@
     <tr><td>Charger + Minor Panel Work</td><td>4–6 hours</td></tr>
     <tr><td>Charger + Full Panel Upgrade</td><td>1–3 days</td></tr>
   </tbody>
-</table>
+</table></div>
 <p style="font-size:14px; color:var(--gray); margin-top:12px;">Permit application and inspection adds 1–2 weeks to the overall timeline. Same-day service is available for straightforward installations.</p>
   </div>
 </div></section>

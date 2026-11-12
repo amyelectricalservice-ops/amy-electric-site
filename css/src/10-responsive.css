@@ -57,6 +57,7 @@
   .trust-band-grid .tb-icon { font-size: 26px; }
   section { padding: 48px 24px; }
 }
+@media (max-width: 900px) { .two-col--sidebar { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
 @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
 @media (min-width: 768px) { .sticky-bar { display: none; } }
 @media (max-width: 767px) { body { padding-bottom: 68px; } }

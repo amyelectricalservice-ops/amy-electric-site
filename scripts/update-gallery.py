@@ -125,7 +125,6 @@ def itemlist_json(rows):
         slug = r["slug"]
         caption = r.get("caption", "").strip() or "Electrical project by AMY Electric"
         city = r.get("city", "").strip() or "Los Angeles"
-        year = r.get("year", "").strip() or "2025"
         items.append(
             '{"@type":"ListItem","position":%d,"item":{"@type":"ImageObject",'
             '"contentUrl":"https://amyelectric.com/img/gallery/%s-1200w.webp",'

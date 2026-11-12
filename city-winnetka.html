@@ -94,10 +94,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "@id": "https://amyelectric.com/#electrician",
+  "@id": "https://amyelectric.com/city-winnetka",
   "name": "AMY Electric",
   "image": "https://amyelectric.com/img/hero-electrician.jpg",
-  "url": "https://amyelectric.com",
+  "url": "https://amyelectric.com/city-winnetka",
   "telephone": "+1-818-302-5614",
   "email": "info@amyelectric.com",
   "description": "Licensed C-10 electrical contractor in Los Angeles specializing in EV charger installation, panel upgrades, electrical repairs, and commercial electrical work.",
@@ -109,9 +109,8 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "addressCountry": "US"
   },
   "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 34.22281,
-    "longitude": -118.58241
+    "latitude": 34.2069,
+    "longitude": -118.5734
   },
   "foundingDate": "2012",
   "founder": {
@@ -183,16 +182,15 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
-    },
-    "geoRadius": "40233.6"
+    "@type": "City",
+    "name": "Winnetka",
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": "Los Angeles County, CA"
+    }
   }
 }
-</script>
+  </script>
 
 
 
@@ -283,7 +281,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 .photo-grid{display:grid;gap:20px;margin:32px 0}
 .photo-grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Winnetka Electrician | Panel Upgrades & EV | AMY Electric", "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero p"]}}</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -291,44 +288,10 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 <header><div class="header-inner">
   <a href="index" class="logo"><div class="logo-mark">AE</div><div class="logo-text"><span class="logo-name">AMY Electric</span><span class="logo-sub">Los Angeles Electricians</span></div></a>
   <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="services">Services</a>
-      <a href="ev-charger-installation">EV Chargers</a>
-      <a href="panel-upgrade">Panel Upgrades</a>
-      <a href="electrical-repair">Repairs</a>
-      <a href="service-areas">Service Areas</a>
-      <a href="reviews">Reviews</a>
-      <a href="blog/">Blog</a>
-      <details class="nav-more">
-        <summary>More</summary>
-        <div class="nav-more-panel">
-          <div class="nav-more-col">
-            <div class="nav-more-label">Services</div>
-            <a href="commercial-electrical">Commercial Electrical</a>
-            <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
-            <a href="lighting-installation">Lighting</a>
-            <a href="whole-home-rewiring">Whole-Home Rewiring</a>
-            <a href="generator-transfer-switch">Generators &amp; Transfer Switches</a>
-            <a href="surge-protection">Surge Protection</a>
-            <a href="tesla-charger-installation">Tesla Charger</a>
-          </div>
-          <div class="nav-more-col">
-            <div class="nav-more-label">Areas & Company</div>
-            <a href="city-los-angeles">Los Angeles</a>
-            <a href="gallery">Project Gallery</a>
-            <a href="about">About Amram</a>
-            <a href="get-quote">Get a Quote</a>
-            <div class="nav-more-label">Popular Guides</div>
-            <a href="blog/is-your-home-ev-ready-los-angeles">Is Your Home EV Ready?</a>
-            <a href="blog/ev-charger-installation-cost-los-angeles">EV Charger Installation Cost</a>
-            <a href="blog/whole-home-rewiring-cost-los-angeles">Whole-Home Rewiring Cost</a>
-            <a href="blog/panel-upgrade-cost-los-angeles">Panel Upgrade Cost</a>
-          </div>
-        </div>
-      </details>
-      <a href="book" class="nav-book">📅 Book Online</a>
-      <a href="tel:18183025614" class="nav-cta">Call Now</a>
-    </nav>
+  <nav>
+    <a href="services">Services</a><a href="index">Home</a><a href="ev-charger-installation">EV Chargers</a><a href="panel-upgrade">Panel Upgrades</a><a href="electrical-repair">Repairs</a><a href="service-areas" class="active">Service Areas</a><a href="emergency-electrician-los-angeles">Emergency</a><a href="reviews">Reviews</a>      <a href="book" class="nav-book">📅 Book Online</a>
+<a href="tel:18183025614" class="nav-cta">Call Now</a>
+  </nav>
 </div></header>
 <main id="main-content">
 <section class="page-hero"><div class="wrap">
@@ -344,7 +307,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
   <div class="section-label">Local Project</div>
   <h2>Recent Work: 200A Panel Upgrade in Winnetka</h2>
   <p style="max-width:640px;margin-bottom:24px;">A February 2026 service upgrade in Winnetka: the aging meter and subpanel with overhead service drop came out, and a new 200A meter-main with emergency disconnect went in — coordinated with LADWP. Below: the original equipment before work started, and the new panel interior with wired breakers.</p>
-<div class="photo-grid cols-2"><div class="grid-item"><div class="inline-project-photo"><picture><source srcset="img/gallery/gallery-winnetka-panel-before-400w.webp 400w, img/gallery/gallery-winnetka-panel-before-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) 100vw, 600px"><source srcset="img/gallery/gallery-winnetka-panel-before-1200w.jpg" type="image/jpeg"><img src="img/gallery/gallery-winnetka-panel-before-1200w.jpg" alt="Original meter and subpanel with overhead service drop before panel upgrade in Winnetka - AMY Electric" loading="lazy" decoding="async" width="1200" height="900"></picture><p class="photo-caption">Before: original meter and subpanel with overhead service drop</p></div></div><div class="grid-item"><div class="inline-project-photo"><picture><source srcset="img/gallery/gallery-winnetka-panel-wired-400w.webp 400w, img/gallery/gallery-winnetka-panel-wired-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) 100vw, 600px"><source srcset="img/gallery/gallery-winnetka-panel-wired-1200w.jpg" type="image/jpeg"><img src="img/gallery/gallery-winnetka-panel-wired-1200w.jpg" alt="New panel interior with wired breakers during Winnetka service upgrade - AMY Electric" loading="lazy" decoding="async" width="1200" height="900"></picture><p class="photo-caption">During: new panel interior with wired breakers</p></div></div></div>
+<div class="photo-grid cols-2"><div class="grid-item"><div class="inline-project-photo"><picture><source srcset="img/gallery/gallery-winnetka-panel-before-400w.webp 400w, img/gallery/gallery-winnetka-panel-before-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) 100vw, 600px"><source srcset="img/gallery/gallery-winnetka-panel-before-1200w.jpg" type="image/jpeg"><img src="img/gallery/gallery-winnetka-panel-before-1200w.jpg" alt="Original meter and subpanel with overhead service drop before panel upgrade in Winnetka - AMY Electric" loading="lazy" decoding="async"></picture><p class="photo-caption">Before: original meter and subpanel with overhead service drop</p></div></div><div class="grid-item"><div class="inline-project-photo"><picture><source srcset="img/gallery/gallery-winnetka-panel-wired-400w.webp 400w, img/gallery/gallery-winnetka-panel-wired-1200w.webp 1200w" type="image/webp" sizes="(max-width: 480px) 100vw, 600px"><source srcset="img/gallery/gallery-winnetka-panel-wired-1200w.jpg" type="image/jpeg"><img src="img/gallery/gallery-winnetka-panel-wired-1200w.jpg" alt="New panel interior with wired breakers during Winnetka service upgrade - AMY Electric" loading="lazy" decoding="async"></picture><p class="photo-caption">During: new panel interior with wired breakers</p></div></div></div>
   <p style="max-width:640px;"><a href="gallery">See more project photos in our gallery →</a></p>
 </div></section>
 <section class="section-pad"><div class="wrap">
@@ -357,12 +320,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <a class="service-card" href="ev-charger-installation"><h3>EV Charger Installation</h3><p>Level 2 home charging installation for Tesla, Rivian, ChargePoint, and more.</p></a>
     <a class="service-card" href="whole-home-rewiring"><h3>Home Rewiring</h3><p>Replace outdated wiring and improve safety, capacity, and code compliance.</p></a>
   </div>
-    <a href="gallery" class="card no-underline">
-      <div class="card-icon">📸</div>
-      <h3>Project Gallery</h3>
-      <p>See completed electrical work in Winnetka — browse our gallery of panel upgrades, EV chargers, and rewiring projects.</p>
-      <span class="card-link">View Gallery</span>
-    </a>
 </div></section>
 <section class="section-pad alt-bg"><div class="wrap"><div class="section-label">Why Winnetka Homeowners Call AMY</div><h2>Licensed, Local, and Permit-Ready</h2><p>AMY Electric is a California C-10 electrical contractor (#981578) serving Winnetka from 20628 Londelius St, Winnetka, CA 91306. We provide clear estimates, code-compliant work, and coordination for required permits and inspections. Winnetka is served by <strong>LADWP</strong> — panel upgrades are coordinated directly with LADWP, and EV charger installs qualify for the LADWP rebate of up to $1,000 (<a href="blog/ladwp-ev-charger-rebate-guide-2026">rebate walkthrough</a>).</p><p>For urgent issues, call anytime to check emergency dispatch availability. For planned work, use our <a href="index#estimator">online estimate form</a> or call <a href="tel:18183025614">(818) 302-5614</a>.</p></div></section>
 <section class="faq-section"><div class="wrap"><div class="section-label">Winnetka FAQ</div><h2>Electrical Service Questions</h2><div class="faq-list">

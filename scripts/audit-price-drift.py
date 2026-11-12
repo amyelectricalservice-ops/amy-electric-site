@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Published EV price <-> estimate-engine drift inventory (report-only).
+r"""Published EV price <-> estimate-engine drift inventory (report-only).
 
 Usage:
   python3 scripts/audit-price-drift.py            # inventory, exit 0 always

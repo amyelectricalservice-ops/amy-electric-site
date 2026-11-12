@@ -17,9 +17,8 @@ writes a JSON inventory to data/photo-scan.json.
 import argparse
 import csv
 import json
-import os
 import re
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 DEFAULT_SRC = "/home/amram/Pictures/Electric Work"
@@ -147,7 +146,7 @@ def report(records, src, min_bytes, min_year):
     else:
         print("No candidates found. Try lowering --min-bytes or --min-year.")
     print()
-    print(f"Full inventory written to data/photo-scan.json")
+    print("Full inventory written to data/photo-scan.json")
 
 
 def main():

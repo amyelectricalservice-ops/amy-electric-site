@@ -5,8 +5,6 @@ Picks best frames per project day, generates manifest entries, processes photos.
 """
 import csv
 import re
-import subprocess
-import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -49,7 +47,7 @@ def pick_best_per_day(files):
             file_size = src_path.stat().st_size
             total_score = aspect_score * size_score * hdr_penalty * min(1.0, file_size / 2000000)
             scored.append((total_score, fname, w, h))
-        except:
+        except (OSError, ValueError):
             pass
     scored.sort(reverse=True)
     return [(f, w, h) for _, f, w, h in scored[:MAX_PER_DAY]]
@@ -60,7 +58,7 @@ def categorize_for_date(fname, year, month, day):
     name = fname.upper()
     if "HDR" in name or any(x in name for x in ['PANEL', 'METER', 'SUB']):
         return "panel"
-    y, m, d = int(year), int(month), int(day)
+    m, d = int(month), int(day)
     
     # Rough seasonal/pattern heuristics - user will fix
     if m >= 6 and m <= 8 and d >= 10:
@@ -90,13 +88,17 @@ def main():
     # Group new photos by date
     by_day = defaultdict(list)
     for f in SRC.glob("*"):
-        if not f.name.lower().endswith(('.jpg','.jpeg')): continue
-        if f.name in existing_sources: continue
+        if not f.name.lower().endswith(('.jpg', '.jpeg')):
+            continue
+        if f.name in existing_sources:
+            continue
         
         m = re.search(r'(20\d{2})(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])', f.name)
-        if not m: continue
+        if not m:
+            continue
         year = int(m.group(1))
-        if year < MIN_YEAR: continue
+        if year < MIN_YEAR:
+            continue
         
         name = f.name.upper()
         if any(x in name for x in ['BURST', '.MP.', '.MP.JPG', '-PANTO.', '-PANTO',
@@ -119,7 +121,6 @@ def main():
         picks = pick_best_per_day(files)
         
         for idx, (fname, w, h) in enumerate(picks):
-            src_path = SRC / fname
             cat = categorize_for_date(fname, year, month, day)
             slug = make_slug(fname, year, month, day, idx)
             

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Fix duplicate FAQ questions in FAQPage JSON-LD schema across city pages."""
 
-import re, json, os, glob
+import re
+import json
+import os
+import glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,7 +39,7 @@ for filepath in html_files:
             
             data['mainEntity'] = unique
             return '<script type="application/ld+json">\n' + json.dumps(data, indent=2) + '\n</script>'
-        except:
+        except (ValueError, KeyError, TypeError):
             return match.group(0)
     
     html = re.sub(

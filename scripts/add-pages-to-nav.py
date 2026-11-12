@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Add reviews and emergency pages to nav across all HTML files and sitemap."""
 
-import re
-import os
 from pathlib import Path
 
 WEBSITE_DIR = Path("/home/amram/WEBSITE")

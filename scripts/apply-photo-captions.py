@@ -16,7 +16,8 @@ Rules:
   - action=cull removes the row AND deletes its 4 variants (irreversible).
   - After: python3 scripts/update-gallery.py, then the pre-push gate.
 """
-import csv, os, sys
+import csv
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -42,26 +43,31 @@ def main():
         slug = (u.get("slug") or "").strip()
         action = (u.get("action") or "caption-only").strip()
         if not slug or slug not in by_slug:
-            errors.append(f"unknown/empty slug: {slug!r}"); continue
+            errors.append(f"unknown/empty slug: {slug!r}")
+            continue
         if action == "cull":
             culled.add(slug)
             for v in [f"{slug}-1200w.webp", f"{slug}-1200w.jpg", f"{slug}-800w.webp", f"{slug}-400w.webp"]:
                 p = GALLERY / v
-                if p.exists(): p.unlink()
+                if p.exists():
+                    p.unlink()
             print(f"  CULL {slug}")
             continue
         caption = (u.get("caption") or "").strip()
         if not (10 <= len(caption) <= 125):
-            errors.append(f"{slug}: caption length {len(caption)} (need 10-125)"); continue
+            errors.append(f"{slug}: caption length {len(caption)} (need 10-125)")
+            continue
         by_slug[slug]["caption"] = caption
         if action == "recategorize":
             nc = (u.get("new_category") or "").strip()
-            if nc: by_slug[slug]["category"] = nc
+            if nc:
+                by_slug[slug]["category"] = nc
         print(f"  OK   {slug}")
 
     if errors:
         print("\nERRORS:")
-        for e in errors: print("  ", e)
+        for e in errors:
+            print("  ", e)
         sys.exit(1)
 
     kept = [by_slug[r["slug"]] for r in orig if r["slug"] not in culled]

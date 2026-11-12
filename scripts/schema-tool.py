@@ -16,11 +16,8 @@ import re
 import sys
 
 from site_data import (
-    SITE_DIR, BUSINESS, CITIES, SERVICES, CITY_LOOKUP, SERVICE_LOOKUP,
-    ALL_PAGES, SERVICE_PAGES, CITY_PAGES, GEO_SERVICE_PAGES,
-    NAV_LINKS, json_ld, json_ld_pretty,
-    make_electrician, make_service, make_faqpage, make_breadcrumb,
-    make_blogposting, make_website
+    SITE_DIR, BUSINESS, CITY_LOOKUP, SERVICE_PAGES, CITY_PAGES,
+    json_ld, make_electrician, make_faqpage, make_website,
 )
 
 # ─── FAQ templates ────────────────────────────────────────────────────
@@ -176,7 +173,6 @@ def cmd_validate():
     for rel_path, abs_path in _walk_html():
         fname = rel_path
         html = get_html(abs_path)
-        stem = fname.replace(".html", "")
 
         base_stem = os.path.splitext(os.path.basename(fname))[0]
         is_redirect = 'noindex' in html and 'http-equiv="refresh"' in html
@@ -438,7 +434,6 @@ def cmd_audit():
     with_website = 0
 
     for rel_path, abs_path in _walk_html():
-        fname = rel_path
         html = get_html(abs_path)
         total += 1
 
@@ -457,7 +452,7 @@ def cmd_audit():
     print(f"  BreadcrumbList:  {with_breadcrumb}/{total}")
     print(f"  WebSite:         {with_website}/{total}")
 
-    print(f"\nRun 'validate' for detailed issue list.")
+    print("\nRun 'validate' for detailed issue list.")
     return 0
 
 

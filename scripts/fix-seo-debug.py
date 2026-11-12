@@ -1,7 +1,5 @@
 import glob
-import os
 import re
-import json
 
 def fix_seo():
     html_files = glob.glob('**/*.html', recursive=True)

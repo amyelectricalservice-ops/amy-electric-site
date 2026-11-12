@@ -4,7 +4,6 @@
 import glob
 import os
 import re
-import html
 
 # ─── City-specific data ───────────────────────────────────────────────
 # Each city gets: housing_stock, main_streets, landmarks, electrical_notes,
@@ -1273,7 +1272,6 @@ def build_expanded_local_knowledge(slug, data):
 
 def build_faq_items(slug, data):
     """Build new FAQ HTML items."""
-    name = get_city_display_name(slug)
     items = []
     for question, answer in data["faqs"]:
         items.append(

@@ -109,7 +109,6 @@ def read_template(path):
 
 def generate_city_gallery(city, photos, template):
     slug = CITY_SLUGS.get(city, slugify(city))
-    city_lower = city.lower()
     city_title = city.title()
     
     # Count photos by category

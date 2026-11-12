@@ -10,7 +10,6 @@ Three defects, all from the same generator:
 Idempotent: re-running is a no-op.
 """
 import os
-import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

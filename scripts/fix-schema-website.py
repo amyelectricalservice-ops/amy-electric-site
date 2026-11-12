@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Add WebSite JSON-LD schema to pages that don't have it."""
-import re, glob, os
+import re
+import glob
+import os
 
 WEBSITE_SCHEMA = '''<script type="application/ld+json">
 {
