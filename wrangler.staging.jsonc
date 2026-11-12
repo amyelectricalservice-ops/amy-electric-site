@@ -1,0 +1,46 @@
+{
+  // Staging Worker: same code and bindings as production, NO zone routes.
+  // Deploy with:  npx wrangler deploy --config wrangler.staging.jsonc
+  // It serves at https://amy-electric-site-staging.<account-subdomain>.workers.dev
+  // and never receives amyelectric.com traffic. Delete it after a release
+  // (npx wrangler delete --name amy-electric-site-staging) so no stray Worker
+  // can claim a route later.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "amy-electric-site-staging",
+  "main": "worker.js",
+  "workers_dev": true,
+  "compatibility_date": "2026-10-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/*", "!/css/*", "!/js/*", "!/fonts/*"]
+  },
+  "images": { "binding": "IMAGES" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "amy-electric-photos-db",
+      "database_id": "78716702-1940-44e1-acb1-0d669bf6484b"
+    },
+    {
+      "binding": "CONFIRMED_DB",
+      "database_name": "amy-electric-confirmed-db",
+      "database_id": "6c52230d-3c8b-44d5-b1b5-118c57e0ab89"
+    },
+    {
+      "binding": "CRM_DB",
+      "database_name": "amy-electric-crm",
+      "database_id": "653aeac8-c416-464d-be05-9ca2c2aa350b"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "BUCKET", "bucket_name": "estimates" },
+    { "binding": "ESTIMATES", "bucket_name": "estimates" },
+    { "binding": "LEAD_FILES", "bucket_name": "amy-electric-leads" }
+  ],
+  "ai": { "binding": "AI" },
+  "observability": { "enabled": true }
+}
