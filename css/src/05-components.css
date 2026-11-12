@@ -238,6 +238,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
 /* page-level two-col */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+/* content + sticky sidebar (320–340px rail). minmax(0,…) stops wide tables
+   inside the main column from blowing the grid past the viewport. */
+.two-col--sidebar { grid-template-columns: minmax(0, 1fr) 340px; gap: 56px; }
 
 /* ── QUICK ANSWER (VOICE SEARCH CALLOUT) ── */
 .quick-answer{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}

@@ -155,6 +155,10 @@ p:last-child { margin-bottom: 0; }
 .price-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 15px; }
 .price-table tr:last-child td { border-bottom: none; }
 .price-table .price { font-family: var(--cond); font-size: 18px; font-weight: 700; color: var(--gold); }
+/* Wide tables scroll inside their own box on narrow screens instead of
+   pushing the page sideways (3–4 column price tables at 390px). */
+.table-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 24px 0; }
+.table-scroll > table { margin: 0; }
 
 /* ── ALERT BANNER ── */
 .alert-info {

@@ -22,8 +22,59 @@
 <link rel="preload" as="font" href="../fonts/BarlowCondensed-800.woff2" crossorigin>
 <link rel="preload" as="font" href="../fonts/SourceSerif4-400.woff2" crossorigin>
 <link rel="preload" as="font" href="../fonts/SourceSerif4-400italic.woff2" crossorigin>
-<link rel="preload" as="style" href="../css/style.min.css">
-<link rel="stylesheet" href="../css/style.min.css">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1628;--navy2:#122040;--gold:#f5a623;--gold2:#e8951a;--white:#f4f1eb;--gray:#98a6b8;--mid:#1e3055;--accent:#3dd6f5;--radius:4px;--max:1140px;--serif:"Source Serif 4",Georgia,serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;--shadow:0 4px 24px rgba(0,0,0,.45)}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--navy);color:var(--white);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.hero-img{border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.45);aspect-ratio:4/3;background:#1e3055;display:flex;align-items:center;justify-content:center}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:0 0 var(--radius) var(--radius);font-family:var(--cond);font-weight:700;z-index:9999;text-decoration:none}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.topbar{background:var(--gold);color:var(--navy);font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.04em;padding:7px 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--navy)}
+header{background:var(--navy2);border-bottom:3px solid var(--mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);font-family:var(--cond);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);flex-shrink:0}
+.logo-text{font-family:var(--cond)}
+.logo-name{font-size:22px;font-weight:800;color:var(--white);letter-spacing:.02em;display:block}
+.logo-sub{font-size:11px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;display:block}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray);padding:8px 12px;border-radius:var(--radius);transition:color .18s,background .18s;text-decoration:none}
+nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:8px 16px!important;margin-left:8px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:24px;height:24px;background:var(--white);margin:5px 0;transition:.3s}
+.btn{display:inline-block;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .12s,box-shadow .18s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(245,166,35,.35)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4)}
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0d1e3a 60%,#091420 100%);padding:80px 24px 72px;position:relative;overflow:hidden}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:var(--cond);font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;color:var(--white);margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-desc{font-size:18px;color:rgba(244,241,235,.8);margin-bottom:32px;max-width:500px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:5px 14px;font-family:var(--cond);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--white)}
+.badge .dot{width:7px;height:7px;background:#4cdb7a;border-radius:50%}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.page-hero{background:linear-gradient(135deg,var(--navy2) 0%,#091420 100%);padding:56px 24px 48px;border-bottom:3px solid var(--mid)}
+.breadcrumb{font-family:var(--cond);font-size:13px;color:var(--gray);margin-bottom:14px}
+.breadcrumb a{color:var(--gray)}
+.page-hero h1{font-family:var(--cond);font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:16px;color:var(--white)}
+.page-hero p{font-size:18px;color:rgba(244,241,235,.8);max-width:620px;margin-bottom:28px}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+@media(max-width:680px){header{position:relative}.header-inner{flex-wrap:wrap;gap:12px}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-bottom:12px}nav.open{display:flex}nav a{width:100%}.hamburger{display:block}}/*topbar-responsive-fix*/.topbar a{white-space:nowrap;flex-shrink:0}.topbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:480px){.topbar{flex-direction:column;gap:2px;padding:7px 16px;text-align:center}.topbar span{white-space:normal}}/*touch-targets*/@media (max-width:767px){.topbar a, .breadcrumb a, nav.open a, .footer-col a, .footer-contact a, .form-note a, .mt-lg a, .gallery-cities a, h3 a, button.filter-chip{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}.topbar{padding:4px 16px;}.topbar a{justify-content:center;}.breadcrumb a{padding:0 6px;}.gallery-cities a{padding:0 6px;}.footer-col li{margin-bottom:0;}.footer-contact a{display:flex;}.hamburger{width:44px;height:44px;padding:0;justify-content:center;}}/*nav-book*/.nav-book{display:none}@media(max-width:680px){nav.open .nav-book{display:block;color:var(--gold)}}</style>
+<link rel="preload" as="style" href="../css/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="preload" as="style" href="../css/style.min.css">
+<link rel="stylesheet" href="../css/style.min.css"></noscript>
 <link rel="alternate" type="text/markdown" href="/llms.txt">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Whole-Home Rewiring Cost in Los Angeles: Complete Pricing Guide [2026]", "description": "Complete guide to whole-home rewiring costs in Los Angeles. Pricing by home size, wiring type, permit requirements, and licensed electrician tips.", "image": "https://amyelectric.com/img/hero-electrician.jpg", "datePublished": "2026-09-12", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Amy", "description": "California C-10 licensed electrical contractor with 15+ years of experience", "url": "https://amyelectric.com"}, "publisher": {"@type": "Organization", "name": "AMY Electric", "logo": {"@type": "ImageObject", "url": "https://amyelectric.com/img/hero-electrician.jpg"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://amyelectric.com/blog/whole-home-rewiring-cost-los-angeles"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does whole-home rewiring cost in Los Angeles?", "acceptedAnswer": {"@type": "Answer", "text": "Whole-home rewiring in Los Angeles typically runs $8,000 to $30,000, scaling with home size, wiring condition, and access difficulty. A 1,000 square foot home generally falls $8,000 to $15,000, while larger homes with plaster walls, limited attic or crawlspace access, and finish restoration needs climb higher. The estimate should separate electrical labor and materials from drywall patching and paint so you see where money goes. Knob-and-tube or aluminum remediation, panel upgrades at $2,500 to $4,500, and service upsizing stack on top where required. Firm pricing follows opening representative areas — any fixed quote given sight-unseen deserves skepticism. Our evaluations produce phased scopes so hazards get funded before cosmetics."}}, {"@type": "Question", "name": "How long does whole-home rewiring take?", "acceptedAnswer": {"@type": "Answer", "text": "Most whole-home rewiring takes three to ten days of electrical work, driven by home size, whether crews can access attics and crawlspaces, and how much drywall must open. Plaster-wall prewar homes and hillside properties with constrained access run longest; single-story ranch homes with open attics run shortest. Finish trades add calendar time after the electrical rough-in, and LADBS inspection milestones punctuate the schedule. A competent contractor provides a room-by-room power staging plan so a lived-in home stays functional — which circuits die on which days, in writing. Beware duration promises made before anyone opens a wall; honest timelines follow the evaluation, and phased plans beat rushed ones in older homes."}}, {"@type": "Question", "name": "Do I need to move out during rewiring?", "acceptedAnswer": {"@type": "Answer", "text": "Most homeowners vacate for two to five days covering the most invasive phase, when walls stand open and circuits go in. Full move-outs are cleanest for large projects, while smaller scopes work fine lived-in with disciplined staging: one side of the house powered while the other gets wired, then swap. Dust, noise, and intermittent power make work-from-home difficult even when technically feasible, so plan accordingly. Households with medical equipment, infants, or remote workers should default to relocating for the rough-in week. Your contractor's schedule should state the displacement plan explicitly — if it doesn't mention where you sleep during the panel cutover, ask before signing."}}, {"@type": "Question", "name": "What are the signs my home needs rewiring?", "acceptedAnswer": {"@type": "Answer", "text": "The classic cluster: frequent breaker trips, flickering or dimming lights, burning smells from outlets or panels, two-prong ungrounded outlets throughout, discolored or warm cover plates, and aluminum branch wiring or knob-and-tube feeding modern loads. Any single symptom in a pre-1960 home justifies an evaluation; two or more make it urgent. Federal Pacific and Zinsco panels alongside old wiring compound the risk and usually join the same project. Los Angeles adds a local trigger: renovations and ADU additions that open walls anyway, making the marginal cost of rewiring far lower than a standalone project. Document symptoms with photos before the electrician arrives."}}, {"@type": "Question", "name": "Does rewiring increase home value?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, through three channels: it removes a major inspection objection that kills or discounts sales, it can improve insurance eligibility and premiums especially where knob-and-tube or hazard panels were flagged, and it enables the modern loads buyers expect — EV charging, heat pumps, home offices — on a documented 200A service. Unpermitted or outdated electrical must be disclosed in California sales, so permitted rewiring with inspection records converts a liability into a selling point. Appraisers may not line-item the wiring, but transactions clear faster and closer to asking when the electrical section of the inspection report is clean. Keep permits, panel schedules, and the final inspection sign-off with your sale file."}}]}</script>
@@ -89,7 +140,7 @@
 <section class="section-navy"><div class="wrap">
   <div class="section-label">Cost Factors</div>
   <h2>Rewiring Cost Breakdown by Home Size</h2>
-  <table class="price-table" style="max-width:560px; margin-top:16px;">
+  <div class="table-scroll"><table class="price-table" style="max-width:560px; margin-top:16px;">
     <thead><tr><th>Home Size</th><th>Typical Range</th></tr></thead>
     <tbody>
       <tr><td>Under 1,000 sq ft</td><td class="price">$8,000 – $15,000</td></tr>
@@ -98,13 +149,13 @@
       <tr><td>2,000 – 2,500 sq ft</td><td class="price">$18,000 – $30,000</td></tr>
       <tr><td>2,500+ sq ft</td><td class="price">$25,000 – $40,000+</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p style="font-size:14px; color:var(--gray); margin-top:12px;">Knob-and-tube and aluminum wiring replacements typically fall at the higher end of these ranges. Free estimate provided.</p>
 </div></section>
 <section class="section-navy"><div class="wrap">
   <div class="section-label">Cost Factors</div>
   <h2>What Affects Rewiring Cost</h2>
-  <table class="price-table" style="max-width:560px; margin-top:16px;">
+  <div class="table-scroll"><table class="price-table" style="max-width:560px; margin-top:16px;">
     <thead><tr><th>Factor</th><th>Impact on Cost</th></tr></thead>
     <tbody>
       <tr><td>Knob-and-Tube Replacement</td><td class="price">+30–50%</td></tr>
@@ -115,7 +166,7 @@
       <tr><td>Drywall Repair After Rewiring</td><td class="price">$2,000–$8,000</td></tr>
       <tr><td>Permit &amp; Inspection Fees</td><td class="price">$300–$800</td></tr>
     </tbody>
-  </table>
+  </table></div>
 </div></section>
 <section class="section-pad"><div class="wrap text-center">
   <div class="section-label">Wiring Types</div>
@@ -155,7 +206,7 @@
   <div class="section-label">Timeline</div>
   <h2>How Long Does Rewiring Take?</h2>
   <div style="max-width:760px; margin:0 auto; text-align:left;">
-<table class="price-table" style="max-width:560px; margin-top:16px;">
+<div class="table-scroll"><table class="price-table" style="max-width:560px; margin-top:16px;">
   <thead><tr><th>Home Size</th><th>Typical Timeline</th></tr></thead>
   <tbody>
     <tr><td>Under 1,000 sq ft</td><td>3–5 days</td></tr>
@@ -163,7 +214,7 @@
     <tr><td>1,500 – 2,000 sq ft</td><td>7–10 days</td></tr>
     <tr><td>2,000+ sq ft</td><td>10–14 days</td></tr>
   </tbody>
-</table>
+</table></div>
 <p style="font-size:14px; color:var(--gray); margin-top:12px;">You will likely need to vacate for 2–5 days during the most invasive phase. Your electrician will provide a specific timeline for your home.</p>
   </div>
 </div></section>
