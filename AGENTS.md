@@ -43,7 +43,7 @@ Static HTML marketing site (vanilla, no framework, no site build step) for an LA
 
 ## Pre-push gate (in order)
 
-`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (315 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
+`schema-tool.py validate` → `audit-price-drift.py` (`--strict` to gate) → `audit-site.py` (315 pages, 0 issues) → `node --test scripts/test-*.mjs` if JS/prices/worker touched → `bash scripts/lint.sh` if `scripts/`, `worker.js`, or `js/` touched (ruff + `-W error::SyntaxWarning` + `node --check`; report-only, `--fix` for ruff autofix) → rebuild CSS/JS + `git diff --exit-code` on minified output → `wrangler deploy --dry-run`. Never run `sync-faq-schema.py --apply` (rewrites answers, verified 2026-10-12). Then push (rebase over `[skip ci]` lastmod if needed), watch Deploy workflow green, spot-check live on `workers.dev`, `bash scripts/notify-indexnow.sh` if workflow didn't.
 
 ## Skills
 
