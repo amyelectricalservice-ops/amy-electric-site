@@ -1,4 +1,4 @@
-export async function handleContact(request, env, waitUntil) {
+export async function handleContact(request, env, waitUntil, extra = null) {
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
@@ -91,7 +91,7 @@ export async function handleContact(request, env, waitUntil) {
     }
 
     const subject = `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`;
-    const bodyText = formatLeadText(data);
+    const bodyText = formatLeadText(data, extra);
 
     // 1. Cloudflare Email Service Binding (env.EMAIL or env.SEB)
     if (env.EMAIL && typeof env.EMAIL.send === 'function') {
@@ -176,7 +176,7 @@ function successResponse() {
   });
 }
 
-function formatLeadText(data) {
+function formatLeadText(data, extra = null) {
   const lines = [];
   if (data.name) lines.push(`Name: ${data.name}`);
   if (data.phone) lines.push(`Phone: ${data.phone}`);
@@ -196,5 +196,10 @@ function formatLeadText(data) {
     }
   }
   if (data._timestamp) lines.push(`Submitted: ${data._timestamp}`);
+  if (extra && Array.isArray(extra.lines)) {
+    for (const line of extra.lines) {
+      if (typeof line === 'string' && line) lines.push(line);
+    }
+  }
   return lines.join('\n') || 'No details provided.';
 }

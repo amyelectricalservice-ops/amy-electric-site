@@ -226,7 +226,8 @@ def audit():
             print(f"  - {f}: {iss}")
 
     any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
-                  sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing)
+                  sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing or
+                  picture_structure_issues)
     if any_issues:
         print("\nAUDIT FAILED — fix the issues above before deploying.")
         sys.exit(1)

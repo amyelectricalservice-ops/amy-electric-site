@@ -9,6 +9,15 @@
   // sendBeacon with a plain string avoids a CORS preflight.
   function fireEvent(name, label, value) {
     try {
+      // Forward to GA4 when the edge injected gtag (GA4_ID secret is set).
+      // Without it this is a no-op and the first-party beacon below still runs.
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, {
+          event_label: String(label || '').slice(0, 200),
+          value: value || 0,
+          page_path: window.location.pathname
+        });
+      }
       var payload = JSON.stringify({
         event: name,
         label: String(label || '').slice(0, 200),
@@ -57,4 +66,31 @@
       fireEvent('form_submit', form.id, 1);
     }
   });
+
+  // A lead is only real when the worker accepts it. Wrapping fetch catches
+  // every submission path (quick form, detailed form, lead wizard and the
+  // legacy estimator bundle) exactly once, and never fires on validation
+  // failures or upload errors.
+  if (typeof window.fetch === 'function' && !window.__amyFetchWrapped) {
+    window.__amyFetchWrapped = true;
+    var nativeFetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+      var url = typeof input === 'string' ? input : ((input && input.url) || '');
+      return nativeFetch(input, init).then(function (res) {
+        try {
+          if (res && res.ok && /\/api\/(contact|lead)$/.test(url)) {
+            var cfg = window.AMY_ANALYTICS;
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'generate_lead', { page_path: window.location.pathname });
+              if (cfg && cfg.adsId && cfg.adsLabel) {
+                window.gtag('event', 'conversion', { send_to: cfg.adsId + '/' + cfg.adsLabel });
+              }
+            }
+            fireEvent('lead_accepted', url, 1);
+          }
+        } catch (err) { /* never break the page */ }
+        return res;
+      });
+    };
+  }
 })();
