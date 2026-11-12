@@ -5,7 +5,7 @@
  * original handler validate/send, and only when the lead was accepted does it:
  *   1. classify + score + de-duplicate the lead (lead-store.js),
  *   2. link any pre-uploaded photos/plans (private R2 objects),
- *   3. sync to HubSpot (and the legacy webhook if configured),
+ *   3. sync to EspoCRM (or HubSpot, or the legacy webhook, whichever is configured),
  *   4. log a funnel event.
  *
  * Persistence failures never change the visitor's response.
@@ -14,6 +14,7 @@
 import { handleContact } from './contact-handler.js';
 import { buildLead, persistLead, linkFiles, recordEvent, markCrm } from './lead-store.js';
 import { syncLeadToHubSpot, syncLeadToWebhook, aiQualify } from './crm-handler.js';
+import { syncLeadToEspo, espocrmConfigured } from './crm-espocrm.js';
 
 const str = (v) => (typeof v === 'string' ? v.trim() : '');
 
@@ -121,14 +122,28 @@ export async function handleContactEnriched(request, env, waitUntil) {
         return;
       }
 
+      // Provider order: EspoCRM (FOSS) → HubSpot → generic webhook.
+      // EspoCRM on the LAN is not reachable from the edge, so when it is not
+      // configured here the lead stays 'skipped' and scripts/espocrm-sync.mjs
+      // delivers it from the local network instead.
       let crm = { ok: false, reason: 'not-configured' };
-      if (env.HUBSPOT_TOKEN) {
+      if (espocrmConfigured(env)) {
+        crm = await syncLeadToEspo(env, lead);
+        if (crm.ok) {
+          await markCrm(env, lead.id, {
+            status: 'synced', contactId: crm.contactId, dealId: crm.opportunityId,
+            taskId: crm.taskId, provider: 'espocrm',
+          });
+        } else {
+          await markCrm(env, lead.id, { status: 'failed', error: crm.reason, provider: 'espocrm' });
+        }
+      } else if (env.HUBSPOT_TOKEN) {
         crm = await syncLeadToHubSpot(env, lead);
       } else if (env.CRM_WEBHOOK_URL) {
         crm = await syncLeadToWebhook(env, lead);
         if (crm.ok) await markCrm(env, lead.id, { status: 'synced', provider: 'webhook' });
       }
-      if (!crm.ok && !env.HUBSPOT_TOKEN && !env.CRM_WEBHOOK_URL) {
+      if (!crm.ok && !espocrmConfigured(env) && !env.HUBSPOT_TOKEN && !env.CRM_WEBHOOK_URL) {
         await markCrm(env, lead.id, { status: 'skipped', provider: '' });
       }
     } catch (err) {
