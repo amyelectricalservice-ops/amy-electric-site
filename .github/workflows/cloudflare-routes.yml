@@ -56,6 +56,11 @@ jobs:
   audit:
     name: Audit git config against live Cloudflare
     runs-on: ubuntu-latest
+    # Dependabot PRs get no repository secrets, so the "secret is present" gate
+    # below would fail every dependency bump — and a bump to a `uses:` version
+    # touches this file, which is in the paths filter. The audit cannot run
+    # without credentials, so skip it there instead of reporting a false failure.
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v4
 
