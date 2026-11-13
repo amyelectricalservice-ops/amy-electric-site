@@ -1,0 +1,30 @@
+# Dependency updates.
+#
+# Only dev tooling is pinned in package.json (cf + wrangler); the shipped site
+# is static HTML with no runtime dependencies. Updates land as one grouped PR
+# per ecosystem so the open-PR list stays readable.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      dev-tooling:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "chore(ci)"
+    groups:
+      actions:
+        patterns:
+          - "*"
