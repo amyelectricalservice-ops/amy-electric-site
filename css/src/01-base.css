@@ -20,31 +20,32 @@
   font-display: swap;
   src: url('../fonts/BarlowCondensed-800.woff2') format('woff2');
 }
-/* Metric-matched fallback for the body serif.
+/* Metric-matched fallbacks for the body serif.
  *
  * The condensed face above only reflowed the nav; this one reflows every
  * paragraph. Measured on /tesla-charger-installation at 412px: loading the
  * webfonts collapsed the document by 783px, moving everything below the hero.
- * Georgia is the declared fallback, so the ratios are computed against Georgia
- * metrics (via Gelasio, which is metric-compatible with it) by
- * scripts/font-fallback-metrics.py.
  *
- * OS/2 xAvgCharWidth is a poor predictor here: it says Source Serif 4 is
- * narrower than Georgia, but across 64 real paragraphs the webfont is 32%
- * WIDER than the metric-compatible fallback. So these values are calibrated
- * against rendered text, not the table:
- *   normal: 87.26% baseline x 1.3196 = 115.15%  (ascent 89.97%, descent 29.09%)
- *   italic: 85.97% baseline x 1.0939 =  94.04%  (ascent 110.17%, descent 35.62%)
+ * Two faces, because Georgia and Times have different metrics and Chrome's
+ * local() does not substitute one for the other: Windows/macOS have Georgia,
+ * Linux has Liberation/Times. One size-adjust cannot serve both, so each
+ * metric family gets its own face and the stack tries Georgia first.
+ *
+ * Calibrated against rendered text over 64 real paragraphs — OS/2
+ * xAvgCharWidth is wrong by 20-30% for this pair (it claims Source Serif 4 is
+ * narrower than Georgia; it is actually wider):
+ *   vs Georgia (via Gelasio) : 107.08% normal / 97.91% italic
+ *   vs Times    (via Liberation Serif): 117.35% normal / 109.39% italic
  */
 @font-face {
   font-family: 'Source Serif Fallback';
-  /* Only Georgia-metric faces: size-adjust is computed against Georgia, so a
-   * Times-metric substitute would be scaled wrongly. If none match, the face
-   * is skipped and the stack falls through to Georgia/serif as before. */
+  /* Georgia-metric only: size-adjust is computed against Georgia, so a
+   * Times-metric substitute here would be scaled wrongly. If neither matches,
+   * this face is skipped and the next family in the stack is used. */
   src: local('Georgia'), local('Gelasio');
-  size-adjust: 115.15%;
-  ascent-override: 89.97%;
-  descent-override: 29.09%;
+  size-adjust: 107.08%;
+  ascent-override: 96.75%;
+  descent-override: 31.28%;
   line-gap-override: 0%;
   font-weight: 400 600;
   font-display: swap;
@@ -54,9 +55,32 @@
   font-family: 'Source Serif Fallback';
   font-style: italic;
   src: local('Georgia'), local('Gelasio');
-  size-adjust: 94.04%;
-  ascent-override: 110.17%;
-  descent-override: 35.62%;
+  size-adjust: 97.91%;
+  ascent-override: 105.81%;
+  descent-override: 34.22%;
+  line-gap-override: 0%;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif Fallback Times';
+  src: local('Times New Roman'), local('Liberation Serif'), local('Tinos');
+  size-adjust: 117.35%;
+  ascent-override: 88.29%;
+  descent-override: 28.55%;
+  line-gap-override: 0%;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif Fallback Times';
+  font-style: italic;
+  src: local('Times New Roman'), local('Liberation Serif'), local('Tinos');
+  size-adjust: 109.39%;
+  ascent-override: 94.71%;
+  descent-override: 30.63%;
   line-gap-override: 0%;
   font-weight: 400;
   font-display: swap;
@@ -128,7 +152,7 @@
   --danger:  #e05050;
   --radius:  4px;
   --max:     1140px;
-  --serif:   'Source Serif 4', 'Source Serif Fallback', Georgia, serif;
+  --serif:   'Source Serif 4', 'Source Serif Fallback', 'Source Serif Fallback Times', Georgia, serif;
   --cond:    'Barlow Condensed', 'Barlow Condensed Fallback', 'Arial Narrow', sans-serif;
   --shadow:  0 4px 24px rgba(0,0,0,.45);
 }
