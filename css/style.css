@@ -59,6 +59,40 @@
   font-display: swap;
   src: url('../fonts/BarlowCondensed-800.woff2') format('woff2');
 }
+/* Metric-matched fallback for the condensed face.
+ *
+ * Barlow Condensed is far narrower than any normal fallback (avg advance
+ * 0.428em vs Arial's 0.5796em), so when the woff2 swaps in, --cond text
+ * reflows. Measured on the desktop homepage: CLS 0.074, culprit
+ * "nav.main-nav", causes BarlowCondensed-600/700/800.woff2.
+ *
+ * This trims the reflow but cannot remove it. The header is 85px tall with
+ * Barlow Condensed and 117px with any fallback, because the nav wraps to two
+ * rows; that 32px growth is a discrete layout change, so no size-adjust value
+ * lands on it (swept 70-82%: the nav sits at 853px or 890px, never the 826px
+ * it has with the real font). Was 898px (+72px) without this face, 853px
+ * (+27px) with it — a ~60% reduction.
+ *
+ * Zeroing it needs font-display: optional on the three Barlow faces (no swap
+ * at all; slow first visits keep the fallback for that page view). Owner call,
+ * so swap stays for now.
+ *
+ * Ratios from the shipped woff2 vs Arial (scripts/font-fallback-metrics.py):
+ *   avg advance 0.428em / 0.5796em = 73.85%
+ *   hhea ascent 1.000em / 73.85%   = 135.42%
+ *   hhea descent 0.200em / 73.85%  = 27.08%
+ */
+@font-face {
+  font-family: 'Barlow Condensed Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 73.85%;
+  ascent-override: 135.42%;
+  descent-override: 27.08%;
+  line-gap-override: 0%;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Source Serif 4';
   font-style: normal;
@@ -92,7 +126,7 @@
   --radius:  4px;
   --max:     1140px;
   --serif:   'Source Serif 4', Georgia, serif;
-  --cond:    'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --cond:    'Barlow Condensed', 'Barlow Condensed Fallback', 'Arial Narrow', sans-serif;
   --shadow:  0 4px 24px rgba(0,0,0,.45);
 }
 
