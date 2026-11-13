@@ -77,7 +77,10 @@
  */
 @font-face {
   font-family: 'Source Serif Fallback';
-  src: local('Georgia'), local('Gelasio'), local('Times New Roman'), local('Liberation Serif');
+  /* Only Georgia-metric faces: size-adjust is computed against Georgia, so a
+   * Times-metric substitute would be scaled wrongly. If none match, the face
+   * is skipped and the stack falls through to Georgia/serif as before. */
+  src: local('Georgia'), local('Gelasio');
   size-adjust: 115.15%;
   ascent-override: 89.97%;
   descent-override: 29.09%;
@@ -89,7 +92,7 @@
 @font-face {
   font-family: 'Source Serif Fallback';
   font-style: italic;
-  src: local('Georgia Italic'), local('Georgia'), local('Gelasio'), local('Times New Roman');
+  src: local('Georgia'), local('Gelasio');
   size-adjust: 94.04%;
   ascent-override: 110.17%;
   descent-override: 35.62%;

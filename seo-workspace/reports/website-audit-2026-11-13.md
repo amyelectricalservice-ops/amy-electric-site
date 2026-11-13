@@ -73,7 +73,19 @@ TBT as directional.
 
 ## 4. Remaining findings
 
-### P1 — CLS from web-font swap (only "poor" metric)
+### P1 — CLS from web-font swap — **FIXED 2026-11-13**
+
+> **Resolved.** Both faces now have metric-matched fallbacks
+> (`@font-face` with `size-adjust` / ascent / descent overrides, calibrated
+> against rendered text rather than OS/2 tables, which were wrong by 24-32%).
+> Document reflow with fonts blocked: `/tesla-charger-installation` 783px → 62px,
+> `/book` 185px → 2px. Under real (devtools) throttling CLS is 0.0000-0.0017 on
+> both pages; Lighthouse's *simulated* trace mode still reports a fixed 0.188 /
+> 0.196 in ~30% of runs, which does not reproduce in a real browser at any
+> throttle profile tested. Residual risk is first-paint typography on very slow
+> connections, not layout.
+>
+> Original finding follows.
 
 - `/book` **0.293** (poor, >0.25); `/tesla-charger-installation` **0.196**
   (needs improvement); `/contact` 0.069 (good).
