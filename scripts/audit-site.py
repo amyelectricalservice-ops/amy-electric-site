@@ -100,6 +100,7 @@ def audit():
     title_issues = []
     head_close_missing = []
     picture_structure_issues = []
+    honeypot_aria_issues = []
 
     for f in html_files:
         with open(f, 'r', encoding='utf-8') as fh:
@@ -169,7 +170,17 @@ def audit():
             file_issues.append(msg)
             picture_structure_issues.append((f, msg))
 
-        # 7. No <section> nested directly inside .trust-bar-inner.
+        # 7. Honeypot decoy must hide via the aria-hidden ATTRIBUTE, not a CSS
+        # declaration. `aria-hidden:true` inside a style attribute is dropped
+        # by every browser, leaving the decoy "Website" field in the a11y tree.
+        # Sweep with scripts/fix-honeypot-aria.py.
+        bad_honeypot = re.findall(r'style="[^"]*aria-hidden\s*:', content)
+        if bad_honeypot:
+            msg = f'aria-hidden written as a CSS declaration ({len(bad_honeypot)}x)'
+            file_issues.append(msg)
+            honeypot_aria_issues.append((f, msg))
+
+        # 8. No <section> nested directly inside .trust-bar-inner.
         m = re.search(r'<div class="trust-bar">\s*<div class="trust-bar-inner">(.*?)</div>\s*</div>', content, re.S)
         if m and '<section' in m.group(1):
             msg = 'Section nested inside trust-bar-inner'
@@ -189,6 +200,7 @@ def audit():
     print(f"Pages with title tag issues: {len(title_issues)}")
     print(f"Pages missing </head>: {len(head_close_missing)}")
     print(f"Pages with picture/source markup issues: {len(picture_structure_issues)}")
+    print(f"Pages with honeypot aria-hidden issues: {len(honeypot_aria_issues)}")
 
     if missing_from_sitemap:
         print("\n[!] Missing from sitemap.xml:")
@@ -230,9 +242,14 @@ def audit():
         for f, iss in picture_structure_issues:
             print(f"  - {f}: {iss}")
 
+    if honeypot_aria_issues:
+        print(f"\n[!] Honeypot aria-hidden issues ({len(honeypot_aria_issues)}) — run scripts/fix-honeypot-aria.py:")
+        for f, iss in honeypot_aria_issues[:20]:
+            print(f"  - {f}: {iss}")
+
     any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
                   sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing or
-                  picture_structure_issues)
+                  picture_structure_issues or honeypot_aria_issues)
     if any_issues:
         print("\nAUDIT FAILED — fix the issues above before deploying.")
         sys.exit(1)
