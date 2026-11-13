@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Add the metric-matched 'Barlow Condensed Fallback' to the inlined --cond stack.
+"""Add the metric-matched fallback families to the inlined critical CSS stacks.
 
-The critical CSS embedded in every page declares the condensed stack. Without
-the fallback family there, the browser has nothing to swap *to* before the
-woff2 lands, so `--cond` text reflows (desktop CLS 0.074 on the nav).
+The critical CSS embedded in every page declares both font stacks. Without the
+fallback families there, the browser has nothing to swap *to* before the woff2
+lands, so text reflows: the nav (desktop CLS 0.074) and body paragraphs
+(mobile CLS ~0.19 on /book and /tesla-charger-installation).
 
 Idempotent: pages already carrying the fallback are skipped. Also updates the
 city-page generator template so regenerated pages stay in sync.
@@ -20,27 +21,38 @@ IGNORE_PREFIXES = (
     'builder/', 'node_modules/', '.cloudflare/', '.wrangler/',
 )
 
-FALLBACK = 'Barlow Condensed Fallback'
-# Matches "Barlow Condensed","Arial Narrow" with any spacing/quote style.
-PATTERN = re.compile(
-    r'(?P<q>["\'])(?P<fam>Barlow Condensed)(?P=q)(?P<sep>\s*,\s*)(?P<next>["\']Arial Narrow["\'])'
-)
+# (family as written in the stack, its declared fallback, the metric family)
+FAMILIES = [
+    ('Barlow Condensed', 'Arial Narrow', 'Barlow Condensed Fallback'),
+    ('Source Serif 4', 'Georgia', 'Source Serif Fallback'),
+]
+PATTERNS = [
+    (fam, fb, metric,
+     re.compile(
+         r'(?P<q>["\'])(?P<fam>' + re.escape(fam) + r')(?P=q)'
+         # the fallback may be quoted ("Arial Narrow") or bare (Georgia)
+         r'(?P<sep>\s*,\s*)(?P<next>["\']?' + re.escape(fb) + r'["\']?)'
+     ))
+    for fam, fb, metric in FAMILIES
+]
 
 
 def patch(text):
-    """Insert the fallback family after 'Barlow Condensed' when absent."""
-    if FALLBACK in text:
-        return text, 0
-
+    """Insert each metric family directly after its webfont, when absent."""
     count = 0
+    for _fam, _fb, metric, pattern in PATTERNS:
+        if metric in text:
+            continue
 
-    def repl(m):
-        nonlocal count
-        count += 1
-        q = m.group('q')
-        return f'{q}{m.group("fam")}{q}{m.group("sep")}{q}{FALLBACK}{q}{m.group("sep")}{m.group("next")}'
+        def repl(m, metric=metric):
+            nonlocal count
+            count += 1
+            q = m.group('q')
+            return (f'{q}{m.group("fam")}{q}{m.group("sep")}'
+                    f'{q}{metric}{q}{m.group("sep")}{m.group("next")}')
 
-    return PATTERN.sub(repl, text), count
+        text = pattern.sub(repl, text)
+    return text, count
 
 
 def targets():
@@ -58,7 +70,7 @@ def main():
     for path in targets():
         with open(path, encoding='utf-8') as fh:
             original = fh.read()
-        if '--cond' not in original:
+        if '--cond' not in original and '--serif' not in original:
             continue
         fixed, n = patch(original)
         if not n:
@@ -82,7 +94,7 @@ def main():
                     fh.write(fixed)
 
     verb = 'would update' if check_only else 'updated'
-    print(f'{verb} {total} --cond stack(s) across {touched} file(s)')
+    print(f'{verb} {total} font stack(s) across {touched} file(s)')
     if check_only and total:
         raise SystemExit(1)
 
