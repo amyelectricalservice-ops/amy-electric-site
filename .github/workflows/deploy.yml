@@ -225,7 +225,13 @@ jobs:
   preview:
     name: Preview deploy for pull requests
     # Same-repo PRs only: fork PRs have no access to repository secrets.
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    # Dependabot PRs receive no repository secrets (GitHub only exposes
+    # Dependabot-scoped ones), so the upload would fail on an empty
+    # CLOUDFLARE_API_TOKEN. A dependency bump needs no preview deploy.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     concurrency:
       group: preview-${{ github.ref }}
