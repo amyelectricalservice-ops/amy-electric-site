@@ -26,6 +26,10 @@ FAMILIES = [
     ('Barlow Condensed', 'Arial Narrow', 'Barlow Condensed Fallback'),
     ('Source Serif 4', 'Georgia', 'Source Serif Fallback'),
 ]
+SECONDARY = [
+    ('Source Serif Fallback', 'Georgia', 'Source Serif Fallback Times'),
+]
+
 PATTERNS = [
     (fam, fb, metric,
      re.compile(
@@ -52,6 +56,25 @@ def patch(text):
                     f'{q}{metric}{q}{m.group("sep")}{m.group("next")}')
 
         text = pattern.sub(repl, text)
+
+    # Same idea one level deeper: the Times-metric serif face goes between the
+    # Georgia-metric face and the bare Georgia fallback.
+    for prev, nxt, metric in SECONDARY:
+        if metric in text:
+            continue
+        pat = re.compile(
+            r'(?P<q>["\'])' + re.escape(prev) + r'(?P=q)(?P<sep>\s*,\s*)'
+            r'(?P<next>["\']?' + re.escape(nxt) + r'["\']?)'
+        )
+
+        def repl2(m, metric=metric):
+            nonlocal count
+            count += 1
+            q = m.group('q')
+            return (f'{q}{prev}{q}{m.group("sep")}{q}{metric}{q}'
+                    f'{m.group("sep")}{m.group("next")}')
+
+        text = pat.sub(repl2, text)
     return text, count
 
 
