@@ -134,5 +134,5 @@ INSERT OR REPLACE INTO estimate_service_adders (service_id, adder_id) VALUES
   ('ev-hardwired', 'adder-distance-long');
 
 INSERT OR REPLACE INTO estimate_credits (id, name, kind, amount, source, note) VALUES
-  ('credit-ladwp-ev', 'LADWP EV Rebate', 'fixed-up-to', 500, 'ev-charger-installation.html', 'Residential customers; informational only, not subtracted from totals.'),
+  ('credit-ladwp-ev', 'LADWP EV Rebate', 'fixed-up-to', 1000, 'ev-charger-installation.html', 'Residential customers; informational only, not subtracted from totals.'),
   ('credit-fed-30c', 'Federal Section 30C Tax Credit', 'percent', 30, 'ev-charger-installation.html', '30% of equipment cost; informational only, not subtracted from totals.');

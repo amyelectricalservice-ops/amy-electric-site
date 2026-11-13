@@ -116,40 +116,85 @@ describe('parity with the bundled engine data', () => {
 });
 
 /* js/estimator.js is not loaded by any page — the homepage widget lazy-loads
- * js/estimator.min.js, a separate bundle. Nothing rebuilds one from the other,
- * so these assertions are what stops the shipped widget's price table from
- * drifting away from the engine (the tesla 450-750 vs 500-1200 split this
- * repo shipped for a while). */
-describe('parity with the shipped homepage widget (js/estimator.min.js)', () => {
-  const min = readFileSync(join(root, 'js/estimator.min.js'), 'utf8');
-  const widgetPrice = (key) => {
-    const m = min.match(new RegExp('"{0,1}' + key + '"{0,1}:\\{baseLow:(\\d+),baseHigh:(\\d+)\\}'));
-    assert.ok(m, 'price row for ' + key + ' in estimator.min.js');
-    return { low: Number(m[1]), high: Number(m[2]) };
-  };
+ * js/estimator.min.js, which is BUILT from js/estimator-widget.js by
+ * scripts/build-estimator.py. These assertions compare the widget source
+ * against the engine so the two price tables cannot drift apart again
+ * (the tesla 450-750 vs 500-1200 split this repo shipped for a while). */
+describe('widget source parity with the engine', () => {
+  const W = loadStandalone('js/estimator-widget.js');
   const byId = (id) => DATA.SERVICES.find((s) => s.id === id);
 
   it('charger rows match the engine', () => {
-    const tesla = widgetPrice('tesla-wall');
-    assert.deepEqual([tesla.low, tesla.high], [byId('ev-tesla-wall').baseLow, byId('ev-tesla-wall').baseHigh]);
-    const hardwired = widgetPrice('hardwired');
-    assert.deepEqual([hardwired.low, hardwired.high], [byId('ev-hardwired').baseLow, byId('ev-hardwired').baseHigh]);
+    const tesla = W.PRICES['tesla-wall'];
+    assert.deepEqual([tesla.baseLow, tesla.baseHigh], [byId('ev-tesla-wall').baseLow, byId('ev-tesla-wall').baseHigh]);
+    const hardwired = W.PRICES.hardwired;
+    assert.deepEqual([hardwired.baseLow, hardwired.baseHigh], [byId('ev-hardwired').baseLow, byId('ev-hardwired').baseHigh]);
   });
 
-  it('NEMA row covers the engine range (widget uses the wider published scope)', () => {
-    // Outlet-only install is published at $350-$600 (ev-charger-installation)
-    // and the charger-circuit scope at $350-$900 (geo pages), so the widget's
-    // upper bound is legitimately higher — but never below the engine's.
-    const nema = widgetPrice('nema14-50');
-    assert.equal(nema.low, byId('ev-nema-1450').baseLow);
-    assert.ok(nema.high >= byId('ev-nema-1450').baseHigh, 'widget NEMA high ' + nema.high);
+  it('NEMA row covers the engine range (widget quotes the wider circuit scope)', () => {
+    // Outlet-only install publishes at $350-$600 (ev-charger-installation) and
+    // the charger-circuit scope at $350-$900 (geo pages), so the widget's upper
+    // bound is legitimately higher — but never below the engine's.
+    const nema = W.PRICES['nema14-50'];
+    assert.equal(nema.baseLow, byId('ev-nema-1450').baseLow);
+    assert.ok(nema.baseHigh >= byId('ev-nema-1450').baseHigh, 'widget NEMA high ' + nema.baseHigh);
   });
 
-  it('panel-upgrade branch matches the engine', () => {
-    assert.ok(min.includes('low:2500,high:4500'), 'widget panel range');
+  it('panel row matches the engine', () => {
+    assert.deepEqual([W.PANEL.low, W.PANEL.high],
+      [byId('panel-200a-replacement').baseLow, byId('panel-200a-replacement').baseHigh]);
+  });
+
+  it('rewiring tiers match the engine size tiers', () => {
+    for (const key of ['small', 'medium', 'large']) {
+      const tier = DATA.SIZE_TIERS.find((t) => t.id === 'rewiring-' + key);
+      assert.ok(tier, 'engine tier rewiring-' + key);
+      assert.deepEqual([W.REWIRING_TIERS[key].low, W.REWIRING_TIERS[key].high], [tier.low, tier.high]);
+    }
+  });
+});
+
+describe('widget quotes', () => {
+  const W = loadStandalone('js/estimator-widget.js');
+
+  it('EV: adders stack in the published order', () => {
+    const q = W.buildQuote({ service: 'ev-charger', charger: 'tesla-wall', panel: '100a', distance: 'long', location: 'outdoor' });
+    assert.equal(q.kind, 'estimate');
+    assert.equal(q.low, 500 + 200 + 50 + 2500);
+    assert.equal(q.high, 1200 + 300 + 150 + 4500);
+    assert.equal(q.parts.length, 4);
+  });
+
+  it('EV: a 200A panel with a short indoor run adds nothing', () => {
+    const q = W.buildQuote({ service: 'ev-charger', charger: 'nema14-50', panel: '200a', distance: 'short', location: 'indoor' });
+    assert.deepEqual([q.low, q.high], [350, 900]);
+  });
+
+  it('panel upgrade and rewiring return real ranges', () => {
+    assert.deepEqual([W.buildQuote({ service: 'panel-upgrade' }).low, W.buildQuote({ service: 'panel-upgrade' }).high], [2500, 4500]);
+    const rw = W.buildQuote({ service: 'rewiring', size: 'large' });
+    assert.deepEqual([rw.low, rw.high], [10000, 15000]);
+  });
+
+  it('"Other" returns a custom quote instead of a dead end', () => {
+    // Regression guard: the old bundle returned null here, which hid the lead
+    // form AND the phone number, so rewiring/repair leads vanished silently.
+    const q = W.buildQuote({ service: 'other' });
+    assert.equal(q.kind, 'custom');
+    assert.ok(q.reason && q.reason.length > 20);
+  });
+});
+
+describe('built bundle is in sync with the source', () => {
+  it('js/estimator.min.js exposes the same version and prices', () => {
+    const src = loadStandalone('js/estimator-widget.js');
+    const min = loadStandalone('js/estimator.min.js');
+    assert.equal(min.VERSION, src.VERSION);
     assert.deepEqual(
-      [byId('panel-200a-replacement').baseLow, byId('panel-200a-replacement').baseHigh],
-      [2500, 4500]
+      JSON.parse(JSON.stringify(min.PRICES)),
+      JSON.parse(JSON.stringify(src.PRICES))
     );
+    assert.equal(typeof min.mount, 'function');
+    assert.equal(typeof min.buildQuote, 'function');
   });
 });

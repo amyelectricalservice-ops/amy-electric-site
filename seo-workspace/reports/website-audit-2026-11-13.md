@@ -156,3 +156,31 @@ TBT as directional.
 2. Decide Bing/Zaraz (remove or keep deliberately).
 3. Gallery LCP experiment.
 4. Start collecting CrUX field data; re-audit in 4–6 weeks.
+
+---
+
+## 9. Follow-up shipped (2026-11-13, after the first pass)
+
+An external homepage review prompted a re-check. Three of its claims were
+verified and fixed; three were not accurate for this site.
+
+**Fixed**
+
+| Finding | Detail |
+|---|---|
+| Quote widget dead end | Choosing "Other Electrical" hid the lead form **and** the phone number, so rewiring and repair leads vanished. The widget also had no source file. Rebuilt as `js/estimator-widget.js` → `scripts/build-estimator.py` → `js/estimator.min.js`, with a fourth service (Whole-Home Rewiring, priced by home size from `05-estimate-data` tiers) and a custom-quote path that always shows the form. |
+| `.qe-field label` leaked onto radio labels | The group-heading rule applied to every `<label>` nested inside, forcing radio options to `display:block` with a 250px-wide dot. Scoped to `.qe-field > label`. |
+| Honeypot not hidden from assistive tech | `aria-hidden:true` sat inside a `style` attribute on 483 wrappers across 242 pages, so browsers discarded it. Moved to the attribute; `scripts/fix-honeypot-aria.py` + an `audit-site.py` rule prevent regressions. |
+| Stale LADWP rebate figure | 84 mentions across ~40 pages said "up to $500"; ladwp.com's current residential figure is **up to $1,000** (+$500 income-qualified). Swept; the estimate engine's `CREDITS` row corrected from 500 to 1000. |
+
+**Not accurate**
+
+- "Three stacked lead-capture flows" — the detailed form is already collapsed
+  inside `<details>`. There are two visible flows, not three.
+- "Astro" — the site is static HTML on Workers + Assets; no framework.
+- "Build dedicated city and service landing pages" — 112 city pages and 64 geo
+  service pages already exist.
+- "Replace illustrative case studies with real jobs" — the gallery has 387 real
+  photos, but publishing a case study needs job-specific facts (address,
+  permit sign-off, timeline) that only the owner can supply. Inventing them
+  would be a false claim, so the disclaimer stays until that data arrives.
