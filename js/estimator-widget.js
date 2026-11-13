@@ -1,0 +1,425 @@
+/* AMY Electric — homepage quote widget (js/estimator-widget.js).
+ *
+ * Source for js/estimator.min.js. Edit THIS file, then run
+ * scripts/build-estimator.py. Nothing hand-edits the built bundle.
+ *
+ * The widget used to be a single hand-minified blob with no source, which is
+ * why two bugs lived in it: choosing "Other Electrical" hid the lead form AND
+ * the phone number (so rewiring leads — the most valuable residential work —
+ * silently vanished), and panel/rewiring questions were asked of EV visitors
+ * and vice versa.
+ *
+ * Pricing comes only from published canonicals. Each row names its source:
+ *   - Charger rows .......... ev-charger-installation.html, tesla-charger-installation.html
+ *   - Panel row ............. panel-upgrade.html ($2,500-$4,500 incl. permit)
+ *   - Rewiring tiers ........ whole-home-rewiring.html (by home size)
+ * scripts/test-estimator.mjs asserts every row against js/src/05-estimate-data.js
+ * so the widget cannot drift from the engine again.
+ *
+ * Usage (browser): auto-mounts on DOMContentLoaded
+ * Usage (node):    require('./js/estimator-widget.js')
+ */
+
+(function (root, factory) {
+  'use strict';
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.AMY_QUOTE_WIDGET = factory();
+  }
+}(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  var VERSION = '2.0.0';
+
+  // Installed charger prices. The NEMA upper bound is the wider published
+  // "charger circuit" scope ($350-$900); the outlet-only row is $350-$600.
+  var PRICES = {
+    'nema14-50': { baseLow: 350, baseHigh: 900, label: 'NEMA 14-50 Outlet', source: 'ev-charger-installation.html' },
+    'tesla-wall': { baseLow: 500, baseHigh: 1200, label: 'Tesla Wall Connector', source: 'tesla-charger-installation.html' },
+    'hardwired': { baseLow: 500, baseHigh: 1200, label: 'Hardwired EVSE', source: 'ev-charger-installation.html' }
+  };
+
+  var DISTANCE = {
+    short: { low: 0, high: 0, label: '< 25 ft' },
+    medium: { low: 100, high: 150, label: '25-50 ft' },
+    long: { low: 200, high: 300, label: '> 50 ft' }
+  };
+
+  var PANEL = { low: 2500, high: 4500, label: '200A Panel Replacement', source: 'panel-upgrade.html' };
+
+  // Mirrors SIZE_TIERS in js/src/05-estimate-data.js.
+  var REWIRING_TIERS = {
+    small: { low: 3000, high: 7000, label: 'Small home (1-2 BR, ~1,000 sq ft)', source: 'whole-home-rewiring.html' },
+    medium: { low: 6000, high: 12000, label: 'Medium home (3 BR, ~1,500 sq ft)', source: 'whole-home-rewiring.html' },
+    large: { low: 10000, high: 15000, label: 'Large home (4+ BR, 2,000+ sq ft)', source: 'whole-home-rewiring.html' },
+    unsure: { low: 8000, high: 18000, label: 'Whole-home rewiring (size confirmed on site)', source: 'whole-home-rewiring.html' }
+  };
+
+  var OUTDOOR = { low: 50, high: 150 };
+  var PANEL_UPGRADE_ADDER = { low: 2500, high: 4500 };
+
+  var SERVICES = {
+    'ev-charger': { label: 'EV Charger Installation', detailStep: true, setupStep: true },
+    'panel-upgrade': { label: 'Panel Upgrade', detailStep: false, setupStep: true },
+    'rewiring': { label: 'Whole-Home Rewiring', detailStep: true, setupStep: false },
+    'other': { label: 'Other Electrical', detailStep: false, setupStep: false }
+  };
+
+  // Vehicle picker: keeps lead quality high without a free-text field. Same
+  // list the previous widget shipped; not a pricing input.
+  var VEHICLES = [
+    { make: 'Tesla', model: 'Model 3' },
+    { make: 'Tesla', model: 'Model Y' },
+    { make: 'Tesla', model: 'Model S' },
+    { make: 'Tesla', model: 'Model X' },
+    { make: 'Tesla', model: 'Cybertruck' },
+    { make: 'Ford', model: 'Mustang Mach-E' },
+    { make: 'Ford', model: 'F-150 Lightning' },
+    { make: 'Chevrolet', model: 'Bolt EV' },
+    { make: 'Chevrolet', model: 'Bolt EUV' },
+    { make: 'Chevrolet', model: 'Silverado EV' },
+    { make: 'Hyundai', model: 'Ioniq 5' },
+    { make: 'Hyundai', model: 'Ioniq 6' },
+    { make: 'Hyundai', model: 'Kona Electric' },
+    { make: 'Kia', model: 'EV6' },
+    { make: 'Kia', model: 'EV9' },
+    { make: 'Kia', model: 'Niro EV' },
+    { make: 'Nissan', model: 'Leaf' },
+    { make: 'Rivian', model: 'R1T' },
+    { make: 'Rivian', model: 'R1S' },
+    { make: 'Volkswagen', model: 'ID.4' },
+    { make: 'BMW', model: 'i4' },
+    { make: 'BMW', model: 'iX' },
+    { make: 'Mercedes-Benz', model: 'EQS' },
+    { make: 'Mercedes-Benz', model: 'EQE' },
+    { make: 'Porsche', model: 'Taycan' },
+    { make: 'Audi', model: 'Q4 e-tron' },
+    { make: 'Audi', model: 'Q8 e-tron' },
+    { make: 'Lucid', model: 'Air' },
+    { make: 'Toyota', model: 'bZ4X' },
+    { make: 'Subaru', model: 'Solterra' },
+    { make: 'Volvo', model: 'EX30' },
+    { make: 'Volvo', model: 'XC40 Recharge' },
+    { make: 'Polestar', model: '2' },
+    { make: 'Genesis', model: 'GV60' },
+    { make: 'GMC', model: 'Hummer EV' },
+    { make: 'Cadillac', model: 'Lyriq' },
+    { make: 'Mazda', model: 'MX-30' },
+    { make: 'Fiat', model: '500e' },
+    { make: 'Toyota', model: 'Prius Prime' }
+  ];
+
+  function money(n) {
+    var s = String(Math.round(n));
+    var out = '';
+    while (s.length > 3) {
+      out = ',' + s.slice(-3) + out;
+      s = s.slice(0, -3);
+    }
+    return '$' + s + out;
+  }
+
+  /* Pure pricing. `state` is the widget's collected answers.
+   * Returns {kind:'estimate', low, high, parts} or
+   *         {kind:'custom', reason} — custom never hides the lead form. */
+  function buildQuote(state) {
+    state = state || {};
+    var parts = [];
+    var low = 0;
+    var high = 0;
+
+    if (state.service === 'ev-charger') {
+      var p = PRICES[state.charger] || PRICES['nema14-50'];
+      low = p.baseLow;
+      high = p.baseHigh;
+      parts.push(p.label + ': ' + money(low) + '-' + money(high));
+
+      var d = DISTANCE[state.distance] || DISTANCE.short;
+      if (d.low || d.high) {
+        low += d.low;
+        high += d.high;
+        parts.push('Run length (' + d.label + '): +' + money(d.low) + '-' + money(d.high));
+      }
+
+      if (state.location === 'outdoor') {
+        low += OUTDOOR.low;
+        high += OUTDOOR.high;
+        parts.push('Outdoor weatherproofing: +' + money(OUTDOOR.low) + '-' + money(OUTDOOR.high));
+      }
+
+      if (state.panel === '100a') {
+        low += PANEL_UPGRADE_ADDER.low;
+        high += PANEL_UPGRADE_ADDER.high;
+        parts.push('100A to 200A panel upgrade: +' + money(PANEL_UPGRADE_ADDER.low) + '-' + money(PANEL_UPGRADE_ADDER.high));
+      }
+    } else if (state.service === 'panel-upgrade') {
+      low = PANEL.low;
+      high = PANEL.high;
+      parts.push(PANEL.label + ': ' + money(low) + '-' + money(high));
+      parts.push('Permit and inspection included');
+    } else if (state.service === 'rewiring') {
+      var t = REWIRING_TIERS[state.size] || REWIRING_TIERS.unsure;
+      low = t.low;
+      high = t.high;
+      parts.push(t.label + ': ' + money(low) + '-' + money(high));
+      parts.push('Permit and LADBS inspection handled');
+    } else {
+      return {
+        kind: 'custom',
+        reason: 'Repairs, lighting, generators, and panel work vary too much for a range we can stand behind.'
+      };
+    }
+
+    return { kind: 'estimate', low: low, high: high, parts: parts };
+  }
+
+  /* ----------------------------- browser UI ----------------------------- */
+
+  function mount() {
+    var rootEl = document.getElementById('quote-estimator');
+    if (!rootEl) return;
+
+    var state = { service: 'ev-charger', charger: 'nema14-50', panel: '100a', distance: 'short', location: 'indoor', size: 'medium' };
+    var current = 1;
+    var TOTAL = 4;
+
+    var steps = rootEl.querySelectorAll('.qe-step');
+    var dots = rootEl.querySelectorAll('.qe-dot');
+    var labels = rootEl.querySelectorAll('.qe-step-label');
+    var title = rootEl.querySelector('.qe-step[data-step="2"] .qe-step-title');
+
+    function $(sel, scope) { return (scope || rootEl).querySelector(sel); }
+    function $all(sel, scope) { return Array.prototype.slice.call((scope || rootEl).querySelectorAll(sel)); }
+
+    // Show only the blocks that belong to the current service.
+    function applyVisibility() {
+      $all('[data-for]').forEach(function (block) {
+        var allowed = (block.getAttribute('data-for') || '').split(' ');
+        block.hidden = allowed.indexOf(state.service) === -1;
+      });
+      var svc = SERVICES[state.service] || SERVICES['ev-charger'];
+      if (title) {
+        title.textContent = state.service === 'rewiring' ? 'Your Home' : 'EV Charger Details';
+      }
+      return svc;
+    }
+
+    function show(n) {
+      current = n;
+      steps.forEach(function (s, i) { s.classList.toggle('active', i + 1 === n); });
+      dots.forEach(function (d, i) { d.classList.toggle('active', i + 1 <= n); });
+      labels.forEach(function (l, i) { l.classList.toggle('active', i + 1 <= n); });
+      if (n === TOTAL) renderResult();
+      rootEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Steps 2 and 3 are skipped entirely when the chosen service has no
+    // questions there, so "Other" lands on the form instead of a dead end.
+    function hasVisibleStep(n) {
+      var step = rootEl.querySelector('.qe-step[data-step="' + n + '"]');
+      if (!step) return false;
+      var blocks = $all('[data-for]', step);
+      return blocks.some(function (b) { return !b.hidden; });
+    }
+
+    function nextFrom(n) {
+      for (var c = n + 1; c < TOTAL; c += 1) {
+        if (hasVisibleStep(c)) { show(c); return; }
+      }
+      show(TOTAL);
+    }
+
+    // Back must skip the same empty steps, otherwise a panel-upgrade visitor
+    // lands on an EV-only question page with nothing but a Continue button.
+    function prevFrom(n) {
+      for (var c = n - 1; c > 1; c -= 1) {
+        if (hasVisibleStep(c)) { show(c); return; }
+      }
+      show(1);
+    }
+
+    function renderResult() {
+      var val = document.getElementById('qe-result-value');
+      var breakdown = document.getElementById('qe-breakdown');
+      var cta = document.getElementById('qe-result-cta');
+      var heading = document.getElementById('qe-result-heading');
+      var quote = buildQuote(state);
+
+      if (quote.kind === 'custom') {
+        if (heading) heading.textContent = "Let's price your job";
+        val.textContent = 'Custom quote';
+        breakdown.innerHTML = '<p>' + quote.reason + '</p><p>Send your details and we will come back with a firm number — or call for an immediate answer.</p>';
+        // Never hide the form: this was the old dead end.
+        if (cta) cta.style.display = '';
+        return;
+      }
+
+      if (heading) heading.textContent = 'Your Estimated Price';
+      val.textContent = money(quote.low) + ' - ' + money(quote.high);
+      var html = '<ul class="qe-breakdown-list">';
+      quote.parts.forEach(function (p) {
+        html += '<li><span class="qe-check">&#10003;</span><span>' + p + '</span></li>';
+      });
+      html += '</ul>';
+      breakdown.innerHTML = html;
+      if (cta) cta.style.display = '';
+    }
+
+    function summary() {
+      var q = buildQuote(state);
+      return {
+        service: (SERVICES[state.service] || {}).label || state.service,
+        answers: state,
+        estimate: q.kind === 'estimate' ? { low: q.low, high: q.high } : null
+      };
+    }
+
+    // --- service cards
+    $all('.qe-svc-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        $all('.qe-svc-card').forEach(function (c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        state.service = card.getAttribute('data-value');
+        applyVisibility();
+        nextFrom(1);
+      });
+    });
+
+    // --- charger type
+    $all('.qe-charger-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        $all('.qe-charger-btn').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state.charger = btn.getAttribute('data-value');
+      });
+    });
+
+    // --- radios (panel size, distance, location, home size)
+    $all('input[type="radio"]').forEach(function (r) {
+      if (r.checked) state[r.name] = r.value;
+      r.addEventListener('change', function () { state[r.name] = r.value; });
+    });
+
+    // --- vehicle selectors
+    var makes = {};
+    var makeSel = document.getElementById('qe-make');
+    var modelSel = document.getElementById('qe-model');
+
+    if (makeSel && modelSel && VEHICLES.length) {
+      VEHICLES.forEach(function (v) { makes[v.make] = true; });
+      Object.keys(makes).sort().forEach(function (m) {
+        var o = document.createElement('option');
+        o.value = m;
+        o.textContent = m;
+        makeSel.appendChild(o);
+      });
+      makeSel.addEventListener('change', function () {
+        state.make = makeSel.value;
+        state.model = '';
+        modelSel.innerHTML = '<option value="">Select model...</option>';
+        VEHICLES.filter(function (v) { return v.make === makeSel.value; }).forEach(function (v) {
+          var o = document.createElement('option');
+          o.value = v.model;
+          o.textContent = v.model;
+          modelSel.appendChild(o);
+        });
+      });
+      modelSel.addEventListener('change', function () { state.model = modelSel.value; });
+    }
+
+    // --- navigation
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('[data-qe]') : null;
+      if (!btn || !rootEl.contains(btn)) return;
+      var action = btn.getAttribute('data-qe');
+
+      if (action === 'next-s2') {
+        if (state.service === 'ev-charger' && !state.charger) {
+          alert('Please select a charger type.');
+          return;
+        }
+        nextFrom(2);
+      } else if (action === 'next-s3') {
+        if (state.service === 'ev-charger') {
+          if (!state.panel) { alert('Please select your current panel size.'); return; }
+          if (!state.distance) { alert('Please select the approximate distance from panel to installation location.'); return; }
+          if (!state.location) { alert('Please select the installation location.'); return; }
+        }
+        nextFrom(3);
+      } else if (action === 'back-s1') {
+        show(1);
+      } else if (action === 'back-s2') {
+        prevFrom(current);
+      } else if (action === 'back-s3') {
+        prevFrom(current);
+      }
+    });
+
+    // --- lead form
+    var form = document.getElementById('qe-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = (document.getElementById('qe-name').value || '').trim();
+        var phone = (document.getElementById('qe-phone').value || '').trim();
+        var errBox = document.getElementById('qe-form-error');
+        if (!name || !phone) {
+          if (errBox) { errBox.textContent = 'Please enter your name and phone number.'; errBox.style.display = 'block'; }
+          return;
+        }
+        var btn = form.querySelector('.form-submit');
+        if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+        var data = new FormData();
+        data.append('name', name);
+        data.append('phone', phone);
+        data.append('email', (document.getElementById('qe-email').value || '').trim());
+        data.append('city', (document.getElementById('qe-city').value || '').trim());
+        data.append('service', state.service);
+        data.append('message', 'Quote Estimator — ' + JSON.stringify(summary()));
+        data.append('_estimator', 'true');
+        data.append('_timestamp', (form.querySelector('[name="_timestamp"]') || {}).value || '');
+        data.append('website', (form.querySelector('[name="website"]') || {}).value || '');
+
+        fetch('/api/contact', { method: 'POST', headers: { Accept: 'application/json' }, body: data })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.success) throw new Error(res.message || 'failed');
+            document.getElementById('qe-form-wrap').style.display = 'none';
+            document.getElementById('qe-form-success').style.display = 'block';
+          })
+          .catch(function () {
+            if (btn) { btn.textContent = 'Send My Request'; btn.disabled = false; }
+            if (errBox) {
+              errBox.innerHTML = 'Could not send automatically. Call <a href="tel:18183025614">(818) 302-5614</a> or email info@amyelectric.com.';
+              errBox.style.display = 'block';
+            }
+          });
+      });
+    }
+
+    applyVisibility();
+    show(1);
+  }
+
+  if (typeof document !== 'undefined' && document.addEventListener) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount);
+    } else {
+      mount();
+    }
+  }
+
+  return {
+    VERSION: VERSION,
+    PRICES: PRICES,
+    DISTANCE: DISTANCE,
+    PANEL: PANEL,
+    REWIRING_TIERS: REWIRING_TIERS,
+    SERVICES: SERVICES,
+    buildQuote: buildQuote,
+    money: money,
+    mount: mount
+  };
+}));

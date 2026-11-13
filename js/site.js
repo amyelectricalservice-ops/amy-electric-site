@@ -435,7 +435,7 @@ var AMY_ESTIMATE_DATA = (function () {
   ];
 
   var CREDITS = [
-    { id: 'credit-ladwp-ev', name: 'LADWP EV Rebate', kind: 'fixed-up-to', amount: 500, source: 'ev-charger-installation.html', note: 'Residential customers; informational only, not subtracted from totals.' },
+    { id: 'credit-ladwp-ev', name: 'LADWP EV Rebate', kind: 'fixed-up-to', amount: 1000, source: 'ev-charger-installation.html', note: 'Residential customers; informational only, not subtracted from totals.' },
     { id: 'credit-fed-30c', name: 'Federal Section 30C Tax Credit', kind: 'percent', amount: 30, source: 'ev-charger-installation.html', note: '30% of equipment cost; informational only, not subtracted from totals.' }
   ];
 

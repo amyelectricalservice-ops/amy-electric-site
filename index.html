@@ -546,13 +546,14 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
           <span class="tile-tag">Outage-Ready</span>
         </div>
       </a>
-      <a href="service-areas" class="service-tile">
-        <div class="tile-icon">📍</div>
-        <h3>Service Areas</h3>
-        <p>Serving Los Angeles, Sherman Oaks, Studio City, Burbank, Glendale, Pasadena, Encino, Van Nuys &amp; more. 62+ ZIP codes covered.</p>
+      <a href="whole-home-rewiring" class="service-tile">
+        <div class="tile-icon">🏠</div>
+        <h3>Whole-Home Rewiring</h3>
+        <p>Knob-and-tube, cloth, and aluminum wiring replaced for pre-1970s LA homes. Permits and inspection handled.</p>
         <div class="tile-tags">
-          <span class="tile-tag">Greater LA</span>
-          <span class="tile-tag">San Fernando Valley</span>
+          <span class="tile-tag">Knob &amp; Tube</span>
+          <span class="tile-tag">Aluminum</span>
+          <span class="tile-tag">Older LA Homes</span>
         </div>
       </a>
     </div>
@@ -658,7 +659,7 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       <div class="qe-progress">
         <div class="qe-step-labels">
           <span class="qe-step-label active">Service</span>
-          <span class="qe-step-label">Charger</span>
+          <span class="qe-step-label">Details</span>
           <span class="qe-step-label">Setup</span>
           <span class="qe-step-label">Quote</span>
         </div>
@@ -683,85 +684,118 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
             <span class="qe-svc-name">Panel Upgrade</span>
             <span class="qe-svc-desc">Upgrade to 200A electrical service</span>
           </button>
+          <button class="qe-svc-card" data-value="rewiring">
+            <span class="qe-svc-icon">&#127968;</span>
+            <span class="qe-svc-name">Whole-Home Rewiring</span>
+            <span class="qe-svc-desc">Replace old, aluminum, or unsafe wiring</span>
+          </button>
           <button class="qe-svc-card" data-value="other">
             <span class="qe-svc-icon">&#128295;</span>
             <span class="qe-svc-name">Other Electrical</span>
-            <span class="qe-svc-desc">Repairs, lighting, rewiring and more</span>
+            <span class="qe-svc-desc">Repairs, lighting, generators and more</span>
           </button>
         </div>
       </div>
 
       <div class="qe-step" data-step="2">
         <h3 class="qe-step-title">EV Charger Details</h3>
-        <div class="qe-field">
-          <label>Charger Type</label>
-          <div class="qe-charger-options">
-            <button class="qe-charger-btn selected" data-value="nema14-50">
-              <span class="qe-charger-name">NEMA 14-50 Outlet</span>
-              <span class="qe-charger-desc">Use your vehicle mobile charger. Most affordable option.</span>
-            </button>
-            <button class="qe-charger-btn" data-value="tesla-wall">
-              <span class="qe-charger-name">Tesla Wall Connector</span>
-              <span class="qe-charger-desc">Hardwired, faster charging for Teslas. Sleekest look.</span>
-            </button>
-            <button class="qe-charger-btn" data-value="hardwired">
-              <span class="qe-charger-name">Hardwired EVSE</span>
-              <span class="qe-charger-desc">J1772 hardwired station (ChargePoint, JuiceBox, etc.)</span>
-            </button>
+
+        <div data-for="ev-charger">
+          <div class="qe-field">
+            <label>Charger Type</label>
+            <div class="qe-charger-options">
+              <button class="qe-charger-btn selected" data-value="nema14-50">
+                <span class="qe-charger-name">NEMA 14-50 Outlet</span>
+                <span class="qe-charger-desc">Use your vehicle mobile charger. Most affordable option.</span>
+              </button>
+              <button class="qe-charger-btn" data-value="tesla-wall">
+                <span class="qe-charger-name">Tesla Wall Connector</span>
+                <span class="qe-charger-desc">Hardwired, faster charging for Teslas. Sleekest look.</span>
+              </button>
+              <button class="qe-charger-btn" data-value="hardwired">
+                <span class="qe-charger-name">Hardwired EVSE</span>
+                <span class="qe-charger-desc">J1772 hardwired station (ChargePoint, JuiceBox, etc.)</span>
+              </button>
+            </div>
+          </div>
+          <div class="qe-field-row">
+            <div class="qe-field">
+              <label for="qe-make">Vehicle Make</label>
+              <select id="qe-make" class="qe-select">
+                <option value="">Select make...</option>
+              </select>
+            </div>
+            <div class="qe-field">
+              <label for="qe-model">Model</label>
+              <select id="qe-model" class="qe-select">
+                <option value="">Select model...</option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="qe-field-row">
+
+        <div data-for="rewiring">
           <div class="qe-field">
-            <label for="qe-make">Vehicle Make</label>
-            <select id="qe-make" class="qe-select">
-              <option value="">Select make...</option>
-            </select>
+            <label>Home Size</label>
+            <div class="qe-radio-group qe-radio-stack">
+              <label class="qe-radio"><input type="radio" name="size" value="small"><span>Small &mdash; 1-2 BR, ~1,000 sq ft</span></label>
+              <label class="qe-radio"><input type="radio" name="size" value="medium" checked><span>Medium &mdash; 3 BR, ~1,500 sq ft</span></label>
+              <label class="qe-radio"><input type="radio" name="size" value="large"><span>Large &mdash; 4+ BR, 2,000+ sq ft</span></label>
+              <label class="qe-radio"><input type="radio" name="size" value="unsure"><span>Not sure</span></label>
+            </div>
           </div>
-          <div class="qe-field">
-            <label for="qe-model">Model</label>
-            <select id="qe-model" class="qe-select">
-              <option value="">Select model...</option>
-            </select>
-          </div>
+          <p class="qe-hint">Rewiring is quoted by home size, then confirmed on site. Knob-and-tube and aluminum branch wiring cost more once we see the runs.</p>
         </div>
+
         <div class="qe-nav">
+          <button class="btn btn-outline" data-qe="back-s1">&larr; Back</button>
           <button class="btn btn-gold" data-qe="next-s2">Continue</button>
         </div>
       </div>
 
       <div class="qe-step" data-step="3">
         <h3 class="qe-step-title">Your Setup</h3>
-        <div class="qe-field">
-          <label>Current Panel</label>
-          <div class="qe-radio-group">
-            <label class="qe-radio"><input type="radio" name="panel" value="100a" checked><span>100 Amp</span></label>
-            <label class="qe-radio"><input type="radio" name="panel" value="200a"><span>200 Amp</span></label>
-            <label class="qe-radio"><input type="radio" name="panel" value="unsure"><span>Not Sure</span></label>
+
+        <div data-for="ev-charger panel-upgrade">
+          <div class="qe-field">
+            <label>Current Panel</label>
+            <div class="qe-radio-group">
+              <label class="qe-radio"><input type="radio" name="panel" value="100a" checked><span>100 Amp</span></label>
+              <label class="qe-radio"><input type="radio" name="panel" value="200a"><span>200 Amp</span></label>
+              <label class="qe-radio"><input type="radio" name="panel" value="unsure"><span>Not Sure</span></label>
+            </div>
           </div>
         </div>
-        <div class="qe-field">
-          <label>Distance From Panel</label>
-          <div class="qe-radio-group">
-            <label class="qe-radio"><input type="radio" name="distance" value="short" checked><span>&lt; 25 ft</span></label>
-            <label class="qe-radio"><input type="radio" name="distance" value="medium"><span>25&ndash;50 ft</span></label>
-            <label class="qe-radio"><input type="radio" name="distance" value="long"><span>&gt; 50 ft</span></label>
+
+        <div data-for="ev-charger">
+          <div class="qe-field">
+            <label>Distance From Panel</label>
+            <div class="qe-radio-group">
+              <label class="qe-radio"><input type="radio" name="distance" value="short" checked><span>&lt; 25 ft</span></label>
+              <label class="qe-radio"><input type="radio" name="distance" value="medium"><span>25&ndash;50 ft</span></label>
+              <label class="qe-radio"><input type="radio" name="distance" value="long"><span>&gt; 50 ft</span></label>
+            </div>
           </div>
         </div>
-        <div class="qe-field">
-          <label>Installation Location</label>
-          <div class="qe-radio-group">
-            <label class="qe-radio"><input type="radio" name="location" value="indoor" checked><span>Indoor Garage</span></label>
-            <label class="qe-radio"><input type="radio" name="location" value="outdoor"><span>Outdoor</span></label>
+
+        <div data-for="ev-charger panel-upgrade">
+          <div class="qe-field">
+            <label>Installation Location</label>
+            <div class="qe-radio-group">
+              <label class="qe-radio"><input type="radio" name="location" value="indoor" checked><span>Indoor Garage</span></label>
+              <label class="qe-radio"><input type="radio" name="location" value="outdoor"><span>Outdoor</span></label>
+            </div>
           </div>
         </div>
+
         <div class="qe-nav">
-          <button class="btn btn-outline" data-qe="back-s1">&larr; Back</button>
+          <button class="btn btn-outline" data-qe="back-s2">&larr; Back</button>
           <button class="btn btn-gold" data-qe="next-s3">Get My Estimate</button>
         </div>
       </div>
 
       <div class="qe-step" data-step="4">
-        <h3 class="qe-step-title">Your Estimated Price</h3>
+        <h3 class="qe-step-title" id="qe-result-heading">Your Estimated Price</h3>
         <div id="qe-result">
           <div id="qe-result-value" class="qe-price"></div>
           <div id="qe-breakdown" class="qe-breakdown"></div>
