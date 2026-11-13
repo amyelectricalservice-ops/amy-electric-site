@@ -715,7 +715,10 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
 </script>`;
 
 function injectSchema(html) {
-  if (!html.includes('Electrician') && !html.includes('LocalBusiness')) {
+  // Match the schema type, not the bare word: a page can mention "electrician"
+  // in copy (or have only BreadcrumbList) and still need the business entity.
+  const hasBusinessSchema = /"@type"\s*:\s*"(Electrician|LocalBusiness|HomeAndConstructionBusiness|GeneralContractor)"/.test(html);
+  if (!hasBusinessSchema) {
     const hi = html.indexOf('</head>');
     if (hi !== -1) {
       return html.slice(0, hi) + '\n' + DEFAULT_ELECTRICIAN_SCHEMA + '\n' + html.slice(hi);

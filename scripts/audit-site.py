@@ -120,12 +120,17 @@ def audit():
             title_issues.append((f, f'Title too long ({len(t_match.group(1).strip())} chars)'))
 
         # 2. Meta description
-        d_match = re.search(r'<meta\s+(?:name=["\']description["\']\s+content=["\']([^"\']*)["\']|content=["\']([^"\']*)["\']\s+name=["\']description["\'])', content, re.IGNORECASE)
+        # Quote-aware: content may legitimately contain an apostrophe, so stop
+        # only at the delimiter that opened the attribute (the old [^"'] class
+        # truncated "it's" at 43 chars and produced false positives).
+        d_match = re.search(r'<meta\s+name=["\']description["\']\s+content=(["\'])(.*?)\1', content, re.IGNORECASE | re.DOTALL)
+        if not d_match:
+            d_match = re.search(r'<meta\s+content=(["\'])(.*?)\1\s+name=["\']description["\']', content, re.IGNORECASE | re.DOTALL)
         if not d_match:
             file_issues.append('Missing meta description')
             meta_desc_issues.append((f, 'Missing meta description'))
         else:
-            desc = d_match.group(1) or d_match.group(2)
+            desc = d_match.group(2)
             if len(desc) > 165:
                 file_issues.append(f'Meta description too long ({len(desc)} chars)')
                 meta_desc_issues.append((f, f'Meta description too long ({len(desc)} chars)'))
