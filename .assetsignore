@@ -30,8 +30,21 @@ package.json
 package-lock.json
 pnpm-lock.yaml
 *.py
-contact-handler.js
+# Worker-side modules. Anything not listed here is served as a public asset —
+# these were reachable at /crm-handler.js, /lead-store.js, /gbp-agent.js etc.
+# .assetsignore also hides *ignored* files behind a 404, which is what we want.
 worker.js
+contact-handler.js
+contact-enrich.js
+crm-cron.js
+crm-espocrm.js
+crm-handler.js
+estimator-bundle.js
+estimator-handler.js
+gbp-agent.js
+lead-handler.js
+lead-store.js
+photo-handler.js
 cloudflare.config.ts
 wrangler.config.ts
 .gitignore
