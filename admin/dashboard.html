@@ -61,6 +61,10 @@ tr:hover td { background: rgba(255,255,255,.03); }
 /* Panels */
 /* The chart script sets canvas.width = offsetWidth * dpr. Without a CSS width
    the attribute *is* the layout width, so every redraw widened the element and
+   this page scrolled sideways on a phone (measured 649px on a 390px view). */
+#trafficChart { display: block; width: 100%; height: 220px; }
+/* The chart script sets canvas.width = offsetWidth * dpr. Without a CSS width
+   the attribute *is* the layout width, so every redraw widened the element and
    the dashboard scrolled sideways on a phone (measured 649px on a 390px view). */
 #trafficChart { display: block; width: 100%; height: 220px; }
 .panel { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 24px; margin-bottom: 24px; }
