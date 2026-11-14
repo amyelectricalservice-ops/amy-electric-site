@@ -63,10 +63,6 @@ tr:hover td { background: rgba(255,255,255,.03); }
    the attribute *is* the layout width, so every redraw widened the element and
    this page scrolled sideways on a phone (measured 649px on a 390px view). */
 #trafficChart { display: block; width: 100%; height: 220px; }
-/* The chart script sets canvas.width = offsetWidth * dpr. Without a CSS width
-   the attribute *is* the layout width, so every redraw widened the element and
-   the dashboard scrolled sideways on a phone (measured 649px on a 390px view). */
-#trafficChart { display: block; width: 100%; height: 220px; }
 .panel { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 24px; margin-bottom: 24px; }
 .panel pre { font-size: 12px; color: var(--gray); white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow-y: auto; }
 
@@ -88,41 +84,6 @@ tr:hover td { background: rgba(255,255,255,.03); }
 .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
 .dot-amber { background: var(--amber); }
 .dot-red   { background: var(--red); }
-
-/* Leads */
-.filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
-.filter-row .btn-sm { padding: 8px 14px; font-size: 12px; }
-.filter-row .btn-sm.active { background: var(--gold); color: #0b1628; border-color: var(--gold); }
-.lead-name { color: var(--white); font-weight: 600; }
-.lead-sub  { color: var(--gray); font-size: 12px; }
-.score     { font-family: var(--cond); font-weight: 800; font-size: 15px; }
-.score-hi  { color: var(--green); }
-.score-mid { color: var(--amber); }
-.score-lo  { color: var(--gray); }
-.muted     { color: var(--gray); }
-.lead-table a { color: var(--blue); text-decoration: none; }
-.lead-table a:hover { text-decoration: underline; }
-
-/* Below 600px the 7-column table would scroll sideways, hiding score and CRM
-   status — the two things worth seeing on a phone. Stack each lead as a card. */
-@media (max-width: 600px) {
-  .lead-table thead { display: none; }
-  .lead-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--card-border); }
-  .lead-table tr:hover td { background: none; }
-  .lead-table td {
-    display: flex; justify-content: space-between; gap: 14px;
-    border: 0; padding: 3px 0; text-align: right;
-  }
-  .lead-table td::before {
-    content: attr(data-label);
-    font-family: var(--cond); font-size: 11px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--gray);
-    flex: 0 0 auto; text-align: left; padding-top: 2px;
-  }
-  .lead-table td.lead-first { padding-bottom: 8px; }
-  .lead-contact { text-align: right; }
-  .lead-contact > div { display: block; }
-}
 
 /* Responsive */
 @media (max-width: 600px) {
@@ -179,22 +140,6 @@ tr:hover td { background: rgba(255,255,255,.03); }
     <div class="stat-card"><div class="label">Page Views (7d)</div><div class="value" id="pvStat">—</div><div class="sub" id="pvSub">Loading…</div></div>
     <div class="stat-card"><div class="label">Unique Visitors (7d)</div><div class="value" id="uvStat">—</div><div class="sub" id="uvSub">Loading…</div></div>
     <div class="stat-card"><div class="label">Cache Hit Rate</div><div class="value" id="cacheStat">—</div><div class="sub">Cloudflare CDN</div></div>
-  </div>
-
-  <!-- Inbound Leads -->
-  <div class="section-title">Inbound Leads <span id="leadCount" style="font-family:var(--cond);font-size:12px;color:var(--gray);font-weight:400;letter-spacing:.04em;"></span></div>
-  <div class="filter-row">
-    <button class="btn-sm btn-sm-outline active" data-lead-filter="" onclick="loadLeads('')">Recent</button>
-    <button class="btn-sm btn-sm-outline" data-lead-filter="new" onclick="loadLeads('new')">New</button>
-    <button class="btn-sm btn-sm-outline" data-lead-filter="pending" onclick="loadLeads('pending')">CRM pending</button>
-    <button class="btn-sm btn-sm-gold" onclick="loadLeads()">&#8635; Refresh</button>
-    <button class="btn-sm btn-sm-outline" onclick="downloadLeadsCsv()">&#11015; CSV</button>
-  </div>
-  <div class="dash-table-wrap">
-    <table class="lead-table">
-      <thead><tr><th>When</th><th>Contact</th><th>City</th><th>Service</th><th>Score</th><th>Status</th><th>CRM</th></tr></thead>
-      <tbody id="leadRows"><tr><td colspan="7" class="muted">Loading leads&hellip;</td></tr></tbody>
-    </table>
   </div>
 
   <!-- System Health -->
@@ -267,119 +212,10 @@ if (TOKEN) {
   window.addEventListener('DOMContentLoaded', init);
 }
 
-// ── Leads ───────────────────────────────────────────────────
-// Lead rows are customer-submitted text. Everything below goes through esc(),
-// and phone/email are rebuilt from validated values rather than interpolated,
-// so a crafted submission cannot inject markup or a javascript: URL.
-function esc(v) {
-  return String(v == null ? '' : v).replace(/[&<>"']/g, c => (
-    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-  ));
-}
-function telHref(v) {
-  const d = String(v || '').replace(/[^\d+]/g, '');
-  return d.length >= 10 ? 'tel:' + d : '';
-}
-function mailHref(v) {
-  const e = String(v || '').trim();
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) ? 'mailto:' + e : '';
-}
-function scoreClass(n) {
-  const v = Number(n) || 0;
-  return v >= 70 ? 'score-hi' : v >= 40 ? 'score-mid' : 'score-lo';
-}
-function whenLabel(iso) {
-  if (!iso) return '';
-  const d = new Date(iso.replace(' ', 'T') + (iso.includes('Z') ? '' : 'Z'));
-  return isNaN(d) ? esc(iso) : d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-}
-
-let leadFilter = '';
-
-async function loadLeads(filter) {
-  if (filter !== undefined) {
-    leadFilter = filter;
-    document.querySelectorAll('[data-lead-filter]').forEach(b => {
-      b.classList.toggle('active', b.getAttribute('data-lead-filter') === leadFilter);
-    });
-  }
-  const tbody = document.getElementById('leadRows');
-  const count = document.getElementById('leadCount');
-  if (!tbody) return;
-  tbody.innerHTML = '<tr><td colspan="7" class="muted">Loading leads&hellip;</td></tr>';
-
-  const qs = new URLSearchParams({ limit: '25' });
-  if (leadFilter === 'pending') qs.set('crm', 'pending');
-  else if (leadFilter) qs.set('status', leadFilter);
-
-  try {
-    const res = await fetch('/api/admin/leads?' + qs.toString(), {
-      headers: TOKEN ? { 'Authorization': 'Bearer ' + TOKEN } : {},
-    });
-    if (res.status === 401) {
-      document.getElementById('loginOverlay').style.display = 'flex';
-      document.getElementById('loginErr').textContent = 'Invalid token. Please try again.';
-      return;
-    }
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    const rows = data.leads || [];
-    if (count) count.textContent = rows.length ? rows.length + ' shown' : '';
-
-    if (!rows.length) {
-      tbody.innerHTML = '<tr><td colspan="7" class="muted">No leads' +
-        (leadFilter ? ' for this filter' : ' yet') + '.</td></tr>';
-      return;
-    }
-
-    tbody.innerHTML = rows.map(l => {
-      const tel = telHref(l.phone);
-      const mail = mailHref(l.email);
-      const contact =
-        '<div class="lead-name">' + esc(l.name) + '</div>' +
-        (tel ? '<div class="lead-sub"><a href="' + tel + '">' + esc(l.phone) + '</a></div>' : '') +
-        (mail ? '<div class="lead-sub"><a href="' + mail + '">' + esc(l.email) + '</a></div>' : '') +
-        (!tel && !mail ? '<div class="lead-sub">no contact</div>' : '');
-      return '<tr>' +
-        '<td class="lead-first" data-label="When">' + whenLabel(l.created_at) + '</td>' +
-        '<td data-label="Contact"><div class="lead-contact">' + contact + '</div></td>' +
-        '<td data-label="City">' + esc(l.city) + '</td>' +
-        '<td data-label="Service">' + esc(l.service) + '</td>' +
-        '<td data-label="Score"><span class="score ' + scoreClass(l.score) + '">' + esc(l.score) + '</span></td>' +
-        '<td data-label="Status">' + esc(l.status) + '</td>' +
-        '<td data-label="CRM">' + esc(l.crm_status) + '</td>' +
-      '</tr>';
-    }).join('');
-  } catch (err) {
-    tbody.innerHTML = '<tr><td colspan="7" class="muted">Could not load leads (' + esc(err.message) + ').</td></tr>';
-  }
-}
-
-async function downloadLeadsCsv() {
-  try {
-    const res = await fetch('/api/admin/leads.csv', {
-      headers: TOKEN ? { 'Authorization': 'Bearer ' + TOKEN } : {},
-    });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'amy-leads.csv';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  } catch (err) {
-    alert('Could not download CSV: ' + err.message);
-  }
-}
-
 // ── Init ─────────────────────────────────────────────────────
 async function init() {
   loadAnalytics();
   loadGBPPost();
-  loadLeads('');
 }
 
 // ── Analytics ────────────────────────────────────────────────
