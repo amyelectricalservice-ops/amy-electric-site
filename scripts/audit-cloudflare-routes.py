@@ -10,7 +10,9 @@ script asserts they agree:
 
     wrangler.jsonc   the site Worker -- must own exactly its declared routes
 
-and that no other Worker owns a route on the zone. It exits non-zero on a real
+and that no other Worker owns a route on the zone beyond the intentional
+second-worker routes in `EXPECTED_OTHER_WORKERS` (lead-automation, declared in
+its own repo). It exits non-zero on a real
 mismatch so CI fails when git and Cloudflare disagree. Pass --warn-only to
 report a mismatch without failing: the workflow uses that on pushes and pull
 requests, where the deploy that follows reconciles the zone from git anyway, and
@@ -34,6 +36,17 @@ import urllib.request
 ZONE = "amyelectric.com"
 API = "https://api.cloudflare.com/client/v4"
 CONFIG = "wrangler.jsonc"
+
+# Other Workers with intentional routes on this zone, declared in their own
+# repos. Route ownership was a single-Worker invariant for years; it is now a
+# two-Worker table, and drift in EITHER direction should fail the audit:
+#   - an unexpected extra route on one of these Workers, or
+#   - one of these Workers disappearing / losing its routes.
+# Update this table in the same commit that changes the other repo's routes.
+EXPECTED_OTHER_WORKERS = {
+    # lead capture worker (repo: amyelectricalservice-ops/amyelectric-marketing-agent)
+    "amyelectric-lead-automation": {"amyelectric.com/api/leads"},
+}
 
 
 class PermissionGap(Exception):
@@ -99,8 +112,20 @@ def main(argv):
             % (name, len(declared_routes), len(actual),
                sorted(declared_routes - actual), sorted(actual - declared_routes)))
     for script, patterns in sorted(live.items()):
-        if script != name:
+        if script == name:
+            continue
+        expected = EXPECTED_OTHER_WORKERS.get(script)
+        if expected is None:
             problems.append("unexpected Worker %s owns %s" % (script, sorted(patterns)))
+        elif patterns != expected:
+            problems.append(
+                "Worker %s owns %s, expected exactly %s (see EXPECTED_OTHER_WORKERS)"
+                % (script, sorted(patterns), sorted(expected)))
+    for script, expected in sorted(EXPECTED_OTHER_WORKERS.items()):
+        if script not in live:
+            problems.append(
+                "expected Worker %s (see EXPECTED_OTHER_WORKERS) owns no route on the zone"
+                % script)
 
     print("Declared in git:")
     print("  %s (%d):" % (name, len(declared_routes)))
