@@ -44,6 +44,8 @@ ALLOWLIST = {
     # site / business facts
     "amy-electric-site", "amy-electric-seo", "amy-electric-estimator",
     "amy-electric-site-staging", "amy-electric-crm", "amy-electric-leads",
+    # Out-of-repo Workers documented in AGENTS.md (not skills).
+    "amyelectric-lead-automation", "amyelectric-marketing-agent",
     "amyelectric.com", "amy-electric", "c-10", "evitp",
     "seo", "gbp", "geo-linking", "web-perf", "permission", "permissions",
     "run_worker_first", "run-worker-first", "max-age", "must-revalidate",
