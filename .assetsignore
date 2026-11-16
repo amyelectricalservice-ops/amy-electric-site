@@ -9,6 +9,7 @@
 .cloudflare
 .antigravitycli
 open-seo
+estimator-app/
 node_modules
 scripts
 functions
