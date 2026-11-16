@@ -48,6 +48,9 @@ lead-store.js
 photo-handler.js
 cloudflare.config.ts
 wrangler.config.ts
+# one-off local scripts — keep them off the public surface even though they are
+# also gitignored (.gitignore hides them from git, this hides them from ASSETS)
+consolidate-worker.mjs
 .gitignore
 gbp-posts-document.txt
 *.csv
