@@ -2,7 +2,7 @@
 
 ## Project
 
-Static HTML marketing site for an LA electrical contractor — vanilla HTML/CSS/JS, **no framework and no site build step** — served by Cloudflare **Workers + Assets** from one Worker, `amy-electric-site`, which owns the only zone route (`amyelectric.com/*` in `wrangler.jsonc`). No Pages project, no second proxy Worker.
+Static HTML marketing site for an LA electrical contractor — vanilla HTML/CSS/JS, **no framework and no site build step** — served by Cloudflare **Workers + Assets** from one Worker, `amy-electric-site`, which owns the zone route `amyelectric.com/*` in `wrangler.jsonc`. No Pages project, no proxy Worker in front of it.
 
 Business: AMY Electric · C-10 #981578 · EVITP #4051604 · (818) 302-5614 · info@amyelectric.com · Greater Los Angeles.
 
@@ -77,7 +77,15 @@ Never run `sync-faq-schema.py --apply` — it rewrites answer text (verified 202
 - **Geo personalization**: `/` and `/index.html` only; matched `request.cf.city` makes the response `private, no-store` (the edge cannot vary on `cf.city`). `GEO_TARGET_AREAS` in `worker.js` is 20 City-of-LA neighborhoods — grow the list, `test-worker-geo.mjs` and `js/src/08-geo-personalize.js` together.
 - **RUM**: the beacon must stay `"send": {"to": "/cdn-cgi/rum"}`. Never diagnose it from `workers.dev` (no `cdn-cgi` pipeline → 404 by design) or curl — both are artifacts.
 - **Live checks**: use the `workers.dev` host for real status codes; apex serves bot challenges to agents (expect 403). `.html` URLs 301 to extensionless, so curl needs `-L`.
-- **One Worker only.** `wrangler deploy` publishes only routes it declares and never deletes another script's route, so a stray Worker can silently shadow a path (a fake 5-URL sitemap did exactly that for 3 days). `python3 scripts/audit-cloudflare-routes.py` checks agreement; `.github/workflows/cloudflare-routes.yml` runs it daily.
+- **The account has three Workers; only one is in this repo.** `wrangler deploy` publishes only the routes it declares and never deletes another script's route, so an unmanaged Worker can silently shadow a path — a stray `seo-sitemap` Worker served a fake 5-URL sitemap to Google for three days in 2026-10.
+
+  | Worker | in repo | surface | note |
+  |---|---|---|---|
+  | `amy-electric-site` | yes | `amyelectric.com/*` | everything below |
+  | `amyelectric-lead-automation` | **no** | `amyelectric.com/api/leads` only | owner-managed, not referenced by any page here; all site forms post to `/api/contact`, `/api/lead`, `/api/lead-files`, `/api/events` |
+  | `amyelectric-marketing-agent` | **no** | workers.dev only, no zone route | owner-managed Durable Object app; `/dashboard` returns 401 |
+
+  Do not delete the two out-of-repo Workers and do not "adopt" their routes into `wrangler.jsonc` — they are deliberate. `scripts/audit-cloudflare-routes.py` allowlists the lead-automation route via `EXPECTED_OTHER_WORKERS`; `.github/workflows/cloudflare-routes.yml` runs it daily.
 - **Images**: 545 gallery photos × 4 variants (1200w WebP + 1200w JPEG + 800w/400w WebP) in `img/gallery/`; `worker.js serveImage()` negotiates WebP and snaps `?w=`. `IMAGES` is fallback-only. Gallery LCP is solved — position-0 gets `eager` + `fetchpriority="high"` + preload via `scripts/update-gallery.py`; regenerate, don't hand-edit, and don't trim the ItemList JSON-LD.
 - **Edge schema**: `injectSchema()` adds a default `Electrician` block only to HTML that lacks `Electrician`/`LocalBusiness` text. Adding schema to a page that already has it does not double-inject; adding an `Electrician` block by hand does risk drift.
 - **Shared CSS lives in 3 places**: `.topbar`, `.nav-book` and the "MOBILE TOUCH TARGETS" block (`css/src/10-responsive.css`) are duplicated into each page's inline critical CSS (264 pages carry `/*topbar-responsive-fix*/`) and into `scripts/generate-city-pages.py`. `scripts/sync-mobile-touch-css.py` mirrors the touch block idempotently — without it the header resizes after first paint and costs CLS. Prose links inside a sentence are deliberately exempt (WCAG 2.5.8 inline exception); do not add rules for `p a`.
