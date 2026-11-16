@@ -52,7 +52,7 @@ wrangler.config.ts
 # also gitignored (.gitignore hides them from git, this hides them from ASSETS)
 consolidate-worker.mjs
 .gitignore
-gbp-posts-document.txt
+gbp-posts-document*.txt
 *.csv
 photo-*.json
 audit-performance.json
@@ -81,6 +81,7 @@ admin/
 amyelectric-website-audit.md
 audit-*.md
 AUDIT-REPORT.md
+amy-electric-ready-to-paste-fix-package.md
 auth.md
 BACKLINK-ACTION-PLAN.md
 GEO-ANALYSIS.md

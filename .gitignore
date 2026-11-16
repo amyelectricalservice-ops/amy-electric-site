@@ -40,3 +40,9 @@ wrangler-consolidate.toml
 # died on "updating repository submodules"). Their content was never in git.
 builder/
 estimator-app/
+
+# Gemini Code Assist suite installed locally. It is driven by GEMINI_API_KEY,
+# which is not a repo secret, so committing it would only add failing checks.
+# Un-ignore these four lines (and add the secret) to adopt it deliberately.
+.github/commands/
+.github/workflows/gemini-*.yml
