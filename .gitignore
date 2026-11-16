@@ -34,3 +34,9 @@ open-seo/
 .webstudio/
 consolidate-worker.mjs
 wrangler-consolidate.toml
+
+# embedded local project checkouts — tracked as broken gitlinks with no
+# .gitmodules, which makes `git clone --recurse-submodules` fail (Workers Builds
+# died on "updating repository submodules"). Their content was never in git.
+builder/
+estimator-app/
