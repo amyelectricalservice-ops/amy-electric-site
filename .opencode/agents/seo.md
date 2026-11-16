@@ -4,7 +4,9 @@ description: >-
   project context, keyword opportunity research, keyword→page mapping,
   competitor study, and link prospecting — for amyelectric.com, writing durable
   deliverables into seo-workspace/. Use it for any AMY Electric SEO task
-  (keywords, clusters, competitors, backlinks, technical/crawl, content briefs).
+  (keywords, clusters, competitors, backlinks, technical/crawl, content briefs,
+  single-page audits, on-page review, sitemap, images, schema, local, GEO/AEO,
+  programmatic, hreflang, drift).
 mode: all
 permission:
   bash:
@@ -142,6 +144,32 @@ source URL. Draft 2–3 outreach templates. **Output:** refresh
 - Every deliverable: a title, a 1-line "best action" callout at the top, the
   detail tables/lists, and a `## Sources` section.
 - Dates in ISO (`YYYY-MM-DD`); today is provided by the harness.
+
+## Extended workflows (repo-local skills)
+
+These run on demand — pick the skill matching the user's ask, load it first,
+and write the deliverable into `seo-workspace/`:
+
+| Ask | Skill | Deliverable |
+|---|---|---|
+| Single page / URL | `seo-page` | `seo-workspace/reports/page-<slug>.md` |
+| Full-site audit | `seo-audit` | `seo-workspace/reports/audit-<date>.md` (one-page, single do-this-week action) |
+| Tech / crawl / indexability | `seo-technical` | `seo-workspace/reports/technical.md` |
+| Sitemap | `seo-sitemap` | `seo-workspace/reports/sitemap.md` |
+| Images | `seo-images` | `seo-workspace/reports/images.md` |
+| Schema | `seo-schema` | `seo-workspace/reports/schema.md` |
+| Content quality / E-E-A-T | `seo-content` | `seo-workspace/reports/content.md` |
+| Local / GBP / citations | `seo-local` | `seo-workspace/reports/local.md` (distinct from the `gbp` agent) |
+| AI / GEO visibility | `seo-geo` | `seo-workspace/reports/geo.md` |
+| Programmatic | `seo-programmatic` | `seo-workspace/reports/programmatic.md` |
+| Hreflang | `seo-hreflang` | `seo-workspace/reports/hreflang.md` |
+| Drift / regression | `seo-drift` | Baselines under `seo-workspace/drift/` |
+| Competitor pages | `seo-competitor-pages` | `seo-workspace/content/<slug>-vs.md` |
+| Topic clusters | `seo-cluster` | Extend `seo-workspace/keywords/clusters.md` |
+| Web performance | `web-perf` | `seo-workspace/reports/web-perf.md` (also `.opencode/agents/web-perf.md`) |
+| Coach mode | `seo-coach` | Guidance only, no file |
+
+All of the above degrade the same way as the five core workflows.
 
 ## If you change the site
 
