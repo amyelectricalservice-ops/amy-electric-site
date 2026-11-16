@@ -5,6 +5,9 @@
 .github
 .opencode
 .copilot
+.claude
+.gemini
+.vscode
 .wrangler
 .cloudflare
 .antigravitycli
@@ -16,21 +19,50 @@ functions
 partials
 templates
 seo-workspace
+docs
+data
+markdown
+extensions
 css/src
 js/src
 AGENTS.md
 GEMINI.md
 README.md
-QUICK-START.md
-SEO*.md
-DEPLOYMENT-AMY-ELECTRIC.md
-plan.md
-wrangler.production.jsonc
+
+# Local secrets. .gitignore already hides these from git; without these lines
+# `wrangler deploy` would upload them as public assets.
+.dev.vars*
+.env*
+
+# Local tooling caches. Same reasoning as above — .gitignore keeps them out of
+# git but ASSETS would still upload them (this is how .ruff_cache/ leaked).
+.ruff_cache
+.pytest_cache
+.mypy_cache
+__pycache__
+*.pyc
+lh-out
+.playwright-mcp
+.webstudio
+builder
+.server_pid
+.server.log
+*.log
+wrangler-consolidate.toml
+
+# Worker config and CLI helpers — never public.
 wrangler.jsonc
+wrangler.production.jsonc
+wrangler.staging.jsonc
+wrangler.config.ts
+cloudflare.config.ts
 package.json
 package-lock.json
 pnpm-lock.yaml
+run_lighthouse_audit.sh
+*.sh
 *.py
+
 # Worker-side modules. Anything not listed here is served as a public asset —
 # these were reachable at /crm-handler.js, /lead-store.js, /gbp-agent.js etc.
 # .assetsignore also hides *ignored* files behind a 404, which is what we want.
@@ -46,12 +78,12 @@ gbp-agent.js
 lead-handler.js
 lead-store.js
 photo-handler.js
-cloudflare.config.ts
-wrangler.config.ts
+
 # one-off local scripts — keep them off the public surface even though they are
 # also gitignored (.gitignore hides them from git, this hides them from ASSETS)
 consolidate-worker.mjs
 .gitignore
+.assetsignore
 gbp-posts-document*.txt
 *.csv
 photo-*.json
@@ -59,9 +91,7 @@ audit-performance.json
 reports
 amyelectric-site
 gallery-pipeline
-REFS_SPEC*.md
 report.json
-report.md
 map.osm
 *.bak
 go.mod
@@ -74,15 +104,9 @@ cmd/
 img/raw/
 db/
 
-# Internal docs and reports — never public. Deliberately NOT a blanket *.md glob:
+# Internal docs and reports — never public. The loose per-file patterns that
+# used to live here are gone: these files now live under docs/, which is
+# ignored above. Deliberately NOT a blanket *.md glob:
 # .well-known/agent-skills/SKILL.md is intentionally served.
 seo-audit-report.html
 admin/
-amyelectric-website-audit.md
-audit-*.md
-AUDIT-REPORT.md
-amy-electric-ready-to-paste-fix-package.md
-auth.md
-BACKLINK-ACTION-PLAN.md
-GEO-ANALYSIS.md
-improvement-plan.md
