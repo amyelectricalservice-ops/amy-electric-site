@@ -33,7 +33,8 @@ jobs:
           python3 scripts/build-css.py
           python3 scripts/build-js.py
           python3 scripts/build-estimator.py
-          git diff --exit-code css/style.min.css js/site.min.js js/estimator.min.js || (echo "Minified CSS/JS out of sync! Run scripts/build-css.py, scripts/build-js.py and scripts/build-estimator.py" && exit 1)
+          python3 scripts/build-leadform.py
+          git diff --exit-code css/style.min.css js/site.min.js js/estimator.min.js js/lead-estimator.js js/lead-estimator.min.js css/lead-form.min.css || (echo "Minified CSS/JS out of sync! Run scripts/build-css.py, scripts/build-js.py, scripts/build-estimator.py and scripts/build-leadform.py" && exit 1)
 
       - name: Report Published Price Drift
         # Informational only: pages quote prices by hand, so they drift from
