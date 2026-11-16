@@ -31,6 +31,26 @@ def audit():
                 url = 'index'
             sitemap_urls.add(url)
 
+    # Redirect sources are valid link targets even though no file exists for them.
+    redirect_sources = set()
+    if os.path.exists('_redirects'):
+        with open('_redirects', encoding='utf-8') as fh:
+            for line in fh:
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                parts = line.split()
+                if len(parts) >= 2:
+                    redirect_sources.add(parts[0].strip('/').split('?')[0])
+
+    def target_exists(path):
+        """True when an internal href resolves to a file, a directory index, or a
+        _redirects source."""
+        p = path.strip('/')
+        if p in redirect_sources:
+            return True
+        return any(os.path.exists(c) for c in (p, p + '.html', os.path.join(p, 'index.html')) if c)
+
     def canon_path(f):
         """Canonical URL path of an HTML file (e.g. '/emergency-electrician-los-angeles'),
         or None when the page has no rel=canonical."""
@@ -101,6 +121,7 @@ def audit():
     head_close_missing = []
     picture_structure_issues = []
     honeypot_aria_issues = []
+    broken_links = []
 
     for f in html_files:
         with open(f, 'r', encoding='utf-8') as fh:
@@ -190,6 +211,27 @@ def audit():
         if file_issues:
             issues_by_file[f] = file_issues
 
+    # 9. Broken internal links. Blog pages used `href="blog/slug"` from inside
+    # blog/, which a browser resolves to /blog/blog/slug (404). Twelve such
+    # links shipped before 2026-11-16 and nothing caught them: sitemap checks
+    # only prove pages exist, not that anything links to them correctly.
+    href_re = re.compile(r'href="([^"]+)"')
+    for f in html_files:
+        base_dir = os.path.dirname(f)
+        with open(f, encoding='utf-8', errors='replace') as fh:
+            content = fh.read()
+        for href in href_re.findall(content):
+            if href.startswith(('http://', 'https://', '//', 'mailto:', 'tel:', 'sms:',
+                                 'javascript:', '#', 'data:')):
+                continue
+            clean = href.split('#')[0].split('?')[0]
+            if not clean:
+                continue
+            resolved = clean.lstrip('/') if clean.startswith('/') else os.path.normpath(os.path.join(base_dir, clean))
+            if not target_exists(resolved):
+                msg = f'Broken internal link -> {href}'
+                broken_links.append((f, msg))
+
     print("=== AUDIT REPORT ===")
     print(f"Total production HTML pages: {len(html_files)}")
     print(f"Pages missing from sitemap: {len(missing_from_sitemap)}")
@@ -201,6 +243,7 @@ def audit():
     print(f"Pages missing </head>: {len(head_close_missing)}")
     print(f"Pages with picture/source markup issues: {len(picture_structure_issues)}")
     print(f"Pages with honeypot aria-hidden issues: {len(honeypot_aria_issues)}")
+    print(f"Broken internal links: {len(broken_links)}")
 
     if missing_from_sitemap:
         print("\n[!] Missing from sitemap.xml:")
@@ -247,9 +290,14 @@ def audit():
         for f, iss in honeypot_aria_issues[:20]:
             print(f"  - {f}: {iss}")
 
+    if broken_links:
+        print(f"\n[!] Broken internal links ({len(broken_links)}):")
+        for f, iss in broken_links[:40]:
+            print(f"  - {f}: {iss}")
+
     any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
                   sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing or
-                  picture_structure_issues or honeypot_aria_issues)
+                  picture_structure_issues or honeypot_aria_issues or broken_links)
     if any_issues:
         print("\nAUDIT FAILED — fix the issues above before deploying.")
         sys.exit(1)

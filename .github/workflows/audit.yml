@@ -28,6 +28,12 @@ jobs:
       - name: Audit Skill Wiring
         run: python3 scripts/audit-skills.py
 
+      - name: Audit Production Pages
+        # Metadata, sitemap parity, sticky bar, picture markup, honeypot a11y and
+        # broken internal links. Was the pre-push gate only, so a bad page (or a
+        # link to /blog/blog/<slug>) shipped green. Runs in under a second.
+        run: python3 scripts/audit-site.py
+
       - name: Verify CSS & JS Production Builds
         run: |
           python3 scripts/build-css.py
