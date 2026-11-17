@@ -10,7 +10,7 @@ name: Deploy Production
 #   CLOUDFLARE_ACCOUNT_ID  the account that owns the amyelectric.com zone
 #
 # The account id is taken from a secret rather than hardcoded, so no account id
-# is committed, matching the convention in DEPLOYMENT-AMY-ELECTRIC.md.
+# is committed, matching the convention in docs/ops/DEPLOYMENT-AMY-ELECTRIC.md.
 
 on:
   push:

@@ -25,11 +25,11 @@ Greater Los Angeles from `amyelectric.com`.
 
 - `gbp-agent.js` — Worker cron handler (daily 16:00 UTC), posts STANDARD
   local posts with a "Learn more → /book" button. Text-only v1.
-- `gbp-posting-calendar.md` — 30 posts, 2026-10-21 → 2026-12-18, rotating.
+- `docs/ops/gbp-posting-calendar.md` — 30 posts, 2026-10-21 → 2026-12-18, rotating.
 - `gbp-posts-document.txt` — source copy for all 30 posts.
 - `scripts/build-gbp-posts.py` — rebuilds `gbp-posts.json` from the document.
 - `scripts/gbp-post-scheduler.py` — scheduler helper.
-- `GBP-AGENT.md` — full setup guide (owner-side Google Cloud OAuth).
+- `docs/ops/GBP-AGENT.md` — full setup guide (owner-side Google Cloud OAuth).
 - Cron trigger: `"0 16 * * *"` in `wrangler.jsonc`.
 - Workers Logs: `type: gbp_agent` entries.
 
@@ -78,7 +78,7 @@ Common issues:
 - **403 Forbidden**: API access not approved. Owner must file Google API
   access request.
 - **404 Not Found**: Account/location ID wrong. Owner must re-run the
-  curl commands in GBP-AGENT.md step 4.
+  curl commands in docs/ops/GBP-AGENT.md step 4.
 - **status: dry_run on posting day**: `GBP_DRY_RUN` secret still set.
   Owner must delete it.
 - **No cron fire**: Check `wrangler.jsonc` triggers.crons is `"0 16 * * *"`.
@@ -100,11 +100,11 @@ Common issues:
 | File | Purpose |
 |---|---|
 | `gbp-agent.js` | Worker cron handler (the actual posting code) |
-| `gbp-posting-calendar.md` | 30-post calendar with dates |
+| `docs/ops/gbp-posting-calendar.md` | 30-post calendar with dates |
 | `gbp-posts-document.txt` | Source copy for all posts |
 | `scripts/gbp-posts.json` | Machine-readable post data |
 | `scripts/build-gbp-posts.py` | Rebuilds JSON from document |
-| `GBP-AGENT.md` | Owner setup guide |
+| `docs/ops/GBP-AGENT.md` | Owner setup guide |
 | `wrangler.jsonc` | Cron trigger + secrets config |
 
 ## Post rotation

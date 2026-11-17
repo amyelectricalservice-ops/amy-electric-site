@@ -15,7 +15,7 @@
  */
 import POSTS from './scripts/gbp-posts.json' with { type: 'json' };
 
-export const CALENDAR_START = '2026-10-21'; // must match gbp-posting-calendar.md
+export const CALENDAR_START = '2026-10-21'; // must match docs/ops/gbp-posting-calendar.md
 export const CADENCE_DAYS = 2;
 export const BOOK_URL = 'https://amyelectric.com/book';
 
