@@ -217,8 +217,15 @@ def cmd_validate():
                 if 'aggregateRating' not in data:
                     issues.append(f"INCOMPLETE Electrician (no aggregateRating): {fname}")
                 asv = data.get('areaServed')
-                if not (isinstance(asv, dict) and asv.get('@type') == 'GeoCircle' and asv.get('geoRadius') == '40233.6'):
-                    issues.append(f"AREASERVED_DRIFT in {fname}: expected 25mi GeoCircle (40233.6m)")
+                geo_ok = (isinstance(asv, dict) and asv.get('@type') == 'GeoCircle'
+                          and asv.get('geoRadius') == '40233.6')
+                list_ok = (isinstance(asv, list) and bool(asv)
+                           and isinstance(asv[0], dict)
+                           and asv[0].get('@type') == 'GeoCircle'
+                           and asv[0].get('geoRadius') == '40233.6'
+                           and any(isinstance(x, dict) and x.get('@type') == 'City' for x in asv))
+                if not (geo_ok or list_ok):
+                    issues.append(f"AREASERVED_DRIFT in {fname}: expected the 25mi GeoCircle (40233.6m) first, optionally followed by named cities")
 
         # ── reviewCount canonical check ──
         # BUSINESS["aggregateRating"]["reviewCount"] in site_data.py is the

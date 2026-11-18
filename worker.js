@@ -702,15 +702,35 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "license": "California C-10 Electrical Contractor License #981578",
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
+  "areaServed": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     },
-    "geoRadius": "40233.6"
-  }
+    {"@type": "City", "name": "Los Angeles"},
+    {"@type": "City", "name": "Sherman Oaks"},
+    {"@type": "City", "name": "Burbank"},
+    {"@type": "City", "name": "Glendale"},
+    {"@type": "City", "name": "Pasadena"},
+    {"@type": "City", "name": "Studio City"},
+    {"@type": "City", "name": "North Hollywood"},
+    {"@type": "City", "name": "Santa Monica"},
+    {"@type": "City", "name": "Encino"},
+    {"@type": "City", "name": "Beverly Hills"},
+    {"@type": "City", "name": "West Los Angeles"},
+    {"@type": "City", "name": "Hollywood"},
+    {"@type": "City", "name": "Van Nuys"},
+    {"@type": "City", "name": "Woodland Hills"},
+    {"@type": "City", "name": "Calabasas"},
+    {"@type": "City", "name": "Culver City"},
+    {"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+    {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}
+  ]
 }
 </script>`;
 

@@ -200,15 +200,35 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
+  "areaServed": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     },
-    "geoRadius": "40233.6"
-  },
+    {"@type": "City", "name": "Los Angeles"},
+    {"@type": "City", "name": "Sherman Oaks"},
+    {"@type": "City", "name": "Burbank"},
+    {"@type": "City", "name": "Glendale"},
+    {"@type": "City", "name": "Pasadena"},
+    {"@type": "City", "name": "Studio City"},
+    {"@type": "City", "name": "North Hollywood"},
+    {"@type": "City", "name": "Santa Monica"},
+    {"@type": "City", "name": "Encino"},
+    {"@type": "City", "name": "Beverly Hills"},
+    {"@type": "City", "name": "West Los Angeles"},
+    {"@type": "City", "name": "Hollywood"},
+    {"@type": "City", "name": "Van Nuys"},
+    {"@type": "City", "name": "Woodland Hills"},
+    {"@type": "City", "name": "Calabasas"},
+    {"@type": "City", "name": "Culver City"},
+    {"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+    {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}
+  ],
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": [
@@ -471,7 +491,7 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
     <details class="faq-item"><summary class="faq-q">How long has AMY Electric been serving Los Angeles? <span class="faq-chevron">▾</span></summary><div class="faq-a">AMY Electric has been serving Greater Los Angeles since 2012 — over 14 years of residential and commercial electrical service. We've completed 200+ EV charger installations and thousands of panel upgrades, repairs, and wiring projects across 16+ LA communities.</div></details>
     <details class="faq-item"><summary class="faq-q">What areas does AMY Electric serve? <span class="faq-chevron">▾</span></summary><div class="faq-a">We serve all of Greater Los Angeles including Los Angeles, Sherman Oaks, Burbank, Glendale, Pasadena, Santa Monica, Hollywood, North Hollywood, Studio City, Van Nuys, Encino, Beverly Hills, West LA, Culver City, Woodland Hills, and Calabasas.</div></details>
     <details class="faq-item"><summary class="faq-q">What is EVITP certification? <span class="faq-chevron">▾</span></summary><div class="faq-a">EVITP (Electric Vehicle Infrastructure Training Program) certification means our electricians are specifically trained to install EV charging equipment safely and to code. It's the industry standard for EV charger installation — required by many AHJs (Authorities Having Jurisdiction) in California.</div></details>
-    <details class="faq-item"><summary class="faq-q">Does AMY Electric offer free estimates? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — we provide free, no-obligation estimates for all electrical work. Call (818) 302-5614 or use our online form to schedule. We'll assess the job and provide a detailed written estimate.</div></details>
+    <details class="faq-item"><summary class="faq-q">Does AMY Electric offer free estimates? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes — we provide free, no-obligation estimates for all electrical work. Call <a href="tel:18183025614">(818) 302-5614</a> or use our online form to schedule. We'll assess the job and provide a detailed written estimate.</div></details>
   </div>
 </div></section>
 
@@ -713,19 +733,6 @@ h3{font-family:var(--cond);font-weight:700;font-size:22px;margin-bottom:10px;col
 </footer>
 <script defer src="js/site.min.js"></script>
 <script>if(navigator.modelContext){var s=document.createElement("script");s.defer=true;s.src="js/webmcp.js";document.head.appendChild(s);}</script>
-<div class="sticky-bar">
-  <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
-    <span class="sticky-icon" aria-hidden="true">📞</span>
-    <span class="sticky-label">Call Now</span>
-  </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text">
-    <span class="sticky-icon" aria-hidden="true">💬</span>
-    <span class="sticky-label">Text Message</span>
-  </a>
-  <a href="book" class="sticky-btn sticky-estimate" aria-label="Get Estimate — Free estimate from AMY Electric">
-    <span class="sticky-icon" aria-hidden="true">📋</span>
-    <span class="sticky-label">Get Estimate</span>
-  </a>
-</div>
+<div class="sticky-bar"><a class="sticky-btn sticky-call" href="tel:18183025614" aria-label="Call AMY Electric at (818) 302-5614"><span class="sticky-icon" aria-hidden="true">📞</span><span class="sticky-label">Call Now</span></a><a class="sticky-btn sticky-text" href="sms:+18183025614?body=Hi%20AMY%20Electric%2C%20I%27m%20inquiring%20about%20electrical%20work.%20Sending%20a%20photo%20of%20my%20panel%2Foutlet%20now." aria-label="Text AMY Electric"><span class="sticky-icon" aria-hidden="true">💬</span><span class="sticky-label">Text Us</span></a><a class="sticky-btn sticky-estimate" href="book"><span class="sticky-icon" aria-hidden="true">📋</span><span class="sticky-label">Get Estimate</span></a></div>
 
 </body></html>

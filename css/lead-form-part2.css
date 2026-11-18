@@ -45,3 +45,8 @@
 @media (prefers-reduced-motion:reduce){
   .lf-step.lf-active{animation:none}
 }
+
+/* "from $X" hint on the step-1 project cards: shows a price signal before the
+   visitor commits to the variable step, sourced from the same canonical table
+   the locked estimate uses. */
+.lf-price-from{display:block;margin-top:.25rem;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:.9375rem;font-weight:700;letter-spacing:.02em;color:#f5a623}

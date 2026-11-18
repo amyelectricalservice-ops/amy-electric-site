@@ -137,6 +137,30 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
         "@type": "Answer",
         "text": "LADBS e-permit applications are typically rejected for one of several common reasons: missing or incomplete load calculations, incorrect permit classification for the scope of work, missing supporting documents (site plans, one-line diagrams, manufacturer specs), expired contractor license on file with LADBS, or valuation discrepancies between the stated project cost and the fee calculation. When an application is rejected, LADBS provides a correction notice specifying exactly what needs to be revised. You can resubmit the corrected application through the e-permit portal without starting over. Working with a licensed contractor who submits e-permits regularly dramatically reduces the rejection rate — experienced contractors know exactly what LADBS expects for each permit type and include all required documentation in the initial submission."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Which electrical work in Los Angeles does not need a permit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Like-for-like replacements at the same location normally do not need a permit: swapping a receptacle, switch, or light fixture for one of the same rating, or replacing a breaker with the same amperage in the same panel. Anything that adds a circuit, changes the service rating, adds a subpanel, or runs new wiring inside a wall does need one. When the scope is genuinely ambiguous, ask the building department or your contractor before work starts — an unpermitted circuit tends to surface at a home inspection or a sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does LADWP have to approve my panel upgrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, whenever the service rating changes. LADWP owns the service drop and the meter, so a 100A to 200A upgrade needs a LADWP service order plus a meter spot that fixes the meter location, height, and working clearance. LADBS permits and inspects the electrical work itself; LADWP controls whether the new service actually gets energized."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why won't LADWP restore power before the inspection passes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LADWP will not set or reseal a meter on work it has no approval record for. The LADBS inspection has to show as passed — and ideally the permit as Finaled — before LADWP releases the meter. That is why a service upgrade runs install, then LADBS inspection, then LADWP meter release, then power back on, and why those stages cannot be treated as one appointment."
+      }
     }
   ]
 }
@@ -251,15 +275,35 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
     "https://g.page/r/CVdK9ZAvNBrZEAI/review",
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9"
   ],
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
+  "areaServed": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     },
-    "geoRadius": "40233.6"
-  }
+    {"@type": "City", "name": "Los Angeles"},
+    {"@type": "City", "name": "Sherman Oaks"},
+    {"@type": "City", "name": "Burbank"},
+    {"@type": "City", "name": "Glendale"},
+    {"@type": "City", "name": "Pasadena"},
+    {"@type": "City", "name": "Studio City"},
+    {"@type": "City", "name": "North Hollywood"},
+    {"@type": "City", "name": "Santa Monica"},
+    {"@type": "City", "name": "Encino"},
+    {"@type": "City", "name": "Beverly Hills"},
+    {"@type": "City", "name": "West Los Angeles"},
+    {"@type": "City", "name": "Hollywood"},
+    {"@type": "City", "name": "Van Nuys"},
+    {"@type": "City", "name": "Woodland Hills"},
+    {"@type": "City", "name": "Calabasas"},
+    {"@type": "City", "name": "Culver City"},
+    {"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+    {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}
+  ]
 }
 </script>
 
@@ -328,6 +372,22 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
   <h2>What Is the LADBS e-Permit System?</h2>
   <p class="max-w-640">The Los Angeles Department of Building and Safety (LADBS) operates an online e-permit portal that allows licensed contractors to apply for electrical permits, upload plans, pay fees, and schedule inspections entirely online. While many Los Angeles homeowners refer to it as the LADWP e-permit system, it is actually LADBS that manages the building and safety permitting process — LADWP handles the utility side (meter installations and service connections) separately.</p>
   <p class="max-w-640" style="margin-top:20px;">As a licensed C-10 electrical contractor (License #981578) with over a decade of experience, I have submitted hundreds of e-permits through LADBS across multiple Los Angeles jurisdictions. This guide walks you through every step of the process — what documents you need, how much it costs, how long it takes, and what to do if your application hits a snag.</p>
+  <h3 style="margin-top:36px;">When Does Los Angeles Require an Electrical Permit?</h3>
+  <p class="max-w-640">The City of Los Angeles wants an electrical permit and an inspection whenever the work adds a circuit, changes the service rating, or puts new wiring inside a wall. A like-for-like swap at the same location normally does not need one.</p>
+  <div class="table-scroll"><table class="price-table" style="max-width:720px; margin-top:20px;">
+    <thead><tr><th>Work</th><th>LADBS electrical permit?</th></tr></thead>
+    <tbody>
+      <tr><td>Panel replacement, or a 100A &rarr; 200A service upgrade</td><td>Yes</td></tr>
+      <tr><td>New subpanel in a garage, ADU, or detached structure</td><td>Yes</td></tr>
+      <tr><td>New dedicated circuit (EV charger, dryer, range, AC, hot tub)</td><td>Yes</td></tr>
+      <tr><td>Whole-home rewiring, or any wiring fished through a wall</td><td>Yes</td></tr>
+      <tr><td>Generator transfer switch or backup panel</td><td>Yes</td></tr>
+      <tr><td>New meter, new service drop, or a relocated meter</td><td>Yes &mdash; plus an LADWP service order</td></tr>
+      <tr><td>Like-for-like swap of a receptacle, switch, or light fixture</td><td>Normally no</td></tr>
+      <tr><td>Breaker replaced with the same rating in the same panel</td><td>Normally no</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px; color:var(--gray); margin-top:12px;">Scope is decided by the building department with jurisdiction over the address. A Burbank, Glendale, or Pasadena property is not LADBS &mdash; see the jurisdiction section below.</p>
 </div></section>
 
 <section class="section-navy"><div class="wrap">
@@ -391,6 +451,28 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
 </div></section>
 
 <section class="section-navy"><div class="wrap">
+  <div class="section-label">LADWP</div>
+  <h2>LADWP Utility Coordination: Service Drops and Meter Spots</h2>
+  <p class="max-w-640">A permit is only half of a service upgrade. LADWP owns the service drop, the meter, and the point where power enters the property, so replacing a 100A service with a 200A service needs a utility service order on top of the LADBS permit. The two agencies are sequenced, not parallel &mdash; and getting the order wrong is what turns a one-day job into three visits.</p>
+  <div style="max-width:760px; margin:32px auto 0; text-align:left;">
+
+    <h3 style="margin-top:32px;">1. Service order with LADWP</h3>
+    <p>Before the new panel goes in, LADWP needs a request on file stating the new service rating and where the equipment will sit. This is a separate process from the LADBS permit and has its own lead time, so it should be opened as soon as the load calculation is final &mdash; not when the crew is already on site.</p>
+
+    <h3 style="margin-top:32px;">2. Meter spot</h3>
+    <p>LADWP sets the physical location and height of the meter, and the working clearance around it. A meter installed where the utility will not accept it is a rebuild, which is why the meter spot is confirmed before stucco or siding goes back on. On a panel relocation or an overhead-to-underground conversion, this is the step that decides the schedule.</p>
+
+    <h3 style="margin-top:32px;">3. LADBS inspection passes</h3>
+    <p>LADWP will not release a meter on work it has no approval record for. The LADBS inspection has to show as passed &mdash; and ideally the permit as Finaled &mdash; before the utility will re-energize the service. That is the sequencing homeowners most often get surprised by: the electrical work can be complete and still have no power.</p>
+
+    <h3 style="margin-top:32px;">4. Meter release and re-energize</h3>
+    <p>LADWP sets or reseals the meter and restores power to the new service. Plan on a working day with the power off, and sometimes part of a second day if the meter release lands on a different date than the panel install. Refrigerators, medical equipment, and home offices should be planned around that window.</p>
+
+  </div>
+  <p class="max-w-640" style="margin-top:24px;">On a job AMY Electric runs, we open the LADWP service order, confirm the meter spot, and schedule the LADBS inspection so the meter release can happen as soon as the work is approved.</p>
+</div></section>
+
+<section class="section-navy"><div class="wrap">
   <div class="section-label">Other Jurisdictions</div>
   <h2>e-Permit Systems in Other LA-Area Cities</h2>
   <p class="max-w-640">Not all Los Angeles area electrical work falls under LADBS. Several cities operate their own building departments with separate permitting systems. Here is how the major ones work:</p>
@@ -417,6 +499,9 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
       <details class="faq-item"><summary class="faq-q">Can a homeowner apply for an e-permit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Homeowners in Los Angeles can apply for an owner-builder permit through LADBS for electrical work on their own single-family dwelling, provided they live in the home and perform the work themselves. However, the owner-builder permit route carries significant drawbacks: you are personally liable for code compliance, you must schedule and attend all inspections yourself, and any work you perform that fails inspection becomes your responsibility to fix. Most homeowners find that hiring a licensed C-10 electrical contractor who handles the entire e-permit process is far simpler and safer. The contractor's license, bond, and insurance are on file with LADBS, which streamlines the application process and ensures the work meets all code requirements.</div></details>
       <details class="faq-item"><summary class="faq-q">What inspections are required after getting an e-permit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Most electrical permits in Los Angeles require at least two inspections. The rough-in inspection occurs after the wiring, conduit, and boxes are installed but before walls are closed — the inspector verifies proper wire gauge, secure connections, conduit fill compliance, box fill limits, and grounding continuity. The final inspection occurs after all devices, panels, and fixtures are installed and operational — the inspector tests GFCI and AFCI function, verifies proper breaker sizing, checks bonding and grounding, and confirms all work matches the permitted scope. For panel upgrades and service changes, LADWP also requires a separate meter release inspection before the utility can reconnect power. Passing both LADBS inspections is required to close the permit and obtain the Certificate of Completion.</div></details>
       <details class="faq-item"><summary class="faq-q">What happens if my e-permit application is rejected? <span class="faq-chevron">▾</span></summary><div class="faq-a">LADBS e-permit applications are typically rejected for one of several common reasons: missing or incomplete load calculations, incorrect permit classification for the scope of work, missing supporting documents (site plans, one-line diagrams, manufacturer specs), expired contractor license on file with LADBS, or valuation discrepancies between the stated project cost and the fee calculation. When an application is rejected, LADBS provides a correction notice specifying exactly what needs to be revised. You can resubmit the corrected application through the e-permit portal without starting over. Working with a licensed contractor who submits e-permits regularly dramatically reduces the rejection rate — experienced contractors know exactly what LADBS expects for each permit type and include all required documentation in the initial submission.</div></details>
+      <details class="faq-item"><summary class="faq-q">Which electrical work in Los Angeles does not need a permit? <span class="faq-chevron">▾</span></summary><div class="faq-a">Like-for-like replacements at the same location normally do not need a permit: swapping a receptacle, switch, or light fixture for one of the same rating, or replacing a breaker with the same amperage in the same panel. Anything that adds a circuit, changes the service rating, adds a subpanel, or runs new wiring inside a wall does need one. When the scope is genuinely ambiguous, ask the building department or your contractor before work starts — an unpermitted circuit tends to surface at a home inspection or a sale.</div></details>
+      <details class="faq-item"><summary class="faq-q">Does LADWP have to approve my panel upgrade? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes, whenever the service rating changes. LADWP owns the service drop and the meter, so a 100A to 200A upgrade needs a LADWP service order plus a meter spot that fixes the meter location, height, and working clearance. LADBS permits and inspects the electrical work itself; LADWP controls whether the new service actually gets energized.</div></details>
+      <details class="faq-item"><summary class="faq-q">Why won't LADWP restore power before the inspection passes? <span class="faq-chevron">▾</span></summary><div class="faq-a">LADWP will not set or reseal a meter on work it has no approval record for. The LADBS inspection has to show as passed — and ideally the permit as Finaled — before LADWP releases the meter. That is why a service upgrade runs install, then LADBS inspection, then LADWP meter release, then power back on, and why those stages cannot be treated as one appointment.</div></details>
     </div>
   </div>
 </section>
@@ -547,19 +632,6 @@ nav a:hover,nav a.active{color:var(--gold);background:rgba(245,166,35,.1)}
   </div>
 </footer>
 <script defer src="../js/site.min.js"></script>
-<div class="sticky-bar">
-  <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
-    <span class="sticky-icon" aria-hidden="true">📞</span>
-    <span class="sticky-label">Call Now</span>
-  </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text">
-    <span class="sticky-icon" aria-hidden="true">💬</span>
-    <span class="sticky-label">Text Message</span>
-  </a>
-  <a href="../book" class="sticky-btn sticky-estimate" aria-label="Get Estimate — Free estimate from AMY Electric">
-    <span class="sticky-icon" aria-hidden="true">📋</span>
-    <span class="sticky-label">Get Estimate</span>
-  </a>
-</div>
+<div class="sticky-bar"><a class="sticky-btn sticky-call" href="tel:18183025614" aria-label="Call AMY Electric at (818) 302-5614"><span class="sticky-icon" aria-hidden="true">📞</span><span class="sticky-label">Call Now</span></a><a class="sticky-btn sticky-text" href="sms:+18183025614?body=Hi%20AMY%20Electric%2C%20I%27m%20inquiring%20about%20electrical%20work.%20Sending%20a%20photo%20of%20my%20panel%2Foutlet%20now." aria-label="Text AMY Electric"><span class="sticky-icon" aria-hidden="true">💬</span><span class="sticky-label">Text Us</span></a><a class="sticky-btn sticky-estimate" href="../book"><span class="sticky-icon" aria-hidden="true">📋</span><span class="sticky-label">Get Estimate</span></a></div>
 
 </body></html>

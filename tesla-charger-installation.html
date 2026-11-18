@@ -262,15 +262,35 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
+  "areaServed": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     },
-    "geoRadius": "40233.6"
-  },
+    {"@type": "City", "name": "Los Angeles"},
+    {"@type": "City", "name": "Sherman Oaks"},
+    {"@type": "City", "name": "Burbank"},
+    {"@type": "City", "name": "Glendale"},
+    {"@type": "City", "name": "Pasadena"},
+    {"@type": "City", "name": "Studio City"},
+    {"@type": "City", "name": "North Hollywood"},
+    {"@type": "City", "name": "Santa Monica"},
+    {"@type": "City", "name": "Encino"},
+    {"@type": "City", "name": "Beverly Hills"},
+    {"@type": "City", "name": "West Los Angeles"},
+    {"@type": "City", "name": "Hollywood"},
+    {"@type": "City", "name": "Van Nuys"},
+    {"@type": "City", "name": "Woodland Hills"},
+    {"@type": "City", "name": "Calabasas"},
+    {"@type": "City", "name": "Culver City"},
+    {"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+    {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}
+  ],
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": [
@@ -818,19 +838,6 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 </footer>
 <script defer src="js/site.min.js"></script>
 <script>if(navigator.modelContext){var s=document.createElement("script");s.defer=true;s.src="js/webmcp.js";document.head.appendChild(s);}</script>
-<div class="sticky-bar">
-  <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
-    <span class="sticky-icon" aria-hidden="true">📞</span>
-    <span class="sticky-label">Call Now</span>
-  </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text">
-    <span class="sticky-icon" aria-hidden="true">💬</span>
-    <span class="sticky-label">Text Message</span>
-  </a>
-  <a href="book" class="sticky-btn sticky-estimate" aria-label="Get Estimate — Free estimate from AMY Electric">
-    <span class="sticky-icon" aria-hidden="true">📋</span>
-    <span class="sticky-label">Get Estimate</span>
-  </a>
-</div>
+<div class="sticky-bar"><a class="sticky-btn sticky-call" href="tel:18183025614" aria-label="Call AMY Electric at (818) 302-5614"><span class="sticky-icon" aria-hidden="true">📞</span><span class="sticky-label">Call Now</span></a><a class="sticky-btn sticky-text" href="sms:+18183025614?body=Hi%20AMY%20Electric%2C%20I%27m%20inquiring%20about%20electrical%20work.%20Sending%20a%20photo%20of%20my%20panel%2Foutlet%20now." aria-label="Text AMY Electric"><span class="sticky-icon" aria-hidden="true">💬</span><span class="sticky-label">Text Us</span></a><a class="sticky-btn sticky-estimate" href="book"><span class="sticky-icon" aria-hidden="true">📋</span><span class="sticky-label">Get Estimate</span></a></div>
 
 </body></html>
