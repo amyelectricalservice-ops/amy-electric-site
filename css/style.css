@@ -1029,20 +1029,46 @@ footer {
 .qe-radio:has(input:checked) { border-color: var(--gold); background: rgba(245,166,35,.1); box-shadow: 0 0 0 1px var(--gold); }
 .qe-radio input[type="radio"] { width: auto; flex-shrink: 0; accent-color: var(--gold); }
 .qe-nav { display: flex; gap: 12px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
-.qe-price { font-family: var(--cond); font-size: 42px; font-weight: 800; color: var(--gold); margin: 20px 0; line-height: 1.1; }
-.qe-breakdown { margin: 16px auto; max-width: 400px; }
+
+/* Step 1 shows the range inline, under the questions. */
+.qe-scope { margin-top: 28px; }
+.qe-live { margin-top: 28px; padding: 20px 18px; text-align: center; background: rgba(245,166,35,.07); border: 1px solid rgba(245,166,35,.45); border-radius: 8px; }
+.qe-live-label { font-family: var(--cond); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); }
+.qe-live-value { font-family: var(--cond); font-size: 38px; font-weight: 800; color: var(--gold); line-height: 1.1; margin: 6px 0 4px; }
+.qe-live-note { font-size: 13px; color: var(--gray); line-height: 1.5; }
+.qe-live.is-pending .qe-live-value { font-size: 22px; font-weight: 700; color: var(--gray); }
+.qe-live.is-custom .qe-live-value { font-size: 26px; }
+.qe-live-list { list-style: none; padding: 0; margin: 14px auto 0; max-width: 420px; text-align: left; font-size: 13px; color: var(--gray); }
+.qe-live-list li { display: flex; gap: 8px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,.07); }
+.qe-live-list li:first-child { border-top: 0; }
+
 .qe-form { margin-top: 8px; }
 .qe-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .qe-form-grid input { width: 100%; padding: 12px 16px; background: var(--navy); color: var(--white); border: 1px solid var(--mid); border-radius: var(--radius); font-family: var(--serif); font-size: 15px; }
 .qe-form-grid input:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* Step 2: what they are about to send. */
+.qe-recap { margin-top: 4px; font-family: var(--cond); font-size: 15px; font-weight: 600; color: var(--white); }
+.qe-recap-price { font-family: var(--cond); font-size: 20px; font-weight: 700; color: var(--gold); margin: 6px 0 20px; }
+.qe-recap-price:empty { display: none; }
+
+/* Optional project details: collapsed so the four required fields stay the
+ * only thing between the visitor and submit. */
+.qe-details { margin-top: 16px; text-align: left; border: 1px solid var(--mid); border-radius: 8px; padding: 0 16px; }
+.qe-details summary { display: block; cursor: pointer; color: var(--gold); font-family: var(--cond); font-size: 14px; font-weight: 600; letter-spacing: .04em; padding: 14px 0; list-style: none; }
+.qe-details summary::-webkit-details-marker { display: none; }
+.qe-details summary::after { content: '+'; float: right; font-weight: 700; }
+.qe-details[open] summary::after { content: '\2212'; }
+.qe-details textarea { margin-bottom: 16px; }
+
+.qe-toggle { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: var(--navy); border: 1px solid var(--mid); border-radius: var(--radius); cursor: pointer; font-size: 14px; color: var(--gray); text-align: left; }
+.qe-toggle input[type="checkbox"] { width: auto; padding: 0; margin: 2px 0 0; flex-shrink: 0; accent-color: var(--gold); }
 
 /* Service-specific blocks are toggled with [hidden]; grid/flex display rules
  * would otherwise beat the UA [hidden] default and leak them. */
 .qe-estimator [data-for][hidden] { display: none !important; }
 .qe-radio-stack { flex-direction: column; align-items: stretch; }
 .qe-hint { font-size: 13px; color: var(--gray); line-height: 1.5; margin: 4px 0 0; }
-.qe-breakdown-list { list-style: none; padding: 0; margin: 0 0 20px; font-size: 14px; color: var(--gray); text-align: left; max-width: 400px; margin: 0 auto 20px; }
-.qe-breakdown-list li { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; gap: 8px; }
 .qe-check { color: var(--gold); flex-shrink: 0; }
 
 /* ── STICKY MOBILE BAR (3 buttons) ── */
@@ -1150,7 +1176,8 @@ footer {
   .qe-field-row { grid-template-columns: 1fr; }
   .qe-form-grid { grid-template-columns: 1fr; }
   .qe-radio-group { flex-direction: column; }
-  .qe-price { font-size: 34px; }
+  .qe-live-value { font-size: 30px; }
+  .qe-live.is-pending .qe-live-value { font-size: 20px; }
   .review-grid { grid-template-columns: 1fr; }
 }
 

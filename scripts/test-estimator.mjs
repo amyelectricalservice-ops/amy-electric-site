@@ -185,6 +185,54 @@ describe('widget quotes', () => {
   });
 });
 
+describe('widget lead payload', () => {
+  const W = loadStandalone('js/estimator-widget.js');
+
+  it('attaches a valid estimate once every pricing question is answered', () => {
+    const e = W.leadEstimate({ service: 'ev-charger', charger: 'tesla-wall', panel: '200a', distance: 'short', location: 'indoor' });
+    assert.equal(e.service, 'EV Charger Installation');
+    assert.deepEqual([e.rangeLow, e.rangeHigh], [500, 1200]);
+    assert.equal(e.currency, 'USD');
+    assert.ok(e.assumptions.length >= 2, 'labeled assumptions');
+    assert.ok(e.permitNote.length > 10, 'permit note');
+  });
+
+  it('refuses to attach a range while a pricing question is unanswered', () => {
+    // Panel size and run length start blank. buildQuote() would return
+    // $350-$900 here, which under-quotes any home that needs the $2,500
+    // panel upgrade the widget itself prices.
+    assert.equal(W.leadEstimate({ service: 'ev-charger', charger: 'nema14-50' }), null);
+    assert.equal(W.pricingReady({ service: 'ev-charger', charger: 'nema14-50' }), false);
+    assert.match(W.missingAnswer({ service: 'ev-charger', charger: 'nema14-50' }), /panel/i);
+  });
+
+  it('panel-upgrade needs its two context answers', () => {
+    assert.equal(W.leadEstimate({ service: 'panel-upgrade' }), null);
+    const e = W.leadEstimate({ service: 'panel-upgrade', serviceSize: '100a', reason: 'add-ev' });
+    assert.deepEqual([e.rangeLow, e.rangeHigh], [2500, 4500]);
+    assert.ok(e.assumptions.some((a) => /100A/.test(a)));
+  });
+
+  it('rewiring waits for a home size', () => {
+    assert.equal(W.leadEstimate({ service: 'rewiring' }), null);
+    const e = W.leadEstimate({ service: 'rewiring', size: 'small' });
+    assert.deepEqual([e.rangeLow, e.rangeHigh], [3000, 7000]);
+  });
+
+  it('"other" attaches nothing', () => {
+    assert.equal(W.leadEstimate({ service: 'other' }), null);
+  });
+
+  it('scope summary names every answer for the recap line', () => {
+    const s = W.scopeSummary({ service: 'ev-charger', charger: 'tesla-wall', panel: '100a', distance: 'long', location: 'outdoor' });
+    assert.match(s, /EV Charger Installation/);
+    assert.match(s, /Tesla Wall Connector/);
+    assert.match(s, /100A/);
+    assert.match(s, /over 50 ft/);
+    assert.match(s, /outdoor/);
+  });
+});
+
 describe('built bundle is in sync with the source', () => {
   it('js/estimator.min.js exposes the same version and prices', () => {
     const src = loadStandalone('js/estimator-widget.js');

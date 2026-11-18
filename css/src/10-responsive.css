@@ -66,7 +66,8 @@
   .qe-field-row { grid-template-columns: 1fr; }
   .qe-form-grid { grid-template-columns: 1fr; }
   .qe-radio-group { flex-direction: column; }
-  .qe-price { font-size: 34px; }
+  .qe-live-value { font-size: 30px; }
+  .qe-live.is-pending .qe-live-value { font-size: 20px; }
   .review-grid { grid-template-columns: 1fr; }
 }
 
