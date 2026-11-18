@@ -115,7 +115,7 @@
   document.addEventListener('submit', function (event) {
     var form = event.target;
     if (!form || !form.id) return;
-    if (form.id === 'quick-form' || form.id === 'estimate-form' || form.id === 'lf-form') {
+    if (form.id === 'quote-form' || form.id === 'lf-form') {
       fireEvent('form_submit', form.id, 1);
     }
   });
@@ -233,9 +233,12 @@
   }
 
   // Uploads run BEFORE the lead POST so a storage failure never loses the lead.
+  // The empty result must match the {token, files} shape the caller reads —
+  // resolving with a bare [] threw on `upload.files.length` and aborted every
+  // lead from a form without a file input (the homepage quote form included).
   function uploadFiles(form, onProgress) {
     var input = fileInput(form);
-    if (!input || !input.files || !input.files.length) return Promise.resolve([]);
+    if (!input || !input.files || !input.files.length) return Promise.resolve({ token: '', files: [] });
     var files = Array.prototype.slice.call(input.files);
     var problem = validateFiles(files);
     if (problem) return Promise.reject(new Error(problem));
@@ -313,7 +316,7 @@
         .then(function (upload) {
           var fd = new FormData(form);
           fd.delete('uploads'); // never send raw files to the lead endpoint
-          if (upload && upload.files.length) {
+          if (upload && upload.files && upload.files.length) {
             fd.set('files', JSON.stringify(upload.files.map(function (f) { return f.id; })));
             fd.set('upload_token', upload.token);
           }
@@ -350,11 +353,12 @@
     });
   }
 
-  handleForm('quick-form', 'quick-form-success');
-  handleForm('estimate-form', 'estimate-form-success');
-  // NOTE: qe-form is submitted by the legacy estimator engine
-  // (js/estimator.min.js), which builds its own FormData. Registering it
-  // here too would double-POST every estimator lead.
+  // The homepage runs one two-step quote widget (js/estimator-widget.js) that
+  // replaced the separate quick form and the <details> detailed form. The
+  // widget only collects answers and the live range; submitting happens here
+  // so every lead keeps the same attribution, honeypot, upload and honest
+  // error handling. The widget must not register its own submit listener.
+  handleForm('quote-form', 'quote-form-success');
 
   // Open estimator when linked from other pages
   if (window.location.hash === '#estimator') {
