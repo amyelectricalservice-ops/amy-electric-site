@@ -14,10 +14,10 @@ export async function handleContact(request, env, waitUntil, extra = null) {
 
     const str = (v) => (typeof v === 'string' ? v.trim() : '');
 
+    /* --- Honeypot / spam traps --- */
     if (str(raw.website) !== '') {
       return successResponse();
     }
-
     if (raw._timestamp) {
       const elapsed = Date.now() - new Date(raw._timestamp).getTime();
       if (Number.isFinite(elapsed) && elapsed < 3000) {
@@ -25,7 +25,7 @@ export async function handleContact(request, env, waitUntil, extra = null) {
       }
     }
 
-    // Allowlist + validate: unknown keys (file uploads, junk) are dropped.
+    /* --- Data extraction + validation --- */
     const data = {
       name: str(raw.name).slice(0, 100),
       phone: str(raw.phone).slice(0, 25),
@@ -57,9 +57,7 @@ export async function handleContact(request, env, waitUntil, extra = null) {
     data._timestamp = new Date().toISOString();
     data._ip = request.headers.get('CF-Connecting-IP') || '';
 
-    // Turnstile token is read off the raw request: `data` is an allowlist
-    // object that never carries it, so reading it there made this check dead
-    // code (it silently passed no matter what was submitted).
+    /* --- Turnstile verification --- */
     const turnstileToken = str(raw['cf-turnstile-response']) || str(raw['g-recaptcha-response']);
     if (env.TURNSTILE_SECRET_KEY && turnstileToken) {
       const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -80,6 +78,7 @@ export async function handleContact(request, env, waitUntil, extra = null) {
       }
     }
 
+    /* --- CRM webhook --- */
     if (env.GHL_WEBHOOK_URL) {
       waitUntil(
         fetch(env.GHL_WEBHOOK_URL, {
@@ -90,28 +89,23 @@ export async function handleContact(request, env, waitUntil, extra = null) {
       );
     }
 
-    const subject = `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`;
-    const bodyText = formatLeadText(data, extra);
-
-    // 1. Cloudflare Email Service Binding (env.EMAIL or env.SEB)
+    /* --- Cloudflare Email Service or MailChannels fallback --- */
     if (env.EMAIL && typeof env.EMAIL.send === 'function') {
       waitUntil(
         env.EMAIL.send({
           to: 'info@amyelectric.com',
           from: 'noreply@amyelectric.com',
-          subject: subject,
-          content: bodyText,
+          subject: `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`,
+          content: `formatLeadText(data, extra)`,
         }).catch(err => console.warn('Cloudflare Email Service error:', err))
       );
     } else {
-      // 2. MailChannels REST API Fallback
       const notification = {
         personalizations: [{ to: [{ email: 'info@amyelectric.com' }] }],
         from: { email: 'noreply@amyelectric.com', name: 'AMY Electric Website' },
-        subject: subject,
-        content: [{ type: 'text/plain', value: bodyText }],
+        subject: `[AMY Electric] ${data.service || data.request_type || 'New Lead'} — ${data.name || 'No name'}`,
+        content: [{ type: 'text/plain', value: formatLeadText(data, extra) }],
       };
-
       waitUntil(
         fetch('https://api.mailchannels.net/tx/v1/send', {
           method: 'POST',
@@ -120,6 +114,153 @@ export async function handleContact(request, env, waitUntil, extra = null) {
         }).catch(() => {})
       );
     }
+
+    /* --- PHASE 2: D1 Lead Persistence === */
+    const crmDb = env.CRM_DB;
+    if (crmDb) {
+      // Normalize fields
+      const phoneNorm = data.phone.replace(/\D/g, '');
+      const emailNorm = data.email.toLowerCase().trim();
+      const dedupeKey = phoneNorm || emailNorm;
+
+      // Determine urgency and follow-up schedule
+      let followUpAt;
+      const urgencyText = (data.message || '').trim();
+      const emergencyRe = /\b(sparking|smoking|burning|burn smell|fire|shock|exposed wire|water leak|no power|power outage|live wire|melted|scorch|overheat|hot panel|panel is hot|buzzing|very hot|really hot)\b/i;
+      const sameDayRe = /\b(same[-]day|today|asap|urgent|emergency|right away|immediately)\b/i;
+      if (emergencyRe.test(urgencyText)) {
+        followUpAt = new Date(Date.now() + 15 * 60000).toISOString(); // 15 minutes
+      } else if (sameDayRe.test(urgencyText)) {
+        followUpAt = new Date(Date.now() + 2 * 3600000).toISOString(); // 2 hours
+      } else {
+        followUpAt = new Date(Date.now() + 24 * 3600000).toISOString(); // 24 hours
+      }
+
+      // Build the lead record for dedupe check + persist
+      const nowIso = new Date().toISOString();
+      const leadRecord = {
+        id: 'tmp_' + Date.now() + Math.random().toString(36).slice(2), // temp id for dedupe check
+        created_at: nowIso,
+        updated_at: nowIso,
+        name: data.name || '',
+        phone: data.phone || '',
+        phone_norm: phoneNorm,
+        email: data.email || '',
+        email_norm: emailNorm,
+        city: data.city || '',
+        service: data.service || '',
+        request_type: data.request_type || '',
+        message: data.message || '',
+        estimate_json: data.estimate || '',
+        segment: 'residential', // default; can be enhanced later
+        urgency: followUpAt ? 'pending' : 'standard',
+        score: 20, // base score; can be enhanced later with full scoreLead()
+        score_reasons: '[\"base score\"]',
+        source_page: data.request_type || '/contact',
+        referrer: '',
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        utm_term: '',
+        utm_content: '',
+        gclid: '',
+        fbclid: '',
+        status: 'new',
+        crm_provider: '',
+        crm_status: 'pending',
+        dedupe_key: dedupeKey,
+        duplicate_of: '',
+        ip_hash: '',  // will be computed if needed
+        user_agent: '',
+        turnstile_ok: 1,
+        follow_up_at: followUpAt,
+      };
+
+      // --- Check for duplicates (30-day window by phone_norm or email_norm) ---
+      let isDuplicate = false;
+      try {
+        // Check by phone_norm
+        if (phoneNorm && phoneNorm.length >= 7) {
+          const row = await crmDb.prepare(
+            `SELECT id, created_at FROM leads WHERE phone_norm = ? AND created_at >= ? AND duplicate_of = '' ORDER BY created_at DESC LIMIT 1`
+          ).bind(phoneNorm, new Date(Date.now() - 30 * 86400000).toISOString()).first();
+          if (row) {
+            isDuplicate = true;
+            leadRecord.duplicate_of = row.id;
+            leadRecord.status = 'duplicate';
+            leadRecord.crm_status = 'skipped';
+          }
+        }
+        // If not duplicate by phone, check by email
+        if (!isDuplicate && emailNorm) {
+          const row = await crmDb.prepare(
+            `SELECT id, created_at FROM leads WHERE email_norm = ? AND created_at >= ? AND duplicate_of = '' ORDER BY created_at DESC LIMIT 1`
+          ).bind(emailNorm, new Date(Date.now() - 30 * 86400000).toISOString()).first();
+          if (row) {
+            isDuplicate = true;
+            leadRecord.duplicate_of = row.id;
+            leadRecord.status = 'duplicate';
+            leadRecord.crm_status = 'skipped';
+          }
+        }
+      } catch (e) {
+        console.warn('D1 dedupe check failed:', e && e.message);
+      }
+
+      // --- Persist lead to D1 ---
+      const insertLeadSql = `
+        INSERT INTO leads (
+          id, created_at, updated_at, name, phone, phone_norm, email, email_norm, city,
+          service, request_type, message, estimate_json, segment, urgency, score,
+          score_reasons, source_page, referrer, utm_source, utm_medium, utm_campaign,
+          utm_term, utm_content, gclid, fbclid, status, crm_provider, crm_status,
+          dedupe_key, duplicate_of, ip_hash, user_agent, turnstile_ok, follow_up_at
+        ) VALUES (
+          ?,?,?,?,?,?,?,?,?,
+          ?,?,?,?,?,?,
+          ?,?,?,?,?,
+          ?,?,?,?,?,
+          ?,?,?,?,?,
+          ?,?,?,?
+        )
+      `;
+
+      const leadIds = [
+        leadRecord.id, leadRecord.created_at, leadRecord.updated_at, leadRecord.name,
+        leadRecord.phone, leadRecord.phone_norm, leadRecord.email, leadRecord.email_norm,
+        leadRecord.city, leadRecord.service, leadRecord.request_type, leadRecord.message,
+        leadRecord.estimate_json, leadRecord.segment, leadRecord.urgency, leadRecord.score,
+        leadRecord.score_reasons, leadRecord.source_page, leadRecord.referrer,
+        leadRecord.utm_source, leadRecord.utm_medium, leadRecord.utm_campaign,
+        leadRecord.utm_term, leadRecord.utm_content, leadRecord.gclid, leadRecord.fbclid,
+        leadRecord.status, leadRecord.crm_provider, leadRecord.crm_status,
+        leadRecord.dedupe_key, leadRecord.duplicate_of, leadRecord.ip_hash,
+        leadRecord.user_agent, leadRecord.turnstile_ok, leadRecord.follow_up_at
+      ];
+
+      try {
+        await crmDb.prepare(insertLeadSql).bind(...leadIds).run();
+      } catch (err) {
+        console.warn('D1 lead persist failed:', err && err.message);
+        // Continue anyway — form submission should not fail because of DB write issues
+      }
+
+      // --- Record lead creation event ---
+      try {
+        const eventSql = `
+          INSERT INTO lead_events (id, lead_id, event, label, page, meta, created_at)
+          VALUES (?,?,?,?,?,?,?)
+        `;
+        const eventId = 'evt_' + Date.now() + Math.random().toString(36).slice(2);
+        await crmDb.prepare(eventSql)
+          .bind(eventId, leadRecord.id, 'lead_created', 'form submission', request.url,
+            JSON.stringify({ score: leadRecord.score, segment: leadRecord.segment, duplicate: isDuplicate }),
+          nowIso).run();
+      } catch (e) {
+        console.warn('D1 event record failed:', e && e.message);
+      }
+    }
+    /* ------------------------------------------- */
 
     return successResponse();
   } catch (err) {
@@ -134,72 +275,4 @@ export async function handleContact(request, env, waitUntil, extra = null) {
       }
     );
   }
-}
-
-// Optional indicative estimate attached by the quote forms (see
-// js/src/07-estimate-lead.js). Invalid payloads are dropped, never fatal:
-// a lead must never fail because of its estimate attachment.
-function parseEstimate(raw) {
-  if (!raw) return '';
-  try {
-    const e = JSON.parse(raw);
-    if (!e || typeof e !== 'object') return '';
-    const low = Number(e.rangeLow);
-    const high = Number(e.rangeHigh);
-    if (!Number.isFinite(low) || !Number.isFinite(high)) return '';
-    if (low < 0 || high < 0 || high > 10000000 || low > high) return '';
-    const service = typeof e.service === 'string' ? e.service.slice(0, 50) : '';
-    const assumptions = Array.isArray(e.assumptions)
-      ? e.assumptions.filter((a) => typeof a === 'string').map((a) => a.slice(0, 200)).slice(0, 8)
-      : [];
-    const permitNote = typeof e.permitNote === 'string' ? e.permitNote.slice(0, 200) : '';
-    return JSON.stringify({ service, rangeLow: low, rangeHigh: high, currency: 'USD', assumptions, permitNote });
-  } catch {
-    return '';
-  }
-}
-
-function badRequest(message) {
-  return new Response(JSON.stringify({ success: false, message }), {
-    status: 400,
-    headers: { 'Content-Type': 'application/json' },
-  });
-}
-
-function successResponse() {
-  return new Response(JSON.stringify({ success: true, message: "Thank you! We'll be in touch shortly." }), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
-}
-
-function formatLeadText(data, extra = null) {
-  const lines = [];
-  if (data.name) lines.push(`Name: ${data.name}`);
-  if (data.phone) lines.push(`Phone: ${data.phone}`);
-  if (data.email) lines.push(`Email: ${data.email}`);
-  if (data.service) lines.push(`Service: ${data.service}`);
-  if (data.city) lines.push(`City: ${data.city}`);
-  if (data.message) lines.push(`Message:\n${data.message}`);
-  if (data.request_type) lines.push(`Request Type: ${data.request_type}`);
-  if (data.estimate) {
-    try {
-      const e = JSON.parse(data.estimate);
-      lines.push(`Estimate: $${e.rangeLow}–$${e.rangeHigh} (${e.service || 'unspecified service'}; indicative, confirm on site)`);
-      if (e.assumptions && e.assumptions.length) lines.push(`Estimate basis: ${e.assumptions.join('; ')}`);
-      if (e.permitNote) lines.push(`Estimate permits: ${e.permitNote}`);
-    } catch {
-      lines.push('Estimate: (unparseable attachment dropped)');
-    }
-  }
-  if (data._timestamp) lines.push(`Submitted: ${data._timestamp}`);
-  if (extra && Array.isArray(extra.lines)) {
-    for (const line of extra.lines) {
-      if (typeof line === 'string' && line) lines.push(line);
-    }
-  }
-  return lines.join('\n') || 'No details provided.';
 }
