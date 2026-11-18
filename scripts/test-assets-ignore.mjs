@@ -102,8 +102,9 @@ const PUBLIC_ROOT_FILES = new Set([
   '_headers',
   '_redirects',
   'SECURITY.md',
-  // IndexNow key file: the protocol requires it at /<key>.txt.
+  // IndexNow key files: the protocol requires them at /<key>.txt.
   '16076f14-4d06-4581-b281-38a7a89804ca.txt',
+  'e73811d4fd18488f99e99987828567f9.txt',
 ]);
 
 function publicFiles() {

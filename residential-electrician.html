@@ -200,15 +200,35 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     "https://maps.app.goo.gl/WTNSkHRUgULPBHpc9",
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.22281,
-      "longitude": -118.58241
+  "areaServed": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.22281,
+        "longitude": -118.58241
+      },
+      "geoRadius": "40233.6"
     },
-    "geoRadius": "40233.6"
-  },
+    {"@type": "City", "name": "Los Angeles"},
+    {"@type": "City", "name": "Sherman Oaks"},
+    {"@type": "City", "name": "Burbank"},
+    {"@type": "City", "name": "Glendale"},
+    {"@type": "City", "name": "Pasadena"},
+    {"@type": "City", "name": "Studio City"},
+    {"@type": "City", "name": "North Hollywood"},
+    {"@type": "City", "name": "Santa Monica"},
+    {"@type": "City", "name": "Encino"},
+    {"@type": "City", "name": "Beverly Hills"},
+    {"@type": "City", "name": "West Los Angeles"},
+    {"@type": "City", "name": "Hollywood"},
+    {"@type": "City", "name": "Van Nuys"},
+    {"@type": "City", "name": "Woodland Hills"},
+    {"@type": "City", "name": "Calabasas"},
+    {"@type": "City", "name": "Culver City"},
+    {"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+    {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}
+  ],
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": [
@@ -498,7 +518,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
     <details class="faq-item"><summary class="faq-q">How much does a residential electrician in Los Angeles cost? <span class="faq-chevron">▾</span></summary><div class="faq-a">Typical Los Angeles residential pricing: a NEMA 14-50 EV outlet runs $350–$600, a Tesla Wall Connector install $500–$1,200, a hardwired Level 2 charger $500–$1,200, and a 200A panel upgrade $2,500–$4,500. Repairs and small installs are quoted per job before work starts. Every range is confirmed with an on-site or photo-based assessment — the number you approve is the number you pay.</div></details>
     <details class="faq-item"><summary class="faq-q">Do you handle permits and inspections? <span class="faq-chevron">▾</span></summary><div class="faq-a">Yes. Most residential electrical work in the City of Los Angeles requires a LADBS permit, and panel upgrades require coordination with LADWP. We pull the permit, meet the inspector, and leave you the signed-off paperwork. Permit fees are included in the quoted range unless your estimate says otherwise.</div></details>
     <details class="faq-item"><summary class="faq-q">Can you install an EV charger in an older home with a 100A panel? <span class="faq-chevron">▾</span></summary><div class="faq-a">Often, yes. We start with a load calculation to see whether your existing service can support a 32A or 40A charger. If it can, we install a dedicated circuit; if not, we explain the panel upgrade cost and options before any work begins. We never install a charger that will trip the main breaker.</div></details>
-    <details class="faq-item"><summary class="faq-q">How quickly can you come out? <span class="faq-chevron">▾</span></summary><div class="faq-a">Same-day dispatch is available for urgent residential calls when capacity allows, and we prioritize sparking outlets, burning smells, hot panels, and partial power loss. Non-urgent estimates are typically scheduled within a few business days. Call (818) 302-5614 and we will give you a real window, not a range.</div></details>
+    <details class="faq-item"><summary class="faq-q">How quickly can you come out? <span class="faq-chevron">▾</span></summary><div class="faq-a">Same-day dispatch is available for urgent residential calls when capacity allows, and we prioritize sparking outlets, burning smells, hot panels, and partial power loss. Non-urgent estimates are typically scheduled within a few business days. Call <a href="tel:18183025614">(818) 302-5614</a> and we will give you a real window, not a range.</div></details>
     <details class="faq-item"><summary class="faq-q">Are you licensed and insured? <span class="faq-chevron">▾</span></summary><div class="faq-a">AMY Electric holds California C-10 Electrical Contractor license #981578 and EVITP certification #4051604. You can verify the license yourself at cslb.ca.gov. We carry a CSLB-filed contractor's bond and can provide a certificate of insurance on request for property managers, HOAs, and escrow.</div></details>
   </div>
 </div></section>
@@ -757,20 +777,7 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
 </footer>
 <script defer src="js/site.min.js"></script>
 <script>if(navigator.modelContext){var s=document.createElement("script");s.defer=true;s.src="js/webmcp.js";document.head.appendChild(s);}</script>
-<div class="sticky-bar">
-  <a href="tel:18183025614" class="sticky-btn sticky-call" aria-label="Call Now — AMY Electric at (818) 302-5614">
-    <span class="sticky-icon" aria-hidden="true">📞</span>
-    <span class="sticky-label">Call Now</span>
-  </a>
-  <a href="sms:+18183025614" class="sticky-btn sticky-text">
-    <span class="sticky-icon" aria-hidden="true">💬</span>
-    <span class="sticky-label">Text Message</span>
-  </a>
-  <a href="book" class="sticky-btn sticky-estimate" aria-label="Get Estimate — Free estimate from AMY Electric">
-    <span class="sticky-icon" aria-hidden="true">📋</span>
-    <span class="sticky-label">Get Estimate</span>
-  </a>
-</div>
+<div class="sticky-bar"><a class="sticky-btn sticky-call" href="tel:18183025614" aria-label="Call AMY Electric at (818) 302-5614"><span class="sticky-icon" aria-hidden="true">📞</span><span class="sticky-label">Call Now</span></a><a class="sticky-btn sticky-text" href="sms:+18183025614?body=Hi%20AMY%20Electric%2C%20I%27m%20inquiring%20about%20electrical%20work.%20Sending%20a%20photo%20of%20my%20panel%2Foutlet%20now." aria-label="Text AMY Electric"><span class="sticky-icon" aria-hidden="true">💬</span><span class="sticky-label">Text Us</span></a><a class="sticky-btn sticky-estimate" href="book"><span class="sticky-icon" aria-hidden="true">📋</span><span class="sticky-label">Get Estimate</span></a></div>
 
 </body>
 </html>

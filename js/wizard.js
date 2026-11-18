@@ -72,6 +72,28 @@
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
+  /* A "from $X" line on each step-1 card. The number comes from the canonical
+     SERVICES table in 05-estimate-data.js, so it can never drift from the
+     locked estimate the wizard shows at step 3. Nothing is shown if the data
+     module failed to load — better silent than a wrong price. */
+  function fromPrice(serviceId) {
+    var api = window.AMY_ESTIMATE;
+    if (!api) return '';
+    var svc = null;
+    try {
+      svc = api.getService ? api.getService(serviceId) : null;
+      if (!svc && api.DATA && api.DATA.SERVICES) {
+        var list = api.DATA.SERVICES;
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].id === serviceId) { svc = list[i]; break; }
+        }
+      }
+    } catch (e) { svc = null; }
+    if (!svc || !svc.baseLow) return '';
+    return '<span class="lf-text-xs lf-price-from">from $' +
+      Number(svc.baseLow).toLocaleString('en-US') + '</span>';
+  }
+
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -206,7 +228,8 @@
       b.setAttribute('data-service', c.serviceId);
       b.innerHTML = '<span style="font-size:2rem;line-height:1">' + c.icon + '</span>' +
         '<span class="lf-font-cond lf-font-bold">' + c.name + '</span>' +
-        '<span class="lf-text-xs lf-text-muted">' + c.desc + '</span>';
+        '<span class="lf-text-xs lf-text-muted">' + c.desc + '</span>' +
+        fromPrice(c.serviceId);
       grid.appendChild(b);
     });
     bindCards(grid, 'data-service', function (v) { state.serviceId = v; });

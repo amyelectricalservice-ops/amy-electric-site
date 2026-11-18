@@ -8,6 +8,25 @@ import json
 
 SITE_DIR = __file__.rsplit("/", 2)[0]
 
+SERVICE_AREA_CITIES = [
+    "Los Angeles", "Sherman Oaks", "Burbank", "Glendale", "Pasadena",
+    "Studio City", "North Hollywood", "Santa Monica", "Encino",
+    "Beverly Hills", "West Los Angeles", "Hollywood", "Van Nuys",
+    "Woodland Hills", "Calabasas", "Culver City",
+]
+
+# Canonical service area for the Electrician entity. The GeoCircle must stay
+# first — schema-tool.py asserts it. Named cities and the two administrative
+# areas follow so the entity says what it actually targets, not just "25 miles".
+AREA_SERVED = (
+    [{"@type": "GeoCircle",
+      "geoMidpoint": {"@type": "GeoCoordinates", "latitude": 34.22281, "longitude": -118.58241},
+      "geoRadius": "40233.6"}]
+    + [{"@type": "City", "name": c} for c in SERVICE_AREA_CITIES]
+    + [{"@type": "AdministrativeArea", "name": "San Fernando Valley"},
+       {"@type": "AdministrativeArea", "name": "Greater Los Angeles"}]
+)
+
 BUSINESS = {
     "name": "AMY Electric",
     "legalName": "AMY Electric",
@@ -24,7 +43,7 @@ BUSINESS = {
         "addressCountry": "US"
     },
     "geo": {"latitude": 34.22281, "longitude": -118.58241},
-    "areaServed": {"@type": "GeoCircle", "geoMidpoint": {"@type": "GeoCoordinates", "latitude": 34.22281, "longitude": -118.58241}, "geoRadius": "40233.6"},
+    "areaServed": AREA_SERVED,
     "image": "https://amyelectric.com/img/hero-electrician.jpg",
     "logo": "https://amyelectric.com/img/og-home.jpg",
     "foundingDate": "2012",
