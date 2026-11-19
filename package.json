@@ -5,6 +5,6 @@
   "description": "AMY Electric static site on Cloudflare Workers + Assets. Tooling-only package (cf CLI + Wrangler) for the cf-migrated config; the site itself has no build step.",
   "devDependencies": {
     "cf": "^1.0.0-beta.29",
-    "wrangler": "^4.160.0"
+    "wrangler": "^4.165.0"
   }
 }
