@@ -42,10 +42,14 @@ combo row ("Wall Connector + NEMA 14-50 (dual)", priced for both) and a rebate
 amount ("LADWP ChargeUp rebate paperwork ($1,000-$1,500 back)"). Both still
 print, with the reason, so an exclusion can be audited instead of trusted.
 
-Scope is deliberately limited to the three EV charger services. Panel and
-permit prices are excluded: "panel upgrade" appears in meta descriptions and
-in unrelated services (commercial panels, rewire comparisons), so proximity
-matching there is noise rather than signal.
+Scope was originally limited to the three EV charger services. A second pass
+now covers the 200A panel replacement: panel copy cannot be attributed by
+proximity (the phrase appears in meta descriptions, subpanel rows and rewire
+comparisons), so it only reads a price when the same sentence scopes the work
+to a 200A replacement, ignores ranges below the $2,000 floor (permit lines and
+other services priced beside it), and accepts two documented alternative
+scopes. That pass is what found 19 pages publishing $1,800-$4,500 against the
+engine's $2,500-$4,500 while the EV-only version reported zero drift.
 
 Also reports `sep_missing` — a price like "$350$550" with no separator, which
 is published to users and to FAQ extraction exactly as shown.
@@ -342,11 +346,79 @@ def scan():
     return found, glued, excluded
 
 
+# ── Panel replacement drift ───────────────────────────────────────────────
+# The EV pass is phrase-attributed because chargers are named in prose. Panel
+# copy is not: "panel upgrade" appears in meta descriptions, in subpanel rows
+# and in rewire comparisons, so proximity matching there is mostly noise.
+# This pass therefore only reads a price when the sentence also scopes the work
+# to a 200A replacement, and skips the scopes that are legitimately different
+# services (subpanel, 100A, main service, meter work, commercial).
+PANEL_PHRASE = re.compile(
+    r"panel\s+(?:upgrade|replacement)|(?:200\s*-?\s*(?:amp|A))\s+(?:main\s+)?(?:panel|service)",
+    re.I,
+)
+PANEL_SCOPE = re.compile(r"200\s*-?\s*(?:amp|A)", re.I)
+PANEL_OTHER = re.compile(
+    r"sub-?panel|100\s*-?\s*(?:amp|A)|commercial|meter|rewire|main service|fuse|"
+    r"per year|maintenance",
+    re.I,
+)
+# Ranges that are a genuinely different scope, not drift. Kept short and
+# documented so the exception list stays auditable.
+PANEL_ALT = {
+    (2500, 6000): "panel replacement plus additional circuits in one scope",
+    (3000, 5000): "60A-to-200A service upgrade, not a like-for-like 100A replacement",
+}
+# A 200A replacement cannot publish a high below $2,000. Anything cheaper in the
+# same sentence is a permit line or another service priced beside it.
+PANEL_FLOOR = 2000
+
+
+def scan_panels(can):
+    """{(published low, published high): {page: context}} for 200A panel copy."""
+    if "panel-200a-replacement" not in can:
+        return {}
+    lo_c, hi_c = can["panel-200a-replacement"]["low"], can["panel-200a-replacement"]["high"]
+    out = {}
+    panel_alt = {}
+    for path in pages():
+        rel = os.path.relpath(path, ROOT)
+        flat = htmlmod.unescape(
+            re.sub(r"\s+", " ", open(path, encoding="utf-8", errors="replace").read())
+        )
+        for m in PANEL_PHRASE.finditer(flat):
+            limit = m.end() + 160
+            price = None
+            for cand in PRICE.finditer(flat, m.end()):
+                if cand.start() > limit or BLOCK_END.search(flat, m.end(), cand.start()):
+                    break
+                price = cand
+                break
+            if price is None:
+                continue
+            ctx = re.sub(r"\s+", " ", flat[max(0, m.start() - 70) : price.end() + 70])
+            # The sentence has to scope the price to a 200A replacement; a
+            # neighbouring subpanel/100A/meter row is a different service.
+            if not PANEL_SCOPE.search(ctx) or PANEL_OTHER.search(ctx):
+                continue
+            lo, hi = to_int(price.group(1)), to_int(price.group(2))
+            if lo > hi:
+                lo, hi = hi, lo
+            if (lo, hi) == (lo_c, hi_c) or hi < PANEL_FLOOR:
+                continue
+            if (lo, hi) in PANEL_ALT:
+                panel_alt.setdefault((lo, hi), {}).setdefault(rel, ctx)
+                continue
+            out.setdefault((lo, hi), {}).setdefault(rel, ctx)
+    return out, panel_alt
+
+
 def main():
     strict = "--strict" in sys.argv[1:]
     detail = "--detail" in sys.argv[1:]
     can = canonical()
     found, glued, excluded = scan()
+    panel_drift, panel_alt = scan_panels(can)
     flagged = 0
     glued_total = 0
 
@@ -397,7 +469,29 @@ def main():
     print(f"Flagged page/range pairs: {flagged}")
     print(f"Glued prices (missing separator): {glued_total}")
     print(f"Excluded near-matches (combo/rebate): {sum(len(v) for v in excluded.values())}")
-    if strict and (flagged or glued_total):
+
+    if "panel-200a-replacement" in can:
+        clo, chi = can["panel-200a-replacement"]["low"], can["panel-200a-replacement"]["high"]
+        print("\n=== Published 200A panel pricing (same canonical table) ===\n")
+        print(f"panel-200a-replacement  canonical ${clo:,}-${chi:,}  "
+              f"(permit: {can['panel-200a-replacement']['handling']})")
+        if not panel_drift:
+            print("    ok  no published 200A range differs from the engine")
+        for (plo, phi), hits in sorted(panel_alt.items()):
+            print(f"    alt  ${plo:,}-${phi:,}  ({PANEL_ALT[(plo, phi)]})")
+            for pg in sorted(hits)[:4]:
+                print(f"            {pg}")
+        for (plo, phi), hits in sorted(panel_drift.items()):
+            print(f"    DRIFT ${plo:,}-${phi:,}  <-- differs from the engine")
+            for pg in sorted(hits)[:4]:
+                print(f"            {pg}")
+                if detail:
+                    print(f"                ...{hits[pg]}...")
+            if len(hits) > 4:
+                print(f"            ... +{len(hits) - 4} more")
+        print(f"\nFlagged panel page/range pairs: {sum(len(v) for v in panel_drift.values())}")
+
+    if strict and (flagged or glued_total or panel_drift):
         return 1
     return 0
 
