@@ -34,6 +34,12 @@ jobs:
         # link to /blog/blog/<slug>) shipped green. Runs in under a second.
         run: python3 scripts/audit-site.py
 
+      - name: Verify One Canonical Header
+        # sync-nav.py is the only header generator; inject-layout.py is retired.
+        # Without this gate a hand-edited nav survives review and the site starts
+        # serving several different menus again.
+        run: python3 scripts/sync-nav.py --check
+
       - name: Verify CSS & JS Production Builds
         run: |
           python3 scripts/build-css.py

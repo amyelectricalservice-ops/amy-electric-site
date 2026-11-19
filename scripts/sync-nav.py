@@ -43,6 +43,7 @@ PRIMARY = [
 # Two columns inside the "More" panel. Each entry is (label, [(href, text), ...]).
 MORE_COL_1 = [
     ('Services', [
+        ('residential-electrician',      'Residential Electrician'),
         ('commercial-electrical',        'Commercial Electrical'),
         ('emergency-electrician-los-angeles', 'Emergency Electrician'),
         ('lighting-installation',        'Lighting'),
@@ -62,9 +63,11 @@ MORE_COL_2 = [
     ]),
     ('Popular Guides', [
         ('blog/is-your-home-ev-ready-los-angeles', 'Is Your Home EV Ready?'),
-        ('blog/ev-charger-installation-cost-la',   'EV Charger Installation Cost'),
-        ('blog/whole-home-rewiring-cost-la',       'Whole-Home Rewiring Cost'),
-        ('blog/panel-upgrade-cost-los-angeles',    'Panel Upgrade Cost'),
+        # The -cost-la spellings are 301'd away by _redirects; link the final
+        # URLs so crawlers do not have to follow a redirect on every page.
+        ('blog/ev-charger-installation-cost-los-angeles', 'EV Charger Installation Cost'),
+        ('blog/whole-home-rewiring-cost-los-angeles',     'Whole-Home Rewiring Cost'),
+        ('blog/panel-upgrade-cost-los-angeles',           'Panel Upgrade Cost'),
     ]),
 ]
 
