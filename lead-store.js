@@ -10,7 +10,7 @@ function DB(env) {
   return (env && (env.CRM_DB || env.DB)) || null;
 }
 
-const COMMERCIAL_RE = /\b(commercial|tenant improvement|restaurant|retail|office|warehouse|industrial|3-phase|three phase|400a|property management|hoa|multi-family|multifamily|fleet)\b/i;
+const COMMERCIAL_RE = /\b(commercial|b2b|tenant improvement|restaurant|retail|office|warehouse|industrial|3-phase|three phase|400a|property management|hoa|multi-family|multifamily|fleet)\b/i;
 const EMERGENCY_RE = /\b(sparking|smoking|burning|burn smell|fire|shock(ed|ing)?|exposed wire|water leak|no power|power outage|live wire|melted|scorch(ed|ing)?|overheat(ed|ing)?|hot panel|panel is hot|buzzing|(feels?|is|getting|very|really)\s+hot)\b/i;
 const SAME_DAY_RE = /\b(same[- ]day|today|asap|urgent|emergency|right away|immediately)\b/i;
 const PLANNING_RE = /\b(quote|estimate|planning|remodel|renovation|next month|future|budget)\b/i;
@@ -63,11 +63,17 @@ export function scoreLead(input) {
   let score = 20;
 
   const text = `${input.service || ''} ${input.message || ''} ${input.request_type || ''}`;
-  const commercial = COMMERCIAL_RE.test(text) || String(input.service || '') === 'commercial';
+  // The contact form's inquiry selector is an explicit signal, not a keyword:
+  // treat it as authoritative so a B2B or emergency visitor is never scored by
+  // whatever they happened to type.
+  const requestType = String(input.request_type || '').trim().toLowerCase();
+  const commercial = requestType === 'b2b'
+    || COMMERCIAL_RE.test(text)
+    || String(input.service || '') === 'commercial';
   const segment = commercial ? 'commercial' : 'residential';
 
   let urgency = 'standard';
-  if (EMERGENCY_RE.test(text)) {
+  if (requestType === 'emergency' || EMERGENCY_RE.test(text)) {
     urgency = 'emergency';
     score += 30;
     reasons.push('emergency language +30');
