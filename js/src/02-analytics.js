@@ -43,9 +43,31 @@
   }
 
   // ---- EVENT: form_submit ----
-  // Fires when a form with id "quote-form" or "lf-form" submits
-  function onFormSubmit() {
+  // Fires when a lead form submits. The selector list is the contract: it
+  // originally matched only #quote-form/#amy-quote-form/.quote-form, so the
+  // contact page's #quick-form and #estimate-form fired nothing at all.
+  function onFormSubmit(e) {
     fireGtagEvent('form_submit', { event_category: 'Form' });
+
+    // ---- EVENT: form_submit_<segment> ----
+    // The inquiry selector is the visitor's own intent signal, so report it
+    // alongside form_submit rather than renaming the existing event (the GA4
+    // dashboards key off form_submit). Values come from contact.html:
+    // emergency / service (residential) / b2b / estimate.
+    var form = e && e.target;
+    var picked = form && form.querySelector
+      ? form.querySelector('input[name="request_type"]:checked')
+      : null;
+    var segments = {
+      emergency: 'form_submit_emergency',
+      service: 'form_submit_residential',
+      b2b: 'form_submit_b2b',
+      estimate: 'form_submit_estimate'
+    };
+    var name = picked && segments[picked.value];
+    if (name) {
+      fireGtagEvent(name, { event_category: 'Form', form_type: picked.value });
+    }
   }
 
   // ---- EVENT: quote_start ----
@@ -150,7 +172,7 @@
     });
 
     // Form submissions
-    document.querySelectorAll('#quote-form, #amy-quote-form, .quote-form').forEach(function (form) {
+    document.querySelectorAll('#quote-form, #amy-quote-form, .quote-form, #quick-form, #estimate-form, #lf-form').forEach(function (form) {
       form.addEventListener('submit', onFormSubmit);
     });
 

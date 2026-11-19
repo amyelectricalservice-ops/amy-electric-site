@@ -45,6 +45,7 @@ MORE_COL_1 = [
     ('Services', [
         ('residential-electrician',      'Residential Electrician'),
         ('commercial-electrical',        'Commercial Electrical'),
+        ('contractors-commercial',       'Contractors &amp; Property Managers'),
         ('emergency-electrician-los-angeles', 'Emergency Electrician'),
         ('lighting-installation',        'Lighting'),
         ('whole-home-rewiring',          'Whole-Home Rewiring'),

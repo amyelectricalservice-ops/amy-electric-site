@@ -702,6 +702,10 @@ const DEFAULT_ELECTRICIAN_SCHEMA = `<script type="application/ld+json">
     "https://www.facebook.com/people/Amy-Electric/100063766463600/"
   ],
   "license": "California C-10 Electrical Contractor License #981578",
+  "identifier": [
+    {"@type": "PropertyValue", "name": "CSLB C-10 Electrical Contractor License", "value": "981578"},
+    {"@type": "PropertyValue", "name": "EVITP Certification", "value": "4051604"}
+  ],
   "areaServed": [
     {
       "@type": "GeoCircle",
