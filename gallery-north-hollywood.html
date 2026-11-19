@@ -344,7 +344,9 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
         <div class="nav-more-panel">
           <div class="nav-more-col">
             <div class="nav-more-label">Services</div>
+            <a href="residential-electrician">Residential Electrician</a>
             <a href="commercial-electrical">Commercial Electrical</a>
+            <a href="contractors-commercial">Contractors &amp; Property Managers</a>
             <a href="emergency-electrician-los-angeles">Emergency Electrician</a>
             <a href="lighting-installation">Lighting</a>
             <a href="whole-home-rewiring">Whole-Home Rewiring</a>
@@ -529,12 +531,20 @@ h2{font-family:var(--cond);font-weight:800;font-size:clamp(28px,4vw,46px);line-h
             <label id="request-type-label">What can we help you with?</label>
             <div class="radio-group" role="radiogroup" aria-labelledby="request-type-label">
               <label class="radio-label">
+                <input type="radio" name="request_type" value="emergency" required>
+                <span class="radio-text">Emergency: no power, sparking, burning smell, or exposed wiring</span>
+              </label>
+              <label class="radio-label">
                 <input type="radio" name="request_type" value="service" required>
-                <span class="radio-text">I need a service (repair, install, or emergency work)</span>
+                <span class="radio-text">Residential service or repair (panel, EV charger, wiring, lighting)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="request_type" value="b2b" required>
+                <span class="radio-text">Commercial, contractor, or property management (B2B)</span>
               </label>
               <label class="radio-label">
                 <input type="radio" name="request_type" value="estimate" required>
-                <span class="radio-text">I'd like a free estimate for a project</span>
+                <span class="radio-text">I'd like a free estimate for a planned project</span>
               </label>
             </div>
           </div>

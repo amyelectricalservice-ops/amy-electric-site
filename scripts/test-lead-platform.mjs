@@ -66,6 +66,22 @@ describe('lead scoring', () => {
     assert.equal(r.segment, 'commercial');
   });
 
+  it('routes the form inquiry selector into segment and urgency', () => {
+    // The contact form asks the visitor to pick a request_type. Those values
+    // must drive scoring on their own: a visitor who selects "Commercial /
+    // B2B" and writes "need a quote" must not be scored as residential just
+    // because they did not use a commercial keyword.
+    const b2b = scoreLead({ request_type: 'b2b', service: '', message: 'need a quote for our building' });
+    assert.equal(b2b.segment, 'commercial');
+
+    const em = scoreLead({ request_type: 'emergency', service: 'electrical-repair', message: 'outlet stopped working' });
+    assert.equal(em.urgency, 'emergency');
+
+    const res = scoreLead({ request_type: 'service', service: 'lighting', message: 'install two fixtures' });
+    assert.equal(res.segment, 'residential');
+    assert.notEqual(res.urgency, 'emergency');
+  });
+
   it('always returns a bounded integer score with reasons', () => {
     const r = scoreLead({ service: 'commercial', message: 'emergency asap gclid', email: 'x@y.z', city: 'LA', hasFiles: true, hasEstimate: true, gclid: 'abc', phone: '8185551234' });
     assert.ok(Number.isInteger(r.score));
