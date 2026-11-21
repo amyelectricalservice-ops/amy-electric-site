@@ -232,6 +232,32 @@ def audit():
                 msg = f'Broken internal link -> {href}'
                 broken_links.append((f, msg))
 
+    # 10. Broken image references. The link check above only looks at href, so
+    # five <img src="/images/..."> tags 404'd on the homepage for weeks while
+    # every gate stayed green: /images/ does not exist, the files live in
+    # img/. Each 404 also downloaded the 22 KB HTML error page in place of the
+    # image. Directory prefixes matter, so this resolves src as written.
+    broken_images = []
+    for f in html_files:
+        base_dir = os.path.dirname(f)
+        with open(f, encoding='utf-8', errors='replace') as fh:
+            content = fh.read()
+        # Ignore script/style bodies: gallery JS builds <img> strings with
+        # concatenation ('img/gallery/' + slug), which is not a real reference.
+        markup = re.sub(r'<(script|style)\b.*?</\1>', '', content, flags=re.S | re.I)
+        for tag in re.findall(r'<(?:img|source)\b[^>]*>', markup, re.I):
+            for attr in re.findall(r'\b(?:src|srcset)="([^"]+)"', tag, re.I):
+                if attr.startswith('data:'):
+                    continue
+                for candidate in attr.split(','):
+                    candidate = candidate.strip().split(' ')[0]
+                    if not candidate or candidate.startswith(('http://', 'https://', '//', 'data:')):
+                        continue
+                    resolved = (candidate.lstrip('/') if candidate.startswith('/')
+                                else os.path.normpath(os.path.join(base_dir, candidate)))
+                    if not target_exists(resolved):
+                        broken_images.append((f, f'Broken image -> {candidate}'))
+
     print("=== AUDIT REPORT ===")
     print(f"Total production HTML pages: {len(html_files)}")
     print(f"Pages missing from sitemap: {len(missing_from_sitemap)}")
@@ -244,6 +270,7 @@ def audit():
     print(f"Pages with picture/source markup issues: {len(picture_structure_issues)}")
     print(f"Pages with honeypot aria-hidden issues: {len(honeypot_aria_issues)}")
     print(f"Broken internal links: {len(broken_links)}")
+    print(f"Broken image references: {len(broken_images)}")
 
     if missing_from_sitemap:
         print("\n[!] Missing from sitemap.xml:")
@@ -295,9 +322,14 @@ def audit():
         for f, iss in broken_links[:40]:
             print(f"  - {f}: {iss}")
 
+    if broken_images:
+        print(f"\n[!] Broken image references ({len(broken_images)}):")
+        for f, iss in broken_images[:40]:
+            print(f"  - {f}: {iss}")
+
     any_issues = (missing_from_sitemap or sitemap_not_self_canonical or js_missing or
                   sticky_bar_missing or meta_desc_issues or title_issues or head_close_missing or
-                  picture_structure_issues or honeypot_aria_issues or broken_links)
+                  picture_structure_issues or honeypot_aria_issues or broken_links or broken_images)
     if any_issues:
         print("\nAUDIT FAILED — fix the issues above before deploying.")
         sys.exit(1)

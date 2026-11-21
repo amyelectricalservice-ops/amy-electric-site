@@ -75,7 +75,10 @@ def make_item_html(row, position=0):
     caption = row.get("caption", "").strip() or "Electrical project by AMY Electric"
     slug = row["slug"].strip()
     alt = alt_text(caption, city)
-    loading = "eager" if position < 6 else "lazy"
+    # Only the first tile is eager (it is the LCP image). Positions 1-5 used to
+    # be eager too: ~5 x 100 KB of WebP competing with the hero and the CSS,
+    # which is exactly the mistake fixed on gallery.html.
+    loading = "eager" if position == 0 else "lazy"
     fetch = ' fetchpriority="high"' if position == 0 else ""
     return f'''    <div class="gallery-item" data-category="{cat}" data-city="{city}" data-year="{year}">
       <picture>
