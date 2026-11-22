@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS leads (
   urgency           TEXT NOT NULL DEFAULT 'standard',      -- emergency | same-day | standard | planning
   score             INTEGER NOT NULL DEFAULT 0,            -- 0-100
   score_reasons     TEXT,                                  -- JSON array
+  -- pipeline
+  stage             TEXT NOT NULL DEFAULT 'new',   -- new | contacted | qualifying | estimate_sent | proposal_sent | won | lost
   -- attribution
   source_page       TEXT,
   referrer          TEXT,

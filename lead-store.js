@@ -143,7 +143,8 @@ export async function buildLead(raw, meta = {}) {
     request_type: raw.request_type || '',
     message: raw.message || '',
     estimate_json: raw.estimate || '',
-    segment: scored.segment,
+    segment: scored.segment,,
+    stage: 'new'
     urgency: scored.urgency,
     score: scored.score,
     score_reasons: JSON.stringify(scored.reasons),
@@ -229,7 +230,7 @@ export async function persistLead(env, lead) {
       lead.id, lead.created_at, lead.updated_at, lead.name, lead.phone, lead.phone_norm,
       lead.email, lead.email_norm, lead.city,
       lead.service, lead.request_type, lead.message, lead.estimate_json, lead.segment,
-      lead.urgency, lead.score,
+      lead.urgency, lead.stage, lead.score,
       lead.score_reasons, lead.source_page, lead.referrer, lead.utm_source, lead.utm_medium,
       lead.utm_campaign,
       lead.utm_term, lead.utm_content, lead.gclid, lead.fbclid, lead.status,
@@ -321,3 +322,26 @@ export async function leadStats(env, days = 30) {
        FROM jobs WHERE created_at >= ? AND status = 'completed'`, since);
   return { days, totals, spend, revenue };
 }
+
+/** Lead pipeline stages by segment */
+const RESIDENTIAL_PIPELINE = ['new', 'contacted', 'qualifying', 'estimate_sent', 'proposal_sent', 'won', 'lost'];
+const COMMERCIAL_PIPELINE = ['new', 'contacted', 'qualifying', 'estimate_sent', 'rfq_sent', 'proposal_sent', 'negotiation', 'won', 'lost'];
+
+/** Get pipeline stage for a given segment */
+function getPipelineStage(segment) {
+  return segment === 'commercial' ? COMMERCIAL_PIPELINE : RESIDENTIAL_PIPELINE;
+}
+
+/** Get next pipeline stage */
+function getNextStage(segment, current) {
+  const pipeline = getPipelineStage(segment);
+  const idx = pipeline.indexOf(current);
+  return idx >= 0 && idx < pipeline.length - 1 ? pipeline[idx + 1] : current;
+}
+
+/** Is this the final stage? */
+function isFinalStage(segment, current) {
+  const pipeline = getPipelineStage(segment);
+  return pipeline.indexOf(current) === pipeline.length - 1;
+}
+

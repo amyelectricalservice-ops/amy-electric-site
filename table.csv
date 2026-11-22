@@ -1,0 +1,8 @@
+﻿Trigger,Condition (Title contains),Action – Add Label
+Issue opened / edited,[CWV] Optimize LCP,"lcp, high-priority"
+Issue opened / edited,[CWV] Audit and optimize JavaScript,"inp, high-priority"
+Issue opened / edited,[CWV] Add explicit dimensions,"cls, lcp"
+Issue opened / edited,[CWV] Optimize custom font,cls
+Issue opened / edited,[CWV] Prevent CLS from sticky,cls
+Issue opened / edited,[CWV] General performance,monitoring
+Issue opened / edited,[CWV],"core-web-vitals, performance"

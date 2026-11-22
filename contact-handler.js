@@ -166,6 +166,8 @@ export async function handleContact(request, env, waitUntil, extra = null) {
         gclid: '',
         fbclid: '',
         status: 'new',
+
+        stage: 'new',  # pipeline stage initial value
         crm_provider: '',
         crm_status: 'pending',
         dedupe_key: dedupeKey,
