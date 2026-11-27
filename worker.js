@@ -152,7 +152,7 @@ function a2aAnswer(text) {
     return 'AMY Electric holds California C-10 Electrical Contractor license #981578, verifiable at cslb.ca.gov, plus EVITP certification #4051604 for charging infrastructure. We carry general liability and workers compensation insurance. California requires a C-10 license for electrical jobs over $500 — always verify before signing.';
   }
   if (has('rebate', 'credit', 'ladwp', 'incentive', '30c')) {
-    return 'Two incentives stack on most installs: the LADWP rebate up to $500 for qualifying Level 2 chargers, and the 30 percent federal 30C tax credit up to $1,000 through 2032. Combined they can bring a standard $900 install under $200 net. LADWP jobs need a licensed contractor, permit, and inspection — our standard process.';
+    return 'LADWP offers a rebate for qualifying Level 2 chargers — check current program terms and amounts. The federal 30C credit for charging equipment ended for property placed in service after June 30, 2026, so it cannot be counted on for a new install. LADWP jobs need a licensed contractor, permit, and inspection — our standard process.';
   }
   if (has('price', 'cost', 'much', 'quote', 'estimate', 'charge')) {
     if (has('panel', 'upgrade', '200a', '200 amp', 'amp')) return 'A 100A to 200A panel upgrade in Los Angeles runs $2,500 to $4,500 including permit, labor, materials, and inspection, over a four to eight hour power-off day. Federal Pacific or Zinsco replacements run $2,800 to $4,800. We quote firm itemized pricing after an on-site evaluation.';
